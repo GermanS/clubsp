@@ -14,8 +14,3 @@ my $request_content = <<'';
 
 my $content = ClubSpain::XML::Partner::Terramar::Request::Country->request();
 is($content, $request_content, 'check content');
-
-
-
-
-

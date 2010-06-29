@@ -4,7 +4,6 @@ use strict;
 use warnings;
 
 use XML::LibXML;
-use HTTP::Request;
 
 sub request {
     my $doc = XML::LibXML::Document->new('1.0', 'utf-8');
@@ -25,3 +24,16 @@ sub request {
 1;
 
 __END__
+
+=head1 request()
+
+Запрос партнеру списка стран
+Форма запроса
+
+  <?xml version="1.0" encoding="utf-8" standalone="yes"?>
+  <integracion accion="paises">
+    <id_tipo_articulo_clase>1</id_tipo_articulo_clase>
+  </integracion>
+
+
+=cut
