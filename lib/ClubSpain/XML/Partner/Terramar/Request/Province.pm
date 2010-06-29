@@ -29,3 +29,18 @@ sub request {
 }
 
 1;
+
+__END__
+
+=head1 request( zona_id => $id )
+
+Запрос партнеру списка провинций для выбраной зоны
+Форма запроса
+
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<integracion accion="provincias">
+  <id_tipo_articulo_clase>1</id_tipo_articulo_clase>
+  <id_zona>1</id_zona>
+</integracion>
+
+=cut
