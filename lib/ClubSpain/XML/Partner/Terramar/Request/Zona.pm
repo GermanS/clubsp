@@ -18,7 +18,8 @@ sub request {
     $id_tipo_articulo_clase->appendText(1);
     
     my $id_zona_pais = $doc->createElement('id_zona_pais');
-    $id_zona_pais->appendText($params{'country_id'});
+    $id_zona_pais->appendText($params{'id_zona_pais'})
+        if defined $params{'id_zona_pais'};
 
     $root->appendChild($id_tipo_articulo_clase);
     $root->appendChild($id_zona_pais);
@@ -32,7 +33,7 @@ sub request {
 
 __END__
 
-=head1 request( country_id => $id )
+=head1 request( id_zona_pais => $id )
 
 Запрос партнеру списка зон выбранной страны
 Форма запроса

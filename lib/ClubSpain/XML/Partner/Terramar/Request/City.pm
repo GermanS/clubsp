@@ -18,7 +18,8 @@ sub request {
     $id_tipo_articulo_clase->appendText(1);
     
     my $id_zona = $doc->createElement('id_zona');
-    $id_zona->appendText($params{'zona_id'});
+    $id_zona->appendText($params{'id_zona'})
+        if defined $params{'id_zona'};
 
     $root->appendChild($id_tipo_articulo_clase);
     $root->appendChild($id_zona);
@@ -32,7 +33,7 @@ sub request {
 
 __END__
 
-=head1 request( zona_id => $id )
+=head1 request( id_zona => $id )
 
 Запрос партнеру списка городов для выбраной зоны
 Форма запроса

@@ -13,5 +13,5 @@ my $request_content =<<'';
 </integracion>
 
 
-my $content = ClubSpain::XML::Partner::Terramar::Request::Zona->request( country_id => 1 );
+my $content = ClubSpain::XML::Partner::Terramar::Request::Zona->request( id_zona_pais => 1 );
 is($content, $request_content, 'check content');
