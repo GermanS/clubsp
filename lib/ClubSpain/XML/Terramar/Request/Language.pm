@@ -23,9 +23,9 @@ sub request {
 
 __END__
 
-=head1 request( id_zona => $id )
+=head1 request()
 
-Запрос партнеру списка языков
+Запрос партнеру списка доступных языков
 Форма запроса
 
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
