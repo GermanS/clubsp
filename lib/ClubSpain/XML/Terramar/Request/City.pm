@@ -1,4 +1,4 @@
-package ClubSpain::XML::Partner::Terramar::Request::Province;
+package ClubSpain::XML::Terramar::Request::City;
 
 use strict;
 use warnings;
@@ -12,7 +12,7 @@ sub request {
     $doc->setStandalone(1);
     
     my $root = $doc->createElement('integracion');
-    $root->setAttribute('accion', 'provincias');
+    $root->setAttribute('accion', 'poblaciones');
 
     my $id_tipo_articulo_clase = $doc->createElement('id_tipo_articulo_clase');
     $id_tipo_articulo_clase->appendText(1);
@@ -35,13 +35,14 @@ __END__
 
 =head1 request( id_zona => $id )
 
-Запрос партнеру списка провинций для выбраной зоны
+Запрос партнеру списка городов для выбраной зоны
 Форма запроса
 
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<integracion accion="provincias">
+<integracion accion="poblaciones">
   <id_tipo_articulo_clase>1</id_tipo_articulo_clase>
   <id_zona>1</id_zona>
 </integracion>
 
 =cut
+

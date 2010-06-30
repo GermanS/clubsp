@@ -1,4 +1,4 @@
-package ClubSpain::XML::Partner::Terramar::Request::BoardType;
+package ClubSpain::XML::Terramar::Request::HotelInfo;
 
 use strict;
 use warnings;
@@ -12,31 +12,39 @@ sub request {
     $doc->setStandalone(1);
     
     my $root = $doc->createElement('integracion');
-    $root->setAttribute('accion', 'suplementosregimen');
+    $root->setAttribute('accion', 'fichatecnicaprestatario');
+
+    my $id_prestatario = $doc->createElement('id_prestatario');
+    $id_prestatario->appendText($params{'id_prestatario'})
+        if defined $params{'id_prestatario'};
 
     my $id_idioma = $doc->createElement('id_idioma');
     $id_idioma->appendText($params{'id_idioma'})
         if defined $params{'id_idioma'};
 
+    $root->appendChild($id_prestatario);
     $root->appendChild($id_idioma);
     
     $doc->setDocumentElement($root);
     
-    return $doc->toString(1);    
+    return $doc->toString(1);
 }
 
 1;
 
 __END__
 
-=head1 request( id_idioma => )
+=head1 request( id_prestatario => , id_idioma => )
 
-Запрос о типах питания в отеле
+Запрос партнеру расширеной информации по отелю
 Форма запроса
 
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<integracion accion="suplementosregimen">
+<integracion accion="fichatecnicaprestatario">
+  <id_prestatario>1</id_prestatario>
   <id_idioma>0</id_idioma>
 </integracion>
+
+
 
 =cut

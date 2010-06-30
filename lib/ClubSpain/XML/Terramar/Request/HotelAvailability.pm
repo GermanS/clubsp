@@ -1,4 +1,4 @@
-package ClubSpain::XML::Partner::Terramar::Request::HotelContract;
+package ClubSpain::XML::Terramar::Request::HotelAvailability;
 
 use strict;
 use warnings;
@@ -12,36 +12,31 @@ sub request {
     $doc->setStandalone(1);
     
     my $root = $doc->createElement('integracion');
-    $root->setAttribute('accion', 'informeimprenta');
-    
+    $root->setAttribute('accion', 'rangosdisponibilidad');
+
     my $id_articulo = $doc->createElement('id_articulo');
     $id_articulo->appendText($params{'id_articulo'})
         if defined $params{'id_articulo'};    
-        
-    my $id_idioma = $doc->createElement('id_idioma');
-    $id_idioma->appendText($params{'id_idioma'})
-        if defined $params{'id_idioma'};
 
     $root->appendChild($id_articulo);
-    $root->appendChild($id_idioma);
     
     $doc->setDocumentElement($root);
     
-    return $doc->toString(1);     
+    return $doc->toString(1); 
 }
 
 1;
 
 __END__
-=head1 request( id_articulo => , id_idioma => )
 
-Запрос о контракта отеля
+=head1 request( id_articulo => )
+
+Запрос о возможности бронирования отеля
 Форма запроса
 
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<integracion accion="informeimprenta">
+<integracion accion="rangosdisponibilidad">
   <id_articulo>101</id_articulo>
-  <id_idioma>0</id_idioma>
 </integracion>
 
-=cut
+=cut 

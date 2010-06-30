@@ -3,7 +3,7 @@ use Test::More tests => 2;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::XML::Partner::Terramar::Request::Zona');
+use_ok('ClubSpain::XML::Terramar::Request::Zona');
 
 my $request_content =<<'';
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
@@ -13,5 +13,5 @@ my $request_content =<<'';
 </integracion>
 
 
-my $content = ClubSpain::XML::Partner::Terramar::Request::Zona->request( id_zona_pais => 1 );
+my $content = ClubSpain::XML::Terramar::Request::Zona->request( id_zona_pais => 1 );
 is($content, $request_content, 'check content');

@@ -1,4 +1,4 @@
-package ClubSpain::XML::Partner::Terramar::Request::Country;
+package ClubSpain::XML::Terramar::Request::Country;
 
 use strict;
 use warnings;

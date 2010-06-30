@@ -3,7 +3,7 @@ use Test::More tests => 2;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::XML::Partner::Terramar::Request::Hotel');
+use_ok('ClubSpain::XML::Terramar::Request::Hotel');
 
 my $request_content =<<'';
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
@@ -17,7 +17,7 @@ my $request_content =<<'';
 </integracion>
 
 
-my $content = ClubSpain::XML::Partner::Terramar::Request::Hotel->request( 
+my $content = ClubSpain::XML::Terramar::Request::Hotel->request( 
   id_zona => 1322,
   info_extendida => 0,
   poblacion => 'LLORET DE MAR',

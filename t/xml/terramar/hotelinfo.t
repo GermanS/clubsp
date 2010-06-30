@@ -3,7 +3,7 @@ use Test::More tests => 2;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::XML::Partner::Terramar::Request::HotelInfo');
+use_ok('ClubSpain::XML::Terramar::Request::HotelInfo');
 
 my $request_content = <<'';
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
@@ -12,7 +12,7 @@ my $request_content = <<'';
   <id_idioma>0</id_idioma>
 </integracion>
 
-my $content = ClubSpain::XML::Partner::Terramar::Request::HotelInfo->request(
+my $content = ClubSpain::XML::Terramar::Request::HotelInfo->request(
     id_prestatario => 100,
     id_idioma => 0
 );

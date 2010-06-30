@@ -1,4 +1,4 @@
-package ClubSpain::XML::Partner::Terramar::Request::Hotel;
+package ClubSpain::XML::Terramar::Request::Hotel;
 
 use strict;
 use warnings;
