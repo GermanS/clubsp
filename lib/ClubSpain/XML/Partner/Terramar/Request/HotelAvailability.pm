@@ -29,7 +29,10 @@ sub request {
 
 __END__
 
-=head 
+=head1 request( id_articulo => )
+
+Запрос о возможности бронирования отеля
+Форма запроса
 
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <integracion accion="rangosdisponibilidad">

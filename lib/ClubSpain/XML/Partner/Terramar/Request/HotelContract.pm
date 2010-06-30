@@ -33,7 +33,7 @@ sub request {
 1;
 
 __END__
-=head1 request( id_articulo => )
+=head1 request( id_articulo => , id_idioma => )
 
 Запрос о контракта отеля
 Форма запроса
