@@ -1,7 +1,5 @@
 package ClubSpain::XML::Terramar::Response::Language;
 
-use Moose;
-
 use XML::LibXML;
 use ClubSpain::XML::Terramar::Language;
 
