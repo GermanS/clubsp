@@ -8,7 +8,7 @@ use_ok('ClubSpain::XML::Terramar::Request::Hotel');
 my $request_content =<<'';
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <integracion accion="prestatarios">
-  <id_tipo_articulo_clase>1</id_tipo_articulo_clase>
+  <id_tipo_articulo_clase>10</id_tipo_articulo_clase>
   <provincia/>
   <id_zona>1322</id_zona>
   <info_extendida>0</info_extendida>
@@ -17,10 +17,11 @@ my $request_content =<<'';
 </integracion>
 
 
-my $content = ClubSpain::XML::Terramar::Request::Hotel->request( 
-  id_zona => 1322,
-  info_extendida => 0,
-  poblacion => 'LLORET DE MAR',
-  id_idioma => 3
+my $content = ClubSpain::XML::Terramar::Request::Hotel->request(
+    id_tipo_articulo_clase => 10,
+    id_zona => 1322,
+    info_extendida => 0,
+    poblacion => 'LLORET DE MAR',
+    id_idioma => 3
 );
 is($content, $request_content, 'check content');

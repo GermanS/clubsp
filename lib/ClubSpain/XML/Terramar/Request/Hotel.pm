@@ -15,7 +15,8 @@ sub request {
     $root->setAttribute('accion', 'prestatarios');   
     
     my $id_tipo_articulo_clase = $doc->createElement('id_tipo_articulo_clase');
-    $id_tipo_articulo_clase->appendText(1);
+    $id_tipo_articulo_clase->appendText($params{'id_tipo_articulo_clase'})
+        if defined $params{'id_tipo_articulo_clase'};
     
     my $provincia = $doc->createElement('provincia');
     $provincia->appendText($params{'provincia'})
