@@ -15,7 +15,8 @@ sub request {
     $root->setAttribute('accion', 'zonas');
 
     my $id_tipo_articulo_clase = $doc->createElement('id_tipo_articulo_clase');
-    $id_tipo_articulo_clase->appendText(1);
+    $id_tipo_articulo_clase->appendText($params{'id_tipo_articulo_clase'})
+        if defined $params{'id_tipo_articulo_clase'};
     
     my $id_zona_pais = $doc->createElement('id_zona_pais');
     $id_zona_pais->appendText($params{'id_zona_pais'})
@@ -33,7 +34,7 @@ sub request {
 
 __END__
 
-=head1 request( id_zona_pais => $id )
+=head1 request( id_tipo_articulo_clase =>,  id_zona_pais => $id )
 
 Запрос партнеру списка зон выбранной страны
 Форма запроса
