@@ -12,7 +12,8 @@ my $build = Module::Build->new(
         'DBIx::Class'                      => '>=0.08123',
         'DBD::SQLite'                      => '>=1.29',
         'Test::More'                       => '>=0.94',
-        'XML::LibXML'                      => '>=1.70'
+        'XML::LibXML'                      => '>=1.70',
+        'Moose'                            => 0,
     }
 );
 
