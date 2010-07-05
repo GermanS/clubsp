@@ -15,7 +15,8 @@ sub request {
     $root->setAttribute('accion', 'provincias');
 
     my $id_tipo_articulo_clase = $doc->createElement('id_tipo_articulo_clase');
-    $id_tipo_articulo_clase->appendText(1);
+    $id_tipo_articulo_clase->appendText($params{'id_tipo_articulo_clase'})
+        if defined $params{'id_tipo_articulo_clase'};
     
     my $id_zona = $doc->createElement('id_zona');
     $id_zona->appendText($params{'id_zona'})
