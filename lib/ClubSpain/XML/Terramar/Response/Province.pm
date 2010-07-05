@@ -11,15 +11,13 @@ sub parse {
     
     my $dom = XML::LibXML->load_xml( string => $xml_sting );
     my $root = $dom->getDocumentElement();
-    
-    my $xpath            = new XML::LibXML::XPathExpression('/integracion');    
-    my $xpath_provincia  = new XML::LibXML::XPathExpression('provincia');
-        
+    my $xpath            = new XML::LibXML::XPathExpression('/integracion/provincia');    
+            
     my @res;
     my @nodes = $root->findnodes($xpath);
     foreach my $node (@nodes) {        
         my $object = ClubSpain::XML::Terramar::Province->new({
-            provincia => $node->findvalue($xpath_provincia)
+            provincia => $node->textContent()
         });
        
         push @res, $object;
