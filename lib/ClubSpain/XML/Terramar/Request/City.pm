@@ -15,7 +15,8 @@ sub request {
     $root->setAttribute('accion', 'poblaciones');
 
     my $id_tipo_articulo_clase = $doc->createElement('id_tipo_articulo_clase');
-    $id_tipo_articulo_clase->appendText(1);
+    $id_tipo_articulo_clase->appendText($params{'id_tipo_articulo_clase'})
+        if defined $params{'id_tipo_articulo_clase'};
     
     my $id_zona = $doc->createElement('id_zona');
     $id_zona->appendText($params{'id_zona'})
@@ -33,7 +34,7 @@ sub request {
 
 __END__
 
-=head1 request( id_zona => $id )
+=head1 request( id_tipo_articulo_clase => , id_zona =>  )
 
 Запрос партнеру списка городов для выбраной зоны
 Форма запроса
