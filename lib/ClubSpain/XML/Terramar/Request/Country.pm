@@ -6,6 +6,7 @@ use warnings;
 use XML::LibXML;
 
 sub request {
+    my ($self, %params) = @_;
     my $doc = XML::LibXML::Document->new('1.0', 'utf-8');
     $doc->setStandalone(1);
     
@@ -13,7 +14,8 @@ sub request {
     $root->setAttribute('accion', 'paises');
 
     my $id_tipo_articulo_clase = $doc->createElement('id_tipo_articulo_clase');
-    $id_tipo_articulo_clase->appendText(1);
+    $id_tipo_articulo_clase->appendText($params{'id_tipo_articulo_clase'})
+        if defined $params{'id_tipo_articulo_clase'};
 
     $root->appendChild($id_tipo_articulo_clase);
     $doc->setDocumentElement($root);
@@ -25,7 +27,7 @@ sub request {
 
 __END__
 
-=head1 request()
+=head1 request( id_tipo_articulo_clase => )
 
 Запрос партнеру списка стран
 Форма запроса
