@@ -34,7 +34,7 @@ sub request {
 
 __END__
 
-=head1 request( id_zona => $id )
+=head1 request( id_tipo_articulo_clase =>, id_zona =>  )
 
 Запрос партнеру списка провинций для выбраной зоны
 Форма запроса
