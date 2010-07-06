@@ -8,7 +8,7 @@ use_ok('ClubSpain::XML::Terramar::HotelInfo');
 my $info = ClubSpain::XML::Terramar::HotelInfo->new({
     nif                 => 'nif',
     nombre_comercial    => 'nombre_comercial',
-    Description         => 'Description',
+    description         => 'Description',
     imagen              => 'imagen',
     direccion           => 'direccion',
     poblacion           => 'poblacion',
@@ -37,7 +37,7 @@ my $info = ClubSpain::XML::Terramar::HotelInfo->new({
 isa_ok($info, 'ClubSpain::XML::Terramar::HotelInfo');
 is($info->nif, 'nif', 'got nif');
 is($info->nombre_comercial, 'nombre_comercial', 'got nombre_comercial');
-is($info->Description, 'Description', 'got Description');
+is($info->description, 'Description', 'got Description');
 is($info->imagen, 'imagen', 'got imagen');
 is($info->direccion, 'direccion', 'got direccion');
 is($info->poblacion, 'poblacion', 'got poblacion');

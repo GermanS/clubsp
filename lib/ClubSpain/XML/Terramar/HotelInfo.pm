@@ -4,7 +4,7 @@ use Moose;
 
 has 'nif'                   => (is => 'rw', required =>  1);
 has 'nombre_comercial'      => (is => 'rw', required =>  1);
-has 'Description'           => (is => 'rw', required =>  1);
+has 'description'           => (is => 'rw', required =>  1);
 has 'imagen'                => (is => 'rw', required =>  1);
 has 'direccion'             => (is => 'rw', required =>  1);
 has 'poblacion'             => (is => 'rw', required =>  1);
