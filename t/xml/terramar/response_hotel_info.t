@@ -37,7 +37,7 @@ my $response =<<"";
                     nombre="Television" 
                     id_caracteristica="4" 
                     id_subcategoria="2" 
-                    valor="Si">10101</caracteristica>
+                    valor="Si"/>
     </caracteristicas>
   <linea_bono_1/>
   <linea_bono_2/>
