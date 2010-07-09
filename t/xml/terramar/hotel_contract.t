@@ -52,15 +52,15 @@ my $rango = ClubSpain::XML::Terramar::HotelContract::Rango->new({
     fecha_desde => 'fecha_desde',
     fecha_hasta => 'fecha_hasta',
     
-    precio => $precio,
-    suplemento => $suplemento,
+    precio     => [ $precio ],
+    suplemento => [ $suplemento ],
 });
 
 isa_ok($rango, 'ClubSpain::XML::Terramar::HotelContract::Rango');
 is($rango->fecha_desde, 'fecha_desde', 'got fecha desde');
 is($rango->fecha_hasta, 'fecha_hasta', 'got fecha_hasta');
-is_deeply($rango->precio, $precio, 'got precio');
-is_deeply($rango->suplemento, $suplemento, 'got suplemento');
+is_deeply($rango->precio,     [ $precio ], 'got precio');
+is_deeply($rango->suplemento, [ $suplemento ], 'got suplemento');
 
 
 
@@ -85,13 +85,13 @@ my $contract = ClubSpain::XML::Terramar::HotelContract->new({
     id_articulo     => 'id_articulo',
     prestatario     => 'prestatario',
     nombre_articulo => 'nombre_articulo',
-    ocupacion       => $ocupacion,
-    rango           => $rango,
+    ocupacion       => [ $ocupacion ],
+    rango           => [ $rango ],
 });
 
 isa_ok($contract, 'ClubSpain::XML::Terramar::HotelContract');
 is($contract->id_articulo, 'id_articulo', 'got id_artuculo');
 is($contract->prestatario, 'prestatario', 'got prestatario');
 is($contract->nombre_articulo, 'nombre_articulo', 'got nombre_articulo');
-is_deeply($contract->ocupacion, $ocupacion, 'got ocupacion');
-is_deeply($contract->rango, $rango, 'got rango');
+is_deeply($contract->ocupacion, [ $ocupacion ], 'got ocupacion');
+is_deeply($contract->rango, [ $rango ], 'got rango');

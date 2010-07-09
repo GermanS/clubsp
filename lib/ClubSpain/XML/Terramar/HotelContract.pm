@@ -6,8 +6,8 @@ has 'id_articulo'     => ( is => 'rw', required => 1 );
 has 'prestatario'     => ( is => 'rw', required => 1 );
 has 'nombre_articulo' => ( is => 'rw', required => 1 );
 
-has 'ocupacion' => ( is => 'rw', isa => 'ClubSpain::XML::Terramar::HotelContract::Ocupacion');
-has 'rango'     => ( is => 'rw', isa => 'ClubSpain::XML::Terramar::HotelContract::Rango');
+has 'ocupacion' => ( is => 'rw', isa => 'ArrayRef' );
+has 'rango'     => ( is => 'rw', isa => 'ArrayRef' );
 
 
 package ClubSpain::XML::Terramar::HotelContract::Ocupacion;
@@ -27,8 +27,8 @@ use Moose;
 has 'fecha_desde' => ( is => 'rw', required => 1 );
 has 'fecha_hasta' => ( is => 'rw', required => 1 );
 
-has 'precio'     => ( is => 'rw', isa => 'ClubSpain::XML::Terramar::HotelContract::Precio');
-has 'suplemento' => ( is => 'rw', isa => 'ClubSpain::XML::Terramar::HotelContract::Suplemento');
+has 'precio'     => ( is => 'rw', isa => 'ArrayRef' );
+has 'suplemento' => ( is => 'rw', isa => 'ArrayRef' );
 
 
 package ClubSpain::XML::Terramar::HotelContract::Precio;
