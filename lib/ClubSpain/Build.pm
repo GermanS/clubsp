@@ -20,6 +20,7 @@ use ClubSpain::XML::Terramar::Request::Hotel;
 use ClubSpain::XML::Terramar::Request::HotelInfo;
 use ClubSpain::XML::Terramar::Request::BoardType;
 use ClubSpain::XML::Terramar::Request::Occupation;
+use ClubSpain::XML::Terramar::Request::HotelAvailability;
 
 sub ACTION_request_menu {
     my $self = shift;
@@ -51,6 +52,7 @@ sub ACTION_request_menu {
         say "[9] request_hotel_info";
         say "[10] request_board_type";
         say "[11] request_occupation";
+        say "[12] request_hotel_availability";
         say "[0] Main menu";
         say "type quit to exit";
         say "-" x 25;
@@ -70,6 +72,7 @@ sub ACTION_request_menu {
             when (9) { $self->ACTION_request_hotel_info(); }
             when (10) { $self->ACTION_request_board_type(); }
             when (11) { $self->ACTION_request_occupation(); }
+            when (12) { $self->ACTION_request_hotel_availability(); }
         }
     }
 }
@@ -273,11 +276,28 @@ sub ACTION_request_occupation {
     say "-" x 25;
 
     my $xml = ClubSpain::XML::Terramar::Request::Occupation->request(
-        id_idioma       => $self->args('id_tipo_articulo_clase'),
+        id_tipo_articulo_clase  => $self->args('id_tipo_articulo_clase'),
     );
     my $response = $self->ua->request( $self->uri($xml) );
 
     $self->out($response);        
+}
+
+sub ACTION_request_hotel_availability {
+    my $self = shift;
+    
+    say "-" x 25;
+    $self->args('id_articulo',
+        $self->prompt('Hotel ID (id_articulo):')
+    );
+    say "-" x 25;
+
+    my $xml = ClubSpain::XML::Terramar::Request::HotelAvailability->request(
+        id_articulo       => $self->args('id_articulo'),
+    );
+    my $response = $self->ua->request( $self->uri($xml) );
+
+    $self->out($response); 
 }
 
 sub out {
