@@ -19,6 +19,7 @@ use ClubSpain::XML::Terramar::Request::City;
 use ClubSpain::XML::Terramar::Request::Hotel;
 use ClubSpain::XML::Terramar::Request::HotelInfo;
 use ClubSpain::XML::Terramar::Request::BoardType;
+use ClubSpain::XML::Terramar::Request::Occupation;
 
 sub ACTION_request_menu {
     my $self = shift;
@@ -49,6 +50,7 @@ sub ACTION_request_menu {
         say "[8] request_hotel";
         say "[9] request_hotel_info";
         say "[10] request_board_type";
+        say "[11] request_occupation";
         say "[0] Main menu";
         say "type quit to exit";
         say "-" x 25;
@@ -67,6 +69,7 @@ sub ACTION_request_menu {
             when (8) { $self->ACTION_request_hotel(); }
             when (9) { $self->ACTION_request_hotel_info(); }
             when (10) { $self->ACTION_request_board_type(); }
+            when (11) { $self->ACTION_request_occupation(); }
         }
     }
 }
@@ -258,6 +261,23 @@ sub ACTION_request_board_type {
     my $response = $self->ua->request( $self->uri($xml) );
 
     $self->out($response);    
+}
+
+sub ACTION_request_occupation {
+    my $self = shift;
+    
+    say "-" x 25;
+    $self->args('id_tipo_articulo_clase',
+        $self->prompt('Product type ID (id_tipo_articulo_clase):')
+    );
+    say "-" x 25;
+
+    my $xml = ClubSpain::XML::Terramar::Request::Occupation->request(
+        id_idioma       => $self->args('id_tipo_articulo_clase'),
+    );
+    my $response = $self->ua->request( $self->uri($xml) );
+
+    $self->out($response);        
 }
 
 sub out {
