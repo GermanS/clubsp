@@ -21,6 +21,8 @@ use ClubSpain::XML::Terramar::Request::HotelInfo;
 use ClubSpain::XML::Terramar::Request::BoardType;
 use ClubSpain::XML::Terramar::Request::Occupation;
 use ClubSpain::XML::Terramar::Request::HotelAvailability;
+use ClubSpain::XML::Terramar::Request::HotelContract;
+use ClubSpain::XML::Terramar::Request::HotelActiveContract;
 
 sub ACTION_request_menu {
     my $self = shift;
@@ -53,6 +55,8 @@ sub ACTION_request_menu {
         say "[10] request_board_type";
         say "[11] request_occupation";
         say "[12] request_hotel_availability";
+        say "[13] request_hotel_active_contract";
+        say "[14] request_hotel_contract_details";
         say "[0] Main menu";
         say "type quit to exit";
         say "-" x 25;
@@ -73,6 +77,8 @@ sub ACTION_request_menu {
             when (10) { $self->ACTION_request_board_type(); }
             when (11) { $self->ACTION_request_occupation(); }
             when (12) { $self->ACTION_request_hotel_availability(); }
+            when (13) { $self->ACTION_hotel_active_contract(); }
+            when (14) { $self->ACTION_hotel_contract_details(); }
         }
     }
 }
@@ -294,6 +300,52 @@ sub ACTION_request_hotel_availability {
 
     my $xml = ClubSpain::XML::Terramar::Request::HotelAvailability->request(
         id_articulo       => $self->args('id_articulo'),
+    );
+    my $response = $self->ua->request( $self->uri($xml) );
+
+    $self->out($response); 
+}
+
+sub ACTION_hotel_active_contract {
+    my $self = shift;
+    
+    say "-" x 25;
+    $self->args('id_prestatario',
+        $self->prompt('Hotel ID (id_articulo):')
+    );
+    $self->args('id_idioma',
+        $self->prompt('Language ID (id_idioma):')
+    );    
+    $self->args('id_tipo_articulo_clase',
+        $self->prompt('Product type ID (id_tipo_articulo_clase)::')
+    );        
+    say "-" x 25;
+
+    my $xml = ClubSpain::XML::Terramar::Request::HotelActiveContract->request(
+        id_prestatario         => $self->args('id_prestatario'),
+        id_idioma              => $self->args('id_idioma'),
+        id_tipo_articulo_clase => $self->args('id_tipo_articulo_clase'),
+    );
+    my $response = $self->ua->request( $self->uri($xml) );
+
+    $self->out($response);     
+}
+
+sub ACTION_hotel_contract_details {
+    my $self = shift;
+    
+    say "-" x 25;
+    $self->args('id_articulo',
+        $self->prompt('Hotel ID (id_articulo):')
+    );
+    $self->args('id_idioma',
+        $self->prompt('Language ID (id_idioma):')
+    );    
+    say "-" x 25;
+
+    my $xml = ClubSpain::XML::Terramar::Request::HotelContract->request(
+        id_articulo       => $self->args('id_articulo'),
+        id_idioma         => $self->args('id_idioma'),
     );
     my $response = $self->ua->request( $self->uri($xml) );
 
