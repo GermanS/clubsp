@@ -1,9 +1,11 @@
 use strict;
 use warnings;
 
-use Module::Build;
+use lib qw(lib);
 
-my $build = Module::Build->new(
+use ClubSpain::Build;
+
+my $build = ClubSpain::Build->new(
     module_name => 'ClubSpain',
     recursive_test_files => 1,
     requires => {
