@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<integracion accion="listado_articulos_activos">
+  <articulo>
+    <id>3447</id>
+    <nombre>Junior Suite</nombre>
+    <id_tipo_articulo_clase>2</id_tipo_articulo_clase>
+    <id_tipo_articulo_superclase>1</id_tipo_articulo_superclase>
+    <id_zona_pais>1</id_zona_pais>
+    <id_zona>1323</id_zona>
+  </articulo>
+  <articulo>
+    <id>9143</id>
+    <nombre>Junior Suite</nombre>
+    <id_tipo_articulo_clase>2</id_tipo_articulo_clase>
+    <id_tipo_articulo_superclase>1</id_tipo_articulo_superclase>
+    <id_zona_pais>1</id_zona_pais>
+    <id_zona>1323</id_zona>
+  </articulo>
+  <articulo>
+    <id>3444</id>
+    <nombre>De Luxe Room</nombre>
+    <id_tipo_articulo_clase>2</id_tipo_articulo_clase>
+    <id_tipo_articulo_superclase>1</id_tipo_articulo_superclase>
+    <id_zona_pais>1</id_zona_pais>
+    <id_zona>1323</id_zona>
+  </articulo>
+  <articulo>
+    <id>8691</id>
+    <nombre>De Luxe Room</nombre>
+    <id_tipo_articulo_clase>2</id_tipo_articulo_clase>
+    <id_tipo_articulo_superclase>1</id_tipo_articulo_superclase>
+    <id_zona_pais>1</id_zona_pais>
+    <id_zona>1323</id_zona>
+  </articulo>
+  <articulo>
+    <id>9142</id>
+    <nombre>De Luxe Room</nombre>
+    <id_tipo_articulo_clase>2</id_tipo_articulo_clase>
+    <id_tipo_articulo_superclase>1</id_tipo_articulo_superclase>
+    <id_zona_pais>1</id_zona_pais>
+    <id_zona>1323</id_zona>
+  </articulo>
+  <articulo>
+    <id>3448</id>
+    <nombre>Suite Privilege</nombre>
+    <id_tipo_articulo_clase>2</id_tipo_articulo_clase>
+    <id_tipo_articulo_superclase>1</id_tipo_articulo_superclase>
+    <id_zona_pais>1</id_zona_pais>
+    <id_zona>1323</id_zona>
+  </articulo>
+  <articulo>
+    <id>9144</id>
+    <nombre>Suite Privilege</nombre>
+    <id_tipo_articulo_clase>2</id_tipo_articulo_clase>
+    <id_tipo_articulo_superclase>1</id_tipo_articulo_superclase>
+    <id_zona_pais>1</id_zona_pais>
+    <id_zona>1323</id_zona>
+  </articulo>
+</integracion>

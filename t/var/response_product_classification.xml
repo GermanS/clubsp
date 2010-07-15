@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<integracion accion="listado_superclases">
+  <superclase>
+    <id_tipo_articulo_superclase>1</id_tipo_articulo_superclase>
+    <nombre>HOTELS</nombre>
+    <orden>1</orden>
+  </superclase>
+  <superclase>
+    <id_tipo_articulo_superclase>4</id_tipo_articulo_superclase>
+    <nombre>BUS ROUND TRIPS</nombre>
+    <orden>4</orden>
+  </superclase>
+  <superclase>
+    <id_tipo_articulo_superclase>5</id_tipo_articulo_superclase>
+    <nombre>TRANSFERS</nombre>
+    <orden>5</orden>
+  </superclase>
+  <superclase>
+    <id_tipo_articulo_superclase>6</id_tipo_articulo_superclase>
+    <nombre>EXTRA SERVICE</nombre>
+    <orden>6</orden>
+  </superclase>
+  <superclase_predeterminada></superclase_predeterminada>
+</integracion>

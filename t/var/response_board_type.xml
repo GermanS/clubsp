@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<integracion accion="listado_suplementos_regimen">
+  <tipo_suplemento>
+    <id_tipo_suplemento>1</id_tipo_suplemento>
+    <nombre>Accommodation only</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>2</id_tipo_suplemento>
+    <nombre>Bed and Breakfast</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>3</id_tipo_suplemento>
+    <nombre>Half Board</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>4</id_tipo_suplemento>
+    <nombre>Full Board</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>5</id_tipo_suplemento>
+    <nombre>All Inclusive</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>269</id_tipo_suplemento>
+    <nombre>Silver Half Board</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>271</id_tipo_suplemento>
+    <nombre>Golden All Inclusive</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>270</id_tipo_suplemento>
+    <nombre>Silver Full Board</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>292</id_tipo_suplemento>
+    <nombre>Half Board Plus</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>314</id_tipo_suplemento>
+    <nombre>Extra service</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>315</id_tipo_suplemento>
+    <nombre>Excursion</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>323</id_tipo_suplemento>
+    <nombre>Half Board Deluxe</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>329</id_tipo_suplemento>
+    <nombre>Full Board Plus</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>350</id_tipo_suplemento>
+    <nombre>All Inclusive Plus</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>357</id_tipo_suplemento>
+    <nombre>Half Board Premium</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>366</id_tipo_suplemento>
+    <nombre>Free breakfast buffet</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>391</id_tipo_suplemento>
+    <nombre>All Inclusive Club</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>394</id_tipo_suplemento>
+    <nombre>All Inclusive Light</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>421</id_tipo_suplemento>
+    <nombre>Half Board GrandLuxe</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>422</id_tipo_suplemento>
+    <nombre>Half Board Standard</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>434</id_tipo_suplemento>
+    <nombre>Supl. Half Board (Children)</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>442</id_tipo_suplemento>
+    <nombre>All Inclusive Elite</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>471</id_tipo_suplemento>
+    <nombre>Half Board Premium</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>470</id_tipo_suplemento>
+    <nombre>All Inclusive Premium</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>499</id_tipo_suplemento>
+    <nombre></nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>504</id_tipo_suplemento>
+    <nombre>All Inclusive Superior</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>508</id_tipo_suplemento>
+    <nombre>Half Board a la carte</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>624</id_tipo_suplemento>
+    <nombre>All Inclusive Yellow</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>625</id_tipo_suplemento>
+    <nombre>All Inclusive Green</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>658</id_tipo_suplemento>
+    <nombre>All Inclusive Deluxe</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>708</id_tipo_suplemento>
+    <nombre>New Years Eve Gala Dinner Adult (in HB &amp; PC)</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>709</id_tipo_suplemento>
+    <nombre>New Years Eve Gala Dinner Child (in HB &amp; PC)</nombre>
+  </tipo_suplemento>
+  <tipo_suplemento>
+    <id_tipo_suplemento>717</id_tipo_suplemento>
+    <nombre>Restaurant Dinner Buffet "EL BERNEGAL"(on BB basis)</nombre>
+  </tipo_suplemento>
+</integracion>

@@ -1,0 +1,394 @@
+<?xml version="1.0"?>
+<integracion accion="informe_imprenta" id_articulo="9144" prestatario="64503" nombre_articulo="Suite Privilege">
+  <ocupacion min_adultos="4" max_adultos="7" max_ninos="7" min_pax="4" max_pax="7"/>
+  <rango fecha_desde="2010-03-13" fecha_hasta="2010-03-31">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="34.16" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="37.38" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="31.97" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="43.98" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-03-13" fecha_hasta="2010-03-31" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-03-13" fecha_hasta="2010-06-18" pvp="0.00" porcentaje="-100.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-04-01" fecha_hasta="2010-04-04">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="56.51" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="59.73" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="54.33" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="67.32" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-01" fecha_hasta="2010-04-04" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="2" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-03-13" fecha_hasta="2010-06-18" pvp="0.00" porcentaje="-100.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-04-05" fecha_hasta="2010-05-28">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="34.16" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="37.38" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="31.97" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="43.98" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-03-13" fecha_hasta="2010-06-18" pvp="0.00" porcentaje="-100.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-05-29" fecha_hasta="2010-06-04">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="46.12" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="49.34" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="43.94" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="56.94" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-03-13" fecha_hasta="2010-06-18" pvp="0.00" porcentaje="-100.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-06-05" fecha_hasta="2010-06-18">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="56.52" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="59.74" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="54.34" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="67.34" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-03-13" fecha_hasta="2010-06-18" pvp="0.00" porcentaje="-100.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-06-19" fecha_hasta="2010-07-02">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="70.35" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="73.58" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="68.17" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="81.69" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-06-19" fecha_hasta="2010-09-24" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-07-03" fecha_hasta="2010-07-09">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="83.91" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="87.16" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="81.75" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="94.84" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-06-19" fecha_hasta="2010-09-24" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-07-10" fecha_hasta="2010-07-30">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="87.69" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="90.94" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="85.48" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="95.63" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-06-19" fecha_hasta="2010-09-24" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-07-31" fecha_hasta="2010-08-27">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="102.14" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="105.40" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="99.99" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="111.35" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-06-19" fecha_hasta="2010-09-24" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-08-28" fecha_hasta="2010-09-10">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="61.24" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="64.50" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="59.03" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="72.23" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-06-19" fecha_hasta="2010-09-24" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-09-11" fecha_hasta="2010-09-24">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="47.78" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="51.03" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="45.57" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="58.76" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-06-19" fecha_hasta="2010-09-24" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-09-25" fecha_hasta="2010-10-01">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="38.25" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="41.52" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="36.05" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="48.09" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-09-25" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-100.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+  <rango fecha_desde="2010-10-02" fecha_hasta="2010-12-19">
+    <precios>
+      <precio con_suplemento_de_regimen=".BB" importe="36.16" importe_por="pax"/>
+      <precio con_suplemento_de_regimen=".HB" importe="39.42" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="AO" importe="33.96" importe_por="pax"/>
+      <precio con_suplemento_de_regimen="FB" importe="45.99" importe_por="pax"/>
+    </precios>
+    <suplementos>
+      <suplemento id_suplemento="60345" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">5th pax</suplemento>
+      <suplemento id_suplemento="60348" fecha_desde="2010-04-05" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="25.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="2" dias_maximo="3" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60349" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="50.00" id_clase="5" nombre_clase="SHORT STAY" dias_minimo="1" dias_maximo="1" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">Short Stay</suplemento>
+      <suplemento id_suplemento="60350" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">6th pax</suplemento>
+      <suplemento id_suplemento="60351" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-30.00" id_clase="2" nombre_clase="EXTRA PAX" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">7th pax</suplemento>
+      <suplemento id_suplemento="60352" fecha_desde="2010-09-25" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-100.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">1st Child</suplemento>
+      <suplemento id_suplemento="60353" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">2nd Child</suplemento>
+      <suplemento id_suplemento="60354" fecha_desde="2010-03-13" fecha_hasta="2010-12-19" pvp="0.00" porcentaje="-50.00" id_clase="3" nombre_clase="CHILDREN" edad_desde="2" edad_hasta="12" referencia_pb="1" obligatorio="0" importe_por="pax" rango_fechas="noche">3rd child</suplemento>
+    </suplementos>
+    <ofertas>
+      <oferta id_oferta="12852" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="First child is free" dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="Calculation of nights - not multiple and not acomulative." dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+      <oferta id_oferta="12856" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">1st child free + Short stay without supplement</oferta>
+      <oferta id_oferta="12857" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0">1st child free + 7X6</oferta>
+      <oferta id_oferta="12858" tipo_oferta="27" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0">1st child free + 14X12</oferta>
+      <oferta id_oferta="12859" tipo_oferta="61" clase_oferta="3" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="0" descripcion="" dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12860" tipo_oferta="4" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="7" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12861" tipo_oferta="5" clase_oferta="2" compra_desde="2010-04-06" compra_hasta="2010-04-30" entrada_desde="2010-04-05" entrada_hasta="2010-04-30" estancia_minima="14" descripcion="" dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
+  </rango>
+</integracion>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<integracion accion="datos_ocupaciones">
+  <adultos_max>15</adultos_max>
+  <adultos_min>0</adultos_min>
+  <ninos_max>10</ninos_max>
+  <pax_max>15</pax_max>
+  <edad_nino_max>99</edad_nino_max>
+</integracion>
