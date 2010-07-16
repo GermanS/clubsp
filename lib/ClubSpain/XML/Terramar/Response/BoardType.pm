@@ -11,7 +11,7 @@ sub parse {
 
     my $dom  = XML::LibXML->load_xml( string => $xml_sting );
     my $root   = $dom->getDocumentElement();
-    my $xpath                    = new XML::LibXML::XPathExpression('/integracion/Type_suplemento');
+    my $xpath                    = new XML::LibXML::XPathExpression('/integracion/tipo_suplemento');
     my $xpath_id_tipo_suplemento = new XML::LibXML::XPathExpression('id_tipo_suplemento');
     my $xpath_nombre             = new XML::LibXML::XPathExpression('nombre');
 

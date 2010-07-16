@@ -9,14 +9,14 @@ use_ok('ClubSpain::XML::Terramar::Response::BoardType');
 
 my $response = <<'';
 <integracion accion="listado_suplementos_regimen">
-  <Type_suplemento>
+  <tipo_suplemento>
     <id_tipo_suplemento>1</id_tipo_suplemento>
     <nombre>Sólo alojamiento</nombre>
-  </Type_suplemento>
-  <Type_suplemento>
+  </tipo_suplemento>
+  <tipo_suplemento>
     <id_tipo_suplemento>2</id_tipo_suplemento>
     <nombre>Alojamiento y desayuno</nombre>
-  </Type_suplemento>
+  </tipo_suplemento>
 </integracion>
 
 my $array = ClubSpain::XML::Terramar::Response::BoardType->parse($response);
