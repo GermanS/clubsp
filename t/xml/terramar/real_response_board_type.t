@@ -142,16 +142,11 @@ my @expected =  (
   }
 );
 
-
-
+my @objects;
+push @objects, new ClubSpain::XML::Terramar::BoardType($_)
+    foreach  (@expected);
 
 my $xml = read_file('t/var/terramar/response_board_type.xml');
 my $result = ClubSpain::XML::Terramar::Response::BoardType->parse($xml);
-
-my @objects;
-foreach  (@expected) {
-    my $obj = new ClubSpain::XML::Terramar::BoardType($_);
-    push @objects, $obj;
-}
 
 is_deeply($result, \@objects, 'compare board types');
