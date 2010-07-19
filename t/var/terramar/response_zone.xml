@@ -2,11 +2,11 @@
 <integracion accion="listado_zonas">
   <zona>
     <id_zona>64</id_zona>
-    <nombre>A CORU&#xD1;A</nombre>
+    <nombre>A CORUNA</nombre>
   </zona>
   <zona>
     <id_zona>65</id_zona>
-    <nombre>&#xC1;LAVA</nombre>
+    <nombre>ALAVA</nombre>
   </zona>
   <zona>
     <id_zona>66</id_zona>
@@ -14,7 +14,7 @@
   </zona>
   <zona>
     <id_zona>68</id_zona>
-    <nombre>ALMER&#xCD;A</nombre>
+    <nombre>ALMERIA</nombre>
   </zona>
   <zona>
     <id_zona>69</id_zona>
@@ -22,7 +22,7 @@
   </zona>
   <zona>
     <id_zona>70</id_zona>
-    <nombre>&#xC1;VILA</nombre>
+    <nombre>AVILA</nombre>
   </zona>
   <zona>
     <id_zona>71</id_zona>
@@ -50,7 +50,7 @@
   </zona>
   <zona>
     <id_zona>75</id_zona>
-    <nombre>C&#xC1;CERES</nombre>
+    <nombre>CACERES</nombre>
   </zona>
   <zona>
     <id_zona>77</id_zona>
@@ -66,7 +66,7 @@
   </zona>
   <zona>
     <id_zona>79</id_zona>
-    <nombre>CASTELL&#xD3;N</nombre>
+    <nombre>CASTELLON</nombre>
   </zona>
   <zona>
     <id_zona>80</id_zona>
@@ -78,7 +78,7 @@
   </zona>
   <zona>
     <id_zona>82</id_zona>
-    <nombre>C&#xD3;RDOBA</nombre>
+    <nombre>CORDOBA</nombre>
   </zona>
   <zona>
     <id_zona>1314</id_zona>
@@ -110,7 +110,7 @@
   </zona>
   <zona>
     <id_zona>673</id_zona>
-    <nombre>ESPA&#xD1;A</nombre>
+    <nombre>ESPANA</nombre>
   </zona>
   <zona>
     <id_zona>1315</id_zona>
@@ -134,7 +134,7 @@
   </zona>
   <zona>
     <id_zona>89</id_zona>
-    <nombre>GUIP&#xDA;ZCOA</nombre>
+    <nombre>GUIPOZCOA</nombre>
   </zona>
   <zona>
     <id_zona>90</id_zona>
@@ -150,7 +150,7 @@
   </zona>
   <zona>
     <id_zona>93</id_zona>
-    <nombre>JA&#xC9;N</nombre>
+    <nombre>JAEN</nombre>
   </zona>
   <zona>
     <id_zona>1308</id_zona>
@@ -166,7 +166,7 @@
   </zona>
   <zona>
     <id_zona>97</id_zona>
-    <nombre>LE&#xD3;N</nombre>
+    <nombre>LEON</nombre>
   </zona>
   <zona>
     <id_zona>98</id_zona>
