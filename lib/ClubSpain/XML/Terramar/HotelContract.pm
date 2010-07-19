@@ -35,7 +35,7 @@ package ClubSpain::XML::Terramar::HotelContract::Precio;
 
 use Moose;
 
-has 'regimen'     => ( is => 'rw', required => 1 );
+has 'con_suplemento_de_regimen'  => ( is => 'rw', required => 1 );
 has 'importe'     => ( is => 'rw', required => 1 );
 has 'importe_por' => ( is => 'rw', required => 1 );
 
@@ -67,38 +67,38 @@ has 'suplemento'    => ( is => 'rw', required => 1 );
       <precio con_suplemento_de_regimen="PC" importe="479.00" importe_por="pax"/>
     </precios>
     <suplementos>
-      <suplemento id_suplemento="1086" 
-                  fecha_desde="2009-11-02" 
+      <suplemento id_suplemento="1086"
+                  fecha_desde="2009-11-02"
                   fecha_hasta="2010-03-22"
-                  pvp="210.00" 
-                  porcentaje="0.00" 
-                  id_clase="2" 
-                  nombre_clase="Extra pax" 
+                  pvp="210.00"
+                  porcentaje="0.00"
+                  id_clase="2"
+                  nombre_clase="Extra pax"
                   referencia_pb="1"
-                  obligatorio="0" 
-                  importe_por="pax" 
+                  obligatorio="0"
+                  importe_por="pax"
                   rango_fechas="total">Individual</suplemento>
       <suplemento id_suplemento="1087"
                   fecha_desde="2009-11-02"
                   fecha_hasta="2010-03-22"
-                  pvp="0.00" 
-                  porcentaje="0.00" 
-                  id_clase="4" 
-                  nombre_clase="Varios" 
+                  pvp="0.00"
+                  porcentaje="0.00"
+                  id_clase="4"
+                  nombre_clase="Varios"
                   referencia_pb="1"
-                  obligatorio="1" 
-                  importe_por="articulo" 
+                  obligatorio="1"
+                  importe_por="articulo"
                   rango_fechas="total">BONIFICACION 100 EUROS POR PASAJERO</suplemento>
-      <suplemento id_suplemento="1088" 
-                  fecha_desde="2009-11-02" 
+      <suplemento id_suplemento="1088"
+                  fecha_desde="2009-11-02"
                   fecha_hasta="2010-03-22"
-                  pvp="0.00" 
-                  porcentaje="0.00" 
-                  id_clase="2" 
-                  nombre_clase="Extra pax" 
+                  pvp="0.00"
+                  porcentaje="0.00"
+                  id_clase="2"
+                  nombre_clase="Extra pax"
                   referencia_pb="1"
-                  obligatorio="0" 
-                  importe_por="pax" 
+                  obligatorio="0"
+                  importe_por="pax"
                   rango_fechas="total">Tercera persona</suplemento>
     </suplementos>
     <ofertas/>

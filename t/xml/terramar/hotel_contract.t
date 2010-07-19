@@ -37,13 +37,13 @@ is($suplemento->suplemento, 'suplemento', 'got suplemento');
 
 
 my $precio = ClubSpain::XML::Terramar::HotelContract::Precio->new({
-    regimen => 'regimen',
+    con_suplemento_de_regimen => 'regimen',
     importe => 'importe',
     importe_por => 'importe_por'
 });
 
 isa_ok($precio, 'ClubSpain::XML::Terramar::HotelContract::Precio');
-is($precio->regimen, 'regimen', 'got regimen');
+is($precio->con_suplemento_de_regimen, 'regimen', 'got regimen');
 is($precio->importe, 'importe', 'got importe');
 is($precio->importe_por, 'importe_por', 'got importe_por');
 
@@ -51,7 +51,7 @@ is($precio->importe_por, 'importe_por', 'got importe_por');
 my $rango = ClubSpain::XML::Terramar::HotelContract::Rango->new({
     fecha_desde => 'fecha_desde',
     fecha_hasta => 'fecha_hasta',
-    
+
     precio     => [ $precio ],
     suplemento => [ $suplemento ],
 });

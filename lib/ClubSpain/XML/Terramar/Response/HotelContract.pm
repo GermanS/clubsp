@@ -37,14 +37,14 @@ sub parse {
 
 sub __parse_ocupacion {
     my ($self, $root) = @_;
-    
+
     my $xpath             = new XML::LibXML::XPathExpression('ocupacion');
     my $xpath_min_adultos = new XML::LibXML::XPathExpression('@min_adultos');
     my $xpath_max_adultos = new XML::LibXML::XPathExpression('@max_adultos');
     my $xpath_max_ninos   = new XML::LibXML::XPathExpression('@max_ninos');
     my $xpath_min_pax     = new XML::LibXML::XPathExpression('@min_pax');
     my $xpath_max_pax     = new XML::LibXML::XPathExpression('@max_pax');
-    
+
     my @res;
     my @nodes = $root->findnodes($xpath);
     foreach my $node (@nodes) {
@@ -55,7 +55,7 @@ sub __parse_ocupacion {
             min_pax     => $node->findvalue($xpath_min_pax),
             max_pax     => $node->findvalue($xpath_max_pax)
         });
-        
+
         push @res, $object;
     }
 
@@ -68,7 +68,7 @@ sub __parse_rango {
     my $xpath             = new XML::LibXML::XPathExpression('rango');
     my $xpath_fecha_desde = new XML::LibXML::XPathExpression('@fecha_desde');
     my $xpath_fecha_hasta = new XML::LibXML::XPathExpression('@fecha_hasta');
-    
+
     my @res;
     my @nodes = $root->findnodes($xpath);
     foreach my $node (@nodes) {
@@ -79,7 +79,7 @@ sub __parse_rango {
             precio     => $self->__parse_precio($node),
             suplemento => $self->__parse_suplemento($node),
         });
-        
+
         push @res, $object;
     }
 
@@ -88,21 +88,21 @@ sub __parse_rango {
 
 sub __parse_precio {
     my ($self, $root) = @_;
-    
+
     my $xpath             = new XML::LibXML::XPathExpression('precios/precio');
     my $xpath_regimen     = new XML::LibXML::XPathExpression('@con_suplemento_de_regimen');
     my $xpath_importe     = new XML::LibXML::XPathExpression('@importe');
     my $xpath_importe_por = new XML::LibXML::XPathExpression('@importe_por');
-    
+
     my @res;
     my @nodes = $root->findnodes($xpath);
     foreach my $node (@nodes) {
         my $object = ClubSpain::XML::Terramar::HotelContract::Precio->new({
-            regimen     => $node->findvalue($xpath_regimen),
+            con_suplemento_de_regimen => $node->findvalue($xpath_regimen),
             importe     => $node->findvalue($xpath_importe),
             importe_por => $node->findvalue($xpath_importe_por)
-        });        
-        
+        });
+
         push @res, $object;
     }
 
@@ -111,7 +111,7 @@ sub __parse_precio {
 
 sub __parse_suplemento {
     my ($self, $root) = @_;
-    
+
     my $xpath               = new XML::LibXML::XPathExpression('suplementos/suplemento');
     my $xpath_id_suplemento = new XML::LibXML::XPathExpression('@id_suplemento');
     my $xpath_fecha_desde   = new XML::LibXML::XPathExpression('@fecha_desde');
@@ -124,7 +124,7 @@ sub __parse_suplemento {
     my $xpath_obligatorio   = new XML::LibXML::XPathExpression('@obligatorio');
     my $xpath_importe_por   = new XML::LibXML::XPathExpression('@importe_por');
     my $xpath_rango_fechas  = new XML::LibXML::XPathExpression('@rango_fechas');
-    
+
     my @res;
     my @nodes = $root->findnodes($xpath);
     foreach my $node (@nodes) {
@@ -142,10 +142,10 @@ sub __parse_suplemento {
             rango_fechas  => $node->findvalue($xpath_rango_fechas),
             suplemento    => $node->textContent()
         });
-        
+
         push @res, $object;
     }
-    
+
     return \@res;
 }
 

@@ -74,7 +74,7 @@ my $contract = ClubSpain::XML::Terramar::HotelContract->new({
             fecha_hasta => '2009-11-08',
             precio      => [
                 ClubSpain::XML::Terramar::HotelContract::Precio->new({
-                    regimen     => 'PC',
+                    con_suplemento_de_regimen     => 'PC',
                     importe     => '479.00',
                     importe_por => 'pax'
                 })
