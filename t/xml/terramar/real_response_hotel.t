@@ -130,10 +130,10 @@ sub expected {
     id_prestatario =>45675,
     nombre_comercial => 'TURQUESA'
   });
-    
+
     my @objects;
     push @objects, new ClubSpain::XML::Terramar::Hotel($_)
         foreach (@expect);
-      
-    return \@objects;    
+
+    return \@objects;
 }
