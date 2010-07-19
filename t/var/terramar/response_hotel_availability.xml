@@ -1,2 +1,6 @@
 <?xml version="1.0"?>
-<integracion accion="rangos_disponibilidad"/>
+<integracion accion="rangos_disponibilidad">
+ <intervalo fecha_desde="2010-07-16" disponibilidad="1" fecha_hasta="2010-09-03"/>
+ <intervalo fecha_desde="2010-09-04" disponibilidad="1" fecha_hasta="2010-09-17"/>
+ <intervalo fecha_desde="2010-09-18" disponibilidad="1" fecha_hasta="2010-10-31"/>
+</integracion>
