@@ -48,7 +48,48 @@ my $response =<<'';
                   importe_por="pax"
                   rango_fechas="total">Tercera persona</suplemento>
     </suplementos>
-    <ofertas/>
+    <ofertas>
+      <oferta id_oferta="12852"
+              tipo_oferta="27"
+              clase_oferta="3"
+              compra_desde="2010-04-06"
+              compra_hasta="2010-04-30"
+              entrada_desde="2010-04-05"
+              entrada_hasta="2010-04-30"
+              estancia_minima="0"
+              descripcion="First child is free"
+              dias_entre_compra_entrada="0">1st child free</oferta>
+      <oferta id_oferta="12853"
+              tipo_oferta="61"
+              clase_oferta="3"
+              compra_desde="2010-04-06"
+              compra_hasta="2010-04-30"
+              entrada_desde="2010-04-05"
+              entrada_hasta="2010-04-30"
+              estancia_minima="0"
+              descripcion=""
+              dias_entre_compra_entrada="0">Short stay without supplement</oferta>
+      <oferta id_oferta="12854"
+              tipo_oferta="4"
+              clase_oferta="2"
+              compra_desde="2010-04-06"
+              compra_hasta="2010-04-30"
+              entrada_desde="2010-04-05"
+              entrada_hasta="2010-04-30"
+              estancia_minima="7"
+              descripcion="Calculation of nights - not multiple and not acomulative."
+              dias_entre_compra_entrada="0" dias_disfrute="7" dias_cobro="6">7X6</oferta>
+      <oferta id_oferta="12855"
+              tipo_oferta="5"
+              clase_oferta="2"
+              compra_desde="2010-04-06"
+              compra_hasta="2010-04-30"
+              entrada_desde="2010-04-05"
+              entrada_hasta="2010-04-30"
+              estancia_minima="14"
+              descripcion="Calculation of nights - not multiple and not acomulative."
+              dias_entre_compra_entrada="0" dias_disfrute="14" dias_cobro="12">14X12</oferta>
+    </ofertas>
   </rango>
 </integracion>
 
@@ -122,6 +163,64 @@ my $contract = ClubSpain::XML::Terramar::HotelContract->new({
                     rango_fechas  => 'total',
                     suplemento    => 'Tercera persona',
                 }),
+            ],
+            oferta => [
+                ClubSpain::XML::Terramar::HotelContract::Oferta->new({
+                    id_oferta=>"12852",
+                    tipo_oferta=>"27",
+                    clase_oferta=>"3",
+                    compra_desde=>"2010-04-06",
+                    compra_hasta=>"2010-04-30",
+                    entrada_desde=>"2010-04-05",
+                    entrada_hasta=>"2010-04-30",
+                    estancia_minima=>"0",
+                    descripcion=>"First child is free",
+                    dias_entre_compra_entrada=>"0",
+                    oferta => '1st child free'
+                }),
+                ClubSpain::XML::Terramar::HotelContract::Oferta->new({
+                    id_oferta=>"12853",
+                    tipo_oferta=>"61",
+                    clase_oferta=>"3",
+                    compra_desde=>"2010-04-06",
+                    compra_hasta=>"2010-04-30",
+                    entrada_desde=>"2010-04-05",
+                    entrada_hasta=>"2010-04-30",
+                    estancia_minima=>"0",
+                    descripcion=>"",
+                    dias_entre_compra_entrada=>"0",
+                    oferta => 'Short stay without supplement'
+                }),
+                ClubSpain::XML::Terramar::HotelContract::Oferta->new({
+                    id_oferta=>"12854",
+                    tipo_oferta=>"4",
+                    clase_oferta=>"2",
+                    compra_desde=>"2010-04-06",
+                    compra_hasta=>"2010-04-30",
+                    entrada_desde=>"2010-04-05",
+                    entrada_hasta=>"2010-04-30",
+                    estancia_minima=>"7",
+                    descripcion=>"Calculation of nights - not multiple and not acomulative.",
+                    dias_entre_compra_entrada=>"0",
+                    dias_disfrute=>"7",
+                    dias_cobro=>"6",
+                    oferta => '7X6',
+                }),
+                ClubSpain::XML::Terramar::HotelContract::Oferta->new({
+                    id_oferta=>"12855",
+                    tipo_oferta=>"5",
+                    clase_oferta=>"2",
+                    compra_desde=>"2010-04-06",
+                    compra_hasta=>"2010-04-30",
+                    entrada_desde=>"2010-04-05",
+                    entrada_hasta=>"2010-04-30",
+                    estancia_minima=>"14",
+                    descripcion=>"Calculation of nights - not multiple and not acomulative.",
+                    dias_entre_compra_entrada=>"0",
+                    dias_disfrute=>"14",
+                    dias_cobro=>"12",
+                    oferta =>'14X12'
+                })
             ]
         })
     ]

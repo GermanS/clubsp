@@ -78,6 +78,7 @@ sub __parse_rango {
 
             precio     => $self->__parse_precio($node),
             suplemento => $self->__parse_suplemento($node),
+            oferta     => $self->__parse_oferta($node),
         });
 
         push @res, $object;
@@ -141,6 +142,45 @@ sub __parse_suplemento {
             importe_por   => $node->findvalue($xpath_importe_por),
             rango_fechas  => $node->findvalue($xpath_rango_fechas),
             suplemento    => $node->textContent()
+        });
+
+        push @res, $object;
+    }
+
+    return \@res;
+}
+
+sub __parse_oferta {
+    my ($self, $root) = @_;
+
+    my $xpath = new XML::LibXML::XPathExpression('ofertas/oferta');
+    my $xpath_id_oferta     = new XML::LibXML::XPathExpression('@id_oferta');
+    my $xpath_tipo_oferta   = new XML::LibXML::XPathExpression('@tipo_oferta');
+    my $xpath_clase_oferta  = new XML::LibXML::XPathExpression('@clase_oferta');
+    my $xpath_compra_desde  = new XML::LibXML::XPathExpression('@compra_desde');
+    my $xpath_compra_hasta  = new XML::LibXML::XPathExpression('@compra_hasta');
+    my $xpath_entrada_desde = new XML::LibXML::XPathExpression('@entrada_desde');
+    my $xpath_entrada_hasta = new XML::LibXML::XPathExpression('@entrada_hasta');
+    my $xpath_estancia_minima= new XML::LibXML::XPathExpression('@estancia_minima');
+    my $xpath_descripcion   = new XML::LibXML::XPathExpression('@descripcion');
+    my $xpath_dias_entre_compra_entrada
+                            = new XML::LibXML::XPathExpression('@dias_entre_compra_entrada');
+
+    my @res;
+    my @nodes = $root->findnodes($xpath);
+    foreach my $node (@nodes) {
+        my $object = ClubSpain::XML::Terramar::HotelContract::Oferta->new({
+            id_oferta                 => $node->findvalue($xpath_id_oferta),
+            tipo_oferta               => $node->findvalue($xpath_tipo_oferta),
+            clase_oferta              => $node->findvalue($xpath_clase_oferta),
+            compra_desde              => $node->findvalue($xpath_compra_desde),
+            compra_hasta              => $node->findvalue($xpath_compra_hasta),
+            entrada_desde             => $node->findvalue($xpath_entrada_desde),
+            entrada_hasta             => $node->findvalue($xpath_entrada_hasta),
+            estancia_minima           => $node->findvalue($xpath_estancia_minima),
+            descripcion               => $node->findvalue($xpath_descripcion),
+            dias_entre_compra_entrada => $node->findvalue($xpath_dias_entre_compra_entrada),
+            oferta                    => $node->textContent(),
         });
 
         push @res, $object;

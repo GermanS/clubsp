@@ -29,6 +29,7 @@ has 'fecha_hasta' => ( is => 'rw', required => 1 );
 
 has 'precio'     => ( is => 'rw', isa => 'ArrayRef' );
 has 'suplemento' => ( is => 'rw', isa => 'ArrayRef' );
+has 'oferta'     => ( is => 'rw', isa => 'ArrayRef' );
 
 
 package ClubSpain::XML::Terramar::HotelContract::Precio;
@@ -55,6 +56,22 @@ has 'obligatorio'   => ( is => 'rw', required => 1 );
 has 'importe_por'   => ( is => 'rw', required => 1 );
 has 'rango_fechas'  => ( is => 'rw', required => 1 );
 has 'suplemento'    => ( is => 'rw', required => 1 );
+
+package ClubSpain::XML::Terramar::HotelContract::Oferta;
+
+use Moose;
+
+has 'id_oferta'                 => ( is => 'rw', required => 1 );
+has 'tipo_oferta'               => ( is => 'rw', required => 1 );
+has 'clase_oferta'              => ( is => 'rw', required => 1 );
+has 'compra_desde'              => ( is => 'rw', required => 1 );
+has 'compra_hasta'              => ( is => 'rw', required => 1 );
+has 'entrada_desde'             => ( is => 'rw', required => 1 );
+has 'entrada_hasta'             => ( is => 'rw', required => 1 );
+has 'estancia_minima'           => ( is => 'rw', required => 1 );
+has 'descripcion'               => ( is => 'rw', required => 1 );
+has 'dias_entre_compra_entrada' => ( is => 'rw', required => 1 );
+has 'oferta'                    => ( is => 'rw', required => 1 );
 
 1;
 
