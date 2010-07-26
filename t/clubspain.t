@@ -4,4 +4,4 @@ use strict;
 use warnings;
 
 use_ok('ClubSpain');
-is(ClubSpain->VERSION, '0.01', 'check version');
+is(ClubSpain->VERSION, '0.02', 'check version');
