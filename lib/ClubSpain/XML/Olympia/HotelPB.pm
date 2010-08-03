@@ -1,4 +1,4 @@
-package ClubSpain::XML::Olympia::Hotel;
+package ClubSpain::XML::Olympia::HotelPB;
 
 use Moose;
 
@@ -15,5 +15,7 @@ has 'Poblacion'         => ( is => 'rw', required => 1 );
 has 'NombrePoblacion'   => ( is => 'rw', required => 1 );
 has 'Descripcion'       => ( is => 'rw', required => 1 );
 has 'Categoria'         => ( is => 'rw', required => 1 );
+has 'Longitud'          => ( is => 'rw', required => 1 );
+has 'Latitud'           => ( is => 'rw', required => 1 );
 
 1;
