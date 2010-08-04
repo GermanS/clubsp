@@ -16,9 +16,9 @@ my $content = ClubSpain::XML::Olympia::Request::HotelAvailability->request(
     codigo    => undef,
     fechaentradast => '01/08/07',
     noches => 4,
+    rooms   => 1,
     adultos => 2,
-    ninos => 1,
-    edad  => 8,
+    ninos => [ 8 ],
     regimen => 'MP',
 );
 is($content, $expected, 'check content');

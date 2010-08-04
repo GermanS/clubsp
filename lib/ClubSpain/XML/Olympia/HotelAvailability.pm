@@ -28,10 +28,18 @@ use Moose;
 
 has 'Habitacion'  => ( is => 'rw', required => 1 );
 has 'Adultos'     => ( is => 'rw', required => 1 );
-has 'ninos'       => ( is => 'rw', isa => 'ArrayRef' );
 has 'numhab'      => ( is => 'rw', required => 1 );
 
 has 'date'        => ( is => 'rw', isa => 'ArrayRef' );
+has 'ninos'       => ( is => 'rw', isa => 'ArrayRef' );
+
+
+
+package ClubSpain::XML::Olympia::HotelAvailability::Child;
+
+use Moose;
+
+has 'age' => ( is => 'rw', required => 1 );
 
 
 

@@ -52,7 +52,8 @@ sub request {
     my $listhab           = $doc->createElement('ListHab');
     my $habitaciones_list = $doc->createElement('HabitacionesList');
     my $habitacion        = $doc->createElement('Habitacion');
-    $habitacion->setAttribute('Ord', '1');
+    $habitacion->setAttribute('Ord', $params{'rooms'})
+        if defined $params{'rooms'};
 
     my $adultos = $doc->createElement('Adultos');
     $adultos->appendText($params{'adultos'})
@@ -60,12 +61,13 @@ sub request {
 
     my $ninos = $doc->createElement('ninos');
     if (defined $params{'ninos'}) {
-        $ninos->setAttribute('num', $params{'ninos'});
+        $ninos->setAttribute('num', scalar @{$params{'ninos'}});
 
-        my $edad = $doc->createElement('edad');
-        $edad->appendText($params{'edad'});
-
-        $ninos->appendChild($edad);
+        foreach my $age (@{$params{'ninos'}}) {
+            my $edad = $doc->createElement('edad');
+            $edad->appendText($age);
+            $ninos->appendChild($edad);
+        }
     }
 
     my $regimen = $doc->createElement('Regimen');
