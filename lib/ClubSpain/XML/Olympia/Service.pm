@@ -7,7 +7,7 @@ has 'Servicio'        => ( is => 'rw', isa => 'ArrayRef' );
 
 
 
-package ClubSpain::XML::Olympia::Service::Servicio;
+package ClubSpain::XML::Olympia::Service::Serving;
 
 use Moose;
 
@@ -31,8 +31,7 @@ has 'Contrato'                  => ( is => 'rw', isa => 'ArrayRef' );
 has 'ServicioAsociado'          => ( is => 'rw', isa => 'ArrayRef' );
 
 
-
-package ClubSpain::XML::Olympia::Service::Acomodacion;
+package ClubSpain::XML::Olympia::Service::Serving::Acomodation;
 
 use Moose;
 
@@ -42,7 +41,7 @@ has 'Bebes'   => ( is => 'rw', required => 1 );
 
 
 
-package ClubSpain::XML::Olympia::Service::Contrato;
+package ClubSpain::XML::Olympia::Service::Serving::Contract;
 
 use Moose;
 
@@ -60,7 +59,9 @@ has 'NochesMaximas'             => ( is => 'rw', required => 1 );
 has 'MinimoNochesCortaEstancia' => ( is => 'rw', required => 1 );
 has 'AntelacionMinima'          => ( is => 'rw', required => 1 );
 
-package ClubSpain::XML::Olympia::Service::ServicioAsociado;
+
+
+package ClubSpain::XML::Olympia::Service::Serving::ServiceAssociate;
 
 use Moose;
 
@@ -80,7 +81,8 @@ has 'ServicioAsociadoContrato' => ( is => 'rw', isa => 'ArrayRef');
 
 
 
-package ClubSpain::XML::Olympia::Service::ServicioAsociado::Contrato;
+
+package ClubSpain::XML::Olympia::Service::Serving::ServiceAssociate::Contract;
 
 use Moose;
 
