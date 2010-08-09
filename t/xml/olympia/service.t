@@ -5,7 +5,7 @@ use warnings;
 
 use_ok('ClubSpain::XML::Olympia::Service');
 
-my $service_contrato = ClubSpain::XML::Olympia::Request::Service::ServicioAsociado::Contrato->new({
+my $service_contrato = ClubSpain::XML::Olympia::Service::ServicioAsociado::Contrato->new({
     FechaInicioServicioAsociado                 => '01/05/2008',
     FechaFinServicioAsociado                    => '31/05/2008',
     PrecioServicioAsociado                      => '-25',
@@ -20,7 +20,7 @@ my $service_contrato = ClubSpain::XML::Olympia::Request::Service::ServicioAsocia
     MinimoNochesCortaEstanciaServicioAsociado   => '9',
     AntelacionMinimaServicioAsociado            => 0
 });
-isa_ok($service_contrato, 'ClubSpain::XML::Olympia::Request::Service::ServicioAsociado::Contrato');
+isa_ok($service_contrato, 'ClubSpain::XML::Olympia::Service::ServicioAsociado::Contrato');
 is($service_contrato->FechaInicioServicioAsociado,                  '01/05/2008', 'got FechaInicioServicioAsociado');
 is($service_contrato->FechaFinServicioAsociado,                     '31/05/2008', 'got FechaFinServicioAsociado');
 is($service_contrato->PrecioServicioAsociado,                       '-25', 'got PrecioServicioAsociado');
@@ -35,7 +35,7 @@ is($service_contrato->NochesMaximasServicioAsociado,                '8', 'got No
 is($service_contrato->MinimoNochesCortaEstanciaServicioAsociado,    '9', 'got MinimoNochesCortaEstanciaServicioAsociado');
 is($service_contrato->AntelacionMinimaServicioAsociado,             '0', 'got AntelacionMinimaServicioAsociado');
 
-my $acociado = ClubSpain::XML::Olympia::Request::Service::ServicioAsociado->new({
+my $acociado = ClubSpain::XML::Olympia::Service::ServicioAsociado->new({
     CodigoServicioAsociado                  => 'B0010',
     CodigoConceptoServicioAsociado          => 2065,
     DescripcionServicioAsociado             => 'DESCUENTO por PERSONA',
@@ -49,7 +49,7 @@ my $acociado = ClubSpain::XML::Olympia::Request::Service::ServicioAsociado->new(
     LimiteEdadNinosServicioAsociado         => 0,
     ServicioAsociadoContrato                => [$service_contrato]
 });
-isa_ok($acociado, 'ClubSpain::XML::Olympia::Request::Service::ServicioAsociado');
+isa_ok($acociado, 'ClubSpain::XML::Olympia::Service::ServicioAsociado');
 is($acociado->CodigoServicioAsociado,           'B0010', 'got CodigoServicioAsociado');
 is($acociado->CodigoConceptoServicioAsociado,   '2065', 'got CodigoConceptoServicioAsociado');
 is($acociado->DescripcionServicioAsociado,      'DESCUENTO por PERSONA', 'got DescripcionServicioAsociado');
@@ -65,7 +65,7 @@ is_deeply($acociado->ServicioAsociadoContrato, [$service_contrato], 'got Servici
 
 
 
-my $contrato = ClubSpain::XML::Olympia::Request::Service::Contrato->new({
+my $contrato = ClubSpain::XML::Olympia::Service::Contrato->new({
     FechaInicio               =>'01/05/2008',
     FechaFin                  =>'31/05/2008',
     Precio                    =>'28',
@@ -80,7 +80,7 @@ my $contrato = ClubSpain::XML::Olympia::Request::Service::Contrato->new({
     MinimoNochesCortaEstancia => '5',
     AntelacionMinima          => '0',
 });
-isa_ok($contrato, 'ClubSpain::XML::Olympia::Request::Service::Contrato');
+isa_ok($contrato, 'ClubSpain::XML::Olympia::Service::Contrato');
 is($contrato->FechaInicio,               '01/05/2008', 'got FechaInicio');
 is($contrato->FechaFin,                  '31/05/2008', 'got FechaFin');
 is($contrato->Precio,                    '28', 'got Precio');
@@ -95,17 +95,17 @@ is($contrato->NochesMaximas,             '30', 'got NochesMaximas');
 is($contrato->MinimoNochesCortaEstancia, '5', 'got MinimoNochesCortaEstancia');
 is($contrato->AntelacionMinima,          '0', 'got AntelacionMinima');
 
-my $acomodacion = ClubSpain::XML::Olympia::Request::Service::Acomodacion->new({
+my $acomodacion = ClubSpain::XML::Olympia::Service::Acomodacion->new({
     Adultos => 3,
     Ninos   => 2,
     Bebes   => 1,
 });
-isa_ok($acomodacion, 'ClubSpain::XML::Olympia::Request::Service::Acomodacion');
+isa_ok($acomodacion, 'ClubSpain::XML::Olympia::Service::Acomodacion');
 is($acomodacion->Adultos, 3, 'got adultos');
 is($acomodacion->Ninos, 2, 'got ninos');
 is($acomodacion->Bebes, 1, 'got bebes');
 
-my $servicio = ClubSpain::XML::Olympia::Request::Service::Servicio->new({
+my $servicio = ClubSpain::XML::Olympia::Service::Servicio->new({
     Codigo          => 'B0003',
     CodigoConcepto  => '2000',
     Descripcion     => 'HAB. DBL. MEDIA PENSION',
@@ -126,7 +126,7 @@ my $servicio = ClubSpain::XML::Olympia::Request::Service::Servicio->new({
     ServicioAsociado => [$acociado]
 });
 
-isa_ok($servicio, 'ClubSpain::XML::Olympia::Request::Service::Servicio');
+isa_ok($servicio, 'ClubSpain::XML::Olympia::Service::Servicio');
 is($servicio->Codigo, 'B0003', 'got codigo');
 is($servicio->CodigoConcepto, '2000', 'got CodigoConcepto');
 is($servicio->Descripcion, 'HAB. DBL. MEDIA PENSION', 'got Descripcion');
