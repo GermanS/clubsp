@@ -15,7 +15,9 @@ my $build = ClubSpain::Build->new(
         'DBD::SQLite'                      => '>=1.29',
         'Test::More'                       => '>=0.94',
         'XML::LibXML'                      => '>=1.70',
-        'Moose'                            => 0,
+        'Moose'                            => '>=1.09',
+        'Catalyst'                         => '>=5.80025',
+        'Catalyst::Plugin::Server'         => '>=0.28',
     }
 );
 
