@@ -12,11 +12,13 @@ use Catalyst::Runtime 5.80;
 # Static::Simple: will serve static files from the application's root
 #                 directory
 
-use Catalyst qw/
+use Catalyst qw(
     -Debug
     ConfigLoader
     Static::Simple
-/;
+    Server
+    Server::XMLRPC
+);
 
 extends 'Catalyst';
 
@@ -36,6 +38,7 @@ __PACKAGE__->config(
     name => 'ClubSpain',
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
+    xmlrpc => { 'xml_encoding' => 'utf-8' }
 );
 
 # Start the application
