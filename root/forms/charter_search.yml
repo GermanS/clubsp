@@ -1,0 +1,54 @@
+---
+elements:
+  - type: Select
+    name: DepartingCountry
+    label: "Страна отправления"
+    empty_first: 0
+    options:
+        - [1, 'Россия']
+        - [2, 'Испания']
+
+  - type: Select
+    name: DepartingCity
+    label: "Город отправления"
+
+  - type: Select
+    name: DestinationCountry
+    label: "Страна прибытия"
+
+  - type: Select
+    name: DestinationCity
+    label: "Город прибытия"
+
+  - type: Select
+    name: DepartingDate
+    label: "Дата отправления"
+
+  - type: Checkbox
+    name: isOneWay
+    label: "Авиабилет в одну сторону?"
+
+  - type: Select
+    name: ReturningDate
+    label: "Дата перелета обратно"
+
+  - type: Select
+    name: Quantity
+    label: "Количество человек"
+    options:
+        - [1, 1]
+        - [2, 2]
+        - [3, 3]
+        - [4, 4]
+        - [5, 5]
+        - [6, 6]
+
+  - type: Select
+    name: Class
+    label: "Класс"
+    options:
+        - [1, 'Y - эконом']
+
+
+  - type: Submit
+    value: "Узнать стоимость авиабилета"
