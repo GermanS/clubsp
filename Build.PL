@@ -9,15 +9,17 @@ my $build = ClubSpain::Build->new(
     module_name => 'ClubSpain',
     recursive_test_files => 1,
     requires => {
-        'Config::General'                  => 0,
-        'SQL::Translator'                  => '>=0.11006',
-        'DBIx::Class'                      => '>=0.08123',
-        'DBD::SQLite'                      => '>=1.29',
-        'Test::More'                       => '>=0.94',
-        'XML::LibXML'                      => '>=1.70',
-        'Moose'                            => '>=1.09',
-        'Catalyst'                         => '>=5.80025',
-        'Catalyst::Plugin::Server'         => '>=0.28',
+        'Catalyst'                              => '>=5.80025',
+        'Catalyst::Controller::HTML::FormFu'    => '>=0.06001',
+        'Catalyst::Plugin::Server'              => '>=0.28',
+        'Config::General'                       => 0,
+        'DBD::SQLite'                           => '>=1.29',
+        'DBIx::Class'                           => '>=0.08123',
+        'HTML::FormFu'                          => '>=0.07002',
+        'Moose'                                 => '>=1.09',
+        'SQL::Translator'                       => '>=0.11006',
+        'Test::More'                            => '>=0.94',
+        'XML::LibXML'                           => '>=1.70',
     }
 );
 
