@@ -5,44 +5,53 @@ use warnings;
 
 use base qw(Catalyst::Controller);
 
-sub DepartureCountry : XMLRPC {
+sub DepartingCountry : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    my $departure = $c->model('Flightmanager')->departure_countries();
-
-    $c->stash->{'xmlrpc'} = $departure;
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->departing_country();
 }
 
-sub ArrivalCountry : XMLRPC {
+sub DepartingCity : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    my $arrival = $c->model('FlightManager')->arrival_countries();
+    my $country = $c->request->param('departingCountry');
 
-    $c->stash->{'xmlrpc'} = $arrival;
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->departing_city($country);
 }
 
-sub DepartureCity : XMLRPC {
+sub DestinationCountry : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    $c->stash->{'xmlrpc'} = {};
+    my $city = $c->request->param('departingCity');
+
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->destination_country($city);
 }
 
-sub ArrivalCity : XMLRPC {
+sub DestinationCity : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    $c->stash->{'xmlrpc'} = {};
+    my $country = $c->request->param('destinationCountry');
+
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->destination_city($country);
 }
 
-sub DepartureDate : XMLRPC {
+sub DepartingDate : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    $c->stash->{'xmlrpc'} = {};
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->departing_date({
+        departing_city   => $c->request->param('departingCity'),
+        destination_city => $c->request->param('destinationCity'),
+    });
 }
 
-sub ArrivalDate : XMLRPC {
+sub ReturningDate : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    $c->stash->{'xmlrpc'} = {};
+    $c->stash->{'xmlrpc'} = $c->model('Flightmanager')->returning_date({
+        departing_city   => $c->request->param('departingCity'),
+        destination_city => $c->request->param('destinationCity'),
+        departing_date   => $c->request->param('departingDate'),
+    });
 }
 
 sub Fare : XMLRPC {
