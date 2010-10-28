@@ -11,6 +11,7 @@ my $build = ClubSpain::Build->new(
     requires => {
         'Catalyst'                              => '>=5.80025',
         'Catalyst::Controller::HTML::FormFu'    => '>=0.06001',
+        'Catalyst::Model::SOAP'                 => '>=1.5',
         'Catalyst::Plugin::Server'              => '>=0.28',
         'Config::General'                       => 0,
         'DBD::SQLite'                           => '>=1.29',
@@ -19,7 +20,10 @@ my $build = ClubSpain::Build->new(
         'Moose'                                 => '>=1.09',
         'SQL::Translator'                       => '>=0.11006',
         'Test::More'                            => '>=0.94',
+        'XML::Compile'                          => '>=1.16',
+        'XML::Compile::SOAP'                    => '>=2.16',
         'XML::LibXML'                           => '>=1.70',
+
     }
 );
 
