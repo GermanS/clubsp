@@ -1,4 +1,4 @@
-package AviaBroker::Schema;
+package ClubSpain::Schema;
 
 use strict;
 use warnings;
