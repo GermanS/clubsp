@@ -1,7 +1,7 @@
 ---
 elements:
   - type: Select
-    name: DepartingCountry
+    name: DepartureCountry
     label: "Страна отправления"
     empty_first: 0
     options:
@@ -9,19 +9,19 @@ elements:
         - [2, 'Испания']
 
   - type: Select
-    name: DepartingCity
+    name: DepartureCity
     label: "Город отправления"
 
   - type: Select
-    name: DestinationCountry
+    name: ArrivalCountry
     label: "Страна прибытия"
 
   - type: Select
-    name: DestinationCity
+    name: ArrivalCity
     label: "Город прибытия"
 
   - type: Select
-    name: DepartingDate
+    name: DepartureDate
     label: "Дата отправления"
 
   - type: Checkbox
@@ -29,7 +29,7 @@ elements:
     label: "Авиабилет в одну сторону?"
 
   - type: Select
-    name: ReturningDate
+    name: ReturnDate
     label: "Дата перелета обратно"
 
   - type: Select
@@ -49,6 +49,6 @@ elements:
     options:
         - [1, 'Y - эконом']
 
-
-  - type: Submit
+  - type: Button
+    name: Search
     value: "Узнать стоимость авиабилета"
