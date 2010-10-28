@@ -3,6 +3,9 @@ package ClubSpain::Model::FlightManager;
 use strict;
 use warnings;
 
+use ClubSpain::Model::Ticket;
+use ClubSpain::Model::Ticket::Segment;
+
 my $russia = new ClubSpain::Model::Country({ id => 1, name => 'Россия',  code => 'ru' });
 my $spain  = new ClubSpain::Model::Country({ id => 2, name => 'Испания', code => 'es' });
 
@@ -107,16 +110,51 @@ my $return = {
     }
 };
 
-sub departing_country {
+my $ticket = ClubSpain::Model::Ticket->new({
+    segment => [
+        new ClubSpain::Model::Ticket::Segment({
+            departure_date      => '10-11-2010',
+            departure_time      => '12:30',
+            departure_airport   => 'DME',
+            departure_city      => 'Moscow',
+            departure_country   => 'Russia',
+            arrival_date        => '10-11-2010',
+            arrival_time        => '14:30',
+            arrival_airport     => 'BCN',
+            arrival_city        => 'Barcelona',
+            arrival_country     => 'Spain',
+            flight => {
+                carrier => {
+                    name => 'Vim-Avia',
+                    iata => 'NN',
+                    icao => 'NN'
+                },
+                plane => {
+                    designator => 'B52',
+                    model      => 'B 52'
+                },
+                flight => {
+                    code               => 331,
+                    operational_suffix => ''
+                },
+                class => 'Y'
+            }
+        })
+    ],
+    price => 100,
+});
+
+sub departure_country {
     my $class = shift;
 
     return [ $russia, $spain ];
 }
 
-sub departing_city {
-    my ($class, $country) = @_;
+sub departure_city {
+    my ($class, $params) = @_;
 
     my @res;
+    my $country = $params->{'departure_county'};
     if ($country && $country == '2') {
         push @res, $bcn, $mal;
     } else {
@@ -126,10 +164,11 @@ sub departing_city {
     return \@res;
 }
 
-sub destination_country {
-    my ($class, $city) = @_;
+sub arrival_country {
+    my ($class, $params) = @_;
 
     my @res;
+    my $city = $params->{'departure_city'};
     if ($city && $city == 1) {
         push @res, $spain;
     } else {
@@ -139,11 +178,12 @@ sub destination_country {
     return \@res;
 }
 
-sub destination_city {
-    my ($class, $destination_country) = @_;
+sub arrival_city {
+    my ($class, $params) = @_;
 
     my @res;
-    if ($destination_country && $destination_country == '1') {
+    my $arrival_country = $params->{'arrival_country'};
+    if ($arrival_country && $arrival_country == '1') {
         push @res, $mow;
     } else  {
         push @res, $bcn, $mal;
@@ -152,19 +192,22 @@ sub destination_city {
     return \@res;
 }
 
-sub departing_date {
+sub departure_date {
     my ($class, $params) = @_;
 
-    return $departure->{$params->{'departing_city'}}{$params->{'destination_city'}};
+    return $departure->{$params->{'departure_city'}}{$params->{'arrival_city'}};
 }
 
-sub returning_date {
+sub return_date {
     my ($class, $params) = @_;
 
-    return $return->{$params->{'departing_city'}}{$params->{'destination_city'}}{$params->{'departing_date'}};
+    return $return->{$params->{'departure_city'}}{$params->{'arrival_city'}}{$params->{'departure_date'}};
 }
 
 sub fare {
+    my ($class, $params) = @_;
+
+    return $ticket;
 }
 
 sub book {
