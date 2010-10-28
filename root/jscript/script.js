@@ -1,16 +1,16 @@
 var URL = '/rpc';
-var RPCDepartingCountry   = 'rpc.air.DepartingCountry';
-var RPCDepartingCity      = 'rpc.air.DepartingCity';
-var RPCDestinationCountry = 'rpc.air.DestinationCountry';
-var RPCDestinationCity    = 'rpc.air.DestinationCity';
-var RPCDepartingDate      = 'rpc.air.DepartingDate';
-var PRCReturningDate      = 'rpc.air.ReturningDate';
+var RPCDepartureCountry = 'rpc.air.DepartureCountry';
+var RPCDepartureCity    = 'rpc.air.DepartureCity';
+var RPCArrivalCountry   = 'rpc.air.ArrivalCountry';
+var RPCArrivalCity      = 'rpc.air.ArrivalCity';
+var RPCDepartureDate    = 'rpc.air.DepartureDate';
+var PRCReturningDate    = 'rpc.air.ReturnDate';
 var METHODS = [
-    RPCDepartingCountry,
-    RPCDepartingCity,
-    RPCDestinationCountry,
-    RPCDestinationCity,
-    RPCDepartingDate,
+    RPCDepartureCountry,
+    RPCDepartureCity,
+    RPCArrivalCountry,
+    RPCArrivalCity,
+    RPCDepartureDate,
     PRCReturningDate
 ];
 var service = new rpc.ServiceProxy(URL, {
@@ -25,52 +25,52 @@ var service = new rpc.ServiceProxy(URL, {
  */
 $(function() {
     $("input[name='isOneWay']").bind('click', fireIsOneWayClicked);
-    $("select[name='DepartingCountry']").bind('change', fireDepartingCountryChanged);
-    $("select[name='DepartingCity']").bind('change', fireDepartingCityChanged);
-    $("select[name='DestinationCountry']").bind('change', fireDestinationCountryChanged);
-    $("select[name='DestinationCity']").bind('change', fireDestinationCityChanged);
-    $("select[name='DepartingDate']").bind('change', fireDepartingDateChanged);
+    $("select[name='DepartureCountry']").bind('change', fireDepartureCountryChanged);
+    $("select[name='DepartureCity']").bind('change', fireDepartureCityChanged);
+    $("select[name='ArrivalCountry']").bind('change', fireArrivalCountryChanged);
+    $("select[name='ArrivalCity']").bind('change', fireArrivalCityChanged);
+    $("select[name='DepartureDate']").bind('change', fireDepartureDateChanged);
 });
 
-function fireDepartingCountryChanged() {
+function fireDepartureCountryChanged() {
     var value = $(this).attr('value');
-    var element = $("select[name='DepartingCity']");
-    makeRequest(RPCDepartingCity, { departingCountry : value }, element);
+    var element = $("select[name='DepartureCity']");
+    makeRequest(RPCDepartureCity, { departureCountry : value }, element);
 }
 
-function fireDepartingCityChanged() {
+function fireDepartureCityChanged() {
     var value = $(this).attr('value');
-    var element = $("select[name='DestinationCountry']");
-    makeRequest(RPCDestinationCountry, { departingCity : value }, element);
+    var element = $("select[name='ArrivalCountry']");
+    makeRequest(RPCArrivalCountry, { departureCity : value }, element);
 }
 
-function fireDestinationCountryChanged() {
+function fireArrivalCountryChanged() {
     var value = $(this).attr('value');
-    var element = $("select[name='DestinationCity']");
-    makeRequest(RPCDestinationCity, { destinationCountry : value }, element);
+    var element = $("select[name='ArrivalCity']");
+    makeRequest(RPCArrivalCity, { arrivalCountry : value }, element);
 }
 
-function fireDestinationCityChanged() {
+function fireArrivalCityChanged() {
     var value = $(this).attr('value');
-    var departingCity = $("select[name='DepartingCity']").attr('value');
-    var element = $("select[name='DepartingDate']");
-    makeRequest(RPCDepartingDate, { departingCity: departingCity, destinationCity : value }, element);
+    var departureCity = $("select[name='DepartureCity']").attr('value');
+    var element = $("select[name='DepartureDate']");
+    makeRequest(RPCDepartureDate, { departureCity: departureCity, arrivalCity : value }, element);
 }
 
-function fireDepartingDateChanged() {
+function fireDepartureDateChanged() {
     var value = $(this).attr('value');
-    var departingCity   = $("select[name='DepartingCity']").attr('value');
-    var destinationCity = $("select[name='DestinationCity']").attr('value');
-    var element = $("select[name='ReturningDate']");
+    var departureCity   = $("select[name='DepartureCity']").attr('value');
+    var arrivalCity = $("select[name='ArrivalCity']").attr('value');
+    var element = $("select[name='ReturnDate']");
     makeRequest(PRCReturningDate, {
-        departingCity: departingCity,
-        destinationCity: destinationCity,
-        departingDate: value
+        departureCity: departureCity,
+        arrivalCity: arrivalCity,
+        departureDate: value
     }, element);
 }
 
 function fireIsOneWayClicked(object) {
-    var element = $("select[name='ReturningDate']");
+    var element = $("select[name='ReturnDate']");
 
     ($(this).attr('checked'))
         ? element.attr('disabled', 'disabled')
@@ -91,8 +91,6 @@ function makeRequest(method, params, element) {
             //updateList(element, message);
         },
         onComplete: function(response) {
-            //alert('on Complete');
-            //alert(response);
             updateList(element, response.result)
         },
         onException:function(e){
