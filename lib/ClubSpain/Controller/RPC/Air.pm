@@ -5,59 +5,68 @@ use warnings;
 
 use base qw(Catalyst::Controller);
 
-sub DepartingCountry : XMLRPC {
+sub DepartureCountry : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->departing_country();
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->departure_country();
 }
 
-sub DepartingCity : XMLRPC {
+sub DepartureCity : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    my $country = $c->request->param('departingCountry');
-
-    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->departing_city($country);
-}
-
-sub DestinationCountry : XMLRPC {
-    my ($self, $c, @args) = @_;
-
-    my $city = $c->request->param('departingCity');
-
-    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->destination_country($city);
-}
-
-sub DestinationCity : XMLRPC {
-    my ($self, $c, @args) = @_;
-
-    my $country = $c->request->param('destinationCountry');
-
-    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->destination_city($country);
-}
-
-sub DepartingDate : XMLRPC {
-    my ($self, $c, @args) = @_;
-
-    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->departing_date({
-        departing_city   => $c->request->param('departingCity'),
-        destination_city => $c->request->param('destinationCity'),
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->departure_city({
+        departure_country => $c->request->param('departureCountry'),
     });
 }
 
-sub ReturningDate : XMLRPC {
+sub ArrivalCountry : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    $c->stash->{'xmlrpc'} = $c->model('Flightmanager')->returning_date({
-        departing_city   => $c->request->param('departingCity'),
-        destination_city => $c->request->param('destinationCity'),
-        departing_date   => $c->request->param('departingDate'),
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->arrival_country({
+        departure_city => $c->request->param('departureCity')
+    });
+}
+
+sub ArrivalCity : XMLRPC {
+    my ($self, $c, @args) = @_;
+
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->arrival_city({
+        arrival_country => $c->request->param('arrivalCountry')
+    });
+}
+
+sub DepartureDate : XMLRPC {
+    my ($self, $c, @args) = @_;
+
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->departure_date({
+        departure_city  => $c->request->param('departureCity'),
+        arrival_city    => $c->request->param('arrivalCity'),
+    });
+}
+
+sub ReturnDate : XMLRPC {
+    my ($self, $c, @args) = @_;
+
+    $c->stash->{'xmlrpc'} = $c->model('Flightmanager')->return_date({
+        departure_city  => $c->request->param('departureCity'),
+        departure_date  => $c->request->param('departureDate'),
+        arrival_city    => $c->request->param('arrivalCity'),
     });
 }
 
 sub Fare : XMLRPC {
     my ($self, $c, @args) = @_;
 
-    $c->stash->{'xmlrpc'} = {};
+    $c->stash->{'xmlrpc'} = $c->model('FlightManager')->fare({
+        departure_country => $c->request->param('departureCountry'),
+        departure_city    => $c->request->param('departureCity'),
+        departure_date    => $c->request->param('departureDate'),
+        arrival_country   => $c->request->param('arrivalCountry'),
+        arrival_city      => $c->request->param('arrivalCity'),
+        return_date       => $c->request->param('returnDate'),
+        class             => $c->request->param('class'),
+        quantity          => $c->request->param('quantity'),
+    });
 }
 
 sub Book : XMLRPC {
