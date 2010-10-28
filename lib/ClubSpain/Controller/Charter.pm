@@ -24,6 +24,20 @@ sub load_charter_search_form {
     $c->stash->{form} = $form;
 }
 
+
+=head2 info()
+
+Обработка запроса http://example.com/charter/info
+необходимо показать общую информацию о воздушной перевозке и провозе багажа
+
+=cut
+
+sub info :Local {
+    my ($self, $c) = @_;
+
+    $c->forward( $c->view('TT::Charter::Info') );
+}
+
 sub end : ActionClass('RenderView') {}
 
 1;
