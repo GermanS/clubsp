@@ -1,4 +1,4 @@
-use Test::More tests => 20;
+use Test::More tests => 23;
 
 use strict;
 use warnings;
@@ -22,14 +22,18 @@ use_ok('ClubSpain::Types');
 {
     eval {
         Country->new( short => 'e' );
+        pass('no exception thrown');
+    };
 
+    eval {
+        Country->new( short => 'B' );
         pass('no exception thrown');
     };
 }
 
 #negative test
 {
-    my @tests = ('1', '33', 'abc', 10, 0, undef, '', ' ', '  ');
+    my @tests = ('1', '33', 'abc', 10, 0, undef, '', ' ', '  ', 'ABC');
     foreach my $argument (@tests) {
         eval {
             Country->new( short => $argument );

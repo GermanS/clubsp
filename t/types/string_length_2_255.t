@@ -1,4 +1,4 @@
-use Test::More tests => 25;
+use Test::More tests => 16;
 
 use strict;
 use warnings;
@@ -9,34 +9,28 @@ use_ok('ClubSpain::Types');
     package Country;
     use Moose;
 
-    has 'short' => (
+    has 'name' => (
         is      => 'rw',
-        isa     => 'AlphaLength2',
+        isa     => 'StringLength2to255',
         lazy    => 1,
         default => 0,
     );
 }
 
-
 #positive test
 {
     eval {
-        Country->new( short => 'es' );
-        pass('no exception thrown');
-    };
-
-    eval {
-        Country->new( short => 'ES' );
+        Country->new( name => 'Espana' );
         pass('no exception thrown');
     };
 }
 
 #negative test
 {
-    my @tests = ('a', 'a1', '33', 'abc', 10, 0, undef, '', ' ', '  ', 'ABC');
+    my @tests = ('1', 'a', 0, undef, '', ' ', 'x' x 256 );
     foreach my $argument (@tests) {
         eval {
-            Country->new( short => $argument );
+            Country->new( name => $argument );
             fail('no exception thrown');
         };
 
@@ -44,7 +38,7 @@ use_ok('ClubSpain::Types');
             my $e;
             if ($e = ClubSpain::Exception::Validation->caught()) {
                 pass('caught validation exception');
-                is($e->message, "The $argument is not 2 chars word!",
+                is($e->message, "The $argument is less than 2 or more than 255 chars",
                     "check message: $argument"
                 );
             } else {

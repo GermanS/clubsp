@@ -26,7 +26,7 @@ subtype 'NaturalLessThan1000'
 
 subtype 'AlphaLength1'
     => as 'Str'
-    => where { $_ =~ /^[A-Za-z]{1}$/ }
+    => where { $_ =~ /^[a-z]{1}$/i }
     => message {
         throw ClubSpain::Exception::Validation(
             message => "The $_ is not 1 char!"
@@ -35,7 +35,7 @@ subtype 'AlphaLength1'
 
 subtype 'AlphaLength2'
     => as 'Str'
-    => where { $_ =~ /^[A-Za-z]{2}$/ }
+    => where { $_ =~ /^[a-z]{2}$/i }
     => message {
         throw ClubSpain::Exception::Validation(
             message => "The $_ is not 2 chars word!"
@@ -44,10 +44,19 @@ subtype 'AlphaLength2'
 
 subtype 'AlphaLength3'
     => as 'Str'
-    => where { $_ =~ /^[A-Za-z]{3}$/ }
+    => where { $_ =~ /^[a-z]{3}$/i }
     => message {
         throw ClubSpain::Exception::Validation(
             message => "The $_ is not 3 chars word!"
+        )
+    };
+
+subtype 'StringLength2to255'
+    => as 'Str'
+    => where { $_ =~ /^.{2,255}$/ }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => "The $_ is less than 2 or more than 255 chars"
         )
     };
 
