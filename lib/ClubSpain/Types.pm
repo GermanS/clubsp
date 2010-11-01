@@ -24,6 +24,15 @@ subtype 'NaturalLessThan1000'
         )
     };
 
+subtype 'AlphaLength2'
+    => as 'Str'
+    => where { $_ =~ /^[A-Za-z]{2}$/ }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => "The $_ is not 2 chars word"
+        )
+    };
+
 __PACKAGE__->meta->make_immutable();
 
 1;
