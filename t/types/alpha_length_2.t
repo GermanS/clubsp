@@ -40,7 +40,7 @@ use_ok('ClubSpain::Types');
             my $e;
             if ($e = ClubSpain::Exception::Validation->caught()) {
                 pass('caught validation exception');
-                is($e->message, "The $argument is not 2 chars word",
+                is($e->message, "The $argument is not 2 chars word!",
                     "check message: $argument"
                 );
             } else {
