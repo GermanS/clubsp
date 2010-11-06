@@ -19,15 +19,20 @@ use_ok('ClubSpain::Types');
 
 #positive test
 {
+
     eval {
         Country->new( name => 'Espana' );
         pass('no exception thrown');
     };
+
+    if ($@) {
+        fail('caught exception : ' . $@);
+    }
 }
 
 #negative test
 {
-    my @tests = ('1', 'a', 0, undef, '', ' ', 'x' x 256 );
+    my @tests = ('1', 'a', 0, undef, '', ' ', 'x' x 256);
     foreach my $argument (@tests) {
         eval {
             Country->new( name => $argument );
