@@ -18,12 +18,12 @@ my $build = ClubSpain::Build->new(
         'DBIx::Class'                           => '>=0.08123',
         'HTML::FormFu'                          => '>=0.07002',
         'Moose'                                 => '>=1.09',
+        'MooseX::Singleton'                     =>  0,
         'SQL::Translator'                       => '>=0.11006',
         'Test::More'                            => '>=0.94',
         'XML::Compile'                          => '>=1.16',
         'XML::Compile::SOAP'                    => '>=2.16',
         'XML::LibXML'                           => '>=1.70',
-
     }
 );
 
