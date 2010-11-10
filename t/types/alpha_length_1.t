@@ -44,8 +44,8 @@ use_ok('ClubSpain::Types');
             my $e;
             if ($e = ClubSpain::Exception::Validation->caught()) {
                 pass('caught validation exception');
-                is($e->message, "The $argument is not 1 char!",
-                    "check message: $argument"
+                is($e->message, sprintf "The %s is not 1 char!", $argument,
+                    sprintf "check message: %s", $argument
                 );
             } else {
                 fail('caught other exception');
