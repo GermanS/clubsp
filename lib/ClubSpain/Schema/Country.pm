@@ -1,4 +1,4 @@
-package ClubSpainL::Schema::Country;
+package ClubSpain::Schema::Country;
 
 use strict;
 use warnings;
@@ -46,7 +46,7 @@ __PACKAGE__->add_unique_constraint(on_alpha2  => [qw(alpha2)]);
 __PACKAGE__->add_unique_constraint(on_alpha3  => [qw(alpha3)]);
 __PACKAGE__->add_unique_constraint(on_numerics => [qw(numerics)]);
 
-__PACKAGE__->has_many(items => 'AviaBroker::Schema::DBIC::City',
+__PACKAGE__->has_many(items => 'ClubSpain::Schema::City',
     {'foreign.country_id' => 'self.id'}
 );
 
