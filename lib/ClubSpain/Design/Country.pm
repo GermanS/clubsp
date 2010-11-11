@@ -3,8 +3,9 @@ package ClubSpain::Design::Country;
 use Moose;
 use namespace::autoclean;
 
+use parent qw(ClubSpain::Design::Base);
+
 use ClubSpain::Common qw(minify);
-use ClubSpain::Storage;
 use ClubSpain::Types;
 
 has 'id'       => ( is => 'ro' );
@@ -24,9 +25,7 @@ sub BUILDARGS {
 sub create {
     my $self = shift;
 
-    my $schema = ClubSpain::Storage->instance()->schema();
-
-    $schema->resultset('Country')->create({
+    $self->schema->resultset('Country')->create({
         name        => $self->name,
         alpha2      => $self->alpha2,
         alpha3      => $self->alpha3,
@@ -35,15 +34,36 @@ sub create {
 }
 
 sub update {
+    my $self = shift;
+
+    return $self->fetch_by_id()->update({
+        name        => $self->name,
+        alpha2      => $self->alpha2,
+        alpha3      => $self->alpha3,
+        numerics    => $self->numerics,
+    });
 }
 
 sub delete {
+    my ($class, $id) = @_;
+
+    return $class->fetch_by_id($id)->delete();
 }
 
-sub retrieve {
-}
+sub fetch_by_id {
+    my ($self, $id) = @_;
 
-sub search {
+    $id = $self->id
+        unless $id;
+
+    my $object = $self->schema
+                      ->resultset('Country')
+                      ->find({ id => $id }, { key => 'primary' });
+
+    throw ClubSpain::Exception::Storage(message => "Couldn't find Country: $id!")
+        unless $object;
+
+    return $object;
 }
 
 __PACKAGE__->meta->make_immutable();
