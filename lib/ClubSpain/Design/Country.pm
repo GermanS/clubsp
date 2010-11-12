@@ -46,9 +46,9 @@ sub update {
 }
 
 sub delete {
-    my ($class, $id) = @_;
+    my ($self, $id) = @_;
 
-    return $class->fetch_by_id($id)->delete();
+    return $self->fetch_by_id($id)->delete();
 }
 
 sub fetch_by_id {
