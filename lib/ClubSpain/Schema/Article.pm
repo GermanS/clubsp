@@ -33,7 +33,7 @@ __PACKAGE__->add_columns(
         size          => 254,
         is_nullable   => 0
     },
-    header => {
+    body => {
         data_type     => 'text',
     }
 );
