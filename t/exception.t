@@ -1,4 +1,4 @@
-use Test::More tests => 5;
+use Test::More tests => 7;
 
 use strict;
 use warnings;
@@ -8,7 +8,7 @@ use_ok("ClubSpain::Exception");
 #test message propagation
 {
 
-    foreach (qw(Storage Validation)) {
+    foreach (qw(Storage Validation Argument)) {
         my $class = 'ClubSpain::Exception::' . $_;
 
         eval {

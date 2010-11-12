@@ -16,6 +16,10 @@ use Exception::Class (
         isa         => 'ClubSpain::Exception::Base',
         description => 'storage exception'
     },
+    'ClubSpain::Exception::Argument' => {
+        isa         => 'ClubSpain::Exception::Base',
+        description => 'argument exception'
+    },
 );
 
 
