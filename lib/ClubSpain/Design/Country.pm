@@ -5,6 +5,8 @@ use namespace::autoclean;
 
 use parent qw(ClubSpain::Design::Base);
 
+use Scalar::Util qw(blessed);
+
 use ClubSpain::Common qw(minify);
 use ClubSpain::Types;
 use ClubSpain::Exception;
@@ -37,6 +39,9 @@ sub create {
 sub update {
     my $self = shift;
 
+    throw ClubSpain::Exception::Argument(message => 'NOT A CLASS METHOD')
+        unless blessed $self;
+
     return $self->fetch_by_id()->update({
         name        => $self->name,
         alpha2      => $self->alpha2,
@@ -55,7 +60,7 @@ sub fetch_by_id {
     my ($self, $id) = @_;
 
     $id = $self->id
-        unless $id;
+        if (ref $self && !$id);
 
     my $object = $self->schema
                       ->resultset('Country')
