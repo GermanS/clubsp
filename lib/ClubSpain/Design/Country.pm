@@ -50,12 +50,6 @@ sub update {
     });
 }
 
-sub delete {
-    my ($self, $id) = @_;
-
-    return $self->fetch_by_id($id)->delete();
-}
-
 sub fetch_by_id {
     my ($self, $id) = @_;
 
