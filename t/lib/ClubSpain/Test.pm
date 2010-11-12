@@ -100,6 +100,12 @@ sub populate_schema {
         [$city[1]->id, 'BCN', 'LEBL', 'El Prat'],
         [$city[2]->id, 'AGP', 'LEMG', 'Malaga airport']
     ]);
+
+    my @article = $schema->populate('Article', [
+        [qw(parent_id weight is_published header body)]
+        [0, 1, 0, 'HEADER1', 'BODY1'],
+        [0, 5, 1, 'HEADER2', 'BODY2']
+    ]);
 }
 
 sub clear_schema {
