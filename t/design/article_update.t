@@ -5,6 +5,11 @@ use warnings;
 
 use_ok('ClubSpain::Design::Article');
 
+use lib qw(t/lib);
+use ClubSpain::Test;
+
+ClubSpain::Test->init_schema();
+
 my $article = ClubSpain::Design::Article->new(
     id          => 1,
     parent_id   => 0,
