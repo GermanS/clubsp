@@ -1,7 +1,7 @@
 package ClubSpain::Schema::Article;
 
 use strict;
-use warnings
+use warnings;
 
 BEGIN {
     use base qw(DBIx::Class);
