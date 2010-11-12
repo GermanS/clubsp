@@ -28,6 +28,7 @@ use Moose::Util::TypeConstraints;
 class_type 'ClubSpain::Exception::Base';
 class_type 'ClubSpain::Exception::Validation';
 class_type 'ClubSpain::Exception::Storage';
+class_type 'ClubSpain::Exception::Argument';
 
 no Moose::Util::TypeConstraints;
 
@@ -111,10 +112,10 @@ Returns the details portion of the exception message if there are any.
 
 =head1 SEE ALSO
 
-L<Exception::Class>, L<ClubSpain::Constraints>
+L<Exception::Class>
 
 =head1 AUTHOR
 
     German Semenkov
     german.semenkov@gmail.com
-    http://clubspain.com/
+    http://clubspain.ru/
