@@ -11,7 +11,7 @@ use ClubSpain::Exception;
 
 has 'id'            => ( is => 'ro' );
 has 'parent_id'     => ( is => 'ro', required => 1 );
-has 'weight'        => ( is => 'ro', required => 1 );
+has 'weight'        => ( is => 'ro', required => 1, default => 0 );
 has 'is_published'  => ( is => 'ro', required => 1 );
 has 'header'        => ( is => 'ro', required => 1 );
 has 'body'          => ( is => 'ro', required => 1 );

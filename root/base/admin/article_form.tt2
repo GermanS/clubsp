@@ -1,5 +1,8 @@
 [% WRAPPER page.tt2 %]
+
 <h1>Добавление статьи</h1>
+
+<p>[% message %]</p>
 
 [% form %]
 
