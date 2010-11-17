@@ -9,11 +9,7 @@ use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Design::Article;
 
 #match /backoffice/article
-sub base :Chained('/backoffice/base') :PathPart('article') :CaptureArgs(0) {
-    my ($self, $c) = @_;
-
-#    $c->stash(profile_rs => $c->model('DBIC::User'));
-};
+sub base :Chained('/backoffice/base') :PathPart('article') :CaptureArgs(0) {};
 
 #match /backoffice/article/*
 sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
@@ -32,7 +28,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 sub view :Chained('id') :Pathpart('') :Args(0) {
     my ($self, $c) = @_;
 
-    $c->stash(template => 'admin/article_view.tt2');
+    $c->stash(template => 'backoffice/article_view.tt2');
 };
 
 =head
@@ -50,7 +46,7 @@ sub create :Local {
 
     my $form = $self->load_add_form();
     $c->stash(form => $form);
-    $c->stash(template => 'admin/article_form.tt2');
+    $c->stash(template => 'backoffice/article_form.tt2');
 
     if ($form->submitted_and_valid()) {
         $self->insert($c);
@@ -83,7 +79,7 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
 
     my $form = $self->load_upd_form($c);
     $c->stash(form => $form);
-    $c->stash(template => 'admin/article_form.tt2');
+    $c->stash(template => 'backoffice/article_form.tt2');
 
     if ($form->submitted_and_valid()) {
         $self->update($c);
@@ -123,7 +119,7 @@ sub load_add_form :Private  {
     my $self = shift;
 
     my $form = $self->form();
-    $form->load_config_filestem('manager/article_form');
+    $form->load_config_filestem('backoffice/article_form');
     $form->process();
 
     return $form;
