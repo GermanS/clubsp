@@ -45,7 +45,7 @@ sub index :Local {
 
 =cut
 
-sub add_form :Local {
+sub create :Local {
     my ($self, $c) = @_;
 
     my $form = $self->load_add_form();
@@ -53,11 +53,11 @@ sub add_form :Local {
     $c->stash(template => 'admin/article_form.tt2');
 
     if ($form->submitted_and_valid()) {
-        $self->create($c);
+        $self->insert($c);
     }
 }
 
-sub create :Private {
+sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
@@ -86,7 +86,7 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     $c->stash(template => 'admin/article_form.tt2');
 
     if ($form->submitted_and_valid()) {
-        $self->update();
+        $self->update($c);
     }
 }
 
@@ -95,7 +95,8 @@ sub update :Private {
 
     eval {
         my $article = ClubSpain::Design::Article->new(
-            id           => $c->request->param('id'),
+            id           => $c->stash->{'article'}->id,
+            parent_id    => $c->request->param('parent_id'),
             weight       => $c->request->param('weight'),
             is_published => $c->request->param('is_published') || 0,
             header       => $c->request->param('header'),
@@ -106,7 +107,7 @@ sub update :Private {
         $c->stash( message => 'Статья успешно обновлена' );
     };
 
-    $self->process_error($c)
+    $self->process_error($c, $@)
          if $@;
 };
 
