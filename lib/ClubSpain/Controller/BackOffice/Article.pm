@@ -8,20 +8,15 @@ use parent qw(Catalyst::Controller::HTML::FormFu);
 
 use ClubSpain::Design::Article;
 
-sub base :Chained('/') :PathPart('article') :CaptureArgs(0) {
+#match /backoffice/article
+sub base :Chained('/backoffice/base') :PathPart('article') :CaptureArgs(0) {
     my ($self, $c) = @_;
 
 #    $c->stash(profile_rs => $c->model('DBIC::User'));
 };
 
-
-sub index :Local {
-    my ($self, $c) = @_;
-
-    $c->stash(template => 'admin/article.tt2');
-}
-
-sub view :Chained :Path('/manager/article/view') :CaptureArgs(1) {
+#match /backoffice/article/*
+sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id) = @_;
 
     my $article;
@@ -31,9 +26,24 @@ sub view :Chained :Path('/manager/article/view') :CaptureArgs(1) {
     };
 
     $self->process_error($c, $@) if $@;
+};
+
+#match /backoffice/article/* (end of chain)
+sub view :Chained('id') :Pathpart('') :Args(0) {
+    my ($self, $c) = @_;
 
     $c->stash(template => 'admin/article_view.tt2');
 };
+
+=head
+
+sub index :Local {
+    my ($self, $c) = @_;
+
+    $c->stash(template => 'admin/article.tt2');
+}
+
+=cut
 
 sub add_form :Local {
     my ($self, $c) = @_;
@@ -67,15 +77,16 @@ sub create :Private {
         if $@;
 };
 
-sub upd_form :Local :Chained('view') :Args(1) {
-    my ($self, $c, $id) = @_;
+#chained /backoffice/article/*/edit
+sub edit :Chained('id') :PathPart('edit') :Args(0) {
+    my ($self, $c) = @_;
 
-    my $form = $self->load_upd_form($c, $id);
+    my $form = $self->load_upd_form($c);
     $c->stash(form => $form);
     $c->stash(template => 'admin/article_form.tt2');
 
     if ($form->submitted_and_valid()) {
-        $self->update($id);
+        $self->update();
     }
 }
 
@@ -99,7 +110,9 @@ sub update :Private {
          if $@;
 };
 
-sub delete :Chained('view') :PathPart('delete') :Args(0) {
+
+# match /backoffice/article/*/delete
+sub delete :Chained('id') :PathPart('delete') :Args(0) {
 #    my ($self, $c) = @_;
 
 #    my $object = $c->stash->{'profile'}->delete();
@@ -115,13 +128,11 @@ sub load_add_form :Private  {
     return $form;
 }
 
-sub load_upd_form {
-    my ($self, $c, $id) = @_;
-
-    $c->log->debug("THE ID: $id");
+sub load_upd_form :Private {
+    my ($self, $c) = @_;
 
     my $form = $self->load_add_form();
-    my $article = ClubSpain::Design::Article->fetch_by_id($id);
+    my $article = $c->stash->{'article'};
     $form->get_element({ name => 'parent_id' })->value($article->parent_id);
     $form->get_element({ name => 'header' })->value($article->header);
     $form->get_element({ name => 'body' })->value($article->body);
