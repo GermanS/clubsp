@@ -59,6 +59,17 @@ sub fetch_by_id {
     return $object;
 }
 
+sub list {
+    my $self = shift;
+    my $parent = shift || 0;
+
+    my $iterator = $self->schema
+                        ->resultset('Article')
+                        ->search({ parent_id => $parent });
+
+    return $iterator;
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;

@@ -8,6 +8,13 @@ use parent qw(Catalyst::Controller::HTML::FormFu);
 
 use ClubSpain::Design::Article;
 
+sub default :Path {
+    my ($self, $c) = @_;
+
+    $c->stash(iterator => ClubSpain::Design::Article->list());
+    $c->stash(template => 'backoffice/article.tt2');
+}
+
 #match /backoffice/article
 sub base :Chained('/backoffice/base') :PathPart('article') :CaptureArgs(0) {};
 
@@ -21,7 +28,11 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
         $c->stash( article => $article );
     };
 
-    $self->process_error($c, $@) if $@;
+    if ($@) {
+        $self->process_error($c, $@) if $@;
+        $c->response->redirect($c->uri_for($self->action_for('index')));
+        $c->detach();
+    }
 };
 
 #match /backoffice/article/* (end of chain)
@@ -30,16 +41,6 @@ sub view :Chained('id') :Pathpart('') :Args(0) {
 
     $c->stash(template => 'backoffice/article_view.tt2');
 };
-
-=head
-
-sub index :Local {
-    my ($self, $c) = @_;
-
-    $c->stash(template => 'admin/article.tt2');
-}
-
-=cut
 
 sub create :Local {
     my ($self, $c) = @_;
@@ -66,7 +67,7 @@ sub insert :Private {
         );
         $article->create();
 
-        $c->stash(message => 'Статья успешно добавлена');
+        $self->successful_message($c);
     };
 
     $self->process_error($c, $@)
@@ -100,7 +101,7 @@ sub update :Private {
         );
         $article->update();
 
-        $c->stash( message => 'Статья успешно обновлена' );
+        $self->successful_message($c);
     };
 
     $self->process_error($c, $@)
@@ -110,10 +111,40 @@ sub update :Private {
 
 # match /backoffice/article/*/delete
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
-#    my ($self, $c) = @_;
+    my ($self, $c) = @_;
 
-#    my $object = $c->stash->{'profile'}->delete();
+    my $form = $self->load_upd_form($c);
+    $c->stash(form => $form);
+    $c->stash(template => 'backoffice/article_form.tt2');
+
+    if ($form->submitted_and_valid()) {
+        $self->remove($c);
+    }
 };
+
+sub remove {
+    my ($self, $c) = @_;
+
+    eval {
+        ClubSpain::Design::Article->delete($c->stash->{'article'}->id);
+
+        $self->successful_message($c);
+    };
+
+    $self->process_error($c, $@)
+         if $@;
+};
+
+# match /backoffice/article/*/delete
+sub leaf :Chained('id') :PathPart('leaf') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $childs = ClubSpain::Design::Article->list($c->stash->{'article'}->id);
+    $c->stash(
+        template => 'backoffice/article.tt2',
+        iterator => $childs
+    );
+}
 
 sub load_add_form :Private  {
     my $self = shift;
@@ -142,7 +173,6 @@ sub load_upd_form :Private {
     return $form;
 }
 
-
 sub process_error {
     my ($self, $c, $e) = @_;
 
@@ -155,7 +185,7 @@ sub process_error {
     }
 }
 
-sub seccessful_message {
+sub successful_message {
     my ($self, $c) = @_;
 
     $c->stash( message => 'Операция успешно выполнена' );
