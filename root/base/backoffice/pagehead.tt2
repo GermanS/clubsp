@@ -6,4 +6,12 @@
         <li><a href="">Трансферы</a></li>
         <li><a href="" class="selected">Справочники</a></li>
     </ul>
+
+    <div class="subnav-bar">
+        <ul>
+            <li><a href="/backoffice/article">Статьи</a>
+            <li><a href="/backoffice/customer">Агентства</a>
+            <li><a href="">Логи</a>
+        </ul>
+    </div>
 </div>
