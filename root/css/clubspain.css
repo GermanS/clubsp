@@ -85,9 +85,18 @@
     border-color:#ccc;
 }
 
-
-
-
-
-
-
+/** BUTTON **/
+.button {
+    text-align:center;
+    padding: 1em;
+    display: block;
+    background: #777;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 1px 1px #666;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}

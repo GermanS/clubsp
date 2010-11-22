@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="yui-b">
-                <a href="/backoffice/article/create">Добавить статью</a>
+                <a class="button" href="/backoffice/article/create">Добавить статью</a>
             </div>
         </div>
         <div id="ft"><p>ClubSpain.ru</p></div>
