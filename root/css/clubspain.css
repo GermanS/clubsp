@@ -1,13 +1,7 @@
-.site {
-    margin:0 auto;
-    width:920px;
-    padding:0 15px;
-}
-
 .pagehead {
     position:relative;
     margin:-20px 0 10px -25px;
-    width:920px;
+    width:100%px;
     padding:20px 25px 0;
 }
 
@@ -87,8 +81,7 @@
 
 .subnav-bar>ul>li:hover>a{
     color:#333;
-    background-color:
-    #f8f8f8;
+    background-color:#f8f8f8;
     border-color:#ccc;
 }
 

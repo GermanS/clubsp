@@ -1,5 +1,20 @@
 [% WRAPPER page.tt2 %]
-    [% INCLUDE backoffice/pagehead.tt2 %]
-
-    [% content %]
+    <div id="doc4" class="yui-t2">
+        <div id="hd"><h1>ClubSpain.RU</h1>
+            [% INCLUDE backoffice/pagehead.tt2 %]
+        </div>
+        <div id="bd">
+            <div id="yui-main">
+                <div class="yui-b">
+                    <div class="yui-g">
+                        [% content %]
+                    </div>
+                </div>
+            </div>
+            <div class="yui-b">
+                <a href="/backoffice/article/create">Добавить статью</a>
+            </div>
+        </div>
+        <div id="ft"><p>ClubSpain.ru</p></div>
+    </div>
 [% END %]
