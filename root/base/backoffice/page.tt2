@@ -1,0 +1,5 @@
+[% WRAPPER page.tt2 %]
+    [% INCLUDE backoffice/pagehead.tt2 %]
+
+    [% content %]
+[% END %]

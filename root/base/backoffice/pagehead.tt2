@@ -1,0 +1,9 @@
+<div class="pagehead">
+    <ul class="tabs">
+        <li><a href="">Отели</a></li>
+        <li><a href="">Экскурсионные туры</a></li>
+        <li><a href="">Авиабилеты</a></li>
+        <li><a href="">Трансферы</a></li>
+        <li><a href="" class="selected">Справочники</a></li>
+    </ul>
+</div>

@@ -1,0 +1,56 @@
+.site {
+    margin:0 auto;
+    width:920px;
+    padding:0 15px;
+}
+
+.pagehead {
+    position:relative;
+    margin:-20px 0 10px -25px;
+    width:920px;
+    padding:20px 25px 0;
+}
+
+.pagehead ul.tabs{
+    position:relative;
+    margin:10px 0 0 0;
+    height:26px;
+    padding:6px 10px;
+    border:1px solid #ddd;
+    background: #e3e3e3;
+}
+
+.pagehead ul.tabs li {
+    list-style-type:none;
+    margin:0;
+    display:inline;
+}
+
+.pagehead ul.tabs li a{
+    float:left;
+    margin-right:10px;
+    height:26px;
+    padding:0 8px;
+    line-height:26px;
+    font-size:14px;
+}
+
+.pagehead ul.tabs li a:hover {
+    color:#333;
+    background-color:#ccc;
+    text-decoration:none;
+}
+
+.pagehead ul.tabs li a.selected {
+    position:relative;
+    top:-1px;
+    font-weight:bold;
+    color:#333;
+    background:#fff;
+    border:1px solid #ccc;
+    border-right-color:#eee;
+    border-bottom-color:#eee;
+}
+
+
+
