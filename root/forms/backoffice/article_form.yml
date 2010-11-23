@@ -16,7 +16,6 @@ elements:
   - type: Text
     name: header
     label: Заголовок
-    size: 100
     filters:
       - TrimEdges
     constraints:
@@ -25,7 +24,7 @@ elements:
   - type: Textarea
     name: body
     label: Статья
-    cols: 100
+    rows: 12
     constraints:
       - Required
 
