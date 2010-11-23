@@ -1,11 +1,4 @@
-.pagehead {
-    position:relative;
-    margin:-20px 0 10px -25px;
-    width:100%px;
-    padding:20px 25px 0;
-}
-
-.pagehead ul.tabs{
+ul.tabs{
     position:relative;
     margin:10px 0 0 0;
     height:26px;
@@ -14,13 +7,13 @@
     background: #e3e3e3;
 }
 
-.pagehead ul.tabs li {
+ul.tabs li {
     list-style-type:none;
     margin:0;
     display:inline;
 }
 
-.pagehead ul.tabs li a{
+ul.tabs li a{
     float:left;
     margin-right:10px;
     height:26px;
@@ -29,13 +22,13 @@
     font-size:14px;
 }
 
-.pagehead ul.tabs li a:hover {
+ul.tabs li a:hover {
     color:#333;
     background-color:#ccc;
     text-decoration:none;
 }
 
-.pagehead ul.tabs li a.selected {
+ul.tabs li a.selected {
     position:relative;
     top:-1px;
     font-weight:bold;
@@ -49,37 +42,36 @@
 .subnav-bar{
     position:relative;
     height:30px;
-    padding:0 10px;
+    padding:0;
     border:1px solid #ddd;
     border-top:1px solid #fafafa;
     border-bottom:1px solid #d2d2d2;
     z-index:3;
 }
 
-.subnav-bar>ul{
+ul.subnav-bar {
     position:relative;
-    margin:4px 0 0 -6px;
+    margin: 0;
 }
 
-.subnav-bar>ul>li{
-    position:relative;
+ul.subnav-bar li {
     list-style-type:none;
-    float:left;
-    margin-right:10px;
+    margin:0;
+    display:inline;
 }
 
-.subnav-bar>ul>li>a{
+ul.subnav-bar li a {
     position:relative;
-    display:block;
+    float: left;
     height:15px;
-    padding:3px 5px;
+    padding:5px 5px;
     font-size:12px;
     text-decoration:none;
     color:#666;
     border:1px solid transparent;
 }
 
-.subnav-bar>ul>li:hover>a{
+ul.subnav-bar li:hover a {
     color:#333;
     background-color:#f8f8f8;
     border-color:#ccc;
@@ -87,6 +79,7 @@
 
 /** BUTTON **/
 .button {
+    margin: 1em 0 0 0;
     text-align:center;
     padding: 1em;
     display: block;
@@ -99,4 +92,24 @@
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+}
+
+/** FORM **/
+label {
+    display: block;
+    margin: .5em 0;
+    font-weight: bold;
+}
+
+textarea, select, input[type=text] {
+    display: block;
+    width:100%;
+    border: solid #cacaca 1px;
+    background: #fff;
+    padding: .25em;
+    font: 12px "Courier New", "Lucida Console", monospace;
+}
+
+textarea:focus, select:focus, input:focus {
+    border: 2px solid #8CD6F9;
 }
