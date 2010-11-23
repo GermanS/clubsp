@@ -1,17 +1,16 @@
-<div class="pagehead">
-    <ul class="tabs">
-        <li><a href="">Отели</a></li>
-        <li><a href="">Экскурсионные туры</a></li>
-        <li><a href="">Авиабилеты</a></li>
-        <li><a href="">Трансферы</a></li>
-        <li><a href="" class="selected">Справочники</a></li>
-    </ul>
+ <ul class="tabs">
+    <li><a href="">Авиабилеты</a></li>
+    <li><a href="">Отели</a></li>
+    <li><a href="">Экскурсионные туры</a></li>
+    <li><a href="">Трансферы</a></li>
+    <li><a href="">Городские экскурсии</a></li>
+    <li><a href="">Страхование</a></li>
+    <li><a href="" class="selected">Справочники</a></li>
+</ul>
 
-    <div class="subnav-bar">
-        <ul>
-            <li><a href="/backoffice/article">Статьи</a>
-            <li><a href="/backoffice/customer">Агентства</a>
-            <li><a href="">Логи</a>
-        </ul>
-    </div>
-</div>
+<ul class="subnav-bar">
+    <li><a href="/backoffice/article">Статьи</a></li>
+    <li><a href="/backoffice/customer">Агентства</a></li>
+    <li><a href="">Логи</a></li>
+</ul>
+
