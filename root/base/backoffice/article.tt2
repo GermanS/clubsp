@@ -31,6 +31,7 @@
 [% BLOCK row %]
     <tr>
         <td class="icon">
+            [% INCLUDE icons/is_published.tt2 href="/backoffice/article/" object=article %]
             [% INCLUDE icons/arrow_up.tt2   href="/backoffice/article/$article.id/up" %]
             [% INCLUDE icons/arrow_down.tt2 href="/backoffice/article/$article.id/down" %]
             [% INCLUDE icons/arrow_turn_right.tt2 href="/backoffice/article/$article.id/leaf" %]

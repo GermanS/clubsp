@@ -8,6 +8,11 @@ use parent qw(Catalyst::Controller::HTML::FormFu);
 
 use ClubSpain::Design::Article;
 
+use constant {
+    DISABLE => 0,
+    ENABLE  => 1,
+};
+
 sub default :Path {
     my ($self, $c) = @_;
 
@@ -189,6 +194,26 @@ sub successful_message {
     my ($self, $c) = @_;
 
     $c->stash( message => 'Операция успешно выполнена' );
+}
+
+sub enable :Chained('id') :PathPart('enable') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $article = $c->stash->{'article'};
+    $article->is_published(ENABLE);
+    $article->update();
+
+    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
+}
+
+sub disable :Chained('id') :PathPart('disable') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $article = $c->stash->{'article'};
+    $article->is_published(DISABLE);
+    $article->update();
+
+    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
 }
 
 sub end : ActionClass('RenderView') {
