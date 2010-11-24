@@ -1,0 +1,6 @@
+[% IF object.is_published %]
+    <a href="[% href _ object.id _ '/disable' %]"><img src="/icons/bullet_green.png" width="16" height="16" alt="Опубликовано" title="Опубликовано" border="0"></a>
+[% ELSE %]
+    <a href="[% href _ object.id _ '/enable' %]"><img src="/icons/bullet_red.png" width="16" height="16" alt="Скрыто" title="Скрыто" border="0"></a>
+[% END %]
+
