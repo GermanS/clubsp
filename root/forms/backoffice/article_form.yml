@@ -33,11 +33,6 @@ elements:
     label: Вес статьи
     size: 4
 
-  - type: Checkbox
-    name: is_published
-    label: Опубликовано?
-
-
   - type: Submit
     name: submit
 

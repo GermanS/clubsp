@@ -66,9 +66,9 @@ sub insert :Private {
         my $article = ClubSpain::Design::Article->new(
             parent_id    => $c->request->param('parent_id'),
             weight       => $c->request->param('weight'),
-            is_published => $c->request->param('is_published') || 0,
             header       => $c->request->param('header'),
-            body         => $c->request->param('body')
+            body         => $c->request->param('body'),
+            is_published => ENABLE,
         );
         $article->create();
 
@@ -100,9 +100,9 @@ sub update :Private {
             id           => $c->stash->{'article'}->id,
             parent_id    => $c->request->param('parent_id'),
             weight       => $c->request->param('weight'),
-            is_published => $c->request->param('is_published') || 0,
             header       => $c->request->param('header'),
-            body         => $c->request->param('body')
+            body         => $c->request->param('body'),
+            is_published => $c->stash->{'article'}->is_published,
         );
         $article->update();
 
