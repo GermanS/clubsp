@@ -3,31 +3,26 @@
         [% message %]
     [% END %]
 
-    <table cellpadding="0" cellspacing="0" border="1">
-      [% INCLUDE header article = article %]
-      [% WHILE (item = iterator.next) %]
-        [% INCLUDE row article = item %]
-      [% END %]
-    </table>
+    <div id="browser">
+        <table cellpadding="0" cellspacing="0">
+            [% INCLUDE header article = article %]
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row article = item %]
+            [% END %]
+        </table>
+    </div>
 [% END %]
 
 
 [% BLOCK header %]
     <tr>
-        <th colspan="3">
-          xxx
-        </th>
-    </tr>
-    <tr>
         <th> </th>
-        <th>Название</th>
-        <th> </th>
+        <th>Название статьи</th>
     <tr>
     [% IF article.id %]
     <tr>
-        <td> </td>
+        <td class="icon"> </td>
         <td> <a href="/backoffice/article/[% article.parent_id %]/leaf">...</a> </td>
-        <td> </td>
     </tr>
     [% END %]
 [% END %]
@@ -35,15 +30,11 @@
 
 [% BLOCK row %]
     <tr>
-        <td>
-            <a href="/backoffice/article/[% article.id %]/up">[% INCLUDE icons/arrow_up.tt2 %]</a>
-            <a href="/backoffice/article/[% article.id %]/down">[% INCLUDE icons/arrow_down.tt2 %]</a>
-            <a href="/backoffice/article/[% article.id %]/leaf">[% INCLUDE icons/arrow_turn_right.tt2 %]</a>
+        <td class="icon">
+            [% INCLUDE icons/arrow_up.tt2   href="/backoffice/article/$article.id/up" %]
+            [% INCLUDE icons/arrow_down.tt2 href="/backoffice/article/$article.id/down" %]
+            [% INCLUDE icons/arrow_turn_right.tt2 href="/backoffice/article/$article.id/leaf" %]
         </td>
         <td><a href="/backoffice/article/[% article.id %]/edit">[% article.header %]</a></td>
-        <td>
-            <a href="/backoffice/article/[% article.id %]/view">[% INCLUDE icons/zoom.tt2 %]</a>
-            <a href="/backoffice/article/[% article.id %]/delete">[% INCLUDE icons/pencil_delete.tt2 %]</a>
-        </td>
     </tr>
 [% END %]

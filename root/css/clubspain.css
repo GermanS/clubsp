@@ -1,3 +1,14 @@
+a {
+    color:#4183c4;
+    text-decoration:none;
+}
+a:hover {
+    text-decoration:underline;
+}
+
+
+/**LIST**/
+
 ul.tabs{
     position:relative;
     margin:10px 0 0 0;
@@ -113,3 +124,38 @@ textarea, select, input[type=text] {
 textarea:focus, select:focus, input:focus {
     border: 2px solid #8CD6F9;
 }
+
+/** TABLES **/
+
+#browser table {
+    margin-top: 1em;
+    border-top:1px solid #d8d8d8;
+    border-left:1px solid #d8d8d8;
+    border-right:1px solid #d8d8d8;
+    width:100%;
+    font-family:Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+    font-size:90%;
+}
+
+#browser table th {
+    text-align:left;
+    font-weight:normal;
+    background-color:#eaeaea;
+    color:#999;
+    padding:.5em .3em;
+    border-bottom:1px solid #d8d8d8;
+}
+
+#browser table td {
+    background:#f8f8f8;
+    padding:.5em .3em;
+    color:#484848;
+    border-bottom:1px solid #e1e1e1;
+}
+
+#browser table td.icon{
+    width:6.3em;
+}
+
+
+
