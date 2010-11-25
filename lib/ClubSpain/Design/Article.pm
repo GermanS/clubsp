@@ -19,9 +19,11 @@ has 'body'          => ( is => 'ro', required => 1 );
 sub create {
     my $self = shift;
 
+    my $weight = $self->list($self->parent_id)->count();
+
     $self->schema->resultset('Article')->create({
         parent_id   => $self->parent_id,
-        weight      => $self->weight,
+        weight      => $weight,
         is_published => $self->is_published,
         header      => $self->header,
         body        => $self->body,
@@ -65,9 +67,50 @@ sub list {
 
     my $iterator = $self->schema
                         ->resultset('Article')
-                        ->search({ parent_id => $parent });
+                        ->search({
+                            parent_id => $parent
+                        }, {
+                            order_by => 'weight'
+                        });
 
     return $iterator;
+}
+
+sub move_up {
+    my ($class, $article) = @_;
+
+    my $weight = 1;
+    my $previous;
+    my $iterator = $class->list($article->parent_id);
+    while (my $story = $iterator->next) {
+        $story->update({ weight => $weight });
+
+        if ($story->id == $article->id && $previous) {
+            my $weight_prev = $previous->weight();
+
+            $previous->update({ weight => $weight });
+            $story->update({ weight => $weight_prev })
+        }
+
+        $weight++;
+        $previous = $story;
+    }
+}
+
+sub move_down {
+    my ($class, $article) = @_;
+
+    my $previous;
+    my $iterator = $class->list($article->parent_id);
+    while (my $story = $iterator->next()) {
+        if ($previous && $previous->id == $article->id) {
+            $class->move_up($story);
+            last;
+        }
+
+        $previous = $story;
+    }
+
 }
 
 __PACKAGE__->meta->make_immutable();

@@ -28,11 +28,6 @@ elements:
     constraints:
       - Required
 
-  - type: Text
-    name: weight
-    label: Вес статьи
-    size: 4
-
   - type: Submit
     name: submit
 

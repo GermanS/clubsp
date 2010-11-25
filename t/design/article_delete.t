@@ -22,7 +22,7 @@ my $object = $article->create();
 
 isa_ok($object, 'ClubSpain::Schema::Article');
 is($object->parent_id, 0, 'got parent id');
-is($object->weight, 100, 'got weight');
+is($object->weight, 0, 'got weight');
 is($object->is_published, 0, 'got is published');
 is($object->header, 'header', 'got header');
 is($object->body, 'body', 'got body');

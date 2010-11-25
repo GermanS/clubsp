@@ -11,6 +11,7 @@ use ClubSpain::Design::Article;
 use constant {
     DISABLE => 0,
     ENABLE  => 1,
+    MESSAGE_OK => 'Операция успешно выполнена',
 };
 
 sub default :Path {
@@ -65,10 +66,10 @@ sub insert :Private {
     eval {
         my $article = ClubSpain::Design::Article->new(
             parent_id    => $c->request->param('parent_id'),
-            weight       => $c->request->param('weight'),
             header       => $c->request->param('header'),
             body         => $c->request->param('body'),
             is_published => ENABLE,
+            weight       => undef,
         );
         $article->create();
 
@@ -99,7 +100,7 @@ sub update :Private {
         my $article = ClubSpain::Design::Article->new(
             id           => $c->stash->{'article'}->id,
             parent_id    => $c->request->param('parent_id'),
-            weight       => $c->request->param('weight'),
+            weight       => $c->stash->{'article'}->is_published,
             header       => $c->request->param('header'),
             body         => $c->request->param('body'),
             is_published => $c->stash->{'article'}->is_published,
@@ -169,9 +170,6 @@ sub load_upd_form :Private {
     $form->get_element({ name => 'parent_id' })->value($article->parent_id);
     $form->get_element({ name => 'header' })->value($article->header);
     $form->get_element({ name => 'body' })->value($article->body);
-    $form->get_element({ name => 'weight' })->value($article->weight);
-    $form->get_element({ name => 'is_published' })->checked($article->is_published)
-        if $article->is_published;
 
     $form->process;
 
@@ -193,15 +191,14 @@ sub process_error {
 sub successful_message {
     my ($self, $c) = @_;
 
-    $c->stash( message => 'Операция успешно выполнена' );
+    $c->stash( message => MESSAGE_OK );
 }
 
 sub enable :Chained('id') :PathPart('enable') :Args(0) {
     my ($self, $c) = @_;
 
     my $article = $c->stash->{'article'};
-    $article->is_published(ENABLE);
-    $article->update();
+    $article->update({ is_published => ENABLE });
 
     $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
 }
@@ -210,8 +207,25 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
     my ($self, $c) = @_;
 
     my $article = $c->stash->{'article'};
-    $article->is_published(DISABLE);
-    $article->update();
+    $article->update({ is_published => DISABLE });
+
+    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
+}
+
+sub up :Chained('id') :Pathpart('up') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $article = $c->stash->{'article'};
+    ClubSpain::Design::Article->move_up($article);
+
+    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
+}
+
+sub down :Chained('id') :PathPart('down') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $article = $c->stash->{'article'};
+    ClubSpain::Design::Article->move_down($article);
 
     $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
 }
