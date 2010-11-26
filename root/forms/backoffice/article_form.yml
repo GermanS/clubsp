@@ -1,17 +1,11 @@
 ---
 id: articleForm
 
-
 elements:
   - type: Select
     name: parent_id
-    label: Родитель
+    label: Раздел
     empty_first: 1
-    options:
-        - [1, 'Статья 1']
-        - [2, '-->Статья 2']
-        - [3, '-->Статья 3']
-        - [4, '---->Статья 4']
 
   - type: Text
     name: header
