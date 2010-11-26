@@ -41,6 +41,13 @@ __PACKAGE__->config(
     disable_component_resolution_regex_fallback => 1,
     xmlrpc => { 'xml_encoding' => 'utf-8' },
     default_view => 'TT',
+    'Controller::HTML::FormFu' => {
+        constructor => {
+            tt_args => {
+                ENCODING => 'UTF-8',
+            },
+        },
+    },
 );
 
 # Start the application
