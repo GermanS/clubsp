@@ -2,6 +2,7 @@ package ClubSpain::Design::Article;
 
 use Moose;
 use namespace::autoclean;
+use utf8;
 
 use parent qw(ClubSpain::Design::Base);
 
@@ -110,7 +111,25 @@ sub move_down {
 
         $previous = $story;
     }
+}
 
+sub select_options {
+    my $class  = shift;
+    my $parent = shift || 0;
+    my $level  = shift || 0;
+
+    my @values = ();
+
+    my $iterator = $class->list($parent);
+    while (my $story = $iterator->next()) {
+        push @values, {
+            value => $story->id,
+            label => sprintf "%s %s", '--' x $level, $story->header
+        };
+        push @values, $class->select_options($story->id, $level+1);
+    }
+
+    return @values;
 }
 
 __PACKAGE__->meta->make_immutable();
