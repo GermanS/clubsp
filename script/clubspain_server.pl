@@ -3,7 +3,7 @@
 BEGIN {
     $ENV{CATALYST_SCRIPT_GEN} = 40;
 }
-
+use encoding 'utf8';
 use Catalyst::ScriptRunner;
 Catalyst::ScriptRunner->run('ClubSpain', 'Server');
 
