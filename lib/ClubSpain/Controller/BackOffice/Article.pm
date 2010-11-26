@@ -17,8 +17,10 @@ use constant {
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->stash(iterator => ClubSpain::Design::Article->list());
-    $c->stash(template => 'backoffice/article.tt2');
+    $c->stash(
+        iterator => ClubSpain::Design::Article->list(),
+        template => 'backoffice/article.tt2'
+    );
 }
 
 #match /backoffice/article
@@ -155,8 +157,10 @@ sub leaf :Chained('id') :PathPart('leaf') :Args(0) {
 sub load_add_form :Private  {
     my $self = shift;
 
+    my @options = ClubSpain::Design::Article->select_options();
     my $form = $self->form();
     $form->load_config_filestem('backoffice/article_form');
+    $form->get_element({ name => 'parent_id' })->options(\@options);
     $form->process();
 
     return $form;

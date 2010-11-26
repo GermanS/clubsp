@@ -2,7 +2,7 @@ package ClubSpain::Controller::BackOffice;
 
 use strict;
 use warnings;
-
+use utf8;
 use parent qw(Catalyst::Controller);
 
 # base sub for matching public path /account
