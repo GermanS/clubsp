@@ -56,6 +56,15 @@ sub update {
     });
 }
 
+sub delete {
+    my ($class, $id) = @_;
+
+    throw ClubSpain::Exception::Argument(message => 'DELETE_NOT_ALLOWED_BECAUSE_OF_CHILD')
+        if $class->list($id)->count();
+
+    $class->SUPER::delete($id);
+}
+
 sub fetch_by_id {
     my ($self, $id) = @_;
 
