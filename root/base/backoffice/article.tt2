@@ -17,12 +17,12 @@
 [% BLOCK header %]
     <tr>
         <th> </th>
-        <th>Название статьи</th>
+        <th colspan="2">Название статьи</th>
     <tr>
     [% IF article.id %]
     <tr>
         <td class="icon"> </td>
-        <td> <a href="/backoffice/article/[% article.parent_id %]/leaf">...</a> </td>
+        <td colspan="2"> <a href="/backoffice/article/[% article.parent_id %]/leaf">...</a> </td>
     </tr>
     [% END %]
 [% END %]
@@ -37,5 +37,8 @@
             [% INCLUDE icons/arrow_turn_right.tt2 href="/backoffice/article/$article.id/leaf" %]
         </td>
         <td><a href="/backoffice/article/[% article.id %]/edit">[% article.header %]</a></td>
+        <td class="delete">
+            [% INCLUDE icons/delete.tt2 href="/backoffice/article/$article.id/delete" %]
+        </td>
     </tr>
 [% END %]
