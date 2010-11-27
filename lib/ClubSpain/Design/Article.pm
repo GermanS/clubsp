@@ -37,6 +37,16 @@ sub update {
     throw ClubSpain::Exception::Argument(message => 'NOT A CLASS METHOD')
         unless blessed $self;
 
+    #проверка, что нельзя устанавливать себя как потомка
+    throw ClubSpain::Exception::Argument(message => 'NOT_ALLOWED')
+        if $self->id == $self->parent_id;
+
+    my @options = $self->select_options($self->id);
+    foreach my $option (@options) {
+        throw ClubSpain::Exception::Argument(message => 'NOT_ALLOWED')
+            if $option->{'value'} == $self->parent_id();
+    }
+
     return $self->fetch_by_id()->update({
         parent_id   => $self->parent_id,
         weight      => $self->weight,
