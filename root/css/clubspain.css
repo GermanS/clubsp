@@ -157,5 +157,9 @@ textarea:focus, select:focus, input:focus {
     width:7.8em;
 }
 
+#browser table td.delete{
+    width:1.3em;
+}
+
 
 
