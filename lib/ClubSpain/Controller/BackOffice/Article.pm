@@ -14,13 +14,16 @@ use constant {
     MESSAGE_OK => 'Операция успешно выполнена',
 };
 
+sub auto :Private {
+    my ($self, $c) = @_;
+
+    $c->stash(template => 'backoffice/article.tt2')
+}
+
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->stash(
-        iterator => ClubSpain::Design::Article->list(),
-        template => 'backoffice/article.tt2'
-    );
+    $c->stash(iterator => ClubSpain::Design::Article->list());
 }
 
 #match /backoffice/article
@@ -41,13 +44,6 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
         $c->response->redirect($c->uri_for($self->action_for('index')));
         $c->detach();
     }
-};
-
-#match /backoffice/article/* (end of chain)
-sub view :Chained('id') :Pathpart('') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash(template => 'backoffice/article_view.tt2');
 };
 
 sub create :Local {
@@ -102,7 +98,7 @@ sub update :Private {
         my $article = ClubSpain::Design::Article->new(
             id           => $c->stash->{'article'}->id,
             parent_id    => $c->request->param('parent_id'),
-            weight       => $c->stash->{'article'}->is_published,
+            weight       => $c->stash->{'article'}->weight,
             header       => $c->request->param('header'),
             body         => $c->request->param('body'),
             is_published => $c->stash->{'article'}->is_published,
@@ -121,36 +117,25 @@ sub update :Private {
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->load_upd_form($c);
-    $c->stash(form => $form);
-    $c->stash(template => 'backoffice/article_form.tt2');
-
-    if ($form->submitted_and_valid()) {
-        $self->remove($c);
-    }
-};
-
-sub remove {
-    my ($self, $c) = @_;
-
+    my $article = $c->stash->{'article'};
     eval {
-        ClubSpain::Design::Article->delete($c->stash->{'article'}->id);
-
+        ClubSpain::Design::Article->delete($article->id);
         $self->successful_message($c);
     };
 
     $self->process_error($c, $@)
          if $@;
+
+    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
 };
+
 
 # match /backoffice/article/*/delete
 sub leaf :Chained('id') :PathPart('leaf') :Args(0) {
     my ($self, $c) = @_;
 
-    my $childs = ClubSpain::Design::Article->list($c->stash->{'article'}->id);
     $c->stash(
-        template => 'backoffice/article.tt2',
-        iterator => $childs
+        iterator => ClubSpain::Design::Article->list($c->stash->{'article'}->id)
     );
 }
 
@@ -234,7 +219,6 @@ sub down :Chained('id') :PathPart('down') :Args(0) {
     $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
 }
 
-sub end : ActionClass('RenderView') {
-}
+sub end :ActionClass('RenderView') {}
 
 1;
