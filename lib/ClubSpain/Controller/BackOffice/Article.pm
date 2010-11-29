@@ -50,12 +50,14 @@ sub create :Local {
     my ($self, $c) = @_;
 
     my $form = $self->load_add_form();
-    $c->stash(form => $form);
-    $c->stash(template => 'backoffice/article_form.tt2');
-
     if ($form->submitted_and_valid()) {
         $self->insert($c);
     }
+
+    $c->stash(
+        form    => $self->load_add_form(),
+        template => 'backoffice/article_form.tt2'
+    );
 }
 
 sub insert :Private {
@@ -83,12 +85,14 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
     my $form = $self->load_upd_form($c);
-    $c->stash(form => $form);
-    $c->stash(template => 'backoffice/article_form.tt2');
-
     if ($form->submitted_and_valid()) {
         $self->update($c);
     }
+
+    $c->stash(
+        form => $self->load_upd_form($c),
+        template => 'backoffice/article_form.tt2'
+    );
 }
 
 sub update :Private {
