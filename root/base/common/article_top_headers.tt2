@@ -1,0 +1,5 @@
+<ul class="tabs">
+    [% WHILE (story = top_level.next) %]
+    <li><a href="/article/[% story.id %]" title="[% story.header %]">[% story.header %]</a></li>
+    [% END %]
+</ul>

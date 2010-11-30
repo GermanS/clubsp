@@ -1,0 +1,22 @@
+[% WRAPPER page.tt2 %]
+    <div id="doc4" class="yui-t2">
+        <div id="hd"><h1>ClubSpain.RU</h1>
+            [% INCLUDE common/article_top_headers.tt2 top_level = top_level %]
+        </div>
+        <div id="bd">
+            <div id="yui-main">
+                <div class="yui-b">
+                    <div class="yui-g">
+                        [% content %]
+                    </div>
+                </div>
+            </div>
+            <div class="yui-b">
+                [% WHILE (story = lower_level.next) %]
+                    <a href="/article/[% story.id %]" title="[% story.header %]">[% story.header %]</a><br>
+                [% END %]
+            </div>
+        </div>
+        <div id="ft"><p>ClubSpain.ru</p></div>
+    </div>
+[% END %]
