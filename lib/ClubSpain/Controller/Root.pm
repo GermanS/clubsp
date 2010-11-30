@@ -45,6 +45,8 @@ sub default :Path {
     $c->response->status(404);
 }
 
+sub article : Chained('/') : PathPart('article') : CaptureArgs(0) { }
+
 =head2 end
 
 Attempt to render a view, if needed.
