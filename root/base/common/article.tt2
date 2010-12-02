@@ -2,6 +2,6 @@
 
 <h1>[% article.header %]</h1>
 
-[% article.body %]
+[% article.body | html_para_break %]
 
 [% END %]
