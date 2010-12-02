@@ -1,0 +1,16 @@
+<div class="sidebar">
+    <h2>[% top_level_article.header %]</h2>
+
+    [% INCLUDE menu tree = sidebar_tree %]
+</div>
+
+[% BLOCK menu %]
+    [% IF tree.size %]
+        <ul>
+        [% FOREACH item IN tree %]
+            <li><a href="/article/[% item.value %]" title="[% item.label %]">[% item.label %]</a></li>
+            [% INCLUDE menu tree = item.children %]
+        [% END %]
+        </ul>
+    [% END %]
+[% END %]
