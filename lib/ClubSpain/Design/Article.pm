@@ -96,6 +96,15 @@ sub list {
     return $iterator;
 }
 
+sub find_top_parent {
+    my ($class, $article) = @_;
+
+    return $article
+        unless $article->parent_id;
+
+    $class->find_top_parent($class->fetch_by_id($article->parent_id));
+}
+
 sub move_up {
     my ($class, $article) = @_;
 
@@ -132,23 +141,45 @@ sub move_down {
     }
 }
 
-sub select_options {
-    my $class  = shift;
+sub tree {
+    my $class = shift;
     my $parent = shift || 0;
-    my $level  = shift || 0;
 
     my @values = ();
-
     my $iterator = $class->list($parent);
-    while (my $story = $iterator->next()) {
+    while (my $child = $iterator->next) {
         push @values, {
-            value => $story->id,
-            label => sprintf "%s %s", '--' x $level, $story->header
-        };
-        push @values, $class->select_options($story->id, $level+1);
+            value => $child->id,
+            label => $child->header,
+            children => $class->tree($child->id)
+        }
     }
 
-    return @values;
+    return \@values;
+}
+
+sub select_options {
+    my ($class, $parent) = @_;
+
+    my $tree = $class->tree($parent);
+    return make_options($tree);
+
+    sub make_options {
+        my $tree = shift;
+        my $level = shift || 0;
+        my @options = ();
+
+        foreach my $option (@$tree) {
+            push @options, {
+                value => $option->{'value'},
+                label => sprintf "%s %s", '--' x $level, $option->{'label'},
+            };
+
+            push @options, make_options($option->{'children'}, $level+1);
+        }
+
+        return @options;
+    }
 }
 
 __PACKAGE__->meta->make_immutable();
