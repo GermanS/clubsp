@@ -12,9 +12,7 @@
                 </div>
             </div>
             <div class="yui-b">
-                [% WHILE (story = lower_level.next) %]
-                    <a href="/article/[% story.id %]" title="[% story.header %]">[% story.header %]</a><br>
-                [% END %]
+                [% INCLUDE common/article_sidebar.tt2 stories = lower_level %]
             </div>
         </div>
         <div id="ft"><p>ClubSpain.ru</p></div>
