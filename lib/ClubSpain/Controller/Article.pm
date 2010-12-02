@@ -43,14 +43,18 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     }
 }
 
-sub view : Chained('id') :PathPart('') :Args(0) {
+sub view :Chained('id') :PathPart('') :Args(0) {
     my ($self, $c) = @_;
 
     my $article = $c->stash->{'article'};
     $c->stash(lower_level => ClubSpain::Design::Article->list($article->id));
+
+    my $top_level_article = ClubSpain::Design::Article->find_top_parent($article);
+    $c->stash(top_level_article => $top_level_article);
+
+    my $sidebar_tree = ClubSpain::Design::Article->tree($top_level_article->id);
+    $c->stash(sidebar_tree => $sidebar_tree);
 }
-
-
 
 
 =head
