@@ -21,7 +21,7 @@ my $build = ClubSpain::Build->new(
         'MooseX::Singleton'                     =>  0,
         'SQL::Translator'                       => '>=0.11006',
         'Test::More'                            => '>=0.94',
-        'Text::MediawikiFormat'                 => '0',
+        'Text::GooglewikiFormat'                => '0',
         'XML::Compile'                          => '>=1.16',
         'XML::Compile::SOAP'                    => '>=2.16',
         'XML::LibXML'                           => '>=1.70',
