@@ -1,1 +1,11 @@
 clubspain.ru project
+
+Правки в Text::Googlewiki
+заменить код на этот кусок
+sub escape_link {
+        my ($link, $opts) = @_;
+
+        my $u = URI->new( $link );
+        return $link if $u->scheme();
+        return ($u->as_string, 1);
+}
