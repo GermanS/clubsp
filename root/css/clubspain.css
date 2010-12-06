@@ -15,6 +15,9 @@ h6 { font-size: 108% }
 h1, h2, h3, h4, h5, h6 { margin: .5em 0; }
 
 
+.text14px { font-size: 108%; }
+.text14px p { line-height: 1.5em; text-align: justify; }
+
 /**LIST**/
 
 ul.tabs{
@@ -187,13 +190,13 @@ textarea:focus, select:focus, input:focus {
     padding: 0;
 }
 
-
 .sidebar ul li {
     list-style-type:none;
-    font-size: 108%;
-    padding: .4em 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: .75em 0 !important;
 }
+
+
 
 
 
