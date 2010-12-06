@@ -13,6 +13,8 @@
             </div>
             <div class="yui-b">
                 [% INCLUDE common/article_sidebar.tt2 stories = lower_level %]
+
+                [% INCLUDE common/sidebar_contacts.tt2 %]
             </div>
         </div>
         <div id="ft"><p>ClubSpain.ru</p></div>
