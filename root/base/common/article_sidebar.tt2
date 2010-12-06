@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <h2>[% top_level_article.header %]</h2>
+    <h6>[% top_level_article.header %]</h6>
 
     [% INCLUDE menu tree = sidebar_tree %]
 </div>
