@@ -196,6 +196,10 @@ textarea:focus, select:focus, input:focus {
     margin: .75em 0 !important;
 }
 
+.sidebar strong {
+    display: block;
+}
+
 
 
 
