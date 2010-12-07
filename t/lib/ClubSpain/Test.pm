@@ -102,9 +102,9 @@ sub populate_schema {
     ]);
 
     my @article = $schema->populate('Article', [
-        [qw(parent_id weight is_published header body)],
-        [0, 1, 0, 'HEADER1', 'BODY1'],
-        [0, 5, 1, 'HEADER2', 'BODY2']
+        [qw(parent_id weight is_published header subheader body)],
+        [0, 1, 0, 'HEADER1', 'SUBHEADER1', 'BODY1'],
+        [0, 5, 1, 'HEADER2', 'SUBHEADER2', 'BODY2']
     ]);
 }
 

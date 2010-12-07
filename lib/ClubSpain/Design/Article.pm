@@ -15,6 +15,7 @@ has 'parent_id'     => ( is => 'ro', required => 1 );
 has 'weight'        => ( is => 'ro', required => 1, default => 0 );
 has 'is_published'  => ( is => 'ro', required => 1 );
 has 'header'        => ( is => 'ro', required => 1 );
+has 'subheader'     => ( is => 'ro', required => 1 );
 has 'body'          => ( is => 'ro', required => 1 );
 
 sub create {
@@ -27,6 +28,7 @@ sub create {
         weight      => $weight,
         is_published => $self->is_published,
         header      => $self->header,
+        subheader   => $self->subheader,
         body        => $self->body,
     });
 }
@@ -48,11 +50,12 @@ sub update {
     }
 
     return $self->fetch_by_id()->update({
-        parent_id   => $self->parent_id,
-        weight      => $self->weight,
+        parent_id    => $self->parent_id,
+        weight       => $self->weight,
         is_published => $self->is_published,
-        header      => $self->header,
-        body        => $self->body,
+        header       => $self->header,
+        subheader    => $self->subheader,
+        body         => $self->body,
     });
 }
 

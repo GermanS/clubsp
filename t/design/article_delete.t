@@ -1,4 +1,4 @@
-use Test::More tests => 8;
+use Test::More tests => 9;
 
 use strict;
 use warnings;
@@ -15,6 +15,7 @@ my $article = ClubSpain::Design::Article->new(
     weight          => 100,
     is_published    => 0,
     header          => 'header',
+    subheader       => 'subheader',
     body            => 'body'
 );
 
@@ -25,6 +26,7 @@ is($object->parent_id, 0, 'got parent id');
 is($object->weight, 0, 'got weight');
 is($object->is_published, 0, 'got is published');
 is($object->header, 'header', 'got header');
+is($object->subheader, 'subheader', 'got subheader');
 is($object->body, 'body', 'got body');
 
 

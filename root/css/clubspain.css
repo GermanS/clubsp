@@ -175,7 +175,7 @@ textarea:focus, select:focus, input:focus {
 
 /** SIDEBAR **/
 .sidebar {
-    padding: 1em 0;
+    padding: 1em  0.75em  1em  0;
 }
 
 

@@ -15,6 +15,14 @@ elements:
     constraints:
       - Required
 
+  - type: Text
+    name: subheader
+    label: Подзаголовок
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
   - type: Textarea
     name: body
     label: Статья

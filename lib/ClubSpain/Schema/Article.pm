@@ -33,6 +33,11 @@ __PACKAGE__->add_columns(
         size          => 254,
         is_nullable   => 0
     },
+    subheader => {
+        data_type     => 'varchar',
+        size          => 254,
+        is_nullable   => 0
+    },
     body => {
         data_type     => 'text',
     }

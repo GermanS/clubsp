@@ -1,4 +1,4 @@
-use Test::More tests => 15;
+use Test::More tests => 17;
 
 use strict;
 use warnings;
@@ -13,11 +13,12 @@ ClubSpain::Test->init_schema( no_populate => 1 );
 #first insert
 {
     my $article = ClubSpain::Design::Article->new(
-        parent_id   => 0,
-        weight      => 10,
+        parent_id    => 0,
+        weight       => 10,
         is_published => 1,
-        header      => 'header',
-        body        => 'body'
+        header       => 'header',
+        subheader    => 'subheader',
+        body         => 'body'
     );
 
     my $result;
@@ -38,17 +39,19 @@ ClubSpain::Test->init_schema( no_populate => 1 );
     is($result->is_published, 1, 'got is_published');
     is($result->weight, 0, 'got weight');
     is($result->header, 'header', 'got header');
+    is($result->subheader, 'subheader', 'got subheader');
     is($result->body, 'body', 'got body');
 }
 
 #second addition
 {
     my $article = ClubSpain::Design::Article->new(
-        parent_id   => 0,
-        weight      => 100,
+        parent_id    => 0,
+        weight       => 100,
         is_published => 0,
-        header      => 'header2',
-        body        => 'body2'
+        header       => 'header2',
+        subheader    => 'subheader2',
+        body         => 'body2'
     );
 
     my $result;
@@ -69,5 +72,6 @@ ClubSpain::Test->init_schema( no_populate => 1 );
     is($result->is_published, 0, 'got is_published');
     is($result->weight, 1, 'got weight');
     is($result->header, 'header2', 'got header');
+    is($result->subheader, 'subheader2', 'got subheader');
     is($result->body, 'body2', 'got body');
 }

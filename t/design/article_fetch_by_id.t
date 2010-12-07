@@ -1,4 +1,4 @@
-use Test::More tests => 17;
+use Test::More tests => 19;
 
 use strict;
 use warnings;
@@ -18,6 +18,7 @@ my $schema = ClubSpain::Test->init_schema();
     is($story->weight, 1, 'got weight');
     is($story->is_published, 0, 'got is published');
     is($story->header, 'HEADER1', 'got header');
+    is($story->subheader, 'SUBHEADER1', 'got subheader');
     is($story->body, 'BODY1', 'got body');
 }
 
@@ -25,12 +26,13 @@ my $schema = ClubSpain::Test->init_schema();
 #retrive
 {
     my $story = ClubSpain::Design::Article->new(
-        id => 1,
-        parent_id => undef,
-        weight => undef,
-        is_published => undef,
-        header => undef,
-        body => undef,
+        id          => 1,
+        parent_id   => undef,
+        weight      => undef,
+        is_published=> undef,
+        header      => undef,
+        subheader   => undef,
+        body        => undef,
     );
 
     my $object = $story->fetch_by_id();
@@ -39,6 +41,7 @@ my $schema = ClubSpain::Test->init_schema();
     is($object->weight, 1, 'got weight');
     is($object->is_published, 0, 'got is published');
     is($object->header, 'HEADER1', 'got header');
+    is($object->subheader, 'SUBHEADER1', 'got subheader');
     is($object->body, 'BODY1', 'got body');
 }
 
@@ -64,12 +67,13 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     my $story = ClubSpain::Design::Article->new(
-        id => 1000,
-        parent_id => undef,
-        weight => undef,
-        is_published => undef,
-        header => undef,
-        body => undef,
+        id          => 1000,
+        parent_id   => undef,
+        weight      => undef,
+        is_published=> undef,
+        header      => undef,
+        subheader   => undef,
+        body        => undef,
     );
 
     eval {

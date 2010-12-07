@@ -24,12 +24,13 @@ use_ok('ClubSpain::Design::Article');
 
 {
     my $article = ClubSpain::Design::Article->new(
-        id => 100,
-        parent_id => 0,
-        weight => 22,
-        is_published => 0,
-        header => 'header',
-        body   => 'body'
+        id          => 100,
+        parent_id   => 0,
+        weight      => 22,
+        is_published=> 0,
+        header      => 'header',
+        subheader   => 'subheader',
+        body        => 'body'
     );
 
     eval {

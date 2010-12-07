@@ -67,6 +67,7 @@ sub insert :Private {
         my $article = ClubSpain::Design::Article->new(
             parent_id    => $c->request->param('parent_id'),
             header       => $c->request->param('header'),
+            subheader    => $c->request->param('subheader'),
             body         => $c->request->param('body'),
             is_published => ENABLE,
             weight       => undef,
@@ -104,6 +105,7 @@ sub update :Private {
             parent_id    => $c->request->param('parent_id'),
             weight       => $c->stash->{'article'}->weight,
             header       => $c->request->param('header'),
+            subheader    => $c->request->param('subheader'),
             body         => $c->request->param('body'),
             is_published => $c->stash->{'article'}->is_published,
         );
@@ -161,8 +163,9 @@ sub load_upd_form :Private {
     my $form = $self->load_add_form();
     my $article = $c->stash->{'article'};
     $form->get_element({ name => 'parent_id' })->value($article->parent_id);
-    $form->get_element({ name => 'header' })->value($article->header);
-    $form->get_element({ name => 'body' })->value($article->body);
+    $form->get_element({ name => 'header'    })->value($article->header);
+    $form->get_element({ name => 'subheader' })->value($article->subheader);
+    $form->get_element({ name => 'body'      })->value($article->body);
 
     $form->process;
 
