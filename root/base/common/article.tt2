@@ -1,6 +1,6 @@
 [% WRAPPER common/page.tt2 %]
 
-<h1>[% article.header %]</h1>
+<h1>[% article.subheader %]</h1>
 
 [% article.body | wiki %]
 
