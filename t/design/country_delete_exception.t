@@ -28,7 +28,8 @@ use_ok('ClubSpain::Design::Country');
         name => 'name',
         alpha2 => 'aa',
         alpha3 => 'aaa',
-        numerics => 100
+        numerics => 100,
+        is_published => 0,
     );
 
     eval {

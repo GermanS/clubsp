@@ -1,4 +1,4 @@
-use Test::More tests => 7;
+use Test::More tests => 8;
 
 use strict;
 use warnings;
@@ -14,7 +14,8 @@ my $country = ClubSpain::Design::Country->new(
     name     => 'USA',
     alpha2   => 'us',
     alpha3   => 'usa',
-    numerics => 1
+    numerics => 1,
+    is_published => 1,
 );
 
 my $result;
@@ -35,3 +36,4 @@ is($result->name, 'USA', 'got name');
 is($result->alpha2, 'us', 'got alpha2');
 is($result->alpha3, 'usa', 'got alpha3');
 is($result->numerics, '1', 'got numerics');
+is($result->is_published, 1, 'got is_published');

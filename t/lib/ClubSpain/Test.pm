@@ -78,7 +78,7 @@ sub populate_schema {
 
 
     my @country = $schema->populate('Country',[
-        [qw(name alpha2 alpha3 numerics is_available)],
+        [qw(name alpha2 alpha3 numerics is_published)],
         [qw(Russia ru rus 007 1)],
         [qw(Spain es esp 034 1)],
         [qw(Andorra an and 036 1)]

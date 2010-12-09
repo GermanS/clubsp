@@ -30,7 +30,8 @@ use_ok('ClubSpain::Design::Country');
         name => 'soviet union',
         alpha2 => 'su',
         alpha3 => 'suu',
-        numerics => 777
+        numerics => 777,
+        is_published => 1,
     );
 
     eval {

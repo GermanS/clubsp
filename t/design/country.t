@@ -1,4 +1,4 @@
-use Test::More tests => 15;
+use Test::More tests => 17;
 
 use strict;
 use warnings;
@@ -13,7 +13,8 @@ use_ok('ClubSpain::Design::Country');
             name => 'Russia',
             alpha2 => 'ru',
             alpha3 => 'rus',
-            numerics => 7
+            numerics => 7,
+            is_published => 1,
         );
 
         pass('no exception thrown');
@@ -31,6 +32,7 @@ use_ok('ClubSpain::Design::Country');
     is($country->alpha3, 'rus', 'got aplha3');
     is($country->numerics, 7, 'Got numerics');
     is($country->id, undef, 'id not set');
+    is($country->is_published, 1, 'got is_published');
 }
 
 #name with spaces
@@ -41,7 +43,8 @@ use_ok('ClubSpain::Design::Country');
             name => '   Russia    ',
             alpha2 => 'ru',
             alpha3 => 'rus',
-            numerics => 7
+            numerics => 7,
+            is_published => 1,
         );
 
         pass('no exception thrown');
@@ -59,4 +62,5 @@ use_ok('ClubSpain::Design::Country');
     is($country->alpha3, 'rus', 'got aplha3');
     is($country->numerics, 7, 'Got numerics');
     is($country->id, undef, 'id not set');
+    is($country->is_published, 1, 'got is_published');
 }

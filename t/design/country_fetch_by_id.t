@@ -1,4 +1,4 @@
-use Test::More tests => 16;
+use Test::More tests => 18;
 
 use strict;
 use warnings;
@@ -18,6 +18,7 @@ my $schema = ClubSpain::Test->init_schema();
     is($country->alpha2, 'ru', 'got alpha2');
     is($country->alpha3, 'rus', 'got alpha3');
     is($country->numerics, 7, 'got numerics');
+    is($country->is_published, 1, 'got is_published');
 }
 
 #retrive
@@ -28,6 +29,7 @@ my $schema = ClubSpain::Test->init_schema();
         alpha2 => 'RR',
         alpha3 => 'RRS',
         numerics => 70,
+        is_published => 1,
     );
 
     my $object = $country->fetch_by_id();
@@ -37,6 +39,7 @@ my $schema = ClubSpain::Test->init_schema();
     is($object->alpha2, 'ru', 'got alpha2');
     is($object->alpha3, 'rus', 'got alpha3');
     is($object->numerics, 7, 'got numerics');
+    is($object->is_published, 1, 'got is_published');
 }
 
 #exception
@@ -66,6 +69,7 @@ my $schema = ClubSpain::Test->init_schema();
         alpha2 => 'ru',
         alpha3 => 'rus',
         numerics => 7,
+        is_published => 1,
     );
 
     eval {
@@ -84,7 +88,3 @@ my $schema = ClubSpain::Test->init_schema();
         }
     }
 }
-
-
-
-

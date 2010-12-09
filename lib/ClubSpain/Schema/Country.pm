@@ -34,7 +34,7 @@ __PACKAGE__->add_columns(
         data_type     => 'tinyint unsigned',
         is_nullable   => 0,
     },
-    is_available => {
+    is_published => {
         data_type     => 'tinyint unsigned',
         is_nullable   => 1,
     }
