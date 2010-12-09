@@ -1,0 +1,43 @@
+[% WRAPPER backoffice/page.tt2 %]
+    [% IF message %]
+        [% message %]
+    [% END %]
+
+    <div id="browser">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th> </th>
+                <th>Название страны (ISO 3166-1)</th>
+                <th>Код 2</th>
+                <th>Код 3</th>
+                <th>Номер</th>
+                <th> </th>
+            <tr>
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row country = item %]
+            [% END %]
+        </table>
+    </div>
+[% END %]
+
+
+[% BLOCK row %]
+    <tr>
+        <td> </td>
+        <td>
+            <a href="/backoffice/country/[% country.id %]/edit">[% country.name %]</a>
+        </td>
+        <td>
+            [% country.alpha2 %]
+        </td>
+        <td>
+            [% country.alpha3 %]
+        </td>
+        <td>
+            [% country.numerics %]
+        </td>
+        <td class="delete">
+            [% INCLUDE icons/delete.tt2 href="/backoffice/country/$country.id/delete" %]
+        </td>
+    </tr>
+[% END %]

@@ -154,6 +154,9 @@ textarea:focus, select:focus, input:focus {
     background-color:#eaeaea;
     color:#999;
     padding:.5em .3em;
+    border-top: none;
+    border-right: none;
+    border-left: none;
     border-bottom:1px solid #d8d8d8;
 }
 
@@ -161,6 +164,9 @@ textarea:focus, select:focus, input:focus {
     background:#f8f8f8;
     padding:.5em .3em;
     color:#484848;
+    border-top: none;
+    border-right: none;
+    border-left: none;
     border-bottom:1px solid #e1e1e1;
 }
 
