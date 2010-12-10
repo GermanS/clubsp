@@ -171,13 +171,12 @@ textarea:focus, select:focus, input:focus {
 }
 
 #browser table td.icon{
+    width: 1.3em;
+}
+
+#browser table td.icons4{
     width:7.8em;
 }
-
-#browser table td.delete{
-    width:1.3em;
-}
-
 
 /** SIDEBAR **/
 .sidebar {

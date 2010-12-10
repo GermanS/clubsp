@@ -23,7 +23,9 @@
 
 [% BLOCK row %]
     <tr>
-        <td> </td>
+        <td class="icon">
+            [% INCLUDE icons/is_published.tt2 href="/backoffice/country/" object=country %]
+        </td>
         <td>
             <a href="/backoffice/country/[% country.id %]/edit">[% country.name %]</a>
         </td>
@@ -36,7 +38,7 @@
         <td>
             [% country.numerics %]
         </td>
-        <td class="delete">
+        <td class="icon">
             [% INCLUDE icons/delete.tt2 href="/backoffice/country/$country.id/delete" %]
         </td>
     </tr>

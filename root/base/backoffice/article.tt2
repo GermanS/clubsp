@@ -21,7 +21,7 @@
     <tr>
     [% IF article.id %]
     <tr>
-        <td class="icon"> </td>
+        <td class="icons4"> </td>
         <td colspan="2"> <a href="/backoffice/article/[% article.parent_id %]/leaf">...</a> </td>
     </tr>
     [% END %]
@@ -30,14 +30,16 @@
 
 [% BLOCK row %]
     <tr>
-        <td class="icon">
+        <td class="icons4">
             [% INCLUDE icons/is_published.tt2 href="/backoffice/article/" object=article %]
             [% INCLUDE icons/arrow_up.tt2   href="/backoffice/article/$article.id/up" %]
             [% INCLUDE icons/arrow_down.tt2 href="/backoffice/article/$article.id/down" %]
             [% INCLUDE icons/arrow_turn_right.tt2 href="/backoffice/article/$article.id/leaf" %]
         </td>
-        <td><a href="/backoffice/article/[% article.id %]/edit">[% article.header %]</a></td>
-        <td class="delete">
+        <td>
+            <a href="/backoffice/article/[% article.id %]/edit">[% article.header %]</a>
+        </td>
+        <td class="icon">
             [% INCLUDE icons/delete.tt2 href="/backoffice/article/$article.id/delete" %]
         </td>
     </tr>
