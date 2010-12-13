@@ -1,18 +1,12 @@
 package ClubSpain::Controller::BackOffice::Article;
-
 use strict;
 use warnings;
 use utf8;
 
 use parent qw(Catalyst::Controller::HTML::FormFu);
-
+use ClubSpain::Constants qw(:all);
 use ClubSpain::Design::Article;
 
-use constant {
-    DISABLE => 0,
-    ENABLE  => 1,
-    MESSAGE_OK => 'Операция успешно выполнена',
-};
 
 sub auto :Private {
     my ($self, $c) = @_;

@@ -3,13 +3,8 @@ use strict;
 use warnings;
 use utf8;
 
-use constant {
-    DISABLE     => 0,
-    ENABLE      => 1,
-    MESSAGE_OK  => 'Операция успешно выполнена',
-};
-
 use parent qw(Catalyst::Controller::HTML::FormFu);
+use ClubSpain::Constants qw(:all);
 use ClubSpain::Design::Country;
 
 
