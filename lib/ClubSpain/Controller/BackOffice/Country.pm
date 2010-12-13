@@ -18,7 +18,7 @@ sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(template => 'backoffice/country.tt2')
-}
+};
 
 
 
@@ -26,11 +26,11 @@ sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(iterator => ClubSpain::Design::Country->list());
-}
+};
 
 
 
-sub end :ActionClass('RenderView') {}
+sub end :ActionClass('RenderView') {};
 
 
 
@@ -63,7 +63,7 @@ sub enable :Chained('id') :PathPart('enable') :Args(0) {
         is_published => ENABLE
     });
     $c->res->redirect($c->uri_for('default'));
-}
+};
 
 
 
@@ -74,7 +74,7 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
         is_published => DISABLE
     });
     $c->res->redirect($c->uri_for('default'));
-}
+};
 
 
 
@@ -106,7 +106,7 @@ sub process_error {
     } else {
         $c->stash( message => $@ );
     }
-}
+};
 
 
 
@@ -114,6 +114,110 @@ sub successful_message {
     my ($self, $c) = @_;
 
     $c->stash( message => MESSAGE_OK );
-}
+};
+
+
+
+sub load_add_form :Private  {
+    my $self = shift;
+
+    my $form = $self->form();
+    $form->load_config_filestem('backoffice/country_form');
+    $form->process();
+
+    return $form;
+};
+
+
+
+sub create :Local {
+    my ($self, $c) = @_;
+
+    my $form = $self->load_add_form();
+    if ($form->submitted_and_valid()) {
+        $self->insert($c);
+    }
+
+    $c->stash(
+        form    => $self->load_add_form(),
+        template => 'backoffice/country_form.tt2'
+    );
+};
+
+
+sub insert :Private {
+    my ($self, $c) = @_;
+
+    eval {
+        my $country = ClubSpain::Design::Country->new(
+            name        => $c->request->param('name'),
+            alpha2      => $c->request->param('alpha2'),
+            alpha3      => $c->request->param('alpha3'),
+            numerics    => $c->request->param('numerics'),
+            is_published => ENABLE,
+        );
+        $country->create();
+
+        $self->successful_message($c);
+    };
+
+    $self->process_error($c, $@)
+        if $@;
+};
+
+
+sub load_upd_form :Private {
+    my ($self, $c) = @_;
+
+    my $form = $self->load_add_form();
+    my $country = $c->stash->{'country'};
+    $form->get_element({ name => 'name'     })->value($country->name);
+    $form->get_element({ name => 'alpha2'   })->value($country->alpha2);
+    $form->get_element({ name => 'alpha3'   })->value($country->alpha3);
+    $form->get_element({ name => 'numerics' })->value($country->numerics);
+
+    $form->process;
+
+    return $form;
+};
+
+
+
+sub edit :Chained('id') :PathPart('edit') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $form = $self->load_upd_form($c);
+    if ($form->submitted_and_valid()) {
+        $self->update($c);
+    }
+
+    $c->stash(
+        form => $self->load_upd_form($c),
+        template => 'backoffice/country_form.tt2'
+    );
+};
+
+
+
+sub update :Private {
+    my ($self, $c) = @_;
+
+    eval {
+        my $country = ClubSpain::Design::Country->new(
+            id          => $c->stash->{'country'}->id,
+            name        => $c->request->param('name'),
+            alpha2      => $c->request->param('alpha2'),
+            alpha3      => $c->request->param('alpha3'),
+            numerics    => $c->request->param('numerics'),
+            is_published=> $c->stash->{'country'}->is_published,
+        );
+        $country->update();
+
+        $self->successful_message($c);
+    };
+
+    $self->process_error($c, $@)
+         if $@;
+};
 
 1;

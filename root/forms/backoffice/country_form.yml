@@ -1,0 +1,38 @@
+---
+id: articleForm
+
+elements:
+  - type: Text
+    name: name
+    label: Страна
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: alpha2
+    label: 2х-буквенное название
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: alpha3
+    label: 3х-буквенное название
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: numerics
+    label: Код страны
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Submit
+    name: submit
