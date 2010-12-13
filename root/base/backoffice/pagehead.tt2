@@ -11,6 +11,7 @@
 <ul class="subnav-bar">
     <li><a href="/backoffice/article" title="Редактирование статей">Статьи</a></li>
     <li><a href="/backoffice/country" title="Редактирование списка стран">Страны</a></li>
+    <li><a href="/backoffice/city"    title="Редактирование списка городов">Города</a></li>
     <li><a href="">Логи</a></li>
 </ul>
 

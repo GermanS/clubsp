@@ -85,11 +85,11 @@ sub populate_schema {
     ]);
 
     my @city = $schema->populate('City', [
-        [qw(country_id name)],
-        [$country[0]->id, 'Moscow'],
-        [$country[1]->id, 'Barcelona'],
-        [$country[1]->id, 'malaga'],
-        [$country[2]->id, 'Andorra la Vella']
+        [qw(country_id name is_published)],
+        [$country[0]->id, 'Moscow', 1],
+        [$country[1]->id, 'Barcelona', 1],
+        [$country[1]->id, 'Malaga', 1],
+        [$country[2]->id, 'Andorra la Vella', 1]
     ]);
 
     my @airport = $schema->populate('Airport', [
