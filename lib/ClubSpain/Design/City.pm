@@ -27,4 +27,21 @@ sub create {
     });
 }
 
+
+sub fetch_by_id {
+    my ($self, $id) = @_;
+
+    $id = $self->id
+        if (ref $self && !$id);
+
+    my $object = $self->schema
+                      ->resultset('City')
+                      ->find({ id => $id }, { key => 'primary' });
+
+    throw ClubSpain::Exception::Storage(message => "Couldn't find City: $id!")
+        unless $object;
+
+    return $object;
+}
+
 1;
