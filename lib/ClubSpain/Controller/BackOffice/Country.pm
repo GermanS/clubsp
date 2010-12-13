@@ -77,6 +77,25 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
 }
 
 
+
+sub delete :Chained('id') :PathPart('delete') :Args(0) {
+    my ($self, $c) = @_;
+
+    eval {
+        ClubSpain::Design::Country->delete($c->stash->{'country'}->id);
+    };
+
+    if ($@) {
+        $self->process_error($c, $@);
+    } else {
+        $self->successful_message($c);
+    }
+
+    $c->res->redirect($c->uri_for('default'));
+};
+
+
+
 sub process_error {
     my ($self, $c, $e) = @_;
 
@@ -88,6 +107,8 @@ sub process_error {
         $c->stash( message => $@ );
     }
 }
+
+
 
 sub successful_message {
     my ($self, $c) = @_;

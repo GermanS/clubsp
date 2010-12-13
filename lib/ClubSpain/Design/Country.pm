@@ -79,6 +79,12 @@ sub list {
     return $iterator;
 }
 
+sub delete {
+    my ($class, $id) = @_;
+
+    $class->SUPER::delete($id);
+}
+
 
 __PACKAGE__->meta->make_immutable();
 

@@ -1,4 +1,4 @@
-[% WRAPPER backoffice/page.tt2 %]
+[% WRAPPER backoffice/country_wrapper.tt2 %]
     [% IF message %]
         [% message %]
     [% END %]

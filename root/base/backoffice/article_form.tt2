@@ -1,4 +1,4 @@
-[% WRAPPER backoffice/page.tt2 %]
+[% WRAPPER backoffice/article_wrapper.tt2 %]
     <p>[% message %]</p>
     [% form %]
 [% END %]

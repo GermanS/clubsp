@@ -1,0 +1,14 @@
+[% WRAPPER backoffice/page.tt2 %]
+    <div id="bd">
+        <div id="yui-main">
+            <div class="yui-b">
+                <div class="yui-g">
+                    [% content %]
+                </div>
+            </div>
+        </div>
+        <div class="yui-b">
+            <a class="button" href="/backoffice/article/create">Добавить статью</a>
+        </div>
+    </div>
+[% END %]
