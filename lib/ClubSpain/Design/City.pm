@@ -6,6 +6,7 @@ use utf8;
 
 use parent qw(ClubSpain::Design::Base);
 
+use Scalar::Util qw(blessed);
 use ClubSpain::Common qw(minify);
 use ClubSpain::Types;
 use ClubSpain::Exception;
@@ -42,6 +43,21 @@ sub fetch_by_id {
         unless $object;
 
     return $object;
+}
+
+
+
+sub update {
+    my $self = shift;
+
+    throw ClubSpain::Exception::Argument(message => 'NOT A CLASS METHOD')
+        unless blessed $self;
+
+    return $self->fetch_by_id()->update({
+        country_id   => $self->country_id,
+        name         => $self->name,
+        is_published => $self->is_published,
+    });
 }
 
 1;
