@@ -93,12 +93,12 @@ sub populate_schema {
     ]);
 
     my @airport = $schema->populate('Airport', [
-        [qw(city_id iata icao name)],
-        [$city[0]->id, 'DME', 'UUDD', 'Domodedovo'],
-        [$city[0]->id, 'VKO', 'UUWW', 'Vnukovo'],
-        [$city[0]->id, 'SVO', 'UUEE', 'Sheremetyevo'],
-        [$city[1]->id, 'BCN', 'LEBL', 'El Prat'],
-        [$city[2]->id, 'AGP', 'LEMG', 'Malaga airport']
+        [qw(city_id iata icao name is_published)],
+        [$city[0]->id, 'DME', 'UUDD', 'Domodedovo', 1],
+        [$city[0]->id, 'VKO', 'UUWW', 'Vnukovo', 1],
+        [$city[0]->id, 'SVO', 'UUEE', 'Sheremetyevo', 1],
+        [$city[1]->id, 'BCN', 'LEBL', 'El Prat', 1],
+        [$city[2]->id, 'AGP', 'LEMG', 'Malaga airport', 1]
     ]);
 
     my @article = $schema->populate('Article', [
