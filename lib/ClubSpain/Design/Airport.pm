@@ -43,4 +43,22 @@ sub create {
 }
 
 
+
+sub fetch_by_id {
+    my ($self, $id) = @_;
+
+    $id = $self->id
+        if (ref $self && !$id);
+
+    my $object = $self->schema
+                      ->resultset('Airport')
+                      ->find({ id => $id }, { key => 'primary' });
+
+    throw ClubSpain::Exception::Storage(message => "Couldn't find Airport: $id!")
+        unless $object;
+
+    return $object;
+}
+
+
 1;
