@@ -29,4 +29,18 @@ sub BUILDARGS {
 }
 
 
+
+sub create {
+    my $self = shift;
+
+    $self->schema->resultset('Airport')->create({
+        city_id      => $self->city_id,
+        iata         => $self->iata,
+        icao         => $self->icao,
+        name         => $self->name,
+        is_published => $self->is_published,
+    });
+}
+
+
 1;
