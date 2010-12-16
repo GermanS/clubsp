@@ -51,6 +51,15 @@ subtype 'AlphaLength3'
         )
     };
 
+subtype 'AlphaLength4'
+    => as 'Str'
+    => where { $_ && $_ =~ /^[a-z]{4}$/i }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => sprintf "The %s is not 4 chars word!", $_
+        )
+    };
+
 subtype 'StringLength2to255'
     => as 'Str'
     => where { $_ && $_ =~ /^.{2,255}$/ }
