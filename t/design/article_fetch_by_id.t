@@ -92,8 +92,3 @@ my $schema = ClubSpain::Test->init_schema();
         }
     }
 }
-
-
-
-
-

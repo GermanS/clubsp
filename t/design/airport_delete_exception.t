@@ -23,7 +23,7 @@ use_ok('ClubSpain::Design::Airport');
 }
 
 {
-    my $article = ClubSpain::Design::Airport->new(
+    my $port = ClubSpain::Design::Airport->new(
         id      => 100,
         city_id => 1,
         iata    => 'bar',
@@ -33,7 +33,7 @@ use_ok('ClubSpain::Design::Airport');
     );
 
     eval {
-        $article->delete();
+        $port->delete();
         fail('no exception thrown');
     };
 
