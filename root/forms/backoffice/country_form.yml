@@ -1,5 +1,5 @@
 ---
-id: articleForm
+id: countryForm
 
 elements:
   - type: Text

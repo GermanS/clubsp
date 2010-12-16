@@ -18,6 +18,16 @@ has 'is_published'  => ( is => 'ro', required => 1 );
 
 
 
+sub BUILDARGS {
+    my ($class,  %param) = @_;
+
+    $param{'name'} = minify($param{'name'});
+
+    return \%param;
+}
+
+
+
 sub create {
     my $self = shift;
 
@@ -59,5 +69,18 @@ sub update {
         is_published => $self->is_published,
     });
 }
+
+
+sub list {
+    my ($class, $params) = @_;
+    return unless $params;
+
+    my $iterator = $class->schema
+                        ->resultset('City')
+                        ->search($params);
+
+    return $iterator;
+}
+
 
 1;

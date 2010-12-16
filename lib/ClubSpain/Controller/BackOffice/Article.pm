@@ -130,7 +130,7 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
 };
 
 
-# match /backoffice/article/*/delete
+# match /backoffice/article/*/leaf
 sub leaf :Chained('id') :PathPart('leaf') :Args(0) {
     my ($self, $c) = @_;
 
