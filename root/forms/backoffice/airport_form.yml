@@ -1,0 +1,33 @@
+---
+id: cityForm
+
+load_config_file:
+  - backoffice/country_popup.yml
+
+elements:
+  - type: Text
+    name: name
+    label: Аэропорт
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: iata
+    label: Код IATA (3 буквы)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: icao
+    label: Код ICAO (4 буквы)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Submit
+    name: submit

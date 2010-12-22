@@ -1,0 +1,8 @@
+---
+elements:
+  - type: Select
+    name: city_id
+    model_config:
+      resultset: City
+      id_column: id
+      label_column: name
