@@ -26,8 +26,6 @@ sub BUILDARGS {
     return \%param;
 }
 
-
-
 sub create {
     my $self = shift;
 
@@ -37,8 +35,6 @@ sub create {
         is_published => $self->is_published,
     });
 }
-
-
 sub fetch_by_id {
     my ($self, $id) = @_;
 
@@ -55,8 +51,6 @@ sub fetch_by_id {
     return $object;
 }
 
-
-
 sub update {
     my $self = shift;
 
@@ -70,7 +64,6 @@ sub update {
     });
 }
 
-
 sub list {
     my ($class, $params) = @_;
     return unless $params;
@@ -81,6 +74,5 @@ sub list {
 
     return $iterator;
 }
-
 
 1;

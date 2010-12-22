@@ -19,17 +19,6 @@ has 'name'          => ( is => 'ro', required => 1, isa => 'StringLength2to255' 
 has 'is_published'  => ( is => 'ro', required => 1 );
 
 
-
-sub BUILDARGS {
-    my ($class,  %param) = @_;
-
-    $param{'name'} = minify($param{'name'});
-
-    return \%param;
-}
-
-
-
 sub create {
     my $self = shift;
 
@@ -41,8 +30,6 @@ sub create {
         is_published => $self->is_published,
     });
 }
-
-
 
 sub fetch_by_id {
     my ($self, $id) = @_;
@@ -60,9 +47,6 @@ sub fetch_by_id {
     return $object;
 }
 
-
-
-
 sub update {
     my $self = shift;
 
@@ -77,6 +61,18 @@ sub update {
         is_published => $self->is_published,
     });
 }
+
+sub list {
+    my ($class, $params, $cond) = @_;
+    return unless $params;
+
+    my $iterator = $class->schema
+                        ->resultset('Airport')
+                        ->search($params, $cond);
+
+    return $iterator;
+}
+
 
 
 1;
