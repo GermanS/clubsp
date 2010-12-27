@@ -19,19 +19,15 @@ sub auto :Private {
     );
 };
 
+sub default :Path {
+    my ($self, $c) = @_;
 
-
-sub default :Path {};
-
-
+    $c->stash(iterator => ClubSpain::Design::City->list({}));
+};
 
 sub end :ActionClass('RenderView') {};
 
-
-
 sub base :Chained('/backoffice/base') :PathPart('city') :CaptureArgs(0) {};
-
-
 
 sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id) = @_;
@@ -49,8 +45,6 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     }
 };
 
-
-
 sub enable :Chained('id') :PathPart('enable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -60,8 +54,6 @@ sub enable :Chained('id') :PathPart('enable') :Args(0) {
     $c->res->redirect($c->uri_for('browse', $c->stash->{'city'}->country_id));
 };
 
-
-
 sub disable :Chained('id') :PathPart('disable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -70,8 +62,6 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
     });
     $c->res->redirect($c->uri_for('browse', $c->stash->{'city'}->country_id));
 };
-
-
 
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
@@ -89,7 +79,6 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     $c->res->redirect($c->uri_for('browse', $c->stash->{'city'}->country_id));
 };
 
-
 sub process_error {
     my ($self, $c, $e) = @_;
 
@@ -102,14 +91,11 @@ sub process_error {
     }
 };
 
-
-
 sub successful_message {
     my ($self, $c) = @_;
 
     $c->stash( message => MESSAGE_OK );
 };
-
 
 sub load_add_form :Private  {
     my $self = shift;
@@ -120,8 +106,6 @@ sub load_add_form :Private  {
 
     return $form;
 };
-
-
 
 sub create :Local {
     my ($self, $c) = @_;
@@ -155,8 +139,6 @@ sub insert :Private {
         if $@;
 };
 
-
-
 sub load_upd_form :Private {
     my ($self, $c) = @_;
 
@@ -171,7 +153,6 @@ sub load_upd_form :Private {
     return $form;
 };
 
-
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
@@ -185,8 +166,6 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
         template => 'backoffice/city_form.tt2'
     );
 };
-
-
 
 sub update :Private {
     my ($self, $c) = @_;
@@ -207,8 +186,6 @@ sub update :Private {
          if $@;
 };
 
-
-
 sub browse :Local :Args(1) {
     my ($self, $c, $country) = @_;
 
@@ -216,6 +193,5 @@ sub browse :Local :Args(1) {
         iterator => ClubSpain::Design::City->list({country_id => $country})
     );
 }
-
 
 1;
