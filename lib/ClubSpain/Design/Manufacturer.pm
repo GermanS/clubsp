@@ -23,7 +23,6 @@ sub create {
     });
 }
 
-
 sub fetch_by_id {
     my ($self, $id) = @_;
 
@@ -38,6 +37,18 @@ sub fetch_by_id {
         unless $object;
 
     return $object;
+}
+
+sub update {
+    my $self = shift;
+
+    throw ClubSpain::Exception::Argument(message => 'NOT A CLASS METHOD')
+        unless blessed $self;
+
+    return $self->fetch_by_id()->update({
+        code   => $self->code,
+        name   => $self->name,
+    });
 }
 
 1;
