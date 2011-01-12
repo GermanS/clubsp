@@ -20,6 +20,7 @@ my $build = ClubSpain::Build->new(
         'DBD::SQLite'                           => '>=1.29',
         'DBIx::Class'                           => '>=0.08123',
         'HTML::FormFu'                          => '>=0.07002',
+        'HTML::FormFu::Model::DBIC'             => 0,
         'Moose'                                 => '>=1.09',
         'MooseX::Singleton'                     =>  0,
         'SQL::Translator'                       => '>=0.11006',
