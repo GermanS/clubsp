@@ -51,4 +51,15 @@ sub update {
     });
 }
 
+sub list {
+    my ($class, $params) = @_;
+    return unless $params;
+
+    my $iterator = $class->schema
+                        ->resultset('Manufacturer')
+                        ->search($params);
+
+    return $iterator;
+}
+
 1;
