@@ -14,6 +14,13 @@ has 'id'   => ( is => 'ro' );
 has 'code' => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
 has 'name' => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
 
+sub create {
+    my $self = shift;
 
+    $self->schema->resultset('Manufacturer')->create({
+        code    => $self->code,
+        name    => $self->name,
+    });
+}
 
 1;
