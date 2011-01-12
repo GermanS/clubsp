@@ -106,6 +106,14 @@ sub populate_schema {
         [0, 1, 0, 'HEADER1', 'SUBHEADER1', 'BODY1'],
         [0, 5, 1, 'HEADER2', 'SUBHEADER2', 'BODY2']
     ]);
+
+    my @manufacturer = $schema->populate('Manufacturer', [
+        [qw(code name)],
+        ['SUKHOI', 'Gosudarstvennoye Unitarnoye Predpriyatie Aviatsionnyi Voyenno-Promyshlennyi Komplex Sukhoi'],
+        ['AIRBUS', 'Airbus SAS'],
+        ['BOEING', 'Boeing Aircraft Company'],
+        ['SAAB',   'Saab AB']
+    ]);
 }
 
 sub clear_schema {
