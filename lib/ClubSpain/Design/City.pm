@@ -35,6 +35,7 @@ sub create {
         is_published => $self->is_published,
     });
 }
+
 sub fetch_by_id {
     my ($self, $id) = @_;
 
