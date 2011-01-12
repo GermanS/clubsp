@@ -13,6 +13,8 @@
     <li><a href="/backoffice/country" title="Редактирование списка стран">Страны</a></li>
     <li><a href="/backoffice/city"    title="Редактирование списка городов">Города</a></li>
     <li><a href="/backoffice/airport" title="Редактирование списка аэропортов">Аэропорты</a></li>
+    <li><a href="/backoffice/terminal" title="Редактирование списка терминалов">Терминалы</a></li>
+    <li><a href="/backoffice/manufacturer" title="Редактирование типов воздушных судов">Производители</a></li>
     <li><a href="">Логи</a></li>
 </ul>
 
