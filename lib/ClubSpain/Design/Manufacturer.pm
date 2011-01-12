@@ -23,4 +23,21 @@ sub create {
     });
 }
 
+
+sub fetch_by_id {
+    my ($self, $id) = @_;
+
+    $id = $self->id
+        if (ref $self && !$id);
+
+    my $object = $self->schema
+                      ->resultset('Manufacturer')
+                      ->find({ id => $id }, { key => 'primary' });
+
+    throw ClubSpain::Exception::Storage(message => "Couldn't find Manufacturer: $id!")
+        unless $object;
+
+    return $object;
+}
+
 1;
