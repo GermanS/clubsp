@@ -18,5 +18,16 @@ has 'name'          => ( is => 'ro', required => 1, isa => 'StringLength2to255' 
 has 'is_published'  => ( is => 'ro', required => 1 );
 
 
+sub create {
+    my $self = shift;
+
+    $self->schema->resultset('Airline')->create({
+        iata         => $self->iata,
+        icao         => $self->icao,
+        name         => $self->name,
+        is_published => $self->is_published,
+    });
+}
+
 
 1;
