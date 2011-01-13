@@ -114,6 +114,13 @@ sub populate_schema {
         ['BOEING', 'Boeing Aircraft Company'],
         ['SAAB',   'Saab AB']
     ]);
+
+    my @airline = $schema->populate('Airline', [
+        [qw(iata icao name is_published)],
+        ['NN', 'MOV', 'VIM Airlines', 1],
+        ['UN', 'TSO', 'Transare Airlines', 1],
+        ['IB', 'IBE', 'Iberia Airlines', 1]
+    ]);
 }
 
 sub clear_schema {
