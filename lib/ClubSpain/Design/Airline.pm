@@ -45,5 +45,18 @@ sub fetch_by_id {
     return $object;
 }
 
+sub update {
+    my $self = shift;
+
+    throw ClubSpain::Exception::Argument(message => 'NOT A CLASS METHOD')
+        unless blessed $self;
+
+    return $self->fetch_by_id()->update({
+        iata         => $self->iata,
+        icao         => $self->icao,
+        name         => $self->name,
+        is_published => $self->is_published,
+    });
+}
 
 1;
