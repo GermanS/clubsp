@@ -29,5 +29,21 @@ sub create {
     });
 }
 
+sub fetch_by_id {
+    my ($self, $id) = @_;
+
+    $id = $self->id
+        if (ref $self && !$id);
+
+    my $object = $self->schema
+                      ->resultset('Airline')
+                      ->find({ id => $id }, { key => 'primary' });
+
+    throw ClubSpain::Exception::Storage(message => "Couldn't find Airline: $id!")
+        unless $object;
+
+    return $object;
+}
+
 
 1;
