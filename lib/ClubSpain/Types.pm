@@ -69,6 +69,15 @@ subtype 'StringLength2to255'
         )
     };
 
+subtype 'AlphaNumericLength2'
+    => as 'Str'
+    => where { $_ && $_ =~ /^\w{2}$/i }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => sprintf "The %s is not 2 chars word!", $_
+        )
+    };
+
 __PACKAGE__->meta->make_immutable();
 
 1;
