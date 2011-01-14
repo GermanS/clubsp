@@ -15,6 +15,7 @@
     <li><a href="/backoffice/airport" title="Редактирование списка аэропортов">Аэропорты</a></li>
     <li><a href="/backoffice/terminal" title="Редактирование списка терминалов">Терминалы</a></li>
     <li><a href="/backoffice/manufacturer" title="Редактирование типов воздушных судов">Производители</a></li>
+    <li><a href="/backoffice/airline" title="Редактирование списка авиакомпаний">Авиакомпании</a></li>
     <li><a href="">Логи</a></li>
 </ul>
 

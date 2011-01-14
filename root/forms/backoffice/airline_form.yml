@@ -1,0 +1,30 @@
+---
+id: airlineForm
+
+elements:
+  - type: Text
+    name: name
+    label: Название авиакомпании
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: iata
+    label: Код IATA (2 буквы)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: icao
+    label: Код ICAO (3 буквы)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Submit
+    name: submit

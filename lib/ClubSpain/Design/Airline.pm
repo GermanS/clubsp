@@ -59,4 +59,14 @@ sub update {
     });
 }
 
+sub list {
+    my $self = shift;
+
+    my $iterator = $self->schema
+                        ->resultset('Airline')
+                        ->search({}, { order_by => 'id' });
+
+    return $iterator;
+}
+
 1;
