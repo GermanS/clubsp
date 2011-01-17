@@ -78,6 +78,24 @@ subtype 'AlphaNumericLength2'
         )
     };
 
+subtype 'AlphaNumericLength3'
+    => as 'Str'
+    => where { $_ && $_ =~ /^\w{3}$/i }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => sprintf "The %s is not 3 chars word!", $_
+        )
+    };
+
+subtype 'AlphaNumericLength4'
+    => as 'Str'
+    => where { $_ && $_ =~ /^\w{4}$/i }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => sprintf "The %s is not 4 chars word!", $_
+        )
+    };
+
 __PACKAGE__->meta->make_immutable();
 
 1;
