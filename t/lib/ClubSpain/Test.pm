@@ -107,6 +107,13 @@ sub populate_schema {
         [0, 5, 1, 'HEADER2', 'SUBHEADER2', 'BODY2']
     ]);
 
+    my @airline = $schema->populate('Airline', [
+        [qw(iata icao name is_published)],
+        ['NN', 'MOV', 'VIM Airlines', 1],
+        ['UN', 'TSO', 'Transare Airlines', 1],
+        ['IB', 'IBE', 'Iberia Airlines', 1]
+    ]);
+
     my @manufacturer = $schema->populate('Manufacturer', [
         [qw(code name)],
         ['SUKHOI', 'Gosudarstvennoye Unitarnoye Predpriyatie Aviatsionnyi Voyenno-Promyshlennyi Komplex Sukhoi'],
@@ -115,11 +122,11 @@ sub populate_schema {
         ['SAAB',   'Saab AB']
     ]);
 
-    my @airline = $schema->populate('Airline', [
-        [qw(iata icao name is_published)],
-        ['NN', 'MOV', 'VIM Airlines', 1],
-        ['UN', 'TSO', 'Transare Airlines', 1],
-        ['IB', 'IBE', 'Iberia Airlines', 1]
+    my @airplane = $schema->populate('Airplane', [
+        [qw(manufacturer_id iata icao name is_published)],
+        [$manufacturer[1]->id, '318', 'A318', 'A318', 1],
+        [$manufacturer[1]->id, '319', 'A319', 'A319', 1],
+        [$manufacturer[2]->id, '757-200 ', '752', 'B752', 1],
     ]);
 }
 
