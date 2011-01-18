@@ -18,4 +18,16 @@ has 'icao'              => ( is => 'ro', required => 1, isa => 'AlphaNumericLeng
 has 'name'              => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
 has 'is_published'      => ( is => 'ro', required => 1 );
 
+sub create {
+    my $self = shift;
+
+    $self->schema->resultset('Airplane')->create({
+        manufacturer_id     => $self->manufacturer_id,
+        iata                => $self->iata,
+        icao                => $self->icao,
+        name                => $self->name,
+        is_published        => $self->is_published,
+    });
+}
+
 1;

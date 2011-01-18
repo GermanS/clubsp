@@ -30,6 +30,6 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_code => [qw(code)]);
 
-#__PACKAGE__->has_many('items' => 'AviaBroker::Schema::DBIC::AirCraft', {'foreign.manufacturer_id' => 'self.id'} );
+__PACKAGE__->has_many('planes' => 'ClubSpain::Schema::Airplane', {'foreign.manufacturer_id' => 'self.id'} );
 
 1;
