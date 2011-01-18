@@ -1,0 +1,8 @@
+---
+elements:
+  - type: Select
+    name: manufacturer_id
+    model_config:
+      resultset: Manufacturer
+      id_column: id
+      label_column: code
