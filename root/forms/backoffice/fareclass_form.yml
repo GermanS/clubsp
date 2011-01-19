@@ -1,0 +1,22 @@
+---
+id: fareclassForm
+
+elements:
+  - type: Text
+    name: name
+    label: Название класса
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: code
+    label: Код (1 буква)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Submit
+    name: submit

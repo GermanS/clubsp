@@ -128,6 +128,12 @@ sub populate_schema {
         [$manufacturer[1]->id, '319', 'A319', 'A319', 1],
         [$manufacturer[2]->id, '757-200 ', '752', 'B752', 1],
     ]);
+
+    my @fareclass = $schema->populate('FareClass', [
+        [qw(code name is_published)],
+        ['Y', 'Economy', 1],
+        ['C', 'Business', 1],
+    ]);
 }
 
 sub clear_schema {

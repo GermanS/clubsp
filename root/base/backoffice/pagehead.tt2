@@ -17,6 +17,7 @@
     <li><a href="/backoffice/manufacturer" title="Редактирование списка производителей">Производители</a></li>
     <li><a href="/backoffice/airplane" title="Редактирование списка самолетов">Самолеты</a></li>
     <li><a href="/backoffice/airline" title="Редактирование списка авиакомпаний">Авиакомпании</a></li>
+    <li><a href="/backoffice/fareclass" title="Редактирование классов перелетов">Класс</a></li>
     <li><a href="">Логи</a></li>
 </ul>
 
