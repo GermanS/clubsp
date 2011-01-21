@@ -39,4 +39,6 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_icao => [qw(icao)]);
 
+__PACKAGE__->has_many( flight => 'ClubSpain::Schema::Flight', {'foreign.airline_id' => 'self.id'} );
+
 1;

@@ -129,6 +129,12 @@ sub populate_schema {
         [$manufacturer[2]->id, '757-200 ', '752', 'B752', 1],
     ]);
 
+    my @flight = $schema->populate('Flight', [
+        [qw(departure_airport_id destination_airport_id airline_id code)],
+        [$airport[0]->id, $airport[3]->id, $airline[0]->id, 331],
+        [$airport[3]->id, $airport[0]->id, $airline[0]->id, 332],
+    ]);
+
     my @fareclass = $schema->populate('FareClass', [
         [qw(code name is_published)],
         ['Y', 'Economy', 1],

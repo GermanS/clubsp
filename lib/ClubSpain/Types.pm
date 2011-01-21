@@ -24,6 +24,15 @@ subtype 'NaturalLessThan1000'
         )
     };
 
+subtype 'NaturalLessThan10000'
+    => as 'Natural'
+    => where { $_ < 10000 }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => sprintf "This number %s is not less than 10000!", $_
+        )
+    };
+
 subtype 'AlphaLength1'
     => as 'Str'
     => where { $_ && $_ =~ /^[a-z]{1}$/i }
