@@ -101,6 +101,13 @@ sub populate_schema {
         [$city[2]->id, 'AGP', 'LEMG', 'Malaga airport', 1]
     ]);
 
+    my @terminal = $schema->populate('Terminal', [
+        [qw(airport_id name is_published)],
+        [$airport[2]->id, 'Terminal B', 1],
+        [$airport[2]->id, 'Terminal C', 1],
+        [$airport[2]->id, 'Terminal F', 1],
+    ]);
+
     my @article = $schema->populate('Article', [
         [qw(parent_id weight is_published header subheader body)],
         [0, 1, 0, 'HEADER1', 'SUBHEADER1', 'BODY1'],
