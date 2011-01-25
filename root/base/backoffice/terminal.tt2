@@ -1,0 +1,37 @@
+[% WRAPPER backoffice/terminal_wrapper.tt2 %]
+    [% IF message %]
+        [% message %]
+    [% END %]
+
+    [% IF iterator.count %]
+        <div id="browser">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th> </th>
+                    <th>Терминал</th>
+                    <th> </th>
+                <tr>
+                [% WHILE (item = iterator.next) %]
+                    [% INCLUDE row terminal = item %]
+                [% END %]
+            </table>
+        </div>
+    [% ELSE %]
+        <p>Для просмотра терминалов нажмите на аэропорт в меню слева</p>
+    [% END %]
+[% END %]
+
+
+[% BLOCK row %]
+    <tr>
+        <td class="icon">
+            [% INCLUDE icons/is_published.tt2 href="/backoffice/terminal/" object=terminal %]
+        </td>
+        <td>
+            <a href="/backoffice/terminal/[% terminal.id %]/edit">[% terminal.name %]</a>
+        </td>
+        <td class="icon">
+            [% INCLUDE icons/delete.tt2 href="/backoffice/terminal/$terminal.id/delete" %]
+        </td>
+    </tr>
+[% END %]

@@ -56,11 +56,12 @@ sub update {
 }
 
 sub list {
-    my $self = shift;
+    my ($class, $params, $cond) = @_;
+    return unless $params;
 
-    my $iterator = $self->schema
+    my $iterator = $class->schema
                         ->resultset('Terminal')
-                        ->search({}, { order_by => 'id' });
+                        ->search($params, $cond);
 
     return $iterator;
 }

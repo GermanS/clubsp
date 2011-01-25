@@ -1,0 +1,17 @@
+---
+id: terminalForm
+
+load_config_file:
+  - backoffice/airport_popup.yml
+
+elements:
+  - type: Text
+    name: name
+    label: Город
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Submit
+    name: submit

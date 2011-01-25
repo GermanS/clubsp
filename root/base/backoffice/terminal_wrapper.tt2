@@ -1,0 +1,23 @@
+[% WRAPPER backoffice/page.tt2 %]
+    <div id="bd">
+        <div id="yui-main">
+            <div class="yui-b">
+                <div class="yui-g">
+                    [% content %]
+                </div>
+            </div>
+        </div>
+        <div class="yui-b">
+            <a class="button" href="/backoffice/terminal/create">Добавить терминал</a>
+            [% IF airport_list.count() %]
+                <div class="sidebar">
+                    <ul>
+                        [% WHILE (airport = airport_list.next) %]
+                            <li><a href="/backoffice/terminal/browse/[% airport.id %]">[% airport.name %]</a></li>
+                        [% END %]
+                    </ul>
+                </div>
+            [% END %]
+        </div>
+    </div>
+[% END %]
