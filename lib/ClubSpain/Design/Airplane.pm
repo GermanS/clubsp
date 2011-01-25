@@ -1,21 +1,12 @@
 package ClubSpain::Design::Airplane;
-
-=head
-
-http://skalolaskovy.narod.ru/avia/type_of_aircrafts.html
-
-=cut
-
 use Moose;
 use namespace::autoclean;
 use utf8;
-
 use parent qw(ClubSpain::Design::Base);
-
-use Scalar::Util qw(blessed);
-use ClubSpain::Common qw(minify);
 use ClubSpain::Types;
-use ClubSpain::Exception;
+
+use MooseX::ClassAttribute;
+class_has '+source_name' => ( default => sub  { 'Airplane' });
 
 has 'id'                => ( is => 'ro' );
 has 'manufacturer_id'   => ( is => 'ro', required => 1 );
@@ -27,38 +18,21 @@ has 'is_published'      => ( is => 'ro', required => 1 );
 sub create {
     my $self = shift;
 
-    $self->schema->resultset('Airplane')->create({
+    $self->SUPER::create({
         manufacturer_id     => $self->manufacturer_id,
         iata                => $self->iata,
         icao                => $self->icao,
         name                => $self->name,
         is_published        => $self->is_published,
     });
-}
-
-sub fetch_by_id {
-    my ($self, $id) = @_;
-
-    $id = $self->id
-        if (ref $self && !$id);
-
-    my $object = $self->schema
-                      ->resultset('Airplane')
-                      ->find({ id => $id }, { key => 'primary' });
-
-    throw ClubSpain::Exception::Storage(message => "Couldn't find Airplane: $id!")
-        unless $object;
-
-    return $object;
 }
 
 sub update {
     my $self = shift;
 
-    throw ClubSpain::Exception::Argument(message => 'NOT A CLASS METHOD')
-        unless blessed $self;
+    $self->check_for_class_method();
 
-    return $self->fetch_by_id()->update({
+    $self->SUPER::update({
         manufacturer_id     => $self->manufacturer_id,
         iata                => $self->iata,
         icao                => $self->icao,
@@ -67,15 +41,11 @@ sub update {
     });
 }
 
-sub list {
-    my ($class, $params) = @_;
-    return unless $params;
 
-    my $iterator = $class->schema
-                        ->resultset('Airplane')
-                        ->search($params);
+=head
 
-    return $iterator;
-}
+http://skalolaskovy.narod.ru/avia/type_of_aircrafts.html
+
+=cut
 
 1;

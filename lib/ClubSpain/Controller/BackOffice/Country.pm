@@ -20,7 +20,9 @@ sub auto :Private {
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->stash(iterator => ClubSpain::Design::Country->list());
+    $c->stash(
+        iterator => ClubSpain::Design::Country->list({})
+    );
 };
 
 

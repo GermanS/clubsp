@@ -40,7 +40,7 @@ use_ok('ClubSpain::Design::Country');
     my $country;
     eval {
         $country = ClubSpain::Design::Country->new(
-            name => '   Russia    ',
+            name => 'Spain',
             alpha2 => 'ru',
             alpha3 => 'rus',
             numerics => 7,
@@ -57,7 +57,7 @@ use_ok('ClubSpain::Design::Country');
     }
 
     isa_ok($country, 'ClubSpain::Design::Country');
-    is($country->name, 'Russia', 'got name');
+    is($country->name, 'Spain', 'got name');
     is($country->alpha2, 'ru', 'got aplha2');
     is($country->alpha3, 'rus', 'got aplha3');
     is($country->numerics, 7, 'Got numerics');
