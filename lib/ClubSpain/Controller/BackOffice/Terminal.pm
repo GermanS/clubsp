@@ -11,14 +11,14 @@ sub auto :Private {
 
     $c->stash(
         template     => 'backoffice/terminal.tt2',
-        airport_list => $c->model('Airport')->list({})
+        airport_list => $c->model('Airport')->search({})
     );
 };
 
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->stash(iterator => $c->model('Terminal')->list({}));
+    $c->stash(iterator => $c->model('Terminal')->search({}));
 };
 
 sub end :ActionClass('RenderView') {};
@@ -189,7 +189,7 @@ sub browse :Local :Args(1) {
     my ($self, $c, $airport) = @_;
 
     $c->stash(
-        iterator => $c->model('Terminal')->list({airport_id => $airport})
+        iterator => $c->model('Terminal')->search({airport_id => $airport})
     );
 }
 

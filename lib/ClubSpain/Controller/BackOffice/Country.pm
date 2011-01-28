@@ -20,7 +20,7 @@ sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => $c->model('Country')->list({})
+        iterator => $c->model('Country')->search({})
     );
 };
 

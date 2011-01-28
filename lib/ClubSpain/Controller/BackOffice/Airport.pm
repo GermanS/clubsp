@@ -11,7 +11,7 @@ sub auto :Private {
 
     $c->stash(
         template     => 'backoffice/airport.tt2',
-        country_list => $c->model('Country')->list({})
+        country_list => $c->model('Country')->search({})
     );
 };
 
@@ -19,7 +19,7 @@ sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => $c->model('Airport')->list({})
+        iterator => $c->model('Airport')->search({})
     );
 };
 
@@ -202,7 +202,7 @@ sub country :Local :Args(1) {
 
     unless ($c->stash->{'iterator'}) {
         $c->stash(
-            iterator => $c->model('Airport')->list(
+            iterator => $c->model('Airport')->search(
                 { 'city.country_id' => $country_id },
                 { join => 'city' }
             )
@@ -219,7 +219,7 @@ sub city :Local :Args(1) {
     $self->country($c, $city->country_id);
 
     $c->stash(
-        iterator => $c->model('Airport')->list({
+        iterator => $c->model('Airport')->search({
             city_id => $city_id
         })
     );

@@ -12,7 +12,7 @@ sub auto :Private {
 
     $c->stash(
         template          => 'backoffice/airplane.tt2',
-        manufacturer_list => $c->model('Manufacturer')->list({})
+        manufacturer_list => $c->model('Manufacturer')->search({})
     );
 };
 
@@ -20,7 +20,7 @@ sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => $c->model('Airplane')->list({}),
+        iterator => $c->model('Airplane')->search({}),
     );
 };
 
@@ -198,7 +198,7 @@ sub browse :Local :Args(1) {
     my ($self, $c, $manufacturer) = @_;
 
     $c->stash(
-        iterator => $c->model('Airplane')->list({
+        iterator => $c->model('Airplane')->search({
             manufacturer_id => $manufacturer
         })
     );

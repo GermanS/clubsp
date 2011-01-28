@@ -18,7 +18,7 @@ sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => $c->model('FareClass')->list({})
+        iterator => $c->model('FareClass')->search({})
     );
 };
 

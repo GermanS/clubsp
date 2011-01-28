@@ -11,14 +11,14 @@ sub auto :Private {
 
     $c->stash(
         template     => 'backoffice/city.tt2',
-        country_list => $c->model('Country')->list({})
+        country_list => $c->model('Country')->search({})
     );
 };
 
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->stash(iterator => $c->model('City')->list({}));
+    $c->stash(iterator => $c->model('City')->search({}));
 };
 
 sub end :ActionClass('RenderView') {};
@@ -186,7 +186,7 @@ sub browse :Local :Args(1) {
     my ($self, $c, $country) = @_;
 
     $c->stash(
-        iterator => $c->model('City')->list({country_id => $country})
+        iterator => $c->model('City')->search({country_id => $country})
     );
 }
 

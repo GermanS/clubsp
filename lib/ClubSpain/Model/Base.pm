@@ -31,7 +31,7 @@ sub fetch_by_id {
     return $object;
 }
 
-sub list {
+sub search {
     my ($self, $params, $cond) = @_;
     return unless $params;
 
