@@ -18,6 +18,7 @@ use Catalyst qw(
     Static::Simple
     Server
     Server::XMLRPC
+    Server::JSONRPC
     Unicode
 );
 
@@ -39,7 +40,13 @@ __PACKAGE__->config(
     name => 'ClubSpain',
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
-    xmlrpc => { 'xml_encoding' => 'utf-8' },
+    xmlrpc => {
+        'xml_encoding' => 'utf-8',
+        'path' => qr!^(/?)xmlrpc(/|$)!i
+    },
+    jsonrpc => {
+        'path' => qr!^(/?)jsonrpc(/|$)!i
+    },
     default_view => 'TT',
     'Controller::HTML::FormFu' => {
         constructor => {
