@@ -2,12 +2,12 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::FareClass');
+use_ok('ClubSpain::Model::FareClass');
 
 #call as class method
 {
     eval {
-        ClubSpain::Design::FareClass->update();
+        ClubSpain::Model::FareClass->update();
         fail('no exception thrown');
     };
 
@@ -24,7 +24,7 @@ use_ok('ClubSpain::Design::FareClass');
 
 #object does not exist in database
 {
-    my $fareclass = ClubSpain::Design::FareClass->new(
+    my $fareclass = ClubSpain::Model::FareClass->new(
         id           => 777,
         code         => 'u',
         name         => 'name',

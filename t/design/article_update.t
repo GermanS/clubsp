@@ -3,14 +3,14 @@ use Test::More tests => 9;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Article');
+use_ok('ClubSpain::Model::Article');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
 
 ClubSpain::Test->init_schema();
 
-my $article = ClubSpain::Design::Article->new(
+my $article = ClubSpain::Model::Article->new(
     id          => 1,
     parent_id   => 0,
     weight      => 10,

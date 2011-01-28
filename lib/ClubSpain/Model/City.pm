@@ -1,17 +1,15 @@
-package ClubSpain::Design::Airport;
+package ClubSpain::Model::City;
 use Moose;
 use namespace::autoclean;
 use utf8;
-use parent qw(ClubSpain::Design::Base);
+use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
 use MooseX::ClassAttribute;
-class_has '+source_name' => ( default => sub  { 'Airport' });
+class_has '+source_name' => ( default => sub  { 'City' });
 
 has 'id'            => ( is => 'ro' );
-has 'city_id'       => ( is => 'ro', required => 1 );
-has 'iata'          => ( is => 'ro', required => 1, isa => 'AlphaLength3' );
-has 'icao'          => ( is => 'ro', required => 1, isa => 'AlphaLength4' );
+has 'country_id'    => ( is => 'ro', required => 1 );
 has 'name'          => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
 has 'is_published'  => ( is => 'ro', required => 1 );
 
@@ -19,9 +17,7 @@ sub create {
     my $self = shift;
 
     $self->SUPER::create({
-        city_id      => $self->city_id,
-        iata         => $self->iata,
-        icao         => $self->icao,
+        country_id   => $self->country_id,
         name         => $self->name,
         is_published => $self->is_published,
     });
@@ -33,9 +29,7 @@ sub update {
     $self->check_for_class_method();
 
     $self->SUPER::update({
-        city_id      => $self->city_id,
-        iata         => $self->iata,
-        icao         => $self->icao,
+        country_id   => $self->country_id,
         name         => $self->name,
         is_published => $self->is_published,
     });

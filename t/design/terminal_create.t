@@ -3,7 +3,7 @@ use Test::More tests => 11;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Terminal');
+use_ok('ClubSpain::Model::Terminal');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ ClubSpain::Test->init_schema();
 
 #first insert
 {
-    my $terminal = ClubSpain::Design::Terminal->new(
+    my $terminal = ClubSpain::Model::Terminal->new(
         airport_id  => 1,
         name        => 'xxxxx',
         is_published => 1,
@@ -39,7 +39,7 @@ ClubSpain::Test->init_schema();
 
 #second addition
 {
-    my $terminal = ClubSpain::Design::Terminal->new(
+    my $terminal = ClubSpain::Model::Terminal->new(
         airport_id  => 2,
         name        => 'yyyyy',
         is_published => 1,

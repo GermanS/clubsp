@@ -3,7 +3,7 @@ use Test::More tests => 8;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Airport');
+use_ok('ClubSpain::Model::Airport');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -11,7 +11,7 @@ use ClubSpain::Test;
 my $schema = ClubSpain::Test->init_schema();
 my $count = $schema->resultset('Airport')->search({})->count;
 
-my $port = ClubSpain::Design::Airport->new(
+my $port = ClubSpain::Model::Airport->new(
     city_id => 1,
     iata    => 'xxx',
     icao    => 'xxxx',
@@ -29,7 +29,7 @@ is($object->name, 'xxx xxxx', 'got name');
 is($object->is_published, 0, 'got is published');
 
 
-ClubSpain::Design::Airport->delete($object->id);
+ClubSpain::Model::Airport->delete($object->id);
 
 my $rs = $schema->resultset('Airport')->search({});
 is($rs->count, $count, 'no objects left');

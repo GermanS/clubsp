@@ -3,14 +3,14 @@ use Test::More tests => 6;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::City');
+use_ok('ClubSpain::Model::City');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
 
 ClubSpain::Test->init_schema();
 
-my $city = ClubSpain::Design::City->new(
+my $city = ClubSpain::Model::City->new(
     id          => 1,
     country_id  => 2,
     name        => 'New City name',

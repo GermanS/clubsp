@@ -3,11 +3,11 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Airline');
+use_ok('ClubSpain::Model::Airline');
 
 {
     eval {
-        ClubSpain::Design::Airline->delete(1000);
+        ClubSpain::Model::Airline->delete(1000);
         fail('no exception thrown');
     };
 
@@ -23,7 +23,7 @@ use_ok('ClubSpain::Design::Airline');
 }
 
 {
-    my $airline = ClubSpain::Design::Airline->new(
+    my $airline = ClubSpain::Model::Airline->new(
         id      => 23,
         iata    => 'fo',
         icao    => 'bar',

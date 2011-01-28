@@ -3,9 +3,9 @@ use Test::More tests => 7;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Airplane');
+use_ok('ClubSpain::Model::Airplane');
 
-my $airplane = ClubSpain::Design::Airplane->new(
+my $airplane = ClubSpain::Model::Airplane->new(
     manufacturer_id => 1,
     iata            => '310',
     icao            => 'A310',
@@ -14,7 +14,7 @@ my $airplane = ClubSpain::Design::Airplane->new(
 );
 
 
-isa_ok($airplane, 'ClubSpain::Design::Airplane');
+isa_ok($airplane, 'ClubSpain::Model::Airplane');
 is($airplane->manufacturer_id, 1, 'got manufacturer');
 is($airplane->iata, '310', 'got iata code');
 is($airplane->icao, 'A310', 'got icao code');

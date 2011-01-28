@@ -1,10 +1,10 @@
-package ClubSpain::Design::Article;
+package ClubSpain::Model::Article;
 
 use Moose;
 use namespace::autoclean;
 use utf8;
 
-use parent qw(ClubSpain::Design::Base);
+use parent qw(ClubSpain::Model::Base);
 
 use Scalar::Util qw(blessed);
 

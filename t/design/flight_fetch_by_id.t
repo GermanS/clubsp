@@ -3,7 +3,7 @@ use Test::More tests => 15;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Flight');
+use_ok('ClubSpain::Model::Flight');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
 {
-    my $flight = ClubSpain::Design::Flight->fetch_by_id(1);
+    my $flight = ClubSpain::Model::Flight->fetch_by_id(1);
     isa_ok($flight, 'ClubSpain::Schema::Flight');
     is($flight->departure_airport_id, 1, 'geo departure airport');
     is($flight->destination_airport_id, 4, 'got destination airport');
@@ -23,7 +23,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #retrive
 {
-    my $flight = ClubSpain::Design::Flight->new(
+    my $flight = ClubSpain::Model::Flight->new(
         id                      => 2,
         departure_airport_id    => 0,
         destination_airport_id  => 0,
@@ -42,7 +42,7 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     eval {
-        ClubSpain::Design::Flight->fetch_by_id(1000);
+        ClubSpain::Model::Flight->fetch_by_id(1000);
         fail('no exception thrown');
     };
 
@@ -60,7 +60,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #exception
 {
-    my $flight = ClubSpain::Design::Flight->new(
+    my $flight = ClubSpain::Model::Flight->new(
         id          => 1000,
         departure_airport_id    => 1,
         destination_airport_id  => 2,

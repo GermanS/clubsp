@@ -3,9 +3,9 @@ use Test::More tests => 7;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Airport');
+use_ok('ClubSpain::Model::Airport');
 
-my $port = ClubSpain::Design::Airport->new(
+my $port = ClubSpain::Model::Airport->new(
     city_id     => 1,
     iata        => 'dme',
     icao        => 'uudm',
@@ -14,7 +14,7 @@ my $port = ClubSpain::Design::Airport->new(
 );
 
 
-isa_ok($port, 'ClubSpain::Design::Airport');
+isa_ok($port, 'ClubSpain::Model::Airport');
 is($port->city_id, 1, 'got city_id');
 is($port->iata, 'dme', 'got iata code');
 is($port->icao, 'uudm', 'got icao code');

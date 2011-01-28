@@ -5,9 +5,9 @@ use lib qw(t/lib);
 use ClubSpain::Test;
 ClubSpain::Test->init_schema();
 
-use_ok('ClubSpain::Design::Airplane');
+use_ok('ClubSpain::Model::Airplane');
 
-my $airplane = ClubSpain::Design::Airplane->new(
+my $airplane = ClubSpain::Model::Airplane->new(
     id          => 1,
     manufacturer_id => 1,
     iata        => 'zzz',

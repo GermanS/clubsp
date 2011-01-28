@@ -3,11 +3,11 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Terminal');
+use_ok('ClubSpain::Model::Terminal');
 
 {
     eval {
-        ClubSpain::Design::Terminal->delete(1000);
+        ClubSpain::Model::Terminal->delete(1000);
         fail('no exception thrown');
     };
 
@@ -23,7 +23,7 @@ use_ok('ClubSpain::Design::Terminal');
 }
 
 {
-    my $terminal = ClubSpain::Design::Terminal->new(
+    my $terminal = ClubSpain::Model::Terminal->new(
         id          => 23,
         airport_id  => 'bar',
         name        => 'foo bar',

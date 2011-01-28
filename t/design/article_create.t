@@ -3,7 +3,7 @@ use Test::More tests => 17;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Article');
+use_ok('ClubSpain::Model::Article');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ ClubSpain::Test->init_schema( no_populate => 1 );
 
 #first insert
 {
-    my $article = ClubSpain::Design::Article->new(
+    my $article = ClubSpain::Model::Article->new(
         parent_id    => 0,
         weight       => 10,
         is_published => 1,
@@ -45,7 +45,7 @@ ClubSpain::Test->init_schema( no_populate => 1 );
 
 #second addition
 {
-    my $article = ClubSpain::Design::Article->new(
+    my $article = ClubSpain::Model::Article->new(
         parent_id    => 0,
         weight       => 100,
         is_published => 0,

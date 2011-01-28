@@ -3,7 +3,7 @@ use Test::More tests => 11;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::FareClass');
+use_ok('ClubSpain::Model::FareClass');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ ClubSpain::Test->init_schema();
 
 #first insert
 {
-    my $fareclass = ClubSpain::Design::FareClass->new(
+    my $fareclass = ClubSpain::Model::FareClass->new(
         code    => 'x',
         name    => 'name',
         is_published => 1,
@@ -39,7 +39,7 @@ ClubSpain::Test->init_schema();
 
 #second addition
 {
-    my $fareclass = ClubSpain::Design::FareClass->new(
+    my $fareclass = ClubSpain::Model::FareClass->new(
         code    => 'J',
         name    => 'yyyy',
         is_published => 1,

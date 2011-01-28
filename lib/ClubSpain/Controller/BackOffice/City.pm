@@ -5,24 +5,20 @@ use utf8;
 
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
-use ClubSpain::Design::Country;
-use ClubSpain::Design::City;
-
-
 
 sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(
         template     => 'backoffice/city.tt2',
-        country_list => ClubSpain::Design::Country->list()
+        country_list => $c->model('Country')->list({})
     );
 };
 
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->stash(iterator => ClubSpain::Design::City->list({}));
+    $c->stash(iterator => $c->model('City')->list({}));
 };
 
 sub end :ActionClass('RenderView') {};
@@ -34,7 +30,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $city;
     eval {
-        $city = ClubSpain::Design::City->fetch_by_id($id);
+        $city = $c->model('City')->fetch_by_id($id);
         $c->stash( city => $city );
     };
 
@@ -67,7 +63,7 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
     eval {
-        ClubSpain::Design::City->delete($c->stash->{'city'}->id);
+        $c->model('City')->delete($c->stash->{'city'}->id);
     };
 
     if ($@) {
@@ -125,12 +121,12 @@ sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $country = ClubSpain::Design::City->new(
+        my $city = $c->model('City')->new(
             country_id  => $c->request->param('country_id'),
             name        => $c->request->param('name'),
             is_published => ENABLE,
         );
-        $country->create();
+        $city->create();
 
         $self->successful_message($c);
     };
@@ -171,7 +167,7 @@ sub update :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $city = ClubSpain::Design::City->new(
+        my $city = $c->model('City')->new(
             id          => $c->stash->{'city'}->id,
             country_id  => $c->request->param('country_id'),
             name        => $c->request->param('name'),
@@ -190,7 +186,7 @@ sub browse :Local :Args(1) {
     my ($self, $c, $country) = @_;
 
     $c->stash(
-        iterator => ClubSpain::Design::City->list({country_id => $country})
+        iterator => $c->model('City')->list({country_id => $country})
     );
 }
 

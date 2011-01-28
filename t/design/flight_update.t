@@ -5,9 +5,9 @@ use lib qw(t/lib);
 use ClubSpain::Test;
 ClubSpain::Test->init_schema();
 
-use_ok('ClubSpain::Design::Flight');
+use_ok('ClubSpain::Model::Flight');
 
-my $flight = ClubSpain::Design::Flight->new(
+my $flight = ClubSpain::Model::Flight->new(
     id                      => 1,
     departure_airport_id    => 2,
     destination_airport_id  => 3,

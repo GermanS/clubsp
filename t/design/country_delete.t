@@ -3,14 +3,14 @@ use Test::More tests => 8;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Country');
+use_ok('ClubSpain::Model::Country');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
 
 my $schema = ClubSpain::Test->init_schema( no_populate => 1 );
 
-my $country = ClubSpain::Design::Country->new(
+my $country = ClubSpain::Model::Country->new(
     name => 'Soviet Union',
     alpha2 => 'su',
     alpha3 => 'suu',
@@ -26,7 +26,7 @@ is($object->numerics, 111, 'got numerics');
 is($object->is_published, 1, 'got is_published');
 
 
-ClubSpain::Design::Country->delete($object->id);
+ClubSpain::Model::Country->delete($object->id);
 
 
 my $rs = $schema->resultset('Country')->search({});

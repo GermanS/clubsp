@@ -3,7 +3,7 @@ use Test::More tests => 11;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::City');
+use_ok('ClubSpain::Model::City');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ ClubSpain::Test->init_schema();
 
 #first insert
 {
-    my $city = ClubSpain::Design::City->new(
+    my $city = ClubSpain::Model::City->new(
         country_id   => 1,
         name         => 'new york1',
         is_published => 1,
@@ -39,7 +39,7 @@ ClubSpain::Test->init_schema();
 
 #second addition
 {
-    my $city = ClubSpain::Design::City->new(
+    my $city = ClubSpain::Model::City->new(
         country_id   => 2,
         name         => 'new york2',
         is_published => 1,

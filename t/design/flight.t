@@ -3,10 +3,10 @@ use Test::More tests => 11;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Flight');
+use_ok('ClubSpain::Model::Flight');
 
 {
-    my $flight = ClubSpain::Design::Flight->new(
+    my $flight = ClubSpain::Model::Flight->new(
         departure_airport_id    => 1,
         destination_airport_id  => 2,
         airline_id              => 1,
@@ -14,7 +14,7 @@ use_ok('ClubSpain::Design::Flight');
     );
 
 
-    isa_ok($flight, 'ClubSpain::Design::Flight');
+    isa_ok($flight, 'ClubSpain::Model::Flight');
     is($flight->departure_airport_id, 1, 'got departure airport id');
     is($flight->destination_airport_id, 2, 'got destination airport id');
     is($flight->airline_id, 1, 'got airline');
@@ -22,7 +22,7 @@ use_ok('ClubSpain::Design::Flight');
 }
 
 {
-    my $flight = ClubSpain::Design::Flight->new(
+    my $flight = ClubSpain::Model::Flight->new(
         departure_airport_id    => 1,
         destination_airport_id  => 2,
         airline_id              => 1,
@@ -30,7 +30,7 @@ use_ok('ClubSpain::Design::Flight');
     );
 
 
-    isa_ok($flight, 'ClubSpain::Design::Flight');
+    isa_ok($flight, 'ClubSpain::Model::Flight');
     is($flight->departure_airport_id, 1, 'got departure airport id');
     is($flight->destination_airport_id, 2, 'got destination airport id');
     is($flight->airline_id, 1, 'got airline');

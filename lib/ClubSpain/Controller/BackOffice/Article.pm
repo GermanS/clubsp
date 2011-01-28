@@ -5,8 +5,6 @@ use utf8;
 
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
-use ClubSpain::Design::Article;
-
 
 sub auto :Private {
     my ($self, $c) = @_;
@@ -17,7 +15,7 @@ sub auto :Private {
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->stash(iterator => ClubSpain::Design::Article->list());
+    $c->stash(iterator => $c->model('Article')->list());
 }
 
 #match /backoffice/article
@@ -29,7 +27,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $article;
     eval {
-        $article = ClubSpain::Design::Article->fetch_by_id($id);
+        $article = $c->model('Article')->fetch_by_id($id);
         $c->stash( article => $article );
     };
 
@@ -43,13 +41,13 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->load_add_form();
+    my $form = $self->load_add_form($c);
     if ($form->submitted_and_valid()) {
         $self->insert($c);
     }
 
     $c->stash(
-        form    => $self->load_add_form(),
+        form    => $self->load_add_form($c),
         template => 'backoffice/article_form.tt2'
     );
 }
@@ -58,7 +56,7 @@ sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $article = ClubSpain::Design::Article->new(
+        my $article = $c->model('Article')->new(
             parent_id    => $c->request->param('parent_id'),
             header       => $c->request->param('header'),
             subheader    => $c->request->param('subheader'),
@@ -94,7 +92,7 @@ sub update :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $article = ClubSpain::Design::Article->new(
+        my $article = $c->model('Article')->new(
             id           => $c->stash->{'article'}->id,
             parent_id    => $c->request->param('parent_id'),
             weight       => $c->stash->{'article'}->weight,
@@ -119,7 +117,7 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
 
     my $article = $c->stash->{'article'};
     eval {
-        ClubSpain::Design::Article->delete($article->id);
+        $c->model('Article')->delete($article->id);
         $self->successful_message($c);
     };
 
@@ -135,14 +133,14 @@ sub leaf :Chained('id') :PathPart('leaf') :Args(0) {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => ClubSpain::Design::Article->list($c->stash->{'article'}->id)
+        iterator => $c->model('Article')->list($c->stash->{'article'}->id)
     );
 }
 
 sub load_add_form :Private  {
-    my $self = shift;
+    my ($self, $c) = @_;
 
-    my @options = ClubSpain::Design::Article->select_options();
+    my @options = $c->model('Article')->select_options();
     my $form = $self->form();
     $form->load_config_filestem('backoffice/article_form');
     $form->get_element({ name => 'parent_id' })->options(\@options);
@@ -154,7 +152,7 @@ sub load_add_form :Private  {
 sub load_upd_form :Private {
     my ($self, $c) = @_;
 
-    my $form = $self->load_add_form();
+    my $form = $self->load_add_form($c);
     my $article = $c->stash->{'article'};
     $form->get_element({ name => 'parent_id' })->value($article->parent_id);
     $form->get_element({ name => 'header'    })->value($article->header);
@@ -206,7 +204,7 @@ sub up :Chained('id') :Pathpart('up') :Args(0) {
     my ($self, $c) = @_;
 
     my $article = $c->stash->{'article'};
-    ClubSpain::Design::Article->move_up($article);
+    $c->model('Article')->move_up($article);
 
     $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
 }
@@ -215,7 +213,7 @@ sub down :Chained('id') :PathPart('down') :Args(0) {
     my ($self, $c) = @_;
 
     my $article = $c->stash->{'article'};
-    ClubSpain::Design::Article->move_down($article);
+    $c->model('Article')->move_down($article);
 
     $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
 }

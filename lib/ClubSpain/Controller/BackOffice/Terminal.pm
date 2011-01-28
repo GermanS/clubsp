@@ -5,23 +5,20 @@ use utf8;
 
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
-use ClubSpain::Design::Airport;
-use ClubSpain::Design::Terminal;
-
 
 sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(
         template     => 'backoffice/terminal.tt2',
-        airport_list => ClubSpain::Design::Airport->list({})
+        airport_list => $c->model('Airport')->list({})
     );
 };
 
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->stash(iterator => ClubSpain::Design::Terminal->list({}));
+    $c->stash(iterator => $c->model('Terminal')->list({}));
 };
 
 sub end :ActionClass('RenderView') {};
@@ -33,7 +30,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $terminal;
     eval {
-        $terminal = ClubSpain::Design::Terminal->fetch_by_id($id);
+        $terminal = $c->model('Terminal')->fetch_by_id($id);
         $c->stash( terminal => $terminal );
     };
 
@@ -66,7 +63,7 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
     eval {
-        ClubSpain::Design::Terminal->delete($c->stash->{'terminal'}->id);
+        $c->model('Terminal')->delete($c->stash->{'terminal'}->id);
     };
 
     if ($@) {
@@ -100,7 +97,7 @@ sub load_add_form :Private  {
     my ($self, $c) = @_;
 
     $c->stash->{'current_model_instance'} =
-        ClubSpain::Design::Airport->schema()->resultset('Airport');
+        $c->model('Airport')->schema()->resultset('Airport');
 
     my $form = $self->form();
     $form->load_config_filestem('backoffice/terminal_form');
@@ -127,7 +124,7 @@ sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $country = ClubSpain::Design::Terminal->new(
+        my $country = $c->model('Terminal')->new(
             airport_id   => $c->request->param('airport_id'),
             name         => $c->request->param('name'),
             is_published => ENABLE,
@@ -173,7 +170,7 @@ sub update :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $terminal = ClubSpain::Design::Terminal->new(
+        my $terminal = $c->model('Terminal')->new(
             id           => $c->stash->{'terminal'}->id,
             airport_id   => $c->request->param('airport_id'),
             name         => $c->request->param('name'),
@@ -192,7 +189,7 @@ sub browse :Local :Args(1) {
     my ($self, $c, $airport) = @_;
 
     $c->stash(
-        iterator => ClubSpain::Design::Terminal->list({airport_id => $airport})
+        iterator => $c->model('Terminal')->list({airport_id => $airport})
     );
 }
 

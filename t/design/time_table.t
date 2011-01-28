@@ -3,9 +3,9 @@ use Test::More tests => 10;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::TimeTable');
+use_ok('ClubSpain::Model::TimeTable');
 
-my $timetable = ClubSpain::Design::TimeTable->new(
+my $timetable = ClubSpain::Model::TimeTable->new(
     flight_id         => 1,
     airplane_id       => 1,
     departure_date    => '2011-01-21',
@@ -17,7 +17,7 @@ my $timetable = ClubSpain::Design::TimeTable->new(
 );
 
 
-isa_ok($timetable, 'ClubSpain::Design::TimeTable');
+isa_ok($timetable, 'ClubSpain::Model::TimeTable');
 is($timetable->flight_id,               1, 'got flight id');
 is($timetable->departure_date,          '2011-01-21', 'got departure date');
 is($timetable->departure_time,          '20:30', 'got departure time');

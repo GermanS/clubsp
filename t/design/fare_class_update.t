@@ -5,9 +5,9 @@ use lib qw(t/lib);
 use ClubSpain::Test;
 ClubSpain::Test->init_schema();
 
-use_ok('ClubSpain::Design::FareClass');
+use_ok('ClubSpain::Model::FareClass');
 
-my $fareclass = ClubSpain::Design::FareClass->new(
+my $fareclass = ClubSpain::Model::FareClass->new(
     id          => 1,
     code        => 'R',
     name        => 'New FareClass name',

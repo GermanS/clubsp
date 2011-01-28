@@ -3,14 +3,14 @@ use Test::More tests => 9;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Article');
+use_ok('ClubSpain::Model::Article');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
 
 my $schema = ClubSpain::Test->init_schema( no_populate => 1 );
 
-my $article = ClubSpain::Design::Article->new(
+my $article = ClubSpain::Model::Article->new(
     parent_id       => 0,
     weight          => 100,
     is_published    => 0,
@@ -30,7 +30,7 @@ is($object->subheader, 'subheader', 'got subheader');
 is($object->body, 'body', 'got body');
 
 
-ClubSpain::Design::Article->delete($object->id);
+ClubSpain::Model::Article->delete($object->id);
 
 
 my $rs = $schema->resultset('Article')->search({});

@@ -3,7 +3,7 @@ use Test::More tests => 13;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Airline');
+use_ok('ClubSpain::Model::Airline');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ ClubSpain::Test->init_schema();
 
 #first insert
 {
-    my $airline = ClubSpain::Design::Airline->new(
+    my $airline = ClubSpain::Model::Airline->new(
         iata    => 'xx',
         icao    => 'xxx',
         name    => 'xx xxx',
@@ -41,7 +41,7 @@ ClubSpain::Test->init_schema();
 
 #second addition
 {
-    my $airline = ClubSpain::Design::Airline->new(
+    my $airline = ClubSpain::Model::Airline->new(
         iata    => 'yy',
         icao    => 'yyy',
         name    => 'yy yyy',

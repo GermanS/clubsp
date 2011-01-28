@@ -3,7 +3,7 @@ use Test::More tests => 13;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Terminal');
+use_ok('ClubSpain::Model::Terminal');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
 {
-    my $terminal = ClubSpain::Design::Terminal->fetch_by_id(1);
+    my $terminal = ClubSpain::Model::Terminal->fetch_by_id(1);
     isa_ok($terminal, 'ClubSpain::Schema::Terminal');
     is($terminal->airport_id, 3, 'got airport');
     is($terminal->name, 'Terminal B', 'got name');
@@ -22,7 +22,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #retrive
 {
-    my $terminal = ClubSpain::Design::Terminal->new(
+    my $terminal = ClubSpain::Model::Terminal->new(
         id          => 1,
         airport_id  => 0,
         name        => 'name',
@@ -39,7 +39,7 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     eval {
-        ClubSpain::Design::Terminal->fetch_by_id(1000);
+        ClubSpain::Model::Terminal->fetch_by_id(1000);
         fail('no exception thrown');
     };
 
@@ -57,7 +57,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #exception
 {
-    my $terminal = ClubSpain::Design::Terminal->new(
+    my $terminal = ClubSpain::Model::Terminal->new(
         id          => 1000,
         airport_id  => 0,
         name        => 'name',

@@ -3,11 +3,11 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Article');
+use_ok('ClubSpain::Model::Article');
 
 {
     eval {
-        ClubSpain::Design::Article->delete(1000);
+        ClubSpain::Model::Article->delete(1000);
         fail('no exception thrown');
     };
 
@@ -23,7 +23,7 @@ use_ok('ClubSpain::Design::Article');
 }
 
 {
-    my $article = ClubSpain::Design::Article->new(
+    my $article = ClubSpain::Model::Article->new(
         id          => 100,
         parent_id   => 0,
         weight      => 22,

@@ -3,7 +3,7 @@ use Test::More tests => 14;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::City');
+use_ok('ClubSpain::Model::City');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
 {
-    my $city = ClubSpain::Design::City->fetch_by_id(1);
+    my $city = ClubSpain::Model::City->fetch_by_id(1);
     isa_ok($city, 'ClubSpain::Schema::City');
     is($city->country_id, 1, 'got country id');
     is($city->name, 'Moscow', 'got name');
@@ -21,7 +21,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #retrive
 {
-    my $city = ClubSpain::Design::City->new(
+    my $city = ClubSpain::Model::City->new(
         id => 1,
         country_id => 1,
         name => 'name',
@@ -39,7 +39,7 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     eval {
-        ClubSpain::Design::City->fetch_by_id(1000);
+        ClubSpain::Model::City->fetch_by_id(1000);
         fail('no exception thrown');
     };
 
@@ -57,7 +57,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #exception
 {
-    my $city = ClubSpain::Design::City->new(
+    my $city = ClubSpain::Model::City->new(
         id => 1000,
         country_id => 1,
         name => 'some name',

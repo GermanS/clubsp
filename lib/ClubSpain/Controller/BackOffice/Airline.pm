@@ -6,8 +6,6 @@ use utf8;
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
 
-use ClubSpain::Design::Airline;
-
 sub auto :Private {
     my ($self, $c) = @_;
 
@@ -20,7 +18,7 @@ sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => ClubSpain::Design::Airline->list({})
+        iterator => $c->model('Airline')->list({})
     );
 };
 
@@ -33,7 +31,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $airline;
     eval {
-        $airline = ClubSpain::Design::Airline->fetch_by_id($id);
+        $airline = $c->model('Airline')->fetch_by_id($id);
         $c->stash( airline => $airline );
     };
 
@@ -66,7 +64,7 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
     eval {
-        ClubSpain::Design::Airline->delete($c->stash->{'airline'}->id);
+        $c->model('Airline')->delete($c->stash->{'airline'}->id);
     };
 
     if ($@) {
@@ -124,7 +122,7 @@ sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $airline = ClubSpain::Design::Airline->new(
+        my $airline = $c->model('Airline')->new(
             iata     => $c->request->param('iata'),
             icao     => $c->request->param('icao'),
             name     => $c->request->param('name'),
@@ -172,7 +170,7 @@ sub update :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $airline = ClubSpain::Design::Airline->new(
+        my $airline = $c->model('Airline')->new(
             id          => $c->stash->{'airline'}->id,
             icao        => $c->request->param('icao'),
             iata        => $c->request->param('iata'),

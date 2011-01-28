@@ -3,7 +3,7 @@ use Test::More tests => 11;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Manufacturer');
+use_ok('ClubSpain::Model::Manufacturer');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
 {
-    my $manufacturer = ClubSpain::Design::Manufacturer->fetch_by_id(2);
+    my $manufacturer = ClubSpain::Model::Manufacturer->fetch_by_id(2);
     isa_ok($manufacturer, 'ClubSpain::Schema::Manufacturer');
     is($manufacturer->code, 'AIRBUS', 'got  code');
     is($manufacturer->name, 'Airbus SAS', 'got name');
@@ -21,7 +21,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #retrive
 {
-    my $manufacturer = ClubSpain::Design::Manufacturer->new(
+    my $manufacturer = ClubSpain::Model::Manufacturer->new(
         id          => 2,
         code        => 'code',
         name        => 'name',
@@ -36,7 +36,7 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     eval {
-        ClubSpain::Design::Manufacturer->fetch_by_id(1000);
+        ClubSpain::Model::Manufacturer->fetch_by_id(1000);
         fail('no exception thrown');
     };
 
@@ -54,7 +54,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #exception
 {
-    my $manufacturer = ClubSpain::Design::Manufacturer->new(
+    my $manufacturer = ClubSpain::Model::Manufacturer->new(
         id          => 1000,
         code        => 'xxxx',
         name        => 'name',

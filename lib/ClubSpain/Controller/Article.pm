@@ -5,14 +5,12 @@ use warnings;
 use utf8;
 
 use parent qw(Catalyst::Controller);
-use ClubSpain::Design::Article;
-
 
 sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(
-        top_level => ClubSpain::Design::Article->list(),
+        top_level => $c->model('Article')->list(),
         template  => 'common/article.tt2'
     );
 }
@@ -20,7 +18,7 @@ sub auto :Private {
 sub default :Path {
     my ($self, $c) = @_;
 
-#    $c->stash( top_level => ClubSpain::Design::Article->list() );
+#    $c->stash( top_level => $c->model('Article')->list() );
 }
 
 sub base :Chained('/article') :PathPart('') :CaptureArgs(0) {
@@ -33,7 +31,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $article;
     eval {
-        $article = ClubSpain::Design::Article->fetch_by_id($id);
+        $article = $c->model('Article')->fetch_by_id($id);
         $c->stash( article => $article );
     };
 
@@ -47,12 +45,12 @@ sub view :Chained('id') :PathPart('') :Args(0) {
     my ($self, $c) = @_;
 
     my $article = $c->stash->{'article'};
-    $c->stash(lower_level => ClubSpain::Design::Article->list($article->id));
+    $c->stash(lower_level => $c->model('Article')->list($article->id));
 
-    my $top_level_article = ClubSpain::Design::Article->find_top_parent($article);
+    my $top_level_article = $c->model('Article')->find_top_parent($article);
     $c->stash(top_level_article => $top_level_article);
 
-    my $sidebar_tree = ClubSpain::Design::Article->tree($top_level_article->id);
+    my $sidebar_tree = $c->model('Article')->tree($top_level_article->id);
     $c->stash(sidebar_tree => $sidebar_tree);
 }
 
@@ -70,7 +68,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $article;
     eval {
-        $article = ClubSpain::Design::Article->fetch_by_id($id);
+        $article = $c->model('Article')->fetch_by_id($id);
         $c->stash( article => $article );
     };
 

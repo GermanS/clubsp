@@ -3,11 +3,11 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Manufacturer');
+use_ok('ClubSpain::Model::Manufacturer');
 
 {
     eval {
-        ClubSpain::Design::Manufacturer->delete(1000);
+        ClubSpain::Model::Manufacturer->delete(1000);
         fail('no exception thrown');
     };
 
@@ -23,7 +23,7 @@ use_ok('ClubSpain::Design::Manufacturer');
 }
 
 {
-    my $manufacturer = ClubSpain::Design::Manufacturer->new(
+    my $manufacturer = ClubSpain::Model::Manufacturer->new(
         id      => 100,
         code    => 'bar',
         name    => 'foo bar',

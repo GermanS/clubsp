@@ -6,8 +6,6 @@ use utf8;
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
 
-use ClubSpain::Design::FareClass;
-
 sub auto :Private {
     my ($self, $c) = @_;
 
@@ -20,7 +18,7 @@ sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => ClubSpain::Design::FareClass->list({})
+        iterator => $c->model('FareClass')->list({})
     );
 };
 
@@ -33,7 +31,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $fareclass;
     eval {
-        $fareclass = ClubSpain::Design::FareClass->fetch_by_id($id);
+        $fareclass = $c->model('FareClass')->fetch_by_id($id);
         $c->stash( fareclass => $fareclass );
     };
 
@@ -66,7 +64,7 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
     eval {
-        ClubSpain::Design::FareClass->delete($c->stash->{'fareclass'}->id);
+        $c->model('FareClass')->delete($c->stash->{'fareclass'}->id);
     };
 
     if ($@) {
@@ -124,7 +122,7 @@ sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $fareclass = ClubSpain::Design::FareClass->new(
+        my $fareclass = $c->model('FareClass')->new(
             code     => $c->request->param('code'),
             name     => $c->request->param('name'),
             is_published => ENABLE,
@@ -170,7 +168,7 @@ sub update :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $fareclass = ClubSpain::Design::FareClass->new(
+        my $fareclass = $c->model('FareClass')->new(
             id          => $c->stash->{'fareclass'}->id,
             code        => $c->request->param('code'),
             name        => $c->request->param('name'),

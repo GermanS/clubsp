@@ -6,7 +6,6 @@ use utf8;
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
 
-use ClubSpain::Design::Manufacturer;
 
 sub auto :Private {
     my ($self, $c) = @_;
@@ -16,32 +15,24 @@ sub auto :Private {
     );
 };
 
-
-
 sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => ClubSpain::Design::Manufacturer->list({})
+        iterator => $c->model('Manufacturer')->list({})
     );
 };
 
-
-
 sub end :ActionClass('RenderView') {};
 
-
-
 sub base :Chained('/backoffice/base') :PathPart('manufacturer') :CaptureArgs(0) {};
-
-
 
 sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id) = @_;
 
     my $manufacturer;
     eval {
-        $manufacturer = ClubSpain::Design::Manufacturer->fetch_by_id($id);
+        $manufacturer = $c->model('Manufacturer')->fetch_by_id($id);
         $c->stash( manufacturer => $manufacturer );
     };
 
@@ -52,13 +43,11 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     }
 };
 
-
-
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
     eval {
-        ClubSpain::Design::Manufacturer->delete($c->stash->{'manufacturer'}->id);
+        $c->model('Manufacturer')->delete($c->stash->{'manufacturer'}->id);
     };
 
     if ($@) {
@@ -69,8 +58,6 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
 
     $c->res->redirect($c->uri_for('default'));
 };
-
-
 
 sub process_error {
     my ($self, $c, $e) = @_;
@@ -84,15 +71,11 @@ sub process_error {
     }
 };
 
-
-
 sub successful_message {
     my ($self, $c) = @_;
 
     $c->stash( message => MESSAGE_OK );
 };
-
-
 
 sub load_add_form :Private  {
     my $self = shift;
@@ -103,8 +86,6 @@ sub load_add_form :Private  {
 
     return $form;
 };
-
-
 
 sub create :Local {
     my ($self, $c) = @_;
@@ -120,12 +101,11 @@ sub create :Local {
     );
 };
 
-
 sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $manufacturer = ClubSpain::Design::Manufacturer->new(
+        my $manufacturer = $c->model('Manufacturer')->new(
             name    => $c->request->param('name'),
             code    => $c->request->param('code'),
         );
@@ -137,7 +117,6 @@ sub insert :Private {
     $self->process_error($c, $@)
         if $@;
 };
-
 
 sub load_upd_form :Private {
     my ($self, $c) = @_;
@@ -151,8 +130,6 @@ sub load_upd_form :Private {
 
     return $form;
 };
-
-
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
@@ -168,13 +145,11 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 };
 
-
-
 sub update :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $manufacturer = ClubSpain::Design::Manufacturer->new(
+        my $manufacturer = $c->model('Manufacturer')->new(
             id      => $c->stash->{'manufacturer'}->id,
             name    => $c->request->param('name'),
             code    => $c->request->param('code'),

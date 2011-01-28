@@ -3,7 +3,7 @@ use Test::More tests => 19;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Article');
+use_ok('ClubSpain::Model::Article');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
 {
-    my $story = ClubSpain::Design::Article->fetch_by_id(1);
+    my $story = ClubSpain::Model::Article->fetch_by_id(1);
     isa_ok($story, 'ClubSpain::Schema::Article');
     is($story->parent_id, 0, 'got parent_id');
     is($story->weight, 1, 'got weight');
@@ -25,7 +25,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #retrive
 {
-    my $story = ClubSpain::Design::Article->new(
+    my $story = ClubSpain::Model::Article->new(
         id          => 1,
         parent_id   => undef,
         weight      => undef,
@@ -48,7 +48,7 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     eval {
-        ClubSpain::Design::Article->fetch_by_id(1000);
+        ClubSpain::Model::Article->fetch_by_id(1000);
         fail('no exception thrown');
     };
 
@@ -66,7 +66,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #exception
 {
-    my $story = ClubSpain::Design::Article->new(
+    my $story = ClubSpain::Model::Article->new(
         id          => 1000,
         parent_id   => undef,
         weight      => undef,

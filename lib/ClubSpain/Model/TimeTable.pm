@@ -1,10 +1,8 @@
-package ClubSpain::Design::TimeTable;
-
+package ClubSpain::Model::TimeTable;
 use Moose;
 use namespace::autoclean;
 use utf8;
-
-use parent qw(ClubSpain::Design::Base);
+use parent qw(ClubSpain::Model::Base);
 
 use Scalar::Util qw(blessed);
 use ClubSpain::Common qw(minify);

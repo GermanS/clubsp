@@ -3,11 +3,11 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::City');
+use_ok('ClubSpain::Model::City');
 
 {
     eval {
-        ClubSpain::Design::City->delete(1000);
+        ClubSpain::Model::City->delete(1000);
         fail('no exception thrown');
     };
 
@@ -23,7 +23,7 @@ use_ok('ClubSpain::Design::City');
 }
 
 {
-    my $city = ClubSpain::Design::City->new(
+    my $city = ClubSpain::Model::City->new(
         id => 100,
         country_id => 1,
         name => 'name',

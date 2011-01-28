@@ -3,7 +3,7 @@ use Test::More tests => 16;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Airplane');
+use_ok('ClubSpain::Model::Airplane');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
 {
-    my $airplane = ClubSpain::Design::Airplane->fetch_by_id(1);
+    my $airplane = ClubSpain::Model::Airplane->fetch_by_id(1);
     isa_ok($airplane, 'ClubSpain::Schema::Airplane');
     is($airplane->manufacturer_id, 2, 'got manufacturer code');
     is($airplane->iata, '318', 'got iata code');
@@ -24,7 +24,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #retrive
 {
-    my $airplane = ClubSpain::Design::Airplane->new(
+    my $airplane = ClubSpain::Model::Airplane->new(
         id          => 1,
         manufacturer_id => 1,
         iata        => 'xxx',
@@ -44,7 +44,7 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     eval {
-        ClubSpain::Design::Airplane->fetch_by_id(1000);
+        ClubSpain::Model::Airplane->fetch_by_id(1000);
         fail('no exception thrown');
     };
 
@@ -58,14 +58,11 @@ my $schema = ClubSpain::Test->init_schema();
             diag $@;
         }
     }
-}#   at t/design/airplane_fetch_by_id.t line 37.
-#          got: '1'
-#     expected: '2'
-
+}
 
 #exception
 {
-    my $airplane = ClubSpain::Design::Airplane->new(
+    my $airplane = ClubSpain::Model::Airplane->new(
         id          => 1000,
         manufacturer_id => 1,
         iata        => 'xxx',

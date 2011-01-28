@@ -2,12 +2,12 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Manufacturer');
+use_ok('ClubSpain::Model::Manufacturer');
 
 #call as class method
 {
     eval {
-        ClubSpain::Design::Manufacturer->update();
+        ClubSpain::Model::Manufacturer->update();
         fail('no exception thrown');
     };
 
@@ -24,7 +24,7 @@ use_ok('ClubSpain::Design::Manufacturer');
 
 #object does not exists in database
 {
-    my $manufacturer = ClubSpain::Design::Manufacturer->new(
+    my $manufacturer = ClubSpain::Model::Manufacturer->new(
         id           => 777,
         code         => 'code',
         name         => 'name',

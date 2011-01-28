@@ -6,15 +6,13 @@ use utf8;
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
 
-use ClubSpain::Design::Airplane;
-use ClubSpain::Design::Manufacturer;
 
 sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(
-        template => 'backoffice/airplane.tt2',
-        manufacturer_list => ClubSpain::Design::Manufacturer->list({})
+        template          => 'backoffice/airplane.tt2',
+        manufacturer_list => $c->model('Manufacturer')->list({})
     );
 };
 
@@ -22,7 +20,7 @@ sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => ClubSpain::Design::Airplane->list({}),
+        iterator => $c->model('Airplane')->list({}),
     );
 };
 
@@ -35,7 +33,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $airplane;
     eval {
-        $airplane = ClubSpain::Design::Airplane->fetch_by_id($id);
+        $airplane = $c->model('Airplane')->fetch_by_id($id);
         $c->stash( airplane => $airplane );
     };
 
@@ -68,7 +66,7 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
     eval {
-        ClubSpain::Design::Airplane->delete($c->stash->{'airplane'}->id);
+        $c->model('Airplane')->delete($c->stash->{'airplane'}->id);
     };
 
     if ($@) {
@@ -102,7 +100,7 @@ sub load_add_form :Private  {
     my ($self, $c) = @_;
 
     $c->stash->{'current_model_instance'} =
-        ClubSpain::Design::Airplane->schema()->resultset('Manufacturer');
+        $c->model('Airplane')->schema()->resultset('Manufacturer');
 
     my $form = $self->form();
     $form->load_config_filestem('backoffice/airplane_form');
@@ -129,7 +127,7 @@ sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $country = ClubSpain::Design::Airplane->new(
+        my $country = $c->model('Airplane')->new(
             manufacturer_id => $c->request->param('manufacturer_id'),
             iata            => $c->request->param('iata'),
             icao            => $c->request->param('icao'),
@@ -179,7 +177,7 @@ sub update :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $airplane = ClubSpain::Design::Airplane->new(
+        my $airplane = $c->model('Airplane')->new(
             id              => $c->stash->{'airplane'}->id,
             manufacturer_id => $c->request->param('manufacturer_id'),
             iata            => $c->request->param('iata'),
@@ -200,7 +198,7 @@ sub browse :Local :Args(1) {
     my ($self, $c, $manufacturer) = @_;
 
     $c->stash(
-        iterator => ClubSpain::Design::Airplane->list({
+        iterator => $c->model('Airplane')->list({
             manufacturer_id => $manufacturer
         })
     );

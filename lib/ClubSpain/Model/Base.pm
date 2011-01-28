@@ -1,4 +1,4 @@
-package ClubSpain::Design::Base;
+package ClubSpain::Model::Base;
 
 use Moose;
 use namespace::autoclean;

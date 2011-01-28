@@ -3,7 +3,7 @@ use Test::More tests => 15;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Airline');
+use_ok('ClubSpain::Model::Airline');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
 {
-    my $airline = ClubSpain::Design::Airline->fetch_by_id(1);
+    my $airline = ClubSpain::Model::Airline->fetch_by_id(1);
     isa_ok($airline, 'ClubSpain::Schema::Airline');
     is($airline->iata, 'NN', 'got iata code');
     is($airline->icao, 'MOV', 'got icao code');
@@ -23,7 +23,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #retrive
 {
-    my $airline = ClubSpain::Design::Airline->new(
+    my $airline = ClubSpain::Model::Airline->new(
         id          => 1,
         iata        => 'xx',
         icao        => 'xxx',
@@ -42,7 +42,7 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     eval {
-        ClubSpain::Design::Airline->fetch_by_id(1000);
+        ClubSpain::Model::Airline->fetch_by_id(1000);
         fail('no exception thrown');
     };
 
@@ -60,7 +60,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #exception
 {
-    my $airline = ClubSpain::Design::Airline->new(
+    my $airline = ClubSpain::Model::Airline->new(
         id          => 1000,
         iata        => 'xx',
         icao        => 'xxx',

@@ -3,9 +3,9 @@ use Test::More tests => 8;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Article');
+use_ok('ClubSpain::Model::Article');
 
-my $article = ClubSpain::Design::Article->new(
+my $article = ClubSpain::Model::Article->new(
     parent_id       => 0,
     weight          => 1,
     is_published    => 1,
@@ -15,7 +15,7 @@ my $article = ClubSpain::Design::Article->new(
 );
 
 
-isa_ok($article, 'ClubSpain::Design::Article');
+isa_ok($article, 'ClubSpain::Model::Article');
 is($article->parent_id, 0, 'got parent_id');
 is($article->weight, 1, 'got weight');
 is($article->is_published, 1, 'got header');

@@ -1,8 +1,8 @@
-package ClubSpain::Design::Terminal;
+package ClubSpain::Model::Terminal;
 use Moose;
 use namespace::autoclean;
 use utf8;
-use parent qw(ClubSpain::Design::Base);
+use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
 use MooseX::ClassAttribute;

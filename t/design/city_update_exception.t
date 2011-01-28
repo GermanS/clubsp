@@ -3,12 +3,12 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::City');
+use_ok('ClubSpain::Model::City');
 
 #call as class method
 {
     eval {
-        ClubSpain::Design::City->update();
+        ClubSpain::Model::City->update();
         fail('no exception thrown');
     };
 
@@ -25,7 +25,7 @@ use_ok('ClubSpain::Design::City');
 
 #object does not exists in database
 {
-    my $city = ClubSpain::Design::City->new(
+    my $city = ClubSpain::Model::City->new(
         id           => 777,
         country_id   => 100,
         name         => 'name',

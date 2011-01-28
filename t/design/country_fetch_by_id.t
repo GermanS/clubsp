@@ -3,7 +3,7 @@ use Test::More tests => 18;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Country');
+use_ok('ClubSpain::Model::Country');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
 {
-    my $country = ClubSpain::Design::Country->fetch_by_id(1);
+    my $country = ClubSpain::Model::Country->fetch_by_id(1);
     isa_ok($country, 'ClubSpain::Schema::Country');
     is($country->name, 'Russia', 'got name');
     is($country->alpha2, 'ru', 'got alpha2');
@@ -23,7 +23,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #retrive
 {
-    my $country = ClubSpain::Design::Country->new(
+    my $country = ClubSpain::Model::Country->new(
         id => 1,
         name => 'RF',
         alpha2 => 'RR',
@@ -45,7 +45,7 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     eval {
-        ClubSpain::Design::Country->fetch_by_id(1000);
+        ClubSpain::Model::Country->fetch_by_id(1000);
         fail('no exception thrown');
     };
 
@@ -63,7 +63,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #exception
 {
-    my $country = ClubSpain::Design::Country->new(
+    my $country = ClubSpain::Model::Country->new(
         id => 1000,
         name => 'russia',
         alpha2 => 'ru',

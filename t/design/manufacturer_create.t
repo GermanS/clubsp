@@ -3,7 +3,7 @@ use Test::More tests => 9;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Manufacturer');
+use_ok('ClubSpain::Model::Manufacturer');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ ClubSpain::Test->init_schema();
 
 #first insert
 {
-    my $producer = ClubSpain::Design::Manufacturer->new(
+    my $producer = ClubSpain::Model::Manufacturer->new(
         code    => 'xxx',
         name    => 'xxx xxxx',
     );
@@ -37,7 +37,7 @@ ClubSpain::Test->init_schema();
 
 #second addition
 {
-    my $producer = ClubSpain::Design::Manufacturer->new(
+    my $producer = ClubSpain::Model::Manufacturer->new(
         code    => 'yyy',
         name    => 'yyy yyyy',
     );

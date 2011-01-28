@@ -3,7 +3,7 @@ use Test::More tests => 6;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::FareClass');
+use_ok('ClubSpain::Model::FareClass');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -11,7 +11,7 @@ use ClubSpain::Test;
 my $schema = ClubSpain::Test->init_schema();
 my $count = $schema->resultset('FareClass')->search({})->count;
 
-my $fareclass = ClubSpain::Design::FareClass->new(
+my $fareclass = ClubSpain::Model::FareClass->new(
     code    => 'x',
     name    => 'xxxxx',
     is_published => 0,
@@ -25,7 +25,7 @@ is($object->name, 'xxxxx', 'got name');
 is($object->is_published, 0, 'got is published');
 
 
-ClubSpain::Design::FareClass->delete($object->id);
+ClubSpain::Model::FareClass->delete($object->id);
 
 my $rs = $schema->resultset('FareClass')->search({});
 is($rs->count, $count, 'no objects left');

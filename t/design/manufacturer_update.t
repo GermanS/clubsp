@@ -5,9 +5,9 @@ use lib qw(t/lib);
 use ClubSpain::Test;
 ClubSpain::Test->init_schema();
 
-use_ok('ClubSpain::Design::Manufacturer');
+use_ok('ClubSpain::Model::Manufacturer');
 
-my $manufacturer = ClubSpain::Design::Manufacturer->new(
+my $manufacturer = ClubSpain::Model::Manufacturer->new(
     id          => 1,
     code        => 'cccc',
     name        => 'New manufacturer name',

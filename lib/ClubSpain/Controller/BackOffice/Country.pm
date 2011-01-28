@@ -5,7 +5,6 @@ use utf8;
 
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
-use ClubSpain::Design::Country;
 
 
 
@@ -21,7 +20,7 @@ sub default :Path {
     my ($self, $c) = @_;
 
     $c->stash(
-        iterator => ClubSpain::Design::Country->list({})
+        iterator => $c->model('Country')->list({})
     );
 };
 
@@ -40,7 +39,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $country;
     eval {
-        $country = ClubSpain::Design::Country->fetch_by_id($id);
+        $country = $c->model('Country')->fetch_by_id($id);
         $c->stash( country => $country );
     };
 
@@ -79,7 +78,7 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
     eval {
-        ClubSpain::Design::Country->delete($c->stash->{'country'}->id);
+        $c->model('Country')->delete($c->stash->{'country'}->id);
     };
 
     if ($@) {
@@ -146,7 +145,7 @@ sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $country = ClubSpain::Design::Country->new(
+        my $country = $c->model('Country')->new(
             name        => $c->request->param('name'),
             alpha2      => $c->request->param('alpha2'),
             alpha3      => $c->request->param('alpha3'),
@@ -200,7 +199,7 @@ sub update :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $country = ClubSpain::Design::Country->new(
+        my $country = $c->model('Country')->new(
             id          => $c->stash->{'country'}->id,
             name        => $c->request->param('name'),
             alpha2      => $c->request->param('alpha2'),

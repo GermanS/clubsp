@@ -2,12 +2,12 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Flight');
+use_ok('ClubSpain::Model::Flight');
 
 #call as class method
 {
     eval {
-        ClubSpain::Design::Flight->update();
+        ClubSpain::Model::Flight->update();
         fail('no exception thrown');
     };
 
@@ -24,7 +24,7 @@ use_ok('ClubSpain::Design::Flight');
 
 #object does not exist in database
 {
-    my $flight = ClubSpain::Design::Flight->new(
+    my $flight = ClubSpain::Model::Flight->new(
         id => 777,
         departure_airport_id => 1,
         destination_airport_id => 2,

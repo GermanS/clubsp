@@ -3,14 +3,14 @@ use Test::More tests => 8;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::Country');
+use_ok('ClubSpain::Model::Country');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
 
 ClubSpain::Test->init_schema();
 
-my $country = ClubSpain::Design::Country->new(
+my $country = ClubSpain::Model::Country->new(
     id       => 1,
     name     => 'Soviet union',
     alpha2   => 'su',

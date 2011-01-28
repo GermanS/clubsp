@@ -5,23 +5,22 @@ use utf8;
 
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
-use ClubSpain::Design::Country;
-use ClubSpain::Design::City;
-use ClubSpain::Design::Airport;
 
 sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(
         template     => 'backoffice/airport.tt2',
-        country_list => ClubSpain::Design::Country->list()
+        country_list => $c->model('Country')->list({})
     );
 };
 
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->stash(iterator => ClubSpain::Design::Airport->list({}));
+    $c->stash(
+        iterator => $c->model('Airport')->list({})
+    );
 };
 
 sub end :ActionClass('RenderView') {};
@@ -33,7 +32,7 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $port;
     eval {
-        $port = ClubSpain::Design::Airport->fetch_by_id($id);
+        $port = $c->model('Airport')->fetch_by_id($id);
         $c->stash( port => $port );
     };
 
@@ -66,7 +65,7 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
     eval {
-        ClubSpain::Design::Airport->delete($c->stash->{'port'}->id);
+        $c->model('Airport')->delete($c->stash->{'port'}->id);
     };
 
     if ($@) {
@@ -100,7 +99,7 @@ sub load_add_form :Private  {
     my ($self, $c) = @_;
 
     $c->stash->{'current_model_instance'} =
-        ClubSpain::Design::City->schema()->resultset('City');
+        $c->model('City')->schema()->resultset('City');
 
     my $form = $self->form();
     $form->load_config_filestem('backoffice/airport_form');
@@ -127,7 +126,7 @@ sub insert :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $port = ClubSpain::Design::Airport->new(
+        my $port = $c->model('Airport')->new(
             city_id  => $c->request->param('city_id'),
             iata     => $c->request->param('iata'),
             icao     => $c->request->param('icao'),
@@ -177,7 +176,7 @@ sub update :Private {
     my ($self, $c) = @_;
 
     eval {
-        my $port = ClubSpain::Design::Airport->new(
+        my $port = $c->model('Airport')->new(
             id          => $c->stash->{'port'}->id,
             city_id     => $c->request->param('city_id'),
             icao        => $c->request->param('icao'),
@@ -198,12 +197,12 @@ sub country :Local :Args(1) {
     my ($self, $c, $country_id) = @_;
 
     $c->stash(
-        selected_country => ClubSpain::Design::Country->fetch_by_id($country_id)
+        selected_country => $c->model('Country')->fetch_by_id($country_id)
     );
 
     unless ($c->stash->{'iterator'}) {
         $c->stash(
-            iterator => ClubSpain::Design::Airport->list(
+            iterator => $c->model('Airport')->list(
                 { 'city.country_id' => $country_id },
                 { join => 'city' }
             )
@@ -214,13 +213,13 @@ sub country :Local :Args(1) {
 sub city :Local :Args(1) {
     my ($self, $c, $city_id) = @_;
 
-    my $city = ClubSpain::Design::City->fetch_by_id($city_id);
+    my $city = $c->model('City')->fetch_by_id($city_id);
     $c->stash( selected_city => $city );
 
     $self->country($c, $city->country_id);
 
     $c->stash(
-        iterator => ClubSpain::Design::Airport->list({
+        iterator => $c->model('Airport')->list({
             city_id => $city_id
         })
     );

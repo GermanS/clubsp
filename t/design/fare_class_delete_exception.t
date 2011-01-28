@@ -3,11 +3,11 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::FareClass');
+use_ok('ClubSpain::Model::FareClass');
 
 {
     eval {
-        ClubSpain::Design::FareClass->delete(1000);
+        ClubSpain::Model::FareClass->delete(1000);
         fail('no exception thrown');
     };
 
@@ -23,7 +23,7 @@ use_ok('ClubSpain::Design::FareClass');
 }
 
 {
-    my $fareclass = ClubSpain::Design::FareClass->new(
+    my $fareclass = ClubSpain::Model::FareClass->new(
         id      => 23,
         code    => 'w',
         name    => 'foo bar',

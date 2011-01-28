@@ -3,7 +3,7 @@ use Test::More tests => 13;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Design::FareClass');
+use_ok('ClubSpain::Model::FareClass');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -12,7 +12,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
 {
-    my $fareclass = ClubSpain::Design::FareClass->fetch_by_id(1);
+    my $fareclass = ClubSpain::Model::FareClass->fetch_by_id(1);
     isa_ok($fareclass, 'ClubSpain::Schema::FareClass');
     is($fareclass->code, 'Y', 'got code');
     is($fareclass->name, 'Economy', 'got name');
@@ -22,7 +22,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #retrive
 {
-    my $fareclass = ClubSpain::Design::FareClass->new(
+    my $fareclass = ClubSpain::Model::FareClass->new(
         id          => 1,
         code        => 'x',
         name        => 'name',
@@ -39,7 +39,7 @@ my $schema = ClubSpain::Test->init_schema();
 #exception
 {
     eval {
-        ClubSpain::Design::FareClass->fetch_by_id(1000);
+        ClubSpain::Model::FareClass->fetch_by_id(1000);
         fail('no exception thrown');
     };
 
@@ -57,7 +57,7 @@ my $schema = ClubSpain::Test->init_schema();
 
 #exception
 {
-    my $fareclass = ClubSpain::Design::FareClass->new(
+    my $fareclass = ClubSpain::Model::FareClass->new(
         id          => 1000,
         code        => 'x',
         name        => 'name',
