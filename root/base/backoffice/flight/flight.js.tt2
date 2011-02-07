@@ -1,0 +1,41 @@
+<script type="text/javascript">
+    $(function() {
+
+        $("select[name='CountryOfDeparture']").bind('change', fireCountryOfDepartureChanged);
+        $("select[name='CityOfDeparture']").bind('change', fireCityOfDepartureChanged);
+        $("select[name='CountryOfArrival']").bind('change', fireCountryOfArrivalChanged);
+        $("select[name='CityOfArrival']").bind('change', fireCityOfArrivalChanged);
+
+
+        var element = $("select[name='CountryOfDeparture']");
+        makeRequest(REQ_CountryOfDeparture, {}, element);
+        var element = $("select[name='CountryOfArrival']");
+        makeRequest(REQ_CountryOfArrival, {}, element);
+
+
+    });
+
+    function fireCountryOfDepartureChanged() {
+        var value = $(this).attr('value');
+        var element = $("select[name='CityOfDeparture']");
+        makeRequest(REQ_CityOfDeparture, value , element);
+    }
+
+    function fireCityOfDepartureChanged() {
+        var value = $(this).attr('value');
+        var element = $("select[name='AirportOfDeparture']");
+        makeRequest(REQ_AirportOfDeparture, value , element);
+    }
+
+    function fireCountryOfArrivalChanged() {
+        var value = $(this).attr('value');
+        var element = $("select[name='CityOfArrival']");
+        makeRequest(REQ_CityOfArrival,  value, element);
+    }
+
+    function fireCityOfArrivalChanged() {
+        var value = $(this).attr('value');
+        var element = $("select[name='AirportOfArrival']");
+        makeRequest(REQ_AirportOfArrival, value , element);
+    }
+</script>

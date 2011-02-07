@@ -15,6 +15,10 @@ __PACKAGE__->add_columns(
         data_type         => 'integer',
         is_auto_increment => 1
     },
+    is_published => {
+        data_type      => 'integer',
+        is_nullable    => 0,
+    },
     departure_airport_id => {
         data_type      => 'integer',
         is_nullable    => 0,

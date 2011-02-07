@@ -1,0 +1,36 @@
+[% WRAPPER backoffice/page.tt2 javascript="backoffice/flight/flight.js.tt2" %]
+    <div id="bd">
+        <div id="yui-main">
+            <div class="yui-b">
+                <div class="yui-g">
+                    [% content %]
+                </div>
+            </div>
+        </div>
+        <div class="yui-b">
+            <form>
+                <fieldset title="Отправление">
+                    <label for="CountryOfDeparture">Страна отправления</label>
+                    <select name="CountryOfDeparture"></select>
+
+                    <label for="CityOfDeparture">Город отправления</label>
+                    <select name="CityOfDeparture"></select>
+
+                    <label for="AirportOfDeparture">Аэропорт отправления</label>
+                    <select name="AirportOfDeparture"></select>
+                </fieldset>
+                <fieldset title="Прибытие">
+                    <label for="CountryOfArrival">Страна прибытия</label>
+                    <select name="CountryOfArrival"></select>
+
+                    <label for="CityOfArrival">Город прибытия</label>
+                    <select name="CityOfArrival"></select>
+
+                    <label for="AirportOfArrival">Аэропорт прибытия</label>
+                    <select name="AirportOfArrival"></select>
+                </fieldset>
+                <button type="button">Показать</button>
+            </form>
+        </div>
+    </div>
+[% END %]

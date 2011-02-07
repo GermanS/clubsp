@@ -137,9 +137,9 @@ sub populate_schema {
     ]);
 
     my @flight = $schema->populate('Flight', [
-        [qw(departure_airport_id destination_airport_id airline_id code)],
-        [$airport[0]->id, $airport[3]->id, $airline[0]->id, 331],
-        [$airport[3]->id, $airport[0]->id, $airline[0]->id, 332],
+        [qw(is_published departure_airport_id destination_airport_id airline_id code)],
+        [1, $airport[0]->id, $airport[3]->id, $airline[0]->id, 331],
+        [1, $airport[3]->id, $airport[0]->id, $airline[0]->id, 332],
     ]);
 
     my @fareclass = $schema->populate('FareClass', [

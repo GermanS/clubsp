@@ -1,0 +1,4 @@
+[% WRAPPER backoffice/flight/flight_wrapper.tt2 %]
+    <p>[% message %]</p>
+    [% form %]
+[% END %]

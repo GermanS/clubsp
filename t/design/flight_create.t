@@ -1,4 +1,4 @@
-use Test::More tests => 13;
+use Test::More tests => 15;
 
 use strict;
 use warnings;
@@ -13,6 +13,7 @@ ClubSpain::Test->init_schema();
 #first insert
 {
     my $airline = ClubSpain::Model::Flight->new(
+        is_published            => 1,
         departure_airport_id    => 1,
         destination_airport_id  => 2,
         airline_id              => 1,
@@ -33,6 +34,7 @@ ClubSpain::Test->init_schema();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Flight');
+    is($result->is_published, 1, 'got is_published flag');
     is($result->departure_airport_id, 1, 'got departure airport');
     is($result->destination_airport_id, 2, 'got destination airport');
     is($result->airline_id, 1, 'got airline');
@@ -42,6 +44,7 @@ ClubSpain::Test->init_schema();
 #second addition
 {
     my $airline = ClubSpain::Model::Flight->new(
+        is_published            => 1,
         departure_airport_id    => 2,
         destination_airport_id  => 1,
         airline_id              => 1,
@@ -62,6 +65,7 @@ ClubSpain::Test->init_schema();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Flight');
+    is($result->is_published, 1, 'got is_published flag');
     is($result->departure_airport_id, 2, 'got departure airport');
     is($result->destination_airport_id, 1, 'got destination airport');
     is($result->airline_id, 1, 'got airline');
