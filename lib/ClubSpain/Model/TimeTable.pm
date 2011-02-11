@@ -10,6 +10,7 @@ use ClubSpain::Types;
 use ClubSpain::Exception;
 
 has 'id'                    => ( is => 'ro' );
+has 'is_published'          => ( is => 'ro', required => 1 );
 has 'flight_id'             => ( is => 'ro', required => 1 );
 has 'departure_date'        => ( is => 'ro', required => 1 );
 has 'departure_time'        => ( is => 'ro', required => 1 );
