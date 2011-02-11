@@ -1,41 +1,54 @@
 <script type="text/javascript">
     $(function() {
+        var CountryOfDeparture = $("select[name='CountryOfDeparture']");
+        var CityOfDeparture    = $("select[name='CityOfDeparture']");
+        var AirportOfDeparture = $("select[name='AirportOfDeparture']");
+        var CountryOfArrival   = $("select[name='CountryOfArrival']");
+        var CityOfArrival      = $("select[name='CityOfArrival']");
+        var AirportOfArrival   = $("select[name='AirportOfArrival']");
 
-        $("select[name='CountryOfDeparture']").bind('change', fireCountryOfDepartureChanged);
-        $("select[name='CityOfDeparture']").bind('change', fireCityOfDepartureChanged);
-        $("select[name='CountryOfArrival']").bind('change', fireCountryOfArrivalChanged);
-        $("select[name='CityOfArrival']").bind('change', fireCityOfArrivalChanged);
+        CountryOfDeparture.bind('change', fireCountryOfDepartureChanged);
+        CityOfDeparture.bind('change', fireCityOfDepartureChanged);
+        CountryOfArrival.bind('change', fireCountryOfArrivalChanged);
+        CityOfArrival.bind('change', fireCityOfArrivalChanged);
 
+        //Preselect
+        var _CountryOfDeparture = $("input[name='_CountryOfDeparture']");
+        var _CityOfDeparture    = $("input[name='_CityOfDeparture']");
+        var _AirportOfDeparture = $("input[name='_AirportOfDeparture']");
+        var _CountryOfArrival   = $("input[name='_CountryOfArrival']");
+        var _CityOfArrival      = $("input[name='_CityOfArrival']");
+        var _AirportOfArrival   = $("input[name='_AirportOfArrival']");
 
-        var element = $("select[name='CountryOfDeparture']");
-        makeRequest(REQ_CountryOfDeparture, {}, element);
-        var element = $("select[name='CountryOfArrival']");
-        makeRequest(REQ_CountryOfArrival, {}, element);
-
-
+        makeRequest(REQ_CountryOfDeparture, {}, CountryOfDeparture, _CountryOfDeparture.attr('value') );
+        makeRequest(REQ_CountryOfArrival, {}, CountryOfArrival, _CountryOfArrival.attr('value'));
     });
 
     function fireCountryOfDepartureChanged() {
         var value = $(this).attr('value');
         var element = $("select[name='CityOfDeparture']");
-        makeRequest(REQ_CityOfDeparture, value , element);
+        var initial = $("input[name='_CityOfDeparture']").attr("value");
+        makeRequest(REQ_CityOfDeparture, value , element, initial);
     }
 
     function fireCityOfDepartureChanged() {
         var value = $(this).attr('value');
         var element = $("select[name='AirportOfDeparture']");
-        makeRequest(REQ_AirportOfDeparture, value , element);
+        var initial = $("input[name='_AirportOfDeparture']").attr("value");
+        makeRequest(REQ_AirportOfDeparture, value , element, initial);
     }
 
     function fireCountryOfArrivalChanged() {
         var value = $(this).attr('value');
         var element = $("select[name='CityOfArrival']");
-        makeRequest(REQ_CityOfArrival,  value, element);
+        var initial = $("input[name='_CityOfArrival']").attr("value");
+        makeRequest(REQ_CityOfArrival, value, element, initial);
     }
 
     function fireCityOfArrivalChanged() {
         var value = $(this).attr('value');
         var element = $("select[name='AirportOfArrival']");
-        makeRequest(REQ_AirportOfArrival, value , element);
+        var initial = $("input[name='_AirportOfArrival']").attr("value");
+        makeRequest(REQ_AirportOfArrival, value , element, initial);
     }
 </script>

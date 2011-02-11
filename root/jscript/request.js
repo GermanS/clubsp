@@ -21,7 +21,16 @@ var service = new rpc.ServiceProxy(URL, {
     protocol: 'XML-RPC'
 });
 
-function makeRequest(method, params, element) {
+
+/**
+ * makeRequest(method, params, element, initialValue)
+ *
+ * запрос rpc метода с параметрами
+ * результат запроса записывается в element
+ * значение по умолчанию берется из initialValue
+ *
+ **/
+function makeRequest(method, params, element, initialValue) {
     var methodObject = service;
     var propChain = method.split(/\./);
     for(var j = 0; j+1 < propChain.length; j++){
@@ -35,7 +44,7 @@ function makeRequest(method, params, element) {
             //updateList(element, message);
         },
         onComplete: function(response) {
-            updateList(element, response.result);
+            updateList(element, initialValue, response.result);
         },
         onException:function(e){
             alert("Unable to request because: " + e);
@@ -50,13 +59,14 @@ function makeRequest(method, params, element) {
  * result - массив с идентификаторами и названиями элемента
  */
 
-function updateList(element, result) {
+function updateList(element, initialValue, result) {
     var options = '';
     $(result).each(function() {
         options += '<option value="' + $(this).attr('id') + '">' + $(this).attr('name') + '</option>';
     });
 
     element.html(options);
+    element.val(initialValue);
     element.attr('disabled', false);
     element.change();
 }

@@ -22,7 +22,6 @@
         <td class="icon">
             [% INCLUDE icons/is_published.tt2 href="/backoffice/flight/" object=flight %]
         </td>
-
         <td>
             <a href="/backoffice/flight/[% flight.id %]/edit">[% flight.airline.iata %] [% flight.code %]</a>
         </td>
@@ -30,7 +29,7 @@
             [% flight.airline.name %]
         </td>
         <td class="icon">
-            [% INCLUDE icons/delete.tt2 href="/backoffice/airline/$flight.id/delete" %]
+            [% INCLUDE icons/delete.tt2 href="/backoffice/flight/$flight.id/delete" %]
         </td>
     </tr>
 [% END %]
