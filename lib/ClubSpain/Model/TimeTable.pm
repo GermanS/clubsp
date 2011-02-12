@@ -19,4 +19,20 @@ has 'airplane_id'           => ( is => 'ro' );
 has 'departure_terminal_id' => ( is => 'ro' );
 has 'arrival_terminal_id'   => ( is => 'ro' );
 
+sub create {
+    my $self = shift;
+
+    $self->SUPER::create({
+        is_published    => $self->is_published,
+        flight_id       => $self->flight_id,
+        departure_date  => $self->departure_date,
+        departure_time  => $self->departure_time,
+        arrival_date    => $self->arrival_date,
+        arrival_time    => $self->arrival_time,
+        airplane_id     => $self->airplane_id,
+        departure_terminal_id   => $self->departure_terminal_id,
+        arrival_terminal_id     => $self->arrival_terminal_id,
+    });
+}
+
 1;
