@@ -48,4 +48,8 @@ __PACKAGE__->belongs_to('airline' => 'ClubSpain::Schema::Airline', 'airline_id')
 __PACKAGE__->belongs_to('departure_airport'   => 'ClubSpain::Schema::Airport', 'departure_airport_id');
 __PACKAGE__->belongs_to('destination_airport' => 'ClubSpain::Schema::Airport', 'destination_airport_id');
 
+__PACKAGE__->has_many(time_tables => 'ClubSpain::Schema::TimeTable',
+    {'foreign.flight_id' => 'self.id'}
+);
+
 1;

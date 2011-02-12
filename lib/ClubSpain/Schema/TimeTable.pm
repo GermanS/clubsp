@@ -15,6 +15,10 @@ __PACKAGE__->add_columns(
         data_type         => 'integer',
         is_auto_increment => 1
     },
+    is_published => {
+        data_type      => 'integer',
+        is_nullable    => 0,
+    },
     flight_id => {
         data_type      => 'integer',
         is_nullable    => 0,
@@ -58,5 +62,7 @@ __PACKAGE__->add_unique_constraint(on_flight_departure_date => [qw(flight_id dep
 
 __PACKAGE__->belongs_to('departure_terminal' => 'ClubSpain::Schema::Terminal', 'departure_terminal_id');
 __PACKAGE__->belongs_to('arrival_terminal'   => 'ClubSpain::Schema::Terminal', 'arrival_terminal_id');
+__PACKAGE__->belongs_to('flight'   => 'ClubSpain::Schema::Flight', 'flight_id');
+__PACKAGE__->belongs_to('airplane' => 'ClubSpain::Schema::Airplane', 'airplane_id');
 
 1;

@@ -46,4 +46,8 @@ __PACKAGE__->add_unique_constraint(on_country_id_name => [qw(manufacturer_id nam
 
 __PACKAGE__->belongs_to('manufacturer' => 'ClubSpain::Schema::Manufacturer', 'manufacturer_id');
 
+__PACKAGE__->has_many(time_tables => 'ClubSpain::Schema::TimeTable',
+    {'foreign.airplane_id' => 'self.id'}
+);
+
 1;

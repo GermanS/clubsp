@@ -3,11 +3,10 @@ use Moose;
 use namespace::autoclean;
 use utf8;
 use parent qw(ClubSpain::Model::Base);
-
-use Scalar::Util qw(blessed);
-use ClubSpain::Common qw(minify);
 use ClubSpain::Types;
-use ClubSpain::Exception;
+
+use MooseX::ClassAttribute;
+class_has '+source_name' => ( default => sub  { 'TimeTable' });
 
 has 'id'                    => ( is => 'ro' );
 has 'is_published'          => ( is => 'ro', required => 1 );
