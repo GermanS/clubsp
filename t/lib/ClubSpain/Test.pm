@@ -142,6 +142,26 @@ sub populate_schema {
         [1, $airport[3]->id, $airport[0]->id, $airline[0]->id, 332],
     ]);
 
+    my @timetables = $schema->populate('TimeTable', [
+        [qw(is_published
+            flight_id
+            airplane_id
+            departure_date
+            departure_time
+            arrival_date
+            arrival_time
+            departure_terminal_id
+            arrival_terminal_id)],
+       [1, $flight[0]->id, $airplane[2]->id, '2011-02-12', '10:00', '2011-02-12', '16:00', undef, undef],
+       [1, $flight[0]->id, $airplane[2]->id, '2011-02-19', '06:00', '2011-02-19', '08:00', undef, undef],
+       [1, $flight[0]->id, $airplane[2]->id, '2011-02-26', '06:00', '2011-02-26', '08:00', undef, undef],
+       [1, $flight[1]->id, $airplane[2]->id, '2011-02-12', '10:00', '2011-02-12', '16:00', undef, undef],
+       [1, $flight[1]->id, $airplane[2]->id, '2011-02-19', '10:00', '2011-02-19', '16:00', undef, undef],
+       [1, $flight[1]->id, $airplane[2]->id, '2011-02-26', '10:00', '2011-02-26', '16:00', undef, undef],
+    ]);
+
+
+
     my @fareclass = $schema->populate('FareClass', [
         [qw(code name is_published)],
         ['Y', 'Economy', 1],
