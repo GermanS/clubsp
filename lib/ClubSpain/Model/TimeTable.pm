@@ -35,4 +35,22 @@ sub create {
     });
 }
 
+sub update {
+    my $self = shift;
+
+    $self->check_for_class_method();
+
+    return $self->SUPER::update({
+        is_published    => $self->is_published,
+        flight_id       => $self->flight_id,
+        departure_date  => $self->departure_date,
+        departure_time  => $self->departure_time,
+        arrival_date    => $self->arrival_date,
+        arrival_time    => $self->arrival_time,
+        airplane_id     => $self->airplane_id,
+        departure_terminal_id   => $self->departure_terminal_id,
+        arrival_terminal_id     => $self->arrival_terminal_id,
+    });
+}
+
 1;
