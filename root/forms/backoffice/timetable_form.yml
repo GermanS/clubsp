@@ -1,0 +1,50 @@
+---
+id: timetableForm
+
+load_config_file:
+  - backoffice/airplane_popup.yml
+
+elements:
+  - type: Hidden
+    name: CityOfDeparture
+
+  - type: Hidden
+    name: CityOfArrival
+
+  - type: Hidden
+    name: Flight
+
+  - type: Text
+    name: DateOfDeparture
+    label: Дата отправления (ГГГГ-ММ-ДД)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: TimeOfDeparture
+    label: Время отправления (ЧЧ:ММ)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: DateOfArrival
+    label: Дата прибытия (ГГГГ-ММ-ДД)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: TimeOfArrival
+    label: Время прибытия (ЧЧ:ММ)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Submit
+    name: submit

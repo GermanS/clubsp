@@ -1,0 +1,35 @@
+<script type="text/javascript">
+    $(function() {
+        var CityOfDeparture = $("select[name='CityOfDeparture']");
+        var CityOfArrival   = $("select[name='CityOfArrival']");
+        var Flight          = $("select[name='Flight']");
+
+        CityOfDeparture.bind('change', fireCityOfDepartureChanged);
+        CityOfArrival.bind('change', fireCityOfArrivalChanged);
+
+        //Preselect
+        var _CityOfDeparture    = $("input[name='_CityOfDeparture']");
+        var _CityOfArrival      = $("input[name='_CityOfArrival']");
+        var _Flight             = $("input[name='_Flight']");
+
+        makeRequest(Timetable_getCitiesOfDeparture, {}, CityOfDeparture, _CityOfDeparture.attr('value') );
+    });
+
+
+    function fireCityOfDepartureChanged() {
+        var value = $(this).attr('value');
+        var element = $("select[name='CityOfArrival']");
+        var initial = $("input[name='_CityOfArrival']").attr("value");
+        var param = $("select[name='CityOfDeparture']").attr("value")
+        makeRequest(Timetable_getCitiesOfArrival, param, element, initial);
+    }
+
+    function fireCityOfArrivalChanged() {
+        var value = $(this).attr('value');
+        var element = $("select[name='Flight']");
+        var initial = $("input[name='_Flight']").attr("value");
+        var departure = $("select[name='CityOfDeparture']").attr("value");
+        var arrival   = $("select[name='CityOfArrival']").attr("value");
+        makeRequest(Timetable_searchFlights, { cityOfDeparture: departure, cityOfArrival: arrival } , element, initial);
+    }
+</script>

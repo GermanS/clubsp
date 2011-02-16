@@ -1,0 +1,54 @@
+[% WRAPPER backoffice/timetable/timetable_wrapper.tt2 %]
+    [% IF iterator.count %]
+        <div id="browser">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th> </th>
+                    <th colspan="2">Отправление</th>
+                    <th colspan="2">Прибытие</th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+                <tr>
+                    <th> </th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Самолет</th>
+                    <th> </th>
+                <tr>
+                [% WHILE (item = iterator.next) %]
+                    [% INCLUDE row timetable = item %]
+                [% END %]
+            </table>
+        </div>
+    [% END %]
+[% END %]
+
+
+[% BLOCK row %]
+    <tr>
+        <td class="icon">
+            [% INCLUDE icons/is_published.tt2 href="/backoffice/timetable/" object=timetable %]
+        </td>
+        <td>
+            [% timetable.departure_date %]
+        </td>
+        <td>
+            [% timetable.departure_time %]
+        </td>
+        <td>
+            [% timetable.arrival_date %]
+        </td>
+        <td>
+            [% timetable.arrival_time %]
+        </td>
+        <td>
+            [% timetable.airplane.name %]
+        </td>
+        <td class="icon">
+            [% INCLUDE icons/delete.tt2 href="/backoffice/timetable/$timetable.id/delete" %]
+        </td>
+    </tr>
+[% END %]

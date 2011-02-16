@@ -6,13 +6,21 @@ var REQ_CountryOfArrival   = 'xmlrpc.flight.getCountryOfArrival'
 var REQ_CityOfArrival      = 'xmlrpc.flight.getCityOfArrival';
 var REQ_AirportOfArrival   = 'xmlrpc.flight.getAirportOfArrival';
 
+/* Timetable requests */
+var Timetable_getCitiesOfDeparture  = 'xmlrpc.flight.timetable.getCitiesOfDeparture';
+var Timetable_getCitiesOfArrival    = 'xmlrpc.flight.timetable.getCitiesOfArrival';
+var Timetable_searchFlights         = 'xmlrpc.flight.timetable.searchFlights';
+
 var METHODS = [
     REQ_CountryOfDeparture,
     REQ_CityOfDeparture,
     REQ_AirportOfDeparture,
     REQ_CountryOfArrival,
     REQ_CityOfArrival,
-    REQ_AirportOfArrival
+    REQ_AirportOfArrival,
+    Timetable_getCitiesOfDeparture,
+    Timetable_getCitiesOfArrival,
+    Timetable_searchFlights
 ];
 var service = new rpc.ServiceProxy(URL, {
     asynchronous: true,
