@@ -11,13 +11,13 @@ use ClubSpain::Test;
 my $schema = ClubSpain::Test->init_schema();
 my $count = $schema->resultset('Terminal')->search({})->count;
 
-my $airline = ClubSpain::Model::Terminal->new(
+my $terminal = ClubSpain::Model::Terminal->new(
     airport_id   => 1,
     name         => 'xxxxx',
     is_published => 0,
 );
 
-my $object = $airline->create();
+my $object = $terminal->create();
 
 isa_ok($object, 'ClubSpain::Schema::Terminal');
 is($object->airport_id, 1, 'got airport');
