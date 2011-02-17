@@ -65,4 +65,6 @@ __PACKAGE__->belongs_to('arrival_terminal'   => 'ClubSpain::Schema::Terminal', '
 __PACKAGE__->belongs_to('flight'   => 'ClubSpain::Schema::Flight', 'flight_id');
 __PACKAGE__->belongs_to('airplane' => 'ClubSpain::Schema::Airplane', 'airplane_id');
 
+__PACKAGE__->has_many('segments' => 'ClubSpain::Schema::Segment', {'foreign.timetable_id' => 'self.id'});
+
 1;
