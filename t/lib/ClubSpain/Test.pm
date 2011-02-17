@@ -160,12 +160,17 @@ sub populate_schema {
        [1, $flight[1]->id, $airplane[2]->id, '2011-02-26', '10:00', '2011-02-26', '16:00', undef, undef],
     ]);
 
-
-
     my @fareclass = $schema->populate('FareClass', [
         [qw(code name is_published)],
         ['Y', 'Economy', 1],
         ['C', 'Business', 1],
+    ]);
+
+    my @fare = $schema->populate('Fare', [
+        [qw(fare)],
+        [100],
+        [1000],
+        [10000]
     ]);
 }
 
