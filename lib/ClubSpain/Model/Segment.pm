@@ -8,6 +8,7 @@ use ClubSpain::Types;
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Segment' });
 
+has 'id'            => ( is => 'ro' );
 has 'fare_class_id' => ( is => 'ro', required => 1 );
 has 'fare_id'       => ( is => 'ro', required => 1 );
 has 'timetable_id'  => ( is => 'ro', required => 1 );
