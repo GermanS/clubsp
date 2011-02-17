@@ -142,7 +142,7 @@ sub populate_schema {
         [1, $airport[3]->id, $airport[0]->id, $airline[0]->id, 332],
     ]);
 
-    my @timetables = $schema->populate('TimeTable', [
+    my @timetable = $schema->populate('TimeTable', [
         [qw(is_published
             flight_id
             airplane_id
@@ -171,6 +171,14 @@ sub populate_schema {
         [100],
         [1000],
         [10000]
+    ]);
+
+    my @segment = $schema->populate('Segment', [
+        [qw(fare_class_id fare_id timetable_id)],
+        [$fareclass[0]->id, $fare[0]->id, $timetable[0]->id],
+        [$fareclass[0]->id, $fare[0]->id, $timetable[1]->id],
+        [$fareclass[0]->id, $fare[1]->id, $timetable[0]->id],
+        [$fareclass[0]->id, $fare[1]->id, $timetable[2]->id],
     ]);
 }
 
