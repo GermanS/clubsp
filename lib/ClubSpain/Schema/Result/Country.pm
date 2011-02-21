@@ -1,11 +1,8 @@
-package ClubSpain::Schema::Country;
-
+package ClubSpain::Schema::Result::Country;
 use strict;
 use warnings;
+use parent qw(ClubSpain::Schema::Result);
 
-BEGIN {
-    use base qw(DBIx::Class);
-};
 
 __PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('country');
@@ -46,8 +43,8 @@ __PACKAGE__->add_unique_constraint(on_alpha2  => [qw(alpha2)]);
 __PACKAGE__->add_unique_constraint(on_alpha3  => [qw(alpha3)]);
 __PACKAGE__->add_unique_constraint(on_numerics => [qw(numerics)]);
 
-__PACKAGE__->has_many(cities => 'ClubSpain::Schema::City',
-    {'foreign.country_id' => 'self.id'}
+__PACKAGE__->has_many(
+    cities => 'ClubSpain::Schema::Result::City', {'foreign.country_id' => 'self.id'}
 );
 
 1;

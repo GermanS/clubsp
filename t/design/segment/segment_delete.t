@@ -19,7 +19,7 @@ my $segment = ClubSpain::Model::Segment->new(
 
 my $object = $segment->create();
 
-isa_ok($object, 'ClubSpain::Schema::Segment');
+isa_ok($object, 'ClubSpain::Schema::Result::Segment');
 is($object->fare_class_id, 1, 'got fare class id');
 is($object->fare_id,       3, 'got fare id');
 is($object->timetable_id,  1, 'got timetable id');

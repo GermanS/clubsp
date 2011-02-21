@@ -1,11 +1,8 @@
-package ClubSpain::Schema::Fare;
-
+package ClubSpain::Schema::Result::Fare;
 use strict;
 use warnings;
+use parent qw(ClubSpain::Schema::Result);
 
-BEGIN {
-    use base qw(DBIx::Class);
-};
 
 __PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('fare');
@@ -22,6 +19,8 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('id');
-__PACKAGE__->has_many('segments' => 'ClubSpain::Schema::Segment', {'foreign.fare_id' => 'self.id'});
+__PACKAGE__->has_many(
+    'segments' => 'ClubSpain::Schema::Result::Segment', {'foreign.fare_id' => 'self.id'}
+);
 
 1;

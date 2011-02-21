@@ -17,7 +17,7 @@ my $fare = ClubSpain::Model::Fare->new(
 
 my $object = $fare->create();
 
-isa_ok($object, 'ClubSpain::Schema::Fare');
+isa_ok($object, 'ClubSpain::Schema::Result::Fare');
 is($object->fare, 102, 'got fare');
 
 

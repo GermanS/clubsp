@@ -1,11 +1,8 @@
-package ClubSpain::Schema::TimeTable;
-
+package ClubSpain::Schema::Result::TimeTable;
 use strict;
 use warnings;
+use parent qw(ClubSpain::Schema::Result);
 
-BEGIN {
-    use base qw(DBIx::Class);
-};
 
 __PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('timetable');
@@ -60,11 +57,22 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_flight_departure_date => [qw(flight_id departure_date arrival_date)]);
 
-__PACKAGE__->belongs_to('departure_terminal' => 'ClubSpain::Schema::Terminal', 'departure_terminal_id');
-__PACKAGE__->belongs_to('arrival_terminal'   => 'ClubSpain::Schema::Terminal', 'arrival_terminal_id');
-__PACKAGE__->belongs_to('flight'   => 'ClubSpain::Schema::Flight', 'flight_id');
-__PACKAGE__->belongs_to('airplane' => 'ClubSpain::Schema::Airplane', 'airplane_id');
+__PACKAGE__->belongs_to(
+    'departure_terminal' => 'ClubSpain::Schema::Result::Terminal', 'departure_terminal_id'
+);
+__PACKAGE__->belongs_to(
+    'arrival_terminal'   => 'ClubSpain::Schema::Result::Terminal', 'arrival_terminal_id'
+);
+__PACKAGE__->belongs_to(
+    'flight'   => 'ClubSpain::Schema::Result::Flight', 'flight_id'
+);
+__PACKAGE__->belongs_to(
+    'airplane' => 'ClubSpain::Schema::Result::Airplane', 'airplane_id'
+);
 
-__PACKAGE__->has_many('segments' => 'ClubSpain::Schema::Segment', {'foreign.timetable_id' => 'self.id'});
+__PACKAGE__->has_many(
+    'segments' => 'ClubSpain::Schema::Result::Segment', {'foreign.timetable_id' => 'self.id'}
+);
+
 
 1;

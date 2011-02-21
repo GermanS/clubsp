@@ -19,7 +19,7 @@ my $fareclass = ClubSpain::Model::FareClass->new(
 
 my $object = $fareclass->create();
 
-isa_ok($object, 'ClubSpain::Schema::FareClass');
+isa_ok($object, 'ClubSpain::Schema::Result::FareClass');
 is($object->code, 'x', 'got code');
 is($object->name, 'xxxxx', 'got name');
 is($object->is_published, 0, 'got is published');

@@ -19,7 +19,7 @@ my $city = ClubSpain::Model::City->new(
 
 my $result = $city->update();
 
-isa_ok($result, 'ClubSpain::Schema::City');
+isa_ok($result, 'ClubSpain::Schema::Result::City');
 is($result->id, 1, 'got id');
 is($result->country_id, 2, 'got country id');
 is($result->name, 'New City name', 'got name');

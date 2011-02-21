@@ -18,7 +18,7 @@ my $port = ClubSpain::Model::Airport->new(
 
 my $result = $port->update();
 
-isa_ok($result, 'ClubSpain::Schema::Airport');
+isa_ok($result, 'ClubSpain::Schema::Result::Airport');
 is($result->id, 1, 'got id');
 is($result->city_id, 2, 'got city id');
 is($result->iata, 'zzz', 'got iata code');

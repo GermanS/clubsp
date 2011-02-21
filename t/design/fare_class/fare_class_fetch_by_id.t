@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $fareclass = ClubSpain::Model::FareClass->fetch_by_id(1);
-    isa_ok($fareclass, 'ClubSpain::Schema::FareClass');
+    isa_ok($fareclass, 'ClubSpain::Schema::Result::FareClass');
     is($fareclass->code, 'Y', 'got code');
     is($fareclass->name, 'Economy', 'got name');
     is($fareclass->is_published, 1, 'got is published');
@@ -30,7 +30,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $fareclass->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::FareClass');
+    isa_ok($object, 'ClubSpain::Schema::Result::FareClass');
     is($object->code, 'Y', 'got code');
     is($object->name, 'Economy', 'got name');
     is($object->is_published, 1, 'got is published');

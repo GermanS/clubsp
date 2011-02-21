@@ -1,11 +1,8 @@
-package ClubSpain::Schema::Airline;
-
+package ClubSpain::Schema::Result::Airline;
 use strict;
 use warnings;
+use parent qw(ClubSpain::Schema::Result);
 
-BEGIN {
-    use base qw(DBIx::Class);
-};
 
 __PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('airline');
@@ -39,6 +36,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_icao => [qw(icao)]);
 
-__PACKAGE__->has_many( flight => 'ClubSpain::Schema::Flight', {'foreign.airline_id' => 'self.id'} );
+__PACKAGE__->has_many(
+    flight => 'ClubSpain::Schema::Result::Flight', {'foreign.airline_id' => 'self.id'}
+);
 
 1;

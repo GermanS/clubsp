@@ -20,7 +20,7 @@ my $airline = ClubSpain::Model::Airline->new(
 
 my $object = $airline->create();
 
-isa_ok($object, 'ClubSpain::Schema::Airline');
+isa_ok($object, 'ClubSpain::Schema::Result::Airline');
 is($object->iata, 'xx', 'got iata code');
 is($object->icao, 'xxx', 'got icao code');
 is($object->name, 'xx xxx', 'got name');

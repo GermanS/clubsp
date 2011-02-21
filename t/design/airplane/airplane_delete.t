@@ -21,7 +21,7 @@ my $airplane = ClubSpain::Model::Airplane->new(
 
 my $object = $airplane->create();
 
-isa_ok($object, 'ClubSpain::Schema::Airplane');
+isa_ok($object, 'ClubSpain::Schema::Result::Airplane');
 is($object->manufacturer_id, 1, 'got manufacturer code');
 is($object->iata, 'xxx', 'got iata code');
 is($object->icao, 'xxxx', 'got icao code');

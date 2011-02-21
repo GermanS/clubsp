@@ -22,7 +22,7 @@ my $article = ClubSpain::Model::Article->new(
 
 my $result = $article->update();
 
-isa_ok($result, 'ClubSpain::Schema::Article');
+isa_ok($result, 'ClubSpain::Schema::Result::Article');
 is($result->id, 1, 'got id');
 is($result->parent_id, 0, 'got parent id');
 is($result->weight, 10, 'got weight');

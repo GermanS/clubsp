@@ -16,7 +16,7 @@ my $terminal = ClubSpain::Model::Terminal->new(
 
 my $result = $terminal->update();
 
-isa_ok($result, 'ClubSpain::Schema::Terminal');
+isa_ok($result, 'ClubSpain::Schema::Result::Terminal');
 is($result->id, 1, 'got id');
 is($result->airport_id, 1, 'got icao code');
 is($result->name, 'New Terminal name', 'got name');

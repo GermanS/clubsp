@@ -17,7 +17,7 @@ my $airline = ClubSpain::Model::Airline->new(
 
 my $result = $airline->update();
 
-isa_ok($result, 'ClubSpain::Schema::Airline');
+isa_ok($result, 'ClubSpain::Schema::Result::Airline');
 is($result->id, 1, 'got id');
 is($result->iata, 'zz', 'got iata code');
 is($result->icao, 'ccc', 'got icao code');

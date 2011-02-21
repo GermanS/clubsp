@@ -17,7 +17,7 @@ my $city = ClubSpain::Model::City->new(
     is_published => 1,
 );
 my $object = $city->create();
-isa_ok($object, 'ClubSpain::Schema::City');
+isa_ok($object, 'ClubSpain::Schema::Result::City');
 is($object->country_id, 1, 'got country id');
 is($object->name, 'New Vasuki', 'got name');
 is($object->is_published, 1, 'got is_published');

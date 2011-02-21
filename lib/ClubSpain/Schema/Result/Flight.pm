@@ -1,11 +1,8 @@
-package ClubSpain::Schema::Flight;
-
+package ClubSpain::Schema::Result::Flight;
 use strict;
 use warnings;
+use parent qw(ClubSpain::Schema::Result);
 
-BEGIN {
-    use base qw(DBIx::Class);
-};
 
 __PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('flight');
@@ -44,12 +41,18 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_primary_key => [qw(departure_airport_id destination_airport_id airline_id code)]);
 
-__PACKAGE__->belongs_to('airline' => 'ClubSpain::Schema::Airline', 'airline_id');
-__PACKAGE__->belongs_to('departure_airport'   => 'ClubSpain::Schema::Airport', 'departure_airport_id');
-__PACKAGE__->belongs_to('destination_airport' => 'ClubSpain::Schema::Airport', 'destination_airport_id');
+__PACKAGE__->belongs_to(
+    'airline' => 'ClubSpain::Schema::Result::Airline', 'airline_id'
+);
+__PACKAGE__->belongs_to(
+    'departure_airport'   => 'ClubSpain::Schema::Result::Airport', 'departure_airport_id'
+);
+__PACKAGE__->belongs_to(
+    'destination_airport' => 'ClubSpain::Schema::Result::Airport', 'destination_airport_id'
+);
 
-__PACKAGE__->has_many(time_tables => 'ClubSpain::Schema::TimeTable',
-    {'foreign.flight_id' => 'self.id'}
+__PACKAGE__->has_many(
+    time_tables => 'ClubSpain::Schema::Result::TimeTable', {'foreign.flight_id' => 'self.id'}
 );
 
 1;

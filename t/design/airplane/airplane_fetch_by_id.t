@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $airplane = ClubSpain::Model::Airplane->fetch_by_id(1);
-    isa_ok($airplane, 'ClubSpain::Schema::Airplane');
+    isa_ok($airplane, 'ClubSpain::Schema::Result::Airplane');
     is($airplane->manufacturer_id, 2, 'got manufacturer code');
     is($airplane->iata, '318', 'got iata code');
     is($airplane->icao, 'A318', 'got icao code');

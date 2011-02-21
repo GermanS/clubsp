@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $fare = ClubSpain::Model::Fare->fetch_by_id(1);
-    isa_ok($fare, 'ClubSpain::Schema::Fare');
+    isa_ok($fare, 'ClubSpain::Schema::Result::Fare');
     is($fare->fare, 100, 'got  fare');
 }
 
@@ -26,7 +26,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $fare->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::Fare');
+    isa_ok($object, 'ClubSpain::Schema::Result::Fare');
     is($object->fare, 100, 'got fare');
 }
 

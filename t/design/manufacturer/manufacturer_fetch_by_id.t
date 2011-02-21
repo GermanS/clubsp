@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $manufacturer = ClubSpain::Model::Manufacturer->fetch_by_id(2);
-    isa_ok($manufacturer, 'ClubSpain::Schema::Manufacturer');
+    isa_ok($manufacturer, 'ClubSpain::Schema::Result::Manufacturer');
     is($manufacturer->code, 'AIRBUS', 'got  code');
     is($manufacturer->name, 'Airbus SAS', 'got name');
 }
@@ -28,7 +28,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $manufacturer->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::Manufacturer');
+    isa_ok($object, 'ClubSpain::Schema::Result::Manufacturer');
     is($object->code, 'AIRBUS', 'got  code');
     is($object->name, 'Airbus SAS', 'got name');
 }

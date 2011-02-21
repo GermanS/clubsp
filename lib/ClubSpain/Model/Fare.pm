@@ -11,8 +11,6 @@ class_has '+source_name' => ( default => sub  { 'Fare' });
 has 'id'            => ( is => 'ro' );
 has 'fare'          => ( is => 'ro', required => 1 );
 
-#has 'segments'      => { is => 'ro', required => 1, isa => 'ArreyRef' };
-
 sub create {
     my $self = shift;
 

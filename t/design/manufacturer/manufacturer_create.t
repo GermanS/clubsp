@@ -30,7 +30,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Manufacturer');
+    isa_ok($result, 'ClubSpain::Schema::Result::Manufacturer');
     is($result->code, 'xxx', 'got code');
     is($result->name, 'xxx xxxx', 'got name');
 }
@@ -55,7 +55,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Manufacturer');
+    isa_ok($result, 'ClubSpain::Schema::Result::Manufacturer');
     is($result->code, 'yyy', 'got icao code');
     is($result->name, 'yyy yyyy', 'got name');
 }

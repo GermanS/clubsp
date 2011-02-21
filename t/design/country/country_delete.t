@@ -18,7 +18,7 @@ my $country = ClubSpain::Model::Country->new(
     is_published => 1,
 );
 my $object = $country->create();
-isa_ok($object, 'ClubSpain::Schema::Country');
+isa_ok($object, 'ClubSpain::Schema::Result::Country');
 is($object->name, 'Soviet Union', 'got name');
 is($object->alpha2, 'su', 'got alpha2');
 is($object->alpha3, 'suu', 'got aplha3');

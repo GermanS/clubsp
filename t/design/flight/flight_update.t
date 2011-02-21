@@ -18,7 +18,7 @@ my $flight = ClubSpain::Model::Flight->new(
 
 my $result = $flight->update();
 
-isa_ok($result, 'ClubSpain::Schema::Flight');
+isa_ok($result, 'ClubSpain::Schema::Result::Flight');
 is($result->id, 1, 'got id');
 is($result->is_published, 0, 'got is published');
 is($result->departure_airport_id, 2, 'got departure airport');

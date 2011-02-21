@@ -31,7 +31,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Segment');
+    isa_ok($result, 'ClubSpain::Schema::Result::Segment');
     is($result->fare_class_id, 1, 'got fare class id');
     is($result->fare_id,       1, 'got fare id');
     is($result->timetable_id,  1, 'got timetable id');
@@ -58,7 +58,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Segment');
+    isa_ok($result, 'ClubSpain::Schema::Result::Segment');
     is($result->fare_class_id, 2, 'got fare class id');
     is($result->fare_id,       1, 'got fare id');
     is($result->timetable_id,  2, 'got timetable id');

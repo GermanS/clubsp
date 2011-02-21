@@ -34,7 +34,7 @@ ClubSpain::Test->init_schema( no_populate => 1 );
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Article');
+    isa_ok($result, 'ClubSpain::Schema::Result::Article');
     is($result->parent_id, 0, 'got parent id');
     is($result->is_published, 1, 'got is_published');
     is($result->weight, 0, 'got weight');
@@ -67,7 +67,7 @@ ClubSpain::Test->init_schema( no_populate => 1 );
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Article');
+    isa_ok($result, 'ClubSpain::Schema::Result::Article');
     is($result->parent_id, 0, 'got parent id');
     is($result->is_published, 0, 'got is_published');
     is($result->weight, 1, 'got weight');

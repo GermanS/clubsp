@@ -31,7 +31,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::FareClass');
+    isa_ok($result, 'ClubSpain::Schema::Result::FareClass');
     is($result->code, 'x', 'got code');
     is($result->name, 'name', 'got name');
     is($result->is_published, 1, 'got is_published');
@@ -58,7 +58,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::FareClass');
+    isa_ok($result, 'ClubSpain::Schema::Result::FareClass');
     is($result->code, 'J', 'got code');
     is($result->name, 'yyyy', 'got name');
     is($result->is_published, 1, 'got is_published');

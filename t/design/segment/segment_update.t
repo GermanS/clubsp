@@ -16,7 +16,7 @@ my $segment = ClubSpain::Model::Segment->new(
 
 my $result = $segment->update();
 
-isa_ok($result, 'ClubSpain::Schema::Segment');
+isa_ok($result, 'ClubSpain::Schema::Result::Segment');
 is($result->id, 1, 'got id');
 is($result->fare_class_id, 2, 'got fare class id');
 is($result->fare_id,       2, 'got fare id');

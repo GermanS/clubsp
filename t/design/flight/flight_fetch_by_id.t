@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $flight = ClubSpain::Model::Flight->fetch_by_id(1);
-    isa_ok($flight, 'ClubSpain::Schema::Flight');
+    isa_ok($flight, 'ClubSpain::Schema::Result::Flight');
     is($flight->is_published, 1, 'got is_published');
     is($flight->departure_airport_id, 1, 'geo departure airport');
     is($flight->destination_airport_id, 4, 'got destination airport');
@@ -34,7 +34,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $flight->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::Flight');
+    isa_ok($object, 'ClubSpain::Schema::Result::Flight');
     is($object->is_published, 1, 'got is_published');
     is($object->departure_airport_id,   4,   'got departure airport');
     is($object->destination_airport_id, 1,   'got destination airport');

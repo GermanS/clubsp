@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $segment = ClubSpain::Model::Segment->fetch_by_id(1);
-    isa_ok($segment, 'ClubSpain::Schema::Segment');
+    isa_ok($segment, 'ClubSpain::Schema::Result::Segment');
     is($segment->fare_class_id, 1, 'got fare class id');
     is($segment->fare_id,       1, 'got fare id');
     is($segment->timetable_id,  1, 'got timetable id');
@@ -30,7 +30,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $segment->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::Segment');
+    isa_ok($object, 'ClubSpain::Schema::Result::Segment');
     is($object->fare_class_id, 1, 'got fare class id');
     is($object->fare_id,       1, 'got fare id');
     is($object->timetable_id,  1, 'got timetable id');

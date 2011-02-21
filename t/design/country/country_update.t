@@ -21,7 +21,7 @@ my $country = ClubSpain::Model::Country->new(
 
 my $result = $country->update();
 
-isa_ok($result, 'ClubSpain::Schema::Country');
+isa_ok($result, 'ClubSpain::Schema::Result::Country');
 is($result->id, 1, 'got id');
 is($result->name, 'Soviet union', 'got name');
 is($result->alpha2, 'su', 'got alpha2');

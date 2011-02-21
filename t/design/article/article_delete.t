@@ -21,7 +21,7 @@ my $article = ClubSpain::Model::Article->new(
 
 my $object = $article->create();
 
-isa_ok($object, 'ClubSpain::Schema::Article');
+isa_ok($object, 'ClubSpain::Schema::Result::Article');
 is($object->parent_id, 0, 'got parent id');
 is($object->weight, 0, 'got weight');
 is($object->is_published, 0, 'got is published');

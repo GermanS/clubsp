@@ -33,7 +33,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Flight');
+    isa_ok($result, 'ClubSpain::Schema::Result::Flight');
     is($result->is_published, 1, 'got is_published flag');
     is($result->departure_airport_id, 1, 'got departure airport');
     is($result->destination_airport_id, 2, 'got destination airport');
@@ -64,7 +64,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Flight');
+    isa_ok($result, 'ClubSpain::Schema::Result::Flight');
     is($result->is_published, 1, 'got is_published flag');
     is($result->departure_airport_id, 2, 'got departure airport');
     is($result->destination_airport_id, 1, 'got destination airport');

@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $timetable = ClubSpain::Model::TimeTable->fetch_by_id(1);
-    isa_ok($timetable, 'ClubSpain::Schema::TimeTable');
+    isa_ok($timetable, 'ClubSpain::Schema::Result::TimeTable');
     is($timetable->is_published, 1, 'got is published flag');
     is($timetable->flight_id, 1, 'got flight id');
     is($timetable->airplane_id, 3, 'got airplane id');
@@ -42,7 +42,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $timetable->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::TimeTable');
+    isa_ok($object, 'ClubSpain::Schema::Result::TimeTable');
     is($object->is_published, 1, 'got is published flag');
     is($object->flight_id, 1, 'got flight id');
     is($object->airplane_id, 3, 'got airplane id');

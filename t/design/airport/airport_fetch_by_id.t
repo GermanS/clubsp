@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $port = ClubSpain::Model::Airport->fetch_by_id(1);
-    isa_ok($port, 'ClubSpain::Schema::Airport');
+    isa_ok($port, 'ClubSpain::Schema::Result::Airport');
     is($port->city_id, 1, 'got city id');
     is($port->iata, 'DME', 'got iata code');
     is($port->icao, 'UUDD', 'got icao code');
@@ -34,7 +34,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $port->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::Airport');
+    isa_ok($object, 'ClubSpain::Schema::Result::Airport');
     is($object->city_id, 1, 'got city id');
     is($object->iata, 'DME', 'got iata');
     is($object->icao, 'UUDD', 'got icao');

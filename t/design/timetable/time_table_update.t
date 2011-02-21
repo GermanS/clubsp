@@ -22,7 +22,7 @@ my $timetable = ClubSpain::Model::TimeTable->new(
 
 my $result = $timetable->update();
 
-isa_ok($result, 'ClubSpain::Schema::TimeTable');
+isa_ok($result, 'ClubSpain::Schema::Result::TimeTable');
 is($result->id, 1, 'got id');
 is($result->is_published, 0, 'got is published flag');
 is($result->flight_id, 2, 'got flight id');

@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $country = ClubSpain::Model::Country->fetch_by_id(1);
-    isa_ok($country, 'ClubSpain::Schema::Country');
+    isa_ok($country, 'ClubSpain::Schema::Result::Country');
     is($country->name, 'Russia', 'got name');
     is($country->alpha2, 'ru', 'got alpha2');
     is($country->alpha3, 'rus', 'got alpha3');
@@ -33,7 +33,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $country->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::Country');
+    isa_ok($object, 'ClubSpain::Schema::Result::Country');
     is($object->id, 1, 'got id');
     is($object->name, 'Russia', 'got name');
     is($object->alpha2, 'ru', 'got alpha2');

@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $city = ClubSpain::Model::City->fetch_by_id(1);
-    isa_ok($city, 'ClubSpain::Schema::City');
+    isa_ok($city, 'ClubSpain::Schema::Result::City');
     is($city->country_id, 1, 'got country id');
     is($city->name, 'Moscow', 'got name');
     is($city->is_published, 1, 'got is_published');
@@ -29,7 +29,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $city->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::City');
+    isa_ok($object, 'ClubSpain::Schema::Result::City');
     is($object->id, 1, 'got id');
     is($object->country_id, 1, 'got country id');
     is($object->name, 'Moscow', 'got name');

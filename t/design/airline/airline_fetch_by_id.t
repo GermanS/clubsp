@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $airline = ClubSpain::Model::Airline->fetch_by_id(1);
-    isa_ok($airline, 'ClubSpain::Schema::Airline');
+    isa_ok($airline, 'ClubSpain::Schema::Result::Airline');
     is($airline->iata, 'NN', 'got iata code');
     is($airline->icao, 'MOV', 'got icao code');
     is($airline->name, 'VIM Airlines', 'got name');
@@ -32,7 +32,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $airline->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::Airline');
+    isa_ok($object, 'ClubSpain::Schema::Result::Airline');
     is($object->iata, 'NN', 'got iata');
     is($object->icao, 'MOV', 'got icao');
     is($object->name, 'VIM Airlines', 'got name');

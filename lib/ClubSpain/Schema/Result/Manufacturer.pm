@@ -1,11 +1,8 @@
-package ClubSpain::Schema::Manufacturer;
-
+package ClubSpain::Schema::Result::Manufacturer;
 use strict;
 use warnings;
+use parent qw(ClubSpain::Schema::Result);
 
-BEGIN {
-    use base qw(DBIx::Class);
-};
 
 __PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('manufacturer');
@@ -30,6 +27,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_code => [qw(code)]);
 
-__PACKAGE__->has_many('planes' => 'ClubSpain::Schema::Airplane', {'foreign.manufacturer_id' => 'self.id'} );
+__PACKAGE__->has_many(
+    'planes' => 'ClubSpain::Schema::Result::Airplane', {'foreign.manufacturer_id' => 'self.id'}
+);
 
 1;

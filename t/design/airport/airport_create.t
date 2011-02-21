@@ -33,7 +33,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Airport');
+    isa_ok($result, 'ClubSpain::Schema::Result::Airport');
     is($result->city_id, 1, 'got city id');
     is($result->iata, 'xxx', 'got iata code');
     is($result->icao, 'xxxx', 'got icao code');
@@ -64,7 +64,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Airport');
+    isa_ok($result, 'ClubSpain::Schema::Result::Airport');
     is($result->city_id, 1, 'got city id');
     is($result->iata, 'yyy', 'got iata code');
     is($result->icao, 'yyyy', 'got icao code');

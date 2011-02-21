@@ -21,7 +21,7 @@ my $port = ClubSpain::Model::Airport->new(
 
 my $object = $port->create();
 
-isa_ok($object, 'ClubSpain::Schema::Airport');
+isa_ok($object, 'ClubSpain::Schema::Result::Airport');
 is($object->city_id, 1, 'got city id');
 is($object->iata, 'xxx', 'got iata code');
 is($object->icao, 'xxxx', 'got icao code');

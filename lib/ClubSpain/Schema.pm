@@ -7,7 +7,11 @@ use Config::Any;
 
 use parent qw(DBIx::Class::Schema);
 
-__PACKAGE__->load_classes();
+__PACKAGE__->load_namespaces(
+    default_resultset_class => '+ClubSpain::Schema::ResultSet'
+);
+
+#__PACKAGE__->load_classes();
 
 sub connect {
     my ($self, $dsn, $user, $pass, $opts) = @_;

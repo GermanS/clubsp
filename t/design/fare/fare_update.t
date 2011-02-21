@@ -14,6 +14,6 @@ my $fare = ClubSpain::Model::Fare->new(
 
 my $result = $fare->update();
 
-isa_ok($result, 'ClubSpain::Schema::Fare');
+isa_ok($result, 'ClubSpain::Schema::Result::Fare');
 is($result->id, 1, 'got id');
 is($result->fare, 99, 'got fare');

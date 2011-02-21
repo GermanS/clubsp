@@ -1,11 +1,8 @@
-package ClubSpain::Schema::Article;
-
+package ClubSpain::Schema::Result::Article;
 use strict;
 use warnings;
+use parent qw(ClubSpain::Schema::Result);
 
-BEGIN {
-    use base qw(DBIx::Class);
-};
 
 __PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('article');

@@ -29,7 +29,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Fare');
+    isa_ok($result, 'ClubSpain::Schema::Result::Fare');
     is($result->fare, 100, 'got fare');
 }
 
@@ -52,6 +52,6 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::Fare');
+    isa_ok($result, 'ClubSpain::Schema::Result::Fare');
     is($result->fare, 1000, 'got fare');
 }

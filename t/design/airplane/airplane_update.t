@@ -18,7 +18,7 @@ my $airplane = ClubSpain::Model::Airplane->new(
 
 my $result = $airplane->update();
 
-isa_ok($result, 'ClubSpain::Schema::Airplane');
+isa_ok($result, 'ClubSpain::Schema::Result::Airplane');
 is($result->id, 1, 'got id');
 is($result->manufacturer_id, 1, 'got manufacturer code');
 is($result->iata, 'zzz', 'got iata code');

@@ -13,7 +13,7 @@ my $schema = ClubSpain::Test->init_schema();
 #pass id to the function
 {
     my $terminal = ClubSpain::Model::Terminal->fetch_by_id(1);
-    isa_ok($terminal, 'ClubSpain::Schema::Terminal');
+    isa_ok($terminal, 'ClubSpain::Schema::Result::Terminal');
     is($terminal->airport_id, 3, 'got airport');
     is($terminal->name, 'Terminal B', 'got name');
     is($terminal->is_published, 1, 'got is published');
@@ -30,7 +30,7 @@ my $schema = ClubSpain::Test->init_schema();
     );
 
     my $object = $terminal->fetch_by_id();
-    isa_ok($object, 'ClubSpain::Schema::Terminal');
+    isa_ok($object, 'ClubSpain::Schema::Result::Terminal');
     is($object->airport_id, 3, 'got airport');
     is($object->name, 'Terminal B', 'got name');
     is($object->is_published, 1, 'got is published');

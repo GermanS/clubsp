@@ -31,7 +31,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::City');
+    isa_ok($result, 'ClubSpain::Schema::Result::City');
     is($result->country_id, 1, 'got country_id');
     is($result->name, 'new york1', 'got name');
     is($result->is_published, 1, 'got is_published');
@@ -58,7 +58,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::City');
+    isa_ok($result, 'ClubSpain::Schema::Result::City');
     is($result->country_id, 2, 'got country_id');
     is($result->name, 'new york2', 'got name');
     is($result->is_published, 1, 'got is_published');

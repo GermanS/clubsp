@@ -31,7 +31,7 @@ if ($@) {
     diag Dumper($@);
 }
 
-isa_ok($result, 'ClubSpain::Schema::Country');
+isa_ok($result, 'ClubSpain::Schema::Result::Country');
 is($result->name, 'USA', 'got name');
 is($result->alpha2, 'us', 'got alpha2');
 is($result->alpha3, 'usa', 'got alpha3');

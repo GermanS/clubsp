@@ -37,7 +37,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::TimeTable');
+    isa_ok($result, 'ClubSpain::Schema::Result::TimeTable');
     is($result->is_published, 1, 'got is published flag');
     is($result->flight_id, 1, 'got flight id');
     is($result->airplane_id, 1, 'got airplane id');
@@ -77,7 +77,7 @@ ClubSpain::Test->init_schema();
         diag Dumper($@);
     }
 
-    isa_ok($result, 'ClubSpain::Schema::TimeTable');
+    isa_ok($result, 'ClubSpain::Schema::Result::TimeTable');
     is($result->is_published, 1, 'got is published flag');
     is($result->flight_id, 2, 'got flight id');
     is($result->airplane_id, 1, 'got airplane id');

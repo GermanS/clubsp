@@ -1,11 +1,8 @@
-package ClubSpain::Schema::Airport;
-
+package ClubSpain::Schema::Result::Airport;
 use strict;
 use warnings;
+use parent qw(ClubSpain::Schema::Result);
 
-BEGIN {
-    use base qw(DBIx::Class);
-};
 
 __PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('airport');
@@ -45,11 +42,14 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_icao => [qw(icao)]);
 
-__PACKAGE__->belongs_to('city' => 'ClubSpain::Schema::City', 'city_id');
-
-__PACKAGE__->has_many( 'departure_flights' => 'ClubSpain::Schema::Flight',
-    {'foreign.departure_airport_id' => 'self.id'} );
-__PACKAGE__->has_many( 'arrival_flights' => 'ClubSpain::Schema::Flight',
-    {'foreign.destination_airport_id' => 'self.id'} );
+__PACKAGE__->belongs_to(
+    'city' => 'ClubSpain::Schema::Result::City', 'city_id'
+);
+__PACKAGE__->has_many(
+    'departure_flights' => 'ClubSpain::Schema::Result::Flight', {'foreign.departure_airport_id' => 'self.id'}
+);
+__PACKAGE__->has_many(
+    'arrival_flights' => 'ClubSpain::Schema::Result::Flight', {'foreign.destination_airport_id' => 'self.id'}
+);
 
 1;
