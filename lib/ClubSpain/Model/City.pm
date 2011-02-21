@@ -35,4 +35,15 @@ sub update {
     });
 }
 
+sub searchCitiesOfDeparture {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchCitiesOfDeparture(%params);
+}
+
+__PACKAGE__->meta->make_immutable();
+
 1;

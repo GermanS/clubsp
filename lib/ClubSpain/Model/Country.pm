@@ -41,6 +41,15 @@ sub update {
     });
 }
 
+sub searchCountriesOfDeparture {
+    my $self = shift;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchCountriesOfDeparture();
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;

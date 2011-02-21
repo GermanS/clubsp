@@ -8,18 +8,8 @@ use base qw(Catalyst::Controller);
 sub _getCountryOfDeparture : Private {
     my ($self, $c) = @_;
 
-    my $iterator = $c->model('Country')->search({
-        'me.is_published'      => 1,
-        'city.is_published'    => 1,
-        'airport.is_published' => 1,
-    }, {
-        where  => [ -and => {
-            'city.country_id ' => \'=me.id',
-            'airport.city_id'  => \'=city.id'
-        }],
-        from     => [ 'country as me, city, airport' ],
-        group_by => 'me.id'
-    });
+    my $iterator = $c->model('Country')
+                     ->searchCountriesOfDeparture();
 
     my @res;
     while (my $item = $iterator->next) {
@@ -32,17 +22,8 @@ sub _getCountryOfDeparture : Private {
 sub _getCityOfDeparture : Private {
     my ($self, $c, $country) = @_;
 
-    my $iterator = $c->model('City')->search({
-        'me.is_published'      => 1,
-        'airport.is_published' => 1,
-        'me.country_id'        => $country
-    }, {
-        where => [ -and => {
-            'airport.city_id' => \'=me.id'
-        }],
-        from     => [ 'city as me, airport' ],
-        group_by => 'me.id',
-    });
+    my $iterator = $c->model('City')
+                     ->searchCitiesOfDeparture(country => $country);
 
     my @res;
     while (my $item = $iterator->next) {
@@ -55,10 +36,8 @@ sub _getCityOfDeparture : Private {
 sub _getAirportOfDeparture : Private {
     my ($self, $c, $city) = @_;
 
-    my $iterator = $c->model('Airport')->search({
-        is_published => 1,
-        city_id      => $city,
-    });
+    my $iterator = $c->model('Airport')
+                     ->searchAirportsOfDeparture(city => $city);
 
     my @res;
     while (my $item = $iterator->next) {
