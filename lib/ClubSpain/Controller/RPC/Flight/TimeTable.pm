@@ -36,36 +36,13 @@ sub _getCitiesOfArrival {
 sub _searchFlights {
     my ($self, $c, $params) = @_;
 
-    return unless $params->{'cityOfDeparture'} && $params->{'cityOfArrival'};
+    return
+        unless $params->{'cityOfDeparture'} && $params->{'cityOfArrival'};
 
-    my $iterator = $c->model('Flight')->search({
-            'departure_country.is_published'    => 1,
-            'destination_country.is_published'  => 1,
-            'departure_city.is_published'       => 1,
-            'destination_city.is_published'     => 1,
-            'departure_airport.is_published'    => 1,
-            'destination_airport.is_published'  => 1,
-            'me.is_published'                   => 1,
-            'departure_city.id'   => $params->{'cityOfDeparture'},
-            'destination_city.id' => $params->{'cityOfArrival'}
-        }, {
-            where  => [ -and => {
-                'departure_city.country_id '    => \'=departure_country.id',
-                'departure_airport.city_id'     => \'=departure_city.id',
-                'me.departure_airport_id'       => \'=departure_airport.id',
-                'me.destination_airport_id'     => \'=destination_airport.id',
-                'destination_airport.city_id'   => \'=destination_city.id',
-                'destination_city.country_id'   => \'=destination_country.id',
-            }],
-            from     => [ qq(country as departure_country,
-                             country as destination_country,
-                             city as departure_city,
-                             city as destination_city,
-                             airport as departure_airport,
-                             airport as destination_airport,
-                             flight as me) ],
-            group_by => 'me.id'
-    });
+    my $iterator = $c->model('Flight')->searchFlights(
+        cityOfDeparture => $params->{'cityOfDeparture'},
+        cityOfArrival   => $params->{'cityOfArrival'},
+    );
 
     my @res;
     while (my $item = $iterator->next) {
