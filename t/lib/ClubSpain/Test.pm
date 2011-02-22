@@ -117,7 +117,7 @@ sub populate_schema {
     my @airline = $schema->populate('Airline', [
         [qw(iata icao name is_published)],
         ['NN', 'MOV', 'VIM Airlines', 1],
-        ['UN', 'TSO', 'Transare Airlines', 1],
+        ['UN', 'TSO', 'Transaro Airlines', 1],
         ['IB', 'IBE', 'Iberia Airlines', 1]
     ]);
 
@@ -138,8 +138,10 @@ sub populate_schema {
 
     my @flight = $schema->populate('Flight', [
         [qw(is_published departure_airport_id destination_airport_id airline_id code)],
-        [1, $airport[0]->id, $airport[3]->id, $airline[0]->id, 331],
-        [1, $airport[3]->id, $airport[0]->id, $airline[0]->id, 332],
+        [1, $airport[0]->id, $airport[3]->id, $airline[0]->id, 331], #NN331 DME -> BCN
+        [1, $airport[3]->id, $airport[0]->id, $airline[0]->id, 332], #NN332 BCN -> DME
+        [1, $airport[2]->id, $airport[4]->id, $airline[2]->id, 989], #IB989 SVO -> AGP
+        [1, $airport[4]->id, $airport[2]->id, $airline[2]->id, 990], #IB990 AGP -> 989
     ]);
 
     my @timetable = $schema->populate('TimeTable', [

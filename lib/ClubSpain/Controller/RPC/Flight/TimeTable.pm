@@ -7,19 +7,8 @@ use base qw(Catalyst::Controller);
 sub _getCitiesOfDeparture {
     my ($self, $c) = @_;
 
-    my $iterator = $c->model('City')->search({
-        'country.is_published' => 1,
-        'me.is_published'      => 1,
-        'airport.is_published' => 1,
-        'flight.is_published'  => 1,
-    }, {
-        where  => [ -and => {
-            'me.country_id '   => \'=country.id',
-            'airport.city_id'  => \'=me.id',
-        }],
-        from     => [ 'city as me, country, airport, flight' ],
-        group_by => 'me.id'
-    });
+    my $iterator =
+        $c->model('City')->searchCitiesOfDepartureInFlight();
 
     my @res;
     while (my $item = $iterator->next) {
@@ -29,38 +18,12 @@ sub _getCitiesOfDeparture {
     return @res;
 }
 
-
 sub _getCitiesOfArrival {
     my ($self, $c, $cityOfDeparture) = @_;
 
-    my $iterator = $c->model('City')->search({
-        'departure_country.is_published'   => 1,
-        'destination_country.is_published' => 1,
-        'departure_city.is_published'      => 1,
-        'me.is_published'                  => 1,
-        'departure_airport.is_published'   => 1,
-        'destination_airport.is_published' => 1,
-        'flight.is_published'              => 1,
-        'departure_city.id'                => $cityOfDeparture,
-    }, {
-        where  => [ -and => {
-            'departure_city.country_id '    => \'=departure_country.id',
-            'departure_airport.city_id'     => \'=departure_city.id',
-            'flight.departure_airport_id'   => \'=departure_airport.id',
-            'flight.destination_airport_id' => \'=destination_airport.id',
-            'destination_airport.city_id'   => \'=me.id',
-            'me.country_id'                 => \'=destination_country.id'
-        }],
-        from     => [ qq(city as me,
-                         country as departure_country,
-                         country as destination_country,
-                         city as departure_city,
-                         airport as departure_airport,
-                         airport as destination_airport,
-                         flight) ],
-        group_by => 'me.id'
-    });
-
+    my $iterator =
+        $c->model('City')
+           ->searchCitiesOfArrivalInFlight(cityOfDeparture => $cityOfDeparture);
 
     my @res;
     while (my $item = $iterator->next) {

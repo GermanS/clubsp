@@ -44,6 +44,24 @@ sub searchCitiesOfDeparture {
              ->searchCitiesOfDeparture(%params);
 }
 
+sub searchCitiesOfDepartureInFlight {
+    my $self = shift;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchCitiesOfDepartureInFlight();
+}
+
+sub searchCitiesOfArrivalInFlight {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchCitiesOfArrivalInFlight(%params);
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;

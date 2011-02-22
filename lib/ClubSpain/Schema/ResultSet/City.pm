@@ -43,14 +43,84 @@ sub searchCitiesOfDeparture {
 Получение списка городов отправления в которых
  - есть аэропорты
  - установлен флаг доступности is_published=1
- - есть авиарейс
+ - есть хотя бы один авиарейс
+
+ Внутренний метод, используемыый в бекофисе программы
+ при работе с расписанием авиарейсов.
 
 =cut
 
 
 sub searchCitiesOfDepartureInFlight {
     my $self = shift;
+
+    return
+        $self->result_source->resultset->search({
+            'country.is_published' => 1,
+            'me.is_published'      => 1,
+            'airport.is_published' => 1,
+            'flight.is_published'  => 1,
+        }, {
+            where  => [ -and => {
+                'me.country_id '              => \'=country.id',
+                'airport.city_id'             => \'=me.id',
+                'flight.departure_airport_id' => \'=airport.id'
+            }],
+            from     => [ 'city as me, country, airport, flight' ],
+            group_by => 'me.id'
+        });
 }
+
+
+=head2 searchCitiesOfArrivalInFlight(cityOfDeparture => $city)
+
+Получение списка городов прибытия из указанного города отправления в которых
+ - есть аэропорты
+ - установлен флаг доступности is_published=1
+ - есть хотя бы один авиарейс
+
+ Внутренний метод, используемыый в бекофисе программы
+ при работе с расписанием авиарейсов.
+
+=cut
+
+
+sub searchCitiesOfArrivalInFlight {
+    my ($self, %params) = @_;
+
+    return
+        unless $params{'cityOfDeparture'};
+
+    return
+        $self->result_source->resultset->search({
+            'departure_country.is_published'   => 1,
+            'destination_country.is_published' => 1,
+            'departure_city.is_published'      => 1,
+            'me.is_published'                  => 1,
+            'departure_airport.is_published'   => 1,
+            'destination_airport.is_published' => 1,
+            'flight.is_published'              => 1,
+            'departure_city.id'                => $params{'cityOfDeparture'},
+        }, {
+            where  => [ -and => {
+                'departure_city.country_id '    => \'=departure_country.id',
+                'departure_airport.city_id'     => \'=departure_city.id',
+                'flight.departure_airport_id'   => \'=departure_airport.id',
+                'flight.destination_airport_id' => \'=destination_airport.id',
+                'destination_airport.city_id'   => \'=me.id',
+                'me.country_id'                 => \'=destination_country.id'
+            }],
+            from     => [ qq(city as me,
+                             country as departure_country,
+                             country as destination_country,
+                             city as departure_city,
+                             airport as departure_airport,
+                             airport as destination_airport,
+                             flight) ],
+            group_by => 'me.id'
+        });
+}
+
 
 =head2 searchCitiesOfDepartureInTimeTable()
 
