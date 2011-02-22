@@ -41,4 +41,15 @@ sub update {
     });
 }
 
+sub searchFlights {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchFlights(%params);
+}
+
+__PACKAGE__->meta->make_immutable();
+
 1;
