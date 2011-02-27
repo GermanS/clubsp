@@ -135,8 +135,35 @@ sub searchCitiesOfArrivalInFlight {
 sub searchCitiesOfDepartureInTimeTable {
     my $self = shift;
 
-
-    return $self->result_source->resultset->search({}, {
+    return $self->result_source->resultset->search({
+            'departure_country.is_published'    => 1,
+            'destination_country.is_published'  => 1,
+            'me.is_published'                   => 1,
+            'destination_city.is_published'     => 1,
+            'departure_airport.is_published'    => 1,
+            'destination_airport.is_published'  => 1,
+            'flight.is_published'               => 1,
+            'timetable.is_published'            => 1,
+            'timetable.departure_date'          => \'>=NOW()',
+    }, {
+            where  => [ -and => {
+                'me.country_id '                => \'=departure_country.id',
+                'departure_airport.city_id'     => \'=me.id',
+                'flight.departure_airport_id'   => \'=departure_airport.id',
+                'flight.destination_airport_id' => \'=destination_airport.id',
+                'destination_airport.city_id'   => \'=destination_city.id',
+                'destination_city.country_id'   => \'=destination_country.id',
+                'timetable.flight_id'           => \'=flight.id',
+            }],
+            from     => [ qq(country as departure_country,
+                             country as destination_country,
+                             city as me,
+                             city as destination_city,
+                             airport as departure_airport,
+                             airport as destination_airport,
+                             flight,
+                             timetable) ],
+            group_by => 'me.id'
     });
 }
 

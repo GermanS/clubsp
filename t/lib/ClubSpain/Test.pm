@@ -7,6 +7,7 @@ BEGIN {
     use base qw(Test::Builder::Module);
 
     use Test::More;
+    use DateTime;
 
     @ClubSpain::Test::EXPORT = @Test::More::EXPORT;
 };
@@ -144,6 +145,8 @@ sub populate_schema {
         [1, $airport[4]->id, $airport[2]->id, $airline[2]->id, 990], #IB990 AGP -> 989
     ]);
 
+    my @plan = $self->plan_flights();
+
     my @timetable = $schema->populate('TimeTable', [
         [qw(is_published
             flight_id
@@ -154,12 +157,18 @@ sub populate_schema {
             arrival_time
             departure_terminal_id
             arrival_terminal_id)],
-       [1, $flight[0]->id, $airplane[2]->id, '2011-02-12', '10:00', '2011-02-12', '16:00', undef, undef],
-       [1, $flight[0]->id, $airplane[2]->id, '2011-02-19', '06:00', '2011-02-19', '08:00', undef, undef],
-       [1, $flight[0]->id, $airplane[2]->id, '2011-02-26', '06:00', '2011-02-26', '08:00', undef, undef],
-       [1, $flight[1]->id, $airplane[2]->id, '2011-02-12', '10:00', '2011-02-12', '16:00', undef, undef],
-       [1, $flight[1]->id, $airplane[2]->id, '2011-02-19', '10:00', '2011-02-19', '16:00', undef, undef],
-       [1, $flight[1]->id, $airplane[2]->id, '2011-02-26', '10:00', '2011-02-26', '16:00', undef, undef],
+       [1, $flight[0]->id, $airplane[2]->id, '2011-02-12', '10:00', '2011-02-12', '16:00', undef, undef], #NN331 DME->BCN
+       [1, $flight[0]->id, $airplane[2]->id, '2011-02-19', '06:00', '2011-02-19', '08:00', undef, undef], #NN331 DME->BCN
+       [1, $flight[0]->id, $airplane[2]->id, '2011-02-26', '06:00', '2011-02-26', '08:00', undef, undef], #NN331 DME->BCN
+       [1, $flight[1]->id, $airplane[2]->id, '2011-02-12', '10:00', '2011-02-12', '16:00', undef, undef], #NN332 BCN->DME
+       [1, $flight[1]->id, $airplane[2]->id, '2011-02-19', '10:00', '2011-02-19', '16:00', undef, undef], #NN332 BCN->DME
+       [1, $flight[1]->id, $airplane[2]->id, '2011-02-26', '10:00', '2011-02-26', '16:00', undef, undef], #NN332 BCN->DME
+       [1, $flight[0]->id, $airplane[2]->id, $plan[0]->ymd,'10:00', $plan[0]->ymd,'12:00', undef, undef], #NN331 DME->BCN
+       [1, $flight[0]->id, $airplane[2]->id, $plan[1]->ymd,'10:00', $plan[1]->ymd,'12:00', undef, undef], #NN331 DME->BCN
+       [1, $flight[0]->id, $airplane[2]->id, $plan[2]->ymd,'10:00', $plan[2]->ymd,'12:00', undef, undef], #NN331 DME->BCN
+       [1, $flight[1]->id, $airplane[2]->id, $plan[0]->ymd,'14:00', $plan[0]->ymd,'20:00', undef, undef], #NN332 BCN->DME
+       [1, $flight[1]->id, $airplane[2]->id, $plan[1]->ymd,'14:00', $plan[1]->ymd,'20:00', undef, undef], #NN332 BCN->DME
+       [1, $flight[1]->id, $airplane[2]->id, $plan[2]->ymd,'14:00', $plan[2]->ymd,'20:00', undef, undef], #NN332 BCN->DME
     ]);
 
     my @fareclass = $schema->populate('FareClass', [
@@ -190,6 +199,21 @@ sub clear_schema {
     foreach my $source ($schema->sources) {
         $schema->resultset($source)->delete_all;
     }
+}
+
+#plan saturday flights
+sub plan_flights {
+    my $self = shift;
+
+    my $now  = DateTime->now();
+    my $start = ($now->day_of_week < 6)
+        ? $now + DateTime::Duration->new(days => 6 - $now->day_of_week)
+        : $now + DateTime::Duration->new(days => 6 - $now->day_of_week, weeks => 1);
+
+    my $week = DateTime::Duration->new(weeks => 1);
+    return ($start,
+            $start + $week,
+            $start + $week + $week);
 }
 
 

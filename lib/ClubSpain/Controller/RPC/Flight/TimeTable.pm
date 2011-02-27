@@ -23,7 +23,7 @@ sub _getCitiesOfArrival {
 
     my $iterator =
         $c->model('City')
-           ->searchCitiesOfArrivalInFlight(cityOfDeparture => $cityOfDeparture);
+          ->searchCitiesOfArrivalInFlight(cityOfDeparture => $cityOfDeparture);
 
     my @res;
     while (my $item = $iterator->next) {
@@ -56,6 +56,5 @@ sub _searchFlights {
 
     return @res;
 }
-
 
 1;

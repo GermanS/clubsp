@@ -18,6 +18,7 @@ my $build = ClubSpain::Build->new(
         'Catalyst::Plugin::Unicode'             => 0,
         'Catalyst::Model::DBIC::Schema'         => 0,
         'Catalyst::View::JSON'                  => 0,
+        'DateTime'                              => 0,
         'Exception::Class'                      => 0,
         'Config::General'                       => 0,
         'DBD::SQLite'                           => '>=1.29',
