@@ -71,6 +71,15 @@ sub searchCitiesOfDepartureInTimeTable {
              ->searchCitiesOfDepartureInTimeTable();
 }
 
+sub searchCitiesOfArrivalInTimeTable {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchCitiesOfArrivalInTimeTable(%params);
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;
