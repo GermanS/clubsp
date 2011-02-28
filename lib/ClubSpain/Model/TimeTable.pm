@@ -53,4 +53,13 @@ sub update {
     });
 }
 
+sub searchDatesOfDeparture {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchDatesOfDeparture(%params);
+}
+
 1;
