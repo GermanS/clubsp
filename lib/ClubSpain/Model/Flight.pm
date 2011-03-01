@@ -50,6 +50,15 @@ sub searchFlights {
              ->searchFlights(%params);
 }
 
+sub searchFlightsInTimetable {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchFlightsInTimetable(%params);
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;

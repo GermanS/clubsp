@@ -49,9 +49,6 @@ sub searchDatesOfDeparture {
                              timetable as me) ],
             group_by => 'me.departure_date'
     });
-
-
-
 }
 
 1;

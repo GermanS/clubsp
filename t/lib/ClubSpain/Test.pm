@@ -145,7 +145,7 @@ sub populate_schema {
         [1, $airport[4]->id, $airport[2]->id, $airline[2]->id, 990], #IB990 AGP -> 989
     ]);
 
-    my @plan = $self->plan_flights();
+    my @plan = $self->three_saturdays_ahead();
 
     my @timetable = $schema->populate('TimeTable', [
         [qw(is_published
@@ -202,7 +202,7 @@ sub clear_schema {
 }
 
 #plan saturday flights
-sub plan_flights {
+sub three_saturdays_ahead {
     my $self = shift;
 
     my $now  = DateTime->now();
@@ -215,6 +215,5 @@ sub plan_flights {
             $start + $week,
             $start + $week + $week);
 }
-
 
 1;

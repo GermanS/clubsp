@@ -1,32 +1,25 @@
-use Test::More tests => 10;
+use Test::More tests => 9;
 use strict;
 use warnings;
-use DateTime;
 use lib qw(t/lib);
 use ClubSpain::Test;
-
 my $schema = ClubSpain::Test->init_schema();
-my @date = ClubSpain::Test->three_saturdays_ahead();
+my @saturday = ClubSpain::Test->three_saturdays_ahead();
 
-use_ok('ClubSpain::Model::TimeTable');
+use_ok('ClubSpain::Model::Flight');
 
-#search MOV -> BCN
 {
-    my $iterator = ClubSpain::Model::TimeTable->searchDatesOfDeparture(
+    my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
         cityOfDeparture => 1,
         cityOfArrival   => 2,
+        dateOfDeparture => $saturday[0]->ymd,
     );
 
-    is($iterator->count, 3, 'got three dates');
+    is($iterator->count, 1, 'got one flight');
 
-    my $first = $iterator->next();
-    is($first->departure_date, $date[0]->ymd, 'got the first departure date');
-
-    my $second = $iterator->next();
-    is($second->departure_date, $date[1]->ymd, 'got the second departure date');
-
-    my $third = $iterator->next();
-    is($third->departure_date, $date[2]->ymd, 'got the third departure date');
+    my $NN331 = $iterator->next();
+    is($NN331->id, 1, 'got id');
+    is($NN331->code, 331, 'got code');
 }
 
 #set country.is_published to 0
@@ -34,9 +27,10 @@ use_ok('ClubSpain::Model::TimeTable');
     my $russia = $schema->resultset('Country')->search({ id => 1 });
     $russia->update({ is_published => 0 });
 
-    my $iterator = ClubSpain::Model::TimeTable->searchDatesOfDeparture(
+    my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
         cityOfDeparture => 1,
         cityOfArrival   => 2,
+        dateOfDeparture => $saturday[0]->ymd
     );
     is($iterator->count, 0, 'got nothing');
 
@@ -48,9 +42,10 @@ use_ok('ClubSpain::Model::TimeTable');
     my $mov = $schema->resultset('City')->search({ id => 1 });
     $mov->update({ is_published => 0 });
 
-    my $iterator = ClubSpain::Model::TimeTable->searchDatesOfDeparture(
+    my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
         cityOfDeparture => 1,
-        cityOfArrival   => 2
+        cityOfArrival   => 2,
+        dateOfDeparture => $saturday[0]->ymd
     );
     is($iterator->count, 0, 'got nothing');
 
@@ -62,9 +57,10 @@ use_ok('ClubSpain::Model::TimeTable');
     my $dme = $schema->resultset('Airport')->search({ id => 1 });
     $dme->update({ is_published => 0 });
 
-    my $iterator = ClubSpain::Model::TimeTable->searchDatesOfDeparture(
+    my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
         cityOfDeparture => 1,
-        cityOfArrival   => 2
+        cityOfArrival   => 2,
+        dateOfDeparture => $saturday[0]->ymd
     );
     is($iterator->count, 0, 'got nothing');
 
@@ -76,9 +72,10 @@ use_ok('ClubSpain::Model::TimeTable');
     my $NN331 = $schema->resultset('Flight')->search({ id => 1 });
     $NN331->update({ is_published => 0 });
 
-    my $iterator = ClubSpain::Model::TimeTable->searchDatesOfDeparture(
+    my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
         cityOfDeparture => 1,
-        cityOfArrival   => 2
+        cityOfArrival   => 2,
+        dateOfDeparture => $saturday[0]->ymd
     );
     is($iterator->count, 0, 'got nothing');
 
@@ -87,17 +84,20 @@ use_ok('ClubSpain::Model::TimeTable');
 
 #set timetable.is_published to 0
 {
-    my @DME_BCN = $schema->resultset('TimeTable')->search({ flight_id => 1 });
+    my @DME_BCN = $schema->resultset('TimeTable')->search({
+        departure_date => $saturday[0]->ymd
+    });
+
     $_->update({ is_published => 0 })
         for (@DME_BCN);
 
-    my $iterator = ClubSpain::Model::TimeTable->searchDatesOfDeparture(
+    my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
         cityOfDeparture => 1,
-        cityOfArrival   => 2
+        cityOfArrival   => 2,
+        dateOfDeparture => $saturday[0]->ymd
     );
     is($iterator->count, 0, 'got nothing');
 
     $_->update({ is_published => 1 })
         for (@DME_BCN);
 }
-
