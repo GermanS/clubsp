@@ -3,9 +3,10 @@ use strict;
 use warnings;
 use parent qw(ClubSpain::Schema::ResultSet);
 
-=head2 searchDatesOfDepature(cityOfDeparture => $city, cityOfArrival => $city)
+=head2 searchDatesOfDepature(cityOfDeparture => $city, cityOfArrival => $city, startDate => $date)
 
 Получение дат отправления из города cityOfDeparture в город cityOfArrival
+с момента времени startDate
 
 все флаги должны быть выставлены в единицу
 
@@ -17,6 +18,10 @@ sub searchDatesOfDeparture {
     return
         unless $params{'cityOfDeparture'} && $params{'cityOfArrival'};
 
+    my $startDate =
+        $params{'startDate'} ? ">'" . $params{'startDate'} . "'"
+                             : '>=NOW()';
+
     return $self->result_source->resultset->search({
             'departure_country.is_published'    => 1,
             'destination_country.is_published'  => 1,
@@ -26,7 +31,7 @@ sub searchDatesOfDeparture {
             'destination_airport.is_published'  => 1,
             'flight.is_published'               => 1,
             'me.is_published'                   => 1,
-            'me.departure_date'                 => \'>=NOW()',
+            'me.departure_date'                 =>\$startDate,
             'departure_city.id'                 => $params{'cityOfDeparture'},
             'destination_city.id'               => $params{'cityOfArrival'}
     }, {

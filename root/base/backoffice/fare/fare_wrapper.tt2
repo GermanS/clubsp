@@ -1,4 +1,4 @@
-[% WRAPPER backoffice/page.tt2 %]
+[% WRAPPER backoffice/page.tt2 javascript="backoffice/fare/fare.js.tt2" %]
     <div id="bd">
         <div id="yui-main">
             <div class="yui-b">
@@ -14,12 +14,12 @@
                     <input type="radio" name="segment" id="ow">Авиабилет в одну сторону
                 </fieldset>
 
-                <fieldset title="Авиабилет туда">
-                    <label for="CityOfDeparture1">Город отправления</label>
-                    <select name="CityOfDeparture1"></select>
+                <fieldset title="Первый сегмент">
+                    <label for="CityOfDeparture">Город отправления</label>
+                    <select name="CityOfDeparture"></select>
 
-                    <label for="CityOfArrival1">Город прибытия</label>
-                    <select name="CityOfArrival1"></select>
+                    <label for="CityOfArrival">Город прибытия</label>
+                    <select name="CityOfArrival"></select>
 
                     <label for="DateOfDeparture1">Дата отправления</label>
                     <select name="DateOfDeparture1"></select>
@@ -27,15 +27,9 @@
                     <label for="Flight1">Номер рейса</label>
                     <select name="Flight1"></select>
                 </fieldset>
-                <fieldset title="Авиабилет обратно">
-                    <label for="CityOfDeparture2">Город отправления</label>
-                    <select name="CityOfDeparture2"></select>
-
-                    <label for="CityOfArrival2">Город прибытия</label>
-                    <select name="CityOfArrival2"></select>
-
-                    <label for="DateOfDepature2">Дата вылета</label>
-                    <select name="DateOfDepature"></select>
+                <fieldset title="Второй сегмент">
+                    <label for="DateOfDeparture2">Дата вылета</label>
+                    <select name="DateOfDeparture2"></select>
 
                     <label for="Flight2">Номер рейса</label>
                     <select name="Flight2"></select>
@@ -44,13 +38,13 @@
                 <input type="submit" value="Найти" />
             </form>
             <form id="preselect">
-                <input type="hidden" name="_CountryOfDeparture" value="[% CountryOfDeparture %]" />
                 <input type="hidden" name="_CityOfDeparture" value="[% CityOfDeparture %]" />
-                <input type="hidden" name="_AirportOfDeparture" value="[% AirportOfDeparture %]" />
+                <input type="hidden" name="_CityOfArrival"   value="[% CityOfArrival %]" />
+                <input type="hidden" name="_DateOfDeparture1" value="[% DateOfDeparture %]" />
+                <input type="hidden" name="_Flight1"          value="[% Flight %]" />
 
-                <input type="hidden" name="_CountryOfArrival" value="[% CountryOfArrival %]" />
-                <input type="hidden" name="_CityOfArrival" value="[% CityOfArrival %]" />
-                <input type="hidden" name="_AirportOfArrival" value="[% AirportOfArrival %]" />
+                <input type="hidden" name="_DateOfDeparture2" value="[% DateOfDeparture %]" />
+                <input type="hidden" name="_Flight2"          value="[% Flight %]" />
             </form>
         </div>
     </div>

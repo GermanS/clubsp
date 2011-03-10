@@ -11,6 +11,12 @@ var Timetable_getCitiesOfDeparture  = 'xmlrpc.flight.timetable.getCitiesOfDepart
 var Timetable_getCitiesOfArrival    = 'xmlrpc.flight.timetable.getCitiesOfArrival';
 var Timetable_searchFlights         = 'xmlrpc.flight.timetable.searchFlights';
 
+/* Fare requests*/
+var FareSearchCitiesOfDeparture = 'xmlrpc.flight.fare.searchCitiesOfDeparture';
+var FareSearchCitiesOfArrival   = 'xmlrpc.flight.fare.searchCitiesOfArrival';
+var FareSearchDatesOfDeparture  = 'xmlrpc.flight.fare.searchDatesOfDeparture';
+var FareSearchFlights           = 'xmlrpc.flight.fare.searchFlights';
+
 var METHODS = [
     REQ_CountryOfDeparture,
     REQ_CityOfDeparture,
@@ -20,13 +26,17 @@ var METHODS = [
     REQ_AirportOfArrival,
     Timetable_getCitiesOfDeparture,
     Timetable_getCitiesOfArrival,
-    Timetable_searchFlights
+    Timetable_searchFlights,
+    FareSearchCitiesOfDeparture,
+    FareSearchCitiesOfArrival,
+    FareSearchDatesOfDeparture,
+    FareSearchFlights
 ];
 var service = new rpc.ServiceProxy(URL, {
     asynchronous: true,
     sanitize: false,
     methods: METHODS,
-    protocol: 'XML-RPC'
+    protocol: 'XML-RPC',
 });
 
 
