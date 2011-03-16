@@ -2,12 +2,12 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Model::Fare');
+use_ok('ClubSpain::Model::Itinerary');
 
 #call as class method
 {
     eval {
-        ClubSpain::Model::Fare->update();
+        ClubSpain::Model::Itinerary->update();
         fail('no exception thrown');
     };
 
@@ -24,13 +24,16 @@ use_ok('ClubSpain::Model::Fare');
 
 #object does not exist in database
 {
-    my $fare = ClubSpain::Model::Fare->new(
-        id   => 777,
-        fare => 0
+    my $itinerary = ClubSpain::Model::Itinerary->new(
+        id            => 777,
+        timetable_id  => 0,
+        fare_class_id => 0,
+        parent_id     => 0,
+        cost          => 0,
     );
 
     eval {
-        $fare->update();
+        $itinerary->update();
         fail('no exception thrown');
     };
 

@@ -1,0 +1,12 @@
+<p>
+    <span title="Дата отправления">[% timetable.departure_date %]</span>
+    <span title="Номер рейса">[% timetable.flight.airline.iata %][% timetable.flight.code %]</span>
+    <span title="Авиакомпания">[% timetable.flight.airline.name %]</span>
+    <span title="Город отправления">[% timetable.flight.departure_airport.city.name %]</span>
+    <span title="Аэропорт отправления">[% timetable.flight.departure_airport.name %]</span>
+    <span title="Время отправления">[% timetable.departure_time %]</span>
+    <span title="Город прибытия">[% timetable.flight.arrival_airport.city.name %]</span>
+    <span title="Аэропорт прибытия">[% timetable.flight.arrival_airport.name %]</span>
+    <span title="Время прибытия">[% timetable.arrival_time %]</span>
+</p>
+

@@ -3,11 +3,11 @@ use Test::More tests => 3;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Model::Fare');
+use_ok('ClubSpain::Model::Itinerary');
 
 {
     eval {
-        ClubSpain::Model::Fare->delete(1000);
+        ClubSpain::Model::Itinerary->delete(1000);
         fail('no exception thrown');
     };
 
@@ -23,13 +23,16 @@ use_ok('ClubSpain::Model::Fare');
 }
 
 {
-    my $fare = ClubSpain::Model::Fare->new(
-        id     => 23,
-        fare   =>100
+    my $itinerary = ClubSpain::Model::Itinerary->new(
+        id            => 230,
+        timetable_id  => 1,
+        fare_class_id => 1,
+        parent_id     => 0,
+        cost          => 0,
     );
 
     eval {
-        $fare->delete();
+        $itinerary->delete();
         fail('no exception thrown');
     };
 

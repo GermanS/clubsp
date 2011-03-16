@@ -177,19 +177,18 @@ sub populate_schema {
         ['C', 'Business', 1],
     ]);
 
-    my @fare = $schema->populate('Fare', [
-        [qw(fare)],
-        [100],
-        [1000],
-        [10000]
-    ]);
+    my @itinerary = $schema->populate('Itinerary', [
+        [qw(timetable_id fare_class_id parent_id cost)],
+        [$timetable[6]->id, $fareclass[0]->id, 0, 175], #NN331 Y 175(eur) на будущую субботу ONE WAY
+        [$timetable[6]->id, $fareclass[1]->id, 0, 250], #NN331 C 250(eur) на будущую субботу ONE WAY
+        [$timetable[9]->id, $fareclass[0]->id, 0, 200], #NN332 Y 200(eur) на будущую субботу ONE WAY
+        [$timetable[9]->id, $fareclass[1]->id, 0, 350], #NN332 C 350(eur) на будущую субботу ONE WAY
 
-    my @segment = $schema->populate('Segment', [
-        [qw(fare_class_id fare_id timetable_id)],
-        [$fareclass[0]->id, $fare[0]->id, $timetable[0]->id],
-        [$fareclass[0]->id, $fare[0]->id, $timetable[1]->id],
-        [$fareclass[0]->id, $fare[1]->id, $timetable[0]->id],
-        [$fareclass[0]->id, $fare[1]->id, $timetable[2]->id],
+        [$timetable[6]->id,  $fareclass[0]->id, 0, 150], #NN331 Y 150(eur) вылет будущей субботой
+        [$timetable[10]->id, $fareclass[0]->id, 5, 160], #NN332 Y 160(eur) возвлат через неделю
+
+        [$timetable[6]->id,  $fareclass[0]->id, 0, 170], #NN331 Y 170 вылет в будущую субботу
+        [$timetable[11]->id, $fareclass[0]->id, 7, 170], #NN332 Y 170 возврат через 2 недели
     ]);
 }
 

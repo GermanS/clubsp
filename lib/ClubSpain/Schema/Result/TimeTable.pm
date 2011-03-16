@@ -71,7 +71,7 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->has_many(
-    'segments' => 'ClubSpain::Schema::Result::Segment', {'foreign.timetable_id' => 'self.id'}
+    'itineraries' => 'ClubSpain::Schema::Result::Itinerary', {'foreign.timetable_id' => 'self.id'}
 );
 
 
