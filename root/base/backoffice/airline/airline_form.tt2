@@ -1,0 +1,4 @@
+[% WRAPPER backoffice/airline/airline_wrapper.tt2 %]
+    <p>[% message %]</p>
+    [% form %]
+[% END %]

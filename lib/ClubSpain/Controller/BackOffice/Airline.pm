@@ -6,13 +6,17 @@ use utf8;
 use parent qw(Catalyst::Controller::HTML::FormFu);
 use ClubSpain::Constants qw(:all);
 
+
+
 sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(
-        template => 'backoffice/airline.tt2',
+        template => 'backoffice/airline/airline.tt2',
     );
 };
+
+
 
 sub default :Path {
     my ($self, $c) = @_;
@@ -22,9 +26,13 @@ sub default :Path {
     );
 };
 
+
+
 sub end :ActionClass('RenderView') {};
 
 sub base :Chained('/backoffice/base') :PathPart('airline') :CaptureArgs(0) {};
+
+
 
 sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id) = @_;
@@ -42,6 +50,8 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     }
 };
 
+
+
 sub enable :Chained('id') :PathPart('enable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -51,6 +61,8 @@ sub enable :Chained('id') :PathPart('enable') :Args(0) {
     $c->res->redirect($c->uri_for('default'));
 };
 
+
+
 sub disable :Chained('id') :PathPart('disable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -59,6 +71,8 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
     });
     $c->res->redirect($c->uri_for('default'));
 };
+
+
 
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
@@ -76,6 +90,8 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     $c->res->redirect($c->uri_for('default'));
 };
 
+
+
 sub process_error {
     my ($self, $c, $e) = @_;
 
@@ -88,11 +104,15 @@ sub process_error {
     }
 };
 
+
+
 sub successful_message {
     my ($self, $c) = @_;
 
     $c->stash( message => MESSAGE_OK );
 };
+
+
 
 sub load_add_form :Private  {
     my ($self, $c) = @_;
@@ -104,6 +124,8 @@ sub load_add_form :Private  {
     return $form;
 };
 
+
+
 sub create :Local {
     my ($self, $c) = @_;
 
@@ -113,10 +135,12 @@ sub create :Local {
     }
 
     $c->stash(
-        form    => $self->load_add_form($c),
-        template => 'backoffice/airline_form.tt2'
+        form => $self->load_add_form($c),
+        template => 'backoffice/airline/airline_form.tt2'
     );
 };
+
+
 
 sub insert :Private {
     my ($self, $c) = @_;
@@ -137,20 +161,26 @@ sub insert :Private {
         if $@;
 };
 
+
+
 sub load_upd_form :Private {
     my ($self, $c) = @_;
 
     my $form = $self->load_add_form($c);
     my $airline = $c->stash->{'airline'};
 
-    $form->get_element({ name => 'iata' })->value($airline->iata);
-    $form->get_element({ name => 'icao' })->value($airline->icao);
-    $form->get_element({ name => 'name' })->value($airline->name);
-
+    $form->get_element({ name => 'iata' })
+            ->value($airline->iata);
+    $form->get_element({ name => 'icao' })
+            ->value($airline->icao);
+    $form->get_element({ name => 'name' })
+            ->value($airline->name);
     $form->process;
 
     return $form;
 };
+
+
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
@@ -162,9 +192,11 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
 
     $c->stash(
         form => $self->load_upd_form($c),
-        template => 'backoffice/airline_form.tt2'
+        template => 'backoffice/airline/airline_form.tt2'
     );
 };
+
+
 
 sub update :Private {
     my ($self, $c) = @_;
