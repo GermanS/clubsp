@@ -1,4 +1,0 @@
-[% WRAPPER backoffice/country_wrapper.tt2 %]
-    <p>[% message %]</p>
-    [% form %]
-[% END %]
