@@ -9,7 +9,7 @@ use ClubSpain::Constants qw(:all);
 sub auto :Private {
     my ($self, $c) = @_;
 
-    $c->stash(template => 'backoffice/article.tt2')
+    $c->stash(template => 'backoffice/article/article.tt2')
 }
 
 sub default :Path {
@@ -48,7 +48,7 @@ sub create :Local {
 
     $c->stash(
         form    => $self->load_add_form($c),
-        template => 'backoffice/article_form.tt2'
+        template => 'backoffice/article/article_form.tt2'
     );
 }
 
@@ -84,7 +84,7 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
 
     $c->stash(
         form => $self->load_upd_form($c),
-        template => 'backoffice/article_form.tt2'
+        template => 'backoffice/article/article_form.tt2'
     );
 }
 
@@ -143,7 +143,8 @@ sub load_add_form :Private  {
     my @options = $c->model('Article')->select_options();
     my $form = $self->form();
     $form->load_config_filestem('backoffice/article_form');
-    $form->get_element({ name => 'parent_id' })->options(\@options);
+    $form->get_element({ name => 'parent_id' })
+            ->options(\@options);
     $form->process();
 
     return $form;
@@ -154,10 +155,14 @@ sub load_upd_form :Private {
 
     my $form = $self->load_add_form($c);
     my $article = $c->stash->{'article'};
-    $form->get_element({ name => 'parent_id' })->value($article->parent_id);
-    $form->get_element({ name => 'header'    })->value($article->header);
-    $form->get_element({ name => 'subheader' })->value($article->subheader);
-    $form->get_element({ name => 'body'      })->value($article->body);
+    $form->get_element({ name => 'parent_id' })
+            ->value($article->parent_id);
+    $form->get_element({ name => 'header' })
+            ->value($article->header);
+    $form->get_element({ name => 'subheader' })
+            ->value($article->subheader);
+    $form->get_element({ name => 'body' })
+            ->value($article->body);
 
     $form->process;
 
