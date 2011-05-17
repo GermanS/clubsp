@@ -15,6 +15,8 @@ sub auto :Private {
     );
 };
 
+
+
 sub default :Path {
     my ($self, $c) = @_;
 
@@ -29,12 +31,15 @@ sub default :Path {
         $c->stash( iterator => $iterator );
         $self->setup_stash_from_request($c);
     }
-
 };
+
+
 
 sub end :ActionClass('RenderView') {}
 
 sub base :Chained('/backoffice/base') :PathPart('flight') :CaptureArgs(0) {}
+
+
 
 #match /backoffice/flight/*
 sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
@@ -54,6 +59,8 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     }
 };
 
+
+
 sub create :Local {
     my ($self, $c) = @_;
     $self->setup_stash_from_request($c);
@@ -70,6 +77,8 @@ sub create :Local {
     );
 };
 
+
+
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
@@ -83,6 +92,8 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
         template => 'backoffice/flight/flight_form.tt2'
     );
 };
+
+
 
 
 sub update :Private {
@@ -105,6 +116,8 @@ sub update :Private {
     $self->process_error($c, $@)
          if $@;
 };
+
+
 
 sub load_add_form :Private {
     my ($self, $c) = @_;
@@ -129,7 +142,9 @@ sub load_add_form :Private {
     $form->process();
 
     return $form;
-}
+};
+
+
 
 sub load_upd_form :Private {
     my ($self, $c) = @_;
@@ -144,6 +159,8 @@ sub load_upd_form :Private {
 
     return $form;
 };
+
+
 
 sub insert :Private {
     my ($self, $c) = @_;
@@ -165,6 +182,8 @@ sub insert :Private {
         if $@;
 };
 
+
+
 sub enable :Chained('id') :PathPart('enable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -175,6 +194,8 @@ sub enable :Chained('id') :PathPart('enable') :Args(0) {
     $c->detach('default');
 };
 
+
+
 sub disable :Chained('id') :PathPart('disable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -184,6 +205,8 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
     $self->setup_request_from_stash($c);
     $c->detach('default');
 };
+
+
 
 # match /backoffice/flight/*/delete
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
@@ -202,6 +225,8 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     $c->detach('default');
 };
 
+
+
 sub setup_stash_from_request :Private {
     my ($self, $c) = @_;
 
@@ -215,6 +240,8 @@ sub setup_stash_from_request :Private {
     $c->stash($_ => $c->request->param($_))
         foreach (@param);
 };
+
+
 
 sub setup_stash_from_data :Private {
     my ($self, $c) = @_;
@@ -230,6 +257,8 @@ sub setup_stash_from_data :Private {
     });
 };
 
+
+
 sub setup_request_from_stash :Private {
     my ($self, $c) = @_;
 
@@ -242,7 +271,9 @@ sub setup_request_from_stash :Private {
 
     $c->request->param($_, $c->stash->{$_})
         foreach (@param);
-}
+};
+
+
 
 sub process_error {
     my ($self, $c, $e) = @_;
@@ -255,6 +286,8 @@ sub process_error {
         $c->stash( message => $@ );
     }
 };
+
+
 
 sub successful_message {
     my ($self, $c) = @_;

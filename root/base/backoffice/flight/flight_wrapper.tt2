@@ -1,48 +1,50 @@
-[% WRAPPER backoffice/page.tt2 javascript="backoffice/flight/flight.js.tt2" %]
+[% WRAPPER backoffice/doc4_yui_t7.tt2 javascript="backoffice/flight/flight.js.tt2" %]
     <div id="bd">
-        <div id="yui-main">
-            <div class="yui-b">
-                <div class="yui-g">
-                    [% content %]
-                </div>
-            </div>
+        <div class="yui-g">
+            <h2>Редактирование маршрута</h2>
         </div>
-        <div class="yui-b">
-            <form method="post" action="/backoffice/flight/browse">
-                <fieldset title="Отправление">
-                    <label for="CountryOfDeparture">Страна отправления</label>
-                    <select name="CountryOfDeparture"></select>
+        <div class="yui-gf">
+            <div class="yui-u first">
+                <form method="post" action="/backoffice/flight/browse">
+                    <fieldset title="Отправление">
+                        <label for="CountryOfDeparture">Страна отправления</label>
+                        <select name="CountryOfDeparture"></select>
 
-                    <label for="CityOfDeparture">Город отправления</label>
-                    <select name="CityOfDeparture"></select>
+                        <label for="CityOfDeparture">Город отправления</label>
+                        <select name="CityOfDeparture"></select>
 
-                    <label for="AirportOfDeparture">Аэропорт отправления</label>
-                    <select name="AirportOfDeparture"></select>
-                </fieldset>
-                <fieldset title="Прибытие">
-                    <label for="CountryOfArrival">Страна прибытия</label>
-                    <select name="CountryOfArrival"></select>
+                        <label for="AirportOfDeparture">Аэропорт отправления</label>
+                        <select name="AirportOfDeparture"></select>
+                    </fieldset>
+                    <fieldset title="Прибытие">
+                        <label for="CountryOfArrival">Страна прибытия</label>
+                        <select name="CountryOfArrival"></select>
 
-                    <label for="CityOfArrival">Город прибытия</label>
-                    <select name="CityOfArrival"></select>
+                        <label for="CityOfArrival">Город прибытия</label>
+                        <select name="CityOfArrival"></select>
 
-                    <label for="AirportOfArrival">Аэропорт прибытия</label>
-                    <select name="AirportOfArrival"></select>
-                </fieldset>
-                <div class="button-group">
-                    <input type="submit" class="button primary" value="Найти рейс"/
-                    <input type="submit" class="button" value="Добавить" onclick="this.form.action='/backoffice/flight/create'; return true;">
-                </div>
-            </form>
-            <form id="preselect">
-                <input type="hidden" name="_CountryOfDeparture" value="[% CountryOfDeparture %]" />
-                <input type="hidden" name="_CityOfDeparture" value="[% CityOfDeparture %]" />
-                <input type="hidden" name="_AirportOfDeparture" value="[% AirportOfDeparture %]" />
+                        <label for="AirportOfArrival">Аэропорт прибытия</label>
+                        <select name="AirportOfArrival"></select>
+                    </fieldset>
+                    <br />
+                    <div class="button-group">
+                        <input type="submit" class="button primary" value="Найти рейс" />
+                        <input type="submit" class="button" value="Добавить" onclick="this.form.action='/backoffice/flight/create'; return true;" />
+                    </div>
+                </form>
+                <form id="preselect">
+                    <input type="hidden" name="_CountryOfDeparture" value="[% CountryOfDeparture %]" />
+                    <input type="hidden" name="_CityOfDeparture" value="[% CityOfDeparture %]" />
+                    <input type="hidden" name="_AirportOfDeparture" value="[% AirportOfDeparture %]" />
 
-                <input type="hidden" name="_CountryOfArrival" value="[% CountryOfArrival %]" />
-                <input type="hidden" name="_CityOfArrival" value="[% CityOfArrival %]" />
-                <input type="hidden" name="_AirportOfArrival" value="[% AirportOfArrival %]" />
-            </form>
+                    <input type="hidden" name="_CountryOfArrival" value="[% CountryOfArrival %]" />
+                    <input type="hidden" name="_CityOfArrival" value="[% CityOfArrival %]" />
+                    <input type="hidden" name="_AirportOfArrival" value="[% AirportOfArrival %]" />
+                </form>
+            </div>
+            <div class="yui-u">
+                [% content %]
+            </div>
         </div>
     </div>
 [% END %]
