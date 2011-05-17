@@ -1,4 +1,0 @@
-[% WRAPPER backoffice/article_wrapper.tt2 %]
-    <p>[% message %]</p>
-    [% form %]
-[% END %]
