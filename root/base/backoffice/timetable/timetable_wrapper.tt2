@@ -16,9 +16,9 @@
                         <label for="Flight">Рейс</label>
                         <select name="Flight"></select>
                     </fieldset>
-                    <br />
+                    <label></label>
                     <div class="button-group">
-                        <input type="submit" class="button primary" value="Найти" />
+                        <input type="submit" class="button primary" value="Найти расписание" />
                         <input type="submit" class="button"value="Добавить" onclick="this.form.action='/backoffice/timetable/create'; return true;">
                     </div>
                 </form>
