@@ -11,7 +11,7 @@ use ClubSpain::Constants qw(:all);
 sub auto :Private {
     my ($self, $c) = @_;
 
-    $c->stash(template => 'backoffice/country.tt2')
+    $c->stash(template => 'backoffice/country/country.tt2')
 };
 
 
@@ -136,9 +136,10 @@ sub create :Local {
 
     $c->stash(
         form    => $self->load_add_form(),
-        template => 'backoffice/country_form.tt2'
+        template => 'backoffice/country/country_form.tt2'
     );
 };
+
 
 
 sub insert :Private {
@@ -160,6 +161,7 @@ sub insert :Private {
     $self->process_error($c, $@)
         if $@;
 };
+
 
 
 sub load_upd_form :Private {
@@ -189,7 +191,7 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
 
     $c->stash(
         form => $self->load_upd_form($c),
-        template => 'backoffice/country_form.tt2'
+        template => 'backoffice/country/country_form.tt2'
     );
 };
 
