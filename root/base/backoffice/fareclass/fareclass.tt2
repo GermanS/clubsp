@@ -1,4 +1,4 @@
-[% WRAPPER backoffice/fareclass_wrapper.tt2 %]
+[% WRAPPER backoffice/fareclass/fareclass_wrapper.tt2 %]
     [% IF message %]
         [% message %]
     [% END %]
@@ -8,8 +8,8 @@
             <table cellpadding="0" cellspacing="0">
                 <tr>
                     <th> </th>
-                    <th>Название</th>
                     <th>Код</th>
+                    <th>Название</th>
                     <th> </th>
                 <tr>
                 [% WHILE (item = iterator.next) %]
@@ -27,10 +27,10 @@
             [% INCLUDE icons/is_published.tt2 href="/backoffice/fareclass/" object=fareclass %]
         </td>
         <td>
-            <a href="/backoffice/fareclass/[% fareclass.id %]/edit">[% fareclass.name %]</a>
+            [% fareclass.code %]
         </td>
         <td>
-            [% fareclass.code %]
+            <a href="/backoffice/fareclass/[% fareclass.id %]/edit">[% fareclass.name %]</a>
         </td>
         <td class="icon">
             [% INCLUDE icons/delete.tt2 href="/backoffice/fareclass/$fareclass.id/delete" %]
