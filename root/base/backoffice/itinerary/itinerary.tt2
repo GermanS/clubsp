@@ -1,0 +1,9 @@
+[% WRAPPER backoffice/itinerary/itinerary_wrapper.tt2 %]
+    [% IF iterator.count %]
+        [% WHILE (item = iterator.next) %]
+            [% INCLUDE backoffice/itinerary/route.tt2 itinerary = item %]
+        [% END %]
+    [% END %]
+[% END %]
+
+

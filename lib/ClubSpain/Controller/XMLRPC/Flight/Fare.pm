@@ -30,6 +30,8 @@ sub searchDatesOfDeparture : XMLRPC {
     $c->stash(xmlrpc => \@res);
 }
 
+
+#TODO: попытаться удалить этот метод!!!
 sub searchFlights : XMLRPC {
     my ($self, $c, $params) = @_;
 
@@ -40,5 +42,20 @@ sub searchFlights : XMLRPC {
     );
     $c->stash(xmlrpc => \@res);
 }
+
+
+#поиск расписания по критерию
+sub searchTimetable : XMLRPC {
+    my ($self, $c, $params) = @_;
+
+    my @res = $self->_searchTimetable($c,
+        cityOfDeparture => $params->{'cityOfDeparture'},
+        cityOfArrival   => $params->{'cityOfArrival'},
+        dateOfDeparture => $params->{'dateOfDeparture'},
+    );
+
+    $c->stash(xmlrpc => \@res);
+}
+
 
 1;

@@ -1,7 +1,6 @@
 <p>
     <span title="Город вылета">[% timetable.flight.departure_airport.city.name %]</span>
     <span title="Аэропорт вылета">[% timetable.flight.departure_airport.name %]</span>
-    ->
     <span title="Город прилета">[% timetable.flight.arrival_airport.city.name %]</span>
     <span title="Аэропорт прилета">[% timetable.flight.arrival_airport.name %]</span>
     <span title="Авиакомпания">[% timetable.flight.airline.name %]</span>

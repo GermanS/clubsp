@@ -40,4 +40,13 @@ sub update {
     });
 }
 
+sub searchItinerary {
+    my ($self, @params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchItinerary(@params);
+}
+
 1;

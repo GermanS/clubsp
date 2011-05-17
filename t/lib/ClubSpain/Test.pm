@@ -189,6 +189,9 @@ sub populate_schema {
 
         [$timetable[6]->id,  $fareclass[0]->id, 0, 170], #NN331 Y 170 вылет в будущую субботу
         [$timetable[11]->id, $fareclass[0]->id, 7, 170], #NN332 Y 170 возврат через 2 недели
+
+        [$timetable[6]->id,  $fareclass[1]->id, 0, 250], #NN331 C 250(eur) вылет будущей субботой
+        [$timetable[10]->id, $fareclass[1]->id, 9, 350], #NN332 C 350(eur) возвлат через неделю
     ]);
 }
 

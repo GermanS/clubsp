@@ -61,7 +61,7 @@
         var initial   = $("input[name='_Flight1").attr("value");
 
         makeRequest(
-            FareSearchFlights,
+            FareSearchTimetable,
             { cityOfDeparture : departure, cityOfArrival : arrival, dateOfDeparture : value },
             element,
             initial
@@ -95,7 +95,7 @@
         var initial   = $("input[name='_Flight2").attr("value");
 
         makeRequest(
-            FareSearchFlights,
+            FareSearchTimetable,
             { cityOfDeparture : departure, cityOfArrival : arrival, dateOfDeparture : value },
             element,
             initial

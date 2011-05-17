@@ -4,8 +4,9 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.2r1/build/reset-fonts-grids/reset-fonts-grids.css" />
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.2r1/build/base/base-min.css">
     <link rel="stylesheet" type="text/css" href="/css/clubspain.css" />
+    <!--link rel="stylesheet" type="text/css" href="/css/style.css" /-->
+    <link rel="stylesheet" type="text/css" href="/css/buttons.css" />
 
     <script type="text/javascript" src="/jscript/jquery-1.5.min.js"></script>
     <script type="text/javascript" src="/jscript/rpc.js"></script>

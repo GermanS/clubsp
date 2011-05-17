@@ -132,7 +132,7 @@ textarea, select, input[type=text] {
     font: 12px "Courier New", "Lucida Console", monospace;
 }
 
-textarea:focus, select:focus, input:focus {
+textarea:focus, select:focus, input[type="text"]:focus {
     border: 2px solid #8CD6F9;
 }
 
@@ -203,6 +203,47 @@ textarea:focus, select:focus, input:focus {
 
 .sidebar strong {
     display: block;
+}
+
+
+
+
+.date {
+    font-weight: bold;
+    font-size: 138.5%;
+}
+
+.time {
+    font-weight: bold;
+    font-size: 138.5%;
+}
+
+.city {
+    font-size: 131%;
+}
+
+.airport {
+    font-size: 123.1%;
+}
+
+.airline {
+    font-size: 116%;
+}
+
+.flight {
+    font-weight: bold;
+    font-size: 138.5%;
+}
+
+.seat {
+     font-size: 116%;
+}
+
+.price {
+    float: right;
+    display: block;
+    font-weight: bold;
+    font-size: 3em;
 }
 
 

@@ -1,0 +1,13 @@
+[% WRAPPER backoffice/itinerary/itinerary_wrapper.tt2
+           javascript = "backoffice/itinerary/itinerary.js.tt2"
+           searchform = "backoffice/itinerary/itinerary_search_form_OW.tt2" %]
+
+    <h2>Редактирование тарифа OW на чартерный рейс</h2>
+
+    [% INCLUDE backoffice/itinerary/route_info.tt2
+               timetable1 = timetable1 %]
+
+    <p>[% message %]</p>
+    [% form %]
+
+[% END %]

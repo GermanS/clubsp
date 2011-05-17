@@ -1,0 +1,7 @@
+[% WRAPPER backoffice/itinerary/itinerary_wrapper.tt2
+           javascript = "backoffice/itinerary/itinerary.js.tt2"
+           searchform = "backoffice/itinerary/itinerary_search_form_RT.tt2" %]
+    [% IF iterator.count %]
+        [% INCLUDE backoffice/itinerary/route_table.tt2 iterator = iterator %]
+    [% END %]
+[% END %]

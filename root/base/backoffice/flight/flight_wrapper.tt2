@@ -29,8 +29,10 @@
                     <label for="AirportOfArrival">Аэропорт прибытия</label>
                     <select name="AirportOfArrival"></select>
                 </fieldset>
-                <input type="submit" value="Добавить" onclick="this.form.action='/backoffice/flight/create'; return true;">
-                <input type="submit" value="Найти" />
+                <div class="button-group">
+                    <input type="submit" class="button primary" value="Найти рейс"/
+                    <input type="submit" class="button" value="Добавить" onclick="this.form.action='/backoffice/flight/create'; return true;">
+                </div>
             </form>
             <form id="preselect">
                 <input type="hidden" name="_CountryOfDeparture" value="[% CountryOfDeparture %]" />

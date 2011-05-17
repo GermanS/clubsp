@@ -33,3 +33,5 @@ elements:
 
   - type: Submit
     name: submit
+    attrs:
+      class: button big

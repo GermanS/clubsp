@@ -62,4 +62,13 @@ sub searchDatesOfDeparture {
              ->searchDatesOfDeparture(%params);
 }
 
+sub searchTimetable {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchTimetable(%params)
+}
+
 1;
