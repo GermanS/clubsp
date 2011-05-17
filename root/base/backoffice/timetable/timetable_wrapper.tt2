@@ -1,35 +1,36 @@
 [% WRAPPER backoffice/page.tt2 javascript="backoffice/timetable/timetable.js.tt2" %]
     <div id="bd">
-        <div id="yui-main">
-            <div class="yui-b">
-                <div class="yui-g">
-                    [% content %]
-                </div>
-            </div>
+        <div class="yui-g">
+            <h2>Редактирование расписания</h2>
         </div>
-        <div class="yui-b">
-            <form method="post" action="/backoffice/timetable/browse">
-                <fieldset title="Отправление">
-                    <label for="CityOfDeparture">Город отправления</label>
-                    <select name="CityOfDeparture"></select>
+        <div class="yui-gf">
+            <div class="yui-u first">
+                <form method="post" action="/backoffice/timetable/browse">
+                    <fieldset title="Отправление">
+                        <label for="CityOfDeparture">Город отправления</label>
+                        <select name="CityOfDeparture"></select>
 
-                    <label for="CityOfArrival">Город прибытия</label>
-                    <select name="CityOfArrival"></select>
+                        <label for="CityOfArrival">Город прибытия</label>
+                        <select name="CityOfArrival"></select>
 
-                    <label for="Flight">Рейс</label>
-                    <select name="Flight"></select>
-                </fieldset>
-                <label> </label>
-                <div class="button-group">
-                    <input type="submit" class="button primary" value="Найти" />
-                    <input type="submit" class="button"value="Добавить" onclick="this.form.action='/backoffice/timetable/create'; return true;">
-                </div>
-            </form>
-            <form id="preselect">
-                <input type="hidden" name="_CityOfDeparture" value="[% CityOfDeparture %]" />
-                <input type="hidden" name="_CityOfArrival" value="[% CityOfArrival %]" />
-                <input type="hidden" name="_Flight" value="[% Flight %]" />
-            </form>
+                        <label for="Flight">Рейс</label>
+                        <select name="Flight"></select>
+                    </fieldset>
+                    <br />
+                    <div class="button-group">
+                        <input type="submit" class="button primary" value="Найти" />
+                        <input type="submit" class="button"value="Добавить" onclick="this.form.action='/backoffice/timetable/create'; return true;">
+                    </div>
+                </form>
+                <form id="preselect">
+                    <input type="hidden" name="_CityOfDeparture" value="[% CityOfDeparture %]" />
+                    <input type="hidden" name="_CityOfArrival" value="[% CityOfArrival %]" />
+                    <input type="hidden" name="_Flight" value="[% Flight %]" />
+                </form>
+            </div>
+            <div class="yui-u">
+                [% content %]
+            </div>
         </div>
     </div>
 [% END %]
