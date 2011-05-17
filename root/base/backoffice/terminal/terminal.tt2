@@ -1,4 +1,4 @@
-[% WRAPPER backoffice/terminal_wrapper.tt2 %]
+[% WRAPPER backoffice/terminal/terminal_wrapper.tt2 %]
     [% IF message %]
         [% message %]
     [% END %]

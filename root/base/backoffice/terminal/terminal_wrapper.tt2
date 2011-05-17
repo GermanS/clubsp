@@ -1,0 +1,23 @@
+[% WRAPPER backoffice/doc4_yui_t7.tt2 %]
+    <div id="bd">
+        <div class="yui-g">
+            <h2>Редактирование терминалов</h2>
+            <div class="actions button-container">
+                <div class="button-group">
+                    <a class="button primary" href="/backoffice/terminal/create">Добавить терминал</a>
+                </div>
+
+                <div class="button-group minor-group">
+                    [% WHILE (airport = airport_list.next) %]
+                        <a href="/backoffice/terminal/browse/[% airport.id %]" class="button">[% airport.name %]</a>
+                    [% END %]
+                </div>
+            </div>
+        </div>
+        <div class="yui-g">
+               [% content %]
+        </div>
+    </div>
+[% END %]
+
+

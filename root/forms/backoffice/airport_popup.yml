@@ -2,6 +2,7 @@
 elements:
   - type: Select
     name: airport_id
+    label: Аэропорт
     model_config:
       resultset: Airport
       id_column: id

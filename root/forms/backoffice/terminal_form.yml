@@ -7,7 +7,7 @@ load_config_file:
 elements:
   - type: Text
     name: name
-    label: Город
+    label: Терминал
     filters:
       - TrimEdges
     constraints:
