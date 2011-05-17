@@ -2,6 +2,7 @@
 elements:
   - type: Select
     name: city_id
+    label: Город
     model_config:
       resultset: City
       id_column: id
