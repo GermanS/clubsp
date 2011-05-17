@@ -1,4 +1,4 @@
-[% WRAPPER backoffice/manufacturer_wrapper.tt2 %]
+[% WRAPPER backoffice/manufacturer/manufacturer_wrapper.tt2 %]
     [% IF message %]
         [% message %]
     [% END %]

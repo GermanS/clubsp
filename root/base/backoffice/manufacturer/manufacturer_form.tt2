@@ -1,0 +1,4 @@
+[% WRAPPER backoffice/manufacturer/manufacturer_wrapper.tt2 %]
+    <p>[% message %]</p>
+    [% form %]
+[% END %]
