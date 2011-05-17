@@ -1,0 +1,23 @@
+[% WRAPPER backoffice/doc4_yui_t7.tt2 %]
+    <div id="bd">
+        <div class="yui-g">
+            <h2>Редактирование городов</h2>
+            <div class="actions button-container">
+                <div class="button-group">
+                    <a class="button primary" href="/backoffice/city/create">Добавить город</a>
+                </div>
+
+                <div class="button-group minor-group">
+                    [% WHILE (country = country_list.next) %]
+                        <a href="/backoffice/city/browse/[% country.id %]" class="button">[% country.name %]</a>
+                    [% END %]
+                </div>
+            </div>
+        </div>
+        <div class="yui-g">
+               [% content %]
+        </div>
+    </div>
+[% END %]
+
+

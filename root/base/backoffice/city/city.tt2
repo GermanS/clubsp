@@ -1,4 +1,4 @@
-[% WRAPPER backoffice/city_wrapper.tt2 %]
+[% WRAPPER backoffice/city/city_wrapper.tt2 %]
     [% IF message %]
         [% message %]
     [% END %]

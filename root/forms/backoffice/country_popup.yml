@@ -1,6 +1,7 @@
 ---
 elements:
   - type: Select
+    label: Страна
     name: country_id
     model_config:
       resultset: Country
