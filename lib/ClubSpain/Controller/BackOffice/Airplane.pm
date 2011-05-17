@@ -11,10 +11,12 @@ sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(
-        template          => 'backoffice/airplane.tt2',
+        template => 'backoffice/airplane/airplane.tt2',
         manufacturer_list => $c->model('Manufacturer')->search({})
     );
 };
+
+
 
 sub default :Path {
     my ($self, $c) = @_;
@@ -24,9 +26,13 @@ sub default :Path {
     );
 };
 
+
+
 sub end :ActionClass('RenderView') {};
 
 sub base :Chained('/backoffice/base') :PathPart('airplane') :CaptureArgs(0) {};
+
+
 
 sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id) = @_;
@@ -44,6 +50,8 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     }
 };
 
+
+
 sub enable :Chained('id') :PathPart('enable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -53,6 +61,8 @@ sub enable :Chained('id') :PathPart('enable') :Args(0) {
     $c->res->redirect($c->uri_for('browse', $c->stash->{'airplane'}->manufacturer_id));
 };
 
+
+
 sub disable :Chained('id') :PathPart('disable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -61,6 +71,8 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
     });
     $c->res->redirect($c->uri_for('browse', $c->stash->{'airplane'}->manufacturer_id));
 };
+
+
 
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
@@ -78,6 +90,8 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     $c->res->redirect($c->uri_for('browse', $c->stash->{'airplane'}->manufacturer_id));
 };
 
+
+
 sub process_error {
     my ($self, $c, $e) = @_;
 
@@ -90,11 +104,15 @@ sub process_error {
     }
 };
 
+
+
 sub successful_message {
     my ($self, $c) = @_;
 
     $c->stash( message => MESSAGE_OK );
 };
+
+
 
 sub load_add_form :Private  {
     my ($self, $c) = @_;
@@ -109,6 +127,8 @@ sub load_add_form :Private  {
     return $form;
 };
 
+
+
 sub create :Local {
     my ($self, $c) = @_;
 
@@ -119,9 +139,11 @@ sub create :Local {
 
     $c->stash(
         form    => $self->load_add_form($c),
-        template => 'backoffice/airplane_form.tt2'
+        template => 'backoffice/airplane/airplane_form.tt2'
     );
 };
+
+
 
 sub insert :Private {
     my ($self, $c) = @_;
@@ -143,17 +165,22 @@ sub insert :Private {
         if $@;
 };
 
+
+
 sub load_upd_form :Private {
     my ($self, $c) = @_;
 
     my $form = $self->load_add_form($c);
     my $airplane = $c->stash->{'airplane'};
 
-    $form->get_element({ name => 'manufacturer_id' })->value($airplane->manufacturer_id);
-    $form->get_element({ name => 'iata' })->value($airplane->iata);
-    $form->get_element({ name => 'icao' })->value($airplane->icao);
-    $form->get_element({ name => 'name' })->value($airplane->name);
-
+    $form->get_element({ name => 'manufacturer_id' })
+            ->value($airplane->manufacturer_id);
+    $form->get_element({ name => 'iata' })
+            ->value($airplane->iata);
+    $form->get_element({ name => 'icao' })
+            ->value($airplane->icao);
+    $form->get_element({ name => 'name' })
+            ->value($airplane->name);
     $form->process;
 
     return $form;
@@ -169,7 +196,7 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
 
     $c->stash(
         form => $self->load_upd_form($c),
-        template => 'backoffice/airplane_form.tt2'
+        template => 'backoffice/airplane/airplane_form.tt2'
     );
 };
 

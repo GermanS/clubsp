@@ -1,6 +1,7 @@
 ---
 elements:
   - type: Select
+    label: Производитель
     name: manufacturer_id
     model_config:
       resultset: Manufacturer
