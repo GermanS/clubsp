@@ -240,8 +240,6 @@ textarea:focus, select:focus, input[type="text"]:focus {
 }
 
 .price {
-    float: right;
-    display: block;
     font-weight: bold;
     font-size: 3em;
 }

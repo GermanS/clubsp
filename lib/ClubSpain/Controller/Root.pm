@@ -29,8 +29,10 @@ The root page (/)
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
+    $c->stash( template => 'common/index.tt2' );
+
     # Hello World
-    $c->response->body( $c->welcome_message );
+#    $c->response->body( $c->welcome_message );
 }
 
 =head2 default
@@ -54,6 +56,13 @@ Attempt to render a view, if needed.
 =cut
 
 #sub end : ActionClass('RenderView') {}
+
+sub end :Private {
+  my ($self, $c) = @_;
+  $c->forward('render') unless $c->req->xmlrpc->is_xmlrpc_request;
+}
+
+sub render :ActionClass('RenderView') { }
 
 =head1 AUTHOR
 

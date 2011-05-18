@@ -105,7 +105,6 @@ sub _searchTimetable {
     }
 
     return @res;
-
 }
 
 1;
