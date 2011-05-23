@@ -31,3 +31,6 @@ elements:
 
   - type: Submit
     name: submit
+    name: Редактировать аэропорт
+    attrs:
+      class: button primary

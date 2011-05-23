@@ -33,5 +33,6 @@ elements:
 
   - type: Submit
     name: submit
+    value: Редактировать маршрут
     attrs:
-      class: button big
+      class: button primary

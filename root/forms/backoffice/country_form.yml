@@ -36,3 +36,6 @@ elements:
 
   - type: Submit
     name: submit
+    value: Редактировать страну
+    attrs:
+      class: button primary

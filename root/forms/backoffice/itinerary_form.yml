@@ -21,3 +21,6 @@ elements:
 
   - type: Submit
     name: submit
+    value: Редактировать стоимость
+    attrs:
+      class: button primary

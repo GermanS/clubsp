@@ -31,3 +31,6 @@ elements:
 
   - type: Submit
     name: submit
+    value: Редактировать марку самолета
+    attrs:
+      class: button primary

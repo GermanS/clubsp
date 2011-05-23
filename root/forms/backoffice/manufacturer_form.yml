@@ -21,3 +21,6 @@ elements:
 
   - type: Submit
     name: submit
+    value: Редактировать производителя
+    attrs:
+      class: button primary

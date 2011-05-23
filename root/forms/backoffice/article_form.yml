@@ -32,4 +32,8 @@ elements:
 
   - type: Submit
     name: submit
+    value: Редактирвать статью
+    attrs:
+      class: button primary
+
 

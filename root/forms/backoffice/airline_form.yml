@@ -28,3 +28,6 @@ elements:
 
   - type: Submit
     name: submit
+    value: Редактировать авиакомпанию
+    attrs:
+      class: button primary

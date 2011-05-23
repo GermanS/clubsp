@@ -20,3 +20,6 @@ elements:
 
   - type: Submit
     name: submit
+    value: Редактировать класс
+    attrs:
+      class: button primary

@@ -15,3 +15,6 @@ elements:
 
   - type: Submit
     name: submit
+    value: Редактировать терминал
+    attrs:
+      class: button primary
