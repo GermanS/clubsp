@@ -7,6 +7,11 @@
                     <a class="button" href="/backoffice/fare/searchRT">Поиск тарифа RT</a>
                     <a class="button" href="/backoffice/fare/searchOW">Поиск тарифа OW</a>
                 </div>
+
+                <div class="button-group minor-group">
+                    <a class="button" href="/backoffice/fare/searchRT">Все тарифы RT</a>
+                    <a class="button" href="/backoffice/fare/searchOW">Все тарифы OW</a>
+                </div>
             </div>
         </div>
         [% INCLUDE $searchform %]

@@ -246,6 +246,44 @@ textarea:focus, select:focus, input[type="text"]:focus {
 
 
 
+.route a  {
+    display: block;
+    padding: 5px 0;
+    font-size: 116%;
+}
+
+
+
+.sidebar {
+    line-height: 146.5%;
+}
+
+.sidebar p {
+    font-size: 108%;
+    margin-bottom: 1em;
+}
+
+.sidebar a {
+    display: block;
+    padding: 3px 0;
+}
+
+
+#ft {
+}
+
+#ft a {
+    display: block;
+    padding: 3px 0;
+}
+
+
+
+
+
+
+
+
 
 
 

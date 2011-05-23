@@ -1,0 +1,21 @@
+<div class="yui-g">
+    <div class="yui-g first">
+        <div class="yui-u first">
+                <h6>Сервисы сайта</h6>
+                <a href="">Авиабилеты в Испанию</a>
+                <a href="">Расписание вылетов</a>
+            </dl>
+        </div>
+        <div class="yui-u">
+            <h6>Информация</h6>
+            <a href="">Условия предоставления услуг</a>
+            <a href="">Политика конфиденциальности</a>
+            <a href="">Политика возврата</a>
+            <a href="">Контакты</a>
+        </div>
+    </div>
+    <div class="yui-g">
+        <div class="yui-u first"> </div>
+        <div class="yui-u"> </div>
+    </div>
+</div>
