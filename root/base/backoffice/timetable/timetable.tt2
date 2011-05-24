@@ -33,7 +33,7 @@
             [% INCLUDE icons/is_published.tt2 href="/backoffice/timetable/" object=timetable %]
         </td>
         <td>
-            [% timetable.departure_date %]
+            <a href="/backoffice/timetable/[% timetable.id %]/edit">[% timetable.departure_date %]</a>
         </td>
         <td>
             [% timetable.departure_time %]
