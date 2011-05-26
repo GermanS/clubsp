@@ -13,6 +13,14 @@ elements:
     constraints:
       - Required
 
+  - type: Text
+    name: iata
+    label: Код IATA
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
   - type: Submit
     name: submit
     value: Редактировать город

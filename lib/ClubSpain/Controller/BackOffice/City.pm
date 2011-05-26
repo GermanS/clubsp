@@ -151,6 +151,7 @@ sub insert :Private {
     eval {
         my $city = $c->model('City')->new(
             country_id  => $c->request->param('country_id'),
+            iata        => $c->request->param('iata'),
             name        => $c->request->param('name'),
             is_published => ENABLE,
         );
@@ -173,6 +174,8 @@ sub load_upd_form :Private {
 
     $form->get_element({ name => 'country_id' })
             ->value($city->country_id);
+    $form->get_element({ name => 'iata' })
+            ->value($city->iata);
     $form->get_element({ name => 'name' })
             ->value($city->name);
     $form->process;
@@ -205,6 +208,7 @@ sub update :Private {
         my $city = $c->model('City')->new(
             id          => $c->stash->{'city'}->id,
             country_id  => $c->request->param('country_id'),
+            iata        => $c->request->param('iata'),
             name        => $c->request->param('name'),
             is_published=> $c->stash->{'city'}->is_published,
         );
