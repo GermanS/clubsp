@@ -1,4 +1,4 @@
-use Test::More tests => 11;
+use Test::More tests => 14;
 
 use strict;
 use warnings;
@@ -27,6 +27,7 @@ use_ok('ClubSpain::Model::City');
 
     my $moscow = $iterator->next;
     is($moscow->id, 1, 'got id');
+    is($moscow->iata, 'MOW', 'got iata code');
     is($moscow->name, 'Moscow', 'got name');
 }
 
@@ -40,10 +41,12 @@ use_ok('ClubSpain::Model::City');
 
     my $bcn = $iterator->next();
     is($bcn->id, 2, 'got id');
+    is($bcn->iata, 'BCN', 'got iata code');
     is($bcn->name, 'Barcelona', 'got name');
 
     my $malaga = $iterator->next();
     is($malaga->id, 3, 'got id');
+    is($malaga->iata, 'AGP', 'got iata code');
     is($malaga->name, 'Malaga', 'got name');
 }
 

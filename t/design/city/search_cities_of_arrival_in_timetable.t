@@ -1,4 +1,4 @@
-use Test::More tests => 11;
+use Test::More tests => 13;
 use strict;
 use warnings;
 
@@ -18,6 +18,7 @@ use_ok('ClubSpain::Model::City');
 
     my $bcn = $iterator->next();
     is($bcn->id, 2, 'got id');
+    is($bcn->iata, 'BCN', 'got iata code');
     is($bcn->name, 'Barcelona', 'got Barcelona');
 }
 
@@ -93,8 +94,8 @@ use_ok('ClubSpain::Model::City');
 
     my $bcn = $iterator->next();
     is($bcn->id, 2, 'got id');
+    is($bcn->iata, 'BCN', 'got iata code');
     is($bcn->name, 'Barcelona', 'got barcelona');
-
 
     for my $timetable (@NN332_BCN_DME) {
         $timetable->update({ is_published => 1 });

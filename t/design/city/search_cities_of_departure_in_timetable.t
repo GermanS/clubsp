@@ -1,4 +1,4 @@
-use Test::More tests => 15;
+use Test::More tests => 19;
 use strict;
 use warnings;
 
@@ -15,10 +15,12 @@ use_ok('ClubSpain::Model::City');
 
     my $moscow = $iterator->next();
     is($moscow->id, 1, 'got id');
+    is($moscow->iata, 'MOW', 'got iata code');
     is($moscow->name, 'Moscow', 'got Moscow');
 
     my $bcn = $iterator->next();
     is($bcn->id, 2, 'got id');
+    is($bcn->iata, 'BCN', 'got iata code');
     is($bcn->name, 'Barcelona', 'got Barcelona');
 }
 
@@ -66,6 +68,7 @@ use_ok('ClubSpain::Model::City');
 
     my $bcn = $iterator->next();
     is($bcn->id, 2, 'got id');
+    is($bcn->iata, 'BCN', 'got iata code');
     is($bcn->name, 'Barcelona', 'got Barcelona');
 
     $NN331->update({ is_published => 1 });
@@ -83,6 +86,7 @@ use_ok('ClubSpain::Model::City');
 
     my $mow = $iterator->next();
     is($mow->id, 1, 'got id');
+    is($mow->iata, 'MOW', 'got iata code');
     is($mow->name, 'Moscow', 'got Moscow');
 
 

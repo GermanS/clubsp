@@ -1,4 +1,4 @@
-use Test::More tests => 6;
+use Test::More tests => 7;
 
 use strict;
 use warnings;
@@ -13,12 +13,14 @@ my $count = $schema->resultset('City')->search({})->count;
 
 my $city = ClubSpain::Model::City->new(
     country_id   => 1,
+    iata         => 'NYC',
     name         => 'New Vasuki',
     is_published => 1,
 );
 my $object = $city->create();
 isa_ok($object, 'ClubSpain::Schema::Result::City');
 is($object->country_id, 1, 'got country id');
+is($object->iata, 'NYC', 'got iata code');
 is($object->name, 'New Vasuki', 'got name');
 is($object->is_published, 1, 'got is_published');
 

@@ -1,4 +1,4 @@
-use Test::More tests => 14;
+use Test::More tests => 16;
 
 use strict;
 use warnings;
@@ -15,6 +15,7 @@ my $schema = ClubSpain::Test->init_schema();
     my $city = ClubSpain::Model::City->fetch_by_id(1);
     isa_ok($city, 'ClubSpain::Schema::Result::City');
     is($city->country_id, 1, 'got country id');
+    is($city->iata, 'MOW', 'got iata');
     is($city->name, 'Moscow', 'got name');
     is($city->is_published, 1, 'got is_published');
 }
@@ -24,6 +25,7 @@ my $schema = ClubSpain::Test->init_schema();
     my $city = ClubSpain::Model::City->new(
         id => 1,
         country_id => 1,
+        iata => 'zzz',
         name => 'name',
         is_published => 1,
     );
@@ -32,6 +34,7 @@ my $schema = ClubSpain::Test->init_schema();
     isa_ok($object, 'ClubSpain::Schema::Result::City');
     is($object->id, 1, 'got id');
     is($object->country_id, 1, 'got country id');
+    is($object->iata, 'MOW', 'got iata code');
     is($object->name, 'Moscow', 'got name');
     is($object->is_published, 1, 'got is_published');
 }
@@ -60,6 +63,7 @@ my $schema = ClubSpain::Test->init_schema();
     my $city = ClubSpain::Model::City->new(
         id => 1000,
         country_id => 1,
+        iata => 'xxx',
         name => 'some name',
         is_published => 1,
     );

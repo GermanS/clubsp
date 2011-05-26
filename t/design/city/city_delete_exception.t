@@ -26,6 +26,7 @@ use_ok('ClubSpain::Model::City');
     my $city = ClubSpain::Model::City->new(
         id => 100,
         country_id => 1,
+        iata => 'xxx',
         name => 'name',
         is_published => 0,
     );

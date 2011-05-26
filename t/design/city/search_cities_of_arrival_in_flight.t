@@ -1,4 +1,4 @@
-use Test::More tests => 21;
+use Test::More tests => 28;
 use strict;
 use warnings;
 
@@ -17,11 +17,13 @@ use_ok('ClubSpain::Model::City');
 
     my $barcelona = $iterator->next();
     is($barcelona->id, 2, 'got id');
+    is($barcelona->iata, 'BCN', 'got iata code');
     is($barcelona->name, 'Barcelona', 'got barcelona');
 
     my $malaga = $iterator->next();
     is($malaga->id, 3, 'got id');
-    is($malaga->name, 'Malaga', 'got Malaga')
+    is($malaga->iata, 'AGP', 'got iata code');
+    is($malaga->name, 'Malaga', 'got Malaga');
 }
 
 #search - barcelona is the city of departure
@@ -33,6 +35,7 @@ use_ok('ClubSpain::Model::City');
 
     my $moscow = $iterator->next();
     is($moscow->id, 1, 'got id');
+    is($moscow->iata, 'MOW', 'got iata code');
     is($moscow->name, 'Moscow', 'got Moscow');
 }
 
@@ -45,6 +48,7 @@ use_ok('ClubSpain::Model::City');
 
     my $moscow = $iterator->next();
     is($moscow->id, 1, 'got id');
+    is($moscow->iata, 'MOW', 'got iata code');
     is($moscow->name, 'Moscow', 'got Moscow');
 }
 
@@ -73,6 +77,7 @@ use_ok('ClubSpain::Model::City');
 
     my $malaga = $iterator->next();
     is($malaga->id, 3, 'got id');
+    is($malaga->iata, 'AGP', 'got iata code');
     is($malaga->name, 'Malaga', 'got Malaga');
 
     $barcelona->update({ is_published => 1 });
@@ -88,6 +93,7 @@ use_ok('ClubSpain::Model::City');
 
     my $barcelona = $iterator->next();
     is($barcelona->id, 2, 'got id');
+    is($barcelona->iata, 'BCN', 'got iata code');
     is($barcelona->name, 'Barcelona', 'got Barcelona');
 
     $malaga->update({ is_published => 1 });
@@ -105,6 +111,7 @@ use_ok('ClubSpain::Model::City');
 
     my $malaga = $iterator->next();
     is($malaga->id, 3, 'got id');
+    is($malaga->iata, 'AGP', 'got iata code');
     is($malaga->name, 'Malaga', 'got Malaga');
 
     $NN331->update({ is_published => 1 });

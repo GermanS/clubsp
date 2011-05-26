@@ -17,6 +17,11 @@ __PACKAGE__->add_columns(
         is_nullable    => 0,
         is_foreign_key => 1,
     },
+    iata => {
+        data_type     => 'char',
+        size          => 3,
+        is_nullable   => 0,
+    },
     name => {
         data_type     => 'char',
         size          => 254,
@@ -29,7 +34,9 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('id');
+__PACKAGE__->add_unique_constraint(on_iata => [qw(iata)]);
 __PACKAGE__->add_unique_constraint(on_country_id_name => [qw(country_id name)]);
+
 
 __PACKAGE__->belongs_to(
     'country' => 'ClubSpain::Schema::Result::Country', 'country_id'

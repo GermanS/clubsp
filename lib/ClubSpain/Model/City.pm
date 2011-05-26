@@ -10,6 +10,7 @@ class_has '+source_name' => ( default => sub  { 'City' });
 
 has 'id'            => ( is => 'ro' );
 has 'country_id'    => ( is => 'ro', required => 1 );
+has 'iata'          => ( is => 'ro', required => 1, isa => 'AlphaNumericLength3' );
 has 'name'          => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
 has 'is_published'  => ( is => 'ro', required => 1 );
 
@@ -18,6 +19,7 @@ sub create {
 
     $self->SUPER::create({
         country_id   => $self->country_id,
+        iata         => $self->iata,
         name         => $self->name,
         is_published => $self->is_published,
     });
@@ -30,6 +32,7 @@ sub update {
 
     $self->SUPER::update({
         country_id   => $self->country_id,
+        iata         => $self->iata,
         name         => $self->name,
         is_published => $self->is_published,
     });
