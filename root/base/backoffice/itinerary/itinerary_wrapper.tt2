@@ -1,4 +1,4 @@
-[% WRAPPER backoffice/doc4_yui_t7.tt2 javascript="backoffice/itinerary/itinerary.js.tt2" %]
+[% WRAPPER backoffice/doc4_yui_t7.tt2  %]
     <div id="bd">
         <div class="yui-g">
             <br>
@@ -9,8 +9,8 @@
                 </div>
 
                 <div class="button-group minor-group">
-                    <a class="button" href="/backoffice/fare/searchRT">Все тарифы RT</a>
-                    <a class="button" href="/backoffice/fare/searchOW">Все тарифы OW</a>
+                    <a class="button" href="/backoffice/fare/viewRT">Все тарифы RT</a>
+                    <a class="button" href="/backoffice/fare/viewOW">Все тарифы OW</a>
                 </div>
             </div>
         </div>

@@ -40,6 +40,8 @@ sub update {
     });
 }
 
+# поиск тарифов по идентификаторам расписания
+# timetable1, [timetable2]
 sub searchItinerary {
     my ($self, @params) = @_;
 
@@ -48,5 +50,17 @@ sub searchItinerary {
              ->resultset($self->source_name)
              ->searchItinerary(@params);
 }
+
+# поиск тарифов по городам вылета и прилета
+# {cityOfDFeparture => , cityOfArrival => }, [{cityOfDFeparture => , cityOfArrival => }]
+sub itineraries {
+    my ($self, @params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->itineraries(@params);
+}
+
 
 1;

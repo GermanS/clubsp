@@ -376,4 +376,51 @@ sub setup_edit_template {
 
 }
 
+sub viewRT :Local {
+    my ($self, $c) = @_;
+
+
+    $self->setup_stash_from_request($c);
+
+    my $cityOfDeparture1 = $c->request->param('CityOfDeparture1');
+    my $cityOfDeparture2 = $c->request->param('CityOfDeparture2');
+    my $cityOfArrival1 = $c->request->param('CityOfArrival1');
+    my $cityOfArrival2 = $c->request->param('CityOfArrival2');
+
+    if ($cityOfArrival1 && $cityOfArrival2 &&
+        $cityOfDeparture1 && $cityOfDeparture2) {
+
+        my $iterator = ClubSpain::Model::Itinerary->itineraries({
+            cityOfDeparture => $cityOfDeparture1,
+            cityOfArrival   => $cityOfArrival1
+        }, {
+            cityOfDeparture => $cityOfDeparture2,
+            cityOfArrival   => $cityOfArrival2
+        });
+        $c->stash(iterator => $iterator);
+    }
+
+    $c->stash(template => 'backoffice/itinerary/itinerary_search_RT_simple.tt2');
+}
+
+sub viewOW :Local {
+    my ($self, $c) = @_;
+
+    $self->setup_stash_from_request($c);
+
+    my $cityOfDeparture = $c->request->param('CityOfDeparture1');
+    my $cityOfArrival   = $c->request->param('CityOfArrival1');
+
+    if ($cityOfDeparture && $cityOfArrival) {
+        my $iterator = ClubSpain::Model::Itinerary->itineraries({
+            cityOfDeparture => $cityOfDeparture,
+            cityOfArrival   => $cityOfArrival
+        });
+
+        $c->stash(iterator => $iterator);
+    }
+
+    $c->stash(template => 'backoffice/itinerary/itinerary_search_OW_simple.tt2');
+}
+
 1;
