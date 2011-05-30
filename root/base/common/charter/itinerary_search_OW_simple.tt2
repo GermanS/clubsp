@@ -1,0 +1,9 @@
+[% WRAPPER common/charter/itinerary_wrapper.tt2
+           javascript = "common/charter/itinerary.js.simple.tt2"
+           searchform = "common/charter/itinerary_search_form_OW_simple.tt2" %]
+
+    [% IF iterator.count %]
+        <h1>Результаты поиска авиабилетов OW</h1>
+        [% INCLUDE common/charter/route_table.tt2 iterator = iterator %]
+    [% END %]
+[% END %]

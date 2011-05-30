@@ -2,15 +2,15 @@
     <div class="yui-b">
         <div class="yui-g route">
             <div class="yui-u first">
-                <h2>Авиабилеты Россия - Испания</h2>
+                <h2>Авиабилеты из Москвы</h2>
                 <a href="/charter/MOW-BCN" title="Стоимость авиабилета Москва - Барселона">Авиабилеты Москва - Барселона</a>
                 <a href="/charter/MOW-ALC" title="Стоимость авиабилета Москва - Аликанте">Авиабилеты Москва - Аликанте</a>
                 <a href="/charter/MOW-PMI" title="Стоимость авиабилета Москва - Майорка">Авиабилеты Москва - Майорка</a>
                 <a href="/charter/MOW-TEN" title="Стоимость авиабилета Москва - Тенерифе">Авиабилеты Москва - Тенерифе</a>
-                <a href="/charter/MOW-MAL" title="Стоимость авиабилета Млсква - Малага">Авиабилеты Москва - Малага</a>
+                <a href="/charter/MOW-MAL" title="Стоимость авиабилета Москва - Малага">Авиабилеты Москва - Малага</a>
             </div>
             <div class="yui-u">
-                <h2>Авиабилеты Испания - Россия</h2>
+                <h2>Авиабилеты в Москву</h2>
                 <a href="/charter/BCN-MOW" title="Стоимость авиабилета Барселона - Москва">Авиабилеты Барселона - Москва</a>
                 <a href="/charter/ALC-MOW" title="Стоимость авиабилета Аликанте - Москва">Авиабилеты Аликанте - Москва</a>
                 <a href="/charter/PMI-MOW" title="Стоимость авиабилета Майорка - Москва">Авиабилеты Майорка - Москва</a>
@@ -19,8 +19,8 @@
             </div>
         </div>
         <div class="yui-gb">
-            <h2>Авиабилеты на чартерные рейсы</h2>
-            <form method="post" action="/charter/search">
+            <h2>Поиск авиабилета на чартерные рейсы</h2>
+            <form method="post" action="/charter/searchRT">
                 <div class="yui-u first">
                     <fieldset title="Вылет">
                         <label for="CityOfDeparture1">Город вылета</label>

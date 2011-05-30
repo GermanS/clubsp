@@ -312,12 +312,10 @@ sub setup_stash_from_request :Private {
 
     my @param = qw(CityOfDeparture1
                    CityOfArrival1
-                   CityOfDeparture1
                    DateOfDeparture1
                    Flight1
                    CityOfDeparture2
                    CityOfArrival2
-                   CityOfDeparture2
                    DateOfDeparture2
                    Flight2);
 

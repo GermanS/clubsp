@@ -1,0 +1,29 @@
+<div class="yui-g">
+    <h2>Стоимость авиабилета на чартерный рейс в Испанию одну сторону</h2>
+</div>
+<div class="yui-gb">
+    <form method="post" action="/charter/viewOW">
+        <div class="yui-u first">
+            <fieldset title="Первый сегмент">
+                <label for="CityOfDeparture1">Город отправления</label>
+                <select name="CityOfDeparture1"></select>
+
+                <label for="CityOfArrival1">Город прибытия</label>
+                <select name="CityOfArrival1"></select>
+
+                <label></label>
+                <div class="button-group">
+                    <input type="submit"
+                           value="Поиск авиабилета"
+                           class="button primary"/>
+                </div>
+            </fieldset>
+        </div>
+        <div class="yui-u">  </div>
+        <div class="yui-u">  </div>
+    </form>
+    <form id="preselect">
+        <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
+        <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
+    </form>
+</div>

@@ -1,0 +1,8 @@
+[% WRAPPER common/doc4_yui_t7.tt2  %]
+    <div id="bd">
+        [% INCLUDE $searchform %]
+        <div class="yui-g">
+               [% content %]
+        </div>
+    </div>
+[% END %]

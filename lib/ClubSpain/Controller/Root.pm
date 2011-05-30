@@ -30,9 +30,6 @@ sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
     $c->stash( template => 'common/index.tt2' );
-
-    # Hello World
-#    $c->response->body( $c->welcome_message );
 }
 
 =head2 default
@@ -48,14 +45,13 @@ sub default :Path {
 }
 
 sub article : Chained('/') : PathPart('article') : CaptureArgs(0) { }
+sub charter : Chained('/') : PathPart('charter') : CaptureArgs(0) { }
 
 =head2 end
 
 Attempt to render a view, if needed.
 
 =cut
-
-#sub end : ActionClass('RenderView') {}
 
 sub end :Private {
   my ($self, $c) = @_;
@@ -66,7 +62,7 @@ sub render :ActionClass('RenderView') { }
 
 =head1 AUTHOR
 
-german,,,
+German Semenkov german.semenkov@gmail.com
 
 =head1 LICENSE
 

@@ -1,6 +1,0 @@
-[% WRAPPER page.tt2 TITLE = "Информация о правилах перевозки" %]
-
-<h1>[% header %]</h1>
-<p>[% text %]</p>
-
-[% END %]

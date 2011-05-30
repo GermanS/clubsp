@@ -1,0 +1,11 @@
+[% WRAPPER page.tt2 %]
+    <div id="doc4" class="yui-t7">
+        <div id="hd">
+            [% INCLUDE common/header.tt2 %]
+        </div>
+        [% content %]
+        <div id="ft">
+            [% INCLUDE common/footer.tt2 %]
+        </div>
+    </div>
+[% END %]

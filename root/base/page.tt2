@@ -9,6 +9,13 @@
     <link rel="stylesheet" type="text/css" href="/css/buttons.css" />
 
     <script type="text/javascript" src="/jscript/jquery-1.5.min.js"></script>
+
+    <link rel="stylesheet" href="/jscript/tipsy/tipsy.css" type="text/css" />
+    <script type="text/javascript" src="/jscript/tipsy/jquery.tipsy.js"></script>
+    <script type='text/javascript'>
+        $(function() {  $('.tip').tipsy(); });
+    </script>
+
     <script type="text/javascript" src="/jscript/rpc.js"></script>
     <script type="text/javascript" src="/jscript/request.js"></script>
     [% IF javascript %]

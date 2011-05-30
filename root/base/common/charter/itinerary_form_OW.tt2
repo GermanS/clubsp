@@ -1,0 +1,13 @@
+[% WRAPPER common/charter/itinerary_wrapper.tt2
+           javascript = "common/charter/itinerary.js.tt2"
+           searchform = "common/charter/itinerary_search_form_OW.tt2" %]
+
+    <h2>Редактирование тарифа OW на чартерный рейс</h2>
+
+    [% INCLUDE common/charter/route_info.tt2
+               timetable1 = timetable1 %]
+
+    <p>[% message %]</p>
+    [% form %]
+
+[% END %]

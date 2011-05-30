@@ -15,16 +15,9 @@ sub auto :Private {
     );
 }
 
-sub default :Path {
-    my ($self, $c) = @_;
+sub default :Path { }
 
-#    $c->stash( top_level => $c->model('Article')->list() );
-}
-
-sub base :Chained('/article') :PathPart('') :CaptureArgs(0) {
-    my ($self, $c) = @_;
-
-}
+sub base :Chained('/article') :PathPart('') :CaptureArgs(0) { }
 
 sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id) = @_;
@@ -53,35 +46,6 @@ sub view :Chained('id') :PathPart('') :Args(0) {
     my $sidebar_tree = $c->model('Article')->tree($top_level_article->id);
     $c->stash(sidebar_tree => $sidebar_tree);
 }
-
-
-=head
-# match /article (end of chain)
-sub root :Chained('base') :PathPart('') :Args(0) {}
-=cut
-
-=head
-
-#match /article/*
-sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id) = @_;
-
-    my $article;
-    eval {
-        $article = $c->model('Article')->fetch_by_id($id);
-        $c->stash( article => $article );
-    };
-
-    if ($@) {
-        $self->process_error($c, $@) if $@;
-        $c->response->redirect($c->uri_for($self->action_for('index')));
-        $c->detach();
-    }
-};
-
-=cut
-
-
 
 sub end :ActionClass('RenderView') {}
 

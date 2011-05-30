@@ -1,0 +1,154 @@
+<script type="text/javascript">
+    $(function() {
+        var CityOfDeparture1 = $("select[name='CityOfDeparture1']");
+        var CityOfArrival1   = $("select[name='CityOfArrival1']");
+        var DateOfDeparture1 = $("select[name='DateOfDeparture1']");
+        var Flight1          = $("select[name='Flight1']");
+
+        var CityOfDeparture2 = $("select[name='CityOfDeparture2']");
+        var CityOfArrival2   = $("select[name='CityOfArrival2']");
+        var DateOfDeparture2 = $("select[name='DateOfDeparture2']");
+        var Flight2          = $("select[name='Flight2']");
+
+        var isOW = $("input[name='isOW']");
+
+        CityOfDeparture1.bind('change', fireCityOfDeparture1Changed);
+        CityOfArrival1.bind('change',   fireCityOfArrival1Changed);
+        DateOfDeparture1.bind('change', fireDateOfDeparture1Changed);
+        Flight1.bind('change', fireFlight1Changed);
+        isOW.bind('change', disableSegment);
+
+        CityOfDeparture2.bind('change', fireCityOfDeparture2Changed);
+        CityOfArrival2.bind('change', fireCityOfArrival2Changed);
+        DateOfDeparture2.bind('change', fireDateOfDeparture2Changed);
+
+        //Preselect
+        var _CityOfDeparture1  = $("input[name='_CityOfDeparture1']");
+        var _CityOfArrival1    = $("input[name='_CityOfArrival1']");
+        var _DateOfDeparture1  = $("input[name='_DateOfDeparture1']");
+        var _Flight1           = $("input[name='_Flight1']");
+        var _DateOfDeparture2  = $("input[name='_DateOfDeparture2']");
+        var _Flight2           = $("input[name='_Flight2']");
+
+        makeRequest(FareSearchCitiesOfDeparture, {}, CityOfDeparture1, _CityOfDeparture1.attr('value') );
+    });
+
+
+    function fireCityOfDeparture1Changed() {
+        var value = $(this).attr('value');
+        var element = $("select[name='CityOfArrival1']");
+        var initial = $("input[name='_CityOfArrival1']").attr("value");
+
+        makeRequest(
+            FareSearchCitiesOfArrival,
+            { cityOfDeparture : value },
+            element,
+            initial
+        );
+
+    }
+
+    function fireCityOfArrival1Changed() {
+        var value = $(this).attr('value');
+        var departure = $("select[name='CityOfDeparture1']").attr("value");
+        var element   = $("select[name='DateOfDeparture1']");
+        var initial   = $("input[name='_DateOfDeparture1']").attr("value");
+
+        makeRequest(
+            FareSearchDatesOfDeparture,
+            { cityOfDeparture: departure, cityOfArrival: value },
+            element,
+            initial
+        );
+    }
+
+    function fireDateOfDeparture1Changed() {
+        var value = $(this).attr('value');
+        var departure = $("select[name='CityOfDeparture1']").attr("value");
+        var arrival   = $("select[name='CityOfArrival1']").attr("value");
+        var element   = $("select[name='Flight1']");
+        var initial   = $("input[name='_Flight1").attr("value");
+
+        makeRequest(
+            FareSearchTimetable,
+            { cityOfDeparture : departure, cityOfArrival : arrival, dateOfDeparture : value },
+            element,
+            initial
+        );
+    }
+
+    function fireFlight1Changed() {
+        var value = $(this).attr('value');
+
+        var element = $("select[name='CityOfDeparture2']");
+        var initial = $("input[name='_CityOfDeparture2']").attr("value");
+        var cityOfArrival = $("select[name='CityOfArrival1']").attr("value");
+        makeRequest(
+            FareSearchCitiesOfDeparture,
+            {},
+            element,
+            initial || cityOfArrival
+        );
+    }
+
+    function fireCityOfDeparture2Changed() {
+        var value = $(this).attr("value");
+
+        var element = $("select[name='CityOfArrival2']");
+        var initial = $("input[name='_CityOfArrival2']").attr("value");
+
+        makeRequest(
+            FareSearchCitiesOfArrival,
+            { cityOfDeparture : value },
+            element,
+            initial
+        );
+    }
+
+    function fireCityOfArrival2Changed() {
+        var value = $(this).attr("value"); //equals to cityOfArrival2
+        var departure = $("select[name='CityOfDeparture2']").attr("value");
+        var date      = $("select[name='DateOfDeparture1']").attr('value');
+
+        var element   = $("select[name='DateOfDeparture2']");
+        var initial   = $("input[name='_DateOfDeparture2']").attr('value');
+
+        makeRequest(
+            FareSearchDatesOfDeparture,
+            { cityOfDeparture : departure, cityOfArrival : value, startDate : date },
+            element,
+            initial
+        );
+    }
+
+    function fireDateOfDeparture2Changed() {
+        var value = $(this).attr('value');
+        var departure = $("select[name='CityOfDeparture2']").attr("value");
+        var arrival   = $("select[name='CityOfArrival2']").attr("value");
+        var element   = $("select[name='Flight2']");
+        var initial   = $("input[name='_Flight2").attr("value");
+
+        makeRequest(
+            FareSearchTimetable,
+            { cityOfDeparture : departure, cityOfArrival : arrival, dateOfDeparture : value },
+            element,
+            initial
+        );
+    }
+
+    function disableSegment() {
+        var array = [
+            $("select[name='CityOfDeparture2']"),
+            $("select[name='CityOfArrival2']"),
+            $("select[name='DateOfDeparture2']"),
+            $("select[name='Flight2']")
+        ];
+
+         if ($(this).attr('checked')) {
+            $.each(array, function() { $(this).attr('disabled', true) });
+         } else {
+            $.each(array, function() { $(this).attr('disabled', false) });
+         }
+    }
+
+</script>

@@ -1,8 +1,13 @@
 <h1>AviaBroker.com</h1>
 
 <ul class="tabs">
-    <li><a href="/charter/search"    title="Поиск авиабилета">Авиабилеты в Испанию</a></li>
-    <li><a href="/charter/timetable" title="Расписание авиарейсов">Расписание авиарейсов</a></li>
+    <li><a class="tip" href="/"  title="Авиабилеты на чартерные рейсы">Авиабилеты в Испанию</a></li>
+</ul>
+<ul class="subnav-bar">
+   <li><a class="tip" href="/charter/viewRT" title="Стоимость авиабилета туда и обратно">Стоимость авиабилета туда и обратно</a></li>
+   <li><a class="tip" href="/charter/viewOW" title="Стоимость авиабилета в одну сторону">Стоимость авиабилета в одну сторону</a></li>
+   <li><a class="tip" href="/charter/searchRT" title="Поиск авиабилета">Поиск авиабилета туда и обратно</a></li>
+   <li><a class="tip" href="/charter/searchOW" title="Поиск авиабилета в одну сторону">Поиск авиабилета в одну сторону</a></li>
 </ul>
 
 

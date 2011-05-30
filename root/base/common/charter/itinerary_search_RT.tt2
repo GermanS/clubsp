@@ -1,0 +1,7 @@
+[% WRAPPER common/charter/itinerary_wrapper.tt2
+           javascript = "common/charter/itinerary.js.tt2"
+           searchform = "common/charter/itinerary_search_form_RT.tt2" %]
+    [% IF iterator.count %]
+        [% INCLUDE common/charter/route_table.tt2 iterator = iterator %]
+    [% END %]
+[% END %]

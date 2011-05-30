@@ -1,0 +1,73 @@
+<p class="itinerary">
+    <span title="Стоимость" class="price">
+        [% itinerary.total %]
+    </span>
+
+    <span title="Дата отправления" class="date">
+        [% itinerary.timetable.departure_date %]
+    </span>
+    <span title="Номер рейса" class="flight">
+        [% itinerary.timetable.flight.airline.iata %][% itinerary.timetable.flight.code %]
+    </span>
+    <span title="Авиакомпания" class="airline">
+        [% itinerary.timetable.flight.airline.name %]
+    </span>
+    <span title="Класс" class="seat">
+        [% itinerary.fare_class.code %] ([% itinerary.fare_class.name %])
+    </span>
+    <span title="Город отправления" class="city">
+        [% itinerary.timetable.flight.departure_airport.city.name %]
+    </span>
+    <span title="Аэропорт отправления" class="airport">
+        ([% itinerary.timetable.flight.departure_airport.name %])
+    </span>
+    <span title="Время отправления" class="time">
+        [% itinerary.timetable.departure_time %]
+    </span>
+    -
+    <span title="Город прибытия" class="city">
+        [% itinerary.timetable.flight.destination_airport.city.name %]
+    </span>
+    <span title="Аэропорт прибытия" class="airport">
+        ([% itinerary.timetable.flight.destination_airport.name %])
+    </span>
+    <span title="Время прибытия" class="time">
+        [% itinerary.timetable.arrival_time %]
+    </span>
+
+    [% route = itinerary.next_route %]
+    [% IF route %]
+        <br>
+        <span title="Дата отправления" class="date">
+            [% route.timetable.departure_date %]
+        </span>
+        <span title="Номер рейса" class="flight">
+            [% route.timetable.flight.airline.iata %][% route.timetable.flight.code %]
+        </span>
+        <span title="Авиакомпания" class="airline">
+            [% route.timetable.flight.airline.name %]
+        </span>
+        <span title="Класс" class="seat">
+            [% route.fare_class.code %] ([% route.fare_class.name %])
+        </span>
+        <span title="Город отправления" class="city">
+            [% route.timetable.flight.departure_airport.city.name %]
+        </span>
+        <span title="Аэропорт отправления" class="airport">
+            ([% route.timetable.flight.departure_airport.name %])
+        </span>
+        <span title="Время отправления" class="time">
+            [% route.timetable.departure_time %]
+        </span>
+        -
+        <span title="Город прибытия" class="city">
+            [% route.timetable.flight.destination_airport.city.name %]
+        </span>
+        <span title="Аэропорт прибытия" class="airport">
+            ([% route.timetable.flight.destination_airport.name %])
+        </span>
+        <span title="Время прибытия" class="time">
+            [% route.timetable.arrival_time %]
+        </span>
+    [% END %]
+</p>

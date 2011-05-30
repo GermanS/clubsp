@@ -1,0 +1,9 @@
+[% WRAPPER common/charter/itinerary_wrapper.tt2 %]
+    [% IF iterator.count %]
+        [% WHILE (item = iterator.next) %]
+            [% INCLUDE common/charter/route.tt2 itinerary = item %]
+        [% END %]
+    [% END %]
+[% END %]
+
+
