@@ -19,8 +19,8 @@
                 <a href="/charter/MAL-MOW" title="Стоимость авиабилета Малага - Москва">Авиабилеты Малага - Москва</a>
             </div>
         </div>
-        <div class="yui-gb">
-            <h2 class="1st">Поиск авиабилета на чартерные рейсы</h2>
+        <div class="yui-g">
+            <h2>Поиск авиабилета на чартерные рейсы</h2>
             <form method="post" action="/charter/searchRT">
                 <div class="yui-u first">
                     <fieldset title="Вылет">
@@ -53,7 +53,6 @@
                                class="button primary"/>
                     </div>
                 </div>
-                <div class="yui-u"> </div>
             </form>
         </div>
     </div>
