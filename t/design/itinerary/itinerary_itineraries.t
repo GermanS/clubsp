@@ -1,4 +1,4 @@
-use Test::More tests => 58;
+use Test::More tests => 412;
 use strict;
 use warnings;
 use lib qw(t/lib);
@@ -7,20 +7,163 @@ use ClubSpain::Test;
 my $schema = ClubSpain::Test->init_schema();
 my @date   = ClubSpain::Test->three_saturdays_ahead();
 
-my $MOW = $schema->resultset('City')->search({ id => 1 })->single;
-my $BCN = $schema->resultset('City')->search({ id => 2 })->single;
+my $RU = $schema->resultset('Country')->search({ id => 1 })->single;
+my $ES = $schema->resultset('Country')->search({ id => 2 })->single;
+
+my $MOW   = $schema->resultset('City')->search({ id => 1 })->single;
+my $BCN   = $schema->resultset('City')->search({ id => 2 })->single;
+my $DME   = $schema->resultset('Airport')->search({ id => 1 })->single;
+my $NN331 = $schema->resultset('Flight')->search({ id => 1 })->single;
 
 my $Y = $schema->resultset('FareClass')->search({ id => 1 })->single;
 my $C = $schema->resultset('FareClass')->search({ id => 2 })->single;
 
 use_ok('ClubSpain::Model::Itinerary');
 
-# search all OW MOW - BCN
+# search all published OW MOW - BCN
 {
     my $iterator = ClubSpain::Model::Itinerary->itineraries({
         cityOfDeparture => $MOW->id,
         cityOfArrival   => $BCN->id
     });
+
+    MOW_BCN_OW($iterator);
+}
+
+#search all RT MOW->BCN
+{
+    my $iterator = ClubSpain::Model::Itinerary->itineraries({
+        cityOfDeparture => $MOW->id,
+        cityOfArrival   => $BCN->id
+    }, {
+        cityOfDeparture => $BCN->id,
+        cityOfArrival   => $MOW->id
+    });
+
+    MOW_BCN_RT($iterator);
+}
+
+
+#set RU is_published to 0
+{
+    $RU->update({ is_published => 0 });
+    #search OW tickets MOW->BCN
+    testSearchOW();
+    testSearchRT();
+
+    $RU->update({ is_published => 1 });
+}
+
+#set MOW is_published to 0
+{
+    $MOW->update({ is_published => 0 });
+
+    testSearchOW();
+    testSearchRT();
+
+    $MOW->update({ is_published => 1 })
+}
+
+#set DME is_published to 0
+{
+    $DME->update({ is_published => 0 });
+
+    testSearchOW();
+    testSearchRT();
+
+    $DME->update({ is_published => 1 });
+}
+
+#set NN331 is_published to 0
+{
+    $NN331->update({ is_published => 0 });
+
+    testSearchOW();
+    testSearchRT();
+
+    $NN331->update({ is_published => 1 });
+}
+
+#set timetable is_published to 0
+{
+    my $timetable = $NN331->time_tables;
+    $timetable->update({ is_published => 0 });
+
+    testSearchOW();
+    testSearchRT();
+
+    $timetable->update({ is_published => 1 });
+}
+
+#set itinerary is_published to 0
+{
+    $schema->resultset('Itinerary')->update({ is_published => 0 });
+
+    testSearchOW();
+    testSearchRT();
+
+    $schema->resultset('Itinerary')->update({ is_published => 1 });
+}
+
+sub testSearchOW {
+    #showHidden = 1
+    {
+        my $iterator = ClubSpain::Model::Itinerary->itineraries({
+            cityOfDeparture => $MOW->id,
+            cityOfArrival   => $BCN->id,
+            showHidden      => 1
+        });
+
+        MOW_BCN_OW($iterator);
+    }
+
+    #showHidden = 0
+    {
+        my $iterator = ClubSpain::Model::Itinerary->itineraries({
+            cityOfDeparture => $MOW->id,
+            cityOfArrival   => $BCN->id,
+            showHidden      => 0
+        });
+
+        is($iterator->count, 0, 'got nothing');
+    }
+};
+
+sub testSearchRT {
+    #showHidden is 1
+    {
+        my $iterator = ClubSpain::Model::Itinerary->itineraries({
+            cityOfDeparture => $MOW->id,
+            cityOfArrival   => $BCN->id,
+            showHidden      => 1,
+        }, {
+            cityOfDeparture => $BCN->id,
+            cityOfArrival   => $MOW->id,
+            showHidden      => 1,
+        });
+
+        MOW_BCN_RT($iterator);
+    }
+
+    #showHidden  is 0
+    {
+        my $iterator = ClubSpain::Model::Itinerary->itineraries({
+            cityOfDeparture => $MOW->id,
+            cityOfArrival   => $BCN->id,
+            showHidden      => 0,
+        }, {
+            cityOfDeparture => $BCN->id,
+            cityOfArrival   => $MOW->id,
+            showHidden      => 0,
+        });
+
+        is($iterator->count, 0, 'got nothing');
+    }
+};
+
+
+sub MOW_BCN_OW {
+    my $iterator = shift;
 
     is($iterator->count, 2, 'got two OW tickets');
 
@@ -59,15 +202,9 @@ use_ok('ClubSpain::Model::Itinerary');
     is($MOW_BCN_C->total, 250, 'got total');
 }
 
-#search all RT MOW->BCN
-{
-    my $iterator = ClubSpain::Model::Itinerary->itineraries({
-        cityOfDeparture => $MOW->id,
-        cityOfArrival   => $BCN->id
-    }, {
-        cityOfDeparture => $BCN->id,
-        cityOfArrival   => $MOW->id
-    });
+
+sub MOW_BCN_RT {
+    my $iterator = shift;
 
     is($iterator->count, 3, 'got three RT tickets');
 

@@ -178,20 +178,20 @@ sub populate_schema {
     ]);
 
     my @itinerary = $schema->populate('Itinerary', [
-        [qw(timetable_id fare_class_id parent_id cost)],
-        [$timetable[6]->id, $fareclass[0]->id, 0, 175], #NN331 Y 175(eur) на будущую субботу ONE WAY
-        [$timetable[6]->id, $fareclass[1]->id, 0, 250], #NN331 C 250(eur) на будущую субботу ONE WAY
-        [$timetable[9]->id, $fareclass[0]->id, 0, 200], #NN332 Y 200(eur) на будущую субботу ONE WAY
-        [$timetable[9]->id, $fareclass[1]->id, 0, 350], #NN332 C 350(eur) на будущую субботу ONE WAY
+        [qw(timetable_id is_published fare_class_id parent_id cost)],
+        [$timetable[6]->id,  1, $fareclass[0]->id, 0, 175], #NN331 Y 175(eur) на будущую субботу ONE WAY
+        [$timetable[6]->id,  1, $fareclass[1]->id, 0, 250], #NN331 C 250(eur) на будущую субботу ONE WAY
+        [$timetable[9]->id,  1, $fareclass[0]->id, 0, 200], #NN332 Y 200(eur) на будущую субботу ONE WAY
+        [$timetable[9]->id,  1, $fareclass[1]->id, 0, 350], #NN332 C 350(eur) на будущую субботу ONE WAY
 
-        [$timetable[6]->id,  $fareclass[0]->id, 0, 150], #NN331 Y 150(eur) вылет будущей субботой
-        [$timetable[10]->id, $fareclass[0]->id, 5, 160], #NN332 Y 160(eur) возвлат через неделю
+        [$timetable[6]->id,  1, $fareclass[0]->id, 0, 150], #NN331 Y 150(eur) вылет будущей субботой
+        [$timetable[10]->id, 1, $fareclass[0]->id, 5, 160], #NN332 Y 160(eur) возвлат через неделю
 
-        [$timetable[6]->id,  $fareclass[0]->id, 0, 170], #NN331 Y 170 вылет в будущую субботу
-        [$timetable[11]->id, $fareclass[0]->id, 7, 170], #NN332 Y 170 возврат через 2 недели
+        [$timetable[6]->id,  1, $fareclass[0]->id, 0, 170], #NN331 Y 170 вылет в будущую субботу
+        [$timetable[11]->id, 1, $fareclass[0]->id, 7, 170], #NN332 Y 170 возврат через 2 недели
 
-        [$timetable[6]->id,  $fareclass[1]->id, 0, 250], #NN331 C 250(eur) вылет будущей субботой
-        [$timetable[10]->id, $fareclass[1]->id, 9, 350], #NN332 C 350(eur) возвлат через неделю
+        [$timetable[6]->id,  1, $fareclass[1]->id, 0, 250], #NN331 C 250(eur) вылет будущей субботой
+        [$timetable[10]->id, 1, $fareclass[1]->id, 9, 350], #NN332 C 350(eur) возвлат через неделю
     ]);
 }
 
