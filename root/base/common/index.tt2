@@ -1,4 +1,5 @@
-[% WRAPPER common/doc4_yui_t5.tt2 %]
+[% WRAPPER common/doc4_yui_t5.tt2
+           javascript = "common/charter/itinerary.js.tt2"%]
     <div class="yui-b">
         <div class="yui-g route">
             <div class="yui-u first">
@@ -19,7 +20,7 @@
             </div>
         </div>
         <div class="yui-gb">
-            <h2>Поиск авиабилета на чартерные рейсы</h2>
+            <h2 class="1st">Поиск авиабилета на чартерные рейсы</h2>
             <form method="post" action="/charter/searchRT">
                 <div class="yui-u first">
                     <fieldset title="Вылет">

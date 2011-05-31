@@ -14,9 +14,6 @@
                 <label for="DateOfDeparture1">Дата отправления</label>
                 <select name="DateOfDeparture1"></select>
 
-                <label for="Flight1">Номер рейса</label>
-                <select name="Flight1"></select>
-
                 <label></label>
                 <div class="button-group">
                     <input type="submit"
@@ -32,6 +29,5 @@
         <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
         <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
         <input type="hidden" name="_DateOfDeparture1" value="[% DateOfDeparture1 %]" />
-        <input type="hidden" name="_Flight1"          value="[% Flight1 %]" />
     </form>
 </div>
