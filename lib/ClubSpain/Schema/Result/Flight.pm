@@ -52,7 +52,9 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->has_many(
-    time_tables => 'ClubSpain::Schema::Result::TimeTable', {'foreign.flight_id' => 'self.id'}
+    time_tables => 'ClubSpain::Schema::Result::TimeTable',
+    { 'foreign.flight_id' => 'self.id' },
+    { cascade_delete => 0 }
 );
 
 1;

@@ -71,7 +71,9 @@ __PACKAGE__->belongs_to(
 );
 
 __PACKAGE__->has_many(
-    'itineraries' => 'ClubSpain::Schema::Result::Itinerary', {'foreign.timetable_id' => 'self.id'}
+    'itineraries' => 'ClubSpain::Schema::Result::Itinerary',
+    { 'foreign.timetable_id' => 'self.id' },
+    { cascade_delete => 0 }
 );
 
 

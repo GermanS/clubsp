@@ -46,10 +46,14 @@ __PACKAGE__->belongs_to(
     'city' => 'ClubSpain::Schema::Result::City', 'city_id'
 );
 __PACKAGE__->has_many(
-    'departure_flights' => 'ClubSpain::Schema::Result::Flight', {'foreign.departure_airport_id' => 'self.id'}
+    'departure_flights' => 'ClubSpain::Schema::Result::Flight',
+    { 'foreign.departure_airport_id' => 'self.id' },
+    { cascade_delete => 0 }
 );
 __PACKAGE__->has_many(
-    'arrival_flights' => 'ClubSpain::Schema::Result::Flight', {'foreign.destination_airport_id' => 'self.id'}
+    'arrival_flights' => 'ClubSpain::Schema::Result::Flight',
+    { 'foreign.destination_airport_id' => 'self.id' },
+    { cascade_delete => 0 }
 );
 
 1;

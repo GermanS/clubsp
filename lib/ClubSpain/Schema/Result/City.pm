@@ -42,7 +42,9 @@ __PACKAGE__->belongs_to(
     'country' => 'ClubSpain::Schema::Result::Country', 'country_id'
 );
 __PACKAGE__->has_many(
-    airports => 'ClubSpain::Schema::Result::Airport', {'foreign.city_id' => 'self.id'}
+    airports => 'ClubSpain::Schema::Result::Airport',
+    { 'foreign.city_id' => 'self.id' },
+    { cascade_delete => 0 }
 );
 
 

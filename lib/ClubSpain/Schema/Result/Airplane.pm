@@ -45,7 +45,9 @@ __PACKAGE__->belongs_to(
     'manufacturer' => 'ClubSpain::Schema::Result::Manufacturer', 'manufacturer_id'
 );
 __PACKAGE__->has_many(
-    time_tables => 'ClubSpain::Schema::Result::TimeTable', {'foreign.airplane_id' => 'self.id'}
+    time_tables => 'ClubSpain::Schema::Result::TimeTable',
+    { 'foreign.airplane_id' => 'self.id' },
+    { cascade_delete => 0 }
 );
 
 1;

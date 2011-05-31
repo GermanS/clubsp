@@ -28,7 +28,9 @@ __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_code => [qw(code)]);
 
 __PACKAGE__->has_many(
-    'planes' => 'ClubSpain::Schema::Result::Airplane', {'foreign.manufacturer_id' => 'self.id'}
+    'planes' => 'ClubSpain::Schema::Result::Airplane',
+    {'foreign.manufacturer_id' => 'self.id' },
+    { cascade_delete => 0 }
 );
 
 1;

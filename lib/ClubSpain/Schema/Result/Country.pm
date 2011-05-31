@@ -44,7 +44,9 @@ __PACKAGE__->add_unique_constraint(on_alpha3  => [qw(alpha3)]);
 __PACKAGE__->add_unique_constraint(on_numerics => [qw(numerics)]);
 
 __PACKAGE__->has_many(
-    cities => 'ClubSpain::Schema::Result::City', {'foreign.country_id' => 'self.id'}
+    cities => 'ClubSpain::Schema::Result::City',
+    { 'foreign.country_id' => 'self.id' },
+    { cascade_delete => 0 }
 );
 
 1;
