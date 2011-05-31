@@ -136,6 +136,7 @@ sub insert {
 
     eval {
         my $route1 = $c->model('Itinerary')->new(
+            is_published    => ENABLE,
             timetable_id    => $timetable1,
             fare_class_id   => $fare_class,
             parent_id       => 0,
@@ -145,6 +146,7 @@ sub insert {
 
         if ($timetable2) {
             my $route2 = $c->model('Itinerary')->new(
+                is_published  => ENABLE,
                 timetable_id  => $timetable2,
                 fare_class_id => $fare_class,
                 parent_id     => $new_route->id,
@@ -193,14 +195,16 @@ sub update :Private {
             timetable_id    => $c->stash->{'itinerary'}->timetable_id,
             fare_class_id   => $fare_class,
             parent_id       => 0,
-            cost            => $cost
+            cost            => $cost,
+            is_published    => $c->stash->{'itinerary'}->is_published,
         );
         my $segment = $route1->update();
         my $next = $segment->next_route();
         if ($next) {
             $next->update({
                 fare_class_id => $fare_class,
-                cost          => 0
+                cost          => 0,
+                is_published  => $c->stash->{'itinerary'}->is_published,
             });
         }
 
@@ -377,7 +381,6 @@ sub setup_edit_template {
 sub viewRT :Local {
     my ($self, $c) = @_;
 
-
     $self->setup_stash_from_request($c);
 
     my $cityOfDeparture1 = $c->request->param('CityOfDeparture1');
@@ -390,10 +393,12 @@ sub viewRT :Local {
 
         my $iterator = ClubSpain::Model::Itinerary->itineraries({
             cityOfDeparture => $cityOfDeparture1,
-            cityOfArrival   => $cityOfArrival1
+            cityOfArrival   => $cityOfArrival1,
+            showHidden      => 1,
         }, {
             cityOfDeparture => $cityOfDeparture2,
-            cityOfArrival   => $cityOfArrival2
+            cityOfArrival   => $cityOfArrival2,
+            showHidden      => 1,
         });
         $c->stash(iterator => $iterator);
     }
@@ -412,7 +417,8 @@ sub viewOW :Local {
     if ($cityOfDeparture && $cityOfArrival) {
         my $iterator = ClubSpain::Model::Itinerary->itineraries({
             cityOfDeparture => $cityOfDeparture,
-            cityOfArrival   => $cityOfArrival
+            cityOfArrival   => $cityOfArrival,
+            showHidden      => 1,
         });
 
         $c->stash(iterator => $iterator);

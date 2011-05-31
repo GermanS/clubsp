@@ -65,6 +65,7 @@ sub itineraries {
 }
 
 #Поиск всех билетов OW по идентификаторам городов вылета и прилета
+# по дате вылета
 #select *
 #    from itinerary as i1
 #   left join itinerary as i2 on i2.parent_id = i1.id
@@ -75,25 +76,55 @@ sub itineraries {
 #    where
 #    departure.city_id = 1 and
 #    arrival.city_id = 2 and
+#    timetable.departure_date = '2011-01-01' and
 #    i2.id IS  NULL and i1.parent_id=0;
+
+# { cityOfDeparture => , cityOfArrival => , [dateOfDeparture => ]}
 sub __itineraries_OW {
     my ($self, @params) = @_;
 
     my $cityOfDeparture = $params[0]->{'cityOfDeparture'};
     my $cityOfArrival   = $params[0]->{'cityOfArrival'};
+    my $dateOfDeparture = $params[0]->{'dateOfDeparture'};
 
-    return $self->result_source->resultset->search({
+    my %condition = (
         'departure_airport.city_id'    => $cityOfDeparture,
         'destination_airport.city_id'  => $cityOfArrival,
+    );
+    $condition{'timetable.departure_date'} = $dateOfDeparture
+        if $dateOfDeparture;
+
+    my %show_hidden = (
+        'me.is_published' => 1,
+        'timetable.is_published' => 1,
+        'flight.is_published' => 1,
+        'departure_airport.is_published' => 1,
+        'destination_airport.is_published' => 1,
+        'city.is_published' => 1,
+        'city_2.is_published' => 1,
+        'country.is_published' => 1,
+        'country_2.is_published' => 1,
+    );
+
+    %condition = (%condition, %show_hidden)
+        unless $params[0]->{'showHidden'};
+
+    return $self->result_source->resultset->search({
+        %condition,
         'me.parent_id'    => 0,
-        'children.id'     => \'iS NULL'
+        'children.id'     => \'IS NULL'
     }, {
         join => [
             'children', {
                 'timetable' => {
-                    'flight' => [
-                        'departure_airport', 'destination_airport'
-                    ]
+                    'flight' => [{
+                        'departure_airport'=> {
+                            'city' => 'country'
+                        },
+                        'destination_airport' => {
+                            'city' => 'country'
+                        }
+                    }]
                 }
             }
         ],
@@ -127,28 +158,72 @@ sub __itineraries_RT {
 
     my $cityOfDeparture1 = $params[0]->{'cityOfDeparture'};
     my $cityOfArrival1   = $params[0]->{'cityOfArrival'};
+    my $dateOfDeparture1 = $params[0]->{'dateOfDeparture'};
 
     my $cityOfDeparture2 = $params[1]->{'cityOfDeparture'};
     my $cityOfArrival2   = $params[1]->{'cityOfArrival'};
+    my $dateOfDeparture2 = $params[1]->{'dateOfDeparture'};
 
-    return $self->result_source->resultset->search({
+    my %condition = (
         'departure_airport.city_id'     => $cityOfDeparture1,
         'destination_airport.city_id'   => $cityOfArrival1,
         'departure_airport_2.city_id'   => $cityOfDeparture2,
         'destination_airport_2.city_id' => $cityOfArrival2,
+    );
+    $condition{'timetable.departure_date'} = $dateOfDeparture1
+        if $dateOfDeparture1;
+    $condition{'timetable_2.departure_date'} = $dateOfDeparture2
+        if $dateOfDeparture2;
+
+    my %show_hidden = (
+        'me.is_published' => 1,
+        'timetable.is_published' => 1,
+        'timetable_2.is_published' => 1,
+        'flight.is_published' => 1,
+        'flight_2.is_published' => 1,
+        'departure_airport.is_published' => 1,
+        'departure_airport_2.is_published' => 1,
+        'destination_airport.is_published' => 1,
+        'destination_airport_2.is_published' => 1,
+        'city.is_published' => 1,
+        'city_2.is_published' => 1,
+        'city_3.is_published' => 1,
+        'city_4.is_published' => 1,
+        'country.is_published' => 1,
+        'country_2.is_published' => 1,
+        'country_3.is_published' => 1,
+        'country_4.is_published' => 1,
+    );
+
+    %condition = (%condition, %show_hidden)
+        unless $params[0]->{'showHidden'} && $params[1]->{'showHidden'};
+
+
+    return $self->result_source->resultset->search({
+        %condition
     }, {
         join => [{
                 'timetable' => {
-                    'flight' => [
-                        'departure_airport', 'destination_airport'
-                    ]
+                    'flight' => [{
+                        'departure_airport' => {
+                            'city' => 'country'
+                        },
+                        'destination_airport' => {
+                            'city' => 'country'
+                        }
+                    }]
                 }
             }, {
                 'children' => {
                     'timetable' => {
-                        'flight' => [
-                            'departure_airport', 'destination_airport'
-                        ]
+                        'flight' => [{
+                            'departure_airport' => {
+                                'city' => 'country'
+                            },
+                            'destination_airport' => {
+                                'city' => 'country'
+                            }
+                        }]
                     }
                 }
             }

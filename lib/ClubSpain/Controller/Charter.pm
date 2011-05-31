@@ -33,7 +33,6 @@ sub default :Path {
 
             $c->stash(
                 iterator => $iterator,
-                template => 'common/charter/itinerary_search_RT_simple.tt2',
 
                 cityOfDeparture1 => $cityOfDeparture,
                 cityOfArrival1   => $cityOfArrival,
@@ -69,11 +68,59 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 sub searchRT :Local {
     my ($self, $c) = @_;
 
+    $self->setup_stash_from_request($c);
+
+    my $cityOfDeparture1 = $c->stash->{'CityOfDeparture1'};
+    my $cityOfArrival1   = $c->stash->{'CityOfArrival1'};
+    my $dateOfDeparture1 = $c->stash->{'DateOfDeparture1'};
+
+    my $cityOfDeparture2 = $c->stash->{'CityOfDeparture2'};
+    my $cityOfArrival2   = $c->stash->{'CityOfArrival2'};
+    my $dateOfDeparture2 = $c->stash->{'DateOfDeparture2'};
+
+    if ($cityOfArrival1 && $cityOfDeparture1 && $dateOfDeparture1 &&
+        $cityOfArrival2 && $cityOfDeparture2 && $dateOfDeparture2) {
+
+        my $iterator = $c->model('Itinerary')->itineraries({
+                cityOfDeparture => $cityOfDeparture1,
+                cityOfArrival   => $cityOfArrival1,
+                dateOfDeparture => $dateOfDeparture1
+            }, {
+                cityOfDeparture => $cityOfDeparture2,
+                cityOfArrival   => $cityOfArrival2,
+                dateOfDeparture => $dateOfDeparture2
+        });
+
+        $c->stash( iterator => $iterator );
+    }
+
     $c->stash(template => 'common/charter/itinerary_search_RT.tt2');
 }
 
 sub searchOW :Local {
     my ($self, $c) = @_;
+
+    $self->setup_stash_from_request($c);
+
+    my $cityOfDeparture = $c->stash->{'CityOfDeparture1'};
+    my $cityOfArrival   = $c->stash->{'CityOfArrival1'};
+    my $dateOfDeparture = $c->stash->{'DateOfDeparture1'};
+
+    if ($cityOfDeparture && $cityOfArrival && $dateOfDeparture) {
+        my $iterator = $c->model('Itinerary')->itineraries({
+            cityOfDeparture => $cityOfDeparture,
+            cityOfArrival   => $cityOfArrival,
+            dateOfDeparture => $dateOfDeparture
+        });
+
+        $c->stash(
+            iterator => $iterator,
+
+            CityOfDeparture1 => $cityOfDeparture,
+            CityOfArrival1   => $cityOfArrival,
+            DateOfDeparture1 => $dateOfDeparture
+        );
+    }
 
     $c->stash(template => 'common/charter/itinerary_search_OW.tt2');
 }
@@ -108,12 +155,14 @@ sub viewRT :Local {
 sub viewOW :Local {
     my ($self, $c) = @_;
 
-    my $cityOfDeparture1 = $c->request->param('CityOfDeparture1');
-    my $cityOfArrival1   = $c->request->param('CityOfArrival1');
+    $self->setup_stash_from_request($c);
+
+    my $cityOfDeparture1 = $c->stash->{'CityOfDeparture1'};
+    my $cityOfArrival1   = $c->stash->{'CityOfArrival1'};
 
     if ($cityOfDeparture1 && $cityOfArrival1) {
 
-        my $iterator = ClubSpain::Model::Itinerary->itineraries({
+        my $iterator = $c->model('Itinerary')->itineraries({
             cityOfDeparture => $cityOfDeparture1,
             cityOfArrival   => $cityOfArrival1
         });
@@ -135,10 +184,10 @@ sub setup_stash_from_request {
                    CityOfArrival2);
 
     $c->stash({ $_ => $c->request->param($_)})
-        foreach (@param);
+        foreach (@param, qw(DateOfDeparture1 DateOfDeparture2));
 
     $c->stash({
-        lcfirst $_ => $c->stash->{$_} ? ClubSpain::Model::City->fetch_by_id($c->stash->{$_}) : undef
+        lcfirst $_ => $c->stash->{$_} ? $c->model('City')->fetch_by_id($c->stash->{$_}) : undef
     }) foreach (@param);
 }
 
