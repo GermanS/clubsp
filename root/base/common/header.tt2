@@ -1,7 +1,7 @@
 <h1>AviaBroker.com</h1>
 
 <ul class="tabs">
-    <li><a class="tip" href="/"  title="Авиабилеты на чартерные рейсы">Авиабилеты в Испанию</a></li>
+    <li><a class="selected" href="/"  title="Авиабилеты на чартерные рейсы">Авиабилеты в Испанию</a></li>
 </ul>
 <ul class="subnav-bar">
    <li><a class="tip" href="/charter/viewRT" title="Стоимость авиабилета туда и обратно">Стоимость авиабилета туда и обратно</a></li>
