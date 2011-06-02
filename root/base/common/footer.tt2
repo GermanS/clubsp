@@ -16,6 +16,9 @@
     </div>
     <div class="yui-g">
         <div class="yui-u first"> </div>
-        <div class="yui-u"> </div>
+        <div class="yui-u">
+          [% INCLUDE common/stats/analytics.tt2 %]
+          [% INCLUDE common/stats/yandex.tt2 %]
+        </div>
     </div>
 </div>
