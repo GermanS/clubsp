@@ -94,7 +94,9 @@ sub searchRT :Local {
         $c->stash( iterator => $iterator );
     }
 
-    $c->stash(template => 'common/charter/itinerary_search_RT.tt2');
+    $c->stash(
+        template => 'common/charter/itinerary_search_RT.tt2'
+    );
 }
 
 sub searchOW :Local {
@@ -122,7 +124,9 @@ sub searchOW :Local {
         );
     }
 
-    $c->stash(template => 'common/charter/itinerary_search_OW.tt2');
+    $c->stash(
+        template => 'common/charter/itinerary_search_OW.tt2'
+    );
 }
 
 sub viewRT :Local {
@@ -149,7 +153,9 @@ sub viewRT :Local {
         $c->stash(iterator => $iterator);
     }
 
-    $c->stash(template => 'common/charter/itinerary_search_RT_simple.tt2');
+    $c->stash(
+        template => 'common/charter/itinerary_search_RT_simple.tt2'
+    );
 }
 
 sub viewOW :Local {
@@ -170,7 +176,9 @@ sub viewOW :Local {
         $c->stash(iterator => $iterator);
     }
 
-    $c->stash(template => 'common/charter/itinerary_search_OW_simple.tt2');
+    $c->stash(
+        template => 'common/charter/itinerary_search_OW_simple.tt2'
+    );
 }
 
 sub end :ActionClass('RenderView') {}
@@ -183,12 +191,48 @@ sub setup_stash_from_request {
                    CityOfDeparture2
                    CityOfArrival2);
 
-    $c->stash({ $_ => $c->request->param($_)})
+    $c->stash({ $_ => $c->request->param($_) || undef})
         foreach (@param, qw(DateOfDeparture1 DateOfDeparture2));
 
     $c->stash({
         lcfirst $_ => $c->stash->{$_} ? $c->model('City')->fetch_by_id($c->stash->{$_}) : undef
     }) foreach (@param);
+}
+
+sub header {
+    my ($c, $key) = @_;
+
+    my $cityOfDeparture1 = $c->stash->{'cityOfDeparture1'};
+    my $cityOfArrival1   = $c->stash->{'cityOfArrival1'};
+    my $cityOfDeparture2 = $c->stash->{'cityOfDeparture2'};
+    my $cityOfArrival2   = $c->stash->{'cityOfArrival2'};
+    my $dateOfDeparture1 = $c->stash->{'DateOfDeparture1'};
+    my $dateOfDeparture2 = $c->stash->{'DateOfDeparture2'};
+
+    my %headers = (
+       OW_ALL => sprintf("Стоимость авиабилетов %s - %s",
+                         $cityOfDeparture1->name,
+                         $cityOfArrival1->name),
+       OW     => sprintf("Стоимость авиабилета %s - %s c %s по %s",
+                         $cityOfDeparture1->name,
+                         $cityOfArrival1->name,
+                         $dateOfDeparture1,
+                         $dateOfDeparture2),
+       RT_ALL => sprintf("Стоимость авиабилетов %s - %s, %s - %s",
+                         $cityOfDeparture1->name,
+                         $cityOfArrival1->name,
+                         $cityOfDeparture2->name,
+                         $cityOfArrival2->name),
+       RT     => sprintf("Стоимость авиабилета %s - %s, %s - %s с %s по %s",
+                         $cityOfDeparture1->name,
+                         $cityOfArrival1->name,
+                         $cityOfDeparture2->name,
+                         $cityOfArrival2->name,
+                         $dateOfDeparture1,
+                         $dateOfDeparture2),
+    );
+
+    return $headers{$key};
 }
 
 1;
