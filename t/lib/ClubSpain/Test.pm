@@ -40,15 +40,19 @@ sub init_schema {
             use_ext => 1
         })->[0]->{$file}
     };
+
     if ($@) {
         BAIL_OUT("Could not load clubspain.conf configuration file: $@");
         return;
     }
 
-    my $schema = ClubSpain::Schema->connect(
-        $config->{'Model::DBIC'}{'connect_info'}{'dsn'},
-        $config->{'Model::DBIC'}{'connect_info'}{'user'},
-        $config->{'Model::DBIC'}{'connect_info'}{'password'},
+    my $schema = $config->{'Model::DBIC::Schema'}->{'schema_class'}->connect(
+         $config->{'Model::DBIC::Schema'}{'connect_info'}{'dsn'},
+         $config->{'Model::DBIC::Schema'}{'connect_info'}{'user'},
+         $config->{'Model::DBIC::Schema'}{'connect_info'}{'password'},
+         {
+             mysql_enable_utf8 => $config->{'Model::DBIC::Schema'}{'connect_info'}{'mysql_enable_utf8'}
+         },
     );
 
     $self->deploy_schema($schema, %args)
