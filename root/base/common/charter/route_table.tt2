@@ -27,7 +27,7 @@
 
 
 [% BLOCK row %]
-    [% route = itinerary.next_route %]
+    [% route = itinerary.children.0 %]
     [% rowspan2 = "rowspan='2'" %]
     [% UNLESS route %]
         [% rowspan2 = "" %]
@@ -46,7 +46,7 @@
         <td>[% itinerary.timetable.flight.destination_airport.city.name %] ([% itinerary.timetable.flight.destination_airport.name %])</td>
         <td>[% itinerary.timetable.airplane.name %]</td>
         <td>[% itinerary.fare_class.code %]</td>
-        <td [% rowspan2 %]><span" class="price">[% itinerary.total %]&euro;</span></td>
+        <td [% rowspan2 %]><span" class="price">[% itinerary.cost %]&euro;</span></td>
     </tr>
     [% IF route %]
     <tr>
@@ -58,7 +58,7 @@
         <td>[% route.timetable.arrival_time %]</td>
         <td>[% route.timetable.flight.destination_airport.city.name %] ([% route.timetable.flight.destination_airport.name %])</td>
         <td>[% route.timetable.airplane.name %]</td>
-        <td>[% itinerary.fare_class.code %]</td>
+        <td>[% route.fare_class.code %]</td>
     </tr>
     [% END %]
 [% END %]

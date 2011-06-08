@@ -24,7 +24,8 @@ use_ok('ClubSpain::Model::Itinerary');
 {
     my $iterator = ClubSpain::Model::Itinerary->itineraries({
         cityOfDeparture => $MOW->id,
-        cityOfArrival   => $BCN->id
+        cityOfArrival   => $BCN->id,
+        asObject => 1,
     });
 
     MOW_BCN_OW($iterator);
@@ -34,10 +35,12 @@ use_ok('ClubSpain::Model::Itinerary');
 {
     my $iterator = ClubSpain::Model::Itinerary->itineraries({
         cityOfDeparture => $MOW->id,
-        cityOfArrival   => $BCN->id
+        cityOfArrival   => $BCN->id,
+        asObject => 1,
     }, {
         cityOfDeparture => $BCN->id,
-        cityOfArrival   => $MOW->id
+        cityOfArrival   => $MOW->id,
+        asObject => 1,
     });
 
     MOW_BCN_RT($iterator);
@@ -111,7 +114,8 @@ sub testSearchOW {
         my $iterator = ClubSpain::Model::Itinerary->itineraries({
             cityOfDeparture => $MOW->id,
             cityOfArrival   => $BCN->id,
-            showHidden      => 1
+            showHidden      => 1,
+            asObject => 1,
         });
 
         MOW_BCN_OW($iterator);
@@ -122,7 +126,8 @@ sub testSearchOW {
         my $iterator = ClubSpain::Model::Itinerary->itineraries({
             cityOfDeparture => $MOW->id,
             cityOfArrival   => $BCN->id,
-            showHidden      => 0
+            showHidden      => 0,
+            asObject => 1,
         });
 
         is($iterator->count, 0, 'got nothing');
@@ -136,10 +141,12 @@ sub testSearchRT {
             cityOfDeparture => $MOW->id,
             cityOfArrival   => $BCN->id,
             showHidden      => 1,
+            asObject => 1,
         }, {
             cityOfDeparture => $BCN->id,
             cityOfArrival   => $MOW->id,
             showHidden      => 1,
+            asObject => 1,
         });
 
         MOW_BCN_RT($iterator);
@@ -151,10 +158,12 @@ sub testSearchRT {
             cityOfDeparture => $MOW->id,
             cityOfArrival   => $BCN->id,
             showHidden      => 0,
+            asObject => 1,
         }, {
             cityOfDeparture => $BCN->id,
             cityOfArrival   => $MOW->id,
             showHidden      => 0,
+            asObject => 1,
         });
 
         is($iterator->count, 0, 'got nothing');
