@@ -3,6 +3,7 @@
 name ClubSpain
 
 <Model::DBIC>
+    schema_class ClubSpain::Schema
     <connect_info>
         # DB User
         user user
