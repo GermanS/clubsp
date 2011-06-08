@@ -54,14 +54,20 @@ sub searchRoundTrip {
 
 sub itineraries {
     my ($self, @params) = @_;
+    my $iterator;
 
     if (scalar @params == 1) {
-        return $self->__itineraries_OW(@params);
+        $iterator = $self->__itineraries_OW(@params);
     } elsif (scalar @params == 2) {
-        return $self->__itineraries_RT(@params);
+        $iterator = $self->__itineraries_RT(@params);
     } else {
         die "only one or two segments allowed";
     }
+
+    $iterator->result_class('DBIx::Class::ResultClass::HashRefInflator')
+        unless $params[0]->{'asObject'};
+
+    return $iterator;
 }
 
 #Поиск всех билетов OW по идентификаторам городов вылета и прилета
@@ -88,6 +94,8 @@ sub __itineraries_OW {
     my $dateOfDeparture = $params[0]->{'dateOfDeparture'};
 
     my %condition = (
+        'me.parent_id'    => 0,
+        'children.id'     => \'IS NULL',
         'departure_airport.city_id'    => $cityOfDeparture,
         'destination_airport.city_id'  => $cityOfArrival,
     );
@@ -111,8 +119,6 @@ sub __itineraries_OW {
 
     return $self->result_source->resultset->search({
         %condition,
-        'me.parent_id'    => 0,
-        'children.id'     => \'IS NULL'
     }, {
         join => [
             'children', {
@@ -132,6 +138,22 @@ sub __itineraries_OW {
             'timetable.departure_date',
             'timetable.departure_time',
             'me.fare_class_id'
+        ],
+        prefetch => [{
+            'timetable' => [{
+                'flight' => [{
+                        'departure_airport' => {
+                            'city' => 'country'
+                        },
+                        'destination_airport' => {
+                            'city' => 'country'
+                        }
+                    },
+                    'airline'
+                ]},
+                'airplane'
+            ]},
+            'fare_class'
         ]
     });
 }
@@ -171,9 +193,9 @@ sub __itineraries_RT {
         'destination_airport_2.city_id' => $cityOfArrival2,
     );
     $condition{'timetable.departure_date'} = $dateOfDeparture1
-        if $dateOfDeparture1;
+        if defined $dateOfDeparture1 && $dateOfDeparture1;
     $condition{'timetable_2.departure_date'} = $dateOfDeparture2
-        if $dateOfDeparture2;
+        if defined $dateOfDeparture2 && $dateOfDeparture2;
 
     my %show_hidden = (
         'me.is_published' => 1,
@@ -197,7 +219,6 @@ sub __itineraries_RT {
 
     %condition = (%condition, %show_hidden)
         unless $params[0]->{'showHidden'} && $params[1]->{'showHidden'};
-
 
     return $self->result_source->resultset->search({
         %condition
@@ -234,6 +255,38 @@ sub __itineraries_RT {
             'timetable_2.departure_date',
             'timetable_2.departure_time',
             'me.fare_class_id'
+        ],
+        prefetch => [{
+            'timetable' => [{
+                'flight' => [{
+                        'departure_airport' => {
+                            'city' => 'country'
+                        },
+                        'destination_airport' => {
+                            'city' => 'country'
+                        },
+                    },
+                    'airline' ]
+                },
+                'airplane' ]
+            }, {
+                'children' => [{
+                    'timetable' => [{
+                        'flight' => [{
+                            'departure_airport' => {
+                                'city' => 'country'
+                            },
+                            'destination_airport' => {
+                                'city' => 'country'
+                            },
+                        },
+                        'airline' ]
+                    },
+                    'airplane' ]
+                },
+                'fare_class' ]
+            },
+            'fare_class'
         ]
     });
 }
