@@ -33,8 +33,8 @@ sub connect {
         $pass = $config->{'Model::DBIC::Schema'}{'connect_info'}{'password'}
             unless $pass;
 
-        $opts->{'mysql_enable_utf8'} = $config->{'Model::DBIC::Schema'}{'connect_info'}{'mysql_enable_utf8'}
-            unless $opts->{'mysql_enable_utf8'};
+#        $opts->{'mysql_enable_utf8'} = $config->{'Model::DBIC::Schema'}{'connect_info'}{'mysql_enable_utf8'}
+#            unless $opts->{'mysql_enable_utf8'};
     }
 
     return $self->next::method($dsn, $user, $pass, $opts);

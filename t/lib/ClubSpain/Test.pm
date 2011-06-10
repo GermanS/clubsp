@@ -50,9 +50,9 @@ sub init_schema {
          $config->{'Model::DBIC::Schema'}{'connect_info'}{'dsn'},
          $config->{'Model::DBIC::Schema'}{'connect_info'}{'user'},
          $config->{'Model::DBIC::Schema'}{'connect_info'}{'password'},
-         {
-             mysql_enable_utf8 => $config->{'Model::DBIC::Schema'}{'connect_info'}{'mysql_enable_utf8'}
-         },
+#         {
+#             mysql_enable_utf8 => $config->{'Model::DBIC::Schema'}{'connect_info'}{'mysql_enable_utf8'}
+#         },
     );
 
     $self->deploy_schema($schema, %args)
