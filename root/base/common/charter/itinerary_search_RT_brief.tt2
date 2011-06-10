@@ -1,0 +1,61 @@
+[% WRAPPER common/charter/itinerary_wrapper.tt2
+           javascript = "common/charter/itinerary.js.simple.tt2"
+           searchform = "common/charter/itinerary_search_form_RT_brief.tt2" %]
+
+    [% IF table %]
+        <h2>Стоимость авиабилетов [% cityOfDeparture1.name %] - [% cityOfArrival1.name %], [% cityOfDeparture2.name %] - [% cityOfArrival2.name %] </h2>
+        <div class="actions button-container">
+            <div class="button-group">
+                <a href="/charter/[% cityOfDeparture1.iata %]-[% cityOfArrival1.iata %]/brief" class="button primary">Компактный вид</a>
+            </div>
+        </div>
+
+        [% INCLUDE results table = table, days = days %]
+    [% END %]
+[% END %]
+
+[% BLOCK results %]
+    <div id="browser">
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата вылета</th>
+                    <th>Рейс (Класс)</th>
+
+                    [% FOREACH day IN days %]
+                        <th>[% day %] суток</th>
+                    [% END %]
+                </tr>
+            </thead>
+            <tbody>
+                [% FOREACH start IN table.pairs %]
+                <tr>
+                    <td rowspan="[% start.value.size %]">
+                        [% start.key %]
+                    </td>
+                    [% FOREACH flight IN start.value.pairs %]
+                        <td>
+                            [% flight.key %]
+                        </td>
+
+                        [% FOREACH d IN days %]
+                        <td>
+
+                            [% IF flight.value.$d %]
+                                [% flight.value.$d %]
+                            [% ELSE%]
+                                x
+                            [% END %]
+                        </td>
+                      [% END %]
+                    </tr>
+                    <tr>
+                    [% END %]
+                </tr>
+                [% END %]
+            </tbody>
+        </table>
+    </div>
+
+
+[% END %]

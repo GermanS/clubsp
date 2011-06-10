@@ -4,6 +4,9 @@ use strict;
 use warnings;
 use utf8;
 
+use DateTime;
+use DateTime::Format::MySQL;
+
 use parent qw(Catalyst::Controller);
 
 sub auto :Private {
@@ -15,7 +18,7 @@ sub auto :Private {
 }
 
 sub default :Path {
-    my ($self, $c, $direction) = @_;
+    my ($self, $c, $direction, $brief) = @_;
 
     my ($codeOfDeparture, $codeOfArrival) = split('-', $direction);
     if ($codeOfDeparture && $codeOfArrival) {
@@ -23,7 +26,7 @@ sub default :Path {
         my $cityOfArrival   = $c->model('City')->search({ iata => $codeOfArrival,   is_published => 1 })->single;
 
         if ($cityOfArrival && $cityOfDeparture) {
-            my $iterator = $c->model('Itinerary')->itineraries({
+            my $iterator = $self->itineraries($c, {
                 cityOfDeparture => $cityOfDeparture->id,
                 cityOfArrival   => $cityOfArrival->id
             }, {
@@ -32,8 +35,6 @@ sub default :Path {
             });
 
             $c->stash(
-                iterator => $iterator,
-
                 cityOfDeparture1 => $cityOfDeparture,
                 cityOfArrival1   => $cityOfArrival,
                 cityOfDeparture2 => $cityOfArrival,
@@ -45,25 +46,17 @@ sub default :Path {
                 CityOfArrival2   => $cityOfDeparture->id
             );
         }
+
+        $self->brief($c)
+            if $brief;
     }
 }
 
+
+
 sub base :Chained('/charter') :PathPart('') :CaptureArgs(0) { }
 
-sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id) = @_;
 
-#    my $article;
-#    eval {
-#        $article = $c->model('Article')->fetch_by_id($id);
-#        $c->stash( article => $article );
-#    };
-
-#    if ($@) {
-#        $c->response->redirect($c->uri_for($self->action_for('index')));
-#        $c->detach();
-#    }
-}
 
 sub searchRT :Local {
     my ($self, $c) = @_;
@@ -81,7 +74,7 @@ sub searchRT :Local {
     if ($cityOfArrival1 && $cityOfDeparture1 && $dateOfDeparture1 &&
         $cityOfArrival2 && $cityOfDeparture2 && $dateOfDeparture2) {
 
-        my $iterator = $c->model('Itinerary')->itineraries({
+        my $iterator = $self->itineraries($c, {
                 cityOfDeparture => $cityOfDeparture1,
                 cityOfArrival   => $cityOfArrival1,
                 dateOfDeparture => $dateOfDeparture1
@@ -90,8 +83,6 @@ sub searchRT :Local {
                 cityOfArrival   => $cityOfArrival2,
                 dateOfDeparture => $dateOfDeparture2
         });
-
-        $c->stash( iterator => $iterator );
     }
 
     $c->stash(
@@ -109,19 +100,11 @@ sub searchOW :Local {
     my $dateOfDeparture = $c->stash->{'DateOfDeparture1'};
 
     if ($cityOfDeparture && $cityOfArrival && $dateOfDeparture) {
-        my $iterator = $c->model('Itinerary')->itineraries({
+        $self->itineraries($c, {
             cityOfDeparture => $cityOfDeparture,
             cityOfArrival   => $cityOfArrival,
             dateOfDeparture => $dateOfDeparture
         });
-
-        $c->stash(
-            iterator => $iterator,
-
-            CityOfDeparture1 => $cityOfDeparture,
-            CityOfArrival1   => $cityOfArrival,
-            DateOfDeparture1 => $dateOfDeparture
-        );
     }
 
     $c->stash(
@@ -142,15 +125,13 @@ sub viewRT :Local {
     if ($cityOfDeparture1 && $cityOfArrival1 &&
         $cityOfDeparture2 && $cityOfArrival2) {
 
-        my $iterator = ClubSpain::Model::Itinerary->itineraries({
+        $self->itineraries($c, {
             cityOfDeparture => $cityOfDeparture1,
             cityOfArrival   => $cityOfArrival1
         }, {
             cityOfDeparture => $cityOfDeparture2,
             cityOfArrival   => $cityOfArrival2
         });
-
-        $c->stash(iterator => $iterator);
     }
 
     $c->stash(
@@ -163,17 +144,16 @@ sub viewOW :Local {
 
     $self->setup_stash_from_request($c);
 
-    my $cityOfDeparture1 = $c->stash->{'CityOfDeparture1'};
-    my $cityOfArrival1   = $c->stash->{'CityOfArrival1'};
+    my $cityOfDeparture1 =
+        $c->stash->{'CityOfDeparture1'};
+    my $cityOfArrival1 =
+        $c->stash->{'CityOfArrival1'};
 
     if ($cityOfDeparture1 && $cityOfArrival1) {
-
-        my $iterator = $c->model('Itinerary')->itineraries({
+        $self->itineraries($c, {
             cityOfDeparture => $cityOfDeparture1,
             cityOfArrival   => $cityOfArrival1
         });
-
-        $c->stash(iterator => $iterator);
     }
 
     $c->stash(
@@ -233,6 +213,70 @@ sub header {
     );
 
     return $headers{$key};
+}
+
+sub brief :Local  {
+    my ($self, $c) = @_;
+
+    my $iterator = $c->stash->{'iterator'};
+    my ($res, $days) = $self->as_table($iterator);
+
+    $c->stash(
+        template => 'common/charter/itinerary_search_RT_brief.tt2',
+        table    => $res,
+        days     => $days,
+    );
+}
+
+sub itineraries :Private {
+    my ($self, $c, @params) = @_;
+
+    my $iterator = $c->model('Itinerary')->itineraries(@params);
+    $c->stash(iterator => $iterator);
+}
+
+sub as_table {
+    my ($self, $iterator) = @_;
+
+    my $table = {};
+    my %dur = ();
+    while (my $row = $iterator->next) {
+        my $return = $row->{'children'}[0];
+
+        my $dateOfDeparture1 =
+            DateTime::Format::MySQL->parse_date(
+                $row->{'timetable'}{'departure_date'}
+            );
+        my $dateOfDeparture2 =
+            DateTime::Format::MySQL->parse_date(
+                $return->{'timetable'}{'departure_date'}
+            );
+
+        my $duration =
+            $dateOfDeparture2->subtract_datetime($dateOfDeparture1);
+        my $days =
+            $duration->in_units( 'days' );
+
+        $dur{$days} = $days;
+
+        my $flights = sprintf("%2s%4s (%s) / %2s%4s (%s)",
+            $row->{'timetable'}->{'flight'}->{'airline'}->{'iata'},
+            $row->{'timetable'}->{'flight'}->{'code'},
+            $row->{'fare_class'}->{'code'},
+            $return->{'timetable'}->{'flight'}->{'airline'}->{'iata'},
+            $return->{'timetable'}->{'flight'}->{'code'},
+            $return->{'fare_class'}->{'code'}
+        );
+
+        $table->{$row->{'timetable'}->{'departure_date'}}
+              ->{$flights}
+              ->{$days}
+                = $row->{'cost'};
+
+    }
+    my @all_days = sort { $a <=> $b } keys %dur;
+
+    return ($table, \@all_days);
 }
 
 1;
