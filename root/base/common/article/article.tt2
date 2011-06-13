@@ -1,4 +1,4 @@
-[% WRAPPER common/page.tt2 %]
+[% WRAPPER common/doc4_yui_t3.tt2 title = article.subheader %]
 
 <h1>[% article.subheader %]</h1>
 

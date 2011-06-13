@@ -1,7 +1,7 @@
 [% WRAPPER page.tt2 %]
     <div id="doc4" class="yui-t3">
-        <div id="hd"><h1>ClubSpain.RU</h1>
-            [% INCLUDE common/article_top_headers.tt2 top_level = top_level %]
+        <div id="hd">
+            [% INCLUDE common/header.tt2 top_level = top_level %]
         </div>
         <div id="bd">
             <div id="yui-main">
@@ -12,11 +12,11 @@
                 </div>
             </div>
             <div class="yui-b">
-                [% INCLUDE common/article_sidebar.tt2 stories = lower_level %]
-
-                [% INCLUDE common/sidebar_contacts.tt2 %]
+                [% INCLUDE common/article/article_sidebar.tt2 stories = lower_level %]
             </div>
         </div>
-        <div id="ft"><p>ClubSpain.ru</p></div>
+        <div id="ft">
+            [% INCLUDE common/footer.tt2 %]
+        </div>
     </div>
 [% END %]

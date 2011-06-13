@@ -2,13 +2,17 @@
 
 <ul class="tabs">
     <li><a class="selected" href="/"  title="Авиабилеты на чартерные рейсы">Авиабилеты в Испанию</a></li>
-    <li><a class="" href="/"  title="Расписание и стоимость авиабилетов">Расписание рейсов</a></li>
 </ul>
+
 <ul class="subnav-bar">
-   <li><a class="tip" href="/charter/viewRT" title="Стоимость авиабилета туда и обратно">Стоимость авиабилета туда и обратно</a></li>
-   <li><a class="tip" href="/charter/viewOW" title="Стоимость авиабилета в одну сторону">Стоимость авиабилета в одну сторону</a></li>
-   <li><a class="tip" href="/charter/searchRT" title="Поиск авиабилета">Поиск авиабилета туда и обратно</a></li>
-   <li><a class="tip" href="/charter/searchOW" title="Поиск авиабилета в одну сторону">Поиск авиабилета в одну сторону</a></li>
+    [%IF top_level.count %]
+        [% WHILE (story = top_level.next) %]
+            <li><a href="/article/[% story.id %]" title="[% story.header %]">[% story.header %]</a></li>
+        [% END %]
+    [% ELSE %]
+        <li><a class="tip" href="/charter/viewRT" title="Стоимость авиабилета туда и обратно">Стоимость авиабилета туда и обратно</a></li>
+        <li><a class="tip" href="/charter/viewOW" title="Стоимость авиабилета в одну сторону">Стоимость авиабилета в одну сторону</a></li>
+        <li><a class="tip" href="/charter/searchRT" title="Поиск авиабилета">Поиск авиабилета туда и обратно</a></li>
+        <li><a class="tip" href="/charter/searchOW" title="Поиск авиабилета в одну сторону">Поиск авиабилета в одну сторону</a></li>
+    [% END %]
 </ul>
-
-

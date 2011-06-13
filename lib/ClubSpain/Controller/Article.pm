@@ -11,7 +11,7 @@ sub auto :Private {
 
     $c->stash(
         top_level => $c->model('Article')->list(),
-        template  => 'common/article.tt2'
+        template  => 'common/article/article.tt2'
     );
 }
 
