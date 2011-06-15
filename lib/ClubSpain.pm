@@ -48,6 +48,9 @@ __PACKAGE__->config(
         'path' => qr!^(/?)jsonrpc(/|$)!i
     },
     default_view => 'TT',
+    'View::TT' => {
+         ENCODING => 'utf-8',
+    },
     'Controller::HTML::FormFu' => {
         constructor => {
             tt_args => {
