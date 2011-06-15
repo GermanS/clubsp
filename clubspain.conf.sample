@@ -2,12 +2,12 @@
 # you want to use YAML like in old versions of Catalyst
 name ClubSpain
 
-<Model::DBIC>
+<Model::DBIC::Schema>
     schema_class ClubSpain::Schema
     <connect_info>
         # DB User
-        user user
-        password password
+        user clubspain
+        password clubspain
 
         # MySQL dsn (default data store)
         dsn dbi:mysql:database=clubspain
