@@ -29,7 +29,12 @@ The root page (/)
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->stash( template => 'common/index.tt2' );
+    my $iterator = $c->model('Article')->list(1);
+
+    $c->stash(
+        iterator => $iterator,
+        template => 'common/index.tt2'
+    );
 }
 
 =head2 default
