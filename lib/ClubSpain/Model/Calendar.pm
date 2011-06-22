@@ -5,10 +5,8 @@ use namespace::autoclean;
 use utf8;
 
 use DateTime;
-use DateTime::Format::MySQL;
 
 use ClubSpain::Model::Calendar::Settings;
-use ClubSpain::Model::Calendar::Header;
 use ClubSpain::Model::Calendar::Month;
 
 has 'settings' => (
@@ -19,12 +17,9 @@ has 'settings' => (
     }
 );
 
-has 'header' => (
+has 'days_of_week' => (
     is   => 'rw',
-    isa  => 'ClubSpain::Model::Calendar::Header',
-    default => sub {
-        ClubSpain::Model::Calendar::Header->new()
-    }
+    isa  => 'ArrayRef',
 );
 
 has 'start'  => ( is => 'rw' );
@@ -54,14 +49,26 @@ sub BUILD {
     }
 
 
+    #months
     my @months = ();
     my $start = $self->start->clone();
     while (DateTime->compare($self->end, $start)) {
         push @months, ClubSpain::Model::Calendar::Month->new( date => $start->clone() );
         $start->add( months => 1 );
     }
-
     $self->months(\@months);
+
+
+    my $count = 0;
+    my @days  = ();
+    my $length = $self->length();
+    while ($count < $length) {
+        push @days, $self->start->{'locale'}->day_format_abbreviated->[$count % 7];
+
+        $count++;
+    }
+
+    $self->days_of_week(\@days);
 }
 
 
@@ -99,50 +106,7 @@ sub length {
     return $length;
 }
 
-=head
-
-sub create {
-    my $self = shift;
-
-    my @res = ();
-    my $start = $self->start->clone();
-
-    while (DateTime->compare($self->end, $start)) {
-        push @res,
-            ClubSpain::Model::Calendar::Month->new( date => $start );
-
-        $start->add( months => 1 );
-    }
-
-    return @res;
-}
-
-=cut
 
 __PACKAGE__->meta->make_immutable;
 
 1;
-
-
-
-=head
-
-sub format_months {
-    my $self = shift;
-
-    my $dt = $self->start;
-    my @months = ();
-    my $count = 0;
-
-    while ( $count < $self->settings->months ) {
-        my $length = $dt->month + $count - 1;
-        push @months,
-            $dt->{'locale'}->month_stand_alone_wide->[ $length % 12 ];
-
-        $count++;
-    }
-
-    return @months;
-}
-
-=cut

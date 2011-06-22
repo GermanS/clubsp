@@ -1,0 +1,6 @@
+[% USE ClubSpain.Calendar %]
+[% cal = ClubSpain.Calendar.new(start => start, end => end) %]
+
+[% FOREACH day IN cal.days_of_week %]
+  [% day %]
+[% END  %]

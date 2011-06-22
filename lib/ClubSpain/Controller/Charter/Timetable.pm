@@ -9,7 +9,9 @@ use parent qw(Catalyst::Controller);
 sub auto :Private {
     my ($self, $c) = @_;
 
+
     $c->stash(
+        calendar  => $c->model('Calendar')->new(),
         template  => 'common/charter/timetable/timetable.tt2'
     );
 }

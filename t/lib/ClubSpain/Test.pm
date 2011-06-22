@@ -8,6 +8,7 @@ BEGIN {
 
     use Test::More;
     use DateTime;
+    use FileHandle;
 
     @ClubSpain::Test::EXPORT = @Test::More::EXPORT;
 };
@@ -221,5 +222,39 @@ sub three_saturdays_ahead {
             $start + $week,
             $start + $week + $week);
 }
+
+
+sub comp_to_file {
+    my ($class, $string, $file) = @_;
+
+    return 0 unless $string && $file && -e $file && -r $file;
+
+    $string =~ s/\n//g;
+    $string =~ s/\s//g;
+    $string =~ s/\t//g;
+
+    my $fh = FileHandle->new("<$file");
+    if (defined $fh) {
+        local $/ = undef;
+        my $contents = <$fh>;
+        $contents =~ s/\n//g;
+        $contents =~ s/\s//g;
+        $contents =~ s/\t//g;
+
+        # remove the tt2 and xml Ids
+        $contents =~ s/<!--.*-->//;
+        $contents =~ s/\[%#.*%\]//;
+
+        undef $fh;
+
+        if ($string eq $contents) {
+            return (1, $string, $contents);
+        } else {
+            return (0, $string, $contents);
+        };
+    };
+
+    return 0;
+};
 
 1;

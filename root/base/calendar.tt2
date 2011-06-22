@@ -1,0 +1,23 @@
+<table class="calendar">
+    <thead>
+        <tr>
+          [% headers = calendar.header %]
+          <th> [% headers.header %]</th>
+          [% FOREACH header IN headers.header %]
+          <th>[% header %]</th>
+          [% END %]
+
+          [% WHILE (header = headers.header.next() )%]
+            [% header %]
+          [% END  %]
+        </tr>
+    </thead>
+
+    <tbody>
+        [% FOREACH month in calendar.months %]
+            <tr>
+                <th>[% month.format %]</td>
+            </tr>
+        [% END %]
+    </tbody>
+</table>

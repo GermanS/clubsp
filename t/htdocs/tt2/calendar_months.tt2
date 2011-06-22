@@ -1,0 +1,6 @@
+[% USE ClubSpain.Calendar %]
+[% cal = ClubSpain.Calendar.new(start => start, end => end) %]
+
+[% FOREACH month IN cal.months() %]
+  [% month.format() %]
+[% END  %]

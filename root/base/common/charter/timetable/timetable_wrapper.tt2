@@ -5,6 +5,10 @@
             <h2>Расписание чартерных рейсов</h2>
         </div>
         <div class="yui-gb">
+
+        [% INCLUDE calendar.tt2 %]
+
+
 <div id="browser">
     <table>
         <tbody>
