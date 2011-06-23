@@ -1,0 +1,27 @@
+[% USE ClubSpain.Calendar %]
+[% cal = ClubSpain.Calendar.new(start => start, end => end) %]
+
+<table>
+    <thead>
+        <tr>
+          <th> </th>
+          [% FOREACH day IN cal.days_of_week %]
+            <th>[% day %]</th>
+          [% END %]
+        </tr>
+    </thead>
+    <tbody>
+        [% length = cal.length %]
+        [% FOREACH month IN cal.months %]
+            <tr>
+                <td>[% month.format() %]</td>
+                [% counter = 0 %]
+                [% dates = month.days %]
+                [% WHILE counter < length %]
+                    <td>[% IF dates.$counter %][% dates.$counter.day %][% END %]</td>
+                    [% counter = counter + 1 %]
+                [% END %]
+            </tr>
+        [% END %]
+    </tbody>
+</table>

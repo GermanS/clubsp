@@ -9,7 +9,8 @@ use lib qw(t/lib);
 use ClubSpain::Test;
 
 my @tests = qw(calendar_months.tt2
-               calendar_header.tt2);
+               calendar_header.tt2
+               calendar.tt2);
 plan tests => scalar @tests;
 
 
