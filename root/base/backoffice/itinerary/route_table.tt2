@@ -48,7 +48,7 @@
         <td>[% itinerary.timetable.flight.destination_airport.city.name %] ([% itinerary.timetable.flight.destination_airport.name %])</td>
         <td>[% itinerary.timetable.airplane.name %]</td>
         <td>[% itinerary.fare_class.code %]</td>
-        <td [% rowspan2 %] class="price"><a href="/backoffice/fare/[% itinerary.id %]/edit">[% itinerary.cost %]</a></td>
+        <td [% rowspan2 %] class="price"><a href="/backoffice/fare/[% itinerary.id %]/edit">[% itinerary.cost %]</a>&euro;</td>
         <td [% rowspan2 %] class="icon">[% INCLUDE icons/delete.tt2 href="/backoffice/fare/$itinerary.id/delete" %]</td>
     </tr>
     [% IF route %]

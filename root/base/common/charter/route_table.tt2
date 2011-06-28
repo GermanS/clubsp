@@ -44,7 +44,7 @@
         <td>[% itinerary.timetable.flight.destination_airport.city.name %] ([% itinerary.timetable.flight.destination_airport.name %])</td>
         <td>[% itinerary.timetable.airplane.name %]</td>
         <td>[% itinerary.fare_class.code %]</td>
-        <td [% rowspan2 %]><span" class="price">[% itinerary.cost %]&euro;</span></td>
+        <td [% rowspan2 %] class="price">[% itinerary.cost %]&euro;</td>
     </tr>
     [% IF route %]
     <tr>

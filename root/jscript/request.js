@@ -80,13 +80,19 @@ function makeRequest(method, params, element, initialValue) {
  */
 
 function updateList(element, initialValue, result) {
-    var options = '';
-    $(result).each(function() {
-        options += '<option value="' + $(this).attr('id') + '">' + $(this).attr('name') + '</option>';
-    });
+    if (element && element[0]) {
+        element[0].options.length = 0;
 
-    element.html(options);
-    element.val(initialValue);
-    element.attr('disabled', false);
-    element.change();
+        $(result).each(function() {
+            var option = document.createElement("option");
+            option.text = $(this).attr('name');
+            option.value = $(this).attr('id');
+
+            element[0].options.add(option);
+        });
+
+        element.val(initialValue);
+        element.attr('disabled', false);
+        element.change();
+    }
 }
