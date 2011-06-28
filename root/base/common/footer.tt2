@@ -1,10 +1,9 @@
 <div class="yui-g">
     <div class="yui-g first">
         <div class="yui-u first">
-                <h6>Сервисы сайта</h6>
-                <a href="">Авиабилеты в Испанию</a>
-                <a href="">Расписание вылетов</a>
-            </dl>
+            <h6>Сервисы сайта</h6>
+            <a href="">Авиабилеты в Испанию</a>
+            <a href="">Расписание вылетов</a>
         </div>
         <div class="yui-u">
             <h6>Информация</h6>

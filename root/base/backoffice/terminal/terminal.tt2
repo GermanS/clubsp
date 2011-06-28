@@ -4,18 +4,16 @@
     [% END %]
 
     [% IF iterator.count %]
-        <div id="browser">
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th> </th>
-                    <th>Терминал</th>
-                    <th> </th>
-                <tr>
-                [% WHILE (item = iterator.next) %]
-                    [% INCLUDE row terminal = item %]
-                [% END %]
-            </table>
-        </div>
+        <table>
+            <tr>
+                <th> </th>
+                <th>Терминал</th>
+                <th> </th>
+            <tr>
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row terminal = item %]
+            [% END %]
+        </table>
     [% ELSE %]
         <p>Для просмотра терминалов нажмите на аэропорт в меню слева</p>
     [% END %]

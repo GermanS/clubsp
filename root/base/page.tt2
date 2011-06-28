@@ -4,22 +4,19 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="google-site-verification" content="KgLflGmCYtgZ_pEDj3MYZW6cR6xImMpo-a-4nLI2PfA" />
 
-
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.2r1/build/reset-fonts-grids/reset-fonts-grids.css" />
-    <link rel="stylesheet" type="text/css" href="/css/clubspain.css" />
-    <!--link rel="stylesheet" type="text/css" href="/css/style.css" /-->
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/reset-fonts-grids/reset-fonts-grids.css" />
     <link rel="stylesheet" type="text/css" href="/css/buttons.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
-    <script type="text/javascript" src="/jscript/jquery-1.5.min.js"></script>
-
-    <link rel="stylesheet" href="/jscript/tipsy/tipsy.css" type="text/css" />
+    <script src="https://www.google.com/jsapi?key=ABQIAAAAk9XY8p3VVsVIkOgvllx3ARQNzEQESdwAkPAD_jPMw0F3esb16BRoh5aOl9PW6Ulg3MxCccxe8Nq3_g" type="text/javascript"></script>
     <script type="text/javascript" src="/jscript/tipsy/jquery.tipsy.js"></script>
-    <script type='text/javascript'>
-        $(function() {  $('.tip').tipsy(); });
-    </script>
-
     <script type="text/javascript" src="/jscript/rpc.js"></script>
     <script type="text/javascript" src="/jscript/request.js"></script>
+
+    <script type="text/javascript">
+        google.load("jquery", "1.6.1");
+    </script>
+
     [% IF javascript %]
        [% PROCESS $javascript %]
     [% END %]

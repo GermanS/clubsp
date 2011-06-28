@@ -4,20 +4,18 @@
     [% END %]
 
     [% IF iterator.count %]
-        <div id="browser">
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th> </th>
-                    <th>Название</th>
-                    <th>IATA</th>
-                    <th>ICAO</th>
-                    <th> </th>
-                <tr>
-                [% WHILE (item = iterator.next) %]
-                    [% INCLUDE row airplane = item %]
-                [% END %]
-            </table>
-        </div>
+        <table>
+            <tr>
+                <th> </th>
+                <th>Название</th>
+                <th>IATA</th>
+                <th>ICAO</th>
+                <th> </th>
+            <tr>
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row airplane = item %]
+            [% END %]
+        </table>
     [% ELSE %]
         <p>Для просмотра типов самолетов нажмите на производителя в меню слева</p>
     [% END %]

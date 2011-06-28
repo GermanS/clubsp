@@ -1,0 +1,58 @@
+<script type="text/javascript">
+    $(function() {
+        var CityOfDeparture1 = $("select[name='CityOfDeparture1']");
+        CityOfDeparture1.bind('change', fireCityOfDeparture1Changed);
+
+        var CityOfArrival1   = $("select[name='CityOfArrival1']");
+        CityOfArrival1.bind('change',   fireCityOfArrival1Changed);
+
+        var CityOfDeparture2 = $("select[name='CityOfDeparture2']");
+        CityOfDeparture2.bind('change', fireCityOfDeparture2Changed);
+
+        var _CityOfDeparture1  = $("input[name='_CityOfDeparture1']");
+        makeRequest(FareSearchCitiesOfDeparture, {}, CityOfDeparture1, _CityOfDeparture1.attr('value') );
+    });
+
+
+    function fireCityOfDeparture1Changed() {
+        var value = $(this).attr('value');
+        var element = $("select[name='CityOfArrival1']");
+        var initial = $("input[name='_CityOfArrival1']").attr("value");
+
+        makeRequest(
+            FareSearchCitiesOfArrival,
+            { cityOfDeparture : value },
+            element,
+            initial
+        );
+
+    }
+
+    function fireCityOfArrival1Changed() {
+        var element = $("select[name='CityOfDeparture2']");
+        var initial = $("input[name='_CityOfDeparture2']").attr("value");
+        var value = $(this).attr('value');
+
+        makeRequest(
+            FareSearchCitiesOfDeparture,
+            {},
+            element,
+            initial || value
+        );
+    }
+
+
+    function fireCityOfDeparture2Changed() {
+        var value = $(this).attr("value");
+
+        var element = $("select[name='CityOfArrival2']");
+        var initial = $("input[name='_CityOfArrival2']").attr("value");
+
+        makeRequest(
+            FareSearchCitiesOfArrival,
+            { cityOfDeparture : value },
+            element,
+            initial
+        );
+    }
+</script>

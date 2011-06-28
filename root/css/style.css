@@ -1,0 +1,240 @@
+h1 {
+  font-size: 182%; }
+
+h2 {
+  font-size: 167%; }
+
+h3 {
+  font-size: 153.9%; }
+
+h4 {
+  font-size: 138.5%; }
+
+h5 {
+  font-size: 123.1%; }
+
+h6 {
+  font-size: 108%; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333333;
+  margin: 0.5em 0; }
+
+a {
+  text-decoration: none;
+  color: #1a74b0;
+  outline-style: none; }
+  a:hover {
+    text-decoration: underline; }
+
+p {
+  margin: 0 0 1em 0;
+  line-height: 138.5%; }
+
+strong {
+  font-weight: bold; }
+
+em {
+  font-style: italic; }
+
+ol, ul, dl {
+  margin-left: 2em; }
+
+ol li {
+  list-style: decimal outside; }
+
+ul li {
+  list-style: disc outside; }
+
+dl dd {
+  margin-left: 1em; }
+
+form {
+  margin: 0px;
+  padding: 0px; }
+
+label {
+  display: block;
+  margin: 0.5em 0;
+  font-weight: bold; }
+
+textarea, select, input[type=text] {
+  display: block;
+  width: 99%;
+  border: solid #cacaca 1px;
+  background: white;
+  padding: 0.25em;
+  font: 12px "Courier New", "Lucida Console", monospace; }
+  textarea:focus, select:focus, input[type=text]:focus {
+    border: 2px solid #8cd6f9; }
+
+.button {
+  margin: 0.5em 0; }
+
+.route ul {
+  margin-left: 0; }
+  .route ul li {
+    list-style: none;
+    padding: 0.25em 0; }
+    .route ul li a {
+      font-size: 116%; }
+
+ul.tabs {
+  position: relative;
+  margin: 10px 0 0 0;
+  height: 26px;
+  padding: 6px 10px;
+  border: 1px solid #dddddd;
+  background: #e3e3e3; }
+  ul.tabs li {
+    list-style-type: none;
+    margin: 0;
+    display: inline; }
+    ul.tabs li a {
+      float: left;
+      margin-right: 10px;
+      height: 26px;
+      padding: 0 8px;
+      line-height: 26px;
+      font-size: 108%; }
+      ul.tabs li a:hover {
+        color: #333333;
+        background-color: #cccccc;
+        text-decoration: none; }
+      ul.tabs li a.selected {
+        position: relative;
+        top: -1px;
+        font-weight: bold;
+        color: #333333;
+        background: white;
+        border: 1px solid #cccccc;
+        border-right-color: #eeeeee;
+        border-bottom-color: #eeeeee; }
+
+.subnav-bar {
+  position: relative;
+  height: 30px;
+  padding: 0;
+  border: 1px solid #dddddd;
+  border-top: 1px solid #fafafa;
+  border-bottom: 1px solid #d2d2d2;
+  z-index: 3; }
+
+ul.subnav-bar {
+  position: relative;
+  margin: 0; }
+  ul.subnav-bar li {
+    list-style-type: none;
+    margin: 0;
+    display: inline; }
+    ul.subnav-bar li:hover a {
+      color: #333333;
+      background-color: #f8f8f8;
+      border-color: #cccccc; }
+    ul.subnav-bar li a {
+      position: relative;
+      float: left;
+      height: 15px;
+      padding: 5px 5px;
+      font-size: 12px;
+      text-decoration: none;
+      color: #666666;
+      border: 1px solid transparent; }
+
+table {
+  border-top: 1px solid #d8d8d8;
+  border-left: 1px solid #d8d8d8;
+  border-right: 1px solid #d8d8d8;
+  font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+  font-size: 90%;
+  width: 100%; }
+  table th {
+    background-color: #eaeaea;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #d8d8d8;
+    color: #484848;
+    padding: 0.5em 0.25em;
+    font-weight: bold; }
+  table td {
+    background: #f8f8f8;
+    padding: 0.5em 0.3em;
+    color: #333333;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #e1e1e1; }
+    table td.icon {
+      width: 1.3em; }
+    table td.icons4 {
+      width: 7.8em; }
+    table td.price {
+      margin: 0;
+      padding: 0;
+      font-size: 3em;
+      font-weight: bold; }
+
+.itinerary .price {
+  font-size: 4em;
+  line-height: 1em;
+  margin: 0;
+  padding: 0; }
+  .itinerary .price .currency {
+    font-size: 0.5em; }
+.itinerary .route {
+  margin: 0.75em 0 0.25em 0; }
+  .itinerary .route .date {
+    font-size: 174%; }
+  .itinerary .route .flight {
+    font-size: 146.5%; }
+  .itinerary .route .airline {
+    font-size: 116%; }
+  .itinerary .route .seat {
+    font-size: 116%; }
+  .itinerary .route .city {
+    font-size: 174%; }
+  .itinerary .route .airport {
+    font-size: 146.5%; }
+  .itinerary .route .time {
+    font-size: 146.5%; }
+
+.calendar table {
+  margin-top: 1em;
+  border-top: 1px solid #d8d8d8;
+  border-left: 1px solid #d8d8d8;
+  border-right: 1px solid #d8d8d8;
+  font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+  font-size: 90%;
+  width: 100%; }
+  .calendar table tr:hover {
+    background: #f0f0f0; }
+  .calendar table th {
+    background: #f8f8f8;
+    color: #484848;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 0.5em 0;
+    text-align: center;
+    font-weight: bold;
+    background-color: #eaeaea; }
+  .calendar table td {
+    background: #f8f8f8;
+    color: #484848;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 0.5em 0;
+    text-align: center; }
+    .calendar table td:hover {
+      background: #f0f0f0; }
+  .calendar table .month {
+    padding: 0.5em;
+    text-align: left; }
+
+#ft a {
+  display: block;
+  margin: 0.5em 0; }

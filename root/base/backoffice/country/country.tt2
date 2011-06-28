@@ -3,21 +3,19 @@
         [% message %]
     [% END %]
 
-    <div id="browser">
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th> </th>
-                <th>Название страны (ISO 3166-1)</th>
-                <th>Код 2</th>
-                <th>Код 3</th>
-                <th>Номер</th>
-                <th> </th>
-            <tr>
-            [% WHILE (item = iterator.next) %]
-                [% INCLUDE row country = item %]
-            [% END %]
-        </table>
-    </div>
+    <table>
+        <tr>
+            <th> </th>
+            <th>Название страны (ISO 3166-1)</th>
+            <th>Код 2</th>
+            <th>Код 3</th>
+            <th>Номер</th>
+            <th> </th>
+        <tr>
+        [% WHILE (item = iterator.next) %]
+            [% INCLUDE row country = item %]
+        [% END %]
+    </table>
 [% END %]
 
 

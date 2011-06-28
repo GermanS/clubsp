@@ -1,22 +1,26 @@
 [% WRAPPER common/doc4_yui_t5.tt2
-           javascript = "common/charter/itinerary.js.tt2"%]
+           javascript = "common/charter/itinerary.js.tt2" %]
     <div class="yui-b">
         <div class="yui-g route">
             <div class="yui-u first">
                 <h2>Авиабилеты из Москвы</h2>
-                <a href="/charter/MOW-BCN" title="Стоимость авиабилета Москва - Барселона">Авиабилеты Москва - Барселона</a>
-                <a href="/charter/MOW-ALC" title="Стоимость авиабилета Москва - Аликанте">Авиабилеты Москва - Аликанте</a>
-                <a href="/charter/MOW-PMI" title="Стоимость авиабилета Москва - Майорка">Авиабилеты Москва - Майорка</a>
-                <a href="/charter/MOW-TEN" title="Стоимость авиабилета Москва - Тенерифе">Авиабилеты Москва - Тенерифе</a>
-                <a href="/charter/MOW-MAL" title="Стоимость авиабилета Москва - Малага">Авиабилеты Москва - Малага</a>
+                <ul>
+                    <li><a href="/charter/MOW-BCN" title="Стоимость авиабилета Москва - Барселона">Авиабилеты Москва - Барселона</a></li>
+                    <li><a href="/charter/MOW-ALC" title="Стоимость авиабилета Москва - Аликанте">Авиабилеты Москва - Аликанте</a></li>
+                    <li><a href="/charter/MOW-PMI" title="Стоимость авиабилета Москва - Майорка">Авиабилеты Москва - Майорка</a></li>
+                    <li><a href="/charter/MOW-TEN" title="Стоимость авиабилета Москва - Тенерифе">Авиабилеты Москва - Тенерифе</a></li>
+                    <li><a href="/charter/MOW-MAL" title="Стоимость авиабилета Москва - Малага">Авиабилеты Москва - Малага</a></li>
+                </ul>
             </div>
             <div class="yui-u">
                 <h2>Авиабилеты в Москву</h2>
-                <a href="/charter/BCN-MOW" title="Стоимость авиабилета Барселона - Москва">Авиабилеты Барселона - Москва</a>
-                <a href="/charter/ALC-MOW" title="Стоимость авиабилета Аликанте - Москва">Авиабилеты Аликанте - Москва</a>
-                <a href="/charter/PMI-MOW" title="Стоимость авиабилета Майорка - Москва">Авиабилеты Майорка - Москва</a>
-                <a href="/charter/TEN-MOW" title="Стоимость авиабилета Тенерифе - Москва">Авиабилеты Тенерифе - Москва</a>
-                <a href="/charter/MAL-MOW" title="Стоимость авиабилета Малага - Москва">Авиабилеты Малага - Москва</a>
+                <ul>
+                    <li><a href="/charter/BCN-MOW" title="Стоимость авиабилета Барселона - Москва">Авиабилеты Барселона - Москва</a></li>
+                    <li><a href="/charter/ALC-MOW" title="Стоимость авиабилета Аликанте - Москва">Авиабилеты Аликанте - Москва</a></li>
+                    <li><a href="/charter/PMI-MOW" title="Стоимость авиабилета Майорка - Москва">Авиабилеты Майорка - Москва</a></li>
+                    <li><a href="/charter/TEN-MOW" title="Стоимость авиабилета Тенерифе - Москва">Авиабилеты Тенерифе - Москва</a></li>
+                    <li><a href="/charter/MAL-MOW" title="Стоимость авиабилета Малага - Москва">Авиабилеты Малага - Москва</a></li>
+                </ul>
             </div>
         </div>
         <div class="yui-g">
@@ -25,25 +29,25 @@
                 <div class="yui-u first">
                     <fieldset title="Вылет">
                         <label for="CityOfDeparture1">Город вылета</label>
-                        <select name="CityOfDeparture1"></select>
+                        <select name="CityOfDeparture1" id="CityOfDeparture1"></select>
 
                         <label for="CityOfArrival1">Город прилета</label>
-                        <select name="CityOfArrival1"></select>
+                        <select name="CityOfArrival1" id="CityOfArrival1"></select>
 
                         <label for="DateOfDeparture1">Дата вылета</label>
-                        <select name="DateOfDeparture1"></select>
+                        <select name="DateOfDeparture1" id="DateOfDeparture1"></select>
                     </fieldset>
                 </div>
                 <div class="yui-u">
                     <fieldset title="Прилет">
                         <label for="CityOfDeparture2">Город вылета</label>
-                        <select name="CityOfDeparture2"></select>
+                        <select name="CityOfDeparture2" id="CityOfDeparture2"></select>
 
                         <label for="CityOfArrival2">Город прилета</label>
-                        <select name="CityOfArrival2"></select>
+                        <select name="CityOfArrival2" id="CityOfArrival2"></select>
 
                         <label for="DateOfDeparture2">Дата вылета</label>
-                        <select name="DateOfDeparture2"></select>
+                        <select name="DateOfDeparture2" id="DateOfDeparture2"></select>
                     </fieldset>
 
                     <label></label>

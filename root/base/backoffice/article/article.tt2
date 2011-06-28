@@ -3,14 +3,12 @@
         [% message %]
     [% END %]
 
-    <div id="browser">
-        <table cellpadding="0" cellspacing="0">
-            [% INCLUDE header article = article %]
-            [% WHILE (item = iterator.next) %]
-                [% INCLUDE row article = item %]
-            [% END %]
-        </table>
-    </div>
+    <table>
+        [% INCLUDE header article = article %]
+        [% WHILE (item = iterator.next) %]
+            [% INCLUDE row article = item %]
+        [% END %]
+    </table>
 [% END %]
 
 

@@ -15,47 +15,42 @@
 [% END %]
 
 [% BLOCK results %]
-    <div id="browser">
-        <table>
-            <thead>
-                <tr>
-                    <th>Дата вылета</th>
-                    <th>Рейс (Класс)</th>
+    <table>
+        <thead>
+            <tr>
+                <th>Дата вылета</th>
+                <th>Рейс (Класс)</th>
 
-                    [% FOREACH day IN days %]
-                        <th>[% day %] суток</th>
-                    [% END %]
-                </tr>
-            </thead>
-            <tbody>
-                [% FOREACH start IN table.pairs %]
-                <tr>
-                    <td rowspan="[% start.value.size %]">
-                        [% start.key %]
-                    </td>
-                    [% FOREACH flight IN start.value.pairs %]
-                        <td>
-                            [% flight.key %]
-                        </td>
-
-                        [% FOREACH d IN days %]
-                        <td>
-
-                            [% IF flight.value.$d %]
-                                [% flight.value.$d %]
-                            [% ELSE%]
-                                x
-                            [% END %]
-                        </td>
-                      [% END %]
-                    </tr>
-                    <tr>
-                    [% END %]
-                </tr>
+                [% FOREACH day IN days %]
+                    <th>[% day %] суток</th>
                 [% END %]
-            </tbody>
-        </table>
-    </div>
+            </tr>
+        </thead>
+        <tbody>
+            [% FOREACH start IN table.pairs %]
+            <tr>
+                <td rowspan="[% start.value.size %]">
+                    [% start.key %]
+                </td>
+                [% FOREACH flight IN start.value.pairs %]
+                    <td>
+                        [% flight.key %]
+                    </td>
 
-
+                    [% FOREACH d IN days %]
+                    <td>
+                        [% IF flight.value.$d %]
+                            [% flight.value.$d %]
+                        [% ELSE%]
+                            x
+                        [% END %]
+                    </td>
+                  [% END %]
+                </tr>
+                <tr>
+                [% END %]
+            </tr>
+            [% END %]
+        </tbody>
+    </table>
 [% END %]

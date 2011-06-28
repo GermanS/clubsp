@@ -1,22 +1,26 @@
-<table class="calendar">
+[% USE ClubSpain.Calendar %]
+[% cal = ClubSpain.Calendar.new(start => start, end => end) %]
+
+<table>
     <thead>
         <tr>
-          [% headers = calendar.header %]
-          <th> [% headers.header %]</th>
-          [% FOREACH header IN headers.header %]
-          <th>[% header %]</th>
+          <th> </th>
+          [% FOREACH day IN cal.days_of_week %]
+            <th>[% day %]</th>
           [% END %]
-
-          [% WHILE (header = headers.header.next() )%]
-            [% header %]
-          [% END  %]
         </tr>
     </thead>
-
     <tbody>
-        [% FOREACH month in calendar.months %]
+        [% length = cal.length %]
+        [% FOREACH month IN cal.months %]
             <tr>
-                <th>[% month.format %]</td>
+                <td>[% month.format() %]</td>
+                [% counter = 0 %]
+                [% dates = month.days %]
+                [% WHILE counter < length %]
+                    <td>[% IF dates.$counter %][% dates.$counter.day %][% END %]</td>
+                    [% counter = counter + 1 %]
+                [% END %]
             </tr>
         [% END %]
     </tbody>

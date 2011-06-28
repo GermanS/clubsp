@@ -4,20 +4,18 @@
     [% END %]
 
     [% IF iterator.count %]
-        <div id="browser">
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th> </th>
-                    <th>Авиакомпания</th>
-                    <th>Код IATA</th>
-                    <th>Код ICAO</th>
-                    <th> </th>
-                <tr>
-                [% WHILE (item = iterator.next) %]
-                    [% INCLUDE row airline = item %]
-                [% END %]
-            </table>
-        </div>
+        <table>
+            <tr>
+                <th> </th>
+                <th>Авиакомпания</th>
+                <th>Код IATA</th>
+                <th>Код ICAO</th>
+                <th> </th>
+            <tr>
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row airline = item %]
+            [% END %]
+        </table>
     [% END %]
 [% END %]
 

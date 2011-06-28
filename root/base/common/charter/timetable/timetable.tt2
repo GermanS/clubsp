@@ -1,5 +1,10 @@
-[% WRAPPER common/charter/timetable/timetable_wrapper.tt2 %]
+[% WRAPPER common/charter/timetable/timetable_wrapper.tt2
+           javascript = "common/charter/timetable/timetable.js.tt2"
+           searchform = "common/charter/timetable/timetable_form.tt2" %]
+
     [% IF iterator.count %]
+        [% INCLUDE calendar.tt2 %]
+
         [% WHILE (item = iterator.next) %]
             [% INCLUDE common/charter/route.tt2 itinerary = item %]
         [% END %]

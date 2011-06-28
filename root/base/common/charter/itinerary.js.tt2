@@ -1,21 +1,17 @@
 <script type="text/javascript">
     $(function() {
         var CityOfDeparture1 = $("select[name='CityOfDeparture1']");
-        CityOfDeparture1.bind('change', fireCityOfDeparture1Changed);
-
         var CityOfArrival1   = $("select[name='CityOfArrival1']");
-        CityOfArrival1.bind('change',   fireCityOfArrival1Changed);
-
         var DateOfDeparture1 = $("select[name='DateOfDeparture1']");
-        DateOfDeparture1.bind('change', fireDateOfDeparture1Changed);
-
         var CityOfDeparture2 = $("select[name='CityOfDeparture2']");
-        CityOfDeparture2.bind('change', fireCityOfDeparture2Changed);
-
         var CityOfArrival2   = $("select[name='CityOfArrival2']");
-        CityOfArrival2.bind('change', fireCityOfArrival2Changed);
-
         var DateOfDeparture2 = $("select[name='DateOfDeparture2']");
+
+        CityOfDeparture1.bind('change', fireCityOfDeparture1Changed);
+        CityOfArrival1.bind('change',   fireCityOfArrival1Changed);
+        DateOfDeparture1.bind('change', fireDateOfDeparture1Changed);
+        CityOfDeparture2.bind('change', fireCityOfDeparture2Changed);
+        CityOfArrival2.bind('change', fireCityOfArrival2Changed);
 
         //Preselect
         var _CityOfDeparture1  = $("input[name='_CityOfDeparture1']");
