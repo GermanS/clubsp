@@ -29,7 +29,8 @@ a {
 
 p {
   margin: 0 0 1em 0;
-  line-height: 138.5%; }
+  line-height: 138.5%;
+  text-align: justify; }
 
 strong {
   font-weight: bold; }
@@ -176,30 +177,6 @@ table {
       font-weight: bold;
       text-align: center; }
 
-.itinerary .price {
-  font-size: 4em;
-  line-height: 1em;
-  margin: 0;
-  padding: 0; }
-  .itinerary .price .currency {
-    font-size: 0.5em; }
-.itinerary .route {
-  margin: 0.75em 0 0.25em 0; }
-  .itinerary .route .date {
-    font-size: 174%; }
-  .itinerary .route .flight {
-    font-size: 146.5%; }
-  .itinerary .route .airline {
-    font-size: 116%; }
-  .itinerary .route .seat {
-    font-size: 116%; }
-  .itinerary .route .city {
-    font-size: 174%; }
-  .itinerary .route .airport {
-    font-size: 146.5%; }
-  .itinerary .route .time {
-    font-size: 146.5%; }
-
 .calendar table {
   margin-top: 1em;
   border-top: 1px solid #d8d8d8;
@@ -235,6 +212,30 @@ table {
   .calendar table .month {
     padding: 0.5em;
     text-align: left; }
+
+.sidebar {
+  margin: 1em 0 0 0;
+  padding: 0; }
+  .sidebar a {
+    display: block;
+    margin: 0.5em 0; }
+  .sidebar ul {
+    margin: 0;
+    padding: 0; }
+    .sidebar ul li {
+      list-style: none;
+      clear: both; }
+      .sidebar ul li a {
+        display: inline; }
+    .sidebar ul li.clear {
+      float: none;
+      overflow: hidden;
+      height: 1;
+      padding: 0; }
+    .sidebar ul ul {
+      margin-left: 1em; }
+      .sidebar ul ul li {
+        margin: 0.25em 0; }
 
 #ft a {
   display: block;

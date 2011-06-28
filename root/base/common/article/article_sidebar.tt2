@@ -1,8 +1,7 @@
 <div class="sidebar">
-    <h6>[% top_level_article.header %]</h6>
-
     [% INCLUDE menu tree = sidebar_tree %]
 </div>
+
 
 [% BLOCK menu %]
     [% IF tree.size %]
@@ -11,6 +10,7 @@
             <li><a href="/article/[% item.value %]" title="[% item.label %]">[% item.label %]</a></li>
             [% INCLUDE menu tree = item.children %]
         [% END %]
+        <li class="clear"></li>
         </ul>
     [% END %]
 [% END %]
