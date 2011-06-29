@@ -92,6 +92,15 @@ sub searchCitiesOfDepartureInOWItinerary {
              ->searchCitiesOfDepartureInOWItinerary();
 }
 
+sub searchCitiesOfArrivalInOWItinerary {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchCitiesOfArrivalInOWItinerary(%params);
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;

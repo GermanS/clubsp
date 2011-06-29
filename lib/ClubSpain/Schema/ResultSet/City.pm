@@ -226,7 +226,6 @@ sub searchCitiesOfArrivalInTimeTable {
 sub searchCitiesOfDepartureInOWItinerary {
     my ($self) = @_;
 
-
     return $self->result_source->resultset->search({
         'itineraries.parent_id'          => 0,
         'children.id'                    => \'IS NULL',
@@ -251,6 +250,48 @@ sub searchCitiesOfDepartureInOWItinerary {
                         },
                         {
                             'destination_airport' => { 'city' => 'country' }
+                        }
+                    ],
+                }
+        }],
+        group_by  => [ 'me.id' ]
+    });
+}
+
+=head searchCitiesOfArrivalInOWItinerary( cityOfDeparture => )
+
+Поиск городов прибытия из города отправления
+
+=cut
+
+sub searchCitiesOfArrivalInOWItinerary {
+    my ($self, %params) = @_;
+
+    return $self->result_source->resultset->search({
+        'itineraries.parent_id'          => 0,
+        'children.id'                    => \'IS NULL',
+        'time_tables.departure_date'     => \'>=NOW()',
+        'departure_airport.city_id'      => $params{'cityOfDeparture'},
+
+        'country.is_published'           => 1,
+        'me.is_published'                => 1,
+        'airports.is_published'          => 1,
+        'arrival_flights.is_published'   => 1,
+        'time_tables.is_published'       => 1,
+        'itineraries.is_published'       => 1,
+        'departure_airport.is_published' => 1,
+        'city.is_published'      => 1,
+        'country_2.is_published' => 1,
+    }, {
+        join => [
+            'country', {
+                'airports' => {
+                    'arrival_flights' => [
+                        {
+                            'time_tables' => { 'itineraries' => 'children' }
+                        },
+                        {
+                            'departure_airport' => { 'city' => 'country' }
                         }
                     ],
                 }

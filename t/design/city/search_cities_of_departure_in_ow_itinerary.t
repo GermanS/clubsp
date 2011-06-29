@@ -10,7 +10,7 @@ my $schema = ClubSpain::Test->init_schema();
 use_ok('ClubSpain::Model::City');
 
 my $MOW = $schema->resultset('City')->search({ id => 1 })->single;
-sub check_MOW {
+sub is_MOW {
     my $mow = shift;
 
     is($mow->id, $MOW->id, 'got id');
@@ -19,7 +19,7 @@ sub check_MOW {
 }
 
 my $BCN = $schema->resultset('City')->search({ id => 2 })->single;
-sub check_BCN {
+sub is_BCN {
     my $bcn = shift;
 
     is($bcn->id, $BCN->id, 'got id');
@@ -33,8 +33,8 @@ sub check_BCN {
         ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
 
     is($iterator->count, 2, 'got 2 cities of departure');
-    &check_MOW($iterator->next);
-    &check_BCN($iterator->next);
+    &is_MOW($iterator->next);
+    &is_BCN($iterator->next);
 }
 
 #set russia.is_published to 1
@@ -82,7 +82,7 @@ sub check_BCN {
         ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
     is($iterator->count, 1, 'got one city');
 
-    &check_MOW($iterator->next);
+    &is_MOW($iterator->next);
 
     $nn332->update({ is_published => 1 });
 }
@@ -97,7 +97,7 @@ sub check_BCN {
         ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
     is($iterator->count, 1, 'got one city');
 
-    &check_BCN($iterator->next);
+    &is_BCN($iterator->next);
 
     $timetable->update({ is_published => 1 });
 }
@@ -116,7 +116,7 @@ sub check_BCN {
     my $iterator =
         ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
     is($iterator->count, 1, 'got one city');
-    &check_MOW($iterator->next);
+    &is_MOW($iterator->next);
 
 
 
@@ -126,7 +126,3 @@ sub check_BCN {
         $itineraries->update({ is_published => 0 });
     }
 }
-
-
-
-
