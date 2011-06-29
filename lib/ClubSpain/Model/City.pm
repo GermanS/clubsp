@@ -83,6 +83,15 @@ sub searchCitiesOfArrivalInTimeTable {
              ->searchCitiesOfArrivalInTimeTable(%params);
 }
 
+sub searchCitiesOfDepartureInOWItinerary {
+    my $self = shift;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchCitiesOfDepartureInOWItinerary();
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;
