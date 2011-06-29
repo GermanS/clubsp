@@ -32,6 +32,9 @@ p {
   line-height: 138.5%;
   text-align: justify; }
 
+img {
+  margin: 10px; }
+
 strong {
   font-weight: bold; }
 
