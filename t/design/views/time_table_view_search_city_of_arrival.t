@@ -1,27 +1,38 @@
-use Test::More tests => 19;
+use Test::More tests => 12;
 use strict;
 use warnings;
-
 use lib qw(t/lib);
 use ClubSpain::Test;
 my $schema = ClubSpain::Test->init_schema();
 
-use_ok('ClubSpain::Model::City');
+my $MOW = $schema->resultset('City')->search({ id => 1 })->single;
+sub is_MOW {
+    my $mow = shift;
+
+    is($mow->id, $MOW->id, 'got id: '. $MOW->id);
+    is($mow->iata, $MOW->iata, 'got iata code: '. $MOW->iata);
+    is($mow->name, $MOW->name, 'got Moscow: ' . $MOW->name);
+}
+
+my $BCN = $schema->resultset('City')->search({ id => 2 })->single;
+sub is_BCN {
+    my $bcn = shift;
+
+    is($bcn->id, $BCN->id, 'got id: '. $BCN->id);
+    is($bcn->iata, $BCN->iata, "got iata code: " . $BCN->iata);
+    is($bcn->name, $BCN->name, "got city: " . $BCN->name);
+}
+
+sub request {
+    my %params = @_;
+    return $schema->resultset('ViewTimeTable')->searchCitiesOfArrival(%params);
+}
 
 {
-    my $iterator = ClubSpain::Model::City->searchCitiesOfDepartureInTimeTable();
+    my $iterator = request( cityOfDeparture => $MOW->id );
 
-    is($iterator->count, 2, 'got two cities');
-
-    my $moscow = $iterator->next();
-    is($moscow->id, 1, 'got id');
-    is($moscow->iata, 'MOW', 'got iata code');
-    is($moscow->name, 'Moscow', 'got Moscow');
-
-    my $bcn = $iterator->next();
-    is($bcn->id, 2, 'got id');
-    is($bcn->iata, 'BCN', 'got iata code');
-    is($bcn->name, 'Barcelona', 'got Barcelona');
+    is($iterator->count, 1, 'got one city');
+    is_BCN($iterator->next);
 }
 
 #set country.is_published to 0
@@ -29,7 +40,7 @@ use_ok('ClubSpain::Model::City');
     my $spain = $schema->resultset('Country')->search({id => 2});
     $spain->update({ is_published => 0 });
 
-    my $iterator = ClubSpain::Model::City->searchCitiesOfDepartureInTimeTable();
+    my $iterator = request( cityOfDeparture => $MOW->id );
 
     is($iterator->count, 0, 'got nothing');
 
@@ -41,7 +52,7 @@ use_ok('ClubSpain::Model::City');
     my $bcn = $schema->resultset('City')->search({ id => 2 });
     $bcn->update({ is_published => 0 });
 
-    my $iterator = ClubSpain::Model::City->searchCitiesOfDepartureInTimeTable();
+    my $iterator = request( cityOfDeparture => $MOW->id );
     is($iterator->count, 0, 'got nothing');
 
     $bcn->update({ is_published => 1 });
@@ -52,7 +63,7 @@ use_ok('ClubSpain::Model::City');
     my $bcn = $schema->resultset('Airport')->search({ id => 4 });
     $bcn->update({ is_published => 0 });
 
-    my $iterator = ClubSpain::Model::City->searchCitiesOfDepartureInTimeTable();
+    my $iterator = request( cityOfDeparture => $MOW->id );
     is($iterator->count, 0, 'got nothing');
 
     $bcn->update({ is_published => 1 });
@@ -63,13 +74,8 @@ use_ok('ClubSpain::Model::City');
     my $NN331 = $schema->resultset('Flight')->search({ id => 1 });
     $NN331->update({ is_published => 0 });
 
-    my $iterator = ClubSpain::Model::City->searchCitiesOfDepartureInTimeTable();
-    is($iterator->count, 1, 'got a city');
-
-    my $bcn = $iterator->next();
-    is($bcn->id, 2, 'got id');
-    is($bcn->iata, 'BCN', 'got iata code');
-    is($bcn->name, 'Barcelona', 'got Barcelona');
+    my $iterator = request( cityOfDeparture => $MOW->id );
+    is($iterator->count, 0, 'got nothing');
 
     $NN331->update({ is_published => 1 });
 }
@@ -81,14 +87,9 @@ use_ok('ClubSpain::Model::City');
         $timetable->update({ is_published => 0 });
     }
 
-    my $iterator = ClubSpain::Model::City->searchCitiesOfDepartureInTimeTable();
+    my $iterator = request( cityOfDeparture => $MOW->id );
     is($iterator->count, 1, 'got one city');
-
-    my $mow = $iterator->next();
-    is($mow->id, 1, 'got id');
-    is($mow->iata, 'MOW', 'got iata code');
-    is($mow->name, 'Moscow', 'got Moscow');
-
+    is_BCN($iterator->next);
 
     for my $timetable (@NN332_BCN_DME) {
         $timetable->update({ is_published => 1 });

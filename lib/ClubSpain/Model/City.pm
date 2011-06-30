@@ -52,8 +52,8 @@ sub searchCitiesOfDepartureInFlight {
 
     return
         $self->schema()
-             ->resultset($self->source_name)
-             ->searchCitiesOfDepartureInFlight();
+             ->resultset('ViewFlight')
+             ->searchCitiesOfDeparture();
 }
 
 sub searchCitiesOfArrivalInFlight {
@@ -61,8 +61,8 @@ sub searchCitiesOfArrivalInFlight {
 
     return
         $self->schema()
-             ->resultset($self->source_name)
-             ->searchCitiesOfArrivalInFlight(%params);
+             ->resultset('ViewFlight')
+             ->searchCitiesOfArrival(%params);
 }
 
 sub searchCitiesOfDepartureInTimeTable {
@@ -70,8 +70,8 @@ sub searchCitiesOfDepartureInTimeTable {
 
     return
         $self->schema()
-             ->resultset($self->source_name)
-             ->searchCitiesOfDepartureInTimeTable();
+             ->resultset('ViewTimeTable')
+             ->searchCitiesOfDeparture();
 }
 
 sub searchCitiesOfArrivalInTimeTable {
@@ -79,8 +79,8 @@ sub searchCitiesOfArrivalInTimeTable {
 
     return
         $self->schema()
-             ->resultset($self->source_name)
-             ->searchCitiesOfArrivalInTimeTable(%params);
+             ->resultset('ViewTimeTable')
+             ->searchCitiesOfArrival(%params);
 }
 
 sub searchCitiesOfDepartureInOWItinerary {
@@ -99,6 +99,15 @@ sub searchCitiesOfArrivalInOWItinerary {
         $self->schema()
              ->resultset($self->source_name)
              ->searchCitiesOfArrivalInOWItinerary(%params);
+}
+
+sub searchCitiesOfDeparture1InRTItinerary {
+    my $self = shift;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->searchCitiesOfDeparture1InRTItinerary();
 }
 
 __PACKAGE__->meta->make_immutable();
