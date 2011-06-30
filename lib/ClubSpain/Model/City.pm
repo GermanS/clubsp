@@ -88,8 +88,8 @@ sub searchCitiesOfDepartureInOWItinerary {
 
     return
         $self->schema()
-             ->resultset($self->source_name)
-             ->searchCitiesOfDepartureInOWItinerary();
+             ->resultset('ViewItineraryOW')
+             ->searchCitiesOfDeparture();
 }
 
 sub searchCitiesOfArrivalInOWItinerary {
@@ -97,8 +97,8 @@ sub searchCitiesOfArrivalInOWItinerary {
 
     return
         $self->schema()
-             ->resultset($self->source_name)
-             ->searchCitiesOfArrivalInOWItinerary(%params);
+             ->resultset('ViewItineraryOW')
+             ->searchCitiesOfArrival(%params);
 }
 
 sub searchCitiesOfDeparture1InRTItinerary {

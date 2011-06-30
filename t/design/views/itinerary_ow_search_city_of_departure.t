@@ -1,4 +1,4 @@
-use Test::More tests => 23;
+use Test::More tests => 22;
 use strict;
 use warnings;
 
@@ -7,30 +7,32 @@ use lib qw(t/lib);
 use ClubSpain::Test;
 my $schema = ClubSpain::Test->init_schema();
 
-use_ok('ClubSpain::Model::City');
 
 my $MOW = $schema->resultset('City')->search({ id => 1 })->single;
 sub is_MOW {
     my $mow = shift;
 
-    is($mow->id, $MOW->id, 'got id');
-    is($mow->iata, $MOW->iata, 'got iata code');
-    is($mow->name, $MOW->name, 'got Moscow');
+    is($mow->id, $MOW->id, 'got id: '. $MOW->id );
+    is($mow->iata, $MOW->iata, 'got iata code: ' . $MOW->iata);
+    is($mow->name, $MOW->name, 'got city: '. $MOW->name);
 }
 
 my $BCN = $schema->resultset('City')->search({ id => 2 })->single;
 sub is_BCN {
     my $bcn = shift;
 
-    is($bcn->id, $BCN->id, 'got id');
-    is($bcn->iata, $BCN->iata, 'got iata code');
-    is($bcn->name, $BCN->name, 'got Barcelona');
+    is($bcn->id, $BCN->id, 'got id: ' . $BCN->id);
+    is($bcn->iata, $BCN->iata, 'got iata code: ' . $BCN->iata);
+    is($bcn->name, $BCN->name, 'got Barcelona: ' . $BCN->name);
+}
+
+sub request {
+    return $schema->resultset('ViewItineraryOW')->searchCitiesOfDeparture();
 }
 
 
 {
-    my $iterator =
-        ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
+    my $iterator = request();
 
     is($iterator->count, 2, 'got 2 cities of departure');
     &is_MOW($iterator->next);
@@ -42,20 +44,17 @@ sub is_BCN {
     my $RU = $schema->resultset('Country')->search({ id => 1 })->single();
     $RU->update({ is_published => 0 });
 
-    my $iterator =
-        ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
+    my $iterator = request();
     is($iterator->count, 0, 'got nothing');
 
     $RU->update({ is_published => 1 });
-
 }
 
 #set barcelona.is_published to 0
 {
     $BCN->update({ is_published => 0 });
 
-    my $iterator =
-        ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
+    my $iterator = request();
     is($iterator->count, 0, 'got nothing');
 
     $BCN->update({ is_published => 1 });
@@ -66,8 +65,7 @@ sub is_BCN {
     my $dme = $schema->resultset('Airport')->search({ id => 1 })->single();
     $dme->update({ is_published => 0 });
 
-    my $iterator =
-        ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
+    my $iterator = request();
     is($iterator->count, 0, 'got nothing');
 
     $dme->update({ is_published => 1 });
@@ -78,8 +76,7 @@ sub is_BCN {
     my $nn332 = $schema->resultset('Flight')->search({ id => 2 })->single;
     $nn332->update({ is_published => 0 });
 
-    my $iterator =
-        ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
+    my $iterator = request();
     is($iterator->count, 1, 'got one city');
 
     &is_MOW($iterator->next);
@@ -93,8 +90,7 @@ sub is_BCN {
     my $timetable = $nn331->time_tables();
     $timetable->update({ is_published => 0 });
 
-    my $iterator =
-        ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
+    my $iterator = request();
     is($iterator->count, 1, 'got one city');
 
     &is_BCN($iterator->next);
@@ -113,8 +109,7 @@ sub is_BCN {
 
 
 
-    my $iterator =
-        ClubSpain::Model::City->searchCitiesOfDepartureInOWItinerary();
+    my $iterator = request();
     is($iterator->count, 1, 'got one city');
     &is_MOW($iterator->next);
 
@@ -123,6 +118,6 @@ sub is_BCN {
     $timetable = $nn332->time_tables;
     while (my $schedule = $timetable->next) {
         my $itineraries = $schedule->itineraries;
-        $itineraries->update({ is_published => 0 });
+        $itineraries->update({ is_published => 1 });
     }
 }
