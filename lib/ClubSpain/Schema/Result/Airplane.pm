@@ -50,4 +50,10 @@ __PACKAGE__->has_many(
     { cascade_delete => 0 }
 );
 
+sub sqlt_deploy_hook {
+    my ($self, $sqlt_table) = @_;
+
+    $sqlt_table->add_index(name => 'on_is_published', fields => ['is_published']);
+}
+
 1;

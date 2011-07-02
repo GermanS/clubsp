@@ -36,4 +36,10 @@ __PACKAGE__->has_many(
     arrivals   => 'ClubSpain::Schema::Result::TimeTable', {'foreign.arrival_terminal_id' => 'self.id'}
 );
 
+sub sqlt_deploy_hook {
+    my ($self, $sqlt_table) = @_;
+
+    $sqlt_table->add_index(name => 'on_is_published', fields => ['is_published']);
+}
+
 1;

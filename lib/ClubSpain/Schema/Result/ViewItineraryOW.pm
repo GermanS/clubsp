@@ -7,7 +7,7 @@ __PACKAGE__->table_class('DBIx::Class::ResultSource::View');
 __PACKAGE__->table('ViewItineraryOW');
 __PACKAGE__->result_source_instance->is_virtual(1);
 __PACKAGE__->result_source_instance->view_definition(q[
-SELECT countryOfDeparture.id   as countryOfDeparureId,
+SELECT countryOfDeparture.id   as countryOfDepartureId,
        countryOfDeparture.name as countryOfDepartureName,
        countryOfArrival.id   as countryOfArrivalId,
        countryOfArrival.name as countryOfArrivalName,

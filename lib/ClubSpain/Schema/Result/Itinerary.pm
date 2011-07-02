@@ -13,7 +13,7 @@ __PACKAGE__->add_columns(
     },
     is_published => {
         data_type     => 'tinyint unsigned',
-        is_nullable   => 1,
+        is_nullable   => 0,
     },
     timetable_id => {
         data_type      => 'integer',
@@ -74,6 +74,8 @@ sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
     $sqlt_table->add_index(name => 'on_parent', fields => ['parent_id']);
+    $sqlt_table->add_index(name => 'on_is_published', fields => ['is_published']);
+
 }
 
 1;
