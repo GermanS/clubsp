@@ -20,10 +20,10 @@ sub searchCitiesOfArrival1 {
 
     return
         $self->result_source->resultset->search({
-            cityOfDepartureId => $params{'cityOfDeparture'}
+            cityOfDeparture1Id => $params{'cityOfDeparture'}
         }, {
             result_class => 'ClubSpain::Schema::Result::City',
-            select      => [ 'cityOfArriva1lId', 'cityOfArrival1Name', 'cityOfArrival1IATA'],
+            select      => [ 'cityOfArrival1Id', 'cityOfArrival1Name', 'cityOfArrival1IATA'],
             as          => [ qw(me.id me.name me.iata) ],
             group_by    => [ qw(cityOfArrival1Id) ]
         });

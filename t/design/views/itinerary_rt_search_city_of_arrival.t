@@ -25,15 +25,17 @@ sub is_BCN {
 }
 
 sub request {
-    return $schema->resultset('ViewItineraryRT')->searchCitiesOfDeparture1();
+    return $schema->resultset('ViewItineraryRT')->searchCitiesOfArrival1(
+        cityOfDeparture => $MOW->id
+    );
 }
 
 
 {
     my $iterator = request();
 
-    is($iterator->count, 1, 'got one city of departure');
-    &is_MOW($iterator->next);
+    is($iterator->count, 1, 'got one city of arrival');
+    &is_BCN($iterator->next);
 }
 
 #set russia.is_published to 0
