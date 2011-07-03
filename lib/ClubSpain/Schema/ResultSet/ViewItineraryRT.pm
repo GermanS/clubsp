@@ -29,4 +29,20 @@ sub searchCitiesOfArrival1 {
         });
 }
 
+sub searchCitiesOfDeparture2 {
+    my ($self, %params) = @_;
+
+    return
+        $self->result_source->resultset->search({
+            cityOfDeparture1Id => $params{'cityOfDeparture'},
+            cityOfArrival1Id   => $params{'cityOfArrival'},
+        }, {
+            result_class => 'ClubSpain::Schema::Result::City',
+            select      => [ 'cityOfDeparture2Id', 'cityOfDeparture2Name', 'cityOfDeparture2IATA'],
+            as          => [ qw(me.id me.name me.iata) ],
+            group_by    => [ qw(cityOfDeparture2Id) ]
+        });
+}
+
+
 1;
