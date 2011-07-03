@@ -6,7 +6,6 @@ use lib qw(t/lib);
 use ClubSpain::Test;
 my $schema = ClubSpain::Test->init_schema();
 
-
 my $MOW = $schema->resultset('City')->search({ id => 1 })->single;
 sub is_MOW {
     my $mow = shift;
@@ -26,32 +25,32 @@ sub is_BCN {
 }
 
 sub request {
-    return
-        $schema->resultset('ViewItineraryRT')->searchCitiesOfDeparture2(
-            cityOfDeparture1 => $MOW->id,
-            cityOfArrival1   => $BCN->id,
-        );
+    return $schema->resultset('ViewItineraryRT')->searchCitiesOfArrival2(
+        cityOfDeparture1 => $MOW->id,
+        cityOfArrival1   => $BCN->id,
+        cityOfDeparture2 => $BCN->id,
+    );
 }
 
 sub request2 {
-    return
-        ClubSpain::Model::City->searchCitiesOfDeparture2RT(
-            cityOfDeparture1 => $MOW->id,
-            cityOfArrival1   => $BCN->id,
-        );
+    return ClubSpain::Model::City->searchCitiesOfArrival2RT(
+        cityOfDeparture1 => $MOW->id,
+        cityOfArrival1   => $BCN->id,
+        cityOfDeparture2 => $BCN->id,
+    );
 }
 
 {
     {
         my $iterator = request();
-        is($iterator->count, 1, 'got one city of departure');
-        &is_BCN($iterator->next);
+        is($iterator->count, 1, 'got one city of arrival');
+        &is_MOW($iterator->next);
     }
 
     {
         my $iterator = request2();
-        is($iterator->count, 1, 'got one city of departure');
-        &is_BCN($iterator->next);
+        is($iterator->count, 1, 'got one city of arrival');
+        &is_MOW($iterator->next);
     }
 }
 

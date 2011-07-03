@@ -20,7 +20,7 @@ sub searchCitiesOfArrival1 {
 
     return
         $self->result_source->resultset->search({
-            cityOfDeparture1Id => $params{'cityOfDeparture'}
+            cityOfDeparture1Id => $params{'cityOfDeparture1'}
         }, {
             result_class => 'ClubSpain::Schema::Result::City',
             select      => [ 'cityOfArrival1Id', 'cityOfArrival1Name', 'cityOfArrival1IATA'],
@@ -34,13 +34,29 @@ sub searchCitiesOfDeparture2 {
 
     return
         $self->result_source->resultset->search({
-            cityOfDeparture1Id => $params{'cityOfDeparture'},
-            cityOfArrival1Id   => $params{'cityOfArrival'},
+            cityOfDeparture1Id => $params{'cityOfDeparture1'},
+            cityOfArrival1Id   => $params{'cityOfArrival1'},
         }, {
             result_class => 'ClubSpain::Schema::Result::City',
             select      => [ 'cityOfDeparture2Id', 'cityOfDeparture2Name', 'cityOfDeparture2IATA'],
             as          => [ qw(me.id me.name me.iata) ],
             group_by    => [ qw(cityOfDeparture2Id) ]
+        });
+}
+
+sub searchCitiesOfArrival2 {
+    my ($self, %params) = @_;
+
+    return
+        $self->result_source->resultset->search({
+            cityOfDeparture1Id => $params{'cityOfDeparture1'},
+            cityOfArrival1Id   => $params{'cityOfArrival1'},
+            cityOfDeparture2Id => $params{'cityOfDeparture2'},
+        }, {
+            result_class => 'ClubSpain::Schema::Result::City',
+            select      => [ 'cityOfArrival2Id', 'cityOfArrival2Name', 'cityOfArrival2IATA'],
+            as          => [ qw(me.id me.name me.iata) ],
+            group_by    => [ qw(cityOfArrival2Id) ]
         });
 }
 

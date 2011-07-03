@@ -83,7 +83,7 @@ sub searchCitiesOfArrivalInTimeTable {
              ->searchCitiesOfArrival(%params);
 }
 
-sub searchCitiesOfDepartureInOWItinerary {
+sub searchCitiesOfDepartureOW {
     my $self = shift;
 
     return
@@ -92,7 +92,7 @@ sub searchCitiesOfDepartureInOWItinerary {
              ->searchCitiesOfDeparture();
 }
 
-sub searchCitiesOfArrivalInOWItinerary {
+sub searchCitiesOfArrivalOW {
     my ($self, %params) = @_;
 
     return
@@ -101,13 +101,91 @@ sub searchCitiesOfArrivalInOWItinerary {
              ->searchCitiesOfArrival(%params);
 }
 
-sub searchCitiesOfDeparture1InRTItinerary {
+=head2 searchCitiesOfArrival2RT(%params)
+
+Поиск городов отправления в тарифах в обе стороны
+На входе
+  cityOfDeparture1 - первый город отправления
+
+На выходе
+   Города прибытия.
+
+=cut
+
+sub searchCitiesOfDeparture1RT {
     my $self = shift;
 
     return
         $self->schema()
-             ->resultset($self->source_name)
-             ->searchCitiesOfDeparture1InRTItinerary();
+             ->resultset('ViewItineraryRT')
+             ->searchCitiesOfDeparture1();
+}
+
+=head2 searchCitiesOfArrival1RT(%params)
+
+Поиск городов прибытия в тарифах в обе стороны
+по указанному городу отправления
+На входе
+  cityOfDeparture1 - первый город отправления
+
+На выходе
+   Города прибытия.
+
+=cut
+
+sub searchCitiesOfArrival1RT {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset('ViewItineraryRT')
+             ->searchCitiesOfArrival1(%params);
+}
+
+=head2 searchCitiesOfDeparture2RT(%params)
+
+Поиск городов отправления в тарифах в обе стороны
+по указанным городам отправления и прибытия
+На входе
+  cityOfDeparture1 - первый город отправления
+  cityOfArrival1   - первый город прибытия
+
+На выходе
+   Города отправления.
+
+=cut
+
+sub searchCitiesOfDeparture2RT {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset('ViewItineraryRT')
+             ->searchCitiesOfDeparture2(%params);
+}
+
+=head2 searchCitiesOfArrival2RT(%params)
+
+Поиск городов прибытия в тарифах в обе стороны
+по указанным городам отправления и прыбытия первого сегмента \
+и городу отправления второго
+На входе
+  cityOfDeparture1 - первый город отправления
+  cityOfArrival1   - первый город прибытия
+  cityOfDeparture2 - второй город отправления
+
+На выходе
+   Города прилета.
+
+=cut
+
+sub searchCitiesOfArrival2RT {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset('ViewItineraryRT')
+             ->searchCitiesOfArrival2(%params);
 }
 
 __PACKAGE__->meta->make_immutable();

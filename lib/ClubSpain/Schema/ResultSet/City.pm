@@ -37,6 +37,10 @@ sub searchCitiesOfDeparture {
         });
 }
 
+1;
+
+__END__
+
 
 sub searchCitiesOfDeparture1InRTItinerary {
     my $self = shift;
@@ -83,9 +87,7 @@ sub searchCitiesOfDeparture1InRTItinerary {
     });
 }
 
-1;
 
-__END__
 
 [{
             'airports' => {

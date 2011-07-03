@@ -1,10 +1,11 @@
-use Test::More tests => 13;
+use Test::More tests => 27;
 use strict;
 use warnings;
 use lib qw(t/lib);
 use ClubSpain::Test;
 my $schema = ClubSpain::Test->init_schema();
 
+use_ok('ClubSpain::Model::City');
 
 my $MOW = $schema->resultset('City')->search({ id => 1 })->single;
 sub is_MOW {
@@ -26,16 +27,29 @@ sub is_BCN {
 
 sub request {
     return $schema->resultset('ViewItineraryRT')->searchCitiesOfArrival1(
-        cityOfDeparture => $MOW->id
+        cityOfDeparture1 => $MOW->id
+    );
+}
+
+sub request2 {
+    return ClubSpain::Model::City->searchCitiesOfArrival1RT(
+        cityOfDeparture1 => $MOW->id
     );
 }
 
 
 {
-    my $iterator = request();
+    {
+        my $iterator = request();
+        is($iterator->count, 1, 'got one city of arrival');
+        &is_BCN($iterator->next);
+    }
 
-    is($iterator->count, 1, 'got one city of arrival');
-    &is_BCN($iterator->next);
+    {
+        my $iterator = request2();
+        is($iterator->count, 1, 'got one city of arrival');
+        &is_BCN($iterator->next);
+    }
 }
 
 #set russia.is_published to 0
@@ -44,8 +58,15 @@ sub request {
     my $ru = $schema->resultset('Country')->search({ id => 1 });
     $ru->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     $ru->update({ is_published => 1 });
 }
@@ -55,8 +76,15 @@ sub request {
     my $es = $schema->resultset('Country')->search({ id => 2 });
     $es->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     $es->update({ is_published => 1 });
 }
@@ -65,9 +93,15 @@ sub request {
 {
     $MOW->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
 
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
     $MOW->update({ is_published => 1 });
 }
 
@@ -75,8 +109,15 @@ sub request {
 {
     $BCN->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     $BCN->update({ is_published => 1 });
 }
@@ -87,9 +128,15 @@ sub request {
     my $dme = $schema->resultset('Airport')->search({ id => 1 })->single();
     $dme->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
 
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
     $dme->update({ is_published => 1 });
 }
 
@@ -98,8 +145,15 @@ sub request {
     my $bcn = $schema->resultset('Airport')->search({ id => 4 })->single();
     $bcn->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     $bcn->update({ is_published => 1 });
 }
@@ -109,8 +163,15 @@ sub request {
     my $NN331 = $schema->resultset('Flight')->search({ id => 1 });
     $NN331->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     $NN331->update({ is_published => 1 });
 }
@@ -122,8 +183,15 @@ sub request {
         $timetable->update({ is_published => 0 });
     }
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     for my $timetable (@NN332_BCN_DME) {
         $timetable->update({ is_published => 1 });
@@ -138,8 +206,15 @@ sub request {
         $itineraries->update({ is_published => 0 });
     }
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     for my $timetable (@NN331_DME_BCN) {
         my $itineraries = $timetable->itineraries();
