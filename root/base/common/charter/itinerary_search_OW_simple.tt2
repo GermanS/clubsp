@@ -1,6 +1,7 @@
 [% WRAPPER common/charter/itinerary_wrapper.tt2
            javascript = "common/charter/itinerary.js.simple.tt2"
-           searchform = "common/charter/itinerary_search_form_OW_simple.tt2" %]
+           searchform = "common/charter/itinerary_search_form_OW_simple.tt2"
+           title      = "Авиабилеты в Испанию в одну сторону" %]
 
     [% IF iterator.count %]
         <h1>Стоимость авиабилетов [% cityOfDeparture1.name %] - [% cityOfArrival1.name %]</h1>

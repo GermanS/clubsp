@@ -1,5 +1,6 @@
 [% WRAPPER common/doc4_yui_t5.tt2
-           javascript = "common/charter/itinerary.js.tt2" %]
+           javascript = "common/charter/itinerary.js.tt2"
+           title = "Авиабилеты в Испанию. Стоимость авиабилетов в Испанию." %]
     <div class="yui-b">
         <div class="yui-g route">
             <div class="yui-u first">

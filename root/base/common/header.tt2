@@ -10,9 +10,9 @@
             <li><a href="/article/[% story.id %]" title="[% story.header %]">[% story.header %]</a></li>
         [% END %]
     [% ELSE %]
-        <li><a class="tip" href="/charter/viewRT" title="Стоимость авиабилета туда и обратно">Стоимость авиабилета туда и обратно</a></li>
-        <li><a class="tip" href="/charter/viewOW" title="Стоимость авиабилета в одну сторону">Стоимость авиабилета в одну сторону</a></li>
-        <li><a class="tip" href="/charter/searchRT" title="Поиск авиабилета">Поиск авиабилета туда и обратно</a></li>
-        <li><a class="tip" href="/charter/searchOW" title="Поиск авиабилета в одну сторону">Поиск авиабилета в одну сторону</a></li>
+        <li><a class="tip" href="/charter/viewRT" title="Стоимость авиабилета в Испанию туда и обратно">Стоимость авиабилета туда и обратно</a></li>
+        <li><a class="tip" href="/charter/viewOW" title="Стоимость авиабилета в Испанию одну сторону">Стоимость авиабилета в одну сторону</a></li>
+        <li><a class="tip" href="/charter/searchRT" title="Поиск авиабилета в Испанию">Поиск авиабилета туда и обратно</a></li>
+        <li><a class="tip" href="/charter/searchOW" title="Поиск авиабилета в Испанию одну сторону">Поиск авиабилета в одну сторону</a></li>
     [% END %]
 </ul>
