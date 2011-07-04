@@ -1,5 +1,5 @@
 [% WRAPPER common/charter/itinerary_wrapper.tt2
-           javascript = "common/charter/itinerary.js.tt2"
+           javascript = "common/charter/itinerary_ow.js.tt2"
            searchform = "common/charter/itinerary_search_form_OW.tt2" %]
     [% IF iterator.count %]
         <h2>Стоимость авиабилетов [% cityOfDeparture1.name %] - [% cityOfArrival1.name %],  вылет [% DateOfDeparture1 | html %]</h2>

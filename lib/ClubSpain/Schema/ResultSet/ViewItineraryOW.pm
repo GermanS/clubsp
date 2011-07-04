@@ -29,4 +29,17 @@ sub searchCitiesOfArrival {
         });
 }
 
+sub searchDatesOfDeparture {
+    my ($self, %params) = @_;
+
+    return
+        $self->result_source->resultset->search({
+            cityOfDepartureId => $params{'cityOfDeparture'},
+            cityOfArrivalId   => $params{'cityOfArrival'},
+        }, {
+            select      => [ 'dateOfDeparture'],
+            group_by    => [ qw(dateOfDeparture) ]
+        });
+}
+
 1;

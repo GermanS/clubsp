@@ -17,6 +17,15 @@ var FareSearchCitiesOfArrival   = 'xmlrpc.flight.fare.searchCitiesOfArrival';
 var FareSearchDatesOfDeparture  = 'xmlrpc.flight.fare.searchDatesOfDeparture';
 var FareSearchFlights           = 'xmlrpc.flight.fare.searchFlights';
 var FareSearchTimetable         = 'xmlrpc.flight.fare.searchTimetable';
+var FareSearchCitiesOfDepartureOW = 'xmlrpc.flight.fare.searchCitiesOfDepartureOW';
+var FareSearchCitiesOfArrivalOW   = 'xmlrpc.flight.fare.searchCitiesOfArrivalOW';
+var FareSearchDatesOfDepartureOW  = 'xmlrpc.flight.fare.searchDatesOfDepartureOW';
+var FareSearchCitiesOfDeparture1RT = 'xmlrpc.flight.fare.searchCitiesOfDeparture1RT';
+var FareSearchCitiesOfArrival1RT   = 'xmlrpc.flight.fare.searchCitiesOfArrival1RT';
+var FareSearchCitiesOfDeparture2RT = 'xmlrpc.flight.fare.searchCitiesOfDeparture2RT';
+var FareSearchCitiesOfArrival2RT   = 'xmlrpc.flight.fare.searchCitiesOfArrival2RT';
+var FareSearchDatesOfDeparture1RT  = 'xmlrpc.flight.fare.searchDatesOfDeparture1RT';
+var FareSearchDatesOfDeparture2RT  = 'xmlrpc.flight.fare.searchDatesOfDeparture2RT';
 
 var METHODS = [
     REQ_CountryOfDeparture,
@@ -32,7 +41,16 @@ var METHODS = [
     FareSearchCitiesOfArrival,
     FareSearchDatesOfDeparture,
     FareSearchFlights,
-    FareSearchTimetable
+    FareSearchTimetable,
+    FareSearchCitiesOfDepartureOW,
+    FareSearchCitiesOfArrivalOW,
+    FareSearchDatesOfDepartureOW,
+    FareSearchCitiesOfDeparture1RT,
+    FareSearchCitiesOfArrival1RT,
+    FareSearchCitiesOfDeparture2RT,
+    FareSearchCitiesOfArrival2RT,
+    FareSearchDatesOfDeparture1RT,
+    FareSearchDatesOfDeparture2RT
 ];
 var service = new rpc.ServiceProxy(URL, {
     asynchronous: true,

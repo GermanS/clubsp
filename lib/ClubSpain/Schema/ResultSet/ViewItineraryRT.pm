@@ -60,5 +60,38 @@ sub searchCitiesOfArrival2 {
         });
 }
 
+sub searchDatesOfDeparture1RT {
+    my ($self, %params) = @_;
+
+    return
+        $self->result_source->resultset->search({
+            cityOfDeparture1Id => $params{'cityOfDeparture1'},
+            cityOfArrival1Id   => $params{'cityOfArrival1'},
+            cityOfDeparture2Id => $params{'cityOfDeparture2'},
+            cityOfArrival2Id   => $params{'cityOfArrival2'},
+        }, {
+            select      => [ 'dateOfDeparture1'],
+            as          => [ qw(me.dateOfDeparture) ],
+            group_by    => [ qw(me.dateOfDeparture1) ]
+        });
+}
+
+sub searchDatesOfDeparture2RT {
+    my ($self, %params) = @_;
+
+    return
+        $self->result_source->resultset->search({
+            cityOfDeparture1Id => $params{'cityOfDeparture1'},
+            cityOfArrival1Id   => $params{'cityOfArrival1'},
+            cityOfDeparture2Id => $params{'cityOfDeparture2'},
+            cityOfArrival2Id   => $params{'cityOfArrival2'},
+            dateOfDeparture1   => $params{'dateOfDeparture1'},
+        }, {
+            select      => [ 'dateOfDeparture2'],
+            as          => [ qw(me.dateOfDeparture) ],
+            group_by    => [ qw(me.dateOfDeparture2) ]
+        });
+}
+
 
 1;

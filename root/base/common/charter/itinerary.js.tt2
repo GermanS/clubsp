@@ -16,7 +16,7 @@
         //Preselect
         var _CityOfDeparture1  = $("input[name='_CityOfDeparture1']");
 
-        makeRequest(FareSearchCitiesOfDeparture, {}, CityOfDeparture1, _CityOfDeparture1.attr('value') );
+        makeRequest(FareSearchCitiesOfDeparture1RT, {}, CityOfDeparture1, _CityOfDeparture1.attr('value') );
     });
 
 
@@ -26,8 +26,8 @@
         var initial = $("input[name='_CityOfArrival1']").attr("value");
 
         makeRequest(
-            FareSearchCitiesOfArrival,
-            { cityOfDeparture : value },
+            FareSearchCitiesOfArrival1RT,
+            { cityOfDeparture1 : value },
             element,
             initial
         );
@@ -35,58 +35,67 @@
     }
 
     function fireCityOfArrival1Changed() {
-        var value = $(this).attr('value');
-        var departure = $("select[name='CityOfDeparture1']").attr("value");
-        var element   = $("select[name='DateOfDeparture1']");
-        var initial   = $("input[name='_DateOfDeparture1']").attr("value");
-
-        makeRequest(
-            FareSearchDatesOfDeparture,
-            { cityOfDeparture: departure, cityOfArrival: value },
-            element,
-            initial
-        );
-    }
-
-    function fireDateOfDeparture1Changed() {
         var element = $("select[name='CityOfDeparture2']");
         var initial = $("input[name='_CityOfDeparture2']").attr("value");
         var cityOfArrival = $("select[name='CityOfArrival1']").attr("value");
 
         makeRequest(
-            FareSearchCitiesOfDeparture,
-            {},
+            FareSearchCitiesOfDeparture2RT,
+            {
+                cityOfDeparture1 : $("select[name='CityOfDeparture1']").attr("value"),
+                cityOfArrival1   : $("select[name='CityOfArrival1']").attr("value")
+            },
             element,
             initial || cityOfArrival
         );
     }
 
-
     function fireCityOfDeparture2Changed() {
-        var value = $(this).attr("value");
-
         var element = $("select[name='CityOfArrival2']");
         var initial = $("input[name='_CityOfArrival2']").attr("value");
 
         makeRequest(
-            FareSearchCitiesOfArrival,
-            { cityOfDeparture : value },
+            FareSearchCitiesOfArrival2RT,
+            {
+                cityOfDeparture1 : $("select[name='CityOfDeparture1']").attr("value"),
+                cityOfArrival1   : $("select[name='CityOfArrival1']").attr("value"),
+                cityOfDeparture2 : $(this).attr("value")
+            },
             element,
             initial
         );
     }
 
     function fireCityOfArrival2Changed() {
-        var value = $(this).attr("value"); //equals to cityOfArrival2
-        var departure = $("select[name='CityOfDeparture2']").attr("value");
-        var date      = $("select[name='DateOfDeparture1']").attr('value');
+        var element   = $("select[name='DateOfDeparture1']");
+        var initial   = $("input[name='_DateOfDeparture1']").attr("value");
 
+        makeRequest(
+            FareSearchDatesOfDeparture1RT,
+            {
+                cityOfDeparture1 : $("select[name='CityOfDeparture1']").attr("value"),
+                cityOfArrival1   : $("select[name='CityOfArrival1']").attr("value"),
+                cityOfDeparture2 : $("select[name='CityOfDeparture2']").attr("value"),
+                cityOfArrival2   : $(this).attr('value')
+            },
+            element,
+            initial
+        );
+    }
+
+    function fireDateOfDeparture1Changed() {
         var element   = $("select[name='DateOfDeparture2']");
         var initial   = $("input[name='_DateOfDeparture2']").attr('value');
 
         makeRequest(
-            FareSearchDatesOfDeparture,
-            { cityOfDeparture : departure, cityOfArrival : value, startDate : date },
+            FareSearchDatesOfDeparture2RT,
+            {
+                cityOfDeparture1 : $("select[name='CityOfDeparture1']").attr("value"),
+                cityOfArrival1   : $("select[name='CityOfArrival1']").attr("value"),
+                cityOfDeparture2 : $("select[name='CityOfDeparture2']").attr("value"),
+                cityOfArrival2   : $("select[name='CityOfArrival2']").attr("value"),
+                dateOfDeparture1 : $(this).attr("value")
+            },
             element,
             initial
         );

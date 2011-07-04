@@ -7,22 +7,13 @@ __PACKAGE__->table_class('DBIx::Class::ResultSource::View');
 __PACKAGE__->table('ViewItineraryOW');
 __PACKAGE__->result_source_instance->is_virtual(1);
 __PACKAGE__->result_source_instance->view_definition(q[
-SELECT countryOfDeparture.id   as countryOfDepartureId,
-       countryOfDeparture.name as countryOfDepartureName,
-       countryOfArrival.id   as countryOfArrivalId,
-       countryOfArrival.name as countryOfArrivalName,
-       cityOfDeparture.id   as cityOfDepartureId,
+SELECT cityOfDeparture.id   as cityOfDepartureId,
        cityOfDeparture.name as cityOfDepartureName,
        cityOfDeparture.iata as cityOfDepartureIATA,
        cityOfArrival.id   as cityOfArrivalId,
        cityOfArrival.name as cityOfArrivalName,
        cityOfArrival.iata as cityOfArrivalIATA,
-       airportOfDeparture.id   as airportOfDepartureId,
-       airportOfDeparture.name as airportOfDepartureName,
-       airportOfArrival.id   as airportOfArrivalId,
-       airportOfArrival.name as airportOfArrivalName,
-       flight.id as flightId,
-       timetable.id as timeatbleId
+       timetable.departure_date as dateOfDeparture
     FROM country   as countryOfDeparture,
          country   as countryOfArrival,
          city      as cityOfDeparture,

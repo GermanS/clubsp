@@ -14,8 +14,6 @@ has 'fare_class_id' => ( is => 'ro', required => 1 );
 has 'parent_id'     => ( is => 'ro', required => 1 );
 has 'cost'          => ( is => 'ro', required => 1 );
 
-
-
 sub create {
     my $self = shift;
 
@@ -60,6 +58,74 @@ sub itineraries {
         $self->schema()
              ->resultset($self->source_name)
              ->itineraries(@params);
+}
+
+=head2 searchDatesOfDeparture(%params)
+
+Поиск дат отправление среди тарифов в одну сторону
+из города отправления в город прибытия
+На входе
+    cityOfDeparture - город отправления
+    cityOfarrival   - город прибытия
+На выходе
+    Даты отправления
+
+=cut
+
+sub searchDatesOfDepartureOW {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset('ViewItineraryOW')
+             ->searchDatesOfDeparture(%params);
+}
+
+=head2 searchDatesOfDeparture1RT(%params)
+
+Поиск дат отправления в первом сегменте тарифа в обе стороны
+На входе
+    cityOfDeparture1 - первый город отправления
+    cityOfArrival1   - первый город прибытия
+    cityOfDeparture2 - второй город отправления
+    cityOfArrival2   - второй город прибытия
+
+На выходе
+    Даты отправления первого сегмента
+
+=cut
+
+sub searchDatesOfDeparture1RT {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset('ViewItineraryRT')
+             ->searchDatesOfDeparture1RT(%params);
+}
+
+=searchDatesOfDeparture2RT(%params)
+
+Поиск дат отправления во втором сегменте тарифа в обе стороны
+На входе
+    cityOfDeparture1 - первый город отправления
+    cityOfArrival1   - первый город прибытия
+    dateOfDeparture1 - дата отправления
+    cityOfDeparture2 - второй город отправления
+    cityOfArrival2   - второй город прибытия
+
+На выходе
+    Даты отправления второго сегмента
+
+=cut
+
+sub searchDatesOfDeparture2RT {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset('ViewItineraryRT')
+             ->searchDatesOfDeparture2RT(%params);
 }
 
 __PACKAGE__->meta->make_immutable;
