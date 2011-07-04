@@ -222,6 +222,6 @@ sub request2 {
 
     for my $timetable (@NN331_DME_BCN) {
         my $itineraries = $timetable->itineraries();
-        $itineraries->update({ is_published => 0 });
+        $itineraries->update({ is_published => 1 });
     }
 }
