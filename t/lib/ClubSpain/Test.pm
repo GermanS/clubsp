@@ -91,11 +91,11 @@ sub populate_schema {
     ]);
 
     my @city = $schema->populate('City', [
-        [qw(country_id iata name is_published)],
-        [$country[0]->id, 'MOW', 'Moscow', 1],
-        [$country[1]->id, 'BCN', 'Barcelona', 1],
-        [$country[1]->id, 'AGP', 'Malaga', 1],
-        [$country[2]->id, 'xxx', 'Andorra la Vella', 1]
+        [qw(country_id iata name name_ru is_published)],
+        [$country[0]->id, 'MOW', 'Moscow', 'Москва', 1],
+        [$country[1]->id, 'BCN', 'Barcelona', 'Барселона', 1],
+        [$country[1]->id, 'AGP', 'Malaga', 'Малага', 1],
+        [$country[2]->id, 'xxx', 'Andorra la Vella', 'Андорра ла Велла', 1]
     ]);
 
     my @airport = $schema->populate('Airport', [

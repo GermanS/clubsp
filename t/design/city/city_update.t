@@ -1,4 +1,4 @@
-use Test::More tests => 7;
+use Test::More tests => 8;
 
 use strict;
 use warnings;
@@ -15,6 +15,7 @@ my $city = ClubSpain::Model::City->new(
     country_id  => 2,
     iata        => 'MAL',
     name        => 'New City name',
+    name_ru     => 'New name',
     is_published=> 0,
 );
 
@@ -25,4 +26,5 @@ is($result->id, 1, 'got id');
 is($result->country_id, 2, 'got country id');
 is($result->iata, 'MAL', 'got iata code');
 is($result->name, 'New City name', 'got name');
+is($result->name_ru, 'New name', 'got name ru');
 is($result->is_published, 0, 'got is_published');

@@ -43,7 +43,9 @@ sub default :Path {
                 CityOfDeparture1 => $cityOfDeparture->id,
                 CityOfArrival1   => $cityOfArrival->id,
                 CityOfDeparture2 => $cityOfArrival->id,
-                CityOfArrival2   => $cityOfDeparture->id
+                CityOfArrival2   => $cityOfDeparture->id,
+
+                title => sprintf("Авиабилеты %s %s", $cityOfDeparture->name_ru, $cityOfArrival->name_ru),
             );
         }
 

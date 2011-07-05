@@ -1,9 +1,13 @@
+[% UNLESS title %]
+    [% title = "Стоимость авибилетов в Испанию" %]
+[% END %]
+
 [% WRAPPER common/charter/itinerary_wrapper.tt2
            javascript = "common/charter/itinerary.js.simple.tt2"
            searchform = "common/charter/itinerary_search_form_RT_simple.tt2"
-           title      = "Стоимость авибилетов в Испанию" %]
+           title      = title %]
     [% IF iterator.count %]
-        <h2>Стоимость авиабилетов [% cityOfDeparture1.name %] - [% cityOfArrival1.name %], [% cityOfDeparture2.name %] - [% cityOfArrival2.name %] </h2>
+        <h2>Стоимость авиабилетов [% cityOfDeparture1.name_ru %] - [% cityOfArrival1.name_ru %], [% cityOfDeparture2.name_ru %] - [% cityOfArrival2.name_ru %] </h2>
         <div class="actions button-container">
             <div class="button-group">
                 <a href="/charter/[% cityOfDeparture1.iata %]-[% cityOfArrival1.iata %]/brief" class="button primary">Компактный вид</a>

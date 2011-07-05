@@ -12,6 +12,7 @@ has 'id'            => ( is => 'ro' );
 has 'country_id'    => ( is => 'ro', required => 1 );
 has 'iata'          => ( is => 'ro', required => 1, isa => 'AlphaNumericLength3' );
 has 'name'          => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
+has 'name_ru'       => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
 has 'is_published'  => ( is => 'ro', required => 1 );
 
 sub create {
@@ -21,6 +22,7 @@ sub create {
         country_id   => $self->country_id,
         iata         => $self->iata,
         name         => $self->name,
+        name_ru      => $self->name_ru,
         is_published => $self->is_published,
     });
 }
@@ -34,6 +36,7 @@ sub update {
         country_id   => $self->country_id,
         iata         => $self->iata,
         name         => $self->name,
+        name_ru      => $self->name_ru,
         is_published => $self->is_published,
     });
 }

@@ -98,6 +98,7 @@ sub __itineraries_OW {
         'children.id'     => \'IS NULL',
         'departure_airport.city_id'    => $cityOfDeparture,
         'destination_airport.city_id'  => $cityOfArrival,
+        'timetable.departure_date'      => \'>NOW()',
     );
     $condition{'timetable.departure_date'} = $dateOfDeparture
         if $dateOfDeparture;
@@ -191,6 +192,7 @@ sub __itineraries_RT {
         'destination_airport.city_id'   => $cityOfArrival1,
         'departure_airport_2.city_id'   => $cityOfDeparture2,
         'destination_airport_2.city_id' => $cityOfArrival2,
+        'timetable.departure_date'      => \'>NOW()',
     );
     $condition{'timetable.departure_date'} = $dateOfDeparture1
         if defined $dateOfDeparture1 && $dateOfDeparture1;

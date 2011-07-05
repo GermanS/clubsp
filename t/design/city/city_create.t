@@ -1,4 +1,4 @@
-use Test::More tests => 13;
+use Test::More tests => 15;
 
 use strict;
 use warnings;
@@ -16,6 +16,7 @@ ClubSpain::Test->init_schema();
         country_id   => 1,
         iata         => 'NYC',
         name         => 'new york1',
+        name_ru      => 'test',
         is_published => 1,
     );
 
@@ -36,6 +37,7 @@ ClubSpain::Test->init_schema();
     is($result->country_id, 1, 'got country_id');
     is($result->iata, 'NYC', 'got iata code');
     is($result->name, 'new york1', 'got name');
+    is($result->name_ru, 'test', 'got name ru');
     is($result->is_published, 1, 'got is_published');
 }
 
@@ -45,6 +47,7 @@ ClubSpain::Test->init_schema();
         country_id   => 2,
         iata         => 'NYV',
         name         => 'new york2',
+        name_ru      => 'test2',
         is_published => 1,
     );
 
@@ -65,5 +68,6 @@ ClubSpain::Test->init_schema();
     is($result->country_id, 2, 'got country_id');
     is($result->iata, 'NYV', 'got iata code');
     is($result->name, 'new york2', 'got name');
+    is($result->name_ru, 'test2', 'got name ru');
     is($result->is_published, 1, 'got is_published');
 }
