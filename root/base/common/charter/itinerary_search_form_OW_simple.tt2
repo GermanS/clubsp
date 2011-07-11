@@ -13,9 +13,10 @@
 
                 <label></label>
                 <div class="button-group">
-                    <input type="submit"
-                           value="Поиск авиабилета"
-                           class="button primary"/>
+                    <a href="/charter/viewOW"
+                       onclick="$(this).closest('form').submit(); return false;"
+                       class="button primary icon search"
+                       title="Стоимость авиабилетов в Испанию в одну сторону">Показать стоимость авиабилетов</a>
                 </div>
             </fieldset>
         </div>

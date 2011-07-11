@@ -28,9 +28,10 @@
 
                 <label></label>
                 <div class="button-group">
-                    <input type="submit"
-                           value="Поиск авиабилета"
-                           class="button primary"/>
+                    <a href="/charter/searchRT"
+                       onclick="$(this).closest('form').submit(); return false;"
+                       class="button primary icon search"
+                       title="Поиск авиабилета в Испанию">Поиск авиабилета</a>
                 </div>
             </fieldset>
         </div>

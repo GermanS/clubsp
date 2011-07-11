@@ -10,7 +10,7 @@
 
 
 <ul class="tabs">
-    <li><a class="selected" href="/"           title="Авиабилеты на чартерные рейсы">Авиабилеты в Испанию</a></li>
+    <li><a href="/"           title="Авиабилеты на чартерные рейсы" class="selected">Авиабилеты в Испанию</a></li>
     <li><a href="/article/2"  title="Продажа авиабилетов">Контакты</a></li>
 </ul>
 
