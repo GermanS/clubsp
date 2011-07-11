@@ -7,7 +7,15 @@ load_config_file:
 elements:
   - type: Text
     name: name
-    label: Город
+    label: Город (латиницей)
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: name_ru
+    label: Город (кириллицей)
     filters:
       - TrimEdges
     constraints:

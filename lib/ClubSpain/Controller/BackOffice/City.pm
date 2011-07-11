@@ -153,6 +153,7 @@ sub insert :Private {
             country_id  => $c->request->param('country_id'),
             iata        => $c->request->param('iata'),
             name        => $c->request->param('name'),
+            name_ru     => $c->request->param('name_ru'),
             is_published => ENABLE,
         );
         $city->create();
@@ -178,6 +179,8 @@ sub load_upd_form :Private {
             ->value($city->iata);
     $form->get_element({ name => 'name' })
             ->value($city->name);
+    $form->get_element({ name => 'name_ru' })
+            ->value($city->name_ru);
     $form->process;
 
     return $form;
@@ -210,6 +213,7 @@ sub update :Private {
             country_id  => $c->request->param('country_id'),
             iata        => $c->request->param('iata'),
             name        => $c->request->param('name'),
+            name_ru     => $c->request->param('name_ru'),
             is_published=> $c->stash->{'city'}->is_published,
         );
         $city->update();

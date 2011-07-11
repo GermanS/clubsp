@@ -18,11 +18,3 @@ name ClubSpain
         pg_enable_utf8 1
     </connect_info>
 </Model::DBIC>
-
-<Controller::HTML::FormFu>
-    <model_stash>
-        schema Country
-    </model_stash>
-</Controller::HTML::FormFu>
-
-

@@ -1,7 +1,17 @@
-<h1>AviaBroker.com</h1>
+<div class="yui-gc">
+    <div class="yui-u first">
+        <h1>Авиабилеты в Испанию</h1>
+    </div>
+    <div class="yui-u">
+        <h6>Москва, ул.Ивана Бабушкина дом 16</h6>
+        <strong>+7 (495) 792-58-38, 789-65-58, 780-05-85</strong>
+    </div>
+</div>
+
 
 <ul class="tabs">
-    <li><a class="selected" href="/"  title="Авиабилеты на чартерные рейсы">Авиабилеты в Испанию</a></li>
+    <li><a class="selected" href="/"           title="Авиабилеты на чартерные рейсы">Авиабилеты в Испанию</a></li>
+    <li><a class="selected" href="/article/2"  title="Продажа авиабилетов">Контакты</a></li>
 </ul>
 
 <ul class="subnav-bar">
