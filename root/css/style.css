@@ -72,13 +72,15 @@ textarea, select, input[type=text] {
 .button {
   margin: 0.5em 0; }
 
-.route ul {
-  margin-left: 0; }
-  .route ul li {
-    list-style: none;
-    padding: 0.25em 0; }
-    .route ul li a {
-      font-size: 116%; }
+.route {
+  padding: 0 0 2em 0; }
+  .route ul {
+    margin-left: 0; }
+    .route ul li {
+      list-style: none;
+      padding: 0.25em 0; }
+      .route ul li a {
+        font-size: 116%; }
 
 ul.tabs {
   position: relative;
@@ -97,6 +99,7 @@ ul.tabs {
       height: 26px;
       padding: 0 8px;
       line-height: 26px;
+      color: #666666;
       font-size: 108%; }
       ul.tabs li a:hover {
         color: #333333;
@@ -236,6 +239,17 @@ table {
       margin-left: 1em; }
       .sidebar ul ul li {
         margin: 0.25em 0; }
+
+.faq {
+  margin: 2em 0; }
+  .faq p {
+    text-align: left;
+    margin-bottom: 2em; }
+
+.logos p {
+  background: #333333; }
+  .logos p img {
+    padding: 10px; }
 
 #ft a {
   display: block;

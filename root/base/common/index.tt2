@@ -60,14 +60,27 @@
                 </div>
             </form>
         </div>
-        <div class="yui-g">
-          <br>
-          <p style="background: #333">
-          <img src="/images/SU.png" width="120" height="40" alt="Авиабилеты Аэрофлота" />
-          <img src="/images/IB.png" width="120" height="40" alt="Авиабилеты авиакомпании Иберия" />
-          <img src="/images/NN.png" width="120" height="40" alt="Авиабилеты авиакомпании Вим Авиа" />
-          <img src="/images/S7.png" width="120" height="40" alt="Авиабилеты авиакомпании Сибирь" />
-          <img src="/images/U6.png" width="120" height="40" alt="Авиабилеты авиакомпании Уральские аиалинии" />
+        <div class="yui-gb faq">
+          <div class="yui-u first">
+            <h5>Как заказать авиабилет?</h4>
+            <p>Узнать о поиске авиабилетов в Испанию</p>
+          </div>
+          <div class="yui-u">
+            <h5>Как оплатить авиабилет?</h4>
+            <p>Узнать о способах оплаты забронированного авиабилета</p>
+          </div>
+          <div class="yui-u">
+            <h5>Как получить авиабилет?</h4>
+            <p>Узнать о способах получения и использования авиабилета</p>
+          </div>
+        </div>
+        <div class="yui-g logos">
+          <p>
+            <img src="/images/SU.png" width="120" height="40" alt="Авиабилеты Аэрофлота" />
+            <img src="/images/IB.png" width="120" height="40" alt="Авиабилеты авиакомпании Иберия" />
+            <img src="/images/NN.png" width="120" height="40" alt="Авиабилеты авиакомпании Вим Авиа" />
+            <img src="/images/S7.png" width="120" height="40" alt="Авиабилеты авиакомпании Сибирь" />
+            <img src="/images/U6.png" width="120" height="40" alt="Авиабилеты авиакомпании Уральские аиалинии" />
           </p>
         </div>
     </div>
