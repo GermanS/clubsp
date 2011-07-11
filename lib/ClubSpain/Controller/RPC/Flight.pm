@@ -2,6 +2,7 @@ package ClubSpain::Controller::RPC::Flight;
 
 use strict;
 use warnings;
+use utf8;
 
 use base qw(Catalyst::Controller);
 

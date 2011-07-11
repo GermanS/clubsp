@@ -1,8 +1,7 @@
 package ClubSpain::Schema::ResultSet;
-
 use strict;
 use warnings;
-
+use utf8;
 use parent qw(DBIx::Class::ResultSet);
 
 1;

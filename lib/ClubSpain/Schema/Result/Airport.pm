@@ -1,6 +1,7 @@
 package ClubSpain::Schema::Result::Airport;
 use strict;
 use warnings;
+use utf8;
 use parent qw(ClubSpain::Schema::Result);
 
 

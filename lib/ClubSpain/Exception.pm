@@ -1,7 +1,7 @@
 package ClubSpain::Exception;
-
 use strict;
 use warnings;
+use utf8;
 
 use Exception::Class (
     'ClubSpain::Exception::Base' => {

@@ -1,6 +1,7 @@
 package ClubSpain::Controller::XMLRPC::Flight::Fare;
 use strict;
 use warnings;
+use utf8;
 use base qw(ClubSpain::Controller::RPC::Flight::Fare);
 
 sub searchCitiesOfDeparture : XMLRPC {

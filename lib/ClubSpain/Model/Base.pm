@@ -2,6 +2,7 @@ package ClubSpain::Model::Base;
 
 use Moose;
 use namespace::autoclean;
+use utf8;
 
 use MooseX::ClassAttribute;
 class_has 'source_name' => ( is => 'ro', default => undef );

@@ -1,6 +1,7 @@
 package ClubSpain::Schema::Result::ViewItineraryOW;
 use strict;
 use warnings;
+use utf8;
 use parent qw(DBIx::Class::Core);
 
 __PACKAGE__->table_class('DBIx::Class::ResultSource::View');

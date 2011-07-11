@@ -1,7 +1,7 @@
 package ClubSpain::Schema;
-
 use strict;
 use warnings;
+use utf8;
 
 use parent qw(DBIx::Class::Schema);
 use Config::Any;

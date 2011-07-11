@@ -1,7 +1,7 @@
 package ClubSpain::Controller::RPC::Flight::TimeTable;
 use strict;
 use warnings;
-
+use utf8;
 use base qw(Catalyst::Controller);
 
 sub _getCitiesOfDeparture {

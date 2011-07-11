@@ -1,6 +1,7 @@
 package ClubSpain::Schema::ResultSet::ViewFlight;
 use strict;
 use warnings;
+use utf8;
 use parent qw(ClubSpain::Schema::ResultSet);
 
 sub searchCitiesOfDeparture {

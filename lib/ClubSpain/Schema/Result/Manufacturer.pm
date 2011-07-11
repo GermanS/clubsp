@@ -1,6 +1,7 @@
 package ClubSpain::Schema::Result::Manufacturer;
 use strict;
 use warnings;
+use utf8;
 use parent qw(ClubSpain::Schema::Result);
 
 

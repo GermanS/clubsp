@@ -1,8 +1,7 @@
 package ClubSpain::Controller::XMLRPC::Flight::TimeTable;
-
 use strict;
 use warnings;
-
+use utf8;
 use base qw(ClubSpain::Controller::RPC::Flight::TimeTable);
 
 sub getCitiesOfDeparture : XMLRPC {

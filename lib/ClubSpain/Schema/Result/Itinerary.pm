@@ -1,6 +1,7 @@
 package ClubSpain::Schema::Result::Itinerary;
 use strict;
 use warnings;
+use utf8;
 use parent qw(ClubSpain::Schema::Result);
 
 __PACKAGE__->load_components(qw(Core PK::Auto));

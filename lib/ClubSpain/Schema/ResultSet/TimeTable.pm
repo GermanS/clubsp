@@ -1,6 +1,7 @@
 package ClubSpain::Schema::ResultSet::TimeTable;
 use strict;
 use warnings;
+use utf8;
 use parent qw(ClubSpain::Schema::ResultSet);
 
 my %Conditions = (

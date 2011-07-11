@@ -1,6 +1,7 @@
 package ClubSpain::Schema::ResultSet::Flight;
 use strict;
 use warnings;
+use utf8;
 use parent qw(ClubSpain::Schema::ResultSet);
 
 =head2 searchFlights(cityOfDeparture => ..., cityOfArrival => ... )
