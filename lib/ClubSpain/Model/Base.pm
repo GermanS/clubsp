@@ -22,8 +22,7 @@ sub fetch_by_id {
     $id = $self->id
         if (ref $self && !$id);
 
-    my $object = $self->schema
-                      ->resultset($self->source_name)
+    my $object = $self->resultset()
                       ->find({ id => $id }, { key => 'primary' });
 
     throw ClubSpain::Exception::Storage(message => "Couldn't find " . $self->source_name . ": $id!")
@@ -36,8 +35,7 @@ sub search {
     my ($self, $params, $cond) = @_;
     return unless $params;
 
-    my $iterator = $self->schema
-                        ->resultset($self->source_name)
+    my $iterator = $self->resultset()
                         ->search($params, $cond);
 
     return $iterator;
@@ -46,7 +44,7 @@ sub search {
 sub create {
     my ($self, $params) = @_;
 
-    $self->schema->resultset($self->source_name)->create($params);
+    $self->resultset()->create($params);
 }
 
 sub update {
@@ -70,6 +68,13 @@ sub check_for_class_method {
     throw ClubSpain::Exception::Argument(message => 'NOT A CLASS METHOD')
         unless blessed $self;
 }
+
+sub resultset {
+    my $self = shift;
+
+   return $self->schema()->resultset($self->source_name);
+}
+
 
 __PACKAGE__->meta->make_immutable();
 
