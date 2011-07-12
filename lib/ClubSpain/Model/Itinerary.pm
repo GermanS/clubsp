@@ -9,6 +9,7 @@ use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Itinerary' });
 
 has 'id'            => ( is => 'ro' );
+has 'is_published'  => ( is => 'ro', required => 1 );
 has 'timetable_id'  => ( is => 'ro', required => 1 );
 has 'fare_class_id' => ( is => 'ro', required => 1 );
 has 'parent_id'     => ( is => 'ro', required => 1 );
@@ -18,6 +19,7 @@ sub create {
     my $self = shift;
 
     $self->SUPER::create({
+        is_published  => $self->is_published,
         timetable_id  => $self->timetable_id,
         fare_class_id => $self->fare_class_id,
         parent_id     => $self->parent_id,
@@ -31,6 +33,7 @@ sub update {
     $self->check_for_class_method();
 
     $self->SUPER::update({
+        is_published  => $self->is_published,
         timetable_id  => $self->timetable_id,
         fare_class_id => $self->fare_class_id,
         parent_id     => $self->parent_id,

@@ -5,6 +5,8 @@ use warnings;
 
 use_ok('ClubSpain::Model::Itinerary');
 
+use ClubSpain::Constants qw(:all);
+
 {
     eval {
         ClubSpain::Model::Itinerary->delete(1000);
@@ -29,6 +31,7 @@ use_ok('ClubSpain::Model::Itinerary');
         fare_class_id => 1,
         parent_id     => 0,
         cost          => 0,
+        is_published  => ENABLE,
     );
 
     eval {

@@ -30,6 +30,7 @@ use_ok('ClubSpain::Model::Itinerary');
         fare_class_id => 0,
         parent_id     => 0,
         cost          => 0,
+        is_published  => 1,
     );
 
     eval {

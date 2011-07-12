@@ -1,13 +1,14 @@
-use Test::More tests => 15;
+use Test::More tests => 17;
 
 use strict;
 use warnings;
 
 use_ok('ClubSpain::Model::Itinerary');
 
+use ClubSpain::Constants qw(:all);
+
 use lib qw(t/lib);
 use ClubSpain::Test;
-
 my $schema = ClubSpain::Test->init_schema();
 
 #pass id to the function
@@ -18,6 +19,7 @@ my $schema = ClubSpain::Test->init_schema();
     is($itinerary->fare_class_id, 1, 'got fare class id');
     is($itinerary->parent_id,     0, 'got parent id');
     is($itinerary->cost,        175, 'got cost');
+    is($itinerary->is_published,  1, 'got is published');
 }
 
 
@@ -29,6 +31,7 @@ my $schema = ClubSpain::Test->init_schema();
         fare_class_id => 0,
         parent_id     => 0,
         cost          => 0,
+        is_published  => 0,
     );
 
     my $object = $itinerary->fetch_by_id();
@@ -37,7 +40,7 @@ my $schema = ClubSpain::Test->init_schema();
     is($object->fare_class_id, 1, 'got fare class id');
     is($object->parent_id,     0, 'got parent id');
     is($object->cost,        175, 'got cost');
-
+    is($object->is_published,  1, 'got is_published');
 }
 
 #exception
@@ -67,6 +70,7 @@ my $schema = ClubSpain::Test->init_schema();
         fare_class_id  => 0,
         parent_id      => 0,
         cost           => 0,
+        is_published   => 0,
     );
 
     eval {

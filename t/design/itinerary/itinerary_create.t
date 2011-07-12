@@ -1,4 +1,4 @@
-use Test::More tests => 13;
+use Test::More tests => 15;
 
 use strict;
 use warnings;
@@ -6,6 +6,7 @@ use warnings;
 use_ok('ClubSpain::Model::Itinerary');
 
 use lib qw(t/lib);
+use ClubSpain::Constants qw(:all);
 use ClubSpain::Test;
 
 ClubSpain::Test->init_schema();
@@ -17,6 +18,7 @@ ClubSpain::Test->init_schema();
         fare_class_id => 1,
         parent_id     => 0,
         cost          => 100,
+        is_published  => ENABLE,
     );
 
     my $result;
@@ -37,7 +39,7 @@ ClubSpain::Test->init_schema();
     is($result->fare_class_id, 1, 'got fare class id');
     is($result->parent_id,     0, 'got parent');
     is($result->cost,        100, 'got cost');
-
+    is($result->is_published,  1, 'got is published');
 }
 
 #second addition
@@ -47,6 +49,7 @@ ClubSpain::Test->init_schema();
         fare_class_id   => 2,
         parent_id       => 0,
         cost            => 0,
+        is_published    => ENABLE,
     );
 
     my $result;
@@ -67,5 +70,5 @@ ClubSpain::Test->init_schema();
     is($result->fare_class_id, 2, 'got fare class id');
     is($result->parent_id,     0, 'got parent id');
     is($result->cost,          0, 'got cost');
-
+    is($result->is_published,  1, 'got is_published');
 }

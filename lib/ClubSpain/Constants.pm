@@ -11,8 +11,6 @@ use constant ENABLE  => 1;
 
 use constant MESSAGE_OK  => 'Операция успешно выполнена';
 
-
-
 @EXPORT_OK = qw(
     DISABLE
     ENABLE

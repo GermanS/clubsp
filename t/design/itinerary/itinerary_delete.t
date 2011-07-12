@@ -1,4 +1,4 @@
-use Test::More tests => 7;
+use Test::More tests => 8;
 
 use strict;
 use warnings;
@@ -6,7 +6,9 @@ use warnings;
 use_ok('ClubSpain::Model::Itinerary');
 
 use lib qw(t/lib);
+use ClubSpain::Constants qw(:all);
 use ClubSpain::Test;
+
 
 my $schema = ClubSpain::Test->init_schema();
 my $count = $schema->resultset('Itinerary')->search({})->count;
@@ -16,6 +18,7 @@ my $itinerary = ClubSpain::Model::Itinerary->new(
     fare_class_id => 1,
     parent_id     => 0,
     cost          => 100,
+    is_published  => ENABLE,
 );
 
 my $object = $itinerary->create();
@@ -25,6 +28,7 @@ is($object->timetable_id,  1, 'got timetable id');
 is($object->fare_class_id, 1, 'got fare class id');
 is($object->parent_id,     0, 'got parent id');
 is($object->cost,        100, 'got cost');
+is($object->is_published,  1, 'got is_published');
 
 
 ClubSpain::Model::Itinerary->delete($object->id);
