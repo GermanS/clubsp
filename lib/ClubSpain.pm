@@ -49,7 +49,7 @@ __PACKAGE__->config(
     },
     default_view => 'TT',
     'View::TT' => {
-         ENCODING => 'utf-8',
+         ENCODING => 'UTF-8',
     },
     'Controller::HTML::FormFu' => {
         constructor => {
