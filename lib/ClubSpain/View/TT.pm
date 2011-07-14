@@ -6,6 +6,8 @@ use utf8;
 
 use parent qw(Catalyst::View::TT);
 
+use DateTime;
+use DateTime::Format::Strptime;
 use Encode;
 use Text::GooglewikiFormat;
 
@@ -34,6 +36,20 @@ __PACKAGE__->config(
             }
 
             $value;
+        },
+        'time' => sub {
+            my $value = shift;
+
+            my $format_in = DateTime::Format::Strptime->new(
+                pattern     => '%T', #H:M:S
+                locale      => 'ru_RU',
+            );
+            my $format_out = DateTime::Format::Strptime->new(
+                pattern     => '%R', #H:M
+                locale      => 'ru_RU',
+            );
+            my $dt = $format_in->parse_datetime($value);
+            return $format_out->format_datetime($dt)
         }
     }
 );
