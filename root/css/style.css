@@ -151,7 +151,8 @@ table {
   border-right: 1px solid #d8d8d8;
   font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
   font-size: 90%;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 1em; }
   table th {
     background-color: #eaeaea;
     border-top: none;

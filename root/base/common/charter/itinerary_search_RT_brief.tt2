@@ -42,7 +42,7 @@
                     [% FOREACH d IN days %]
                     <td>
                         [% IF flight.value.$d %]
-                            [% flight.value.$d %]
+                            <a href="/aviabilet/[% flight.value.$d.1 %]" title="Стоимость авиабилета">[% flight.value.$d.0 %]</a>
                         [% ELSE%]
                             x
                         [% END %]
@@ -55,4 +55,5 @@
             [% END %]
         </tbody>
     </table>
+    [% INCLUDE common/price_terms.tt2 %]
 [% END %]

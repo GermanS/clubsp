@@ -21,6 +21,7 @@
             [% INCLUDE row itinerary = item %]
         [% END %]
     </table>
+    [% INCLUDE common/price_terms.tt2 %]
 [% END %]
 
 
@@ -44,7 +45,7 @@
         <td>[% itinerary.timetable.flight.destination_airport.city.name | utf8 %] ([% itinerary.timetable.flight.destination_airport.name | utf8 %])</td>
         <td>[% itinerary.timetable.airplane.name %]</td>
         <td>[% itinerary.fare_class.code %]</td>
-        <td [% rowspan2 %] class="price">[% itinerary.cost %]&euro;</td>
+        <td [% rowspan2 %] class="price"><a href="/aviabilet/[% itinerary.id %]" title="Стоимость авиабилета">[% itinerary.cost %]</a>&euro;</td>
     </tr>
     [% IF route %]
     <tr>
@@ -60,3 +61,5 @@
     </tr>
     [% END %]
 [% END %]
+
+

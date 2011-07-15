@@ -1,8 +1,5 @@
 [% WRAPPER common/doc4_yui_t7.tt2  %]
     <div id="bd">
-        [% INCLUDE $searchform %]
-        [% INCLUDE calendar.tt2 %]
-
         <div class="yui-g">
             [% content %]
         </div>

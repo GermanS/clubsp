@@ -273,7 +273,7 @@ sub as_table {
         $table->{$row->{'timetable'}->{'departure_date'}}
               ->{$flights}
               ->{$days}
-                = $row->{'cost'};
+                = [ $row->{'cost'}, $row->{'id'} ];
 
     }
     my @all_days = sort { $a <=> $b } keys %dur;

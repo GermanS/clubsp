@@ -49,8 +49,9 @@ sub default :Path {
     $c->response->status(404);
 }
 
-sub article : Chained('/') : PathPart('article') : CaptureArgs(0) { }
-sub charter : Chained('/') : PathPart('charter') : CaptureArgs(0) { }
+sub article   : Chained('/') : PathPart('article') : CaptureArgs(0) { }
+sub charter   : Chained('/') : PathPart('charter') : CaptureArgs(0) { }
+sub aviabilet : Chained('/') : PathPart('aviabilet') : CaptureArgs(0) { }
 
 =head2 end
 

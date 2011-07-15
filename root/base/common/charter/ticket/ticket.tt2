@@ -1,0 +1,113 @@
+[% UNLESS title %]
+    [% title = "Стоимость авиабилета в Испанию" %]
+[% END %]
+
+[% WRAPPER common/charter/ticket/ticket_wrapper.tt2 %]
+    [% IF itinerary %]
+        <h1>Стоимость авиабилета
+            [% itinerary.timetable.flight.departure_airport.city.name | utf8 %]
+            -
+            [% itinerary.timetable.flight.destination_airport.city.name | utf8 %]
+
+            [% route = itinerary.children %]
+            [% IF route %]
+                [% route.timetable.flight.departure_airport.city.name | utf8 %]
+                -
+                [% route.timetable.flight.destination_airport.city.name | utf8 %]
+            [% END  %]
+        </h1>
+        [% INCLUDE TICKET_INFO itinerary = itinerary %]
+        </div>
+        <div class="yui-g">
+           [% INCLUDE INFO itinerary = itinerary %]
+           [% INCLUDE common/price_terms.tt2 %]
+    [% END %]
+[% END %]
+
+
+[% BLOCK TICKET_INFO %]
+    <div class="yui-u first">
+        [% INCLUDE TEXT itinerary = itinerary %]
+    </div>
+    <div class="yui-u">
+        [% route = itinerary.children %]
+        [% IF route %]
+            [% INCLUDE TEXT itinerary = route %]
+        [% END %]
+    </div>
+
+[% END %]
+
+
+[% BLOCK TEXT %]
+<h3>Перелет [% itinerary.timetable.flight.departure_airport.city.name | utf8 %] - [% itinerary.timetable.flight.destination_airport.city.name | utf8 %]</h3>
+<p>
+Время отправления [% itinerary.timetable.departure_date | date %] [% itinerary.timetable.departure_time | time %]
+из города [% itinerary.timetable.flight.departure_airport.city.name | utf8 %],
+аэропорт [% itinerary.timetable.flight.departure_airport.name | utf8 %],
+рейс авиакомпании [% itinerary.timetable.flight.airline.name | utf8 %] [% itinerary.timetable.flight.airline.iata %][% itinerary.timetable.flight.code %],
+самолет [% itinerary.timetable.airplane.name %],
+класс места - [% itinerary.fare_class.name | utf8 %].
+</p>
+<p>
+Прибытие в город [% itinerary.timetable.flight.destination_airport.city.name | utf8 %],
+аэропорт [% itinerary.timetable.flight.destination_airport.name | utf8 %]
+[% itinerary.timetable.arrival_date | date %] в [% itinerary.timetable.arrival_time | time %]
+</p>
+[% END %]
+
+[% BLOCK INFO %]
+    [% route = itinerary.children %]
+    [% rowspan2 = "rowspan='2'" %]
+    [% UNLESS route %]
+        [% rowspan2 = "" %]
+    [% END %]
+
+    <table>
+        <tr>
+            <th colspan="4">Отправление</th>
+            <th colspan="3">Прибытие</th>
+            <th colspan="3"> </th>
+        </tr>
+        <tr>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Рейс</th>
+            <th>Город</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Город</th>
+            <th>Самолет</th>
+            <th>Класс</th>
+            <th>Стоимость <sup>1-4</sup></th>
+        </tr>
+        <tr>
+            <td colspan="12">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>[% itinerary.timetable.departure_date %]</td>
+            <td>[% itinerary.timetable.departure_time | time %]</td>
+            <td>[% itinerary.timetable.flight.airline.iata %][% itinerary.timetable.flight.code %]</td>
+            <td>[% itinerary.timetable.flight.departure_airport.city.name | utf8 %] ([% itinerary.timetable.flight.departure_airport.name | utf8 %])</td>
+            <td>[% itinerary.timetable.arrival_date %]</td>
+            <td>[% itinerary.timetable.arrival_time | time %]</td>
+            <td>[% itinerary.timetable.flight.destination_airport.city.name | utf8 %] ([% itinerary.timetable.flight.destination_airport.name | utf8 %])</td>
+            <td>[% itinerary.timetable.airplane.name %]</td>
+            <td>[% itinerary.fare_class.code %]</td>
+            <td [% rowspan2 %] class="price">[% itinerary.cost %]&euro;</td>
+        </tr>
+        [% IF route %]
+        <tr>
+            <td>[% route.timetable.departure_date %]</td>
+            <td>[% route.timetable.departure_time | time %]</td>
+            <td>[% route.timetable.flight.airline.iata %][% route.timetable.flight.code %]</td>
+            <td>[% route.timetable.flight.departure_airport.city.name | utf8 %] ([% route.timetable.flight.departure_airport.name | utf8 %])</td>
+            <td>[% route.timetable.arrival_date %]</td>
+            <td>[% route.timetable.arrival_time | time %]</td>
+            <td>[% route.timetable.flight.destination_airport.city.name | utf8 %] ([% route.timetable.flight.destination_airport.name | utf8 %])</td>
+            <td>[% route.timetable.airplane.name %]</td>
+            <td>[% route.fare_class.code %]</td>
+        </tr>
+        [% END %]
+    </table>
+[% END  %]

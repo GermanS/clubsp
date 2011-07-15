@@ -45,3 +45,5 @@
     </tr>
     [% END %]
 </table>
+
+[% INCLUDE common/price_terms.tt2 %]

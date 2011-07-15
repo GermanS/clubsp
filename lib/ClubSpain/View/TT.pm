@@ -49,7 +49,19 @@ __PACKAGE__->config(
                 locale      => 'ru_RU',
             );
             my $dt = $format_in->parse_datetime($value);
+
             return $format_out->format_datetime($dt)
+        },
+        'date' => sub {
+            my $value = shift;
+
+            my $format = DateTime::Format::Strptime->new(
+                locale  => 'ru_RU',
+                pattern => '%F',
+            );
+            my $dt = $format->parse_datetime($value);
+
+            return $dt->format_cldr( $dt->locale()->date_format_full() );
         }
     }
 );
