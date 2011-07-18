@@ -1,4 +1,4 @@
 [% WRAPPER backoffice/fareclass/fareclass_wrapper.tt2 %]
-    <p>[% message %]</p>
+    [% INCLUDE backoffice/message.tt2 %]
     [% form %]
 [% END %]

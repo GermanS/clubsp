@@ -2,8 +2,7 @@ package ClubSpain::Controller::BackOffice::TimeTable;
 use strict;
 use warnings;
 use utf8;
-
-use parent qw(Catalyst::Controller::HTML::FormFu);
+use parent qw(ClubSpain::Controller::BackOffice::FormFu);
 use ClubSpain::Constants qw(:all);
 
 sub auto :Private {
@@ -32,8 +31,6 @@ sub default :Path {
         $self->setup_stash_from_request($c);
     }
 };
-
-sub end :ActionClass('RenderView') {};
 
 sub base :Chained('/backoffice/base') :PathPart('timetable') :CaptureArgs(0) {};
 
@@ -238,24 +235,6 @@ sub setup_stash_from_data :Private {
         CityOfArrival   => $timetable->flight->destination_airport->city_id,
         Flight          => $timetable->flight_id,
     });
-};
-
-sub process_error {
-    my ($self, $c, $e) = @_;
-
-    if ($e = Exception::Class->caught('ClubSpain::Exception::Validation')) {
-        $c->stash( message => $e->message );
-    } elsif ($e = Exception::Class->caught('ClubSpain::Exception::Storage')) {
-        $c->stash( message => $e->message );
-    } else {
-        $c->stash( message => $@ );
-    }
-};
-
-sub successful_message {
-    my ($self, $c) = @_;
-
-    $c->stash( message => MESSAGE_OK );
 };
 
 1;

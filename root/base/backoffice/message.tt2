@@ -1,0 +1,1 @@
+<p class=[% message.class %]>[% message.message %]</p>

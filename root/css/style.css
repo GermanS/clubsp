@@ -31,6 +31,22 @@ p {
   margin: 0 0 1em 0;
   line-height: 138.5%;
   text-align: justify; }
+  p.info {
+    border: 1px solid #d1f1fc;
+    background: #e5f7fd;
+    padding: 0.5em; }
+  p.ok {
+    border-color: #aee756;
+    background: #e9fad0;
+    padding: 0.5em; }
+  p.warning {
+    border: 1px solid #ffe67f;
+    background: #fff5cc;
+    padding: 0.5em; }
+  p.error {
+    border: 1px solid #f08a73;
+    background: #ffe3df;
+    padding: 0.5em; }
 
 strong {
   font-weight: bold; }

@@ -2,10 +2,8 @@ package ClubSpain::Controller::BackOffice::Fare;
 use strict;
 use warnings;
 use utf8;
-
-use parent qw(Catalyst::Controller::HTML::FormFu);
+use parent qw(ClubSpain::Controller::BackOffice::FormFu);
 use ClubSpain::Constants qw(:all);
-
 
 sub auto :Private {
     my ($self, $c) = @_;
@@ -44,8 +42,6 @@ sub default :Path {
     }
 };
 
-sub end :ActionClass('RenderView') {}
-
 sub base :Chained('/backoffice/base') :PathPart('fare') :CaptureArgs(0) {}
 
 sub searchOW :Local {
@@ -75,7 +71,6 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
         $c->detach();
     }
 };
-
 
 sub createOW : Local {
     my ($self, $c) = @_;
@@ -291,24 +286,6 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
          if $@;
 
     $c->detach('default');
-};
-
-sub process_error {
-    my ($self, $c, $e) = @_;
-
-    if ($e = Exception::Class->caught('ClubSpain::Exception::Validation')) {
-        $c->stash( message => $e->message );
-    } elsif ($e = Exception::Class->caught('ClubSpain::Exception::Storage')) {
-        $c->stash( message => $e->message );
-    } else {
-        $c->stash( message => $@ );
-    }
-};
-
-sub successful_message {
-    my ($self, $c) = @_;
-
-    $c->stash( message => MESSAGE_OK );
 };
 
 sub setup_stash_from_request :Private {

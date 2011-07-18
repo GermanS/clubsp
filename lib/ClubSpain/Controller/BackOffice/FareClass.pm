@@ -2,11 +2,8 @@ package ClubSpain::Controller::BackOffice::FareClass;
 use strict;
 use warnings;
 use utf8;
-
-use parent qw(Catalyst::Controller::HTML::FormFu);
+use parent qw(ClubSpain::Controller::BackOffice::FormFu);
 use ClubSpain::Constants qw(:all);
-
-
 
 sub auto :Private {
     my ($self, $c) = @_;
@@ -16,8 +13,6 @@ sub auto :Private {
     );
 };
 
-
-
 sub default :Path {
     my ($self, $c) = @_;
 
@@ -26,13 +21,7 @@ sub default :Path {
     );
 };
 
-
-
-sub end :ActionClass('RenderView') {};
-
 sub base :Chained('/backoffice/base') :PathPart('fareclass') :CaptureArgs(0) {};
-
-
 
 sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     my ($self, $c, $id) = @_;
@@ -50,8 +39,6 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     }
 };
 
-
-
 sub enable :Chained('id') :PathPart('enable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -61,8 +48,6 @@ sub enable :Chained('id') :PathPart('enable') :Args(0) {
     $c->res->redirect($c->uri_for('default'));
 };
 
-
-
 sub disable :Chained('id') :PathPart('disable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -71,7 +56,6 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
     });
     $c->res->redirect($c->uri_for('default'));
 };
-
 
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
@@ -89,30 +73,6 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     $c->res->redirect($c->uri_for('default'));
 };
 
-
-
-sub process_error {
-    my ($self, $c, $e) = @_;
-
-    if ($e = Exception::Class->caught('ClubSpain::Exception::Validation')) {
-        $c->stash( message => $e->message );
-    } elsif ($e = Exception::Class->caught('ClubSpain::Exception::Storage')) {
-        $c->stash( message => $e->message );
-    } else {
-        $c->stash( message => $@ );
-    }
-};
-
-
-
-sub successful_message {
-    my ($self, $c) = @_;
-
-    $c->stash( message => MESSAGE_OK );
-};
-
-
-
 sub load_add_form :Private  {
     my ($self, $c) = @_;
 
@@ -122,8 +82,6 @@ sub load_add_form :Private  {
 
     return $form;
 };
-
-
 
 sub create :Local {
     my ($self, $c) = @_;
@@ -138,8 +96,6 @@ sub create :Local {
         template => 'backoffice/fareclass/fareclass_form.tt2'
     );
 };
-
-
 
 sub insert :Private {
     my ($self, $c) = @_;
@@ -159,8 +115,6 @@ sub insert :Private {
         if $@;
 };
 
-
-
 sub load_upd_form :Private {
     my ($self, $c) = @_;
 
@@ -176,8 +130,6 @@ sub load_upd_form :Private {
     return $form;
 };
 
-
-
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
@@ -191,8 +143,6 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
         template => 'backoffice/fareclass/fareclass_form.tt2'
     );
 };
-
-
 
 sub update :Private {
     my ($self, $c) = @_;

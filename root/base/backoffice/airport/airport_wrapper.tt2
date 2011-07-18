@@ -2,12 +2,12 @@
     <div id="bd">
         <div class="yui-g">
             <h2>Редактирование аэропортов</h2>
-            <div class="button-group">
-                <a class="button primary" href="/backoffice/airport/create">Добавить аэропорт</a>
-            </div>
         </div>
         <div class="yui-gf">
             <div class="yui-u first">
+                <div class="button-group">
+                    <a class="button primary" href="/backoffice/airport/create">Добавить аэропорт</a>
+                </div>
                 [% IF country_list.count() %]
                     <div class="sidebar">
                         <ul>

@@ -2,8 +2,7 @@ package ClubSpain::Controller::BackOffice::Article;
 use strict;
 use warnings;
 use utf8;
-
-use parent qw(Catalyst::Controller::HTML::FormFu);
+use parent qw(ClubSpain::Controller::BackOffice::FormFu);
 use ClubSpain::Constants qw(:all);
 
 sub auto :Private {
@@ -169,24 +168,6 @@ sub load_upd_form :Private {
     return $form;
 }
 
-sub process_error {
-    my ($self, $c, $e) = @_;
-
-    if ($e = Exception::Class->caught('ClubSpain::Exception::Validation')) {
-        $c->stash( message => $e->message );
-    } elsif ($e = Exception::Class->caught('ClubSpain::Exception::Storage')) {
-        $c->stash( message => $e->message );
-    } else {
-        $c->stash( message => $@ );
-    }
-}
-
-sub successful_message {
-    my ($self, $c) = @_;
-
-    $c->stash( message => MESSAGE_OK );
-}
-
 sub enable :Chained('id') :PathPart('enable') :Args(0) {
     my ($self, $c) = @_;
 
@@ -222,7 +203,5 @@ sub down :Chained('id') :PathPart('down') :Args(0) {
 
     $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
 }
-
-sub end :ActionClass('RenderView') {}
 
 1;
