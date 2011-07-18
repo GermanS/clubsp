@@ -14,7 +14,17 @@ sub auto :Private {
     );
 }
 
-sub default :Path { }
+=head2 default
+
+Сделать редирект если не указан идентификатор билета
+
+=cut
+
+sub default :Path {
+    my ($self, $c) = @_;
+
+    $c->response->redirect('/');
+}
 
 sub base :Chained('/aviabilet') :PathPart('') :CaptureArgs(0) { }
 
@@ -24,17 +34,22 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     my $itinerary;
     eval {
         $itinerary = $c->model('Itinerary')->fetch_by_id($id);
-        $c->stash( itinerary => $itinerary );
+
+        $c->stash( itinerary => $itinerary )
+            if ($itinerary->parent_id == 0 and $itinerary->is_published == 1);
     };
 
     if ($@) {
-        $c->response->redirect($c->uri_for($self->action_for('index')));
-        $c->detach();
+        $c->response->redirect('/charter/searchRT');
     }
 }
 
 sub view :Chained('id') :PathPart('') :Args(0) {
     my ($self, $c) = @_;
+
+    unless ($c->stash->{'itinerary'}) {
+         $c->response->redirect( '/charter/searchRT' );
+    }
 }
 
 sub end :ActionClass('RenderView') {}
