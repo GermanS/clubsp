@@ -14,6 +14,7 @@
                 </ul>
             </div>
             <div class="yui-u">
+                <!--
                 <h2>Авиабилеты в Москву</h2>
                 <ul>
                     <li><a href="/charter/BCN-MOW" title="Стоимость авиабилета Барселона - Москва">Авиабилеты Барселона - Москва</a></li>
@@ -22,6 +23,7 @@
                     <li><a href="/charter/TCI-MOW" title="Стоимость авиабилета Тенерифе - Москва">Авиабилеты Тенерифе - Москва</a></li>
                     <li><a href="/charter/AGP-MOW" title="Стоимость авиабилета Малага - Москва">Авиабилеты Малага - Москва</a></li>
                 </ul>
+                -->
             </div>
         </div>
         <div class="yui-g">
@@ -75,6 +77,15 @@
             <p>Узнать о способах получения и использования авиабилета</p>
           </div>
         </div>
+        <div class="yui-g">
+          <h3>Расписание вылетов из Москвы</h3>
+          [% INCLUDE common/charter/timetable/route.tt2 iterator = departures %]
+        </div>
+        <div class="yui-g">
+          <h3>Расписание прилетов в Москву</h3>
+          [% INCLUDE common/charter/timetable/route.tt2 iterator = arrivals %]
+        </div>
+        <!--
         <div class="yui-g logos">
           <p>
             <img src="/images/SU.png" width="120" height="40" alt="Авиабилеты Аэрофлота" />
@@ -84,5 +95,6 @@
             <img src="/images/U6.png" width="120" height="40" alt="Авиабилеты авиакомпании Уральские аиалинии" />
           </p>
         </div>
+        -->
     </div>
 [% END %]

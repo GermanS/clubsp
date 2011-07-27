@@ -68,7 +68,25 @@ sub searchTimetable {
     return
         $self->schema()
              ->resultset($self->source_name)
-             ->searchTimetable(%params)
+             ->searchTimetable(%params);
+}
+
+sub departures {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->departures(%params);
+}
+
+sub arrivals {
+    my ($self, %params) = @_;
+
+    return
+        $self->schema()
+             ->resultset($self->source_name)
+             ->arrivals(%params);
 }
 
 __PACKAGE__->meta->make_immutable;

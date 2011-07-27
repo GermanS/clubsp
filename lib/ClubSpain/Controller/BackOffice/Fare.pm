@@ -271,7 +271,8 @@ sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
     my $itinerary = $c->stash->{'itinerary'};
-    $self->setup_request_from_stash($c);
+    #$self->setup_request_from_stash($c);
+    $self->setup_stash_from_data($c);
     eval {
         my $segment = $itinerary->next_route();
         if ($segment) {

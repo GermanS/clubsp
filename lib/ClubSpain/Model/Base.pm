@@ -72,9 +72,8 @@ sub check_for_class_method {
 sub resultset {
     my $self = shift;
 
-   return $self->schema()->resultset($self->source_name);
+    return $self->schema()->resultset($self->source_name);
 }
-
 
 __PACKAGE__->meta->make_immutable();
 

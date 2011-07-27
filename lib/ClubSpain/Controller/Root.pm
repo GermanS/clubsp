@@ -31,8 +31,20 @@ sub index :Path :Args(0) {
 
     my $iterator = $c->model('Article')->list(1);
 
+    my $MOW = $c->model('City')->search({ id => 1 })->single();
+    my $departures = $c->model('Timetable')->departures(
+        cityOfDeparture => $MOW->id,
+        duration        => 7,
+    );
+    my $arrivals = $c->model('Timetable')->arrivals(
+        cityOfArrival => $MOW->id,
+        duration      => 7,
+    );
+
     $c->stash(
-        iterator => $iterator,
+        iterator   => $iterator,
+        departures => $departures,
+        arrivals   => $arrivals,
         template => 'common/index.tt2'
     );
 }

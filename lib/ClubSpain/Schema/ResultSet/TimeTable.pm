@@ -102,4 +102,74 @@ sub searchTimetable {
     });
 }
 
+=head2 departures(cityOfDeparture => , duration => )
+
+Получение расписание вылетов из указанного города начиная с текущего момента
+плюс колическов указанных дней
+На входе:
+cityOfDeparture - город вылета
+duration  - количество дней за которое необходимо паказать расписание
+       необязательный параметр
+
+=cut
+
+sub departures {
+    my ($self, %params) = @_;
+
+    return unless $params{'cityOfDeparture'};
+
+    my %arguments = (
+        'me.departure_date' => \'>NOW()',
+        'departure_city.id' => $params{'cityOfDeparture'},
+    );
+
+    my $duration = $params{'duration'};
+    $Where{'me.departure_date'} = \"<ADDDATE(NOW(), $duration)"
+        if defined $duration && $duration;
+
+    return $self->result_source->resultset->search({
+            %Conditions,
+            %arguments
+    }, {
+            where  => [ -and => \%Where ],
+            from     => \@From,
+            order_by => [ 'me.departure_date', 'me.departure_time' ]
+    })
+}
+
+=head2 arrivals(cityOfArrival => , duration => )
+
+Получение расписания прилетов в указанный город начиная с текущего момента
+плюс колическов указанных дней
+На входе:
+cityOfФккшмфд - город прилета
+duration  - количество дней за которое необходимо паказать расписание
+       необязательный параметр
+
+=cut
+
+sub arrivals {
+    my ($self, %params) = @_;
+
+    return unless $params{'cityOfArrival'};
+
+    my %arguments = (
+        'me.departure_date' => \'>NOW()',
+        'destination_city.id' => $params{'cityOfArrival'},
+    );
+
+    my $duration = $params{'duration'};
+    $Where{'me.departure_date'} = \"<ADDDATE(NOW(), $duration)"
+        if defined $duration && $duration;
+
+    return $self->result_source->resultset->search({
+            %Conditions,
+            %arguments
+    }, {
+            where    => [ -and => \%Where ],
+            from     => \@From,
+            order_by => [ 'me.arrival_date', 'me.arrival_time' ]
+    })
+}
+
 1;

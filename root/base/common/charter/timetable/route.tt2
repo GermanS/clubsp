@@ -1,0 +1,37 @@
+[% IF iterator %]
+<table>
+    <tr>
+        <th> </th>
+        <th colspan="4">Отправление</th>
+        <th colspan="4">Прибытие</th>
+    </tr>
+    <tr>
+        <th></th>
+        <th>Дата</th>
+        <th>Время</th>
+        <th>Рейс</th>
+        <th>Город</th>
+        <th>Дата</th>
+        <th>Время</th>
+        <th>Город</th>
+        <th>Самолет</th>
+    </tr>
+    <tr>
+        <td colspan="11">&nbsp;</td>
+    </tr>
+    [% WHILE (item = iterator.next)%]
+    <tr>
+        <td> </td>
+        <td>[% item.departure_date %]</td>
+        <td>[% item.departure_time | time %]</td>
+        <td>[% item.flight.airline.iata %][% item.flight.code %]</td>
+        <td>[% item.flight.departure_airport.city.name | utf8 %] ([% item.flight.departure_airport.name | utf8 %])</td>
+        <td>[% item.arrival_date %]</td>
+        <td>[% item.arrival_time | time %]</td>
+        <td>[% item.flight.destination_airport.city.name | utf8 %] ([% item.flight.destination_airport.name | utf8 %])</td>
+        <td>[% item.airplane.name %]</td>
+    </tr>
+    [% END %]
+</table>
+[% END %]
+

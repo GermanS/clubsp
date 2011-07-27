@@ -67,7 +67,7 @@
         var departure = $("select[name='CityOfDeparture1']").attr("value");
         var arrival   = $("select[name='CityOfArrival1']").attr("value");
         var element   = $("select[name='Flight1']");
-        var initial   = $("input[name='_Flight1").attr("value");
+        var initial   = $("input[name='_Flight1']").attr("value");
 
         makeRequest(
             FareSearchTimetable,
@@ -126,7 +126,7 @@
         var departure = $("select[name='CityOfDeparture2']").attr("value");
         var arrival   = $("select[name='CityOfArrival2']").attr("value");
         var element   = $("select[name='Flight2']");
-        var initial   = $("input[name='_Flight2").attr("value");
+        var initial   = $("input[name='_Flight2']").attr("value");
 
         makeRequest(
             FareSearchTimetable,

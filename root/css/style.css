@@ -116,7 +116,10 @@ ul.tabs {
       padding: 0 8px;
       line-height: 26px;
       color: #666666;
-      font-size: 108%; }
+      font-size: 108%;
+      border: 1px solid transparent;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px; }
       ul.tabs li a:hover {
         color: #333333;
         background-color: #cccccc;
