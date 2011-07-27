@@ -1,0 +1,40 @@
+[% WRAPPER common/doc4_yui_t7.tt2  %]
+    <div id="bd">
+        <div class="yui-gc">
+          <div class="yui-u first">
+            <h1>Поиск авиабилетов Москва - Барселона</h1>
+          </div>
+          <div class="yui-u">
+            <ul>
+              <li>Туда и обратно</li>
+              <li>В одну сторону</li>
+            </ul>
+          </div>
+        </div>
+        <div class="yui-g">
+          <div class="yui-u first">
+            <input type="text" name="CityOfDeparture" value="Москва">
+          </div>
+          <div class="yui-u">
+            <input type="text" name="CityOfDeparture" value="Барселона">
+          </div>
+        </div>
+        <div class="yui-g">
+          [% INCLUDE calendar.tt2 %]
+        </div>
+        <div class="yui-gc">
+          <div class="yui-u first">
+            <h3>Количество пассажиров (Один) и класс обслуживания (Эконом)</h3>
+          </div>
+          <div class="yui-u">
+            <a href="/flight/search"
+              onclick="$(this).closest('form').submit(); return false;"
+              class="button primary icon search"
+              title="Поиск авиабилета">Поиск авиабилета</a>
+          </div>
+        </div>
+        <div class="yui-g">
+               [% content %]
+        </div>
+    </div>
+[% END %]
