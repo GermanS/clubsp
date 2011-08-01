@@ -68,24 +68,6 @@ sub searchCitiesOfArrivalInFlight {
              ->searchCitiesOfArrival(%params);
 }
 
-sub searchCitiesOfDepartureInTimeTable {
-    my $self = shift;
-
-    return
-        $self->schema()
-             ->resultset('ViewTimeTable')
-             ->searchCitiesOfDeparture();
-}
-
-sub searchCitiesOfArrivalInTimeTable {
-    my ($self, %params) = @_;
-
-    return
-        $self->schema()
-             ->resultset('ViewTimeTable')
-             ->searchCitiesOfArrival(%params);
-}
-
 sub searchCitiesOfDepartureOW {
     my $self = shift;
 
@@ -104,7 +86,7 @@ sub searchCitiesOfArrivalOW {
              ->searchCitiesOfArrival(%params);
 }
 
-=head2 searchCitiesOfArrival2RT(%params)
+=head2 searchCitiesOfDeparture1RT(%params)
 
 Поиск городов отправления в тарифах в обе стороны
 На входе
