@@ -62,6 +62,28 @@ __PACKAGE__->config(
             my $dt = $format->parse_datetime($value);
 
             return $dt->format_cldr( $dt->locale()->date_format_full() );
+        },
+        'dmy' => sub {
+            my $value = shift;
+
+            my $format = DateTime::Format::Strptime->new(
+                locale  => 'ru_RU',
+                pattern => '%F',
+            );
+            my $dt = $format->parse_datetime($value);
+
+            return $dt->dmy;
+        },
+        'dow' => sub {
+            my $value = shift;
+
+            my $format = DateTime::Format::Strptime->new(
+                locale  => 'ru_RU',
+                pattern => '%F',
+            );
+            my $dt = $format->parse_datetime($value);
+
+            return $dt->locale()->day_stand_alone_abbreviated()->[$dt->day_of_week_0];
         }
     }
 );
