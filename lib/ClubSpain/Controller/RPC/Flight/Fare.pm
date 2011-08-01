@@ -7,32 +7,19 @@ use base qw(Catalyst::Controller);
 sub _searchCitiesOfDeparture {
     my ($self, $c) = @_;
 
-    my $iterator =
-        $c->model('City')->searchCitiesOfDepartureInTimeTable();
+    my $iterator = $c->model('TimeTable')->searchCitiesOfDeparture();
 
-    my @res;
-    while (my $item = $iterator->next) {
-        push @res, { id => $item->id, name => $item->name };
-    }
-
-    return @res;
+    return id_name_hash($iterator);
 }
 
 sub _searchCitiesOfArrival {
     my ($self, $c, %params) = @_;
 
-    my $iterator =
-        $c->model('City')
-          ->searchCitiesOfArrivalInTimeTable(
-              cityOfDeparture => $params{'cityOfDeparture'}
-            );
+    my $iterator = $c->model('TimeTable')->searchCitiesOfArrival(
+      cityOfDeparture => $params{'cityOfDeparture'}
+    );
 
-    my @res;
-    while (my $item = $iterator->next) {
-        push @res, { id => $item->id, name => $item->name };
-    }
-
-    return @res;
+    return id_name_hash($iterator);
 }
 
 sub _searchDatesOfDeparture {
@@ -95,17 +82,7 @@ sub _searchTimetable {
         dateOfDeparture => $params{'dateOfDeparture'},
     );
 
-    my @res;
-    while (my $item = $iterator->next) {
-        my $name = sprintf "%s %s (%s - %s)",
-            $item->flight->airline->iata,
-            $item->flight->code,
-            $item->flight->departure_airport->iata,
-            $item->flight->destination_airport->iata;
-        push @res, { id => $item->id, name => $name };
-    }
-
-    return @res;
+    return id_name_hash($iterator);
 }
 
 
@@ -114,7 +91,7 @@ sub _searchCitiesOfDepartureOW {
 
     my $iterator = $c->model('City')->searchCitiesOfDepartureOW();
 
-    return city_hash($iterator);
+    return id_name_hash($iterator);
 }
 
 sub _searchCitiesOfArrivalOW {
@@ -124,7 +101,7 @@ sub _searchCitiesOfArrivalOW {
         cityOfDeparture => $params{'cityOfDeparture'}
     );
 
-    return city_hash($iterator);
+    return id_name_hash($iterator);
 }
 
 sub _searchDatesOfDepartureOW {
@@ -142,7 +119,7 @@ sub _searchCitiesOfDeparture1RT {
     my ($self, $c) = @_;
 
     my $iterator = $c->model('City')->searchCitiesOfDeparture1RT();
-    return city_hash($iterator);
+    return id_name_hash($iterator);
 }
 
 sub _searchCitiesOfArrival1RT {
@@ -152,7 +129,7 @@ sub _searchCitiesOfArrival1RT {
         cityOfDeparture1 => $params{'cityOfDeparture1'}
     );
 
-    return city_hash($iterator);
+    return id_name_hash($iterator);
 }
 
 sub _searchCitiesOfDeparture2RT {
@@ -163,7 +140,7 @@ sub _searchCitiesOfDeparture2RT {
         cityOfArrival1   => $params{'cityOfArrival1'},
     );
 
-    return city_hash($iterator);
+    return id_name_hash($iterator);
 }
 
 sub _searchCitiesOfArrival2RT {
@@ -175,7 +152,7 @@ sub _searchCitiesOfArrival2RT {
         cityOfDeparture2 => $params{'cityOfDeparture2'}
     );
 
-    return city_hash($iterator);
+    return id_name_hash($iterator);
 }
 
 sub _searchDatesOfDeparture1RT {
@@ -205,12 +182,12 @@ sub _searchDatesOfDeparture2RT {
     return date_hash($iterator);
 }
 
-sub city_hash {
+sub id_name_hash {
     my $iterator = shift;
 
     my @res;
-    while (my $city = $iterator->next) {
-        push @res, { id => $city->id, name => $city->name };
+    while (my $row = $iterator->next) {
+        push @res, { id => $row->id, name => $row->name };
     }
 
     return @res;
