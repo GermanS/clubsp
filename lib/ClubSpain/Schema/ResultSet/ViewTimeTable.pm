@@ -30,4 +30,37 @@ sub searchCitiesOfArrival {
         });
 }
 
+sub searchDatesOfDeparture {
+    my ($self, %params) = @_;
+
+    my %dateOfDeparture = ();
+    $dateOfDeparture{'dateOfDeparture'} = \sprintf ">'%s'", $params{'startDate'}
+        if $params{'startDate'};
+
+    return
+        $self->result_source->resultset->search({
+            cityOfDepartureId => $params{'cityOfDeparture'},
+            cityOfArrivalId   => $params{'cityOfArrival'},
+            %dateOfDeparture
+        }, {
+            result_class => 'ClubSpain::Schema::Result::TimeTable',
+            select      => [ 'timeatableId', 'dateOfDeparture'],
+            as          => [ qw(me.id me.departure_date) ],
+            order_by    => [ qw(dateOfDeparture) ]
+        });
+}
+
+sub searchTimetable {
+    my ($self, %params) = @_;
+
+    return
+        $self->result_source->resultset->search({
+            cityOfDepartureId => $params{'cityOfDeparture'},
+            cityOfArrivalId   => $params{'cityOfArrival'},
+            dateOfDeparture   => $params{'dateOfDeparture'},
+        }, {
+            select => [ 'timeatableId', 'dateOfDeparture', 'abbr'],
+        });
+}
+
 1;
