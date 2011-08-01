@@ -34,82 +34,16 @@ my @From = qq(country as departure_country,
               flight,
               timetable as me);
 
-=head2 searchDatesOfDepature(cityOfDeparture => $city, cityOfArrival => $city, startDate => $date)
+=head2 departures(cityOfDeparture => , [duration => ])
 
-Получение дат отправления из города cityOfDeparture в город cityOfArrival
-с момента времени startDate
+    Получение расписание вылетов из указанного города начиная с текущего момента
+    плюс колическов указанных дней
 
-все флаги должны быть выставлены в единицу
-
-=cut
-
-sub searchDatesOfDeparture {
-    my ($self, %params) = @_;
-
-    return
-        unless $params{'cityOfDeparture'} && $params{'cityOfArrival'};
-
-    my $startDate = $params{'startDate'}
-                    ? sprintf ">'%s'", $params{'startDate'}
-                    : '>= NOW()';
-
-    return $self->result_source->resultset->search({
-                %Conditions,
-                'me.departure_date'   =>\$startDate,
-                'departure_city.id'   => $params{'cityOfDeparture'},
-                'destination_city.id' => $params{'cityOfArrival'}
-    }, {
-            where  => [ -and => \%Where],
-            from     => \@From,
-            group_by => 'me.departure_date'
-    });
-}
-
-=head2 searchTimetable(cityOfDeparture =>, cityOfArrival => , dateOfDeparture =>, )
-
-Получение расписания по критерию
-cityOfDeparture - город отправление
-cityOfArrival   - город прибытия
-dateOfDeparture - дата отправления
-flight          - идентификатор рейса (опционально)
-
-на выходе iterator всех найденных вариантов удовлетворяющих критериям
-или undef если не заданы обязательные параметры.
-
-=cut
-
-sub searchTimetable {
-    my ($self, %params) = @_;
-
-    return unless $params{'cityOfDeparture'} &&
-                  $params{'cityOfArrival'}  &&
-                  $params{'dateOfDeparture'};
-
-    my %arguments = (
-        'me.departure_date'     => $params{'dateOfDeparture'},
-        'departure_city.id'     => $params{'cityOfDeparture'},
-        'destination_city.id'   => $params{'cityOfArrival'}
-    );
-    $arguments{'me.flight_id'} = $params{'flight'}
-        if $params{'flight'};
-
-    return $self->result_source->resultset->search({
-            %Conditions,
-            %arguments
-    }, {
-            where  => [ -and => \%Where ],
-            from     => \@From
-    });
-}
-
-=head2 departures(cityOfDeparture => , duration => )
-
-Получение расписание вылетов из указанного города начиная с текущего момента
-плюс колическов указанных дней
 На входе:
-cityOfDeparture - город вылета
-duration  - количество дней за которое необходимо паказать расписание
-       необязательный параметр
+
+    cityOfDeparture - город вылета
+    duration - количество дней за которое необходимо паказать расписание
+               необязательный параметр
 
 =cut
 
@@ -139,12 +73,14 @@ sub departures {
 
 =head2 arrivals(cityOfArrival => , duration => )
 
-Получение расписания прилетов в указанный город начиная с текущего момента
-плюс колическов указанных дней
+    Получение расписания прилетов в указанный город начиная с текущего момента
+    плюс колическов указанных дней
+
 На входе:
-cityOfФккшмфд - город прилета
-duration  - количество дней за которое необходимо паказать расписание
-       необязательный параметр
+
+    cityOfArrival - город прилета
+    duration      - количество дней за которое необходимо паказать расписание
+                    необязательный параметр
 
 =cut
 
