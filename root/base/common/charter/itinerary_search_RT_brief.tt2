@@ -32,7 +32,7 @@
             [% FOREACH start IN table.pairs %]
             <tr>
                 <td rowspan="[% start.value.size %]">
-                    [% start.key %]
+                    [% start.key | dmy %]
                 </td>
                 [% FOREACH flight IN start.value.pairs %]
                     <td>

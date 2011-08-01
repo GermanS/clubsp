@@ -85,11 +85,11 @@
             <td colspan="12">&nbsp;</td>
         </tr>
         <tr>
-            <td>[% itinerary.timetable.departure_date %]</td>
+            <td>[% itinerary.timetable.departure_date | dmy %]</td>
             <td>[% itinerary.timetable.departure_time | time %]</td>
             <td>[% itinerary.timetable.flight.airline.iata %][% itinerary.timetable.flight.code %]</td>
             <td>[% itinerary.timetable.flight.departure_airport.city.name | utf8 %] ([% itinerary.timetable.flight.departure_airport.name | utf8 %])</td>
-            <td>[% itinerary.timetable.arrival_date %]</td>
+            <td>[% itinerary.timetable.arrival_date | dmy %]</td>
             <td>[% itinerary.timetable.arrival_time | time %]</td>
             <td>[% itinerary.timetable.flight.destination_airport.city.name | utf8 %] ([% itinerary.timetable.flight.destination_airport.name | utf8 %])</td>
             <td>[% itinerary.timetable.airplane.name %]</td>
@@ -98,11 +98,11 @@
         </tr>
         [% IF route %]
         <tr>
-            <td>[% route.timetable.departure_date %]</td>
+            <td>[% route.timetable.departure_date | dmy %]</td>
             <td>[% route.timetable.departure_time | time %]</td>
             <td>[% route.timetable.flight.airline.iata %][% route.timetable.flight.code %]</td>
             <td>[% route.timetable.flight.departure_airport.city.name | utf8 %] ([% route.timetable.flight.departure_airport.name | utf8 %])</td>
-            <td>[% route.timetable.arrival_date %]</td>
+            <td>[% route.timetable.arrival_date | dmy %]</td>
             <td>[% route.timetable.arrival_time | time %]</td>
             <td>[% route.timetable.flight.destination_airport.city.name | utf8 %] ([% route.timetable.flight.destination_airport.name | utf8 %])</td>
             <td>[% route.timetable.airplane.name %]</td>
