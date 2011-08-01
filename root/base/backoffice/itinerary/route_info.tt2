@@ -21,12 +21,12 @@
     </tr>
     <tr>
         <td> </td>
-        <td>[% timetable1.departure_date %]</td>
-        <td>[% timetable1.departure_time %]</td>
+        <td>[% timetable1.departure_date | dmy %]</td>
+        <td>[% timetable1.departure_time | time %]</td>
         <td>[% timetable1.flight.airline.iata %][% timetable1.flight.code %]</td>
         <td>[% timetable1.flight.departure_airport.city.name %] ([% timetable1.flight.departure_airport.name %])</td>
-        <td>[% timetable1.arrival_date %]</td>
-        <td>[% timetable1.arrival_time %]</td>
+        <td>[% timetable1.arrival_date | dmy %]</td>
+        <td>[% timetable1.arrival_time | time %]</td>
         <td>[% timetable1.flight.destination_airport.city.name %] ([% timetable1.flight.destination_airport.name %])</td>
         <td>[% timetable1.airplane.name %]</td>
     </tr>
@@ -34,12 +34,12 @@
     [% IF timetable2 %]
     <tr>
         <td> </td>
-        <td>[% timetable2.departure_date %]</td>
-        <td>[% timetable2.departure_time %]</td>
+        <td>[% timetable2.departure_date | dmy %]</td>
+        <td>[% timetable2.departure_time | time %]</td>
         <td>[% timetable2.flight.airline.iata %][% timetable2.flight.code %]</td>
         <td>[% timetable2.flight.departure_airport.city.name %] ([% timetable2.flight.departure_airport.name %])</td>
-        <td>[% timetable2.arrival_date %]</td>
-        <td>[% timetable2.arrival_time %]</td>
+        <td>[% timetable2.arrival_date | dmy %]</td>
+        <td>[% timetable2.arrival_time | time %]</td>
         <td>[% timetable2.flight.destination_airport.city.name %] ([% timetable2.flight.destination_airport.name %])</td>
         <td>[% timetable2.airplane.name %]</td>
     </tr>
