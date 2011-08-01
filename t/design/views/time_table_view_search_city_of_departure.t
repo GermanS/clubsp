@@ -1,6 +1,8 @@
-use Test::More tests => 18;
+use Test::More tests => 37;
 use strict;
 use warnings;
+use_ok('ClubSpain::Model::TimeTable');
+
 use lib qw(t/lib);
 use ClubSpain::Test;
 my $schema = ClubSpain::Test->init_schema();
@@ -27,12 +29,25 @@ sub request {
     return $schema->resultset('ViewTimeTable')->searchCitiesOfDeparture();
 }
 
-{
-    my $iterator = request();
+sub request2 {
+    return ClubSpain::Model::TimeTable->searchCitiesOfDeparture();
+}
 
-    is($iterator->count, 2, 'got two cities');
-    is_MOW($iterator->next);
-    is_BCN($iterator->next);
+{
+    {
+        my $iterator = request();
+
+        is($iterator->count, 2, 'got two cities');
+        is_MOW($iterator->next);
+        is_BCN($iterator->next);
+    }
+    {
+        my $iterator = request2();
+
+        is($iterator->count, 2, 'got two cities');
+        is_MOW($iterator->next);
+        is_BCN($iterator->next);
+    }
 }
 
 #set country.is_published to 0
@@ -40,8 +55,14 @@ sub request {
     my $spain = $schema->resultset('Country')->search({id => 2});
     $spain->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     $spain->update({ is_published => 1 });
 }
@@ -51,8 +72,14 @@ sub request {
     my $bcn = $schema->resultset('City')->search({ id => 2 });
     $bcn->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     $bcn->update({ is_published => 1 });
 }
@@ -62,8 +89,14 @@ sub request {
     my $bcn = $schema->resultset('Airport')->search({ id => 4 });
     $bcn->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 0, 'got nothing');
+    {
+        my $iterator = request();
+        is($iterator->count, 0, 'got nothing');
+    }
+    {
+        my $iterator = request2();
+        is($iterator->count, 0, 'got nothing');
+    }
 
     $bcn->update({ is_published => 1 });
 }
@@ -73,9 +106,16 @@ sub request {
     my $NN331 = $schema->resultset('Flight')->search({ id => 1 });
     $NN331->update({ is_published => 0 });
 
-    my $iterator = request();
-    is($iterator->count, 1, 'got a city');
-    is_BCN($iterator->next);
+    {
+        my $iterator = request();
+        is($iterator->count, 1, 'got a city');
+        is_BCN($iterator->next);
+    }
+    {
+        my $iterator = request2();
+        is($iterator->count, 1, 'got a city');
+        is_BCN($iterator->next);
+    }
 
     $NN331->update({ is_published => 1 });
 }
@@ -87,9 +127,16 @@ sub request {
         $timetable->update({ is_published => 0 });
     }
 
-    my $iterator = request();
-    is($iterator->count, 1, 'got one city');
-    is_MOW($iterator->next);
+    {
+        my $iterator = request();
+        is($iterator->count, 1, 'got one city');
+        is_MOW($iterator->next);
+    }
+    {
+        my $iterator = request2();
+        is($iterator->count, 1, 'got one city');
+        is_MOW($iterator->next);
+    }
 
     for my $timetable (@NN332_BCN_DME) {
         $timetable->update({ is_published => 1 });
