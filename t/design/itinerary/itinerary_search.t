@@ -13,13 +13,13 @@ my $BCN = $schema->resultset('City')->search({ id => 2 })->single;
 my $Y = $schema->resultset('FareClass')->search({ id => 1 })->single;
 my $C = $schema->resultset('FareClass')->search({ id => 2 })->single;
 
-my $timetable1 = $schema->resultset('TimeTable')->searchTimetable(
+my $timetable1 = $schema->resultset('ViewTimeTable')->searchTimetable(
     dateOfDeparture => $date[0]->ymd,
     cityOfDeparture => $MOW->id,
     cityOfArrival   => $BCN->id,
 )->single;
 
-my $timetable2 = $schema->resultset('TimeTable')->searchTimetable(
+my $timetable2 = $schema->resultset('ViewTimeTable')->searchTimetable(
     cityOfDeparture => $BCN->id,
     cityOfArrival   => $MOW->id,
     dateOfDeparture => $date[1]->ymd
