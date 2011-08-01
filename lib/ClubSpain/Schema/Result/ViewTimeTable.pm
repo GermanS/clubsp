@@ -23,7 +23,10 @@ SELECT countryOfDeparture.id   as countryOfDeparureId,
        airportOfArrival.id   as airportOfArrivalId,
        airportOfArrival.name as airportOfArrivalName,
        flight.id as flightId,
-       timetable.id as timeatbleId
+       airline.id as airlineId,
+       timetable.id as timeatableId,
+       timetable.departure_date as dateOfDeparture,
+       CONCAT(airline.iata, ' ', flight.code, ' (', airportOfDeparture.iata, ' - ', airportOfArrival.iata, ')') as abbr
     FROM country   as countryOfDeparture,
          country   as countryOfArrival,
          city      as cityOfDeparture,
@@ -31,7 +34,8 @@ SELECT countryOfDeparture.id   as countryOfDeparureId,
          airport   as airportOfDeparture,
          airport   as airportOfArrival,
          flight    as flight,
-         timetable as timetable
+         timetable as timetable,
+         airline   as airline
     WHERE ( ( (
         airportOfDeparture.is_published     = 1
         AND countryOfDeparture.is_published = 1
@@ -51,8 +55,13 @@ SELECT countryOfDeparture.id   as countryOfDeparureId,
         AND flight.destination_airport_id  =airportOfArrival.id
         AND cityOfDeparture.country_id  =countryOfDeparture.id
         AND timetable.flight_id         =flight.id
+        AND flight.airline_id           =airline.id
     ) ) )
 ]);
+
+sub id              { shift->get_column('timeatableId'); }
+sub dateOfDeparture { shift->get_column('dateOfDeparture'); }
+sub name            { shift->get_column('abbr'); }
 
 1;
 
