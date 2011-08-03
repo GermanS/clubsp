@@ -46,7 +46,7 @@ sub searchDatesOfDeparture {
             result_class => 'ClubSpain::Schema::Result::TimeTable',
             select      => [ 'timeatableId', 'dateOfDeparture'],
             as          => [ qw(me.id me.departure_date) ],
-            order_by    => [ qw(dateOfDeparture) ]
+            group_by    => [ qw(dateOfDeparture) ]
         });
 }
 
