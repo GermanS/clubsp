@@ -178,13 +178,13 @@ table {
     border-right: none;
     border-left: none;
     border-bottom: 1px solid #d8d8d8;
-    color: #484848;
+    color: #333333;
     padding: 0.5em 0.25em;
     font-weight: bold; }
   table td {
-    background-color: #f8f8f8;
+    background-color: #f9f9f9;
     padding: 0.5em 0.3em;
-    color: #333333;
+    color: black;
     border-top: none;
     border-right: none;
     border-left: none;
