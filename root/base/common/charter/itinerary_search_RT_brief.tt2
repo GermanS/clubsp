@@ -4,7 +4,15 @@
            title      = "Поиск авиабилетов в Испанию" %]
 
     [% IF table %]
-        <h2>Стоимость авиабилетов [% cityOfDeparture1.name %] - [% cityOfArrival1.name %], [% cityOfDeparture2.name %] - [% cityOfArrival2.name %] </h2>
+        <h2>
+          Стоимость авиабилетов
+          [% cityOfDeparture1.name %] &rarr; [% cityOfArrival1.name %]
+          [% IF cityOfArrival1.name == cityOfDeparture2.name  %]
+              &rarr; [% cityOfArrival2.name %]
+          [% ELSE %]
+             [% cityOfDeparture2.name %] &rarr; [% cityOfArrival2.name %]
+          [% END %]
+        </h2>
 
         <div class="actions button-container">
             <div class="button-group">

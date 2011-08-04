@@ -3,7 +3,7 @@
            searchform = "common/charter/itinerary_search_form_OW.tt2"
            title      = "Поиск авиабилета в Испанию в одну сторону" %]
     [% IF iterator.count %]
-        <h2>Стоимость авиабилетов [% cityOfDeparture1.name %] - [% cityOfArrival1.name %],  вылет [% DateOfDeparture1 | html %]</h2>
+        <h2>Стоимость авиабилетов [% cityOfDeparture1.name %] &rarr; [% cityOfArrival1.name %], вылет [% DateOfDeparture1 | dmy %]</h2>
         [% INCLUDE common/charter/route_table.tt2 iterator = iterator %]
     [% END %]
 [% END %]

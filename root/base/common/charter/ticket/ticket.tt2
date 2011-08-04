@@ -6,14 +6,18 @@
     [% IF itinerary %]
         <h1>Стоимость авиабилета
             [% itinerary.timetable.flight.departure_airport.city.name | utf8 %]
-            -
+            &rarr;
             [% itinerary.timetable.flight.destination_airport.city.name | utf8 %]
 
             [% route = itinerary.children %]
             [% IF route %]
-                [% route.timetable.flight.departure_airport.city.name | utf8 %]
-                -
-                [% route.timetable.flight.destination_airport.city.name | utf8 %]
+                [% IF  route.timetable.flight.departure_airport.city.name == itinerary.timetable.flight.destination_airport.city.name %]
+                    &rarr; [% route.timetable.flight.destination_airport.city.name | utf8 %]
+                [% ELSE %]
+                    [% route.timetable.flight.departure_airport.city.name | utf8 %]
+                    &rarr;
+                    [% route.timetable.flight.destination_airport.city.name | utf8 %]
+                [% END %]
             [% END  %]
         </h1>
         [% INCLUDE TICKET_INFO itinerary = itinerary %]
@@ -40,7 +44,7 @@
 
 
 [% BLOCK TEXT %]
-<h3>Перелет [% itinerary.timetable.flight.departure_airport.city.name | utf8 %] - [% itinerary.timetable.flight.destination_airport.city.name | utf8 %]</h3>
+<h3>Перелет [% itinerary.timetable.flight.departure_airport.city.name | utf8 %] &rarr; [% itinerary.timetable.flight.destination_airport.city.name | utf8 %]</h3>
 <p>
 Время отправления [% itinerary.timetable.departure_date | date %] [% itinerary.timetable.departure_time | time %]
 из города [% itinerary.timetable.flight.departure_airport.city.name | utf8 %],

@@ -7,7 +7,15 @@
            searchform = "common/charter/itinerary_search_form_RT_simple.tt2"
            title      = title %]
     [% IF iterator.count %]
-        <h2>Стоимость авиабилетов [% cityOfDeparture1.name_ru %] - [% cityOfArrival1.name_ru %], [% cityOfDeparture2.name_ru %] - [% cityOfArrival2.name_ru %] </h2>
+        <h2>
+            Стоимость авиабилетов
+            [% cityOfDeparture1.name_ru %] &rarr; [% cityOfArrival1.name_ru %]
+            [% IF cityOfArrival1.name_ru == cityOfDeparture2.name_ru  %]
+                &rarr; [% cityOfArrival2.name_ru %]
+            [% ELSE %]
+                [% cityOfDeparture2.name_ru %] &rarr; [% cityOfArrival2.name_ru %]
+            [% END %]
+        </h2>
         <div class="actions button-container">
             <div class="button-group">
                 <a href="/charter/[% cityOfDeparture1.iata %]-[% cityOfArrival1.iata %]"       class="button" title="Показать стоимость авиабилетов в виде списка">Список</a>
