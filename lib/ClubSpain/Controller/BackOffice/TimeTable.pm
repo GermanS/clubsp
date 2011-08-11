@@ -119,7 +119,7 @@ sub update :Private {
             departure_date        => $c->request->param('DateOfDeparture'),
             departure_time        => $c->request->param('TimeOfDeparture'),
             arrival_date          => $c->request->param('DateOfArrival'),
-            arrival_time          => $c->request->param('TimeOfDeparture'),
+            arrival_time          => $c->request->param('TimeOfArrival'),
             is_published          => $c->stash->{'timetable'}->is_published,
         );
         $timetable->update();
