@@ -2,39 +2,85 @@
     <div id="bd">
         <div class="yui-gc">
           <div class="yui-u first">
-            <h1>Поиск авиабилетов Москва - Барселона</h1>
+            <h1>Поиск авиабилета <u>Москва</u> &harr; <u>Барселона</u></h1>
           </div>
-          <div class="yui-u">
-            <ul>
-              <li>Туда и обратно</li>
-              <li>В одну сторону</li>
-            </ul>
-          </div>
-        </div>
-        <div class="yui-g">
-          <div class="yui-u first">
-            <input type="text" name="CityOfDeparture" value="Москва">
-          </div>
-          <div class="yui-u">
-            <input type="text" name="CityOfDeparture" value="Барселона">
+          <div class="yui-u search-mode">
+            <div class="button-group">
+              <a href="#"
+                class="button primary"
+                title="Авиабилет туда и обратно">Туда и обратно</a>
+              <a href="#"
+                class="button primary"
+                title="Авиабилет в одну сторону">В одну сторону</a>
+            </div>
           </div>
         </div>
         <div class="yui-g">
-          [% INCLUDE calendar.tt2 %]
-        </div>
-        <div class="yui-gc">
-          <div class="yui-u first">
-            <h3>Количество пассажиров (Один) и класс обслуживания (Эконом)</h3>
+          <div class="filters">
+            <div class="filter persons" data-name="persons">
+              <u>Количество пассажиров</u>
+              <div class="dropdown" style="border: 3px solid blue;">
+                <div class="wrap" style="border: 2px solid red;">
+                <dl class="adults" data-group="adults">
+                  <dt>взрослые</dt>
+                  <dt class="tip"><br></dt>
+                  <dd data-value="1" class="one">один</dd>
+                  <dd data-value="2">двое</dd>
+                  <dd data-value="3">трое</dd>
+                  <dd data-value="4">четверо</dd>
+                  <dd data-value="5">пятеро</dd>
+                  <dd data-value="6">шестеро</dd>
+                  <dd data-value="7">семеро</dd>
+                  <dd data-value="8">восьмеро</dd>
+                </dl>
+                <dl class="children" data-group="children">
+                  <dt>дети</dt>
+                  <dt class="tip">до 12 лет, с местом</dt>
+                  <dd class="empty selected">нет</dd>
+                  <dd data-value="1">один</dd>
+                  <dd data-value="2">двое</dd>
+                  <dd data-value="3">трое</dd>
+                  <dd data-value="4">четверо</dd>
+                  <dd data-value="5">пятеро</dd>
+                  <dd data-value="6">шестеро</dd>
+                  <dd data-value="7">семеро</dd>
+                </dl>
+                <dl class="infants" data-group="infants">
+                  <dt>младенцы</dt>
+                  <dt class="tip">до 2 лет, без места</dt>
+                  <dd class="empty selected">нет</dd>
+                  <dd data-value="1">один</dd>
+                  <dd data-value="2">двое</dd>
+                  <dd data-value="3">трое</dd>
+                  <dd data-value="4">четверо</dd>
+                </dl>
+                </div>
+                <!--
+                <div class="excess">Общее количество пассажиров не может быть больше 8</div>
+                <div class="infants">Количество младенцев без места не может быть больше количества взрослых</div>
+                -->
+                <a href="#" class="a-button a-button-ready">Готово</a>
+
+              </div>
+            </div>
           </div>
-          <div class="yui-u">
+        </div>
+        <div class="yui-g">
+          <p>
+
+            и <u>класс обслуживания</u> (эконом)
+
+
             <a href="/flight/search"
               onclick="$(this).closest('form').submit(); return false;"
               class="button primary icon search"
               title="Поиск авиабилета">Поиск авиабилета</a>
-          </div>
         </div>
         <div class="yui-g">
-               [% content %]
+          [% INCLUDE calendar.tt2 %]
+        </div>
+        <div class="yui-g">
+              [% content %]
         </div>
     </div>
 [% END %]
