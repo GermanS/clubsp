@@ -1,81 +1,67 @@
 [% WRAPPER common/doc4_yui_t7.tt2  %]
     <div id="bd">
-        <div class="yui-gc">
-          <div class="yui-u first">
-            <h1>Поиск авиабилета <u>Москва</u> &harr; <u>Барселона</u></h1>
-          </div>
-          <div class="yui-u search-mode">
-            <div class="button-group">
-              <a href="#"
-                class="button primary"
-                title="Авиабилет туда и обратно">Туда и обратно</a>
-              <a href="#"
-                class="button primary"
-                title="Авиабилет в одну сторону">В одну сторону</a>
-            </div>
-          </div>
-        </div>
-        <div class="yui-g">
-          <div class="filters">
-            <div class="filter persons" data-name="persons">
-              <u>Количество пассажиров</u>
-              <div class="dropdown" style="border: 3px solid blue;">
-                <div class="wrap" style="border: 2px solid red;">
-                <dl class="adults" data-group="adults">
-                  <dt>взрослые</dt>
-                  <dt class="tip"><br></dt>
-                  <dd data-value="1" class="one">один</dd>
-                  <dd data-value="2">двое</dd>
-                  <dd data-value="3">трое</dd>
-                  <dd data-value="4">четверо</dd>
-                  <dd data-value="5">пятеро</dd>
-                  <dd data-value="6">шестеро</dd>
-                  <dd data-value="7">семеро</dd>
-                  <dd data-value="8">восьмеро</dd>
-                </dl>
-                <dl class="children" data-group="children">
-                  <dt>дети</dt>
-                  <dt class="tip">до 12 лет, с местом</dt>
-                  <dd class="empty selected">нет</dd>
-                  <dd data-value="1">один</dd>
-                  <dd data-value="2">двое</dd>
-                  <dd data-value="3">трое</dd>
-                  <dd data-value="4">четверо</dd>
-                  <dd data-value="5">пятеро</dd>
-                  <dd data-value="6">шестеро</dd>
-                  <dd data-value="7">семеро</dd>
-                </dl>
-                <dl class="infants" data-group="infants">
-                  <dt>младенцы</dt>
-                  <dt class="tip">до 2 лет, без места</dt>
-                  <dd class="empty selected">нет</dd>
-                  <dd data-value="1">один</dd>
-                  <dd data-value="2">двое</dd>
-                  <dd data-value="3">трое</dd>
-                  <dd data-value="4">четверо</dd>
-                </dl>
+        <div class="yui-g scheduled">
+            <div class="yui-u first">
+                <ul id="search-mode">
+                    <li data-value="RT" class="active">Туда и обратно</li>
+                    <li data-value="OW">В одну сторону</li>
+                </ul>
+                <div class="yui-u first departure">
+                    <input type="text" size="17" id="cityOfDeparture1" name="cityOfDeparture1" value="Москва       MOW">
+                    <input type="text" size="17" id="cityOfArrival1"   name="cityOfArrival1"   value="Барселона    BCN">
+                    <input type="text" size="17" id="dateOfDeparture1" name="dateOfDeparture1" value="08-09-2011">
                 </div>
-                <!--
-                <div class="excess">Общее количество пассажиров не может быть больше 8</div>
-                <div class="infants">Количество младенцев без места не может быть больше количества взрослых</div>
-                -->
-                <a href="#" class="a-button a-button-ready">Готово</a>
-
-              </div>
+                <div class="yui-u departure">
+                  <div id="route-2">
+                    <input type="text" size="17" id="cityOfDeparture2" name="cityOfDeparture2" value="Барселона    BCN">
+                    <input type="text" size="17" id="cityOfArrival2"   name="cityOfArrival2"   value="Москва       MOW">
+                    <input type="text" size="17" id="dateOfDeparture2" name="dateOfDeparture2" value="08-09-2011">
+                  </div>
+                </div>
+                <div class="button-group">
+                    <a href="#" class="button primary icon search">Найти авиабилет</a>
+                </div>
             </div>
-          </div>
+            <div class="yui-u">
+                <dl id="adults">
+                    <dt>Взрослые</dt>
+                    <dt class="tip">&nbsp;</dt>
+                    <dd data-value="1" class="active">один</dd>
+                    <dd data-value="2">двое</dd>
+                    <dd data-value="3">трое</dd>
+                    <dd data-value="4">четверо</dd>
+                    <dd data-value="5">пятеро</dd>
+                    <dd data-value="6">шестеро</dd>
+                </dl>
+                <dl id="children">
+                    <dt>Дети до 12 лет</dt>
+                    <dt class="tip" title="Дети сидят в кресле">(с местом)</dt>
+                    <dd data-value="0" class="active">нет</dd>
+                    <dd data-value="1">один</dd>
+                    <dd data-value="2">двое</dd>
+                    <dd data-value="3">трое</dd>
+                    <dd data-value="4">четверо</dd>
+                    <dd data-value="5">пятеро</dd>
+                </dl>
+                <dl id="infants">
+                    <dt>Дети до 2 лет</dt>
+                    <dt class="tip" title="Дети сидят на руках родителей">(без места)</dt>
+                    <dd data-value="0" class="active">нет</dd>
+                    <dd data-value="1">один</dd>
+                    <dd data-value="2">двое</dd>
+                    <dd data-value="3">трое</dd>
+                    <dd data-value="4">четверо</dd>
+                    <dd data-value="5">пятеро</dd>
+                </dl>
+                <dl id="cabin">
+                    <dt>Класс</dt>
+                    <dt class="tip">&nbsp;</dt>
+                    <dd class="active" data-value="Y">Эконом</dd>
+                    <dd data-value="C">Бизнес</dd>
+                </dl>
+            </div>
         </div>
-        <div class="yui-g">
-          <p>
 
-            и <u>класс обслуживания</u> (эконом)
-
-
-            <a href="/flight/search"
-              onclick="$(this).closest('form').submit(); return false;"
-              class="button primary icon search"
-              title="Поиск авиабилета">Поиск авиабилета</a>
-        </div>
         <div class="yui-g">
           [% INCLUDE calendar.tt2 %]
         </div>

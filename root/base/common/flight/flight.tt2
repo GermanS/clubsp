@@ -1,4 +1,6 @@
-[% WRAPPER common/flight/flight_wrapper.tt2 %]
+[% WRAPPER common/flight/flight_wrapper.tt2
+           javascript = "common/flight/flight.js.tt2"
+           include_datepicker = 1 %]
 
 
 [% END %]

@@ -1,0 +1,100 @@
+<script type="text/javascript">
+    $(function() {
+        search.init();
+
+        var now = new Date();
+        $("#dateOfDeparture1").DatePicker({
+            format:'d-m-Y',
+            date: $('#dateOfDeparture1').val(),
+            current: $('#dateOfDeparture1').val(),
+            starts: 1,
+            calendars: 1,
+            position: 'r',
+            extraHeight: 1, //remove origin divs
+            onBeforeShow: function() {
+                $('#dateOfDeparture1').DatePickerSetDate($('#dateOfDeparture1').val(), true);
+            },
+            onChange: function(formated, dates){
+                $('#dateOfDeparture1').val(formated);
+                $('#dateOfDeparture1').DatePickerHide();
+            },
+            onRender: function(date) {
+                return {
+                    disabled: ( date.valueOf() < now.getTime())
+//                    className: date.valueOf() == now2.valueOf() ? 'datepickerSpecial' : false
+                }
+            }
+        });
+
+        $("#dateOfDeparture2").DatePicker({
+            format:'d-m-Y',
+            date: $('#dateOfDeparture2').val(),
+            current: $('#dateOfDeparture2').val(),
+            starts: 1,
+            calendars: 1,
+            position: 'r',
+            extraHeight: 1, //remove origin divs
+            onBeforeShow: function() {
+                $('#dateOfDeparture2').DatePickerSetDate($('#dateOfDeparture1').val(), true);
+            },
+            onChange: function(formated, dates){
+                $('#dateOfDeparture2').val(formated);
+                $('#dateOfDeparture2').DatePickerHide();
+            },
+//            onRender: function(date) {
+//                return {
+//                    disabled: (date.valueOf() < new Date($('#dateOfDeparture1').val()).valueOf())
+//                    className: date.valueOf() == now2.valueOf() ? 'datepickerSpecial' : false
+//                }
+//            }
+        });
+    });
+
+    var search = {
+        init: function() {
+            var a = this;
+
+            $("#search-mode li").click(function() {
+                a.toggleMode($(this).attr("data-value"));
+                a.toggleRoute($(this).attr("data-value"));
+            });
+            $("#adults dd").click(function() {
+                a.toggleDD("#adults", $(this).attr('data-value'));
+            });
+            $("#children dd").click(function() {
+                a.toggleDD("#children", $(this).attr('data-value'));
+            });
+            $("#infants dd").click(function() {
+                a.toggleDD("#infants", $(this).attr('data-value'));
+            });
+            $("#cabin dd").click(function() {
+                a.toggleDD("#cabin", $(this).attr('data-value'));
+            });
+        },
+        toggleMode: function(value) {
+            $('#search-mode li').each(function() {
+                if ($(this).attr('data-value') == value) {
+                    $(this).addClass('active');
+                } else {
+                    $(this).removeClass('active');
+                }
+            });
+        },
+        toggleDD : function(parent, value) {
+            $(parent + " dd").each(function() {
+                if ($(this).attr('data-value') == value) {
+                    $(this).addClass('active');
+                } else {
+                    $(this).removeClass('active');
+                }
+            });
+        },
+        toggleRoute : function(value) {
+            if (value == 'OW') {
+                $("#route-2").css('visibility', 'hidden');
+            } else {
+                $("#route-2").css('visibility', 'visible');
+            }
+        }
+    };
+</script>
