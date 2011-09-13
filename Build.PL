@@ -35,6 +35,8 @@ my $build = ClubSpain::Build->new(
         'Text::GooglewikiFormat'                => '0',
         'XML::Compile'                          => '>=1.16',
         'XML::Compile::SOAP'                    => '>=2.16',
+        'XML::Compile::WSDL11'                  => 0,
+        'XML::Compile::Transport::SOAPHTTP'     => 0,
         'XML::LibXML'                           => '>=1.70',
     }
 );

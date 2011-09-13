@@ -18,3 +18,14 @@ name ClubSpain
         pg_enable_utf8 1
     </connect_info>
 </Model::DBIC>
+
+<XML::VipService::Config>
+    wsdlfile /path/to/wsdl/file
+    xsdfile  /path/to/xsd/file
+
+    locale ru
+    loginName login_name
+    password  pasword
+    salesPointCode sales_point_code
+    corporateClientCode corporate_client_code
+</XML::VipService::Config>

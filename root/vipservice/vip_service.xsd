@@ -1,0 +1,692 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.7-b01-. --><xs:schema xmlns:tns="http://ws.vip.server.xtrip.gridnine.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.vip.server.xtrip.gridnine.com/">
+
+<xs:element name="Exception" type="tns:Exception" />
+
+<xs:element name="bookingCancelParametersWS" type="tns:BookingCancelParameters" />
+
+<xs:element name="bookingCreateParametersWS" type="tns:BookingCreateParameters" />
+
+<xs:element name="bookingLoadParametersWS" type="tns:BookingLoadParameters" />
+
+<xs:element name="bookingOperationResultWS" type="tns:BookingCreateResult" />
+
+<xs:element name="cancelBooking" type="tns:cancelBooking" />
+
+<xs:element name="cancelBookingResponse" type="tns:cancelBookingResponse" />
+
+<xs:element name="createBooking" type="tns:createBooking" />
+
+<xs:element name="createBookingResponse" type="tns:createBookingResponse" />
+
+<xs:element name="customerWS" type="tns:Customer" />
+
+<xs:element name="dictionaryItemWS" type="tns:DictionaryItem" />
+
+<xs:element name="documentWS" type="tns:Document" />
+
+<xs:element name="fareRemarkWS" type="tns:FareRemark" />
+
+<xs:element name="fareRemarksSearchParametersWS" type="tns:FareRemarksSearchParameters" />
+
+<xs:element name="fareRemarksSearchResultWS" type="tns:FareRemarksSearchResult" />
+
+<xs:element name="flightSearchParametersWS" type="tns:FlightSearchParameters" />
+
+<xs:element name="flightSearchResultWS" type="tns:FlightSearchResult" />
+
+<xs:element name="flightSegmentWS" type="tns:FlightSegment" />
+
+<xs:element name="flightWS" type="tns:Flight" />
+
+<xs:element name="invocationContextWS" type="tns:InvocationContext" />
+
+<xs:element name="issueTickets" type="tns:issueTickets" />
+
+<xs:element name="issueTicketsParametersWS" type="tns:IssueTicketsParameters" />
+
+<xs:element name="issueTicketsResponse" type="tns:issueTicketsResponse" />
+
+<xs:element name="loadBooking" type="tns:loadBooking" />
+
+<xs:element name="loadBookingResponse" type="tns:loadBookingResponse" />
+
+<xs:element name="messageWS" type="tns:Message" />
+
+<xs:element name="passengerWS" type="tns:Passenger" />
+
+<xs:element name="passportWS" type="tns:Passport" />
+
+<xs:element name="priceElementWS" type="tns:PriceElement" />
+
+<xs:element name="productSegmentWS" type="tns:ProductSegment" />
+
+<xs:element name="productWS" type="tns:Product" />
+
+<xs:element name="reservationWS" type="tns:Reservation" />
+
+<xs:element name="routeSegmentWS" type="tns:RouteSegment" />
+
+<xs:element name="searchFlights" type="tns:searchFlights" />
+
+<xs:element name="searchFlightsResponse" type="tns:searchFlightsResponse" />
+
+<xs:element name="searchRemarks" type="tns:searchRemarks" />
+
+<xs:element name="searchRemarksResponse" type="tns:searchRemarksResponse" />
+
+<xs:element name="seatsPreferencesWS" type="tns:SeatsPreferences" />
+
+<xs:element name="selectFOP" type="tns:selectFOP" />
+
+<xs:element name="selectFOPParametersWS" type="tns:SelectFOPParameters" />
+
+<xs:element name="selectFOPResponse" type="tns:selectFOPResponse" />
+
+<xs:complexType name="createBooking">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:BookingCreateParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="InvocationContext">
+<xs:sequence>
+<xs:element name="locale" type="xs:string" />
+<xs:element name="loginName" type="xs:string" />
+<xs:element name="password" type="xs:string" />
+<xs:element name="salesPointCode" type="xs:string" />
+<xs:element name="corporateClientCode" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BookingCreateParameters">
+<xs:sequence>
+<xs:element name="customer" type="tns:Customer" />
+<xs:element name="flightToken" type="xs:base64Binary" />
+<xs:element name="passengers">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="passenger" type="tns:Passenger" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Customer">
+<xs:sequence>
+<xs:element name="name" type="xs:string" />
+<xs:element name="phone" type="xs:string" />
+<xs:element name="email" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Passenger">
+<xs:sequence>
+<xs:element name="passport" type="tns:Passport" />
+<xs:element name="type" type="tns:passengerType" />
+<xs:element name="bonusCardNumber" type="xs:string" minOccurs="0" />
+<xs:element name="bonusCardAirline" type="tns:DictionaryItem" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Passport">
+<xs:sequence>
+<xs:element name="firstName" type="xs:string" />
+<xs:element name="lastName" type="xs:string" />
+<xs:element name="middleName" type="xs:string" minOccurs="0" />
+<xs:element name="citizenship" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="expired" type="xs:dateTime" minOccurs="0" />
+<xs:element name="issued" type="xs:dateTime" minOccurs="0" />
+<xs:element name="number" type="xs:string" minOccurs="0" />
+<xs:element name="type" type="tns:passportType" minOccurs="0" />
+<xs:element name="birthday" type="xs:dateTime" minOccurs="0" />
+<xs:element name="gender" type="tns:gender" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="DictionaryItem">
+<xs:sequence>
+<xs:element name="code" type="xs:string" minOccurs="0" />
+<xs:element name="name" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createBookingResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BookingCreateResult">
+<xs:complexContent>
+<xs:extension base="tns:BaseResult">
+<xs:sequence>
+<xs:element name="reservation" type="tns:Reservation" minOccurs="0" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="BaseResult" abstract="true">
+<xs:sequence>
+<xs:element name="messages">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="message" type="tns:Message" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Reservation">
+<xs:sequence>
+<xs:element name="token" type="xs:base64Binary" minOccurs="0" />
+<xs:element name="bookingNumber" type="xs:string" minOccurs="0" />
+<xs:element name="status" type="tns:workflowStatus" minOccurs="0" />
+<xs:element name="customer" type="tns:Customer" minOccurs="0" />
+<xs:element name="products">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="product" type="tns:Product" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="recordLocator" type="xs:string" minOccurs="0" />
+<xs:element name="date" type="xs:dateTime" minOccurs="0" />
+<xs:element name="timeLimit" type="xs:dateTime" minOccurs="0" />
+<xs:element name="paymentType" type="tns:paymentType" minOccurs="0" />
+<xs:element name="documents">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="document" type="tns:Document" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Product">
+<xs:sequence>
+<xs:element name="carrier" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="eticket" type="xs:boolean" />
+<xs:element name="issueDate" type="xs:dateTime" minOccurs="0" />
+<xs:element name="status" type="tns:productStatus" minOccurs="0" />
+<xs:element name="number" type="xs:string" minOccurs="0" />
+<xs:element name="passenger" type="tns:Passenger" minOccurs="0" />
+<xs:element name="segments">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="segment" type="tns:ProductSegment" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="price">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="price" type="tns:PriceElement" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ProductSegment">
+<xs:sequence>
+<xs:element name="bookingClass" type="xs:string" minOccurs="0" />
+<xs:element name="serviceClass" type="tns:classOfService" minOccurs="0" />
+<xs:element name="fareBasis" type="xs:string" minOccurs="0" />
+<xs:element name="airline" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="board" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="dateBegin" type="xs:dateTime" minOccurs="0" />
+<xs:element name="dateEnd" type="xs:dateTime" minOccurs="0" />
+<xs:element name="flightNumber" type="xs:string" minOccurs="0" />
+<xs:element name="locationBegin" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="locationEnd" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="terminalBegin" type="xs:string" minOccurs="0" />
+<xs:element name="terminalEnd" type="xs:string" minOccurs="0" />
+<xs:element name="checkinTime" type="xs:dateTime" minOccurs="0" />
+<xs:element name="remarksSearchContext" type="xs:base64Binary" minOccurs="0" />
+<xs:element name="starting" type="xs:boolean" />
+<xs:element name="connected" type="xs:boolean" />
+<xs:element name="travelDuration" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="PriceElement">
+<xs:sequence>
+<xs:element name="elementType" type="tns:PriceElementType" minOccurs="0" />
+<xs:element name="passengerType" type="tns:passengerType" minOccurs="0" />
+<xs:element name="amount" type="xs:decimal" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Document">
+<xs:sequence>
+<xs:element name="created" type="xs:dateTime" minOccurs="0" />
+<xs:element name="name" type="xs:string" minOccurs="0" />
+<xs:element name="title" type="xs:string" minOccurs="0" />
+<xs:element name="contentType" type="tns:contentType" minOccurs="0" />
+<xs:element name="documentType" type="tns:documentType" minOccurs="0" />
+<xs:element name="content" type="xs:base64Binary" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Message">
+<xs:sequence>
+<xs:element name="details" type="xs:string" minOccurs="0" />
+<xs:element name="message" type="xs:string" minOccurs="0" />
+<xs:element name="type" type="tns:messageType" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelBooking">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:BookingCancelParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BookingCancelParameters">
+<xs:sequence>
+<xs:element name="reservationToken" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelBookingResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchFlights">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:FlightSearchParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FlightSearchParameters">
+<xs:sequence>
+<xs:element name="eticketsOnly" type="xs:boolean" />
+<xs:element name="mixedVendors" type="xs:boolean" />
+<xs:element name="preferredAirlines" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="airline" type="tns:DictionaryItem" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="route">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="segment" type="tns:RouteSegment" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="seats">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="seatPreferences" type="tns:SeatsPreferences" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="serviceClass" type="tns:classOfService" />
+<xs:element name="skipConnected" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RouteSegment">
+<xs:sequence>
+<xs:element name="date" type="xs:dateTime" />
+<xs:element name="locationBegin" type="tns:DictionaryItem" />
+<xs:element name="locationEnd" type="tns:DictionaryItem" />
+<xs:element name="timeBegin" type="xs:int" nillable="true" />
+<xs:element name="timeEnd" type="xs:int" nillable="true" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SeatsPreferences">
+<xs:sequence>
+<xs:element name="count" type="xs:int" />
+<xs:element name="passengerType" type="tns:passengerType" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchFlightsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:FlightSearchResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FlightSearchResult">
+<xs:complexContent>
+<xs:extension base="tns:BaseResult">
+<xs:sequence>
+<xs:element name="flights">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="flight" type="tns:Flight" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="Flight">
+<xs:sequence>
+<xs:element name="token" type="xs:base64Binary" minOccurs="0" />
+<xs:element name="carrier" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="eticket" type="xs:boolean" />
+<xs:element name="latinRegistration" type="xs:boolean" />
+<xs:element name="timeLimit" type="xs:dateTime" minOccurs="0" />
+<xs:element name="segments">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="segment" type="tns:FlightSegment" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="price">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="price" type="tns:PriceElement" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FlightSegment">
+<xs:sequence>
+<xs:element name="serviceClass" type="tns:classOfService" minOccurs="0" />
+<xs:element name="bookingClass" type="xs:string" minOccurs="0" />
+<xs:element name="airline" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="board" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="dateBegin" type="xs:dateTime" minOccurs="0" />
+<xs:element name="dateEnd" type="xs:dateTime" minOccurs="0" />
+<xs:element name="flightNumber" type="xs:string" minOccurs="0" />
+<xs:element name="locationBegin" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="locationEnd" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="remarksSearchContext" type="xs:base64Binary" minOccurs="0" />
+<xs:element name="starting" type="xs:boolean" />
+<xs:element name="connected" type="xs:boolean" />
+<xs:element name="travelDuration" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="issueTickets">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:IssueTicketsParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="IssueTicketsParameters">
+<xs:sequence>
+<xs:element name="reservationToken" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="issueTicketsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loadBooking">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:BookingLoadParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BookingLoadParameters">
+<xs:sequence>
+<xs:element name="bookingNumber" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loadBookingResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchRemarks">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:FareRemarksSearchParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FareRemarksSearchParameters">
+<xs:sequence>
+<xs:element name="remarksSearchContext" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchRemarksResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:FareRemarksSearchResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FareRemarksSearchResult">
+<xs:complexContent>
+<xs:extension base="tns:BaseResult">
+<xs:sequence>
+<xs:element name="remarks">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="remark" type="tns:FareRemark" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="FareRemark">
+<xs:sequence>
+<xs:element name="code" type="xs:string" minOccurs="0" />
+<xs:element name="content" type="xs:string" minOccurs="0" />
+<xs:element name="number" type="xs:string" minOccurs="0" />
+<xs:element name="title" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="selectFOP">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:SelectFOPParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SelectFOPParameters">
+<xs:sequence>
+<xs:element name="reservationToken" type="xs:base64Binary" />
+<xs:element name="paymentType" type="tns:paymentType" />
+<xs:element name="creditCardVendor" type="tns:cardVendor" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="selectFOPResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="passportType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="INTERNAL" />
+<xs:enumeration value="FOREIGN" />
+<xs:enumeration value="DIPLOMATIC" />
+<xs:enumeration value="BIRTHDAY_NOTIFICATION" />
+<xs:enumeration value="CERTIFICATEOFRELEASE" />
+<xs:enumeration value="SEAMANSID" />
+<xs:enumeration value="MILITARYID" />
+<xs:enumeration value="RESIDENCEPERMIT" />
+<xs:enumeration value="OTHER" />
+<xs:enumeration value="ALIENRESIDENTCARD" />
+<xs:enumeration value="PERMANENTRESIDENTCARD" />
+<xs:enumeration value="PASSPORT" />
+<xs:enumeration value="TRAVELDOCUMENT" />
+<xs:enumeration value="FACILITATIONDOCUMENT" />
+<xs:enumeration value="NATURALIZATIONCERTIFICATE" />
+<xs:enumeration value="BORDERCROSSINGCARD" />
+<xs:enumeration value="IDENTITYCARD" />
+<xs:enumeration value="PASSPORTLOSSCERTIFICATE" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="gender">
+<xs:restriction base="xs:string">
+<xs:enumeration value="MALE" />
+<xs:enumeration value="FEMALE" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="passengerType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ADULT" />
+<xs:enumeration value="ADULT_WITH_COMPANION" />
+<xs:enumeration value="ADULT_COMPANION" />
+<xs:enumeration value="CHILD" />
+<xs:enumeration value="CHILD_UNACCOMPANIED" />
+<xs:enumeration value="INFANT" />
+<xs:enumeration value="INFANT_WITH_SITE" />
+<xs:enumeration value="SENIOR" />
+<xs:enumeration value="YOUTH" />
+<xs:enumeration value="STUDENT" />
+<xs:enumeration value="FAMILY_HEAD" />
+<xs:enumeration value="FAMILY_ACCOMPANIED" />
+<xs:enumeration value="FAMILY_HEAD_WIFE" />
+<xs:enumeration value="FAMILY_CHILD" />
+<xs:enumeration value="FAMILY_INFANT" />
+<xs:enumeration value="MILITARY" />
+<xs:enumeration value="SEAMAN" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="workflowStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="TO_BE_ISSUED" />
+<xs:enumeration value="NEW" />
+<xs:enumeration value="COMPLETED" />
+<xs:enumeration value="CANCELLED" />
+<xs:enumeration value="REFUND" />
+<xs:enumeration value="EXCHANGE" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="productStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="SELL" />
+<xs:enumeration value="VOID" />
+<xs:enumeration value="REFUND" />
+<xs:enumeration value="EXCHANGE" />
+<xs:enumeration value="BOOKING" />
+<xs:enumeration value="VOID_BOOKING" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="classOfService">
+<xs:restriction base="xs:string">
+<xs:enumeration value="BUSINESS" />
+<xs:enumeration value="ECONOMY" />
+<xs:enumeration value="FIRST" />
+<xs:enumeration value="PREMIUM" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="PriceElementType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="TARIFF" />
+<xs:enumeration value="TAXES" />
+<xs:enumeration value="FEE" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="paymentType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="CASH" />
+<xs:enumeration value="INVOICE" />
+<xs:enumeration value="CREDIT_CARD" />
+<xs:enumeration value="CREDIT_CARD_AGENCY" />
+<xs:enumeration value="TICKET" />
+<xs:enumeration value="PTA" />
+<xs:enumeration value="INTERLINE" />
+<xs:enumeration value="CREDIT" />
+<xs:enumeration value="MTD" />
+<xs:enumeration value="MCO" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="contentType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="JPEG" />
+<xs:enumeration value="PNG" />
+<xs:enumeration value="GIF" />
+<xs:enumeration value="BINARY" />
+<xs:enumeration value="TEXT" />
+<xs:enumeration value="HTML" />
+<xs:enumeration value="XML" />
+<xs:enumeration value="PDF" />
+<xs:enumeration value="WORD" />
+<xs:enumeration value="EXCEL" />
+<xs:enumeration value="JASPERDESIGN" />
+<xs:enumeration value="JASPERPRINT" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="documentType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="INVOICE" />
+<xs:enumeration value="INVOICE1C" />
+<xs:enumeration value="OTHER" />
+<xs:enumeration value="RECEIPT" />
+<xs:enumeration value="SABREIUR" />
+<xs:enumeration value="SIRENALOG" />
+<xs:enumeration value="SIRENASSOD" />
+<xs:enumeration value="GABRIELRET" />
+<xs:enumeration value="TERMINALSCREEN" />
+<xs:enumeration value="TRAVELDOCUMENT" />
+<xs:enumeration value="XMLREPORT" />
+<xs:enumeration value="SIRENAXMLEXCHANGEFILE" />
+<xs:enumeration value="STOCKTRANSFERORDER" />
+<xs:enumeration value="DEBUG_RULES" />
+<xs:enumeration value="EXCHANGE_REFUND_REQUEST" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="messageType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="MESSAGE" />
+<xs:enumeration value="WARNING" />
+<xs:enumeration value="ERROR" />
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="cardVendor">
+<xs:restriction base="xs:string">
+<xs:enumeration value="VISA" />
+<xs:enumeration value="MASTERCARD" />
+<xs:enumeration value="AMEX" />
+<xs:enumeration value="JCB" />
+<xs:enumeration value="DINERS_CLUB" />
+<xs:enumeration value="AIR_TRAVEL_CARD" />
+<xs:enumeration value="CHARGEX_VISA" />
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
