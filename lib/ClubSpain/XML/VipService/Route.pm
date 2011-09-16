@@ -27,6 +27,18 @@ has 'locationEnd' => (
     isa => 'ClubSpain::XML::VipService::Location'
 );
 
+sub to_hash {
+    my $self = shift;
+
+    return {
+        date          => $self->date->iso8601(),
+        timeBegin     => $self->timeBegin,
+        timeEnd       => $self->timeEnd,
+        locationBegin => $self->locationBegin->to_hash(),
+        locationEnd   => $self->locationEnd->to_hash(),
+    };
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;
