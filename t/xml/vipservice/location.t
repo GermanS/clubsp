@@ -1,4 +1,4 @@
-use Test::More tests => 4;
+use Test::More tests => 5;
 
 use strict;
 use warnings;
@@ -12,3 +12,8 @@ my $location = ClubSpain::XML::VipService::Location->new(
 isa_ok($location, 'ClubSpain::XML::VipService::Location');
 is($location->code, 'MOW', 'got code');
 is($location->name, 'Moscow', 'got name');
+
+{
+    my $expect = { code => 'MOW', name => 'Moscow' };
+    is_deeply($location->to_hash(), $expect, 'got to_hash()');
+}
