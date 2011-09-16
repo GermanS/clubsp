@@ -16,6 +16,15 @@ has 'count' => (
     default  => 0,
 );
 
+sub to_hash {
+    my $self = shift;
+
+    return {
+        count         => $self->count,
+        passengerType => $self->passenger
+    };
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;
