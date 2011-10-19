@@ -4,6 +4,13 @@ use warnings;
 use utf8;
 use parent qw(DBIx::Class);
 
+sub sqlt_deploy_hook {
+    my ($self, $sqlt_table) = @_;
+    $sqlt_table->extra(
+        mysql_table_type => 'InnoDB',
+        mysql_charset    => 'utf8'
+    );
+}
 
 1;
 
