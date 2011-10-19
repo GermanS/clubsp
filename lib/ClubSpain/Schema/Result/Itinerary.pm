@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__->load_components(qw(ForceUTF8 Core PK::Auto));
+__PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('itinerary');
 __PACKAGE__->source_name('Itinerary');
 __PACKAGE__->add_columns(

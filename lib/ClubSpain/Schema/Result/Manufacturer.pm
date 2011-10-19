@@ -5,7 +5,7 @@ use utf8;
 use parent qw(ClubSpain::Schema::Result);
 
 
-__PACKAGE__->load_components(qw(ForceUTF8 Core PK::Auto));
+__PACKAGE__->load_components(qw(Core PK::Auto));
 __PACKAGE__->table('manufacturer');
 __PACKAGE__->source_name('Manufacturer');
 __PACKAGE__->add_columns(
