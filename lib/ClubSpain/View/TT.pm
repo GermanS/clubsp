@@ -84,6 +84,13 @@ __PACKAGE__->config(
             my $dt = $format->parse_datetime($value);
 
             return $dt->locale()->day_stand_alone_abbreviated()->[$dt->day_of_week_0];
+        },
+        'commify' => sub {
+            my $value = shift;
+            $value = reverse $value;
+            $value =~ s/(\d\d\d)(?=\d)(?!\d*\.)/$1 /g;
+            $value = reverse $value;
+            return $value;
         }
     }
 );
