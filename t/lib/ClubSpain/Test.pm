@@ -2,6 +2,7 @@ package ClubSpain::Test;
 
 use strict;
 use warnings;
+use utf8;
 
 BEGIN {
     use base qw(Test::Builder::Module);
@@ -51,9 +52,9 @@ sub init_schema {
          $config->{'Model::DBIC::Schema'}{'connect_info'}{'dsn'},
          $config->{'Model::DBIC::Schema'}{'connect_info'}{'user'},
          $config->{'Model::DBIC::Schema'}{'connect_info'}{'password'},
-#         {
-#             mysql_enable_utf8 => $config->{'Model::DBIC::Schema'}{'connect_info'}{'mysql_enable_utf8'}
-#         },
+         {
+             mysql_enable_utf8 => 1, #$config->{'Model::DBIC::Schema'}{'connect_info'}{'mysql_enable_utf8'}
+         },
     );
 
     $self->deploy_schema($schema, %args)
