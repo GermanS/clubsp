@@ -173,6 +173,54 @@ sub searchCitiesOfArrival2RT {
              ->searchCitiesOfArrival2(%params);
 }
 
+=head2 suggest($string);
+
+Поиск города по начальным буквам.
+Количество букв в строке должно быть не менее 3х.
+На входе:
+  $string - строка для поиска города
+
+=cut
+
+sub suggest {
+    my ($self, $string) = @_;
+
+    my $result;
+    return $result if ($string && length $string < 3);
+
+    if ( $string =~ m/^([a-z]*)$/i ) {
+        if (length $string == 3) {
+            $result =$self->_search_by_iata($string);
+        }
+
+        unless ($result && ( $result->can('count') && $result->count() )) {
+            $result = $self->_search_like_by_name($string);
+        }
+    } elsif ( $string =~ m/^([а-я])*$/i ) {
+        $result = $self->_search_like_by_name_ru($string);
+    }
+
+    return $result
+}
+
+sub _search_like_by_name {
+    my ($self, $string) = @_;
+
+    return $self->search({ name => \"LIKE '$string%'"}, {});
+}
+
+sub _search_like_by_name_ru {
+    my ($self, $string) = @_;
+
+    return $self->search({ name_ru => \"LIKE '$string%'"}, {});
+}
+
+sub _search_by_iata {
+    my ($self, $iata) = @_;
+
+    return $self->search({ iata => $iata }, {});
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;
