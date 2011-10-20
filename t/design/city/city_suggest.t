@@ -1,4 +1,4 @@
-use Test::More tests => 37;
+use Test::More tests => 41;
 use strict;
 use warnings;
 use utf8;
@@ -60,6 +60,31 @@ my $schema = ClubSpain::Test->init_schema();
         }
     }
 }
+
+#negative tests
+{
+    {
+        my $iterator = ClubSpain::Model::City->suggest(undef);
+        is($iterator, undef, 'got nothing to suggest');
+    }
+
+    {
+        my $iterator = ClubSpain::Model::City->suggest('mo');
+        is($iterator, undef, 'got nothing');
+    }
+
+    {
+        my $iterator = ClubSpain::Model::City->suggest('123');
+        is($iterator, undef, 'got nothing');
+    }
+
+    {
+        my $iterator = ClubSpain::Model::City->suggest('a1hkk');
+        is($iterator,  undef, 'got nothing');
+    }
+}
+
+
 
 
 sub is_MOW {

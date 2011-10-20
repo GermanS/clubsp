@@ -185,8 +185,9 @@ sub searchCitiesOfArrival2RT {
 sub suggest {
     my ($self, $string) = @_;
 
+    $string ||= '';
     my $result;
-    return $result if ($string && length $string < 3);
+    return $result if length($string) < 3;
 
     if ( $string =~ m/^([a-z]*)$/i ) {
         if (length $string == 3) {
