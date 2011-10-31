@@ -28,7 +28,7 @@ use_ok('ClubSpain::XML::VipService::Config');
 
 
     delete $params{'wsdlfile'} && delete $params{'xsdfile'};
-    is_deeply({ $config->context_hash}, { context => \%params }, 'got context hash');
+    is_deeply($config->to_hash,  \%params, 'got context hash');
 }
 
 =head
