@@ -173,7 +173,7 @@
 <xs:element name="messages">
 <xs:complexType>
 <xs:sequence>
-<xs:element name="message" type="tns:Message" maxOccurs="unbounded" />
+<xs:element name="message" type="tns:Message" minOccurs="0" maxOccurs="unbounded" />
 </xs:sequence>
 </xs:complexType>
 </xs:element>
