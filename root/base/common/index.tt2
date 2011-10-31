@@ -91,6 +91,7 @@
           <h3>Расписание прилетов в Москву</h3>
           [% INCLUDE common/charter/timetable/route.tt2 iterator = arrivals %]
         </div>
+        [% INCLUDE common/tfs.tt2 %]
         <!--
         <div class="yui-g logos">
           <p>
