@@ -27,6 +27,9 @@ var FareSearchCitiesOfArrival2RT   = 'xmlrpc.flight.fare.searchCitiesOfArrival2R
 var FareSearchDatesOfDeparture1RT  = 'xmlrpc.flight.fare.searchDatesOfDeparture1RT';
 var FareSearchDatesOfDeparture2RT  = 'xmlrpc.flight.fare.searchDatesOfDeparture2RT';
 
+/* City suggest */
+var FlightCitySuggest = 'xmlrpc.flight.city.suggest';
+
 var METHODS = [
     REQ_CountryOfDeparture,
     REQ_CityOfDeparture,
@@ -50,7 +53,8 @@ var METHODS = [
     FareSearchCitiesOfDeparture2RT,
     FareSearchCitiesOfArrival2RT,
     FareSearchDatesOfDeparture1RT,
-    FareSearchDatesOfDeparture2RT
+    FareSearchDatesOfDeparture2RT,
+    FlightCitySuggest
 ];
 var service = new rpc.ServiceProxy(URL, {
     asynchronous: true,
@@ -114,3 +118,4 @@ function updateList(element, initialValue, result) {
         element.change();
     }
 }
+
