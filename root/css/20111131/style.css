@@ -1,0 +1,90 @@
+.mono {
+  font-family: Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+  font-size: 90%; }
+
+.top-borders {
+  border-top: 1px solid #d8d8d8;
+  border-right: 1px solid #d8d8d8;
+  border-left: 1px solid #d8d8d8;
+  width: 100%; }
+  .top-borders th {
+    background-color: #eaeaea;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid #d8d8d8;
+    border-left: none;
+    color: #333;
+    padding: .5em .25em;
+    font-weight: bold; }
+  .top-borders td {
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid #e1e1e1;
+    border-left: none;
+    color: #000;
+    padding: .5em .3em;
+    vertical-align: middle; }
+    .top-borders td.icon {
+      width: 1.3em; }
+    .top-borders td.icons4 {
+      width: 7.8em; }
+    .top-borders td.price {
+      margin: 0;
+      padding: .4em !important;
+      font-size: 3em;
+      font-weight: bold;
+      text-align: center; }
+
+.scheduled ul {
+  position: relative;
+  margin: 1em 0 2em 0; }
+  .scheduled ul li {
+    padding: 4px 10px;
+    list-style-type: none;
+    margin: 0;
+    display: inline; }
+    .scheduled ul li:hover {
+      background-color: #e1e7ed;
+      color: #2b587a;
+      cursor: pointer; }
+    .scheduled ul li.active {
+      background-color: #6d8fb3;
+      border: 1px solid #3b6798;
+      color: #fff; }
+.scheduled dl {
+  float: left;
+  padding: .5em 0;
+  margin: 0 .5em; }
+  .scheduled dl dt {
+    padding: 4px 10px;
+    margin: 0; }
+    .scheduled dl dt.tip {
+      font-size: 11px;
+      margin: 0; }
+.scheduled dd {
+  padding: 4px 10px;
+  color: #2b587a;
+  margin: 0; }
+  .scheduled dd:hover {
+    background-color: #e1e7ed;
+    color: #2b587a;
+    cursor: pointer; }
+  .scheduled dd.active {
+    background-color: #6d8fb3;
+    border: 1px solid #3b6798;
+    color: #fff; }
+  .scheduled dd.disabled {
+    opacity: 0.3; }
+.scheduled .departure {
+  margin: 0 .5em 0 0;
+  padding: 0;
+  background-color: #eee;
+  border: 1px solid #ccc; }
+  .scheduled .departure input {
+    width: 10em;
+    font: 1.5em "Courier New", "Lucida Console", monospace;
+    font-weight: bold;
+    color: black;
+    margin: 0.25em 0.5em .25em 1.25em;
+    padding: 0.5em 0.5em .25em 0.25em;
+    height: 1.5em; }
