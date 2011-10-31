@@ -17,18 +17,16 @@ has 'xsdfile'  => ( is => 'ro', required => 1 );
 
 =cut
 
-sub context_hash {
+sub to_hash {
     my $self = shift;
 
-    return (
-        context => {
-            locale         => $self->locale,
-            loginName      => $self->loginName,
-            password       => $self->password,
-            salesPointCode => $self->salesPointCode,
-            corporateClientCode => $self->corporateClientCode
-        }
-    );
+    return  {
+        locale         => $self->locale,
+        loginName      => $self->loginName,
+        password       => $self->password,
+        salesPointCode => $self->salesPointCode,
+        corporateClientCode => $self->corporateClientCode
+    };
 }
 
 
