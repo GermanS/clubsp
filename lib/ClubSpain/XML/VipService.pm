@@ -2,6 +2,7 @@ package ClubSpain::XML::VipService;
 use namespace::autoclean;
 use Moose;
 use ClubSpain::XML::VipService::Config;
+use ClubSpain::XML::VipService::Response::FlightSearch;
 use XML::Compile::WSDL11;
 use XML::Compile::SOAP11;
 use XML::Compile::Transport::SOAPHTTP;
@@ -25,23 +26,43 @@ sub BUILD {
 }
 
 
-=head2 searchFlights(%params)
+=head2 searchFlights($flight_criteria)
 
 Поиск авиабилета по указаным критериям.
 
 На входе:
+
+    $flight_criteria - Объект типа VipService::Flight
+
 =cut
 
 sub searchFlights {
-    my ($self, %params) = @_;
+    my ($self, $criteria) = @_;
 
-    my $searchFlights = $self->wsdl->compileClient('searchFlights');
+    my $searchFlights = $self->wsdl->compileClient('searchFlights', validate => 1);
     my ($answer, $trace) = $searchFlights->(
-        $self->config->context_hash(),
-
+        parameters => {
+#            context    => $self->config->to_hash(),
+            context => {
+                locale     => 'ru',
+                loginName  => 'systema@vremiatour.ru',
+                password   => 'systema@vremiatour.ru',
+                salesPointCode => '001',
+                corporateClientCode => 'VREMYA_TUR'
+            },
+            parameters => $criteria->to_hash(),
+        }
     );
 
-    return $answer;
+    use Data::Dumper;
+    warn Dumper($trace);
+    warn Dumper($answer);
+    warn $trace->printResponse;
+
+    return ClubSpain::XML::VipService::Response::FlightSearch->new(
+        response => $answer
+    );
+#    return $answer;
 }
 
 
