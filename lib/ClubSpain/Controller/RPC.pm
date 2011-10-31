@@ -97,4 +97,25 @@ sub _getFareClassList : Private {
     return @res;
 }
 
+sub _suggest : Private {
+    my ($self, $c, $string) = @_;
+
+    my $iterator = $c->model('City')->suggest($string);
+
+    my @res = ();
+    return @res unless $iterator;
+
+    while (my $city = $iterator->next) {
+        push @res, {
+            id   => $city->id,
+            iata => $city->iata,
+            name => $city->name,
+            name_ru => $city->name_ru,
+            country => $city->country->name,
+        };
+    }
+
+    return @res;
+}
+
 1;
