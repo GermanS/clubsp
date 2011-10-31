@@ -51,4 +51,17 @@ sub getFareClassList : JSONRPCLocal {
     $c->stash(jsonrpc => \@list);
 }
 
+=head2 suggest()
+
+    Поиск города по первым буквам русскими, латинским или коду iata
+
+=cut
+
+sub suggest : JSONRPCLocal {
+    my ($self, $c, $string) = @_;
+
+    my @list = $self->_suggest($c, $string);
+    $c->stash(jsonrpc => \@list);
+}
+
 1;
