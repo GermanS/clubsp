@@ -61,10 +61,6 @@
                 </dl>
             </div>
         </div>
-
-        <div class="yui-g">
-          [% INCLUDE calendar.tt2 %]
-        </div>
         <div class="yui-g">
               [% content %]
         </div>
