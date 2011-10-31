@@ -55,7 +55,7 @@
                             x
                         [% END %]
                     </td>
-                  [% END %]
+                    [% END %]
                 </tr>
                 <tr>
                 [% END %]
