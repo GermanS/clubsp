@@ -10,16 +10,20 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
 
-    <script src="https://www.google.com/jsapi?key=ABQIAAAAk9XY8p3VVsVIkOgvllx3ARQNzEQESdwAkPAD_jPMw0F3esb16BRoh5aOl9PW6Ulg3MxCccxe8Nq3_g" type="text/javascript"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    [% IF include_jquery_ui %]
+        [% INCLUDE jquery_ui.tt2 %]
+    [% END %]
     <script type="text/javascript" src="/jscript/rpc.js"></script>
     <script type="text/javascript" src="/jscript/request.js"></script>
 
+    <!--
     <link rel="stylesheet" href="/jscript/tipsy/tipsy.css" type="text/css" />
     <script type="text/javascript" src="/jscript/tipsy/jquery.tipsy.js"></script>
     <script type='text/javascript'>
         $(function() { $('.tip').tipsy(); });
     </script>
+    -->
 
     [% IF include_datepicker %]
         [% INCLUDE datepicker.tt2 %]
