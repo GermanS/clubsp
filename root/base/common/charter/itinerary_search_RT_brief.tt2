@@ -1,31 +1,16 @@
 [% WRAPPER common/charter/itinerary_wrapper.tt2
            javascript = "common/charter/itinerary.js.simple.tt2"
-           searchform = "common/charter/itinerary_search_form_RT_brief.tt2"
+           searchform = "common/charter/itinerary_search_form_RT_simple.tt2"
            title      = "Поиск авиабилетов в Испанию" %]
 
     [% IF table %]
-        <h2>
-          Стоимость авиабилетов
-          [% cityOfDeparture1.name %] &rarr; [% cityOfArrival1.name %]
-          [% IF cityOfArrival1.name == cityOfDeparture2.name  %]
-              &rarr; [% cityOfArrival2.name %]
-          [% ELSE %]
-             [% cityOfDeparture2.name %] &rarr; [% cityOfArrival2.name %]
-          [% END %]
-        </h2>
-
-        <div class="actions button-container">
-            <div class="button-group">
-                <a href="/charter/[% cityOfDeparture1.iata %]-[% cityOfArrival1.iata %]"       class="button" title="Показать стоимость авиабилетов в виде списка">Список</a>
-                <a href="/charter/[% cityOfDeparture1.iata %]-[% cityOfArrival1.iata %]/brief" class="button" title="Показать стоимость авиабилетов в виде таблицы">Таблица</a>
-            </div>
-        </div>
+        [% INCLUDE common/charter/itinerary_header_above_results.tt2 %]
         [% INCLUDE results table = table, days = days %]
     [% END %]
 [% END %]
 
 [% BLOCK results %]
-    <table>
+    <table class="zebra-striped mono top-borders">
         <thead>
             <tr>
                 <th>Дата вылета</th>

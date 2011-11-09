@@ -1,41 +1,52 @@
-<div class="yui-g">
-    <h1>Стоимость авиабилетов на чартерный рейс в Испанию туда и обратно</h1>
-</div>
-<div class="yui-gb">
-    <form method="post" action="/charter/viewRT">
-        <div class="yui-u first">
-            <fieldset title="Первый сегмент">
+<h1>Стоимость авиабилетов на чартерный рейс</h1>
+<ul class="tabs">
+    <li class="active"><a href="/charter/viewRT">Туда и обратно</a></li>
+    <li><a href="/charter/viewOW">В одну сторону</a></li>
+</ul>
+<form method="post" class="form-stacked" action="/charter/viewRT">
+    <div class="row">
+        <div class="span5">
+            <div class="clearfix">
                 <label for="CityOfDeparture1">Город отправления</label>
-                <select name="CityOfDeparture1"></select>
-
-                <label for="CityOfArrival1">Город прибытия</label>
-                <select name="CityOfArrival1"></select>
-            </fieldset>
-        </div>
-        <div class="yui-u">
-            <fieldset title="Второй сегмент">
-                <label for="CityOfDeparture2">Город отправления</label>
-                <select name="CityOfDeparture2"></select>
-
-                <label for="CityOfArrival2">Город прибытия</label>
-                <select name="CityOfArrival2"></select>
-
-                <label></label>
-                <div class="button-group">
-                    <a href="/charter/viewRT"
-                       onclick="$(this).closest('form').submit(); return false;"
-                       class="button primary icon search"
-                       title="Стоимость авиабилетов в Испанию">Показать стоимость авиабилетов</a>
+                <div class="input">
+                    <select name="CityOfDeparture1" class="span5"></select>
                 </div>
-            </fieldset>
+            </div>
+            <div class="clearfix">
+                <label for="CityOfArrival1">Город прибытия</label>
+                <div class="input">
+                    <select name="CityOfArrival1" class="span5"></select>
+                </div>
+            </div>
         </div>
-        <div class="yui-u">  </div>
-    </form>
-    <form id="preselect">
-        <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
-        <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
+        <div class="span5">
+            <div class="clearfix">
+                <label for="CityOfDeparture2">Город отправления</label>
+                <div class="input">
+                    <select name="CityOfDeparture2" class="span5"></select>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label for="CityOfArrival2">Город прибытия</label>
+                <div class="input">
+                    <select name="CityOfArrival2" class="span5"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset1">
+            <a href="/charter/viewRT"
+               onclick="$(this).closest('form').submit(); return false;"
+               class="btn large primary"
+               title="Поиск авиабилета в Испанию">Найти авиабилет</a>
+        </div>
+    </div>
+</form>
+<form id="preselect">
+    <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
+    <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
 
-        <input type="hidden" name="_CityOfDeparture2" value="[% CityOfDeparture2 %]" />
-        <input type="hidden" name="_CityOfArrival2"   value="[% CityOfArrival2 %]" />
-    </form>
-</div>
+    <input type="hidden" name="_CityOfDeparture2" value="[% CityOfDeparture2 %]" />
+    <input type="hidden" name="_CityOfArrival2"   value="[% CityOfArrival2 %]" />
+</form>

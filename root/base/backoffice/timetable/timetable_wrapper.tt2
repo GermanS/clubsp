@@ -1,36 +1,44 @@
 [% WRAPPER backoffice/page.tt2 javascript="backoffice/timetable/timetable.js.tt2" %]
-    <div id="bd">
-        <div class="yui-g">
-            <h2>Редактирование расписания</h2>
-        </div>
-        <div class="yui-gf">
-            <div class="yui-u first">
-                <form method="post" action="/backoffice/timetable/browse">
-                    <fieldset title="Отправление">
-                        <label for="CityOfDeparture">Город отправления</label>
+
+    <h1>Редактирование расписания</h1>
+    <div class="row">
+        <div class="span4">
+            <form method="post" action="/backoffice/timetable/browse" class="form-stacked">
+                <div class="clearfix">
+                    <label for="CityOfDeparture">Город отправления</label>
+                    <div class="input">
                         <select name="CityOfDeparture"></select>
-
-                        <label for="CityOfArrival">Город прибытия</label>
-                        <select name="CityOfArrival"></select>
-
-                        <label for="Flight">Рейс</label>
-                        <select name="Flight"></select>
-                    </fieldset>
-                    <label></label>
-                    <div class="button-group">
-                        <input type="submit" class="button primary" value="Найти расписание" />
-                        <input type="submit" class="button"value="Добавить" onclick="this.form.action='/backoffice/timetable/create'; return true;">
                     </div>
-                </form>
-                <form id="preselect">
-                    <input type="hidden" name="_CityOfDeparture" value="[% CityOfDeparture %]" />
-                    <input type="hidden" name="_CityOfArrival" value="[% CityOfArrival %]" />
-                    <input type="hidden" name="_Flight" value="[% Flight %]" />
-                </form>
-            </div>
-            <div class="yui-u">
-                [% content %]
-            </div>
+                </div>
+
+                <div class="clearfix">
+                    <label for="CityOfArrival">Город прибытия</label>
+                    <div class="input">
+                        <select name="CityOfArrival"></select>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <label for="Flight">Рейс</label>
+                    <div class="input">
+                        <select name="Flight"></select>
+                    </div>
+                </div>
+                <p>
+                    <input type="submit" class="btn info" value="Найти" />
+                    <input type="submit" class="btn"value="Добавить" onclick="this.form.action='/backoffice/timetable/create'; return true;">
+                </p>
+            </form>
+            <form id="preselect">
+                <input type="hidden" name="_CityOfDeparture" value="[% CityOfDeparture %]" />
+                <input type="hidden" name="_CityOfArrival" value="[% CityOfArrival %]" />
+                <input type="hidden" name="_Flight" value="[% Flight %]" />
+            </form>
+        </div>
+        <div class="span12">
+            [% content %]
         </div>
     </div>
+
 [% END %]
+

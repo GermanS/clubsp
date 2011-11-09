@@ -1,5 +1,7 @@
 ---
-id: cityForm
+attributes:
+    id: cityForm
+    class: form-stacked
 
 load_config_file:
   - backoffice/city_popup.yml
@@ -8,6 +10,8 @@ elements:
   - type: Text
     name: name
     label: Аэропорт
+    attrs:
+        class: span12
     filters:
       - TrimEdges
     constraints:
@@ -16,6 +20,8 @@ elements:
   - type: Text
     name: iata
     label: Код IATA (3 буквы)
+    attrs:
+        class: span2
     filters:
       - TrimEdges
     constraints:
@@ -24,6 +30,8 @@ elements:
   - type: Text
     name: icao
     label: Код ICAO (4 буквы)
+    attrs:
+        class: span2
     filters:
       - TrimEdges
     constraints:
@@ -33,4 +41,4 @@ elements:
     name: submit
     name: Редактировать аэропорт
     attrs:
-      class: button primary
+      class: btn primary

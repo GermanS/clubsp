@@ -1,6 +1,6 @@
 [% WRAPPER backoffice/flight/flight_wrapper.tt2 %]
     [% IF iterator.count %]
-        <table>
+        <table class="zebra-striped mono top-borders">
             <tr>
                 <th> </th>
                 <th>Рейс</th>

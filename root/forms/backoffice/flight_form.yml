@@ -1,5 +1,7 @@
 ---
-id: flightForm
+attributes:
+    id: flightForm
+    class: form-stacked
 
 load_config_file:
   - backoffice/airline_popup.yml
@@ -26,6 +28,8 @@ elements:
   - type: Text
     name: code
     label: Номер рейса (3-4 цифры)
+    attrs:
+      class: mini
     filters:
       - TrimEdges
     constraints:
@@ -35,4 +39,4 @@ elements:
     name: submit
     value: Редактировать маршрут
     attrs:
-      class: button primary
+      class: btn primary

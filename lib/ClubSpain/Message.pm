@@ -35,7 +35,7 @@ use Moose;
 use namespace::autoclean;
 extends 'ClubSpain::Message';
 
-has 'class' => ( is => 'ro', default => 'ok' );
+has 'class' => ( is => 'ro', default => 'success' );
 
 
 

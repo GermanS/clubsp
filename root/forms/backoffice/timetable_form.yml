@@ -1,5 +1,7 @@
 ---
-id: timetableForm
+attributes:
+    id: timetableForm
+    class: form-stacked
 
 load_config_file:
   - backoffice/airplane_popup.yml
@@ -17,6 +19,8 @@ elements:
   - type: Text
     name: DateOfDeparture
     label: Дата отправления (ГГГГ-ММ-ДД)
+    attrs:
+        class: small
     filters:
       - TrimEdges
     constraints:
@@ -25,6 +29,8 @@ elements:
   - type: Text
     name: TimeOfDeparture
     label: Время отправления (ЧЧ:ММ)
+    attrs:
+        class: mini
     filters:
       - TrimEdges
     constraints:
@@ -33,6 +39,8 @@ elements:
   - type: Text
     name: DateOfArrival
     label: Дата прибытия (ГГГГ-ММ-ДД)
+    attrs:
+        class: small
     filters:
       - TrimEdges
     constraints:
@@ -41,6 +49,8 @@ elements:
   - type: Text
     name: TimeOfArrival
     label: Время прибытия (ЧЧ:ММ)
+    attrs:
+        class: mini
     filters:
       - TrimEdges
     constraints:
@@ -50,5 +60,5 @@ elements:
     name: submit
     value: Редактировать расписание
     attrs:
-      class: button primary
+      class: btn primary
 

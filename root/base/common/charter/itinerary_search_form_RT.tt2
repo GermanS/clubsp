@@ -1,49 +1,66 @@
-<div class="yui-g">
-    <h2>Поиск авиабилета на чартерные рейсы</h2>
-</div>
-<div class="yui-gb">
-    <form method="post" action="/charter/searchRT">
-        <div class="yui-u first">
-            <fieldset title="Первый сегмент">
-                <label for="CityOfDeparture1">Город отправления</label>
-                <select name="CityOfDeparture1"></select>
-
-                <label for="CityOfArrival1">Город прибытия</label>
-                <select name="CityOfArrival1"></select>
-
-                <label for="DateOfDeparture1">Дата отправления</label>
-                <select name="DateOfDeparture1"></select>
-            </fieldset>
-        </div>
-        <div class="yui-u">
-            <fieldset title="Второй сегмент">
-                <label for="CityOfDeparture2">Город отправления</label>
-                <select name="CityOfDeparture2"></select>
-
-                <label for="CityOfArrival2">Город прибытия</label>
-                <select name="CityOfArrival2"></select>
-
-                <label for="DateOfDeparture2">Дата вылета</label>
-                <select name="DateOfDeparture2"></select>
-
-                <label></label>
-                <div class="button-group">
-                    <a href="/charter/searchRT"
-                       onclick="$(this).closest('form').submit(); return false;"
-                       class="button primary icon search"
-                       title="Поиск авиабилета в Испанию">Поиск авиабилета</a>
+<h1>Поиск авиабилета на чартерные рейсы</h1>
+<ul class="tabs">
+    <li class="active"><a href="/charter/searchRT">Туда и обратно</a></li>
+    <li><a href="/charter/searchOW">В одну сторону</a></li>
+</ul>
+<form method="post" class="form-stacked" action="/charter/searchRT">
+    <div class="row">
+        <div class="span5">
+            <div class="clearfix">
+                <label for="CityOfDeparture1">Город вылета</label>
+                <div class="input">
+                    <select name="CityOfDeparture1" id="CityOfDeparture1" class="span5"></select>
                 </div>
-            </fieldset>
+            </div>
+            <div class="clearfix">
+                <label for="CityOfArrival1">Город прилета</label>
+                <div class="input">
+                    <select name="CityOfArrival1" id="CityOfArrival1" class="span5"></select>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label for="DateOfDeparture1">Дата вылета</label>
+                <div class="input">
+                    <select name="DateOfDeparture1" id="DateOfDeparture1" class="span5"></select>
+                </div>
+            </div>
         </div>
-        <div class="yui-u">  </div>
-    </form>
-    <form id="preselect">
-        <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
-        <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
-        <input type="hidden" name="_DateOfDeparture1" value="[% DateOfDeparture1 %]" />
+        <div class="span5">
+            <div class="clearfix">
+                <label for="CityOfDeparture2">Город вылета</label>
+                <div class="input">
+                    <select name="CityOfDeparture2" id="CityOfDeparture2" class="span5"></select>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label for="CityOfArrival2">Город прилета</label>
+                <div class="input">
+                    <select name="CityOfArrival2" id="CityOfArrival2" class="span5"></select>
+                </div>
+            </div>
+            <div class="clearfix">
+                <label for="DateOfDeparture2">Дата вылета</label>
+                <div class="input">
+                    <select name="DateOfDeparture2" id="DateOfDeparture2" class="span5"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset1">
+            <a href="/charter/searchRT"
+               onclick="$(this).closest('form').submit(); return false;"
+               class="btn large primary"
+               title="Поиск авиабилета в Испанию">Найти авиабилет</a>
+        </div>
+    </div>
+</form>
+<form id="preselect">
+    <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
+    <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
+    <input type="hidden" name="_DateOfDeparture1" value="[% DateOfDeparture1 %]" />
 
-        <input type="hidden" name="_CityOfDeparture2" value="[% CityOfDeparture2 %]" />
-        <input type="hidden" name="_CityOfArrival2"   value="[% CityOfArrival2 %]" />
-        <input type="hidden" name="_DateOfDeparture2" value="[% DateOfDeparture2 %]" />
-    </form>
-</div>
+    <input type="hidden" name="_CityOfDeparture2" value="[% CityOfDeparture2 %]" />
+    <input type="hidden" name="_CityOfArrival2"   value="[% CityOfArrival2 %]" />
+    <input type="hidden" name="_DateOfDeparture2" value="[% DateOfDeparture2 %]" />
+</form>

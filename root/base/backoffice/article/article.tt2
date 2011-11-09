@@ -3,7 +3,7 @@
         [% message %]
     [% END %]
 
-    <table>
+    <table class="zebra-striped mono top-borders">
         [% INCLUDE header article = article %]
         [% WHILE (item = iterator.next) %]
             [% INCLUDE row article = item %]

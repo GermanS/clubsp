@@ -1,7 +1,3 @@
-[% WRAPPER common/doc4_yui_t7.tt2  %]
-    <div id="bd">
-        <div class="yui-g">
-            [% content %]
-        </div>
-    </div>
+[% WRAPPER common/doc4_yui_t5.tt2  %]
+    [% content %]
 [% END %]

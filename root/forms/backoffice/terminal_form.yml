@@ -1,5 +1,7 @@
 ---
-id: terminalForm
+attributes:
+    id: terminalForm
+    class: form-stacked
 
 load_config_file:
   - backoffice/airport_popup.yml
@@ -8,6 +10,8 @@ elements:
   - type: Text
     name: name
     label: Терминал
+    attrs:
+        class: span12
     filters:
       - TrimEdges
     constraints:
@@ -17,4 +21,4 @@ elements:
     name: submit
     value: Редактировать терминал
     attrs:
-      class: button primary
+      class: btn primary

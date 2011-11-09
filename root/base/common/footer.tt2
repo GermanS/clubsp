@@ -1,21 +1,3 @@
-<div class="yui-g">
-    <div class="yui-g first">
-        <div class="yui-u first">
-            <h6>Сервисы сайта</h6>
-            <a href="/" title="Поиск авиабилетов в Испанию">Авиабилеты в Испанию</a>
-        </div>
-        <div class="yui-u">
-            <h6>Информация</h6>
-            <a href="/article/2">Контакты</a>
-            <a href="/article/2">Лицензии и сертификаты</a>
-            <a href="/article/2">Партнеры</a>
-        </div>
-    </div>
-    <div class="yui-g">
-        <div class="yui-u first"> </div>
-        <div class="yui-u">
-          [% INCLUDE common/stats/analytics.tt2 %]
-          [% INCLUDE common/stats/yandex.tt2 %]
-        </div>
-    </div>
-</div>
+<footer>
+    <p>Москва, ул. Ивана Бабушкина 16, тел. +7 (495) 792-58-38, 789-65-58 &copy; aviabroker.com (2011)</p>
+</footer>

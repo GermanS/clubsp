@@ -1,50 +1,72 @@
-[% WRAPPER backoffice/doc4_yui_t7.tt2 javascript="backoffice/flight/flight.js.tt2" %]
-    <div id="bd">
-        <div class="yui-g">
-            <h2>Редактирование маршрута</h2>
-        </div>
-        <div class="yui-gf">
-            <div class="yui-u first">
-                <form method="post" action="/backoffice/flight/browse">
-                    <fieldset title="Отправление">
+[% WRAPPER backoffice/page.tt2 javascript="backoffice/flight/flight.js.tt2" %]
+
+    <h1>Редактирование маршрута</h1>
+    <div class="row">
+        <div class="span4">
+            <form method="post" action="/backoffice/flight/browse" class="form-stacked">
+                <fieldset title="Отправление">
+                    <div class="clearfix">
                         <label for="CountryOfDeparture">Страна отправления</label>
-                        <select name="CountryOfDeparture"></select>
-
-                        <label for="CityOfDeparture">Город отправления</label>
-                        <select name="CityOfDeparture"></select>
-
-                        <label for="AirportOfDeparture">Аэропорт отправления</label>
-                        <select name="AirportOfDeparture"></select>
-                    </fieldset>
-                    <fieldset title="Прибытие">
-                        <label for="CountryOfArrival">Страна прибытия</label>
-                        <select name="CountryOfArrival"></select>
-
-                        <label for="CityOfArrival">Город прибытия</label>
-                        <select name="CityOfArrival"></select>
-
-                        <label for="AirportOfArrival">Аэропорт прибытия</label>
-                        <select name="AirportOfArrival"></select>
-                    </fieldset>
-                    <label />
-                    <div class="button-group">
-                        <input type="submit" class="button primary" value="Найти рейс" />
-                        <input type="submit" class="button" value="Добавить" onclick="this.form.action='/backoffice/flight/create'; return true;" />
+                        <div class="input">
+                            <select name="CountryOfDeparture"></select>
+                        </div>
                     </div>
-                </form>
-                <form id="preselect">
-                    <input type="hidden" name="_CountryOfDeparture" value="[% CountryOfDeparture %]" />
-                    <input type="hidden" name="_CityOfDeparture" value="[% CityOfDeparture %]" />
-                    <input type="hidden" name="_AirportOfDeparture" value="[% AirportOfDeparture %]" />
 
-                    <input type="hidden" name="_CountryOfArrival" value="[% CountryOfArrival %]" />
-                    <input type="hidden" name="_CityOfArrival" value="[% CityOfArrival %]" />
-                    <input type="hidden" name="_AirportOfArrival" value="[% AirportOfArrival %]" />
-                </form>
-            </div>
-            <div class="yui-u">
-                [% content %]
-            </div>
+                    <div class="clearfix">
+                        <label for="CityOfDeparture">Город отправления</label>
+                        <div class="input">
+                            <select name="CityOfDeparture"></select>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <label for="AirportOfDeparture">Аэропорт отправления</label>
+                        <div class="input">
+                            <select name="AirportOfDeparture"></select>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset title="Прибытие">
+                    <div class="clearfix">
+                        <label for="CountryOfArrival">Страна прибытия</label>
+                        <div class="input">
+                            <select name="CountryOfArrival"></select>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <label for="CityOfArrival">Город прибытия</label>
+                        <div class="input">
+                            <select name="CityOfArrival"></select>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <label for="AirportOfArrival">Аэропорт прибытия</label>
+                        <div class="input">
+                            <select name="AirportOfArrival"></select>
+                        </div>
+                    </div
+                </fieldset>
+
+                <p>
+                    <input type="submit" class="btn info" value="Найти рейс" />
+                    <input type="submit" class="btn" value="Добавить" onclick="this.form.action='/backoffice/flight/create'; return true;" />
+                </p>
+            </form>
+            <form id="preselect">
+                <input type="hidden" name="_CountryOfDeparture" value="[% CountryOfDeparture %]" />
+                <input type="hidden" name="_CityOfDeparture"    value="[% CityOfDeparture %]" />
+                <input type="hidden" name="_AirportOfDeparture" value="[% AirportOfDeparture %]" />
+
+                <input type="hidden" name="_CountryOfArrival" value="[% CountryOfArrival %]" />
+                <input type="hidden" name="_CityOfArrival"    value="[% CityOfArrival %]" />
+                <input type="hidden" name="_AirportOfArrival" value="[% AirportOfArrival %]" />
+            </form>
+        </div>
+        <div class="span12">
+            [% content %]
         </div>
     </div>
+
 [% END %]

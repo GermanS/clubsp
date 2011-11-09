@@ -1,31 +1,12 @@
-<div class="yui-gc">
-    <div class="yui-u first">
-        <h1>Авиабилеты в Испанию</h1>
-    </div>
-    <div class="yui-u">
-        <h6>Москва, ул.Ивана Бабушкина дом 16</h6>
-        <strong>+7 (495) 792-58-38, 789-65-58, 780-05-85</strong>
+<div class="topbar">
+    <div class="fill">
+        <div class="container">
+            <h3><a href="/" title="Авиабилеты на чартерные рейсы">Aviabroker.com</a></h3>
+            <ul>
+                <li><a href="/charter"   title="Авиабилеты на чартер">Чартерные авиабилеты</a></li>
+                <li><a href="/flight"    title="Поиск авиабилетов">Поиск авиабилетов</a></li>
+                <li><a href="/article/2" title="Офис продаж">Контакты</a></li>
+            </ul>
+        </div>
     </div>
 </div>
-
-<script type="text/javascript" src="http://yandex.st/share/share.js" charset="utf-8"></script>
-<ul class="tabs">
-    <li><a href="/"           title="Авиабилеты на чартерные рейсы" class="selected">Авиабилеты в Испанию</a></li>
-    <li><a href="/article/2"  title="Продажа авиабилетов">Контакты</a></li>
-    <div class="yashare-auto-init share" data-yashareL10n="ru" data-yashareType="none" data-yashareQuickServices="vkontakte,facebook,odnoklassniki,moimir,twitter,yaru,lj"></div>
-</ul>
-
-<ul class="subnav-bar">
-    [%IF top_level.count %]
-        [% WHILE (story = top_level.next) %]
-            [% IF story.is_published %]
-                <li><a href="/article/[% story.id %]" title="[% story.header %]">[% story.header %]</a></li>
-            [% END %]
-        [% END %]
-    [% ELSE %]
-        <li><a class="tip" href="/charter/viewRT" title="Стоимость авиабилета в Испанию туда и обратно">Стоимость авиабилета туда и обратно</a></li>
-        <li><a class="tip" href="/charter/viewOW" title="Стоимость авиабилета в Испанию одну сторону">Стоимость авиабилета в одну сторону</a></li>
-        <li><a class="tip" href="/charter/searchRT" title="Поиск авиабилета в Испанию">Поиск авиабилета туда и обратно</a></li>
-        <li><a class="tip" href="/charter/searchOW" title="Поиск авиабилета в Испанию одну сторону">Поиск авиабилета в одну сторону</a></li>
-    [% END %]
-</ul>

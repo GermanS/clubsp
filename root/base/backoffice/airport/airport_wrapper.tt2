@@ -1,38 +1,30 @@
-[% WRAPPER backoffice/doc4_yui_t7.tt2 %]
-    <div id="bd">
-        <div class="yui-g">
-            <h2>Редактирование аэропортов</h2>
-        </div>
-        <div class="yui-gf">
-            <div class="yui-u first">
-                <div class="button-group">
-                    <a class="button primary" href="/backoffice/airport/create">Добавить аэропорт</a>
-                </div>
-                [% IF country_list.count() %]
-                    <div class="sidebar">
-                        <ul>
-                            [% WHILE (country = country_list.next) %]
-                                <li><a href="/backoffice/airport/country/[% country.id %]">[% country.name %]</a></li>
+[% WRAPPER backoffice/page.tt2 %]
 
-                                [% IF (country.id == selected_country.id) %]
-                                    [% cities = country.cities %]
-                                    [% IF cities %]
-                                        <ul>
-                                            [% FOREACH city IN cities %]
-                                                <li><a href="/backoffice/airport/city/[% city.id %]">[% city.name %]</a></li>
-                                            [% END %]
-                                        </ul>
+    <h1>Редактирование аэропортов</h1>
+    <div class="row">
+        <div class="span4">
+            <p><a class="btn info" href="/backoffice/airport/create">Добавить аэропорт</a></p>
+            [% IF country_list.count() %]
+                <ul class="unstyled">
+                    [% WHILE (country = country_list.next) %]
+                        <li><a href="/backoffice/airport/country/[% country.id %]">[% country.name %]</a></li>
+
+                        [% IF (country.id == selected_country.id) %]
+                            [% cities = country.cities %]
+                            [% IF cities %]
+                                <ul>
+                                    [% FOREACH city IN cities %]
+                                        <li><a href="/backoffice/airport/city/[% city.id %]">[% city.name %]</a></li>
                                     [% END %]
-                                [% END %]
-
+                                </ul>
                             [% END %]
-                        </ul>
-                    </div>
-                [% END %]
-            </div>
-            <div class="yui-u">
-                [% content %]
-            </div>
+                        [% END %]
+
+                    [% END %]
+                </ul>
+            [% END %]
         </div>
+        <div class="span12">[% content %]</div>
     </div>
+
 [% END %]

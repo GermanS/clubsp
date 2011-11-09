@@ -1,107 +1,163 @@
 [% WRAPPER common/doc4_yui_t5.tt2
            javascript = "common/charter/itinerary.js.tt2"
-           title = "Авиабилеты в Испанию. Стоимость авиабилетов в Испанию." %]
-    <div class="yui-b">
-        <div class="yui-g route">
-            <div class="yui-u first">
-                <h2>Авиабилеты из Москвы</h2>
-                <ul>
-                    <li><a href="/charter/MOW-BCN" title="Стоимость авиабилета Москва - Барселона">Авиабилеты Москва - Барселона</a></li>
-                    <li><a href="/charter/MOW-ALC" title="Стоимость авиабилета Москва - Аликанте">Авиабилеты Москва - Аликанте</a></li>
-                    <li><a href="/charter/MOW-PMI" title="Стоимость авиабилета Москва - Майорка">Авиабилеты Москва - Майорка</a></li>
-                    <li><a href="/charter/MOW-TCI" title="Стоимость авиабилета Москва - Тенерифе">Авиабилеты Москва - Тенерифе</a></li>
-                    <li><a href="/charter/MOW-AGP" title="Стоимость авиабилета Москва - Малага">Авиабилеты Москва - Малага</a></li>
-                </ul>
-            </div>
-            <div class="yui-u">
-                <!--
-                <h2>Авиабилеты в Москву</h2>
-                <ul>
-                    <li><a href="/charter/BCN-MOW" title="Стоимость авиабилета Барселона - Москва">Авиабилеты Барселона - Москва</a></li>
-                    <li><a href="/charter/ALC-MOW" title="Стоимость авиабилета Аликанте - Москва">Авиабилеты Аликанте - Москва</a></li>
-                    <li><a href="/charter/PMI-MOW" title="Стоимость авиабилета Майорка - Москва">Авиабилеты Майорка - Москва</a></li>
-                    <li><a href="/charter/TCI-MOW" title="Стоимость авиабилета Тенерифе - Москва">Авиабилеты Тенерифе - Москва</a></li>
-                    <li><a href="/charter/AGP-MOW" title="Стоимость авиабилета Малага - Москва">Авиабилеты Малага - Москва</a></li>
-                </ul>
-                -->
-            </div>
-        </div>
-        <div class="yui-g">
+           title = "Авиабилеты в Испанию на чартерные и регулярные авиарейсы." %]
+
+    <div class="page-header">
+        <h1>Авиабилеты в Испанию
+            <small>ул. Ивана Бабушкина 16, тел. +7(495) 792-58-38, 789-65-58</small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="span11">
             <h2>Поиск авиабилета на чартерные рейсы</h2>
-            <form method="post" action="/charter/searchRT">
-                <div class="yui-u first">
-                    <fieldset title="Вылет">
-                        <label for="CityOfDeparture1">Город вылета</label>
-                        <select name="CityOfDeparture1" id="CityOfDeparture1"></select>
+            <form method="post" action="/charter/searchRT" class="form-stacked">
+                <div class="row">
+                    <div class="span5">
+                        <fieldset title="Первый сегмент">
+                            <div class="clearfix">
+                                <label for="CityOfDeparture1">Город вылета</label>
+                                <div class="input">
+                                    <select name="CityOfDeparture1" id="CityOfDeparture1" class="span5"></select>
+                                </div>
+                            </div>
 
-                        <label for="CityOfArrival1">Город прилета</label>
-                        <select name="CityOfArrival1" id="CityOfArrival1"></select>
+                            <div class="clearfix">
+                                <label for="CityOfArrival1">Город прилета</label>
+                                <div class="input">
+                                    <select name="CityOfArrival1" id="CityOfArrival1" class="span5"></select>
+                                </div>
+                            </div>
 
-                        <label for="DateOfDeparture1">Дата вылета</label>
-                        <select name="DateOfDeparture1" id="DateOfDeparture1"></select>
-                    </fieldset>
+                            <div class="clearfix">
+                                <label for="DateOfDeparture1">Дата вылета</label>
+                                <div class="input">
+                                    <select name="DateOfDeparture1" id="DateOfDeparture1" class="span5"></select>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="span5">
+                        <fieldset title="Первый сегмент">
+                            <div class="clearfix">
+                                <label for="CityOfDeparture2">Город вылета</label>
+                                <div class="input">
+                                    <select name="CityOfDeparture2" id="CityOfDeparture2" class="span5"></select>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <label for="CityOfArrival2">Город прилета</label>
+                                <div class="input">
+                                    <select name="CityOfArrival2" id="CityOfArrival2" class="span5"></select>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <label for="DateOfDeparture2">Дата вылета</label>
+                                <div class="input">
+                                    <select name="DateOfDeparture2" id="DateOfDeparture2" class="span5"></select>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
-                <div class="yui-u">
-                    <fieldset title="Прилет">
-                        <label for="CityOfDeparture2">Город вылета</label>
-                        <select name="CityOfDeparture2" id="CityOfDeparture2"></select>
-
-                        <label for="CityOfArrival2">Город прилета</label>
-                        <select name="CityOfArrival2" id="CityOfArrival2"></select>
-
-                        <label for="DateOfDeparture2">Дата вылета</label>
-                        <select name="DateOfDeparture2" id="DateOfDeparture2"></select>
-                    </fieldset>
-
-                    <label></label>
-                    <div class="button-group">
+                <div class="row">
+                    <div class="offset5">
                         <a href="/charter/searchRT"
                            onclick="$(this).closest('form').submit(); return false;"
-                           class="button primary icon search"
-                           title="Поиск авиабилета в Испанию">Поиск авиабилета</a>
+                           class="btn large primary"
+                           title="Поиск авиабилета в Испанию">Найти авиабилет</a>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="yui-gb faq">
-          <div class="yui-u first">
-            <h5><a href="/article/84" title="Бронирование авиабилета">Как заказать авиабилет</a></h5>
+        <div class="span5">
+            <p>Мы предлагаем Вам привлекательные тарифы на чартерные <strong>авиабилеты в Испанию</strong> по направлениям: Барселона, Аликанте, Малага, Пальма де Майорка и Тенерифе.</p>
+            <p>Выберите интересующие Вас города и даты вылета в форме поиска авиабилета, чтобы посмотреть, какие тарифы доступны в настоящий момент.</p>
+            <p>Наши предложения часто обновляются, поэтому, если Вы не нашли подходящего для Вас тарифа, измените условия поиска авиабилета или повторите Вашу попытку через некоторое время.</p>
+        </div>
+    </div>
+    <div class="page-header">
+        <h2>Бронирование и оплата авиабилета</h2>
+    </div>
+    <div class="row">
+        <div class="span-one-third">
+            <h4><a href="/article/84" title="Бронирование авиабилета">Как заказать авиабилет</a></h4>
             <p>Подробнее узнать о бронировании авиабилетов в Испанию</p>
-          </div>
-          <div class="yui-u">
-            <h5><a href="/article/85" title="Оплата авиабилета">Как оплатить авиабилет</a></h5>
+        </div>
+        <div class="span-one-third">
+            <h4><a href="/article/85" title="Оплата авиабилета">Как оплатить авиабилет</a></h4>
             <p>Узнать о способах оплаты забронированного авиабилета</p>
-          </div>
-          <div class="yui-u">
-            <h5><a href="/article/86" title="Получение авиабилета">Как получить авиабилет</a></h5>
+        </div>
+        <div class="span-one-third">
+            <h4><a href="/article/86" title="Получение авиабилета">Как получить авиабилет</a></h4>
             <p>Узнать о способах получения и использования авиабилета</p>
-          </div>
         </div>
-        <div class="yui-g">
-          <p class="warning">
-          <strong>Уважаемые пассажиры!</strong><br>
-          В связи с принятием дополнительных мер по обеспечению безопасности,
-          просим Вас приезжать в аэропорт заблаговременно для своевременного прохождения необходимых процедур.<br>
-          <strong>Желаем Вам приятного полета</strong>
-          </p>
-          <h3>Расписание вылетов из Москвы</h3>
-          [% INCLUDE common/charter/timetable/route.tt2 iterator = departures %]
+    </div>
+
+    <div class="alert-message block-message warning">
+        <p>
+            <strong>Уважаемые пассажиры!</strong><br>
+                В связи с принятием дополнительных мер по обеспечению безопасности, просим Вас приезжать в аэропорт заблаговременно для своевременного прохождения необходимых процедур.<br>
+                <strong>Желаем Вам приятного полета</strong>
+        </p>
+    </div>
+    <div class="page-header">
+        <h2>Стоимость авиабилетов в Испанию</h2>
+    </div>
+    <div class="row">
+        <div class="span-one-third">
+            <h3>Авиабилеты в Барселону</h3>
+            <ul class="unstyled">
+                <li><a href="/charter/MOW-BCN" title="Стоимость авиабилета Москва - Барселона">Авиабилеты Москва - Барселона</a></li>
+                <li><a href="/charter/BCN-MOW" title="Стоимость авиабилета Барселона - Москва">Авиабилеты Барселона - Москва</a></li>
+            </ul>
         </div>
-        <div class="yui-g">
-          <h3>Расписание прилетов в Москву</h3>
-          [% INCLUDE common/charter/timetable/route.tt2 iterator = arrivals %]
+        <div class="span-one-third">
+            <h3>Авиабилеты в Аликанте</h3>
+            <ul class="unstyled">
+                <li><a href="/charter/MOW-ALC" title="Стоимость авиабилета Москва - Аликанте">Авиабилеты Москва - Аликанте</a></li>
+                <li><a href="/charter/ALC-MOW" title="Стоимость авиабилета Аликанте - Москва">Авиабилеты Аликанте - Москва</a></li>
+            </ul>
         </div>
-        [% INCLUDE common/tfs.tt2 %]
-        <!--
-        <div class="yui-g logos">
-          <p>
-            <img src="/images/SU.png" width="120" height="40" alt="Авиабилеты Аэрофлота" />
-            <img src="/images/IB.png" width="120" height="40" alt="Авиабилеты авиакомпании Иберия" />
-            <img src="/images/NN.png" width="120" height="40" alt="Авиабилеты авиакомпании Вим Авиа" />
-            <img src="/images/S7.png" width="120" height="40" alt="Авиабилеты авиакомпании Сибирь" />
-            <img src="/images/U6.png" width="120" height="40" alt="Авиабилеты авиакомпании Уральские аиалинии" />
-          </p>
+        <div class="span-one-third">
+            <h3>Авиабилеты на Тенерифе</h3>
+            <ul class="unstyled">
+                <li><a href="/charter/MOW-TCI" title="Стоимость авиабилета Москва - Тенерифе">Авиабилеты Москва - Тенерифе</a></li>
+                <li><a href="/charter/TCI-MOW" title="Стоимость авиабилета Тенерифе - Москва">Авиабилеты Тенерифе - Москва</a></li>
+            </ul>
         </div>
-        -->
+    </div>
+
+    <div class="page-header">
+        <h2>Правила провоза багажа</h2>
+    </div>
+    <div class="row">
+        <div class="span8">
+            <p style="background: #33333">
+                <img src="/images/NN.png" width="120" height="40" alt="Fвиакомпания Вим Авиа" />
+            </p>
+
+            <p>Величина нормы бесплатного провоза багажа на рейсе авиакомпании <span class="label notice">"Вим-Авиа"</span> составляет <span class="label important">15 кг</span> и дополнительно 5 кг ручной клади.</p>
+            <p>На одно место, вес ручной клади не должен превышать 5 кг и быть габаритами не более 50х40х20 см.</p>
+            <p>Один пассажир имеет право на бесплатный провоз одного комплекта зачехленных лыж или одного зачехленного сноуборда и горнолыжных ботинок (регистрация производится на стойке негабаритного багажа).</p>
+            <p>Масса сверхнормативного багажа не должена превышать 30 кг. Багаж, превышающий указанную массу, оформляется как груз по правилам перевозки грузов.</p>
+            <p>Доплата за перевоз сверхнормативного багажа составляет:<br />
+               Москва-Барселона - <span class="label important">200 рублей за 1 кг</span><br />
+               Барселона-Москва - <span class="label important">8 евро за 1 кг</span>
+            </p>
+        </div>
+        <div class="span8">
+            <p>
+                <img src="/images/U6.png" width="120" height="40" alt="Авиакомпания Уральские авиалинии" />
+            </p>
+            <p>На рейсах авиакомпании <span class="label notice">"Уральские авиалинии"</span> бесплатная норма провоза багажа составляет:<br>
+               <span class="label important">не более 20 кг</span> для пассажиров экономического класса<br />
+               <span class="label important">не более 10 кг</span> для детей до 2х лет.
+            </p>
+            <p>Масса ручной клади не должена превышать 5 кг и быть габаритами не более 55х40х20 см.</p>
+            <p>На рейсах один комплект лыжного/горнолыжного снаряжения, состоящего из одной пары лыж и одной пары лыжных палок, или сноуборда в чехле и дополнительного снаряжения (ботинки, шлем,очки, специальная одежда и обувь) провозится бесплатно, если суммарный вес багажа пассажира, включая ручную кладь, не превышает 40 кг, независимо от класса обслуживания.</p>
+            <p>Если вес багажа, включая снаряжение, превышает 40 кг, или при наличии 2го комплекта снаряжения, оплата осуществляется по правилам провоза сверхнормативного багажа.</p>
+            <p>Доплата за перевоз сверхнормативного багажа - <span class="label important">10 евро за 1 кг</span></p>
+        </div>
     </div>
 [% END %]

@@ -1,1 +1,7 @@
-<p class=[% message.class %]>[% message.message %]</p>
+[% IF message %]
+    <div class="alert-message [% message.class %]">
+        <p>
+            [% message.message %]
+        </p>
+    </div>
+[% END %]

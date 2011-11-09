@@ -1,10 +1,14 @@
 ---
-id: airlineForm
+attributes:
+    id: airlineForm
+    class: form-stacked
 
 elements:
   - type: Text
     name: name
     label: Название авиакомпании
+    attrs:
+      class: span8
     filters:
       - TrimEdges
     constraints:
@@ -13,6 +17,8 @@ elements:
   - type: Text
     name: iata
     label: Код IATA (2 буквы)
+    attrs:
+      class: span1
     filters:
       - TrimEdges
     constraints:
@@ -21,6 +27,8 @@ elements:
   - type: Text
     name: icao
     label: Код ICAO (3 буквы)
+    attrs:
+      class: span2
     filters:
       - TrimEdges
     constraints:
@@ -30,4 +38,4 @@ elements:
     name: submit
     value: Редактировать авиакомпанию
     attrs:
-      class: button primary
+      class: btn primary

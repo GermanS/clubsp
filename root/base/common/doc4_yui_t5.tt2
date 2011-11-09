@@ -1,29 +1,9 @@
 [%WRAPPER page.tt2 %]
-    <div id="doc4" class="yui-t5">
-        <div id="hd">
-            [% INCLUDE common/header.tt2 %]
+    [% INCLUDE common/header.tt2 %]
+    <div class="container">
+        <div class="content">
+            [% content %]
         </div>
-        <div id="bd">
-            <div id="yui-main">
-                [% content %]
-            </div>
-            <div class="yui-b">
-                <div class="sidebar">
-                    <h3>Авиабилеты в Испанию</h3>
-                    <p>Мы предлагаем Вам привлекательные тарифы на чартерные <strong>авиабилеты в Испанию</strong> по направлениям: Барселона, Аликанте, Малага, Пальма де Майорка и Тенерифе</p>
-                    <p>Выберите интересующие Вас города и даты вылета в форме поиска авиабилета, чтобы посмотреть, какие тарифы доступны в настоящий момент.</p>
-                    <p>Наши предложения часто обновляются, поэтому, если Вы не нашли подходящего для Вас тарифа, измените условия поиска авиабилета или повторите Вашу попытку через некоторое время.</p>
-
-                    <h3>Информация</h3>
-                    [% WHILE (story = iterator.next) %]
-                      <a href="/article/[% story.id%]" title="[% story.subheader %]">[% story.header %]</a>
-                    [% END %]
-
-                </div>
-            </div>
-        </div>
-        <div id="ft">
-            [% INCLUDE common/footer.tt2 %]
-        </div>
+        [% INCLUDE common/footer.tt2 %]
     </div>
 [% END %]

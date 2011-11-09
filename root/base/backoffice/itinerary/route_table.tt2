@@ -1,5 +1,5 @@
 [% IF iterator.count %]
-    <table>
+    <table class="zebra-striped mono top-borders">
         <tr>
             <th> </th>
             <th colspan="4">Отправление</th>
@@ -28,7 +28,7 @@
 
 
 [% BLOCK row %]
-    [% route = itinerary.children.0 %]
+    [% route = itinerary.children %]
     [% rowspan2 = "rowspan='2'" %]
     [% UNLESS route %]
         [% rowspan2 = "" %]

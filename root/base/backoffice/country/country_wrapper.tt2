@@ -1,16 +1,10 @@
-[% WRAPPER backoffice/doc4_yui_t7.tt2 %]
-    <div id="bd">
-        <div class="yui-g">
-            <h2>Редактирование стран</h2>
-            <div class="actions button-container">
-                <div class="button-group">
-                    <a class="button primary" href="/backoffice/country/create">Добавить страну</a>
-                    <a class="button"         href="/backoffice/country/">Список стран</a>
-                </div>
-            </div>
-        </div>
-        <div class="yui-g">
-               [% content %]
-        </div>
-    </div>
+[% WRAPPER backoffice/page.tt2 %]
+
+    <h1>Редактирование стран</h1>
+    <p>
+        <a class="btn info" href="/backoffice/country/create">Добавить страну</a>
+        <a class="btn"      href="/backoffice/country/">Список стран</a>
+    </p>
+    [% content %]
+
 [% END %]

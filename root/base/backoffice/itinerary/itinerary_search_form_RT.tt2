@@ -1,60 +1,84 @@
-<div class="yui-g">
-    <h2>Поиск тарифа RT на чартерные рейсы</h2>
-</div>
-<div class="yui-gb">
-    <form method="post" action="/backoffice/fare/search">
-        <div class="yui-u first">
+<h1>Поиск тарифа RT на чартерные рейсы</h1>
+<form method="post" action="/backoffice/fare/search" class="form-stacked">
+    <div class="row">
+        <div class="span5">
             <fieldset title="Первый сегмент">
-                <label for="CityOfDeparture1">Город отправления</label>
-                <select name="CityOfDeparture1"></select>
+                <div class="clearfix">
+                    <label for="CityOfDeparture1">Город отправления</label>
+                    <div class="input">
+                        <select name="CityOfDeparture1" class="span5"></select>
+                    </div>
+                </div>
 
-                <label for="CityOfArrival1">Город прибытия</label>
-                <select name="CityOfArrival1"></select>
+                <div class="clearfix">
+                    <label for="CityOfArrival1">Город прибытия</label>
+                    <div class="input">
+                        <select name="CityOfArrival1" class="span5"></select>
+                    </div>
+                </div>
 
-                <label for="DateOfDeparture1">Дата отправления</label>
-                <select name="DateOfDeparture1"></select>
+                <div class="clearfix">
+                    <label for="DateOfDeparture1">Дата отправления</label>
+                    <div class="input">
+                        <select name="DateOfDeparture1" class="span5"></select>
+                    </div>
+                </div>
 
-                <label for="Flight1">Номер рейса</label>
-                <select name="Flight1"></select>
-            </fieldset>
-        </div>
-        <div class="yui-u">
-            <fieldset title="Второй сегмент">
-                <label for="CityOfDeparture2">Город отправления</label>
-                <select name="CityOfDeparture2"></select>
-
-                <label for="CityOfArrival2">Город прибытия</label>
-                <select name="CityOfArrival2"></select>
-
-                <label for="DateOfDeparture2">Дата вылета</label>
-                <select name="DateOfDeparture2"></select>
-
-                <label for="Flight2">Номер рейса</label>
-                <select name="Flight2"></select>
-
-                <label></label>
-                <div class="button-group">
-                    <input type="submit"
-                           value="Найти тариф"
-                           class="button primary"/>
-                    <input type="submit"
-                           value="Добавить тариф"
-                           class="button"
-                           onclick="this.form.action='/backoffice/fare/createRT'; return true;" />
+                <div class="clearfix">
+                    <label for="Flight1">Номер рейса</label>
+                    <div class="input">
+                        <select name="Flight1" class="span5"></select>
+                    </div>
                 </div>
             </fieldset>
         </div>
-        <div class="yui-u">  </div>
-    </form>
-    <form id="preselect">
-        <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
-        <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
-        <input type="hidden" name="_DateOfDeparture1" value="[% DateOfDeparture1 %]" />
-        <input type="hidden" name="_Flight1"          value="[% Flight1 %]" />
+        <div class="span5">
+            <fieldset title="Второй сегмент">
+                <div class="clearfix">
+                    <label for="CityOfDeparture2">Город отправления</label>
+                    <div class="input">
+                        <select name="CityOfDeparture2" class="span5"></select>
+                    </div>
+                </div>
 
-        <input type="hidden" name="_CityOfDeparture2" value="[% CityOfDeparture2 %]" />
-        <input type="hidden" name="_CityOfArrival2"   value="[% CityOfArrival2 %]" />
-        <input type="hidden" name="_DateOfDeparture2" value="[% DateOfDeparture2 %]" />
-        <input type="hidden" name="_Flight2"          value="[% Flight2 %]" />
-    </form>
-</div>
+                <div class="clearfix">
+                    <label for="CityOfArrival2">Город прибытия</label>
+                    <div class="input">
+                        <select name="CityOfArrival2" class="span5"></select>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <label for="DateOfDeparture2">Дата вылета</label>
+                    <div class="input">
+                        <select name="DateOfDeparture2" class="span5"></select>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <label for="Flight2">Номер рейса</label>
+                    <div class="input">
+                        <select name="Flight2" class="span5"></select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <p>
+        <input type="submit" value="Найти тариф" class="btn info"/>
+        <input type="submit" value="Добавить тариф"
+            class="btn"
+            onclick="this.form.action='/backoffice/fare/createRT'; return true;" />
+    </p>
+</form>
+<form id="preselect">
+    <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
+    <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
+    <input type="hidden" name="_DateOfDeparture1" value="[% DateOfDeparture1 %]" />
+    <input type="hidden" name="_Flight1"          value="[% Flight1 %]" />
+
+    <input type="hidden" name="_CityOfDeparture2" value="[% CityOfDeparture2 %]" />
+    <input type="hidden" name="_CityOfArrival2"   value="[% CityOfArrival2 %]" />
+    <input type="hidden" name="_DateOfDeparture2" value="[% DateOfDeparture2 %]" />
+    <input type="hidden" name="_Flight2"          value="[% Flight2 %]" />
+</form>

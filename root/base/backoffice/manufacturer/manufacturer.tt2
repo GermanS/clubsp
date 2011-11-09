@@ -3,7 +3,7 @@
         [% message %]
     [% END %]
 
-    <table>
+    <table class="zebra-striped mono top-borders">
         <tr>
             <th> </th>
             <th>Код производителя</th>

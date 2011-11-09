@@ -1,10 +1,14 @@
 ---
-id: countryForm
+attributes:
+    id: countryForm
+    class: form-stacked
 
 elements:
   - type: Text
     name: name
     label: Страна
+    attrs:
+      class: span11
     filters:
       - TrimEdges
     constraints:
@@ -13,6 +17,8 @@ elements:
   - type: Text
     name: alpha2
     label: 2х-буквенное название
+    attrs:
+      class: span1
     filters:
       - TrimEdges
     constraints:
@@ -21,6 +27,8 @@ elements:
   - type: Text
     name: alpha3
     label: 3х-буквенное название
+    attrs:
+      class: span2
     filters:
       - TrimEdges
     constraints:
@@ -29,6 +37,8 @@ elements:
   - type: Text
     name: numerics
     label: Код страны
+    attrs:
+      class: span2
     filters:
       - TrimEdges
     constraints:
@@ -38,4 +48,4 @@ elements:
     name: submit
     value: Редактировать страну
     attrs:
-      class: button primary
+      class: btn primary

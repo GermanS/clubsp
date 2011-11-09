@@ -3,7 +3,7 @@
         [% message %]
     [% END %]
 
-    <table>
+    <table class="zebra-striped mono top-borders">
         <tr>
             <th> </th>
             <th>Название страны (ISO 3166-1)</th>

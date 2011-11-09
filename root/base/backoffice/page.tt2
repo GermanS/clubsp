@@ -1,13 +1,9 @@
 [% WRAPPER page.tt2 %]
-    <div id="doc4" class="yui-t2">
-        <div id="hd">
-            [% INCLUDE backoffice/header.tt2 %]
+    [% INCLUDE backoffice/header.tt2 %]
+    <div class="container">
+        <div class="content">
+            [% content %]
         </div>
-
-        [% content %]
-
-        <div id="ft">
-            [% INCLUDE backoffice/footer.tt2 %]
-        </div>
+        [% INCLUDE backoffice/footer.tt2 %]
     </div>
 [% END %]

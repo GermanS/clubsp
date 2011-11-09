@@ -4,7 +4,9 @@
            title      = "Авиабилеты в Испанию в одну сторону" %]
 
     [% IF iterator.count %]
-        <h1>Стоимость авиабилетов [% cityOfDeparture1.name %] &rarr; [% cityOfArrival1.name %]</h1>
+        <div class="alert-message block-message info">
+            <h2>Стоимость авиабилетов [% cityOfDeparture1.name %] &rarr; [% cityOfArrival1.name %]</h2>
+        </div>
         [% INCLUDE common/charter/route_table.tt2 iterator = iterator %]
     [% END %]
 [% END %]

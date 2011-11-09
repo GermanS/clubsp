@@ -1,28 +1,34 @@
-[% WRAPPER common/doc4_yui_t7.tt2  %]
-    <div id="bd">
-        <div class="yui-g scheduled">
-            <div class="yui-u first">
-                <ul id="search-mode">
-                    <li data-value="RT" class="active">Туда и обратно</li>
-                    <li data-value="OW">В одну сторону</li>
-                </ul>
-                <div class="yui-u first departure">
-                    <input type="text" size="17" id="cityOfDeparture1" name="cityOfDeparture1" value="Москва       MOW">
-                    <input type="text" size="17" id="cityOfArrival1"   name="cityOfArrival1"   value="Барселона    BCN">
-                    <input type="text" size="17" id="dateOfDeparture1" name="dateOfDeparture1" value="08-09-2011">
+[% WRAPPER common/doc4_yui_t5.tt2  %]
+    <div class="page-header">
+        <h1>Стоимость авиабилетов</h1>
+    </div>
+    <form method="post" class="scheduled">
+        <div class="row">
+            <div class="span8">
+                <div class="row">
+                    <ul id="search-mode">
+                        <li data-value="RT" class="active">Туда и обратно</li>
+                        <li data-value="OW">В одну сторону</li>
+                    </ul>
                 </div>
-                <div class="yui-u departure">
-                  <div id="route-2">
-                    <input type="text" size="17" id="cityOfDeparture2" name="cityOfDeparture2" value="Барселона    BCN">
-                    <input type="text" size="17" id="cityOfArrival2"   name="cityOfArrival2"   value="Москва       MOW">
-                    <input type="text" size="17" id="dateOfDeparture2" name="dateOfDeparture2" value="08-09-2011">
-                  </div>
-                </div>
-                <div class="button-group">
-                    <a href="#" class="button primary icon search">Найти авиабилет</a>
+                <div class="row">
+                    <div class="span4 departure">
+                        <div class="row">
+                            <input type="text" class="span4" name="CityOfDeparture1" id="CityOfDeparture1"/>
+                            <input type="text" class="span4" name="CityOfArrival1" id="CityOfArrival1"/>
+                            <input type="text" class="span4" name="DateOfDeparture1" id="DateOfDeparture1"/>
+                        </div>
+                    </div>
+                    <div class="span4 departure" id="route-2">
+                        <div class="row">
+                            <input type="text" class="span4" name="CityOfDeparture2" id="CityOfDeparture2"/>
+                            <input type="text" class="span4" name="CityOfArrival2" id="CityOfArrival2"/>
+                            <input type="text" class="span4" name="DateOfDeparture2" id="DateOfDeparture2"/>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="yui-u">
+            <div class="span8">
                 <dl id="adults">
                     <dt>Взрослые</dt>
                     <dt class="tip">&nbsp;</dt>
@@ -53,6 +59,7 @@
                     <dd data-value="4">четверо</dd>
                     <dd data-value="5">пятеро</dd>
                 </dl>
+
                 <dl id="cabin">
                     <dt>Класс</dt>
                     <dt class="tip">&nbsp;</dt>
@@ -60,9 +67,10 @@
                     <dd data-value="C">Бизнес</dd>
                 </dl>
             </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <input type="submit" class="btn primary large offset2" value="Найти авиабилет">
+            </div>
         </div>
-        <div class="yui-g">
-              [% content %]
-        </div>
-    </div>
+    </form>
 [% END %]

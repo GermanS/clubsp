@@ -1,15 +1,21 @@
 ---
-id: articleForm
+attributes:
+    id: articleForm
+    class: form-stacked
 
 elements:
   - type: Select
     name: parent_id
     label: Раздел
+    attrs:
+        class: span16
     empty_first: 1
 
   - type: Text
     name: header
     label: Заголовок
+    attrs:
+        class: span16
     filters:
       - TrimEdges
     constraints:
@@ -18,6 +24,8 @@ elements:
   - type: Text
     name: subheader
     label: Подзаголовок
+    attrs:
+        class: span16
     filters:
       - TrimEdges
     constraints:
@@ -26,6 +34,8 @@ elements:
   - type: Textarea
     name: body
     label: Статья
+    attrs:
+        class: span16
     rows: 12
     constraints:
       - Required
@@ -34,6 +44,6 @@ elements:
     name: submit
     value: Редактирвать статью
     attrs:
-      class: button primary
+      class: btn primary
 
 

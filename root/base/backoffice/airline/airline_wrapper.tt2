@@ -1,18 +1,10 @@
 [% WRAPPER backoffice/page.tt2 %]
-    <div id="bd">
-        <div class="yui-g">
-            <h2>Редактирование авиакомпаний</h2>
-            <div class="actions button-container">
-                <div class="button-group">
-                    <a class="button primary" href="/backoffice/airline/create">Добавить авиакомпанию</a>
-                    <a class="button" href="/backoffice/airline/">Список авиакомпаний</a>
-                </div>
-            </div>
-        </div>
-        <div class="yui-g">
-               [% content %]
-        </div>
-    </div>
+    <h1>Редактирование авиакомпаний</h1>
+    <p>
+        <a class="btn info" href="/backoffice/airline/create">Добавить авиакомпанию</a>
+        <a class="btn" href="/backoffice/airline/">Список авиакомпаний</a>
+    </p>
+    [% content %]
 [% END %]
 
 

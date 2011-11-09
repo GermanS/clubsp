@@ -1,5 +1,7 @@
 ---
-id: cityForm
+attributes:
+    id: cityForm
+    class: form-stacked
 
 load_config_file:
   - backoffice/country_popup.yml
@@ -8,6 +10,8 @@ elements:
   - type: Text
     name: name
     label: Город (латиницей)
+    attrs:
+      class: span11
     filters:
       - TrimEdges
     constraints:
@@ -16,6 +20,8 @@ elements:
   - type: Text
     name: name_ru
     label: Город (кириллицей)
+    attrs:
+      class: span11
     filters:
       - TrimEdges
     constraints:
@@ -24,6 +30,8 @@ elements:
   - type: Text
     name: iata
     label: Код IATA
+    attrs:
+      class: span2
     filters:
       - TrimEdges
     constraints:
@@ -33,4 +41,4 @@ elements:
     name: submit
     value: Редактировать город
     attrs:
-      class: button primary
+      class: btn primary

@@ -1,5 +1,7 @@
 ---
-id: itineraryForm
+attributes:
+    id: itineraryForm
+    class: form-stacked
 
 load_config_file:
   - backoffice/fareclass_popup.yml
@@ -14,6 +16,8 @@ elements:
   - type: Text
     name: cost
     label: Стоимость
+    attrs:
+      class: mini
     filters:
       - TrimEdges
     constraints:
@@ -23,4 +27,4 @@ elements:
     name: submit
     value: Редактировать стоимость
     attrs:
-      class: button primary
+      class: btn primary

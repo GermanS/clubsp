@@ -1,29 +1,30 @@
-<div class="yui-g">
-    <h2>Просмотр тарифа OW на чартерные рейсы</h2>
-</div>
-<div class="yui-gb">
-    <form method="post" action="/backoffice/fare/viewOW">
-        <div class="yui-u first">
+<h1>Просмотр тарифа OW на чартерные рейсы</h1>
+
+<form method="post" action="/backoffice/fare/viewOW" class="form-stacked">
+    <div class="row">
+        <div class="span5">
             <fieldset title="Первый сегмент">
-                <label for="CityOfDeparture1">Город отправления</label>
-                <select name="CityOfDeparture1"></select>
+                <div class="clearfix">
+                    <label for="CityOfDeparture1">Город отправления</label>
+                    <div class="input">
+                        <select name="CityOfDeparture1" class="span5"></select>
+                    </div>
+                </div>
 
-                <label for="CityOfArrival1">Город прибытия</label>
-                <select name="CityOfArrival1"></select>
-
-                <label></label>
-                <div class="button-group">
-                    <input type="submit"
-                           value="Найти тарифы"
-                           class="button primary"/>
+                <div class="clearfix">
+                    <label for="CityOfArrival1">Город прибытия</label>
+                    <div class="input">
+                        <select name="CityOfArrival1" class="span5"></select>
+                    </div>
                 </div>
             </fieldset>
+            <p>
+                <input type="submit" value="Найти тарифы" class="btn primary"/>
+            </p>
         </div>
-        <div class="yui-u">  </div>
-        <div class="yui-u">  </div>
-    </form>
-    <form id="preselect">
-        <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
-        <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
-    </form>
-</div>
+    </div>
+</form>
+<form id="preselect">
+    <input type="hidden" name="_CityOfDeparture1" value="[% CityOfDeparture1 %]" />
+    <input type="hidden" name="_CityOfArrival1"   value="[% CityOfArrival1 %]" />
+</form>

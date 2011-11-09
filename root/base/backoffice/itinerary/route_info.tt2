@@ -1,4 +1,4 @@
-<table>
+<table class="zebra-striped mono top-borders">
     <tr>
         <th> </th>
         <th colspan="4">Отправление</th>
