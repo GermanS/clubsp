@@ -27,6 +27,8 @@
                onclick="$(this).closest('form').submit(); return false;"
                class="btn large primary"
                title="Стоимость авиабилетов в Испанию в одну сторону">Найти авиабилет</a>
+
+            <g:plusone></g:plusone>
         </div>
     </div>
 </form>

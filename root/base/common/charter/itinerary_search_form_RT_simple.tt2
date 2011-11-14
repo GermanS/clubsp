@@ -40,6 +40,7 @@
                onclick="$(this).closest('form').submit(); return false;"
                class="btn large primary"
                title="Поиск авиабилета в Испанию">Найти авиабилет</a>
+            <g:plusone></g:plusone>
         </div>
     </div>
 </form>
