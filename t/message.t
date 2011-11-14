@@ -15,7 +15,7 @@ use_ok('ClubSpain::Message');
 {
     my $msg = ClubSpain::Message::Ok->new(message => 'ok message');
     isa_ok($msg, 'ClubSpain::Message::Ok');
-    is($msg->class, 'ok', 'got ok class');
+    is($msg->class, 'success', 'got success class');
     is($msg->message, 'ok message', 'got ok message');
 }
 
