@@ -97,6 +97,14 @@ sub _getFareClassList : Private {
     return @res;
 }
 
+=head2 _suggest()
+
+    Поиск подсказка городов отправление по начальным буквам.
+    Подсказка может быть выполнена по трем первым буквам на кириллице, латинице
+    или IATA коду города.
+
+=cut
+
 sub _suggest : Private {
     my ($self, $c, $string) = @_;
 
@@ -107,11 +115,12 @@ sub _suggest : Private {
 
     while (my $city = $iterator->next) {
         push @res, {
-            id   => $city->id,
+            id    => $city->id,
             iata => $city->iata,
             name => $city->name,
             name_ru => $city->name_ru,
-            country => $city->country->name,
+            label => sprintf("%s (%s)", $city->name_ru, $city->country->name),
+            value => sprintf("%s (%s)", $city->name_ru, $city->iata),
         };
     }
 
