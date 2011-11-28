@@ -1,8 +1,8 @@
 [% WRAPPER common/doc4_yui_t5.tt2  %]
     <div class="page-header">
-        <h1>Стоимость авиабилетов</h1>
+        <h1>Поиск авиабилетов</h1>
     </div>
-    <form method="post" class="scheduled">
+    <form method="post" class="scheduled" action="/flight/search">
         <div class="row">
             <div class="span8">
                 <div class="row">
@@ -14,18 +14,54 @@
                 <div class="row">
                     <div class="span4 departure">
                         <div class="row">
-                            <input type="text" class="span4" name="CityOfDeparture1" id="CityOfDeparture1"/>
-                            <input type="text" class="span4" name="CityOfArrival1" id="CityOfArrival1"/>
-                            <input type="text" class="span4" name="DateOfDeparture1" id="DateOfDeparture1"/>
+                            <input type="text"
+                                   class="span4"
+                                   id="CityOfDeparture"
+                                   name="CityOfDeparture"
+                                   value="[% CityOfDeparture | html %]" />
+
+                            <input type="text"
+                                   class="span4"
+                                   name="DateOfDeparture1"
+                                   id="DateOfDeparture1"
+                                   value="[% DateOfDeparture1 | html %]"/>
+
+                            <input type="hidden"
+                                   id="CityOfDeparture_id"
+                                   name="CityOfDeparture_id"
+                                   value="[% CityOfDeparture_id | html %]" />
                         </div>
                     </div>
                     <div class="span4 departure" id="route-2">
                         <div class="row">
-                            <input type="text" class="span4" name="CityOfDeparture2" id="CityOfDeparture2"/>
-                            <input type="text" class="span4" name="CityOfArrival2" id="CityOfArrival2"/>
-                            <input type="text" class="span4" name="DateOfDeparture2" id="DateOfDeparture2"/>
+                            <input type="text"
+                                   class="span4"
+                                   id="CityOfArrival"
+                                   name="CityOfArrival"
+                                   value="[% CityOfArrival | html %]" />
+
+                            <input type="text"
+                                   class="span4"
+                                   id="DateOfDeparture2"
+                                   name="DateOfDeparture2"
+                                   value="[% DateOfDeparture2 | html %]"/>
+
+                            <input type="hidden"
+                                   id="CityOfArrival_id"
+                                   name="CityOfArrival_id"
+                                   value="[% CityOfArrival_id | html %]" />
                         </div>
                     </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <input type="hidden" value="[% adults_data   | html %]" name="adults_data"   id="adults_data" />
+                    <input type="hidden" value="[% children_data | html %]" name="children_data" id="children_data" />
+                    <input type="hidden" value="[% infants_data  | html %]" name="infants_data"  id="infants_data" />
+                    <input type="hidden" value="[% cabin_data    | html %]" name="cabin_data"    id="cabin_data" />
+                    <input type="hidden" value="[% search_mode   | html %]" name="search_mode"   id="search_mode" />
+                    <input type="submit" class="btn primary large offset2" value="Найти авиабилет">
+                    <g:plusone></g:plusone>
                 </div>
             </div>
             <div class="span8">
@@ -63,14 +99,12 @@
                 <dl id="cabin">
                     <dt>Класс</dt>
                     <dt class="tip">&nbsp;</dt>
-                    <dd class="active" data-value="Y">Эконом</dd>
-                    <dd data-value="C">Бизнес</dd>
+                    <dd class="active" data-value="ECONOMY">Эконом</dd>
+                    <dd data-value="BUSINESS">Бизнес</dd>
                 </dl>
-            </div>
-            <div class="clearfix"></div>
-            <div class="row">
-                <input type="submit" class="btn primary large offset2" value="Найти авиабилет">
             </div>
         </div>
     </form>
+
+    [% content %]
 [% END %]
