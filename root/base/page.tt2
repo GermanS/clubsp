@@ -17,6 +17,9 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/jscript/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="/jscript/bootstrap-twipsy.js"></script>
+    <script type="text/javascript" src="/jscript/bootstrap-popover.js"></script>
+
     <script type="text/javascript" src="/jscript/rpc.js"></script>
     <script type="text/javascript" src="/jscript/request.js"></script>
 
@@ -29,6 +32,7 @@
     <script type="text/javascript">
         $(function() {
             $('#topbar').dropdown();
+            $('a[rel=popover]').popover({offset:10});
         });
     </script>
 
