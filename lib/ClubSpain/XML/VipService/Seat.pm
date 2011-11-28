@@ -25,6 +25,24 @@ sub to_hash {
     };
 }
 
+sub is_adult {
+    my $self = shift;
+
+    return $self->passenger eq 'ADULT';
+}
+
+sub is_child {
+    my $self = shift;
+
+    return $self->passenger eq 'CHILD';
+}
+
+sub is_infant {
+    my $self = shift;
+
+    return $self->passenger eq 'INFANT';
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;
