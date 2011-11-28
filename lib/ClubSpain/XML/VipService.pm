@@ -54,15 +54,17 @@ sub searchFlights {
         }
     );
 
-    use Data::Dumper;
-    warn Dumper($trace);
-    warn Dumper($answer);
-    warn $trace->printResponse;
+#    use Data::Dumper;
+#    warn Dumper($trace);
+#    use File::Slurp;
+#    write_file('OUT_iberia.txt', Dumper($answer));
+#    warn Dumper($answer);
+#    warn $trace->printResponse;
 
     return ClubSpain::XML::VipService::Response::FlightSearch->new(
+        request  => $criteria,
         response => $answer
     );
-#    return $answer;
 }
 
 
