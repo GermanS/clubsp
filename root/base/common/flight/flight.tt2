@@ -1,7 +1,7 @@
 [% WRAPPER common/flight/flight_wrapper.tt2
-           javascript = "common/flight/flight.js.tt2"
-           include_datepicker = 1
-           include_jquery_ui  = 1 %]
+           javascript = "common/flight/flight.js.tt2" %]
+
+    [% INCLUDE backoffice/message.tt2 %]
 
     [% IF result %]
         [% INCLUDE common/flight/results.tt2 %]
