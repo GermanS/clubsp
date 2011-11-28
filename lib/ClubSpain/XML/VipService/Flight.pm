@@ -37,6 +37,36 @@ sub to_hash {
     };
 }
 
+sub count_adults {
+    my $self = shift;
+
+    foreach my $seat ( @{$self->seat} ) {
+        return $seat->count if $seat->is_adult();
+    }
+
+    return 0;
+}
+
+sub count_children {
+    my $self = shift;
+
+    foreach my $seat ( @{$self->seat} ) {
+        return $seat->count if $seat->is_child();
+    }
+
+    return 0;
+}
+
+sub count_infants {
+    my $self = shift;
+
+    foreach my $seat ( @{$self->seat} ) {
+        return $seat->count if $seat->is_infant();
+    }
+
+    return 0;
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;
