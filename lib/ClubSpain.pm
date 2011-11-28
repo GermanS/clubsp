@@ -51,6 +51,9 @@ __PACKAGE__->config(
     'View::TT' => {
          ENCODING => 'UTF-8',
     },
+    'View::JSON' => {
+        expose_stash => 'json_data'
+    },
     'Controller::HTML::FormFu' => {
         constructor => {
             tt_args => {
