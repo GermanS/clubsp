@@ -7,6 +7,7 @@ use utf8;
 use parent qw(Catalyst::View::TT);
 
 use DateTime;
+use DateTime::Duration;
 use DateTime::Format::Strptime;
 use Encode;
 use Text::GooglewikiFormat;
@@ -91,6 +92,20 @@ __PACKAGE__->config(
             $value =~ s/(\d\d\d)(?=\d)(?!\d*\.)/$1 /g;
             $value = reverse $value;
             return $value;
+        },
+        #перевод минут в читабельный формат 3ч 35мин
+        'duration' => sub {
+            my $minutes = shift;
+
+            my $duration = DateTime::Duration->new( minutes => $minutes );
+            my $string;
+            unless ($duration->hours) {
+                $string = sprintf "%2s мин", $duration->minutes;
+            } else {
+                $string = sprintf "%2s ч %2s мин", $duration->hours, $duration->minutes;
+            }
+
+            return $string;
         }
     }
 );
