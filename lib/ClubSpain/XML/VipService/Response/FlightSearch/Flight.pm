@@ -8,8 +8,8 @@ use Math::BigFloat;
 use ClubSpain::XML::VipService::Response::FlightSearch::Segment;
 use ClubSpain::XML::VipService::Response::FlightSearch::Price;
 
-has 'segments'  =>  ( is => 'ro' );
-has 'price' => ( is => 'ro' );
+has 'segments'  => ( is => 'ro' );
+has 'price'     => ( is => 'rw', isa => 'ClubSpain::XML::VipService::Response::FlightSearch::Price' );
 
 has 'timeLimit'         => ( is => 'ro' );
 has 'carrier'           => ( is => 'ro' );
@@ -17,6 +17,9 @@ has 'latinRegistration' => ( is => 'ro' );
 has 'eticket'           => ( is => 'ro' );
 has 'price'             => ( is => 'ro' );
 
+has 'adult'   => ( is => 'ro', default => sub { 1 } );
+has 'child'   => ( is => 'ro', default => sub { 0 } );
+has 'infant'  => ( is => 'ro', default => sub { 0 } );
 
 around BUILDARGS => sub {
     my $orig  = shift;
@@ -30,11 +33,10 @@ around BUILDARGS => sub {
         ];
     }
 
-    if (exists($args{'price'})) {
-        my $price = $args{'price'}{'price'};
-        $args{'price'} = [
-            map ClubSpain::XML::VipService::Response::FlightSearch::Price->new(%{$_} ), @$price
-        ];
+    if ( exists($args{'price'}) ) {
+        my $price = ClubSpain::XML::VipService::Response::FlightSearch::Price->new();
+        $price->initialize($args{'price'}{'price'});
+        $args{'price'} = $price;
     }
 
     return $class->$orig(%args);
@@ -43,13 +45,9 @@ around BUILDARGS => sub {
 sub total {
     my $self = shift;
 
-    my $result = Math::BigFloat->new(0);
-    for my $price (@{$self->price}) {
-        $result += $price->amount;
-    }
-
-    return $result;
+    return $self->price->total($self);
 }
+
 
 __PACKAGE__->meta->make_immutable();
 
