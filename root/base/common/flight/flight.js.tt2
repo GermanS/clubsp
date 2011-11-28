@@ -1,40 +1,20 @@
 <script type="text/javascript">
     $(function() {
-        var availableTags = [
-            "Moscow",
-            "Barcelona",
-            "Malaga",
-            "Madrid",
-            "Alicante",
-            "tenerife SUR",
-            "Tenerife Norte",
-            "Mallorca",
-            "Granada",
-            "Cadiz",
-            "Fuertoventura",
-            "Reus",
-            "Gerona",
-            "Asturia",
-            "Sevilla",
-            "Cordoba",
-            "Avilla",
-            "Xixon"
-        ];
-        $( "#CityOfDeparture1" ).autocomplete({
-            source: availableTags
-        });
+        var options = {
+            matchContains: true,
+            minChars: 3,
+            max: 20,
+            dataType: 'json',
+            cacheLength: 0,
+            source: "/json/city/suggest",
+            select: function(event, ui) {
+                var id = this.id;
+                $("#" + id + "_id").val(ui.item.id);
+            }
+        };
+        $("#CityOfDeparture").autocomplete(options);
+        $("#CityOfArrival").autocomplete(options);
 
-        $( "#CityOfDeparture2" ).autocomplete({
-            source: availableTags
-        });
-
-        $( "#CityOfArrival1" ).autocomplete({
-            source: availableTags
-        });
-
-        $( "#CityOfArrival2" ).autocomplete({
-            source: availableTags
-        });
 
         $("#DateOfDeparture1").datepicker({
             minDate: 0,
@@ -55,21 +35,33 @@
         init: function() {
             var a = this;
 
+            a.toggleMode($("#search_mode").val());
+            a.toggleRoute($("#search_mode").val());
+
+            a.toggleDD("#adults",   $("#adults_data").val());
+            a.toggleDD("#children", $("#children_data").val());
+            a.toggleDD("#infants",  $("#infants_data").val());
+            a.toggleDD("#cabin",    $("#cabin_data").val());
+
             $("#search-mode li").click(function() {
                 a.toggleMode($(this).attr("data-value"));
                 a.toggleRoute($(this).attr("data-value"));
             });
             $("#adults dd").click(function() {
                 a.toggleDD("#adults", $(this).attr('data-value'));
+                 $("#adults_data").val( $(this).attr('data-value') );
             });
             $("#children dd").click(function() {
                 a.toggleDD("#children", $(this).attr('data-value'));
+                $("#children_data").val( $(this).attr('data-value') );
             });
             $("#infants dd").click(function() {
                 a.toggleDD("#infants", $(this).attr('data-value'));
+                $("#infants_data").val( $(this).attr('data-value') );
             });
             $("#cabin dd").click(function() {
                 a.toggleDD("#cabin", $(this).attr('data-value'));
+                $("#cabin_data").val( $(this).attr('data-value') );
             });
         },
         toggleMode: function(value) {
@@ -92,9 +84,13 @@
         },
         toggleRoute : function(value) {
             if (value == 'OW') {
-                $("#route-2").css('visibility', 'hidden');
+                $("#DateOfDeparture2").css('visibility', 'hidden');
+                $("#DateOfDeparture2").attr('disabled', true);
+                $("#search_mode").val('OW');
             } else {
-                $("#route-2").css('visibility', 'visible');
+                $("#DateOfDeparture2").css('visibility', 'visible');
+                $("#DateOfDeparture2").attr('disabled', false);
+                $("#search_mode").val('RT');
             }
         }
     };
