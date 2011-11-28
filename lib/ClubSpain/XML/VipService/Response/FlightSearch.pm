@@ -18,7 +18,12 @@ around BUILDARGS => sub {
     if (exists($args{'response'})) {
         my $flights = $args{'response'}{'parameters'}{'return'}{'flights'}{'flight'};
         $args{'flights'} = [
-            map ClubSpain::XML::VipService::Response::FlightSearch::Flight->new(%{$_} ), @$flights
+            map ClubSpain::XML::VipService::Response::FlightSearch::Flight->new(
+                %{$_},
+                adult  => $args{'request'}->count_adults,
+                child  => $args{'request'}->count_children,
+                infant => $args{'request'}->count_infants,
+            ), @$flights
         ];
     }
 
