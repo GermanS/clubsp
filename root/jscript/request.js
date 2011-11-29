@@ -27,9 +27,6 @@ var FareSearchCitiesOfArrival2RT   = 'xmlrpc.flight.fare.searchCitiesOfArrival2R
 var FareSearchDatesOfDeparture1RT  = 'xmlrpc.flight.fare.searchDatesOfDeparture1RT';
 var FareSearchDatesOfDeparture2RT  = 'xmlrpc.flight.fare.searchDatesOfDeparture2RT';
 
-/* City suggest */
-var FlightCitySuggest = 'xmlrpc.flight.city.suggest';
-
 var METHODS = [
     REQ_CountryOfDeparture,
     REQ_CityOfDeparture,
@@ -53,10 +50,10 @@ var METHODS = [
     FareSearchCitiesOfDeparture2RT,
     FareSearchCitiesOfArrival2RT,
     FareSearchDatesOfDeparture1RT,
-    FareSearchDatesOfDeparture2RT,
-    FlightCitySuggest
+    FareSearchDatesOfDeparture2RT
 ];
-var service = new rpc.ServiceProxy(URL, {
+
+var serviceX = new rpc.ServiceProxy(URL, {
     asynchronous: true,
     sanitize: false,
     methods: METHODS,
@@ -73,7 +70,7 @@ var service = new rpc.ServiceProxy(URL, {
  *
  **/
 function makeRequest(method, params, element, initialValue) {
-    var methodObject = service;
+    var methodObject = serviceX;
     var propChain = method.split(/\./);
     for(var j = 0; j+1 < propChain.length; j++){
         methodObject = methodObject[propChain[j]];
