@@ -42,24 +42,10 @@ sub searchFlights {
     my $searchFlights = $self->wsdl->compileClient('searchFlights', validate => 1);
     my ($answer, $trace) = $searchFlights->(
         parameters => {
-#            context    => $self->config->to_hash(),
-            context => {
-                locale     => 'ru',
-                loginName  => 'systema@vremiatour.ru',
-                password   => 'systema@vremiatour.ru',
-                salesPointCode => '001',
-                corporateClientCode => 'VREMYA_TUR'
-            },
+            context    => $self->config->to_hash(),
             parameters => $criteria->to_hash(),
         }
     );
-
-#    use Data::Dumper;
-#    warn Dumper($trace);
-#    use File::Slurp;
-#    write_file('OUT_iberia.txt', Dumper($answer));
-#    warn Dumper($answer);
-#    warn $trace->printResponse;
 
     return ClubSpain::XML::VipService::Response::FlightSearch->new(
         request  => $criteria,
