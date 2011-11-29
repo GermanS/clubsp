@@ -33,7 +33,7 @@
     [% END %]
 
     <tr>
-        <td colspan="12">&nbsp;</td>
+        <td colspan="10">&nbsp;</td>
     </tr>
     <tr>
         <td><b>[% itinerary.timetable.departure_date | dmy %]</b></td>
