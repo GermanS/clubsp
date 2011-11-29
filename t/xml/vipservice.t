@@ -1,4 +1,4 @@
-use Test::More tests => 7;
+use Test::More tests => 6;
 use strict;
 use warnings;
 use utf8;
@@ -8,6 +8,8 @@ use_ok('ClubSpain::XML::VipService::Seat');
 use_ok('ClubSpain::XML::VipService::Location');
 use_ok('ClubSpain::XML::VipService::Route');
 use_ok('ClubSpain::XML::VipService::Flight');
+
+=head
 
 use lib qw(t/lib);
 use ClubSpain::Test;
@@ -50,8 +52,6 @@ my $response = $service->searchFlights($flight);
 
 use Data::Dumper;
 warn Dumper($response);
-
-=head
 
     route => {
         segment => {
