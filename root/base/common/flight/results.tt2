@@ -25,7 +25,7 @@
                     <a href="#"
                        rel="popover"
                        title="[% segment.airline.code %][% segment.flightNumber%] ([% segment.locationBegin.code %] - [% segment.locationEnd.code %])"
-                       data-content="Рейс авиакомпании [%segment.airline.name | html %] номер [% segment.flightNumber %], [% segment.locationBegin.name %] - [% segment.locationEnd.name %] на самолете [% segment.board.name | html %]">
+                       data-content="Рейс авиакомпании [%segment.airline.name | html %] номер [% segment.flightNumber %], [% segment.locationBegin.name %] - [% segment.locationEnd.name %]">
                        [% segment.airline.code %][% segment.flightNumber %]
                     </a>
                 </td>
