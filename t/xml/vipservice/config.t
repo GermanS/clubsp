@@ -1,4 +1,4 @@
-use Test::More tests => 10;
+use Test::More tests => 18;
 use strict;
 use warnings;
 use utf8;
@@ -31,14 +31,30 @@ use_ok('ClubSpain::XML::VipService::Config');
     is_deeply($config->to_hash,  \%params, 'got context hash');
 }
 
-=head
 
-use Catalyst::Test qw(ClubSpain);
+#pass config like catalyst
+{
+    my $config = ClubSpain::XML::VipService::Config->new(
+        config => {
+            'XML::VipService::Config' => {
+                locale              => 'cfg_locale_value',
+                loginName           => 'cfg_login_name_value',
+                password            => 'cfg_password_value',
+                salesPointCode      => 'cfg_sales_point_code_value',
+                corporateClientCode => 'cfg_corporate_client_value',
+                wsdlfile => '/cfg/path/to/wsdl',
+                xsdfile  => '/cfg/path/to/xsd',
+            }
+       }
+    );
 
-use Data::Dumper;
-warn Dumper(ClubSpain->config);
+    isa_ok($config, 'ClubSpain::XML::VipService::Config');
+    is($config->locale, 'cfg_locale_value', 'got locale');
+    is($config->loginName, 'cfg_login_name_value', 'git login');
+    is($config->password, 'cfg_password_value', 'got password');
+    is($config->salesPointCode, 'cfg_sales_point_code_value', 'got salesPointCode');
+    is($config->corporateClientCode, 'cfg_corporate_client_value', 'got corporateClientCode');
+    is($config->wsdlfile, '/cfg/path/to/wsdl', 'got wsdlfile');
+    is($config->xsdfile, '/cfg/path/to/xsd', 'got xsdfile');
+}
 
-my $config = ClubSpain::XML::VipService::Config->new(ClubSpain->config->{'XML::VipService::Config'});
-warn Dumper($config);
-
-=cut
