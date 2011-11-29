@@ -10,6 +10,41 @@ has 'corporateClientCode' => ( is => 'ro', required => 1 );
 has 'wsdlfile' => ( is => 'ro', required => 1 );
 has 'xsdfile'  => ( is => 'ro', required => 1 );
 
+#main catalust configuration
+has 'config' => ( is => 'ro' );
+
+around BUILDARGS => sub {
+    my $orig  = shift;
+    my $class = shift;
+    my %args  = ( @_ == 1 ? %{ $_[0] } : @_ );
+
+    if ($args{'config'} && $args{'config'}->{'XML::VipService::Config'}) {
+        my $config = $args{'config'}->{'XML::VipService::Config'};
+        $args{'locale'} = $config->{'locale'}
+            unless $args{'locale'};
+
+        $args{'loginName'} = $config->{'loginName'}
+            unless $args{'loginName'};
+
+        $args{'password'} = $config->{'password'}
+            unless $args{'password'};
+
+        $args{'salesPointCode'} = $config->{'salesPointCode'}
+            unless $args{'salesPointCode'};
+
+        $args{'corporateClientCode'} = $config->{'corporateClientCode'}
+            unless $args{'corporateClientCode'};
+
+        $args{'wsdlfile'} = $config->{'wsdlfile'}
+            unless $args{'wsdlfile'};
+
+        $args{'xsdfile'} = $config->{'xsdfile'}
+            unless $args{'xsdfile'};
+    }
+
+    return $class->$orig(%args);
+};
+
 =head2 _context_hash()
 
   Полученение хеша аттрибутов агентства для доступа к системе
