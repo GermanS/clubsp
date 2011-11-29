@@ -5,6 +5,8 @@ use utf8;
 
 use_ok('ClubSpain::XML::VipService::Response::FlightSearch');
 
+=head
+
 my $result = ClubSpain::XML::VipService::Response::FlightSearch->new(
     response => &response
 );
@@ -175,3 +177,5 @@ sub response {
         }
     }
 };
+
+=cut
