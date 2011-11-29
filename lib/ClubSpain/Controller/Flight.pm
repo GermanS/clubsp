@@ -107,15 +107,7 @@ sub search :Local {
         return;
     }
 
-    my $config = ClubSpain::XML::VipService::Config->new(
-        locale              => 'ru', #TODO: get rid of this
-        loginName           => 'dummy_loginname', #TODO: get rid of this
-        password            => 'dummy_password', #TODO: get rid of this
-        salesPointCode      => 'dummy_salesPointCode', #TODO: get rid of this
-        corporateClientCode => 'dummy_corporateClientCode',
-        wsdlfile            => 'root/vipservice/vip_service.wsdl',
-        xsdfile             => 'root/vipservice/vip_service.xsd',
-    );
+    my $config = ClubSpain::XML::VipService::Config->new( config => $c->config );
     my $service = ClubSpain::XML::VipService->new(config => $config);
     my $result = $service->searchFlights($flight);
 
