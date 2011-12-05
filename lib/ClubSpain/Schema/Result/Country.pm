@@ -30,7 +30,7 @@ __PACKAGE__->add_columns(
     },
     numerics => {
         data_type     => 'tinyint unsigned',
-        is_nullable   => 0,
+        is_nullable   => 1,
     },
     is_published => {
         data_type     => 'tinyint unsigned',
@@ -42,7 +42,7 @@ __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_name => [qw(name)]);
 __PACKAGE__->add_unique_constraint(on_alpha2  => [qw(alpha2)]);
 __PACKAGE__->add_unique_constraint(on_alpha3  => [qw(alpha3)]);
-__PACKAGE__->add_unique_constraint(on_numerics => [qw(numerics)]);
+#__PACKAGE__->add_unique_constraint(on_numerics => [qw(numerics)]);
 
 __PACKAGE__->has_many(
     cities => 'ClubSpain::Schema::Result::City',
