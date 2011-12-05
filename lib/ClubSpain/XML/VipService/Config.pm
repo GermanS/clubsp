@@ -6,7 +6,7 @@ has 'locale'              => ( is => 'ro', required => 1 );
 has 'loginName'           => ( is => 'ro', required => 1 );
 has 'password'            => ( is => 'ro', required => 1 );
 has 'salesPointCode'      => ( is => 'ro', required => 1 );
-has 'corporateClientCode' => ( is => 'ro', required => 1 );
+#has 'corporateClientCode' => ( is => 'ro', required => 1 );
 has 'wsdlfile' => ( is => 'ro', required => 1 );
 has 'xsdfile'  => ( is => 'ro', required => 1 );
 
@@ -32,8 +32,8 @@ around BUILDARGS => sub {
         $args{'salesPointCode'} = $config->{'salesPointCode'}
             unless $args{'salesPointCode'};
 
-        $args{'corporateClientCode'} = $config->{'corporateClientCode'}
-            unless $args{'corporateClientCode'};
+#        $args{'corporateClientCode'} = $config->{'corporateClientCode'}
+#            unless $args{'corporateClientCode'};
 
         $args{'wsdlfile'} = $config->{'wsdlfile'}
             unless $args{'wsdlfile'};
@@ -60,7 +60,7 @@ sub to_hash {
         loginName      => $self->loginName,
         password       => $self->password,
         salesPointCode => $self->salesPointCode,
-        corporateClientCode => $self->corporateClientCode
+#        corporateClientCode => $self->corporateClientCode
     };
 }
 
