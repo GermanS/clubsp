@@ -162,4 +162,7 @@
             <p>Доплата за перевоз сверхнормативного багажа - <span class="label important">10 евро за 1 кг</span></p>
         </div>
     </div>
+
+    [% INCLUDE common/breadcrumb.tt2 %]
+
 [% END %]

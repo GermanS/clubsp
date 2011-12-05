@@ -1,0 +1,14 @@
+<p>
+    <ul class="breadcrumb">
+        [% conter = 0 %]
+        [% WHILE (story = iterator.next) %]
+            <li>
+                [% IF counter %]
+                    <span class="divider">/</span>
+                [% END %]
+                <a href="/article/[% story.id %]" title="[% story.subheader %]">[% story.header %]</a>
+                [% counter = 1 %]
+            </li>
+        [% END %]
+    </ul>
+</p>
