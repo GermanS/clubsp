@@ -26,27 +26,24 @@ The root page (/)
 
 =cut
 
-sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
+sub index :Path :Args(1) {
+    my ( $self, $c, $direction ) = @_;
 
-    my $iterator = $c->model('Article')->list(1);
+    my ($codeOfDeparture, $codeOfArrival) = split('-', $direction);
+    if ($codeOfDeparture && $codeOfArrival) {
+        my $cityOfDeparture = $c->model('City')->search({ iata => $codeOfDeparture, is_published => 1 })->single;
+        my $cityOfArrival   = $c->model('City')->search({ iata => $codeOfArrival,   is_published => 1 })->single;
 
-    my $MOW = $c->model('City')->search({ id => 1 })->single();
-    my $departures = $c->model('Timetable')->departures(
-        cityOfDeparture => $MOW->id,
-        duration        => 7,
-    );
-    my $arrivals = $c->model('Timetable')->arrivals(
-        cityOfArrival => $MOW->id,
-        duration      => 7,
-    );
+        $c->detach('default') unless $cityOfDeparture && $cityOfArrival;
 
-    $c->stash(
-        iterator   => $iterator,
-        departures => $departures,
-        arrivals   => $arrivals,
-        template => 'common/index.tt2'
-    );
+        $c->request->param('CityOfArrival_id', $cityOfArrival->id);
+        $c->request->param('CityOfDeparture_id', $cityOfDeparture->id);
+
+        $c->request->param('CityOfDeparture',  sprintf("%s (%s)", $cityOfDeparture->name_ru, $cityOfDeparture->iata));
+        $c->request->param('CityOfArrival', sprintf("%s (%s)", $cityOfArrival->name_ru, $cityOfArrival->iata));
+
+        $c->go(qw(ClubSpain::Controller::Flight), qw(default));
+    }
 }
 
 =head2 default
@@ -57,8 +54,16 @@ Standard 404 error page
 
 sub default :Path {
     my ( $self, $c ) = @_;
-    $c->response->body( 'Page not found' );
-    $c->response->status(404);
+
+    my $iterator = $c->model('Article')->list(1);
+    $c->stash(
+        iterator   => $iterator,
+#        departures => $departures,
+#        arrivals   => $arrivals,
+        template => 'common/index.tt2'
+    );
+#    $c->response->body( 'Page not found' );
+#    $c->response->status(404);
 }
 
 sub article   : Chained('/') : PathPart('article') : CaptureArgs(0) { }
