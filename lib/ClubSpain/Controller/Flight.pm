@@ -160,6 +160,15 @@ sub setup_stash_from_request : Private {
     $result{'search_mode'} = 'RT'
         unless $result{'search_mode'};
 
+
+    #set default city of departure to MOW
+    unless ($result{'CityOfDeparture'} && $result{'CityOfDeparture_id'} ) {
+        $result{'CityOfDeparture_id'} = 1;
+
+        my $mow = $c->model('City')->fetch_by_id($result{'CityOfDeparture_id'});
+        $result{'CityOfDeparture'} = sprintf("%s (%s)", $mow->name_ru, $mow->iata);
+    }
+
     $c->stash({%result});
 }
 
