@@ -9,6 +9,8 @@ use_ok('ClubSpain::XML::VipService::Location');
 use_ok('ClubSpain::XML::VipService::Route');
 use_ok('ClubSpain::XML::VipService::Flight');
 
+=head
+
 use lib qw(t/lib);
 use ClubSpain::Test;
 my @sat = ClubSpain::Test->three_saturdays_ahead();
