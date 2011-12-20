@@ -1,3 +1,5 @@
 <footer>
+    [%INCLUDE common/stats/analytics.tt2 %]
+    [% INCLUDE common/stats/yandex.tt2 %]
     <p>Москва, ул. Ивана Бабушкина 16, тел. +7 (495) 792-58-38, 789-65-58 &copy; aviabroker.com (2011)</p>
 </footer>
