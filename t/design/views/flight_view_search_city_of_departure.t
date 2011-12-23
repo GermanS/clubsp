@@ -1,10 +1,11 @@
 use Test::More tests => 32;
 use strict;
 use warnings;
+
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-my $schema = ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
+my $schema = $helper->schema;
 
 
 my $MOW = $schema->resultset('City')->search({ id => 1 })->single;

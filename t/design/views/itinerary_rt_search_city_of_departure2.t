@@ -1,13 +1,16 @@
 use Test::More tests => 27;
 use strict;
 use warnings;
+
 use_ok('ClubSpain::Model::City');
+
 use lib qw(t/lib);
 use ClubSpain::Test;
-my $schema = ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
+my $schema = $helper->schema;
 
 
-my $MOW = $schema->resultset('City')->search({ id => 1 })->single;
+my $MOW = $helper->moscow();
 sub is_MOW {
     my $mow = shift;
 
@@ -16,7 +19,7 @@ sub is_MOW {
     is($mow->name, $MOW->name, 'got Moscow');
 }
 
-my $BCN = $schema->resultset('City')->search({ id => 2 })->single;
+my $BCN = $helper->barcelona();
 sub is_BCN {
     my $bcn = shift;
 

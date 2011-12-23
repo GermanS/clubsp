@@ -8,7 +8,7 @@ use_ok('ClubSpain::Model::Airplane');
 use lib qw(t/lib);
 use ClubSpain::Test;
 
-ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
 
 #first insert
 {

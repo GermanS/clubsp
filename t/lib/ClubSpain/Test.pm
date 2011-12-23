@@ -1,21 +1,26 @@
 package ClubSpain::Test;
-
 use strict;
 use warnings;
 use utf8;
+use namespace::autoclean;
+use Moose;
 
-BEGIN {
-    use base qw(Test::Builder::Module);
+use DateTime;
+use FileHandle;
+use Test::More;
+@ClubSpain::Test::EXPORT = @Test::More::EXPORT;
 
-    use Test::More;
-    use DateTime;
-    use FileHandle;
+# схема
+has 'schema'      => ( is => 'rw' );
+# 1 удалить содержимое всех таблиц, по умолчанию 0 - не удалять
+has 'clear'       => ( is => 'rw', default => sub { 0 } );
+# 1 не перезаписывать схему заново, по умолчанию 0 - перезаписать
+has 'no_deploy'   => ( is => 'rw', default => sub { 0 } );
+# 1 не заполнять тестовыми данными, по умолчанию 0 - заполнять
+has 'no_populate' => ( is => 'rw', default => sub { 0 } );
 
-    @ClubSpain::Test::EXPORT = @Test::More::EXPORT;
-};
-
-sub init_schema {
-    my ($self, %args) = @_;
+sub BUILD {
+    my $self = shift;
 
     eval 'use DBD::mysql';
     if ($@) {
@@ -53,21 +58,22 @@ sub init_schema {
          $config->{'Model::DBIC::Schema'}{'connect_info'}{'user'},
          $config->{'Model::DBIC::Schema'}{'connect_info'}{'password'},
          {
-             mysql_enable_utf8 => 1, #$config->{'Model::DBIC::Schema'}{'connect_info'}{'mysql_enable_utf8'}
+             mysql_enable_utf8 =>$config->{'Model::DBIC::Schema'}{'connect_info'}{'mysql_enable_utf8'}
          },
     );
 
-    $self->deploy_schema($schema, %args)
-        unless $args{'no_deploy'};
-    $self->populate_schema($schema, %args)
-        unless $args{'no_populate'};
+    $self->schema($schema);
 
-    return $schema;
-}
+    $self->deploy_schema()
+        unless $self->no_deploy;
+    $self->populate_schema()
+        unless $self->no_populate;
+};
 
 sub deploy_schema {
-    my ($self, $schema) = @_;
+    my $self = shift;
 
+    my $schema = $self->schema();
     eval 'use SQL::Translator';
     if (!$@) {
         eval { $schema->deploy( {add_drop_table => 1 }); };
@@ -75,13 +81,14 @@ sub deploy_schema {
     } else {
         die("Could not load SQL::Translator: $@");
     }
-}
+};
 
 sub populate_schema {
-    my ($self, $schema, %args) = @_;
+    my ($self, %args) = @_;
 
-    $self->clear_schema($schema)
-        if $args{'clear'};
+    my $schema = $self->schema();
+    $self->clear_schema()
+        if $self->clear;
 
 
     my @country = $schema->populate('Country',[
@@ -202,12 +209,13 @@ sub populate_schema {
 }
 
 sub clear_schema {
-    my ($self, $schema) = @_;
+    my $self = shift;
 
+    my $schema = $self->schema();
     foreach my $source ($schema->sources) {
         $schema->resultset($source)->delete_all;
     }
-}
+};
 
 #plan saturday flights
 sub three_saturdays_ahead {
@@ -222,8 +230,7 @@ sub three_saturdays_ahead {
     return ($start,
             $start + $week,
             $start + $week + $week);
-}
-
+};
 
 sub comp_to_file {
     my ($class, $string, $file) = @_;
@@ -257,5 +264,51 @@ sub comp_to_file {
 
     return 0;
 };
+
+#страна россия
+sub russia {
+    return shift->schema->resultset('Country')->search({ id => 1 })->single();
+};
+
+#город москва
+sub moscow {
+    return shift->schema->resultset('City')->search({ id => 1 })->single();
+};
+
+#аэропорт домодедово
+sub dme {
+    return shift->schema->resultset('Airport')->search({ id => 1 })->single();
+}
+#страна испания
+sub spain {
+    return shift->schema->resultset('Country')->search({ id => 2 })->single();
+};
+
+#город барселона
+sub barcelona {
+    return shift->schema->resultset('City')->search({ id => 2 })->single();
+};
+
+#аэропорт барселоны
+sub bcn {
+    return shift->schema->resultset('Airport')->search({ id => 4 })->single();
+};
+
+#авиакомпания Вим-Авиа
+sub NN {
+    return shift->schema->resultset('Airline')->search({ id => 1 })->single();
+};
+
+#эконом класс
+sub Y {
+    return shift->schema->resultset('FareClass')->search({ id => 1 })->single;
+};
+
+#бизнес класс
+sub C {
+    return shift->schema->resultset('FareClass')->search({ id => 2 })->single;
+};
+
+__PACKAGE__->meta->make_immutable();
 
 1;

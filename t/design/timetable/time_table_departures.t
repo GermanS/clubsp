@@ -6,18 +6,18 @@ use_ok('ClubSpain::Model::TimeTable');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-my $schema = ClubSpain::Test->init_schema();
-my $MOW = $schema->resultset('City')->search({ id => 1 })->single();
+my $helper = ClubSpain::Test->new();
+my $MOW = $helper->moscow();
 
 my @dates = ClubSpain::Test->three_saturdays_ahead();
 
 {
-    my $iterator = $schema->resultset('TimeTable')->departures();
+    my $iterator = $helper->schema->resultset('TimeTable')->departures();
     is($iterator, undef, 'got nothing');
 }
 
 {
-    my $iterator = $schema->resultset('TimeTable')->departures(
+    my $iterator = $helper->schema->resultset('TimeTable')->departures(
         cityOfDeparture => $MOW->id
     );
 
@@ -35,7 +35,7 @@ my @dates = ClubSpain::Test->three_saturdays_ahead();
 }
 
 {
-    my $iterator = $schema->resultset('TimeTable')->departures(
+    my $iterator = $helper->schema->resultset('TimeTable')->departures(
         cityOfDeparture => $MOW->id,
         duration        => 7,
     );

@@ -7,9 +7,9 @@ use_ok('ClubSpain::Model::Terminal');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
+my $helper = ClubSpain::Test->new();
 
-my $schema = ClubSpain::Test->init_schema();
-my $count = $schema->resultset('Terminal')->search({})->count;
+my $count = $helper->schema->resultset('Terminal')->search({})->count;
 
 my $terminal = ClubSpain::Model::Terminal->new(
     airport_id   => 1,
@@ -27,5 +27,5 @@ is($object->is_published, 0, 'got is published');
 
 ClubSpain::Model::Terminal->delete($object->id);
 
-my $rs = $schema->resultset('Terminal')->search({});
+my $rs = $helper->schema->resultset('Terminal')->search({});
 is($rs->count, $count, 'no objects left');

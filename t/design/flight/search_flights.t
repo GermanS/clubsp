@@ -1,9 +1,10 @@
 use Test::More tests => 14;
 use strict;
 use warnings;
+
 use lib qw(t/lib);
 use ClubSpain::Test;
-my $schema = ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
 
 use_ok('ClubSpain::Model::Flight');
 
@@ -37,7 +38,7 @@ use_ok('ClubSpain::Model::Flight');
 
 #set country.is_published to 0
 {
-    my $russia = $schema->resultset('Country')->search({ id => 1 });
+    my $russia = $helper->schema->resultset('Country')->search({ id => 1 });
     $russia->update({ is_published => 0 });
 
     my $iterator = ClubSpain::Model::Flight->searchFlights(
@@ -52,7 +53,7 @@ use_ok('ClubSpain::Model::Flight');
 
 #set city.is_published to 0
 {
-    my $moscow = $schema->resultset('City')->search({ id => 1 });
+    my $moscow = $helper->schema->resultset('City')->search({ id => 1 });
     $moscow->update({ is_published => 0 });
 
     my $iterator = ClubSpain::Model::Flight->searchFlights(
@@ -67,7 +68,7 @@ use_ok('ClubSpain::Model::Flight');
 
 #set airport.is_published to 0
 {
-    my $malaga = $schema->resultset('Airport')->search({ id => 5 });
+    my $malaga = $helper->schema->resultset('Airport')->search({ id => 5 });
     $malaga->update({ is_published => 0 });
 
     my $iterator = ClubSpain::Model::Flight->searchFlights(
@@ -82,7 +83,7 @@ use_ok('ClubSpain::Model::Flight');
 
 #set flight.is_published to 0
 {
-    my $NN331 = $schema->resultset('Flight')->search({ id => 1 });
+    my $NN331 = $helper->schema->resultset('Flight')->search({ id => 1 });
     $NN331->update({ is_published => 0 });
 
     my $iterator = ClubSpain::Model::Flight->searchFlights(

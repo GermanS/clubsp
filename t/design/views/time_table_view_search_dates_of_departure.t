@@ -6,8 +6,8 @@ use_ok('ClubSpain::Model::TimeTable');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-my $schema = ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
+my $schema = $helper->schema;
 my @date = ClubSpain::Test->three_saturdays_ahead();
 
 sub request {

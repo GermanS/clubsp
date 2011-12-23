@@ -9,7 +9,7 @@ use ClubSpain::Constants qw(:all);
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-my $schema = ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
 
 #pass id to the function
 {

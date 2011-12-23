@@ -1,9 +1,11 @@
 use Test::More tests => 9;
 use strict;
 use warnings;
+
 use lib qw(t/lib);
 use ClubSpain::Test;
-my $schema = ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
+
 my @saturday = ClubSpain::Test->three_saturdays_ahead();
 
 use_ok('ClubSpain::Model::Flight');
@@ -24,7 +26,7 @@ use_ok('ClubSpain::Model::Flight');
 
 #set country.is_published to 0
 {
-    my $russia = $schema->resultset('Country')->search({ id => 1 });
+    my $russia = $helper->schema->resultset('Country')->search({ id => 1 });
     $russia->update({ is_published => 0 });
 
     my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
@@ -39,7 +41,7 @@ use_ok('ClubSpain::Model::Flight');
 
 #set city.is_published to 0
 {
-    my $mov = $schema->resultset('City')->search({ id => 1 });
+    my $mov = $helper->schema->resultset('City')->search({ id => 1 });
     $mov->update({ is_published => 0 });
 
     my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
@@ -54,7 +56,7 @@ use_ok('ClubSpain::Model::Flight');
 
 #set airport.is_published to 0
 {
-    my $dme = $schema->resultset('Airport')->search({ id => 1 });
+    my $dme = $helper->schema->resultset('Airport')->search({ id => 1 });
     $dme->update({ is_published => 0 });
 
     my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
@@ -69,7 +71,7 @@ use_ok('ClubSpain::Model::Flight');
 
 #set flight.is_published to 0
 {
-    my $NN331 = $schema->resultset('Flight')->search({ id => 1 });
+    my $NN331 = $helper->schema->resultset('Flight')->search({ id => 1 });
     $NN331->update({ is_published => 0 });
 
     my $iterator = ClubSpain::Model::Flight->searchFlightsInTimetable(
@@ -84,7 +86,7 @@ use_ok('ClubSpain::Model::Flight');
 
 #set timetable.is_published to 0
 {
-    my @DME_BCN = $schema->resultset('TimeTable')->search({
+    my @DME_BCN = $helper->schema->resultset('TimeTable')->search({
         departure_date => $saturday[0]->ymd
     });
 

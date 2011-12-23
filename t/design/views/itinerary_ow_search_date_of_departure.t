@@ -5,11 +5,12 @@ use_ok('ClubSpain::Model::Itinerary');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-my @dates = ClubSpain::Test->three_saturdays_ahead();
-my $schema = ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
+my $schema = $helper->schema;
 
-my $MOW = $schema->resultset('City')->search({ id => 1 })->single();
-my $BCN = $schema->resultset('City')->search({ id => 2 })->single();
+my $MOW = $helper->moscow();
+my $BCN = $helper->barcelona();
+my @dates = ClubSpain::Test->three_saturdays_ahead();
 
 {
     my $iterator = $schema->resultset('ViewItineraryOW')->searchDatesOfDeparture(

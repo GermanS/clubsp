@@ -8,8 +8,8 @@ use_ok('ClubSpain::Model::City');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-my $schema = ClubSpain::Test->init_schema( );
+my $helper = ClubSpain::Test->new();
+my $schema = $helper->schema;
 my $count = $schema->resultset('City')->search({})->count;
 
 my $city = ClubSpain::Model::City->new(

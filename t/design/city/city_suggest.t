@@ -6,7 +6,7 @@ use lib qw(t/lib);
 use ClubSpain::Test;
 
 use_ok('ClubSpain::Model::City');
-my $schema = ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
 
 {
     #search for Barcelona

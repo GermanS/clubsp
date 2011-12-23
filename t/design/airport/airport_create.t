@@ -7,8 +7,7 @@ use_ok('ClubSpain::Model::Airport');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-ClubSpain::Test->init_schema();
+ClubSpain::Test->new();
 
 #first insert
 {

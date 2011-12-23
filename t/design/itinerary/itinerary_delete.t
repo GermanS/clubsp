@@ -7,11 +7,10 @@ use_ok('ClubSpain::Model::Itinerary');
 
 use lib qw(t/lib);
 use ClubSpain::Constants qw(:all);
+
 use ClubSpain::Test;
-
-
-my $schema = ClubSpain::Test->init_schema();
-my $count = $schema->resultset('Itinerary')->search({})->count;
+my $helper = ClubSpain::Test->new();
+my $count = $helper->schema->resultset('Itinerary')->search({})->count;
 
 my $itinerary = ClubSpain::Model::Itinerary->new(
     timetable_id  => 1,
@@ -33,5 +32,5 @@ is($object->is_published,  1, 'got is_published');
 
 ClubSpain::Model::Itinerary->delete($object->id);
 
-my $rs = $schema->resultset('Itinerary')->search({});
+my $rs = $helper->schema->resultset('Itinerary')->search({});
 is($rs->count, $count, 'no objects left');

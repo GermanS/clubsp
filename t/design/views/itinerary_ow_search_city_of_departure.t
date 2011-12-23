@@ -3,13 +3,14 @@ use strict;
 use warnings;
 
 use lib qw(t/lib);
-
 use ClubSpain::Test;
-my $schema = ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
+my $schema = $helper->schema;
+
+my $MOW = $helper->moscow();
 
 use_ok('ClubSpain::Model::City');
 
-my $MOW = $schema->resultset('City')->search({ id => 1 })->single;
 sub is_MOW {
     my $mow = shift;
 

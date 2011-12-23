@@ -7,9 +7,8 @@ use_ok('ClubSpain::Model::Flight');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-my $schema = ClubSpain::Test->init_schema();
-my $count = $schema->resultset('Flight')->search({})->count;
+my $helper = ClubSpain::Test->new();
+my $count = $helper->schema->resultset('Flight')->search({})->count;
 
 my $flight = ClubSpain::Model::Flight->new(
     is_published            => 1,
@@ -31,5 +30,5 @@ is($object->code, 8331, 'got is code');
 
 ClubSpain::Model::Flight->delete($object->id);
 
-my $rs = $schema->resultset('Flight')->search({});
+my $rs = $helper->schema->resultset('Flight')->search({});
 is($rs->count, $count, 'no objects left');

@@ -7,8 +7,7 @@ use_ok('ClubSpain::Model::Article');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-ClubSpain::Test->init_schema( no_populate => 1 );
+my $helper = ClubSpain::Test->new(no_populate => 1);
 
 #first insert
 {

@@ -7,9 +7,8 @@ use_ok('ClubSpain::Model::TimeTable');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-my $schema = ClubSpain::Test->init_schema();
-my $count = $schema->resultset('TimeTable')->search({})->count;
+my $helper = ClubSpain::Test->new();
+my $count = $helper->schema->resultset('TimeTable')->search({})->count;
 
 my $timetable = ClubSpain::Model::TimeTable->new(
     is_published      => 1,
@@ -39,5 +38,5 @@ is($object->arrival_terminal_id, undef, 'got arrival terminal id');
 
 ClubSpain::Model::TimeTable->delete($object->id);
 
-my $rs = $schema->resultset('TimeTable')->search({});
+my $rs = $helper->schema->resultset('TimeTable')->search({});
 is($rs->count, $count, 'no objects left');

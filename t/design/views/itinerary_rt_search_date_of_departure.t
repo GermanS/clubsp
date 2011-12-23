@@ -1,15 +1,16 @@
 use Test::More tests => 5;
 use strict;
 use warnings;
+
 use lib qw(t/lib);
 use ClubSpain::Test;
+my $helper = ClubSpain::Test->new();
+my $schema = $helper->schema;
 
 my @dates = ClubSpain::Test->three_saturdays_ahead();
 
-my $schema = ClubSpain::Test->init_schema();
-
-my $MOW = $schema->resultset('City')->search({ id => 1 })->single();
-my $BCN = $schema->resultset('City')->search({ id => 2 })->single();
+my $MOW = $helper->moscow();
+my $BCN = $helper->barcelona();
 
 #MOW-BCN-BCN-MOW
 {

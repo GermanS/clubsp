@@ -3,20 +3,17 @@ use strict;
 use warnings;
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-my $schema = ClubSpain::Test->init_schema();
 my @date   = ClubSpain::Test->three_saturdays_ahead();
 
-my $RU = $schema->resultset('Country')->search({ id => 1 })->single;
-my $ES = $schema->resultset('Country')->search({ id => 2 })->single;
-
-my $MOW   = $schema->resultset('City')->search({ id => 1 })->single;
-my $BCN   = $schema->resultset('City')->search({ id => 2 })->single;
-my $DME   = $schema->resultset('Airport')->search({ id => 1 })->single;
-my $NN331 = $schema->resultset('Flight')->search({ id => 1 })->single;
-
-my $Y = $schema->resultset('FareClass')->search({ id => 1 })->single;
-my $C = $schema->resultset('FareClass')->search({ id => 2 })->single;
+my $helper = ClubSpain::Test->new();
+my $RU    = $helper->russia();
+my $ES    = $helper->spain();
+my $MOW   = $helper->moscow();
+my $BCN   = $helper->barcelona();
+my $DME   = $helper->dme();
+my $NN331 = $helper->schema->resultset('Flight')->search({ id => 1 })->single;
+my $Y = $helper->Y();
+my $C = $helper->C();
 
 use_ok('ClubSpain::Model::Itinerary');
 
@@ -100,12 +97,12 @@ use_ok('ClubSpain::Model::Itinerary');
 
 #set itinerary is_published to 0
 {
-    $schema->resultset('Itinerary')->update({ is_published => 0 });
+    $helper->schema->resultset('Itinerary')->update({ is_published => 0 });
 
     testSearchOW();
     testSearchRT();
 
-    $schema->resultset('Itinerary')->update({ is_published => 1 });
+    $helper->schema->resultset('Itinerary')->update({ is_published => 1 });
 }
 
 sub testSearchOW {

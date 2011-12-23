@@ -3,23 +3,21 @@ use strict;
 use warnings;
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-my $schema = ClubSpain::Test->init_schema();
 my @date   = ClubSpain::Test->three_saturdays_ahead();
 
-my $MOW = $schema->resultset('City')->search({ id => 1 })->single;
-my $BCN = $schema->resultset('City')->search({ id => 2 })->single;
+my $helper = ClubSpain::Test->new();
+my $MOW = $helper->moscow();
+my $BCN = $helper->barcelona();
+my $Y = $helper->Y();
+my $C = $helper->C();
 
-my $Y = $schema->resultset('FareClass')->search({ id => 1 })->single;
-my $C = $schema->resultset('FareClass')->search({ id => 2 })->single;
-
-my $timetable1 = $schema->resultset('ViewTimeTable')->searchTimetable(
+my $timetable1 = $helper->schema->resultset('ViewTimeTable')->searchTimetable(
     dateOfDeparture => $date[0]->ymd,
     cityOfDeparture => $MOW->id,
     cityOfArrival   => $BCN->id,
 )->single;
 
-my $timetable2 = $schema->resultset('ViewTimeTable')->searchTimetable(
+my $timetable2 = $helper->schema->resultset('ViewTimeTable')->searchTimetable(
     cityOfDeparture => $BCN->id,
     cityOfArrival   => $MOW->id,
     dateOfDeparture => $date[1]->ymd

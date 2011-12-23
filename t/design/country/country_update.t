@@ -7,8 +7,7 @@ use_ok('ClubSpain::Model::Country');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
 
 my $country = ClubSpain::Model::Country->new(
     id       => 1,

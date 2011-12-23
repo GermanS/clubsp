@@ -5,8 +5,7 @@ use warnings;
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
 
 use_ok('ClubSpain::Model::City');
 

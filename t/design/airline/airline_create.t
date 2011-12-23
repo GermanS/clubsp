@@ -1,5 +1,4 @@
 use Test::More tests => 13;
-
 use strict;
 use warnings;
 
@@ -7,8 +6,7 @@ use_ok('ClubSpain::Model::Airline');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-ClubSpain::Test->init_schema();
+my $helper = ClubSpain::Test->new();
 
 #first insert
 {

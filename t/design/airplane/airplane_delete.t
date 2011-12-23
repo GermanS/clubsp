@@ -7,8 +7,9 @@ use_ok('ClubSpain::Model::Airplane');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
+my $helper = ClubSpain::Test->new();
+my $schema = $helper->schema;
 
-my $schema = ClubSpain::Test->init_schema();
 my $count = $schema->resultset('Airplane')->search({})->count;
 
 my $airplane = ClubSpain::Model::Airplane->new(

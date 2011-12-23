@@ -7,8 +7,7 @@ use_ok('ClubSpain::Model::Country');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-my $schema = ClubSpain::Test->init_schema( no_populate => 1 );
+my $helper = ClubSpain::Test->new( no_populate => 1 );
 
 my $country = ClubSpain::Model::Country->new(
     name => 'Soviet Union',
@@ -29,5 +28,5 @@ is($object->is_published, 1, 'got is_published');
 ClubSpain::Model::Country->delete($object->id);
 
 
-my $rs = $schema->resultset('Country')->search({});
+my $rs = $helper->schema->resultset('Country')->search({});
 is($rs->count, 0, 'no objects left');

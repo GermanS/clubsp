@@ -8,7 +8,7 @@ use_ok('ClubSpain::Model::Article');
 use lib qw(t/lib);
 use ClubSpain::Test;
 
-my $schema = ClubSpain::Test->init_schema( no_populate => 1 );
+my $helper = ClubSpain::Test->new( no_populate => 1 );
 
 my $article = ClubSpain::Model::Article->new(
     parent_id       => 0,
@@ -33,5 +33,6 @@ is($object->body, 'body', 'got body');
 ClubSpain::Model::Article->delete($object->id);
 
 
-my $rs = $schema->resultset('Article')->search({});
+
+my $rs = $helper->schema->resultset('Article')->search({});
 is($rs->count, 0, 'no objects left');

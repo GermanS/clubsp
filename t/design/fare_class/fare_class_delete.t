@@ -7,9 +7,8 @@ use_ok('ClubSpain::Model::FareClass');
 
 use lib qw(t/lib);
 use ClubSpain::Test;
-
-my $schema = ClubSpain::Test->init_schema();
-my $count = $schema->resultset('FareClass')->search({})->count;
+my $helper = ClubSpain::Test->new();
+my $count = $helper->schema->resultset('FareClass')->search({})->count;
 
 my $fareclass = ClubSpain::Model::FareClass->new(
     code    => 'x',
@@ -27,5 +26,5 @@ is($object->is_published, 0, 'got is published');
 
 ClubSpain::Model::FareClass->delete($object->id);
 
-my $rs = $schema->resultset('FareClass')->search({});
+my $rs = $helper->schema->resultset('FareClass')->search({});
 is($rs->count, $count, 'no objects left');
