@@ -1,3 +1,6 @@
+[% UNLESS title %]
+    [% title = 'Поиск авиабилета' %]
+[% END %]
 [% WRAPPER common/doc4_yui_t5.tt2  %]
     <div class="page-header">
         <h1>Поиск авиабилетов</h1>
