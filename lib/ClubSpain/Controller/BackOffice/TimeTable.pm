@@ -160,9 +160,9 @@ sub load_upd_form :Private {
     $form->get_element({ name => 'TimeOfDeparture' })
          ->value($timetable->departure_time);
     $form->get_element({ name => 'DateOfArrival' })
-         ->value($timetable->departure_date);
+         ->value($timetable->arrival_date);
     $form->get_element({ name => 'TimeOfArrival' })
-         ->value($timetable->departure_time);
+         ->value($timetable->arrival_time);
     $form->process();
 
     return $form;
