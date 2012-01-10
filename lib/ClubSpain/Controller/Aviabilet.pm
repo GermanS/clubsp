@@ -35,8 +35,12 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
     eval {
         $itinerary = $c->model('Itinerary')->fetch_by_id($id);
 
-        $c->stash( itinerary => $itinerary )
-            if ($itinerary->parent_id == 0 and $itinerary->is_published == 1);
+        if ($itinerary->parent_id == 0 and $itinerary->is_published == 1) {
+            $c->stash(
+                itinerary => $itinerary,
+                title     => $c->model('Seo::Itinerary')->direction_title_with_date($itinerary),
+            )
+        }
     };
 
     if ($@) {
