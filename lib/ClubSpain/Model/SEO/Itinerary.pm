@@ -13,13 +13,13 @@ use utf8;
 
 На выходе:
 
-    "Стоимость авиабилета Москва - Барселона"
+    "Авиабилеты Москва - Барселона"
         - если авиабилет в одну сторону
 
-    "Стоимость авиабилета Москва - Барселона - Москва"
+    "Авиабилеты Москва - Барселона - Москва"
         - если авиабилет туда и обратно
 
-    "Стоимость авиабилета Москва - Барселона, Аликанте - Москва"
+    "Авиабилеты Москва - Барселона, Аликанте - Москва"
         - если город отправления второго сегмента не равен городу прибытия первого
 
 =cut
@@ -30,21 +30,21 @@ sub direction_title {
     my $result;
     my $segment2 = $segment1->next_route();
     if ($segment2) {
-        if ($segment1->timetable->flight->departure_airport->city->name_ru eq
+        if ($segment2->timetable->flight->departure_airport->city->name_ru eq
             $segment1->timetable->flight->destination_airport->city->name_ru) {
-            $result = sprintf "Стоимость авиабилета %s - %s - %s",
+            $result = sprintf "Авиабилеты %s - %s - %s",
                 $segment1->timetable->flight->departure_airport->city->name_ru,
                 $segment1->timetable->flight->destination_airport->city->name_ru,
-                $segment2->timetable->flight->destination_airport->city->name_ru,
+                $segment2->timetable->flight->destination_airport->city->name_ru;
         } else {
-            $result = sprintf "Стоимость авиабилета %s - %s, %s - %s",
+            $result = sprintf "Авиабилеты %s - %s, %s - %s",
                 $segment1->timetable->flight->departure_airport->city->name_ru,
                 $segment1->timetable->flight->destination_airport->city->name_ru,
                 $segment2->timetable->flight->departure_airport->city->name_ru,
-                $segment2->timetable->flight->destination_airport->city->name_ru,
+                $segment2->timetable->flight->destination_airport->city->name_ru;
         }
     } else {
-        $result = sprintf "Стоимость авиабилета %s - %s",
+        $result = sprintf "Авиабилеты %s - %s",
             $segment1->timetable->flight->departure_airport->city->name_ru,
             $segment1->timetable->flight->destination_airport->city->name_ru;
     }
@@ -63,13 +63,13 @@ sub direction_title {
 
 На выходе:
 
-    "Стоимость авиабилета Москва - Барселона, вылет 2011-01-01"
+    "Авиабилеты Москва - Барселона, вылет 2011-01-01"
         - если авиабилет в одну сторону
 
-    "Стоимость авиабилета Москва - Барселона - Москва с 2011-01-01 по 2011-01-08"
+    "Авиабилеты Москва - Барселона - Москва с 2011-01-01 по 2011-01-08"
         - если авиабилет туда и обратно
 
-    "Стоимость авиабилета Москва - Барселона, Аликанте - Москва с 2011-01-01 по 2011-01-08"
+    "Авиабилеты Москва - Барселона, Аликанте - Москва с 2011-01-01 по 2011-01-08"
         - если город отправления второго сегмента не равен городу прибытия первого
 
 =cut
@@ -86,6 +86,31 @@ sub direction_title_with_date {
             $segment2->timetable->departure_date
         : sprintf ", вылет %s",
             $segment1->timetable->departure_date;
+
+    return $result;
+}
+
+=head2 simple_direction_title(cityOfDeparture => , cityOfArrival => )
+
+Формирование простого заголовка страницы, состоящего из назнаний городов
+отправления cityOfDeparture и прибытия cityOfArrival.
+
+=cut
+
+sub simple_direction_title {
+    my ($self, %params) = @_;
+
+    my $result;
+    my $cityOfDeparture = $params{'cityOfDeparture'};
+    my $cityOfArrival   = $params{'cityOfArrival'};
+
+    if ($cityOfDeparture && $cityOfArrival &&
+        UNIVERSAL::can($cityOfDeparture, 'name_ru') &&
+        UNIVERSAL::can($cityOfArrival, 'name_ru') ) {
+        $result = sprintf "Авиабилеты %s - %s",
+            $cityOfDeparture->name_ru,
+            $cityOfArrival->name_ru;
+    }
 
     return $result;
 }
