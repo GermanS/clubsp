@@ -309,6 +309,31 @@ sub C {
     return shift->schema->resultset('FareClass')->search({ id => 2 })->single;
 };
 
+#OW MOW->BCN Y
+sub MOW_BCN_Y_OW {
+    return shift->schema->resultset('Itinerary')->search({ id => 1 })->single;
+}
+
+#MOW->BCN->MOW Y NN331/332 1 week
+sub MOW_BCN_MOW_Y_NN331_NN332 {
+    my $self = shift;
+
+    my @date = $self->three_saturdays_ahead();
+    my $MOW = $self->moscow();
+    my $BCN = $self->barcelona();
+
+    return $self->schema->resultset('Itinerary')->itineraries({
+            cityOfDeparture => $MOW->id,
+            cityOfArrival   => $BCN->id,
+            dateOfDeparture => $date[0]->ymd,
+            asObject        => 1
+        }, {
+            cityOfDeparture => $BCN->id,
+            cityOfArrival   => $MOW->id,
+            dateOfDeparture => $date[1]->ymd,
+    })->first();
+}
+
 __PACKAGE__->meta->make_immutable();
 
 1;
