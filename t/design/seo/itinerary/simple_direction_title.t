@@ -1,4 +1,4 @@
-use Test::More tests => 3;
+use Test::More tests => 5;
 use strict;
 use warnings;
 use utf8;
@@ -24,3 +24,17 @@ isa_ok($seo, 'ClubSpain::Model::SEO::Itinerary');
     is($got, $expected, 'got simple direction title');
 }
 
+{
+    my $expected = undef;
+    my $got = $seo->simple_direction_title();
+    is($got, $expected, 'got undef');
+}
+
+{
+    my $expected = undef;
+    my $got = $seo->simple_direction_title(
+        cityOfDeparture => 1,
+        cityOfArrival   => 100,
+    );
+    is($got, $expected, 'got undef');
+}
