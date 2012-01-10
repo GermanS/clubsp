@@ -160,6 +160,19 @@ sub setup_stash_from_request : Private {
     $result{'search_mode'} = 'RT'
         unless $result{'search_mode'};
 
+    #seo pupruse. set the title of the page to direction
+    if ($c->request->param('CityOfDeparture_id') && $c->request->param('CityOfArrival_id')) {
+        my $city_of_departure = $c->model('City')->fetch_by_id(
+            $c->request->param('CityOfDeparture_id')
+        );
+        my $city_of_arrival = $c->model('City')->fetch_by_id(
+            $c->request->param('CityOfArrival_id')
+        );
+        $result{'title'} = $c->model('SEO::Itinerary')->simple_direction_title(
+            cityOfDeparture => $city_of_departure,
+            cityOfArrival   => $city_of_arrival,
+        );
+    }
 
     #set default city of departure to MOW
     unless ($result{'CityOfDeparture'} && $result{'CityOfDeparture_id'} ) {
