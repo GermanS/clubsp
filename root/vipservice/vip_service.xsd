@@ -10,6 +10,10 @@
 
 <xs:element name="bookingOperationResultWS" type="tns:BookingCreateResult" />
 
+<xs:element name="bookingRefundParametersWS" type="tns:BookingRefundParameters" />
+
+<xs:element name="bookingRepriceParametersWS" type="tns:BookingRepriceParameters" />
+
 <xs:element name="cancelBooking" type="tns:cancelBooking" />
 
 <xs:element name="cancelBookingResponse" type="tns:cancelBookingResponse" />
@@ -17,6 +21,10 @@
 <xs:element name="createBooking" type="tns:createBooking" />
 
 <xs:element name="createBookingResponse" type="tns:createBookingResponse" />
+
+<xs:element name="createRefundExchangeRequest" type="tns:createRefundExchangeRequest" />
+
+<xs:element name="createRefundExchangeRequestResponse" type="tns:createRefundExchangeRequestResponse" />
 
 <xs:element name="customerWS" type="tns:Customer" />
 
@@ -62,6 +70,12 @@
 
 <xs:element name="productWS" type="tns:Product" />
 
+<xs:element name="reprice" type="tns:reprice" />
+
+<xs:element name="repriceResponse" type="tns:repriceResponse" />
+
+<xs:element name="repriceResultWS" type="tns:RepriceResult" />
+
 <xs:element name="reservationWS" type="tns:Reservation" />
 
 <xs:element name="routeSegmentWS" type="tns:RouteSegment" />
@@ -69,6 +83,10 @@
 <xs:element name="searchFlights" type="tns:searchFlights" />
 
 <xs:element name="searchFlightsResponse" type="tns:searchFlightsResponse" />
+
+<xs:element name="searchMatrix" type="tns:searchMatrix" />
+
+<xs:element name="searchMatrixResponse" type="tns:searchMatrixResponse" />
 
 <xs:element name="searchRemarks" type="tns:searchRemarks" />
 
@@ -173,7 +191,7 @@
 <xs:element name="messages">
 <xs:complexType>
 <xs:sequence>
-<xs:element name="message" type="tns:Message" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="message" type="tns:Message" maxOccurs="unbounded" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 </xs:element>
@@ -209,6 +227,7 @@
 
 <xs:complexType name="Product">
 <xs:sequence>
+<xs:element name="fareCalculationData" type="xs:string" minOccurs="0" />
 <xs:element name="carrier" type="tns:DictionaryItem" minOccurs="0" />
 <xs:element name="eticket" type="xs:boolean" />
 <xs:element name="issueDate" type="xs:dateTime" minOccurs="0" />
@@ -284,25 +303,6 @@
 <xs:complexType name="Exception">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0" />
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="cancelBooking">
-<xs:sequence>
-<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
-<xs:element name="parameters" type="tns:BookingCancelParameters" minOccurs="0" />
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="BookingCancelParameters">
-<xs:sequence>
-<xs:element name="reservationToken" type="xs:base64Binary" />
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="cancelBookingResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
@@ -416,11 +416,34 @@
 <xs:element name="dateEnd" type="xs:dateTime" minOccurs="0" />
 <xs:element name="flightNumber" type="xs:string" minOccurs="0" />
 <xs:element name="locationBegin" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="cityBegin" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="countryBegin" type="tns:DictionaryItem" minOccurs="0" />
 <xs:element name="locationEnd" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="cityEnd" type="tns:DictionaryItem" minOccurs="0" />
+<xs:element name="countryEnd" type="tns:DictionaryItem" minOccurs="0" />
 <xs:element name="remarksSearchContext" type="xs:base64Binary" minOccurs="0" />
 <xs:element name="starting" type="xs:boolean" />
 <xs:element name="connected" type="xs:boolean" />
 <xs:element name="travelDuration" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelBooking">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:BookingCancelParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BookingCancelParameters">
+<xs:sequence>
+<xs:element name="reservationToken" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelBookingResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
@@ -434,12 +457,27 @@
 <xs:complexType name="IssueTicketsParameters">
 <xs:sequence>
 <xs:element name="reservationToken" type="xs:base64Binary" />
+<xs:element name="noReprice" type="xs:boolean" />
+<xs:element name="warnedAboutDupe" type="xs:boolean" />
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="issueTicketsResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchMatrix">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:FlightSearchParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchMatrixResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:FlightSearchResult" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
@@ -460,6 +498,36 @@
 <xs:sequence>
 <xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reprice">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:BookingRepriceParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BookingRepriceParameters">
+<xs:sequence>
+<xs:element name="reservationToken" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="repriceResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:RepriceResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RepriceResult">
+<xs:complexContent>
+<xs:extension base="tns:BookingCreateResult">
+<xs:sequence>
+<xs:element name="repriceTimelimit" type="xs:dateTime" minOccurs="0" />
+<xs:element name="pricingChanged" type="xs:boolean" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
 </xs:complexType>
 
 <xs:complexType name="searchRemarks">
@@ -527,6 +595,27 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="createRefundExchangeRequest">
+<xs:sequence>
+<xs:element name="context" type="tns:InvocationContext" minOccurs="0" />
+<xs:element name="parameters" type="tns:BookingRefundParameters" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BookingRefundParameters">
+<xs:sequence>
+<xs:element name="reservationToken" type="xs:base64Binary" />
+<xs:element name="refund" type="xs:boolean" />
+<xs:element name="comment" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createRefundExchangeRequestResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:BookingCreateResult" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
 <xs:simpleType name="passportType">
 <xs:restriction base="xs:string">
 <xs:enumeration value="INTERNAL" />
@@ -547,6 +636,9 @@
 <xs:enumeration value="BORDERCROSSINGCARD" />
 <xs:enumeration value="IDENTITYCARD" />
 <xs:enumeration value="PASSPORTLOSSCERTIFICATE" />
+<xs:enumeration value="INTERIMCERTIFICATE" />
+<xs:enumeration value="BACKTOUSSRCERTIFICATE" />
+<xs:enumeration value="MILITARYCERTIFICATE" />
 </xs:restriction>
 </xs:simpleType>
 
@@ -581,12 +673,17 @@
 
 <xs:simpleType name="workflowStatus">
 <xs:restriction base="xs:string">
+<xs:enumeration value="TO_BE_PAYED" />
+<xs:enumeration value="PAYED" />
+<xs:enumeration value="ISSUING" />
 <xs:enumeration value="TO_BE_ISSUED" />
 <xs:enumeration value="NEW" />
 <xs:enumeration value="COMPLETED" />
 <xs:enumeration value="CANCELLED" />
 <xs:enumeration value="REFUND" />
 <xs:enumeration value="EXCHANGE" />
+<xs:enumeration value="UNKNOWN" />
+<xs:enumeration value="ERROR" />
 </xs:restriction>
 </xs:simpleType>
 
@@ -630,6 +727,17 @@
 <xs:enumeration value="CREDIT" />
 <xs:enumeration value="MTD" />
 <xs:enumeration value="MCO" />
+<xs:enumeration value="CREDIT_CARD_ONLINE_CHRONOPAY" />
+<xs:enumeration value="WEBMONEY_CHRONOPAY" />
+<xs:enumeration value="YANDEX_MONEY_CHRONOPAY" />
+<xs:enumeration value="CREDIT_CARD_ONLINE_RAIFFEISEN" />
+<xs:enumeration value="INVOICE_RAPIDA" />
+<xs:enumeration value="CREDIT_CARD_ONLINE_RBS" />
+<xs:enumeration value="CREDIT_CARD_ONLINE_SIRENA" />
+<xs:enumeration value="CREDIT_CARD_ONLINE_PAYONLINE" />
+<xs:enumeration value="QIWI_PAYONLINE" />
+<xs:enumeration value="WEBMONEY_PAYONLINE" />
+<xs:enumeration value="CREDIT_CARD_ONLINE_PAYTURE" />
 </xs:restriction>
 </xs:simpleType>
 
@@ -666,7 +774,9 @@
 <xs:enumeration value="SIRENAXMLEXCHANGEFILE" />
 <xs:enumeration value="STOCKTRANSFERORDER" />
 <xs:enumeration value="DEBUG_RULES" />
+<xs:enumeration value="INSURANCE" />
 <xs:enumeration value="EXCHANGE_REFUND_REQUEST" />
+<xs:enumeration value="IGLOBE_TRANSACTION" />
 </xs:restriction>
 </xs:simpleType>
 

@@ -4,14 +4,20 @@
 <xsd:import namespace="http://ws.vip.server.xtrip.gridnine.com/" schemaLocation="http://portbilet.ru:9090/vip/ws?xsd=1" />
 </xsd:schema>
 </types>
+<message name="cancelBooking">
+<part name="parameters" element="tns:cancelBooking" />
+</message>
+<message name="cancelBookingResponse">
+<part name="parameters" element="tns:cancelBookingResponse" />
+</message>
+<message name="Exception">
+<part name="fault" element="tns:Exception" />
+</message>
 <message name="searchFlights">
 <part name="parameters" element="tns:searchFlights" />
 </message>
 <message name="searchFlightsResponse">
 <part name="parameters" element="tns:searchFlightsResponse" />
-</message>
-<message name="Exception">
-<part name="fault" element="tns:Exception" />
 </message>
 <message name="searchRemarks">
 <part name="parameters" element="tns:searchRemarks" />
@@ -25,11 +31,11 @@
 <message name="createBookingResponse">
 <part name="parameters" element="tns:createBookingResponse" />
 </message>
-<message name="cancelBooking">
-<part name="parameters" element="tns:cancelBooking" />
+<message name="reprice">
+<part name="parameters" element="tns:reprice" />
 </message>
-<message name="cancelBookingResponse">
-<part name="parameters" element="tns:cancelBookingResponse" />
+<message name="repriceResponse">
+<part name="parameters" element="tns:repriceResponse" />
 </message>
 <message name="issueTickets">
 <part name="parameters" element="tns:issueTickets" />
@@ -43,6 +49,18 @@
 <message name="loadBookingResponse">
 <part name="parameters" element="tns:loadBookingResponse" />
 </message>
+<message name="createRefundExchangeRequest">
+<part name="parameters" element="tns:createRefundExchangeRequest" />
+</message>
+<message name="createRefundExchangeRequestResponse">
+<part name="parameters" element="tns:createRefundExchangeRequestResponse" />
+</message>
+<message name="searchMatrix">
+<part name="parameters" element="tns:searchMatrix" />
+</message>
+<message name="searchMatrixResponse">
+<part name="parameters" element="tns:searchMatrixResponse" />
+</message>
 <message name="selectFOP">
 <part name="parameters" element="tns:selectFOP" />
 </message>
@@ -50,6 +68,11 @@
 <part name="parameters" element="tns:selectFOPResponse" />
 </message>
 <portType name="GDSWebService">
+<operation name="cancelBooking">
+<input message="tns:cancelBooking" />
+<output message="tns:cancelBookingResponse" />
+<fault message="tns:Exception" name="Exception" />
+</operation>
 <operation name="searchFlights">
 <input message="tns:searchFlights" />
 <output message="tns:searchFlightsResponse" />
@@ -65,9 +88,9 @@
 <output message="tns:createBookingResponse" />
 <fault message="tns:Exception" name="Exception" />
 </operation>
-<operation name="cancelBooking">
-<input message="tns:cancelBooking" />
-<output message="tns:cancelBookingResponse" />
+<operation name="reprice">
+<input message="tns:reprice" />
+<output message="tns:repriceResponse" />
 <fault message="tns:Exception" name="Exception" />
 </operation>
 <operation name="issueTickets">
@@ -80,6 +103,16 @@
 <output message="tns:loadBookingResponse" />
 <fault message="tns:Exception" name="Exception" />
 </operation>
+<operation name="createRefundExchangeRequest">
+<input message="tns:createRefundExchangeRequest" />
+<output message="tns:createRefundExchangeRequestResponse" />
+<fault message="tns:Exception" name="Exception" />
+</operation>
+<operation name="searchMatrix">
+<input message="tns:searchMatrix" />
+<output message="tns:searchMatrixResponse" />
+<fault message="tns:Exception" name="Exception" />
+</operation>
 <operation name="selectFOP">
 <input message="tns:selectFOP" />
 <output message="tns:selectFOPResponse" />
@@ -88,6 +121,18 @@
 </portType>
 <binding name="GDSWebServicePortBinding" type="tns:GDSWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+<operation name="cancelBooking">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+<fault name="Exception">
+<soap:fault name="Exception" use="literal" />
+</fault>
+</operation>
 <operation name="searchFlights">
 <soap:operation soapAction="" />
 <input>
@@ -124,7 +169,7 @@
 <soap:fault name="Exception" use="literal" />
 </fault>
 </operation>
-<operation name="cancelBooking">
+<operation name="reprice">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -149,6 +194,30 @@
 </fault>
 </operation>
 <operation name="loadBooking">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+<fault name="Exception">
+<soap:fault name="Exception" use="literal" />
+</fault>
+</operation>
+<operation name="createRefundExchangeRequest">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+<fault name="Exception">
+<soap:fault name="Exception" use="literal" />
+</fault>
+</operation>
+<operation name="searchMatrix">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
