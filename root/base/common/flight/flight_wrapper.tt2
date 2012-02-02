@@ -27,6 +27,7 @@
                                    class="span4"
                                    name="DateOfDeparture1"
                                    id="DateOfDeparture1"
+                                   placeholder="Дата отправления"
                                    value="[% DateOfDeparture1 | html %]"/>
 
                             <input type="hidden"
@@ -41,12 +42,14 @@
                                    class="span4"
                                    id="CityOfArrival"
                                    name="CityOfArrival"
+                                   placeholder="Город прибытия"
                                    value="[% CityOfArrival | html %]" />
 
                             <input type="text"
                                    class="span4"
                                    id="DateOfDeparture2"
                                    name="DateOfDeparture2"
+                                   placeholder="Дата отправления"
                                    value="[% DateOfDeparture2 | html %]"/>
 
                             <input type="hidden"
