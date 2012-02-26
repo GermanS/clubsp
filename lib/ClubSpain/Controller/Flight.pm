@@ -94,7 +94,8 @@ sub search :Local {
         ) if $dateOfDeparture2;
 
         $flight = ClubSpain::XML::VipService::Flight->new(
-            serviceClass => $c->request->param('cabin_data'),
+            skipConnected => $c->request->param('skipConnected_data'),
+            serviceClass  => $c->request->param('cabin_data'),
             route => \@route,
             seat  => \@seat
         );
@@ -131,6 +132,7 @@ sub setup_stash_from_request : Private {
         DateOfDeparture1
         DateOfDeparture2
         search_mode
+        skipConnected_data
     );
     for my $value (@values) {
         $result{$value} = $c->request->param($value) || 0;
@@ -159,6 +161,10 @@ sub setup_stash_from_request : Private {
     #set search mode to RT
     $result{'search_mode'} = 'RT'
         unless $result{'search_mode'};
+
+    #set connected
+    $result{'skipConnected_data'} = 'false'
+        unless $result{'skipConnected_data'};
 
     #seo pupruse. set the title of the page to direction
     if ($c->request->param('CityOfDeparture_id') && $c->request->param('CityOfArrival_id')) {
