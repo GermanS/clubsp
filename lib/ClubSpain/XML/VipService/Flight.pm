@@ -11,7 +11,7 @@ has 'seat'  => ( is => 'ro', isa => 'ArrayRef' );
 
 has 'eticketsOnly'  => ( is => 'ro', default => 'true', isa => 'Boolean' );
 has 'mixedVendors'  => ( is => 'ro', default => 'true', isa => 'Boolean' );
-has 'skipConnected' => ( is => 'ro', default => 'true', isa => 'Boolean' );
+has 'skipConnected' => ( is => 'ro', default => 'false', isa => 'Boolean' );
 has 'serviceClass'  => ( is => 'ro', default => 'ECONOMY', isa => 'ClassOfService' );
 
 sub to_hash {
