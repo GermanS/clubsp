@@ -1,32 +1,31 @@
 <h1>Стоимость авиабилета на чартерный рейс</h1>
-<ul class="tabs">
+<ul class="nav nav-tabs">
     <li><a href="/charter/viewRT">Туда и обратно</a></li>
     <li class="active"><a href="/charter/viewOW">В одну сторону</a></li>
 </ul>
-<form method="post" class="form-stacked" action="/charter/viewOW">
+<form method="post" action="/charter/viewOW">
     <div class="row">
-        <div class="span5">
-            <div class="clearfix">
-                <label for="CityOfDeparture1">Город отправления</label>
-                <div class="input">
-                    <select name="CityOfDeparture1" class="span5"></select>
-                </div>
-            </div>
+        <div class="span4">
 
-            <div class="clearfix">
-                <label for="CityOfArrival1">Город прибытия</label>
-                <div class="input">
-                    <select name="CityOfArrival1" class="span5"></select>
-                </div>
-            </div>
+            <label for="CityOfDeparture1">
+                <span class="label label-info">1.</span>
+                <strong>Город отправления</strong>
+            </label>
+            <select name="CityOfDeparture1" class="span4"></select>
+
+            <label for="CityOfArrival1">
+                <span class="label label-info">2.</span>
+                <strong>Город прибытия</strong>
+            </label>
+            <select name="CityOfArrival1" class="span4"></select>
         </div>
     </div>
     <div class="row">
         <div class="offset1">
             <a href="/charter/viewOW"
                onclick="$(this).closest('form').submit(); return false;"
-               class="btn large primary"
-               title="Стоимость авиабилетов в Испанию в одну сторону">Найти авиабилет</a>
+               class="btn btn-large btn-primary"
+               title="Стоимость авиабилетов в Испанию в одну сторону"><i class="icon-search icon-white"></i> Найти авиабилет</a>
 
             <g:plusone></g:plusone>
         </div>

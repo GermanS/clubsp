@@ -42,30 +42,35 @@
             a.toggleDD("#children", $("#children_data").val());
             a.toggleDD("#infants",  $("#infants_data").val());
             a.toggleDD("#cabin",    $("#cabin_data").val());
+            a.toggleDD("#skipConnected", $("#skipConnected_data").val());
 
-            $("#search-mode li").click(function() {
+            $("#search-mode a").click(function() {
                 a.toggleMode($(this).attr("data-value"));
                 a.toggleRoute($(this).attr("data-value"));
             });
-            $("#adults dd").click(function() {
+            $("#adults a").click(function() {
                 a.toggleDD("#adults", $(this).attr('data-value'));
                  $("#adults_data").val( $(this).attr('data-value') );
             });
-            $("#children dd").click(function() {
+            $("#children a").click(function() {
                 a.toggleDD("#children", $(this).attr('data-value'));
                 $("#children_data").val( $(this).attr('data-value') );
             });
-            $("#infants dd").click(function() {
+            $("#infants a").click(function() {
                 a.toggleDD("#infants", $(this).attr('data-value'));
                 $("#infants_data").val( $(this).attr('data-value') );
             });
-            $("#cabin dd").click(function() {
+            $("#cabin a").click(function() {
                 a.toggleDD("#cabin", $(this).attr('data-value'));
                 $("#cabin_data").val( $(this).attr('data-value') );
             });
+            $("#skipConnected a").click(function() {
+                a.toggleDD("#skipConnected", $(this).attr('data-value'));
+                $("#skipConnected_data").val( $(this).attr('data-value') );
+            });
         },
         toggleMode: function(value) {
-            $('#search-mode li').each(function() {
+            $('#search-mode a').each(function() {
                 if ($(this).attr('data-value') == value) {
                     $(this).addClass('active');
                 } else {
@@ -74,7 +79,7 @@
             });
         },
         toggleDD : function(parent, value) {
-            $(parent + " dd").each(function() {
+            $(parent + " a").each(function() {
                 if ($(this).attr('data-value') == value) {
                     $(this).addClass('active');
                 } else {

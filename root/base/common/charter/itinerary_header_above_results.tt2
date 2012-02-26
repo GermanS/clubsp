@@ -1,4 +1,4 @@
-<div class="alert-message block-message info">
+<div class="alert alert-info">
     <h2>
       Стоимость авиабилетов
       [% cityOfDeparture1.name %] &rarr; [% cityOfArrival1.name %]
@@ -8,9 +8,10 @@
          [% cityOfDeparture2.name %] &rarr; [% cityOfArrival2.name %]
       [% END %]
     </h2>
-
-    <div class="alert-actions offset12">
-        <a href="/charter/[% cityOfDeparture1.iata %]-[% cityOfArrival1.iata %]"       class="btn" title="Показать стоимость авиабилетов в виде списка">Список</a>
-        <a href="/charter/[% cityOfDeparture1.iata %]-[% cityOfArrival1.iata %]/brief" class="btn" title="Показать стоимость авиабилетов в виде таблицы">Таблица</a>
+    <div class="alert-actions">
+        <a href="/charter/[% cityOfDeparture1.iata %]-[% cityOfArrival1.iata %]"       class="btn" title="Показать стоимость авиабилетов в виде списка"><i class="icon-align-justify"></i> Список</a>
+        <a href="/charter/[% cityOfDeparture1.iata %]-[% cityOfArrival1.iata %]/brief" class="btn" title="Показать стоимость авиабилетов в виде таблицы"><i class="icon-list"></i> Таблица</a>
     </div>
 </div>
+
+

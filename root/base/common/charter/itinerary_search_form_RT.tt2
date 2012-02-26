@@ -1,57 +1,55 @@
 <h1>Поиск авиабилета на чартерные рейсы</h1>
-<ul class="tabs">
+<ul class="nav nav-tabs">
     <li class="active"><a href="/charter/searchRT">Туда и обратно</a></li>
     <li><a href="/charter/searchOW">В одну сторону</a></li>
 </ul>
 <form method="post" class="form-stacked" action="/charter/searchRT">
     <div class="row">
-        <div class="span5">
-            <div class="clearfix">
-                <label for="CityOfDeparture1">Город вылета</label>
-                <div class="input">
-                    <select name="CityOfDeparture1" id="CityOfDeparture1" class="span5"></select>
-                </div>
-            </div>
-            <div class="clearfix">
-                <label for="CityOfArrival1">Город прилета</label>
-                <div class="input">
-                    <select name="CityOfArrival1" id="CityOfArrival1" class="span5"></select>
-                </div>
-            </div>
-            <div class="clearfix">
-                <label for="DateOfDeparture1">Дата вылета</label>
-                <div class="input">
-                    <select name="DateOfDeparture1" id="DateOfDeparture1" class="span5"></select>
-                </div>
-            </div>
+        <div class="span4">
+            <label for="CityOfDeparture1">
+                <span class="label label-info">1.</span>
+                <strong>Город вылета</strong>
+            </label>
+            <select name="CityOfDeparture1" id="CityOfDeparture1" class="span4"></select>
+
+            <label for="CityOfArrival1">
+                <span class="label label-info">2.</span>
+                <strong>Город прилета</strong>
+            </label>
+             <select name="CityOfArrival1" id="CityOfArrival1" class="span4"></select>
+
+            <label for="DateOfDeparture1">
+                <span class="label label-info">3.</span>
+                <strong>Дата вылета</strong>
+            </label>
+            <select name="DateOfDeparture1" id="DateOfDeparture1" class="span4"></select>
         </div>
-        <div class="span5">
-            <div class="clearfix">
-                <label for="CityOfDeparture2">Город вылета</label>
-                <div class="input">
-                    <select name="CityOfDeparture2" id="CityOfDeparture2" class="span5"></select>
-                </div>
-            </div>
-            <div class="clearfix">
-                <label for="CityOfArrival2">Город прилета</label>
-                <div class="input">
-                    <select name="CityOfArrival2" id="CityOfArrival2" class="span5"></select>
-                </div>
-            </div>
-            <div class="clearfix">
-                <label for="DateOfDeparture2">Дата вылета</label>
-                <div class="input">
-                    <select name="DateOfDeparture2" id="DateOfDeparture2" class="span5"></select>
-                </div>
-            </div>
+        <div class="span4">
+            <label for="CityOfDeparture2">
+                <span class="label label-important">4.</span>
+                <strong>Город вылета</strong>
+            </label>
+            <select name="CityOfDeparture2" id="CityOfDeparture2" class="span4"></select>
+
+            <label for="CityOfArrival2">
+                <span class="label label-important">5.</span>
+                <strong>Город прилета</strong>
+            </label>
+            <select name="CityOfArrival2" id="CityOfArrival2" class="span4"></select>
+
+            <label for="DateOfDeparture2">
+                <span class="label label-important">6.</span>
+                <strong>Дата вылета</strong>
+            </label>
+            <select name="DateOfDeparture2" id="DateOfDeparture2" class="span4"></select>
         </div>
     </div>
     <div class="row">
-        <div class="offset1">
+        <div class="offset4">
             <a href="/charter/searchRT"
                onclick="$(this).closest('form').submit(); return false;"
-               class="btn large primary"
-               title="Поиск авиабилета в Испанию">Найти авиабилет</a>
+               class="btn btn-large btn-primary"
+               title="Поиск авиабилета в Испанию"><i class="icon-search icon-white"></i> Найти авиабилет</a>
 
             <g:plusone></g:plusone>
         </div>

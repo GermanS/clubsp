@@ -1,12 +1,19 @@
-<div class="topbar">
-    <div class="fill">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
         <div class="container">
-            <h3><a href="/" title="Авиабилеты на чартерные рейсы">Aviabroker.com</a></h3>
-            <ul>
-                <li><a href="/charter"   title="Авиабилеты на чартер">Чартерные авиабилеты</a></li>
-                <li><a href="/flight"    title="Поиск авиабилетов">Поиск авиабилетов</a></li>
-                <li><a href="/article/2" title="Офис продаж">Контакты</a></li>
-            </ul>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a href="/" class="brand">Aviabroker.com <i class="icon-plane icon-white"></i></a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li><a href="/charter"   title="Авиабилеты на чартер">Чартерные авиабилеты</a></li>
+                    <li><a href="/flight"    title="Поиск авиабилетов">Поиск авиабилетов</a></li>
+                    <li><a href="/article/2" title="Офис продаж">Контакты</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

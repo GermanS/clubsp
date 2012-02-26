@@ -10,7 +10,7 @@
 [% END %]
 
 [% BLOCK results %]
-    <table class="zebra-striped mono top-borders">
+    <table class="table table-striped mono top-borders">
         <thead>
             <tr>
                 <th>Дата вылета</th>

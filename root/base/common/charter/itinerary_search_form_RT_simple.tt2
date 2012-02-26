@@ -1,45 +1,43 @@
 <h1>Стоимость авиабилетов на чартерный рейс</h1>
-<ul class="tabs">
+<ul class="nav nav-tabs">
     <li class="active"><a href="/charter/viewRT">Туда и обратно</a></li>
     <li><a href="/charter/viewOW">В одну сторону</a></li>
 </ul>
 <form method="post" class="form-stacked" action="/charter/viewRT">
     <div class="row">
-        <div class="span5">
-            <div class="clearfix">
-                <label for="CityOfDeparture1">Город отправления</label>
-                <div class="input">
-                    <select name="CityOfDeparture1" class="span5"></select>
-                </div>
-            </div>
-            <div class="clearfix">
-                <label for="CityOfArrival1">Город прибытия</label>
-                <div class="input">
-                    <select name="CityOfArrival1" class="span5"></select>
-                </div>
-            </div>
+        <div class="span4">
+            <label for="CityOfDeparture1">
+                <span class="label label-info">1.</span>
+                <strong>Город отправления</strong>
+            </label>
+            <select name="CityOfDeparture1" class="span4"></select>
+
+            <label for="CityOfArrival1">
+                <span class="label label-info">2.</span>
+                <strong>Город прибытия</strong>
+            </label>
+            <select name="CityOfArrival1" class="span4"></select>
         </div>
-        <div class="span5">
-            <div class="clearfix">
-                <label for="CityOfDeparture2">Город отправления</label>
-                <div class="input">
-                    <select name="CityOfDeparture2" class="span5"></select>
-                </div>
-            </div>
-            <div class="clearfix">
-                <label for="CityOfArrival2">Город прибытия</label>
-                <div class="input">
-                    <select name="CityOfArrival2" class="span5"></select>
-                </div>
-            </div>
+        <div class="span4">
+                <label for="CityOfDeparture2">
+                    <span class="label label-important">3.</span>
+                    <strong>Город отправления</strong>
+                </label>
+                <select name="CityOfDeparture2" class="span4"></select>
+
+                <label for="CityOfArrival2">
+                    <span class="label label-important">4.</span>
+                    <strong>Город прибытия</strong>
+                </label>
+                <select name="CityOfArrival2" class="span4"></select>
         </div>
     </div>
     <div class="row">
-        <div class="offset1">
+        <div class="offset4">
             <a href="/charter/viewRT"
                onclick="$(this).closest('form').submit(); return false;"
-               class="btn large primary"
-               title="Поиск авиабилета в Испанию">Найти авиабилет</a>
+               class="btn btn-large btn-primary"
+               title="Поиск авиабилета в Испанию"><i class="icon-search icon-white"></i> Найти авиабилет</a>
             <g:plusone></g:plusone>
         </div>
     </div>

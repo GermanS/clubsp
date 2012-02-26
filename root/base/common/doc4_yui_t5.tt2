@@ -1,9 +1,7 @@
 [%WRAPPER page.tt2 %]
     [% INCLUDE common/header.tt2 %]
     <div class="container">
-        <div class="content">
-            [% content %]
-        </div>
+        [% content %]
         [% INCLUDE common/footer.tt2 %]
     </div>
 [% END %]

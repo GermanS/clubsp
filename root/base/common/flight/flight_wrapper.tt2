@@ -5,109 +5,133 @@
     <div class="page-header">
         <h1>Поиск авиабилетов</h1>
     </div>
-    <form method="post" class="scheduled" action="/flight/search">
+    <form method="post" action="/flight/search">
         <div class="row">
-            <div class="span8">
-                <div class="row">
-                    <ul id="search-mode">
-                        <li data-value="RT" class="active">Туда и обратно</li>
-                        <li data-value="OW">В одну сторону</li>
-                    </ul>
-                </div>
-                <div class="row">
-                    <div class="span4 departure">
-                        <div class="row">
-                            <input type="text"
-                                   class="span4"
-                                   id="CityOfDeparture"
-                                   name="CityOfDeparture"
-                                   value="[% CityOfDeparture | html %]" />
-
-                            <input type="text"
-                                   class="span4"
-                                   name="DateOfDeparture1"
-                                   id="DateOfDeparture1"
-                                   placeholder="Дата отправления"
-                                   value="[% DateOfDeparture1 | html %]"/>
-
-                            <input type="hidden"
-                                   id="CityOfDeparture_id"
-                                   name="CityOfDeparture_id"
-                                   value="[% CityOfDeparture_id | html %]" />
-                        </div>
-                    </div>
-                    <div class="span4 departure" id="route-2">
-                        <div class="row">
-                            <input type="text"
-                                   class="span4"
-                                   id="CityOfArrival"
-                                   name="CityOfArrival"
-                                   placeholder="Город прибытия"
-                                   value="[% CityOfArrival | html %]" />
-
-                            <input type="text"
-                                   class="span4"
-                                   id="DateOfDeparture2"
-                                   name="DateOfDeparture2"
-                                   placeholder="Дата отправления"
-                                   value="[% DateOfDeparture2 | html %]"/>
-
-                            <input type="hidden"
-                                   id="CityOfArrival_id"
-                                   name="CityOfArrival_id"
-                                   value="[% CityOfArrival_id | html %]" />
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <input type="hidden" value="[% adults_data   | html %]" name="adults_data"   id="adults_data" />
-                    <input type="hidden" value="[% children_data | html %]" name="children_data" id="children_data" />
-                    <input type="hidden" value="[% infants_data  | html %]" name="infants_data"  id="infants_data" />
-                    <input type="hidden" value="[% cabin_data    | html %]" name="cabin_data"    id="cabin_data" />
-                    <input type="hidden" value="[% search_mode   | html %]" name="search_mode"   id="search_mode" />
-                    <input type="submit" class="btn primary large offset2" value="Найти авиабилет">
-                    <g:plusone></g:plusone>
+            <div class="span3">
+                <div class="btn-group" data-toggle="buttons-radio" id="search-mode">
+                    <a data-value="RT" class="btn active"><i class="icon-resize-horizontal"></i> Туда и обратно</a>
+                    <a data-value="OW" class="btn"><i class="icon-arrow-right"></i> Туда</a>
                 </div>
             </div>
-            <div class="span8">
-                <dl id="adults">
-                    <dt>Взрослые</dt>
-                    <dt class="tip">&nbsp;</dt>
-                    <dd data-value="1" class="active">один</dd>
-                    <dd data-value="2">двое</dd>
-                    <dd data-value="3">трое</dd>
-                    <dd data-value="4">четверо</dd>
-                    <dd data-value="5">пятеро</dd>
-                    <dd data-value="6">шестеро</dd>
-                </dl>
-                <dl id="children">
-                    <dt>Дети до 12 лет</dt>
-                    <dt class="tip" title="Дети сидят в кресле">(с местом)</dt>
-                    <dd data-value="0" class="active">нет</dd>
-                    <dd data-value="1">один</dd>
-                    <dd data-value="2">двое</dd>
-                    <dd data-value="3">трое</dd>
-                    <dd data-value="4">четверо</dd>
-                    <dd data-value="5">пятеро</dd>
-                </dl>
-                <dl id="infants">
-                    <dt>Дети до 2 лет</dt>
-                    <dt class="tip" title="Дети сидят на руках родителей">(без места)</dt>
-                    <dd data-value="0" class="active">нет</dd>
-                    <dd data-value="1">один</dd>
-                    <dd data-value="2">двое</dd>
-                    <dd data-value="3">трое</dd>
-                    <dd data-value="4">четверо</dd>
-                    <dd data-value="5">пятеро</dd>
-                </dl>
+            <div class="span3">
+                <div class="btn-group" data-toggle="buttons-radio" id="skipConnected">
+                    <a data-value="false" class="btn active">Все варианты</a>
+                    <a data-value="true"  class="btn">Прямые рейсы</a>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="btn-group" data-toggle="buttons-radio" id="cabin">
+                    <a data-value="ECONOMY"  class="btn active" class="active"><i class="icon-heart"></i> Эконом</a>
+                    <a data-value="BUSINESS" class="btn"><i class="icon-star"></i> Бизнес</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span3">
+                <label for="CityOfDeparture">
+                    <span class="label label-info">1.</span>
+                    <strong>Город отправления</strong>
+                </label>
+                <input type="text"
+                       class="span3"
+                       id="CityOfDeparture"
+                       name="CityOfDeparture"
+                       value="[% CityOfDeparture | html %]" />
+                <input type="hidden"
+                       id="CityOfDeparture_id"
+                       name="CityOfDeparture_id"
+                       value="[% CityOfDeparture_id | html %]" />
+            </div>
+            <div class="span3">
+                <label for="CityOfArrival">
+                    <span class="label label-important">3.</span>
+                    <strong>Город прибытия</strong>
+                </label>
+                <input type="text"
+                       class="span3"
+                       id="CityOfArrival"
+                       name="CityOfArrival"
+                       value="[% CityOfArrival | html %]" />
+                <input type="hidden"
+                       id="CityOfArrival_id"
+                       name="CityOfArrival_id"
+                       value="[% CityOfArrival_id | html %]" />
+            </div>
+            <div class="span3">
+                <label><strong>Взрослые</strong></label>
+                <div class="btn-group" data-toggle="buttons-radio" id="adults">
+                    <a data-value="1" class="btn active">1</a>
+                    <a data-value="2" class="btn">2</a>
+                    <a data-value="3" class="btn">3</a>
+                    <a data-value="4" class="btn">4</a>
+                    <a data-value="5" class="btn">5</a>
+                    <a data-value="6" class="btn">6</a>
+                    <a data-value="7" class="btn">7</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span3">
+                <label for="DateOfDeparture1">
+                    <span class="label label-info">2.</span>
+                    <strong>Дата вылета</strong>
+                </label>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                    <input type="text"
+                           class="span2"
+                           name="DateOfDeparture1"
+                           id="DateOfDeparture1"
+                           value="[% DateOfDeparture1 | html %]"/>
+                </div>
+            </div>
+            <div class="span3">
+                <label for="DateOfDeparture2">
+                    <span class="label label-important">4.</span>
+                    <strong>Дата вылета обратно</strong>
+                </label>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                    <input type="text"
+                           class="span2"
+                           id="DateOfDeparture2"
+                           name="DateOfDeparture2"
+                           value="[% DateOfDeparture2 | html %]"/>
+                </div>
+            </div>
+            <div class="span3">
+                <label><strong>Дети до 12 лет</strong></label>
+                <div class="btn-group" data-toggle="buttons-radio" id="children">
+                    <a data-value="0" class="btn active">0</a>
+                    <a data-value="1" class="btn">1</a>
+                    <a data-value="2" class="btn">2</a>
+                    <a data-value="3" class="btn">3</a>
+                    <a data-value="4" class="btn">4</a>
+                    <a data-value="5" class="btn">5</a>
+                    <a data-value="6" class="btn">6</a>
+                </div>
+            </div>
+            <div class="span2">
+                <label><strong>Дети до 2x лет</strong></label>
+                <div class="btn-group" data-toggle="buttons-radio" id="infants">
+                    <a data-value="0" class="btn active">0</a>
+                    <a data-value="1" class="btn">1</a>
+                    <a data-value="2" class="btn">2</a>
+                    <a data-value="3" class="btn">3</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset3">
+                <input type="hidden" value="[% adults_data   | html %]" name="adults_data"   id="adults_data" />
+                <input type="hidden" value="[% children_data | html %]" name="children_data" id="children_data" />
+                <input type="hidden" value="[% infants_data  | html %]" name="infants_data"  id="infants_data" />
+                <input type="hidden" value="[% cabin_data    | html %]" name="cabin_data"    id="cabin_data" />
+                <input type="hidden" value="[% search_mode   | html %]" name="search_mode"   id="search_mode" />
+                <input type="hidden" value="[% skipConnected_data | html %]" name="skipConnected_data" id="skipConnected_data" />
+                <input type="submit" class="btn btn-primary btn-large" value="Найти авиабилет">
 
-                <dl id="cabin">
-                    <dt>Класс</dt>
-                    <dt class="tip">&nbsp;</dt>
-                    <dd class="active" data-value="ECONOMY">Эконом</dd>
-                    <dd data-value="BUSINESS">Бизнес</dd>
-                </dl>
+                <g:plusone></g:plusone>
             </div>
         </div>
     </form>
