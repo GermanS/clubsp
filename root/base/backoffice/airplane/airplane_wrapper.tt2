@@ -1,7 +1,7 @@
 [% WRAPPER backoffice/page.tt2 %]
     <h1>Редактирование марок самолетов</h1>
     <p>
-        <a class="btn info" href="/backoffice/airplane/create">Добавить модель</a>
+        <a class="btn btn-info" href="/backoffice/airplane/create">Добавить модель</a>
     </p>
 
     <p>

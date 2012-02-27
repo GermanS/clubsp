@@ -3,11 +3,15 @@
         [% message %]
     [% END %]
 
-    <table class="zebra-striped mono top-borders">
-        [% INCLUDE header article = article %]
-        [% WHILE (item = iterator.next) %]
-            [% INCLUDE row article = item %]
-        [% END %]
+    <table class="table table-striped mono top-borders">
+        <thead>
+            [% INCLUDE header article = article %]
+        </thead>
+        <tbody>
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row article = item %]
+            [% END %]
+        </tbody>
     </table>
 [% END %]
 

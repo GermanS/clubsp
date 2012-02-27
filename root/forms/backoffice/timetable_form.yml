@@ -1,7 +1,7 @@
 ---
 attributes:
     id: timetableForm
-    class: form-stacked
+    class: well
 
 load_config_file:
   - backoffice/airplane_popup.yml
@@ -60,5 +60,5 @@ elements:
     name: submit
     value: Редактировать расписание
     attrs:
-      class: btn primary
+      class: btn btn-primary
 

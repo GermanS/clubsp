@@ -4,16 +4,20 @@
     [% END %]
 
     [% IF iterator.count %]
-        <table class="zebra-striped mono top-borders">
-            <tr>
-                <th> </th>
-                <th>Код</th>
-                <th>Название</th>
-                <th> </th>
-            <tr>
-            [% WHILE (item = iterator.next) %]
-                [% INCLUDE row fareclass = item %]
-            [% END %]
+        <table class="table table-striped mono top-borders">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Код</th>
+                    <th>Название</th>
+                    <th> </th>
+                <tr>
+            </thead>
+            <tbody>
+                [% WHILE (item = iterator.next) %]
+                    [% INCLUDE row fareclass = item %]
+                [% END %]
+            </tbody>
         </table>
     [% END %]
 [% END %]

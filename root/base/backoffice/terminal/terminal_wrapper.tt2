@@ -2,7 +2,7 @@
 
     <h1>Редактирование терминалов</h1>
     <p>
-        <a class="btn primary" href="/backoffice/terminal/create">Добавить терминал</a>
+        <a class="btn btn-primary" href="/backoffice/terminal/create">Добавить терминал</a>
     </p>
     <p>
         [% WHILE (airport = airport_list.next) %]

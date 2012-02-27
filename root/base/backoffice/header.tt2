@@ -1,33 +1,38 @@
-<div class="topbar-wrapper" style="z-index: 5;">
-  <div class="topbar" data-dropdown="dropdown" >
-    <div class="topbar-inner">
-      <div class="container">
-        <h3><a href="/" title="Авиабилеты на чартерные рейсы">Aviabroker.com</a></h3>
-        <ul class="nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle">Авиабилеты</a>
-            <ul class="dropdown-menu">
-              <li><a href="/backoffice/fare"          title="Редактирование тарифов">Тарифы</a></li>
-              <li><a href="/backoffice/timetable"     title="Редактирование расписания">Расписание</a></li>
-              <li><a href="/backoffice/flight"        title="Редактирование авиарейсов">Авиарейсы</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle">Справочник</a>
-            <ul class="dropdown-menu">
-              <li><a href="/backoffice/fareclass"     title="Редактирование классов перелетов">Класс</a></li>
-              <li><a href="/backoffice/airline"       title="Редактирование списка авиакомпаний">Авиакомпании</a></li>
-              <li><a href="/backoffice/airplane"      title="Редактирование списка самолетов">Самолеты</a></li>
-              <li><a href="/backoffice/manufacturer"  title="Редактирование списка производителей">Производители</a></li>
-              <li><a href="/backoffice/airport"       title="Редактирование списка аэропортов">Аэропорты</a></li>
-              <li><a href="/backoffice/terminal"      title="Редактирование списка терминалов">Терминалы</a></li>
-              <li><a href="/backoffice/city"          title="Редактирование списка городов">Города</a></li>
-              <li><a href="/backoffice/country"       title="Редактирование списка стран">Страны</a></li>
-            </ul>
-          </li>
-          <li><a href="/backoffice/article"  title="Редактирование статей">Статьи</a></li>
-        </ul>
-      </div>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a href="/" class="brand">Aviabroker.com <i class="icon-plane icon-white"></i></a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Авиабилеты <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/backoffice/fare"          title="Редактирование тарифов">Тарифы</a></li>
+                            <li><a href="/backoffice/timetable"     title="Редактирование расписания">Расписание</a></li>
+                            <li><a href="/backoffice/flight"        title="Редактирование авиарейсов">Авиарейсы</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Справочник <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/backoffice/fareclass"     title="Редактирование классов перелетов">Класс</a></li>
+                            <li><a href="/backoffice/airline"       title="Редактирование списка авиакомпаний">Авиакомпании</a></li>
+                            <li><a href="/backoffice/airplane"      title="Редактирование списка самолетов">Самолеты</a></li>
+                            <li><a href="/backoffice/manufacturer"  title="Редактирование списка производителей">Производители</a></li>
+                            <li><a href="/backoffice/airport"       title="Редактирование списка аэропортов">Аэропорты</a></li>
+                            <li><a href="/backoffice/terminal"      title="Редактирование списка терминалов">Терминалы</a></li>
+                            <li><a href="/backoffice/city"          title="Редактирование списка городов">Города</a></li>
+                            <li><a href="/backoffice/country"       title="Редактирование списка стран">Страны</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/backoffice/article"  title="Редактирование статей">Статьи</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

@@ -4,16 +4,20 @@
     [% END %]
 
     [% IF iterator.count %]
-        <table class="zebra-striped mono top-borders">
-            <tr>
-                <th> </th>
-                <th>Код IATA</th>
-                <th>Город</th>
-                <th> </th>
-            <tr>
-            [% WHILE (item = iterator.next) %]
-                [% INCLUDE row city = item %]
-            [% END %]
+        <table class="table table-striped mono top-borders">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Код IATA</th>
+                    <th>Город</th>
+                    <th> </th>
+                <tr>
+            </thead>
+            <tbody>
+                [% WHILE (item = iterator.next) %]
+                    [% INCLUDE row city = item %]
+                [% END %]
+            <tbody>
         </table>
     [% ELSE %]
         <p>Для просмотра городов нажмите на страну в меню слева</p>

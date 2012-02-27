@@ -4,17 +4,21 @@
     [% END %]
 
     [% IF iterator.count %]
-        <table class="zebra-striped mono top-borders">
-            <tr>
-                <th> </th>
-                <th>Название</th>
-                <th>IATA</th>
-                <th>ICAO</th>
-                <th> </th>
-            <tr>
+        <table class="table table-striped mono top-borders">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Название</th>
+                    <th>IATA</th>
+                    <th>ICAO</th>
+                    <th> </th>
+                <tr>
+            </thead>
+            <tbody>
             [% WHILE (item = iterator.next) %]
                 [% INCLUDE row airplane = item %]
             [% END %]
+            </tbody>
         </table>
     [% ELSE %]
         <p>Для просмотра типов самолетов нажмите на производителя в меню слева</p>

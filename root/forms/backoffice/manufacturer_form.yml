@@ -1,14 +1,14 @@
 ---
 attributes:
     id: manufacturerForm
-    class: form-stacked
+    class: well
 
 elements:
   - type: Text
     name: code
     label: Код производителя
     attrs:
-        class: span6
+        class: span4
     filters:
       - TrimEdges
     constraints:
@@ -18,7 +18,7 @@ elements:
     name: name
     label: Название производителя
     attrs:
-        class: span12
+        class: span11
     filters:
       - TrimEdges
     constraints:
@@ -28,4 +28,4 @@ elements:
     name: submit
     value: Редактировать производителя
     attrs:
-      class: btn primary
+      class: btn btn-primary

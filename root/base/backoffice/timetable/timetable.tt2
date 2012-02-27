@@ -1,25 +1,29 @@
 [% WRAPPER backoffice/timetable/timetable_wrapper.tt2 %]
     [% IF iterator.count %]
-        <table class="zebra-striped mono top-borders">
-            <tr>
-                <th> </th>
-                <th colspan="2">Отправление</th>
-                <th colspan="2">Прибытие</th>
-                <th> </th>
-                <th> </th>
-            </tr>
-            <tr>
-                <th> </th>
-                <th>Дата</th>
-                <th>Время</th>
-                <th>Дата</th>
-                <th>Время</th>
-                <th>Самолет</th>
-                <th> </th>
-            <tr>
-            [% WHILE (item = iterator.next) %]
-                [% INCLUDE row timetable = item %]
-            [% END %]
+        <table class="table table-striped mono top-borders">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th colspan="2">Отправление</th>
+                    <th colspan="2">Прибытие</th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+                <tr>
+                    <th> </th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Самолет</th>
+                    <th> </th>
+                <tr>
+            </thead>
+            <tbody>
+                [% WHILE (item = iterator.next) %]
+                    [% INCLUDE row timetable = item %]
+                [% END %]
+            </tbody>
         </table>
     [% END %]
 [% END %]

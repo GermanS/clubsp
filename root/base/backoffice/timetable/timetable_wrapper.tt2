@@ -2,30 +2,27 @@
 
     <h1>Редактирование расписания</h1>
     <div class="row">
-        <div class="span4">
-            <form method="post" action="/backoffice/timetable/browse" class="form-stacked">
-                <div class="clearfix">
-                    <label for="CityOfDeparture">Город отправления</label>
-                    <div class="input">
-                        <select name="CityOfDeparture"></select>
-                    </div>
-                </div>
+        <div class="span3">
+            <form method="post" action="/backoffice/timetable/browse" class="well">
+                    <label for="CityOfDeparture">
+                    <span class="label label-info">1.</span>
+                        <strong>Город отправления</strong>
+                    </label>
+                    <select name="CityOfDeparture"></select>
 
-                <div class="clearfix">
-                    <label for="CityOfArrival">Город прибытия</label>
-                    <div class="input">
-                        <select name="CityOfArrival"></select>
-                    </div>
-                </div>
+                    <label for="CityOfArrival">
+                        <span class="label label-info">2.</span>
+                        <strong>Город прибытия</strong>
+                    </label>
+                    <select name="CityOfArrival"></select>
 
-                <div class="clearfix">
-                    <label for="Flight">Рейс</label>
-                    <div class="input">
-                        <select name="Flight"></select>
-                    </div>
-                </div>
+                    <label for="Flight">
+                        <span class="label label-info">3.</span>
+                        <strong>Рейс</strong>
+                    </label>
+                    <select name="Flight"></select>
                 <p>
-                    <input type="submit" class="btn info" value="Найти" />
+                    <input type="submit" class="btn btn-info" value="Найти" />
                     <input type="submit" class="btn"value="Добавить" onclick="this.form.action='/backoffice/timetable/create'; return true;">
                 </p>
             </form>
@@ -35,7 +32,7 @@
                 <input type="hidden" name="_Flight" value="[% Flight %]" />
             </form>
         </div>
-        <div class="span12">
+        <div class="span9">
             [% content %]
         </div>
     </div>

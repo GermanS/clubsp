@@ -2,8 +2,8 @@
 
     <h1>Редактирование стран</h1>
     <p>
-        <a class="btn info" href="/backoffice/country/create">Добавить страну</a>
-        <a class="btn"      href="/backoffice/country/">Список стран</a>
+        <a class="btn btn-info" href="/backoffice/country/create">Добавить страну</a>
+        <a class="btn"          href="/backoffice/country/">Список стран</a>
     </p>
     [% content %]
 

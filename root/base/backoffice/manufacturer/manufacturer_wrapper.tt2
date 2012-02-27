@@ -2,7 +2,7 @@
 
     <h1>Редактирование производителей</h1>
     <p>
-        <a class="btn info" href="/backoffice/manufacturer/create">Добавить производителя</a>
+        <a class="btn btn-info" href="/backoffice/manufacturer/create">Добавить производителя</a>
         <a class="btn" href="/backoffice/manufacturer/">Список производителей</a>
     </p>
     [% content %]

@@ -1,9 +1,7 @@
 [% WRAPPER page.tt2 %]
     [% INCLUDE backoffice/header.tt2 %]
     <div class="container">
-        <div class="content">
-            [% content %]
-        </div>
+        [% content %]
         [% INCLUDE backoffice/footer.tt2 %]
     </div>
 [% END %]

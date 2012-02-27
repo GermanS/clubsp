@@ -1,5 +1,5 @@
 [% IF message %]
-    <div class="alert-message [% message.class %]">
+    <div class="alert [% message.class %]">
         <p>
             [% message.message %]
         </p>

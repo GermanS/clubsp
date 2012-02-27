@@ -2,43 +2,39 @@
 
 <form method="post" action="/backoffice/fare/viewRT" class="form-stacked">
     <div class="row">
-        <div class="span5">
+        <div class="span4">
             <fieldset title="Первый сегмент">
-                <div class="clearfix">
-                    <label for="CityOfDeparture1">Город отправления</label>
-                    <div class="input">
-                        <select name="CityOfDeparture1" class="span5"></select>
-                    </div>
-                </div>
+                <label for="CityOfDeparture1">
+                    <span class="label label-info">1.</span>
+                    <strong>Город отправления</strong>
+                </label>
+                <select name="CityOfDeparture1" class="span4"></select>
 
-                <div class="clearfix">
-                    <label for="CityOfArrival1">Город прибытия</label>
-                    <div class="input">
-                        <select name="CityOfArrival1" class="span5"></select>
-                    </div>
-                </div>
+                <label for="CityOfArrival1">
+                    <span class="label label-info">2.</span>
+                    <strong>Город прибытия</strong>
+                </label>
+                <select name="CityOfArrival1" class="span4"></select>
             </fieldset>
         </div>
-        <div class="span5">
+        <div class="span4">
             <fieldset title="Второй сегмент">
-                <div class="clearfix">
-                    <label for="CityOfDeparture2">Город отправления</label>
-                    <div class="input">
-                        <select name="CityOfDeparture2" class="span5"></select>
-                    </div>
-                </div>
+                <label for="CityOfDeparture2">
+                    <span class="label label-important">3.</span>
+                    <strong>Город отправления</strong>
+                </label>
+                <select name="CityOfDeparture2" class="span4"></select>
 
-                <div class="clearfix">
-                    <label for="CityOfArrival2">Город прибытия</label>
-                    <div class="input">
-                        <select name="CityOfArrival2" class="span5"></select>
-                    </div>
-                </div>
+                <label for="CityOfArrival2">
+                    <span class="label label-important">4.</span>
+                    <strong>Город прибытия</strong>
+                </label>
+                <select name="CityOfArrival2" class="span4"></select>
             </fieldset>
         </div>
     </div>
     <p>
-        <input type="submit" value="Найти тарифы" class="btn primary"/>
+        <input type="submit" value="Найти тарифы" class="btn btn-primary"/>
     </p>
 </form>
 <form id="preselect">

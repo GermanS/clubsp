@@ -1,7 +1,7 @@
 ---
 attributes:
     id: itineraryForm
-    class: form-stacked
+    class: well
 
 load_config_file:
   - backoffice/fareclass_popup.yml
@@ -27,4 +27,4 @@ elements:
     name: submit
     value: Редактировать стоимость
     attrs:
-      class: btn primary
+      class: btn btn-primary

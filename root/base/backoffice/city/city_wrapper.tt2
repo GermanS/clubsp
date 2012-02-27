@@ -2,9 +2,9 @@
 
     <h1>Редактирование городов</h1>
     <div class="row">
-        <div class="span4">
+        <div class="span2">
             <p>
-                <a class="btn info" href="/backoffice/city/create">Добавить город</a>
+                <a class="btn btn-info" href="/backoffice/city/create">Добавить город</a>
             </p>
             [% IF country_list %]
                 <ul class="unstyled">
@@ -14,7 +14,7 @@
                 </ul>
             [% END %]
         </div>
-        <div class="span12">
+        <div class="span10">
             [% content %]
         </div>
     </div>

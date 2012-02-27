@@ -1,8 +1,8 @@
 [% WRAPPER backoffice/page.tt2 %]
     <h2>Редактирование класса перелета</h2>
     <p>
-        <a class="btn info" href="/backoffice/fareclass/create">Добавить класс</a>
-        <a class="btn" href="/backoffice/fareclass/">Список классов</a>
+        <a class="btn btn-info" href="/backoffice/fareclass/create">Добавить класс</a>
+        <a class="btn"          href="/backoffice/fareclass/">Список классов</a>
     </p>
     [% content %]
 [% END %]

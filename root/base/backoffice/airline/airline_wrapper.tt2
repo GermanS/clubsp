@@ -1,7 +1,7 @@
 [% WRAPPER backoffice/page.tt2 %]
     <h1>Редактирование авиакомпаний</h1>
     <p>
-        <a class="btn info" href="/backoffice/airline/create">Добавить авиакомпанию</a>
+        <a class="btn btn-info" href="/backoffice/airline/create">Добавить авиакомпанию</a>
         <a class="btn" href="/backoffice/airline/">Список авиакомпаний</a>
     </p>
     [% content %]

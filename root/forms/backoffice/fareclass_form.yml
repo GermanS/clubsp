@@ -1,7 +1,7 @@
 ---
 attributes:
     id: fareclassForm
-    class: form-stacked
+    class: well
 
 elements:
   - type: Text
@@ -28,4 +28,4 @@ elements:
     name: submit
     value: Редактировать класс
     attrs:
-      class: btn primary
+      class: btn btn-primary

@@ -2,8 +2,8 @@
 
     <h1>Редактирование аэропортов</h1>
     <div class="row">
-        <div class="span4">
-            <p><a class="btn info" href="/backoffice/airport/create">Добавить аэропорт</a></p>
+        <div class="span2">
+            <p><a class="btn btn-info" href="/backoffice/airport/create">Добавить аэропорт</a></p>
             [% IF country_list.count() %]
                 <ul class="unstyled">
                     [% WHILE (country = country_list.next) %]
@@ -24,7 +24,7 @@
                 </ul>
             [% END %]
         </div>
-        <div class="span12">[% content %]</div>
+        <div class="span10">[% content %]</div>
     </div>
 
 [% END %]

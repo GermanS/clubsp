@@ -2,32 +2,36 @@
 
 <form method="post" action="/backoffice/fare/searchOW" class="form-stacked">
     <div class="row">
-        <div class="span5">
+        <div class="span4">
             <fieldset title="Первый сегмент">
-                <div class="clearfix">
-                    <label for="CityOfDeparture1">Город отправления</label>
-                    <select name="CityOfDeparture1" class="span5"></select>
-                </div>
+                <label for="CityOfDeparture1">
+                    <span class="label label-info">1.</span>
+                    <strong>Город отправления</strong>
+                </label>
+                <select name="CityOfDeparture1" class="span4"></select>
 
-                <div class="clearfix">
-                    <label for="CityOfArrival1">Город прибытия</label>
-                    <select name="CityOfArrival1" class="span5"></select>
-                </div>
+                <label for="CityOfArrival1">
+                    <span class="label label-info">2.</span>
+                    <strong>Город прибытия</strong>
+                </label>
+                <select name="CityOfArrival1" class="span4"></select>
 
-                <div class="clearfix">
-                    <label for="DateOfDeparture1">Дата отправления</label>
-                    <select name="DateOfDeparture1" class="span5"></select>
-                </div>
+                <label for="DateOfDeparture1">
+                    <span class="label label-info">3.</span>
+                    <strong>Дата отправления</strong>
+                </label>
+                <select name="DateOfDeparture1" class="span4"></select>
 
-                <div class="clearfix">
-                    <label for="Flight1">Номер рейса</label>
-                    <select name="Flight1" class="span5"></select>
-                </div>
+                <label for="Flight1">
+                    <span class="label label-info">4.</span>
+                    <strong>Номер рейса</strong>
+                </label>
+                <select name="Flight1" class="span4"></select>
             </fieldset>
             <p>
                 <input type="submit"
                        value="Найти тариф"
-                       class="btn primary"/>
+                       class="btn btn-primary"/>
                 <input type="submit"
                        value="Добавить"
                        class="btn"

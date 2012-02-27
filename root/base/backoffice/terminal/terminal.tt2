@@ -4,15 +4,19 @@
     [% END %]
 
     [% IF iterator.count %]
-        <table class="zebra-striped mono top-borders">
-            <tr>
-                <th> </th>
-                <th>Терминал</th>
-                <th> </th>
-            <tr>
-            [% WHILE (item = iterator.next) %]
-                [% INCLUDE row terminal = item %]
-            [% END %]
+        <table class="table table-striped mono top-borders">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Терминал</th>
+                    <th> </th>
+                <tr>
+            </thead>
+            <tbody>
+                [% WHILE (item = iterator.next) %]
+                    [% INCLUDE row terminal = item %]
+                [% END %]
+            </tbody>
         </table>
     [% ELSE %]
         <p>Для просмотра терминалов нажмите на аэропорт в меню слева</p>

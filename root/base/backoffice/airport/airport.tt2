@@ -4,17 +4,21 @@
     [% END %]
 
     [% IF iterator.count %]
-        <table class="zebra-striped mono top-borders">
-            <tr>
-                <th> </th>
-                <th>Аэропорт</th>
-                <th>Код IATA</th>
-                <th>Код ICAO</th>
-                <th> </th>
-            <tr>
+        <table class="table table-striped mono top-borders">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Аэропорт</th>
+                    <th>Код IATA</th>
+                    <th>Код ICAO</th>
+                    <th> </th>
+                <tr>
+            </thead>
+            <tbody>
             [% WHILE (item = iterator.next) %]
                 [% INCLUDE row port = item %]
             [% END %]
+            </tbody>
         </table>
     [% ELSE %]
         <p>Для просмотра городов нажмите на страну в меню слева</p>

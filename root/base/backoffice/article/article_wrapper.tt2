@@ -1,7 +1,7 @@
 [% WRAPPER backoffice/page.tt2 %]
     <h1>Редактирование статей</h1>
     <p>
-        <a class="btn info" href="/backoffice/article/create">Добавить статью</a>
+        <a class="btn btn-info" href="/backoffice/article/create">Добавить статью</a>
         <a class="btn" href="/backoffice/article/">Список статей</a>
     </p>
     [% content %]
