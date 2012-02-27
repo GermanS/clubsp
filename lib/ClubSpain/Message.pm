@@ -35,7 +35,7 @@ use Moose;
 use namespace::autoclean;
 extends 'ClubSpain::Message';
 
-has 'class' => ( is => 'ro', default => 'success' );
+has 'class' => ( is => 'ro', default => 'alert-success' );
 
 
 
@@ -44,7 +44,7 @@ use Moose;
 use namespace::autoclean;
 extends 'ClubSpain::Message';
 
-has 'class' => ( is => 'ro', default => 'info' );
+has 'class' => ( is => 'ro', default => 'alert-info' );
 
 
 
@@ -53,7 +53,7 @@ use Moose;
 use namespace::autoclean;
 extends 'ClubSpain::Message';
 
-has 'class' => (is => 'ro', default => 'warning' );
+has 'class' => (is => 'ro', default => 'alert-alert' );
 
 
 
@@ -62,7 +62,7 @@ use Moose;
 use namespace::autoclean;
 extends 'ClubSpain::Message';
 
-has 'class' => (is => 'ro', default => 'error' );
+has 'class' => (is => 'ro', default => 'alert-error' );
 
 
 

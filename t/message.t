@@ -15,7 +15,7 @@ use_ok('ClubSpain::Message');
 {
     my $msg = ClubSpain::Message::Ok->new(message => 'ok message');
     isa_ok($msg, 'ClubSpain::Message::Ok');
-    is($msg->class, 'success', 'got success class');
+    is($msg->class, 'alert-success', 'got success class');
     is($msg->message, 'ok message', 'got ok message');
 }
 
@@ -23,7 +23,7 @@ use_ok('ClubSpain::Message');
 {
     my $msg = ClubSpain::Message::Info->new(message => 'info message');
     isa_ok($msg, 'ClubSpain::Message::Info');
-    is($msg->class, 'info', 'got info class');
+    is($msg->class, 'alert-info', 'got info class');
     is($msg->message, 'info message', 'got info message');
 }
 
@@ -31,7 +31,7 @@ use_ok('ClubSpain::Message');
 {
     my $msg = ClubSpain::Message::Warning->new(message => 'warning message');
     isa_ok($msg, 'ClubSpain::Message::Warning');
-    is($msg->class, 'warning', 'got warning class');
+    is($msg->class, 'alert-alert', 'got warning class');
     is($msg->message, 'warning message', 'got warning message');
 }
 
@@ -39,7 +39,7 @@ use_ok('ClubSpain::Message');
 {
     my $msg = ClubSpain::Message::Error->new(message => 'error message');
     isa_ok($msg, 'ClubSpain::Message::Error');
-    is($msg->class, 'error', 'got error class');
+    is($msg->class, 'alert-error', 'got error class');
     is($msg->message, 'error message', 'got error message');
 }
 
