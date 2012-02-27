@@ -17,7 +17,7 @@ my @saturdays = ClubSpain::Test->three_saturdays_ahead();
     isa_ok($flight, 'ClubSpain::XML::VipService::Flight');
     is($flight->eticketsOnly,  'true', 'got default eticketsOnly');
     is($flight->mixedVendors,  'true', 'got default mixedVendors');
-    is($flight->skipConnected, 'true', 'got default skipConnected');
+    is($flight->skipConnected, 'false', 'got default skipConnected');
     is($flight->serviceClass,  'ECONOMY', 'got default serviceClass');
 }
 
