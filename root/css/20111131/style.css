@@ -35,61 +35,6 @@
       font-weight: bold;
       text-align: center; }
 
-.scheduled ul {
-  position: relative;
-  margin: 1em 0 2em 1.25em; }
-  .scheduled ul li {
-    padding: 4px 10px;
-    list-style-type: none;
-    margin: 0;
-    display: inline; }
-    .scheduled ul li:hover {
-      background-color: #e1e7ed;
-      color: #2b587a;
-      cursor: pointer; }
-    .scheduled ul li.active {
-      background-color: #6d8fb3;
-      border: 1px solid #3b6798;
-      color: #fff; }
-.scheduled dl {
-  float: left;
-  padding: .5em 0;
-  margin: 0 .5em; }
-  .scheduled dl dt {
-    padding: 4px 10px;
-    margin: 0; }
-    .scheduled dl dt.tip {
-      font-size: 11px;
-      margin: 0; }
-.scheduled dd {
-  padding: 4px 10px;
-  color: #2b587a;
-  margin: 0; }
-  .scheduled dd:hover {
-    background-color: #e1e7ed;
-    color: #2b587a;
-    cursor: pointer; }
-  .scheduled dd.active {
-    background-color: #6d8fb3;
-    border: 1px solid #3b6798;
-    color: #fff; }
-  .scheduled dd.disabled {
-    opacity: 0.3; }
-.scheduled .departure {
-  margin: 0 0 0 1.25em;
-  padding: 0;
-  background-color: #eee;
-  border: 1px solid #ccc; }
-  .scheduled .departure input {
-    width: 10em;
-    font: 1.5em "Courier New", "Lucida Console", monospace;
-    font-weight: bold;
-    color: black;
-    margin: 0.25em 0.5em .25em 1.25em;
-    padding: 0.5em 0.5em .25em 0.25em;
-    height: 1.5em; }
-
-
 div.text, div.label {
     background-color: inherit;
     font-weight: bold;
