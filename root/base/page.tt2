@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-ru.js"></script>
     <script src="/bootstrap/2.0/js/bootstrap.js"></script>
-
 
     <style type="text/css">
         body {
@@ -53,6 +53,6 @@
 <body>
     [% content %]
 
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <!--script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script -->
 </body>
 </html>
