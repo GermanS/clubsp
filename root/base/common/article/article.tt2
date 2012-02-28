@@ -1,10 +1,10 @@
 [% WRAPPER common/doc4_yui_t5.tt2 title = article.subheader %]
 
 <div class="row">
-    <div class="span5">
+    <div class="span3">
         [% INCLUDE common/article/article_sidebar.tt2 stories = lower_level %]
     </div>
-    <div class="span11">
+    <div class="span9">
         <h1>[% article.subheader %]</h1>
         [% article.body | html | wiki %]
     </div>
