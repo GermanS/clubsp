@@ -15,10 +15,6 @@
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         }
     </style>
-    <script type="text/javascript" src="/jscript/rpc.js"></script>
-    <script type="text/javascript" src="/jscript/request.js"></script>
-
-
     <link href="/bootstrap/2.0/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/20111131/style.css">
 
@@ -32,6 +28,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
     <script type="text/javascript" src="http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-ru.js"></script>
     <script src="/bootstrap/2.0/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/jscript/jsonrequest.js"></script>
 
     <style type="text/css">
         body {
