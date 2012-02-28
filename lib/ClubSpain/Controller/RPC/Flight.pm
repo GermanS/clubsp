@@ -69,4 +69,35 @@ sub _getAirportOfArrival : Private {
     return $self->_getAirportOfDeparture($c, $city);
 }
 
+
+=head2 _suggest()
+
+    Поиск подсказка городов отправление по начальным буквам.
+    Подсказка может быть выполнена по трем первым буквам на кириллице, латинице
+    или IATA коду города.
+
+=cut
+
+sub _suggest : Private {
+    my ($self, $c, $string) = @_;
+
+    my $iterator = $c->model('City')->suggest($string);
+
+    my @res = ();
+    return @res unless $iterator;
+
+    while (my $city = $iterator->next) {
+        push @res, {
+            id    => $city->id,
+            iata => $city->iata,
+            name => $city->name,
+            name_ru => $city->name_ru,
+            label => sprintf("%s (%s)", $city->name_ru, $city->country->name),
+            value => sprintf("%s (%s)", $city->name_ru, $city->iata),
+        };
+    }
+
+    return @res;
+}
+
 1;
