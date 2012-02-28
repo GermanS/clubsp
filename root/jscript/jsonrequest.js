@@ -20,6 +20,14 @@ var Timetable_getCitiesOfDeparture  = '/json/charter/timetable/getCitiesOfDepart
 var Timetable_getCitiesOfArrival    = '/json/charter/timetable/getCitiesOfArrival';
 var Timetable_searchFlights         = '/json/charter/timetable/searchFlights';
 
+/* location requests */
+var REQ_CountryOfDeparture = '/json/location/getCountryOfDeparture';
+var REQ_CityOfDeparture    = '/json/location/getCityOfDeparture';
+var REQ_AirportOfDeparture = '/json/location/getAirportOfDeparture';
+var REQ_CountryOfArrival   = '/json/location/getCountryOfArrival'
+var REQ_CityOfArrival      = '/json/location/getCityOfArrival';
+var REQ_AirportOfArrival   = '/json/location/getAirportOfArrival';
+
 
 function makeRequest(method, params, element, initialValue) {
     var request = $.ajax({
