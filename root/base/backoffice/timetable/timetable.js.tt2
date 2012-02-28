@@ -21,7 +21,7 @@
         var element = $("select[name='CityOfArrival']");
         var initial = $("input[name='_CityOfArrival']").attr("value");
         var param = $("select[name='CityOfDeparture']").attr("value")
-        makeRequest(Timetable_getCitiesOfArrival, param, element, initial);
+        makeRequest(Timetable_getCitiesOfArrival, { cityOfDeparture : param }, element, initial);
     }
 
     function fireCityOfArrivalChanged() {
