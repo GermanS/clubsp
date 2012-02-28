@@ -1,25 +1,29 @@
 [% IF iterator.count %]
     <table class="table table-striped mono top-borders">
-        <tr>
-            <th colspan="4">Отправление</th>
-            <th colspan="3">Прибытие</th>
-            <th colspan="3"> </th>
-        </tr>
-        <tr>
-            <th>Дата</th>
-            <th>Время</th>
-            <th>Рейс</th>
-            <th>Город</th>
-            <th>Дата</th>
-            <th>Время</th>
-            <th>Город</th>
-            <th>Самолет</th>
-            <th>Класс</th>
-            <th>Стоимость</th>
-        </tr>
-        [% WHILE (item = iterator.next) %]
-            [% INCLUDE row itinerary = item %]
-        [% END %]
+        <thead>
+            <tr>
+                <th colspan="4">Отправление</th>
+                <th colspan="3">Прибытие</th>
+                <th colspan="3"> </th>
+            </tr>
+            <tr>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Рейс</th>
+                <th>Город</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Город</th>
+                <th>Самолет</th>
+                <th>Класс</th>
+                <th>Стоимость</th>
+            </tr>
+        </thead>
+        <tbody>
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row itinerary = item %]
+            [% END %]
+        </tbody>
     </table>
     [% INCLUDE common/price_terms.tt2 %]
 [% END %]

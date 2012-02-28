@@ -7,7 +7,7 @@
            searchform = "common/charter/itinerary_search_form_RT.tt2"
            title      = title %]
     [% IF iterator.count %]
-        <div class="alert-message block-message info">
+        <div class="alert alert-info">
             <h2>
                 Авиабилет [% cityOfDeparture1.name_ru %] &rarr; [% cityOfArrival1.name_ru %]
                 [% IF cityOfArrival1.name_ru == cityOfDeparture2.name_ru  %]
