@@ -28,27 +28,27 @@
         var value = $(this).attr('value');
         var element = $("select[name='CityOfDeparture']");
         var initial = $("input[name='_CityOfDeparture']").attr("value");
-        makeRequest(REQ_CityOfDeparture, value , element, initial);
+        makeRequest(REQ_CityOfDeparture, { countryOfDeparture: value }, element, initial);
     }
 
     function fireCityOfDepartureChanged() {
         var value = $(this).attr('value');
         var element = $("select[name='AirportOfDeparture']");
         var initial = $("input[name='_AirportOfDeparture']").attr("value");
-        makeRequest(REQ_AirportOfDeparture, value , element, initial);
+        makeRequest(REQ_AirportOfDeparture, { cityOfDeparture: value }, element, initial);
     }
 
     function fireCountryOfArrivalChanged() {
         var value = $(this).attr('value');
         var element = $("select[name='CityOfArrival']");
         var initial = $("input[name='_CityOfArrival']").attr("value");
-        makeRequest(REQ_CityOfArrival, value, element, initial);
+        makeRequest(REQ_CityOfArrival, { countryOfArrival: value }, element, initial);
     }
 
     function fireCityOfArrivalChanged() {
         var value = $(this).attr('value');
         var element = $("select[name='AirportOfArrival']");
         var initial = $("input[name='_AirportOfArrival']").attr("value");
-        makeRequest(REQ_AirportOfArrival, value , element, initial);
+        makeRequest(REQ_AirportOfArrival, { cityOfArrival: value }, element, initial);
     }
 </script>
