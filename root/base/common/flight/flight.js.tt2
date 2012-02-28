@@ -6,7 +6,7 @@
             max: 20,
             dataType: 'json',
             cacheLength: 0,
-            source: "/json/city/suggest",
+            source: "/json/location/suggest",
             select: function(event, ui) {
                 var id = this.id;
                 $("#" + id + "_id").val(ui.item.id);
