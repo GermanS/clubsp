@@ -101,7 +101,7 @@ sub subtotal_infant {
 }
 
 sub revenue_adult {
-    return Math::BigFloat->new(1000);
+    return Math::BigFloat->new(500);
 }
 
 sub revenue_child {
