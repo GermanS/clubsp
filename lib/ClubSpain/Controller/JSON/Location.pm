@@ -2,7 +2,7 @@ package ClubSpain::Controller::JSON::Location;
 use strict;
 use warnings;
 use utf8;
-use base qw(ClubSpain::Controller::RPC::Flight);
+use base qw(ClubSpain::Controller::RPC::Location);
 
 
 =head2 suggest()
@@ -14,14 +14,12 @@ use base qw(ClubSpain::Controller::RPC::Flight);
 
 =cut
 
-sub suggest : Local {
+sub suggest :Local {
     my ( $self, $c ) = @_;
 
     my $search = $c->request->param('term');
-    my @res = $self->_suggest($c, $search);
+    my @res = $self->next::method($search);
     $c->stash(json_data => \@res);
-
-    $c->forward('View::JSON');
 }
 
 
@@ -30,10 +28,8 @@ sub suggest : Local {
 sub getCountryOfDeparture :Local {
     my ($self, $c) = @_;
 
-    my @res = $self->_getCountryOfDeparture($c);
-
+    my @res = $self->next::method();
     $c->stash(json_data => \@res);
-    $c->forward('View::JSON');
 }
 
 
@@ -42,12 +38,10 @@ sub getCountryOfDeparture :Local {
 sub getCityOfDeparture :Local {
     my ($self, $c) = @_;
 
-    my @res = $self->_getCityOfDeparture(
-        $c, $c->request->param('countryOfDeparture')
+    my @res = $self->next::method(
+        $c->request->param('countryOfDeparture')
     );
-
     $c->stash(json_data => \@res);
-    $c->forward('View::JSON');
 }
 
 
@@ -56,12 +50,10 @@ sub getCityOfDeparture :Local {
 sub getAirportOfDeparture :Local {
     my ($self, $c) = @_;
 
-    my @res = $self->_getAirportOfDeparture(
-        $c, $c->request->param('cityOfDeparture')
+    my @res = $self->next::method(
+        $c->request->param('cityOfDeparture')
     );
-
     $c->stash(json_data => \@res);
-    $c->forward('View::JSON');
 }
 
 
@@ -70,10 +62,8 @@ sub getAirportOfDeparture :Local {
 sub getCountryOfArrival :Local {
     my ($self, $c) = @_;
 
-    my @res = $self->_getCountryOfArrival($c);;
-
+    my @res = $self->next::method();
     $c->stash(json_data => \@res);
-    $c->forward('View::JSON');
 }
 
 
@@ -82,10 +72,10 @@ sub getCountryOfArrival :Local {
 sub getCityOfArrival :Local {
     my ($self, $c) = @_;
 
-    my @res = $self->_getCityOfArrival($c, $c->request->param('countryOfArrival'));
-
+    my @res = $self->next::method(
+        $c->request->param('countryOfArrival')
+    );
     $c->stash(json_data => \@res);
-    $c->forward('View::JSON');
 }
 
 
@@ -94,9 +84,17 @@ sub getCityOfArrival :Local {
 sub getAirportOfArrival :Local {
     my ($self, $c) = @_;
 
-    my @res = $self->_getAirportOfArrival($c, $c->request->param('cityOfArrival'));
-
+    my @res = $self->next::method(
+        $c->request->param('cityOfArrival')
+    );
     $c->stash(json_data => \@res);
+}
+
+
+
+sub end :Private {
+    my ($self, $c) = @_;
+
     $c->forward('View::JSON');
 }
 
