@@ -1,31 +1,31 @@
-package ClubSpain::Controller::RPC::Flight::Fare;
+package ClubSpain::Controller::RPC::Charter;
 use strict;
 use warnings;
 use utf8;
 use base qw(Catalyst::Controller);
 
-sub _searchCitiesOfDeparture {
-    my ($self, $c) = @_;
+sub searchCitiesOfDeparture {
+    my $self = shift;
 
-    my $iterator = $c->model('TimeTable')->searchCitiesOfDeparture();
+    my $iterator = $self->_app->model('TimeTable')->searchCitiesOfDeparture();
 
     return id_name_hash($iterator);
 }
 
-sub _searchCitiesOfArrival {
-    my ($self, $c, %params) = @_;
+sub searchCitiesOfArrival {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('TimeTable')->searchCitiesOfArrival(
+    my $iterator = $self->_app->model('TimeTable')->searchCitiesOfArrival(
       cityOfDeparture => $params{'cityOfDeparture'}
     );
 
     return id_name_hash($iterator);
 }
 
-sub _searchDatesOfDeparture {
-    my ($self, $c, %params) = @_;
+sub searchDatesOfDeparture {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('TimeTable')->searchDatesOfDeparture(
+    my $iterator = $self->_app->model('TimeTable')->searchDatesOfDeparture(
         cityOfDeparture => $params{'cityOfDeparture'},
         cityOfArrival   => $params{'cityOfArrival'},
         startDate       => $params{'startDate'},
@@ -39,10 +39,10 @@ sub _searchDatesOfDeparture {
     return @res;
 }
 
-sub _searchFlights {
-    my ($self, $c, %params) = @_;
+sub searchFlights {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('Flight')->searchFlightsInTimetable(
+    my $iterator = $self->_app->model('Flight')->searchFlightsInTimetable(
         cityOfDeparture => $params{'cityOfDeparture'},
         cityOfArrival   => $params{'cityOfArrival'},
         dateOfDeparture => $params{'dateOfDeparture'}
@@ -73,10 +73,10 @@ dateOfDeparture - дата отправления
 
 =cut
 
-sub _searchTimetable {
-    my ($self, $c, %params) = @_;
+sub searchTimetable {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('TimeTable')->searchTimetable(
+    my $iterator = $self->_app->model('TimeTable')->searchTimetable(
         cityOfDeparture => $params{'cityOfDeparture'},
         cityOfArrival   => $params{'cityOfArrival'},
         dateOfDeparture => $params{'dateOfDeparture'},
@@ -86,28 +86,28 @@ sub _searchTimetable {
 }
 
 
-sub _searchCitiesOfDepartureOW {
-    my ($self, $c) = @_;
+sub searchCitiesOfDepartureOW {
+    my $self = shift;
 
-    my $iterator = $c->model('City')->searchCitiesOfDepartureOW();
+    my $iterator = $self->_app->model('City')->searchCitiesOfDepartureOW();
 
     return id_name_hash($iterator);
 }
 
-sub _searchCitiesOfArrivalOW {
-    my ($self, $c, %params) = @_;
+sub searchCitiesOfArrivalOW {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('City')->searchCitiesOfArrivalOW(
+    my $iterator = $self->_app->model('City')->searchCitiesOfArrivalOW(
         cityOfDeparture => $params{'cityOfDeparture'}
     );
 
     return id_name_hash($iterator);
 }
 
-sub _searchDatesOfDepartureOW {
-    my ($self, $c, %params) = @_;
+sub searchDatesOfDepartureOW {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('Itinerary')->searchDatesOfDepartureOW(
+    my $iterator = $self->_app->model('Itinerary')->searchDatesOfDepartureOW(
         cityOfDeparture => $params{'cityOfDeparture'},
         cityOfArrival   => $params{'cityOfArrival'},
     );
@@ -115,27 +115,27 @@ sub _searchDatesOfDepartureOW {
     return date_hash($iterator);
 }
 
-sub _searchCitiesOfDeparture1RT {
-    my ($self, $c) = @_;
+sub searchCitiesOfDeparture1RT {
+    my $self = shift;
 
-    my $iterator = $c->model('City')->searchCitiesOfDeparture1RT();
+    my $iterator = $self->_app->model('City')->searchCitiesOfDeparture1RT();
     return id_name_hash($iterator);
 }
 
-sub _searchCitiesOfArrival1RT {
-    my ($self, $c, %params) = @_;
+sub searchCitiesOfArrival1RT {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('City')->searchCitiesOfArrival1RT(
+    my $iterator = $self->_app->model('City')->searchCitiesOfArrival1RT(
         cityOfDeparture1 => $params{'cityOfDeparture1'}
     );
 
     return id_name_hash($iterator);
 }
 
-sub _searchCitiesOfDeparture2RT {
-    my ($self, $c, %params) = @_;
+sub searchCitiesOfDeparture2RT {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('City')->searchCitiesOfDeparture2RT(
+    my $iterator = $self->_app->model('City')->searchCitiesOfDeparture2RT(
         cityOfDeparture1 => $params{'cityOfDeparture1'},
         cityOfArrival1   => $params{'cityOfArrival1'},
     );
@@ -143,10 +143,10 @@ sub _searchCitiesOfDeparture2RT {
     return id_name_hash($iterator);
 }
 
-sub _searchCitiesOfArrival2RT {
-    my ($self, $c, %params) = @_;
+sub searchCitiesOfArrival2RT {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('City')->searchCitiesOfArrival2RT(
+    my $iterator = $self->_app->model('City')->searchCitiesOfArrival2RT(
         cityOfDeparture1 => $params{'cityOfDeparture1'},
         cityOfArrival1   => $params{'cityOfArrival1'},
         cityOfDeparture2 => $params{'cityOfDeparture2'}
@@ -155,10 +155,10 @@ sub _searchCitiesOfArrival2RT {
     return id_name_hash($iterator);
 }
 
-sub _searchDatesOfDeparture1RT {
-    my ($self, $c, %params) = @_;
+sub searchDatesOfDeparture1RT {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('Itinerary')->searchDatesOfDeparture1RT(
+    my $iterator = $self->_app->model('Itinerary')->searchDatesOfDeparture1RT(
         cityOfDeparture1 => $params{'cityOfDeparture1'},
         cityOfArrival1   => $params{'cityOfArrival1'},
         cityOfDeparture2 => $params{'cityOfDeparture2'},
@@ -168,10 +168,10 @@ sub _searchDatesOfDeparture1RT {
     return date_hash($iterator);
 }
 
-sub _searchDatesOfDeparture2RT {
-    my ($self, $c, %params) = @_;
+sub searchDatesOfDeparture2RT {
+    my ($self, %params) = @_;
 
-    my $iterator = $c->model('Itinerary')->searchDatesOfDeparture2RT(
+    my $iterator = $self->_app->model('Itinerary')->searchDatesOfDeparture2RT(
         cityOfDeparture1 => $params{'cityOfDeparture1'},
         cityOfArrival1   => $params{'cityOfArrival1'},
         cityOfDeparture2 => $params{'cityOfDeparture2'},

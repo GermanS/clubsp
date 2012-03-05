@@ -1,8 +1,8 @@
-package ClubSpain::Controller::XMLRPC::Flight::Fare;
+package ClubSpain::Controller::XMLRPC::Charter;
 use strict;
 use warnings;
 use utf8;
-use base qw(ClubSpain::Controller::RPC::Flight::Fare);
+use base qw(ClubSpain::Controller::RPC::Charter);
 
 sub searchCitiesOfDeparture : XMLRPC {
     my ($self, $c) = @_;
