@@ -147,4 +147,66 @@ sub searchDatesOfDeparture2RT : XMLRPC {
     $c->stash(xmlrpc => \@res);
 }
 
+#поиск тарифов в обе стороны по заданным критериям
+sub searchRT :Local {
+    my ($self, $c, $params) = @_;
+
+    my @res = $self->next::method({
+            cityOfDeparture => $params->{'cityOfDeparture1'},
+            cityOfArrival   => $params->{'cityOfArrival1'},
+            dateOfDeparture => $params->{'dateOfDeparture1'},
+        }, {
+            cityOfDeparture => $params->{'cityOfDeparture2'},
+            cityOfArrival   => $params->{'cityOfArrival2'},
+            dateOfDeparture => $params->{'dateOfDeparture2'},
+    });
+
+    $c->stash(json_data => \@res);
+}
+
+
+
+#поиск тарифа в одну сторону
+sub searchOW :Local {
+    my ($self, $c, $params) = @_;
+
+    my @res = $self->next::method(
+        cityOfDeparture => $params->{'cityOfDeparture'},
+        cityOfArrival   => $params->{'cityOfArrival'},
+        dateOfDeparture => $params->{'dateOfDeparture'},
+    );
+
+    $c->stash(json_data => \@res);
+}
+
+
+
+#Поиск всех тарифов RT по заданным городам
+sub viewRT :Local {
+    my ($self, $c, $params) = @_;
+
+    my @res = $self->next::method({
+            cityOfDeparture => $params->{'cityOfDeparture1'},
+            cityOfArrival   => $params->{'cityOfArrival1'},
+        }, {
+            cityOfDeparture => $params->{'cityOfDeparture2'},
+            cityOfArrival   => $params->{'cityOfArrival2'},
+    });
+
+    $c->stash(json_data => \@res);
+}
+
+
+#Поиск всех тарифов в одну сторону
+sub viewOW :Local {
+    my ($self, $c, $params) = @_;
+
+    my @res = $self->next::method(
+        cityOfDeparture => $params->{'cityOfDeparture'},
+        cityOfArrival   => $params->{'cityOfArrival'}
+    );
+
+    $c->stash(json_data => \@res);
+}
+
 1;
