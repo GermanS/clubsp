@@ -14,7 +14,6 @@ my $build = ClubSpain::Build->new(
         'Catalyst::Model::SOAP'                 => '>=1.5',
         'Catalyst::Plugin::Server'              => '>=0.28',
         'Catalyst::Plugin::Server::XMLRPC'      => 0,
-        'Catalyst::Plugin::Server::JSONRPC'     => 0,
         'Catalyst::Plugin::Unicode'             => 0,
         'Catalyst::Model::DBIC::Schema'         => 0,
         'Catalyst::View::JSON'                  => 0,

@@ -18,7 +18,6 @@ use Catalyst qw(
     Static::Simple
     Server
     Server::XMLRPC
-    Server::JSONRPC
     Unicode
 );
 
@@ -43,9 +42,6 @@ __PACKAGE__->config(
     xmlrpc => {
         'xml_encoding' => 'utf-8',
         'path' => qr!^(/?)xmlrpc(/|$)!i
-    },
-    jsonrpc => {
-        'path' => qr!^(/?)jsonrpc(/|$)!i
     },
     default_view => 'TT',
     'View::TT' => {
