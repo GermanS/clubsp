@@ -126,6 +126,70 @@ sub searchDatesOfDeparture2RT :Local {
 
 
 
+#поиск тарифов в обе стороны по заданным критериям
+sub searchRT :Local {
+    my ($self, $c) = @_;
+
+    my @res = $self->next::method({
+            cityOfDeparture => $c->request->param('cityOfDeparture1'),
+            cityOfArrival   => $c->request->param('cityOfArrival1'),
+            dateOfDeparture => $c->request->param('dateOfDeparture1'),
+        }, {
+            cityOfDeparture => $c->request->param('cityOfDeparture2'),
+            cityOfArrival   => $c->request->param('cityOfArrival2'),
+            dateOfDeparture => $c->request->param('dateOfDeparture2'),
+    });
+
+    $c->stash(json_data => \@res);
+}
+
+
+
+#поиск тарифа в одну сторону
+sub searchOW :Local {
+    my ($self, $c) = @_;
+
+    my @res = $self->next::method(
+        cityOfDeparture => $c->request->param('cityOfDeparture'),
+        cityOfArrival   => $c->request->param('cityOfArrival'),
+        dateOfDeparture => $c->request->param('dateOfDeparture'),
+    );
+
+    $c->stash(json_data => \@res);
+}
+
+
+
+#Поиск всех тарифов RT по заданным городам
+sub viewRT :Local {
+    my ($self, $c) = @_;
+
+    my @res = $self->next::method({
+            cityOfDeparture => $c->request->param('cityOfDeparture1'),
+            cityOfArrival   => $c->request->param('cityOfArrival1'),
+        }, {
+            cityOfDeparture => $c->request->param('cityOfDeparture2'),
+            cityOfArrival   => $c->request->param('cityOfArrival2'),
+    });
+
+    $c->stash(json_data => \@res);
+}
+
+
+#Поиск всех тарифов в одну сторону
+sub viewOW :Local {
+    my ($self, $c) = @_;
+
+    my @res = $self->next::method(
+        cityOfDeparture => $c->request->param('cityOfDeparture'),
+        cityOfArrival   => $c->request->param('cityOfArrival')
+    );
+
+    $c->stash(json_data => \@res);
+}
+
+
+
 #внутренний метод поиска городов отправления
 sub searchCitiesOfDeparture :Local {
     my ($self, $c) = @_;
