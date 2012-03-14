@@ -187,9 +187,9 @@ sub viewOW :Local {
 
     $c->stash(json_data => \@res);
 }
-
-
-
+#
+#
+#
 #внутренний метод поиска городов отправления
 sub searchCitiesOfDeparture :Local {
     my ($self, $c) = @_;
@@ -197,7 +197,6 @@ sub searchCitiesOfDeparture :Local {
     my @res = $self->next::method();
     $c->stash(json_data => \@res);
 }
-
 
 
 #внутренний метод поиска городов прибытия
@@ -210,7 +209,6 @@ sub searchCitiesOfArrival :Local {
 
     $c->stash(json_data => \@res);
 }
-
 
 
 #внутренний метод поиска дат отправления
@@ -227,7 +225,6 @@ sub searchDatesOfDeparture :Local {
 }
 
 
-
 #внутренний метод поиска рейсов
 sub searchFlights :Local {
     my ($self, $c) = @_;
@@ -242,7 +239,6 @@ sub searchFlights :Local {
 }
 
 
-
 #внутренний метод поиска расписания
 sub searchTimetable :Local {
     my ($self, $c) = @_;
@@ -255,6 +251,7 @@ sub searchTimetable :Local {
 
     $c->stash(json_data => \@res);
 }
+
 
 sub end :Private {
     my ($self, $c) = @_;
