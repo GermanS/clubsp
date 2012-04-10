@@ -1,4 +1,4 @@
-package ClubSpain::Schema::Result::HBedsCountry;
+package ClubSpain::Schema::Result::HBeds::Country;
 use strict;
 use warnings;
 use utf8;
@@ -20,7 +20,7 @@ __PACKAGE__->add_columns(
     },
     name => {
         data_type     => 'char',
-        size          => 20,
+        size          => 40,
         is_nullable   => 0,
     },
     is_published => {

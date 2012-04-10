@@ -1,4 +1,4 @@
-package ClubSpain::Schema::Result::HBedsCity;
+package ClubSpain::Schema::Result::HBeds::City;
 use strict;
 use warnings;
 use utf8;
