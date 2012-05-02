@@ -28,10 +28,10 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_code => [qw(code)]);
 
-__PACKAGE__->has_many(
-    hotels => 'ClubSpain::Schema::Result::HBedsHotel',
-    { 'foreign.chain_id' => 'self.id' },
-    { cascade_delete => 0 }
-);
+#__PACKAGE__->has_many(
+#    hotels => 'ClubSpain::Schema::Result::HBeds::Hotel',
+#    { 'foreign.chain_id' => 'self.id' },
+#    { cascade_delete => 0 }
+#);
 
 1;

@@ -27,10 +27,6 @@ __PACKAGE__->add_columns(
         size          => 50,
         is_nullable   => 0,
     },
-    is_published => {
-        data_type     => 'tinyint unsigned',
-        is_nullable   => 1,
-    }
 );
 
 __PACKAGE__->set_primary_key('id');

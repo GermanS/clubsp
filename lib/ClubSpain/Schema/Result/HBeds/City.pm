@@ -38,17 +38,16 @@ __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_iata => [qw(code)]);
 __PACKAGE__->add_unique_constraint(on_country_id_name => [qw(country_id name)]);
 
-
 __PACKAGE__->belongs_to(
-    'country' => 'ClubSpain::Schema::Result::HBedsCountry', 'country_id'
+    'country' => 'ClubSpain::Schema::Result::HBeds::Country', 'country_id'
 );
 __PACKAGE__->has_many(
-    zone_groups => 'ClubSpain::Schema::Result::HBedsZoneGroup',
+    zone_groups => 'ClubSpain::Schema::Result::HBeds::Zone',
     { 'foreign.city_id' => 'self.id' },
     { cascade_delete => 0 }
 );
 __PACKAGE__->has_many(
-    hotels => 'ClubSpain::Schema::Result::HBedsHotel',
+    hotels => 'ClubSpain::Schema::Result::HBeds::Hotel',
     { 'foreign.city_id' => 'self.id' },
     { cascade_delete => 0 }
 );

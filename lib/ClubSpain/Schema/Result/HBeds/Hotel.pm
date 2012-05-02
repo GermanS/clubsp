@@ -31,56 +31,16 @@ __PACKAGE__->add_columns(
     },
     chain_id => {
         data_type      => 'integer',
-        is_nullable    => 0,
+        is_nullable    => 1,
         is_foreign_key => 1,
     },
     code => {
-        data_type      => 'MEDIUMINT(6) UNSIGNED',
+        data_type      => 'varchar(8)',
         is_nullable    => 0,
     },
     name => {
         data_type     => 'VARCHAR',
         size          => 52,
-        is_nullable   => 0,
-    },
-    address => {
-        data_type     => 'varchar',
-        size          => 100,
-        is_nullable   => 0,
-    },
-    number => {
-        data_type     => 'varchar',
-        size          => 10,
-        is_nullable   => 0,
-    },
-    postalCode => {
-        data_type     => 'varchar',
-        size          => 20,
-        is_nullable   => 0,
-    },
-    phoneHotel => {
-        data_type     => 'varchar',
-        size          => 15,
-        is_nullable   => 0,
-    },
-    phoneResv => {
-        data_type     => 'varchar',
-        size          => 15,
-        is_nullable   => 0,
-    },
-    fax => {
-        data_type     => 'varchar',
-        size          => 15,
-        is_nullable   => 0,
-    },
-    email => {
-        data_type     => 'varchar',
-        size          => 50,
-        is_nullable   => 0,
-    },
-    webSite => {
-        data_type     => 'varchar',
-        size          => 50,
         is_nullable   => 0,
     },
     longitude => {
@@ -93,31 +53,63 @@ __PACKAGE__->add_columns(
         size          => 50,
         is_nullable   => 0,
     },
-    description => {
-        data_type     => 'text',
-    },
-    status => {
+    facilities => {
         data_type     => 'varchar',
-        size          => 2,
-        is_nullable   => 0,
+        size          => 2000,
+        is_nullable   => 1,
+    },
+    locationDescription => {
+        data_type     => 'varchar',
+        size          => 2000,
+        is_nullable   => 1,
+    },
+    roomDescription => {
+        data_type     => 'varchar',
+        size          => 2000,
+        is_nullable   => 1,
+    },
+    sportDescription => {
+        data_type     => 'varchar',
+        size          => 2000,
+        is_nullable   => 1,
+    },
+    mealsDescription => {
+        data_type     => 'varchar',
+        size          => 2000,
+        is_nullable   => 1,
+    },
+    paymentMethods => {
+        data_type     => 'varchar',
+        size          => 2000,
+        is_nullable   => 1,
+    },
+    howToGetThere => {
+        data_type     => 'varchar',
+        size          => 2000,
+        is_nullable   => 1,
+    },
+    comments => {
+        data_type     => 'varchar',
+        size          => 2000,
+        is_nullable   => 1,
     },
 );
 
 __PACKAGE__->set_primary_key('id');
 
 __PACKAGE__->belongs_to(
-    'city' => 'ClubSpain::Schema::Result::HBedsCity', 'city_id'
+    'city' => 'ClubSpain::Schema::Result::HBeds::City', 'city_id'
 );
 __PACKAGE__->belongs_to(
-    'category' => 'ClubSpain::Schema::Result::HBedsCategory', 'category_id'
+    'category' => 'ClubSpain::Schema::Result::HBeds::Category', 'category_id'
 );
 __PACKAGE__->belongs_to(
-    'zone' => 'ClubSpain::Schema::Result::HBedsZone', 'zone_id'
+    'zone' => 'ClubSpain::Schema::Result::HBeds::Zone', 'zone_id'
 );
-__PACKAGE__->might_have(
-    'chain' => 'ClubSpain::Schema::Result::HBedsChain',
-    { 'foreign.id' => 'self.chain_id' },
-    { cascade_delete => 0 }
-);
+#__PACKAGE__->might_have(
+#    'chain' => 'ClubSpain::Schema::Result::HBeds::Chain',
+#    { 'foreign.id' => 'self.chain_id' },
+#    { cascade_delete => 0 }
+#);
 
 1;

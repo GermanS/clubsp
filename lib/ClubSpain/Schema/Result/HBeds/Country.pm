@@ -13,7 +13,7 @@ __PACKAGE__->add_columns(
         data_type         => 'TINYINT(3) UNSIGNED',
         is_auto_increment => 1
     },
-    alpha2 => {
+    code => {
         data_type     => 'char',
         size          => 2,
         is_nullable   => 0,
@@ -30,11 +30,11 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('id');
-__PACKAGE__->add_unique_constraint(on_alpha2  => [qw(alpha2)]);
+__PACKAGE__->add_unique_constraint(on_code  => [qw(code)]);
 __PACKAGE__->add_unique_constraint(on_name => [qw(name)]);
 
 __PACKAGE__->has_many(
-    cities => 'ClubSpain::Schema::Result::HBedsCity',
+    cities => 'ClubSpain::Schema::Result::HBeds::City',
     { 'foreign.country_id' => 'self.id' },
     { cascade_delete => 0 }
 );
