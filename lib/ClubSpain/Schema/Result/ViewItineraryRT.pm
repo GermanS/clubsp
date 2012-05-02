@@ -43,17 +43,23 @@ SELECT cityOfDeparture1.id   as cityOfDeparture1Id,
         AND itinerary.parent_id             = 0
     )
     AND (
-        children.parent_id = itinerary.id
+        itinerary.id = children.parent_id
     )
     AND (
-        airportOfDeparture1.city_id          =cityOfDeparture1.id
-        AND airportOfArrival1.city_id        =cityOfArrival1.id
-        AND cityOfArrival1.country_id        =countryOfArrival1.id
-        AND flight1.departure_airport_id     =airportOfDeparture1.id
-        AND flight1.destination_airport_id   =airportOfArrival1.id
-        AND cityOfDeparture1.country_id      =countryOfDeparture1.id
-        AND timetable1.flight_id             =flight1.id
-        AND itinerary.timetable_id           =timetable1.id
+        timetable1.id                   = itinerary.timetable_id
+        AND flight1.id                  = timetable1.flight_id
+        AND (
+            airportOfDeparture1.id      = flight1.departure_airport_id
+            AND airportOfArrival1.id    = flight1.destination_airport_id
+        )
+        AND (
+            cityOfDeparture1.id         = airportOfDeparture1.city_id
+            AND cityOfArrival1.id       = airportOfArrival1.city_id
+        )
+        AND (
+            countryOfDeparture1.id      = cityOfDeparture1.country_id
+            AND countryOfArrival1.id        = cityOfArrival1.country_id
+        )
     ) ) )
 ) as first,
 
@@ -91,17 +97,23 @@ SELECT cityOfDeparture2.id   as cityOfDeparture2Id,
         AND itinerary.parent_id             = 0
     )
     AND (
-        children.parent_id = itinerary.id
+        itinerary.id = children.parent_id
     )
     AND (
-        airportOfDeparture2.city_id          =cityOfDeparture2.id
-        AND airportOfArrival2.city_id        =cityOfArrival2.id
-        AND cityOfArrival2.country_id        =countryOfArrival2.id
-        AND flight2.departure_airport_id     =airportOfDeparture2.id
-        AND flight2.destination_airport_id   =airportOfArrival2.id
-        AND cityOfDeparture2.country_id      =countryOfDeparture2.id
-        AND timetable2.flight_id             =flight2.id
-        AND children.timetable_id            =timetable2.id
+        timetable2.id                   = children.timetable_id
+        AND flight2.id                  = timetable2.flight_id
+        AND (
+            airportOfArrival2.id        = flight2.destination_airport_id
+            AND airportOfDeparture2.id  = flight2.departure_airport_id
+        )
+        AND (
+            cityOfArrival2.id           = airportOfArrival2.city_id
+            AND cityOfDeparture2.id     = airportOfDeparture2.city_id
+        )
+        AND (
+            countryOfDeparture2.id      = cityOfDeparture2.country_id
+            AND countryOfArrival2.id    = cityOfArrival2.country_id
+        )
     ) ) )
 ) as second
 WHERE
