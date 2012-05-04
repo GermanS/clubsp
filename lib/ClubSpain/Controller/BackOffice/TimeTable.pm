@@ -188,6 +188,36 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
     $c->detach('default');
 };
 
+sub free :Chained('id') :PathPart('free') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $timetable = $c->stash->{'timetable'};
+    $timetable->update({ is_free => FREE });
+
+    $self->setup_request_from_stash($c);
+    $c->detach('default');
+};
+
+sub request :Chained('id') :PathPart('request') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $timetable = $c->stash->{'timetable'};
+    $timetable->update({ is_free => REQUEST });
+
+    $self->setup_request_from_stash($c);
+    $c->detach('default');
+};
+
+sub sold :Chained('id') :PathPart('sold') :Args(0) {
+    my ($self, $c) = @_;
+
+    my $timetable = $c->stash->{'timetable'};
+    $timetable->update({ is_free => SOLD });
+
+    $self->setup_request_from_stash($c);
+    $c->detach('default');
+};
+
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
