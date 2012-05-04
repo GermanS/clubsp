@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use utf8;
 use parent qw(ClubSpain::Schema::Result);
+use ClubSpain::Constants qw(:all);
 
 
 __PACKAGE__->load_components(qw(Core PK::Auto));
@@ -14,6 +15,10 @@ __PACKAGE__->add_columns(
         is_auto_increment => 1
     },
     is_published => {
+        data_type      => 'integer',
+        is_nullable    => 0,
+    },
+    is_free => {
         data_type      => 'integer',
         is_nullable    => 0,
     },
@@ -82,6 +87,18 @@ sub sqlt_deploy_hook {
 
     $sqlt_table->add_index(name => 'on_dateOfDeparture', fields => ['departure_date']);
     $sqlt_table->add_index(name => 'on_is_published', fields => ['is_published']);
+}
+
+sub is_FREE {
+    return shift->is_free == FREE;
+}
+
+sub is_REQUEST {
+    return shift->is_free == REQUEST;
+}
+
+sub is_SOLD {
+    return shift->is_free == SOLD;
 }
 
 1;
