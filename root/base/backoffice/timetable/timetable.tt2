@@ -4,18 +4,22 @@
             <thead>
                 <tr>
                     <th> </th>
+                    <th> </th>
+                    <th> </th>
                     <th colspan="2">Отправление</th>
                     <th colspan="2">Прибытие</th>
                     <th> </th>
                     <th> </th>
                 </tr>
                 <tr>
-                    <th> </th>
+                    <th>Показать</th>
+                    <th>Места</th>
                     <th>Дата</th>
                     <th>Время</th>
                     <th>Дата</th>
                     <th>Время</th>
                     <th>Самолет</th>
+                    <th>Билеты</th>
                     <th> </th>
                 <tr>
             </thead>
@@ -34,6 +38,9 @@
         <td class="icon">
             [% INCLUDE icons/is_published.tt2 href="/backoffice/timetable/" object=timetable %]
         </td>
+        <td class="icon">
+            [% INCLUDE icons/is_free.tt2 href="/backoffice/timetable/" object=timetable %]
+        </td>
         <td>
             <a href="/backoffice/timetable/[% timetable.id %]/edit">[% timetable.departure_date %]</a>
         </td>
@@ -48,6 +55,10 @@
         </td>
         <td>
             [% timetable.airplane.name %]
+        </td>
+        <td>
+            <a class="btn btn-info"><i class="icon-eye-open  icon-white"></i></a>
+            <a class="btn btn-danger"><i class="icon-eye-close icon-white"></i></a>
         </td>
         <td class="icon">
             [% INCLUDE icons/delete.tt2 href="/backoffice/timetable/$timetable.id/delete" %]
