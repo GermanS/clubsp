@@ -40,4 +40,16 @@ div.text, div.label {
     font-weight: bold;
 }
 
+.success {
+    color: #006dcc;
+}
+
+.warning {
+    color: #c09853;
+}
+
+.error {
+    color: #b94a48;
+}
+
 
