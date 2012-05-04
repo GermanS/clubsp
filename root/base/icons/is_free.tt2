@@ -1,0 +1,7 @@
+[% IF object.is_FREE %]
+    <a href="[% href _ object.id _ '/request' %]"><img src="/icons/bullet_green.png" width="16" height="16" alt="Мест много" title="Мест много" border="0"></a>
+[% ELSIF object.is_REQUEST %]
+    <a href="[% href _ object.id _ '/sold' %]"><img src="/icons/bullet_yellow.png" width="16" height="16" alt="Мест мало" title="Мест мало" border="0"></a>
+[% ELSIF object.is_SOLD %]
+    <a href="[% href _ object.id _ '/free' %]"><img src="/icons/bullet_red.png" width="16" height="16" alt="Мест нет" title="Мест нет" border="0"></a>
+[% END %]

@@ -1,0 +1,7 @@
+[% IF object.is_free == 2 %]
+    <code><span class="success">Мест много</span></code>
+[% ELSIF object.is_free == 1 %]
+    <code><span class="warning">Мест мало<span></code>
+[% ELSIF object.is_free == 0 %]
+    <code>Мест нет</code>
+[% END %]

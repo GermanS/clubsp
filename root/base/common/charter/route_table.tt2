@@ -48,7 +48,10 @@
         <td>[% itinerary.timetable.arrival_time | time %]</td>
         <td>[% itinerary.timetable.flight.destination_airport.city.name | utf8 %] ([% itinerary.timetable.flight.destination_airport.name | utf8 %])</td>
         <td>[% itinerary.timetable.airplane.name %]</td>
-        <td>[% itinerary.fare_class.code %]</td>
+        <td>
+            [% itinerary.fare_class.code %]
+            [% INCLUDE common/charter/is_free.tt2 object=itinerary.timetable %]
+        </td>
         <td [% rowspan2 %] class="price"><a href="/aviabilet/[% itinerary.id %]" title="Стоимость авиабилета">[% itinerary.cost %]</a>&euro;</td>
     </tr>
     [% IF route %]
@@ -61,7 +64,10 @@
         <td>[% route.timetable.arrival_time | time %]</td>
         <td>[% route.timetable.flight.destination_airport.city.name | utf8 %] ([% route.timetable.flight.destination_airport.name | utf8 %])</td>
         <td>[% route.timetable.airplane.name %]</td>
-        <td>[% route.fare_class.code %]</td>
+        <td>
+            [% route.fare_class.code %]
+            [% INCLUDE common/charter/is_free.tt2 object=route.timetable %]
+        </td>
     </tr>
     [% END %]
 [% END %]
