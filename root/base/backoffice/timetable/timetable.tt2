@@ -57,8 +57,8 @@
             [% timetable.airplane.name %]
         </td>
         <td>
-            <a class="btn btn-info"><i class="icon-eye-open  icon-white"></i></a>
-            <a class="btn btn-danger"><i class="icon-eye-close icon-white"></i></a>
+            <a href="/backoffice/timetable/[% timetable.id %]/enable_tariffs"  class="btn btn-info"><i class="icon-eye-open  icon-white"></i></a>
+            <a href="/backoffice/timetable/[% timetable.id %]/disable_tariffs" class="btn btn-danger"><i class="icon-eye-close icon-white"></i></a>
         </td>
         <td class="icon">
             [% INCLUDE icons/delete.tt2 href="/backoffice/timetable/$timetable.id/delete" %]
