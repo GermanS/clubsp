@@ -399,6 +399,8 @@ sub segments {
                                               $segment->{'timetable'}->{'flight'}->{'code'};
 
         push @res, {
+            id            => $segment->{'timetable'}->{'id'},
+            isFree        => $segment->{'timetable'}->{'is_free'},
             dateBegin     => $segment->{'timetable'}->{'departure_date'},
             timeBegin     => $segment->{'timetable'}->{'departure_time'},
             dateEnd       => $segment->{'timetable'}->{'arrival_date'},
