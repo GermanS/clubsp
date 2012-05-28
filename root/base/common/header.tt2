@@ -13,6 +13,7 @@
                     <li><a href="/flight"    title="Поиск авиабилетов">Поиск авиабилетов</a></li>
                     <li><a href="/article/2" title="Офис продаж">Контакты</a></li>
                 </ul>
+                <a href="#sitephone" data-toggle="modal" class="btn btn-success pull-right">Звоните нам</a>
                 <a href="/article/80" class="btn btn-info pull-right">API</a>
             </div>
         </div>
