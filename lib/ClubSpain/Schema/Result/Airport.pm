@@ -63,4 +63,14 @@ sub sqlt_deploy_hook {
     $sqlt_table->add_index(name => 'on_is_published', fields => ['is_published']);
 }
 
+sub to_hash {
+    my $self = shift;
+
+    return {
+        id   => $self->id,
+        name => $self->name,
+        iata => $self->iata,
+    };
+}
+
 1;
