@@ -1,10 +1,8 @@
 package ClubSpain::Controller::RPC::Location;
-
 use strict;
 use warnings;
 use utf8;
-
-use base qw(Catalyst::Controller);
+use base qw(ClubSpain::Controller::RPC);
 
 sub getCountryOfDeparture : Private {
     my $self = shift;
@@ -13,7 +11,7 @@ sub getCountryOfDeparture : Private {
                         ->model('Country')
                         ->searchCountriesOfDeparture();
 
-    return $self->formatter($iterator);
+    return $self->to_array($iterator);
 }
 
 sub getCityOfDeparture : Private {
@@ -23,7 +21,7 @@ sub getCityOfDeparture : Private {
                         ->model('City')
                         ->searchCitiesOfDeparture(country => $country);
 
-    return $self->formatter($iterator);
+    return $self->to_array($iterator);
 }
 
 sub getAirportOfDeparture : Private {
@@ -33,7 +31,7 @@ sub getAirportOfDeparture : Private {
                         ->model('Airport')
                         ->searchAirportsOfDeparture(city => $city);
 
-    return $self->formatter($iterator);
+    return $self->to_array($iterator);
 }
 
 sub getCountryOfArrival : Private {
@@ -83,18 +81,6 @@ sub suggest : Private {
             label => sprintf("%s (%s)", $city->name_ru, $city->country->name),
             value => sprintf("%s (%s)", $city->name_ru, $city->iata),
         };
-    }
-
-    return @res;
-}
-
-#простой форматер для структуры id =>, name =>
-sub formatter :Private {
-    my ($self, $iterator) = @_;
-
-    my @res;
-    while (my $item = $iterator->next) {
-        push @res, { id => $item->id, name => $item->name };
     }
 
     return @res;
