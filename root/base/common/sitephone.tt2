@@ -1,0 +1,19 @@
+<div class="modal hide fade" id="sitephone">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Звоните Нам +7(495) 792-56-38, 789-65-58</h3>
+    </div>
+    <div class="modal-body">
+        <h4>Уважаемые клиенты!</h4>
+        <p>Пожалуйста, обратите внимание на время работы менеджеров по продажам авиабилетов<br>
+            <strong>Время работы:</strong> <br>
+            понедельник - пятница<br>
+            10:00 - 19:00<br>
+            суббота<br>
+            11:00 - 15:00
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Закрыть</a>
+    </div>
+ </div>
