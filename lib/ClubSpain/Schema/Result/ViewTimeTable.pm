@@ -63,6 +63,15 @@ sub id              { shift->get_column('timeatableId'); }
 sub dateOfDeparture { shift->get_column('dateOfDeparture'); }
 sub name            { shift->get_column('abbr'); }
 
+sub to_hash {
+    my $self = shift;
+
+    return {
+        id   => $self->id,
+        name => $self->name
+    }
+}
+
 1;
 
 __END__
