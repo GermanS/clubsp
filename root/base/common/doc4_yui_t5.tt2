@@ -3,5 +3,6 @@
     <div class="container">
         [% content %]
         [% INCLUDE common/footer.tt2 %]
+        [% INCLUDE common/sitephone.tt2 %]
     </div>
 [% END %]
