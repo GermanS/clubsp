@@ -34,6 +34,7 @@
         $(function() {
             $('#topbar').dropdown();
             $('a[rel=popover]').popover({ offset:10 });
+            $('#sitephone').modal({ show: false });
         });
     </script>
 
