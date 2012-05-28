@@ -101,4 +101,33 @@ sub is_SOLD {
     return shift->is_free == SOLD;
 }
 
+
+sub to_hash {
+    my $self = shift;
+
+    my $flightNumber =
+        sprintf "%2s %4s", $self->flight->airline->iata,
+                           $self->flight->code;
+    return {
+        id            => $self->id,
+        isFree        => $self->is_free,
+        dateBegin     => $self->departure_date,
+        timeBegin     => $self->departure_time,
+        dateEnd       => $self->arrival_date,
+        timeEnd       => $self->arrival_time,
+        board         => $self->airplane->to_hash(),
+        airline       => $self->flight->airline->to_hash(),
+        flightNumber  => $flightNumber,
+        locationBegin => {
+            city    => $self->flight->departure_airport->city->to_hash(),
+            airport => $self->flight->departure_airport->to_hash(),
+        },
+        locationEnd => {
+            city    => $self->flight->destination_airport->city->to_hash(),
+            airport => $self->flight->destination_airport->to_hash()
+        }
+    };
+}
+
+
 1;
