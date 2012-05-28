@@ -191,8 +191,8 @@ sub disable :Chained('id') :PathPart('disable') :Args(0) {
 sub free :Chained('id') :PathPart('free') :Args(0) {
     my ($self, $c) = @_;
 
-    my $timetable = $c->stash->{'timetable'};
-    $timetable->update({ is_free => FREE });
+    $c->model('TimeTable')
+      ->set_free( timetable => $c->stash->{'timetable'} );
 
     $self->setup_request_from_stash($c);
     $c->detach('default');
@@ -201,8 +201,10 @@ sub free :Chained('id') :PathPart('free') :Args(0) {
 sub request :Chained('id') :PathPart('request') :Args(0) {
     my ($self, $c) = @_;
 
-    my $timetable = $c->stash->{'timetable'};
-    $timetable->update({ is_free => REQUEST });
+    $c->model('TimeTable')
+      ->set_request(
+        timetable => $c->stash->{'timetable'}
+      );
 
     $self->setup_request_from_stash($c);
     $c->detach('default');
@@ -211,8 +213,10 @@ sub request :Chained('id') :PathPart('request') :Args(0) {
 sub sold :Chained('id') :PathPart('sold') :Args(0) {
     my ($self, $c) = @_;
 
-    my $timetable = $c->stash->{'timetable'};
-    $timetable->update({ is_free => SOLD });
+    $c->model('TimeTable')
+      ->set_sold(
+        timetable => $c->stash->{'timetable'}
+      );
 
     $self->setup_request_from_stash($c);
     $c->detach('default');
@@ -221,18 +225,10 @@ sub sold :Chained('id') :PathPart('sold') :Args(0) {
 sub enable_tariffs:Chained('id') :PathPart('enable_tariffs') :Args(0) {
     my ($self, $c) = @_;
 
-    my $timetable = $c->stash->{'timetable'};
-
-    my $tariffs = $timetable->itineraries;
-    while (my $route = $tariffs->next) {
-        if ($route->parent_id) {
-            $c->model('Itinerary')
-                    ->fetch_by_id($route->parent_id)
-                    ->update({ is_published => ENABLE });
-        } else {
-            $route->update({ is_published => ENABLE });
-        }
-    }
+    $c->model('TimeTable')
+      ->enable_tariffs(
+        timetable => $c->stash->{'timetable'}
+      );
 
     $self->setup_request_from_stash($c);
     $c->detach('default');
@@ -241,17 +237,10 @@ sub enable_tariffs:Chained('id') :PathPart('enable_tariffs') :Args(0) {
 sub disable_tariffs:Chained('id') :PathPart('disable_tariffs') :Args(0) {
     my ($self, $c) = @_;
 
-    my $timetable = $c->stash->{'timetable'};
-    my $tariffs = $timetable->itineraries;
-    while (my $route = $tariffs->next) {
-        if ($route->parent_id) {
-            $c->model('Itinerary')
-                    ->fetch_by_id($route->parent_id)
-                    ->update({ is_published => DISABLE });
-        } else {
-            $route->update({ is_published => DISABLE });
-        }
-    }
+    $c->model('TimeTable')
+      ->disable_tariffs(
+        timetable => $c->stash->{'timetable'}
+      );
 
     $self->setup_request_from_stash($c);
     $c->detach('default');
