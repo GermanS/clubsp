@@ -4,6 +4,7 @@ use namespace::autoclean;
 use utf8;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
+use ClubSpain::Constants qw(:all);
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'TimeTable' });
@@ -259,6 +260,113 @@ sub searchTimetable {
         $self->schema()
              ->resultset('ViewTimeTable')
              ->searchTimetable(%params);
+}
+
+=head2 disable_tariffs(%params)
+
+    Скрытие всех тарифов у расписания
+
+На входе:
+
+    timetable  - объект типа TimeTable
+
+=cut
+
+sub disable_tariffs {
+    my ($self, %params) = @_;
+
+    my $tariffs = $params{'timetable'}->itineraries;
+    while (my $route = $tariffs->next) {
+        if ($route->parent_id) {
+            $self->schema()
+                 ->resultset('Itinerary')
+                 ->single({ id => $route->parent_id })
+                 ->update({ is_published => DISABLE });
+        } else {
+            $route->update({ is_published => DISABLE });
+        }
+    }
+}
+
+=head2 enable_tariffs(%params)
+
+    Открытие всех тарифов у расписания
+
+На входе:
+
+    timetable  - объект типа TimeTable
+
+=cut
+
+sub enable_tariffs {
+    my ($self, %params) = @_;
+
+    my $tariffs = $params{'timetable'}->itineraries;
+    while (my $route = $tariffs->next) {
+        if ($route->parent_id) {
+            $self->schema
+                 ->resultset('Itinerary')
+                 ->single({ id => $route->parent_id })
+                 ->update({
+                     is_published => ENABLE
+                 });
+        } else {
+            $route->update({
+                is_published => ENABLE
+            });
+        }
+    }
+}
+
+=head set_free(%params)
+
+    Установка флага доступности тарифа в положение "МЕСТА ЕСТЬ"
+    Открываются все тарифы для указанного расписания
+
+На входе:
+
+    timetable  - объект типа TimeTable
+
+=cut
+
+sub set_free {
+    my ($self, %params) = @_;
+    $params{'timetable'}->update({ is_free => FREE });
+
+    $self->enable_tariffs(%params);
+}
+
+=head set_request(%params)
+
+    Установка флага доступности тарифа в положение "МЕСТ МАЛО"
+
+На входе:
+
+    timetable  - объект типа TimeTable
+
+=cut
+
+sub set_request {
+    my ($self, %params) = @_;
+    $params{'timetable'}->update({ is_free => REQUEST });
+}
+
+=head set_sold(%params)
+
+    Установка флага доступности тарифа в положение "МЕСТ НЕТ"
+    Дополнительно скрываются все тарифы на расписание
+
+На входе:
+
+    timetable  - объект типа TimeTable
+
+=cut
+
+sub set_sold {
+    my ($self, %params) = @_;
+    $params{'timetable'}->update({ is_free => SOLD });
+
+    $self->disable_tariffs(%params);
 }
 
 __PACKAGE__->meta->make_immutable;
