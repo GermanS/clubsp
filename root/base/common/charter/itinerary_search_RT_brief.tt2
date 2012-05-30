@@ -27,7 +27,14 @@
                 <td rowspan="[% start.value.size %]">
                     [% start.key | dmy %]
                 </td>
+                [% SET flag = 0 %]
                 [% FOREACH flight IN start.value.pairs %]
+                    [% IF flag %]
+                            <tr>
+                        [% ELSE %]
+                            [% flag = 1 %]
+                    [% END %]
+
                     <td>
                         [% flight.key %]
                     </td>
@@ -41,8 +48,7 @@
                         [% END %]
                     </td>
                     [% END %]
-                </tr>
-                <tr>
+
                 [% END %]
             </tr>
             [% END %]
