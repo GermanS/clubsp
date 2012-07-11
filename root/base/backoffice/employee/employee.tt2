@@ -1,0 +1,41 @@
+[% WRAPPER backoffice/employee/employee_wrapper.tt2 %]
+    [% IF message %]
+        [% message %]
+    [% END %]
+
+    [% IF iterator.count %]
+        <table class="table table-striped mono top-borders">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Имя</th>
+                    <th>Почта</th>
+                    <th> </th>
+                <tr>
+            </thead>
+            <tbody>
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row employee = item %]
+            [% END %]
+            </tbody>
+        </table>
+    [% END %]
+[% END %]
+
+
+[% BLOCK row %]
+    <tr>
+        <td class="icon">
+            [% INCLUDE icons/is_published.tt2 href="/backoffice/employee/" object=employee %]
+        </td>
+        <td>
+            <a href="/backoffice/employee/[% employee.id %]/edit">[% employee.name %] [% employee.surname %]</a>
+        </td>
+        <td>
+            [% employee.email %]
+        </td>
+        <td class="icon">
+            [% INCLUDE icons/delete.tt2 href="/backoffice/employee/$employee.id/delete" %]
+        </td>
+    </tr>
+[% END %]

@@ -1,0 +1,51 @@
+---
+attributes:
+    id: employeeForm
+    class: well
+
+elements:
+  - type: Text
+    name: name
+    label: Имя сотрудника
+    attrs:
+      class: span6
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: surname
+    label: Фамилия
+    attrs:
+      class: span6
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: email
+    label: Адрес электронной почты
+    attrs:
+      class: span6
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Text
+    name: passwd
+    label: Пароль
+    attrs:
+      class: span6
+    filters:
+      - TrimEdges
+    constraints:
+      - Required
+
+  - type: Submit
+    name: submit
+    value: Редактировать
+    attrs:
+      class: btn btn-primary

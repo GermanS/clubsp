@@ -206,6 +206,11 @@ sub populate_schema {
         [$timetable[6]->id,  1, $fareclass[1]->id, 0, 250], #NN331 C 250(eur) вылет будущей субботой
         [$timetable[10]->id, 1, $fareclass[1]->id, 9, 350], #NN332 C 350(eur) возвлат через неделю
     ]);
+
+    my @employee = $schema->populate('Employee', [
+        [qw(name surname email passwd is_published)],
+        ['name', 'surname', 'name@mail.com', 123, 1]
+    ]);
 }
 
 sub clear_schema {
