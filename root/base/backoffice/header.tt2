@@ -30,6 +30,14 @@
                             <li><a href="/backoffice/country"       title="Редактирование списка стран">Страны</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Пользователи <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/backoffice/company"     title="Редактирование списка партнеров">Партнеры</a></li>
+                            <li><a href="/backoffice/client"      title="Редактирование списка частных клиентов">Клиенты</a></li>
+                            <li><a href="/backoffice/employee"    title="Редактирование списка сотрудников">Сотрудники</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/backoffice/article"  title="Редактирование статей">Статьи</a></li>
                 </ul>
             </div>
