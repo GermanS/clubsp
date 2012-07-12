@@ -14,7 +14,7 @@ __PACKAGE__->add_columns(
         is_auto_increment => 1
     },
     is_published => {
-        data_type      => 'integer',
+        data_type     => 'TINYINT(1) UNSIGNED',
         is_nullable    => 0,
     },
     departure_airport_id => {

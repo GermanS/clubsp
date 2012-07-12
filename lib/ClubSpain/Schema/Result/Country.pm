@@ -33,7 +33,7 @@ __PACKAGE__->add_columns(
         is_nullable   => 1,
     },
     is_published => {
-        data_type     => 'tinyint unsigned',
+        data_type     => 'tinyint(1) unsigned',
         is_nullable   => 1,
     }
 );

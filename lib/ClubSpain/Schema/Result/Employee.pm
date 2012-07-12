@@ -34,13 +34,13 @@ __PACKAGE__->add_columns(
         is_nullable   => 0,
     },
     is_published => {
-        data_type      => 'integer',
-        is_nullable    => 0,
+        data_type     => 'TINYINT(1) UNSIGNED',
+        is_nullable   => 0,
     },
 );
 
 __PACKAGE__->set_primary_key('id');
-__PACKAGE__->add_unique_constraint(on_icao => [qw(email)]);
+__PACKAGE__->add_unique_constraint(on_email => [qw(email)]);
 
 
 sub sqlt_deploy_hook {
