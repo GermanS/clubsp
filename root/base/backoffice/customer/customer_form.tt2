@@ -1,0 +1,4 @@
+[% WRAPPER backoffice/customer/customer_wrapper.tt2 %]
+    [% INCLUDE backoffice/message.tt2 %]
+    [% form %]
+[% END %]

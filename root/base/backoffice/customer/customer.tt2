@@ -1,0 +1,45 @@
+[% WRAPPER backoffice/customer/customer_wrapper.tt2 %]
+    [% IF message %]
+        [% message %]
+    [% END %]
+
+    [% IF iterator.count %]
+        <table class="table table-striped mono top-borders">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Имя</th>
+                    <th>Почта</th>
+                    <th>Мобильный</th>
+                    <th> </th>
+                <tr>
+            </thead>
+            <tbody>
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row customer = item %]
+            [% END %]
+            </tbody>
+        </table>
+    [% END %]
+[% END %]
+
+
+[% BLOCK row %]
+    <tr>
+        <td class="icon">
+            [% INCLUDE icons/is_published.tt2 href="/backoffice/customer/" object=customer %]
+        </td>
+        <td>
+            <a href="/backoffice/customer/[% customer.id %]/edit"> [% customer.surname | html %] [% customer.name | html %] [% customer.middlename | html %]</a>
+        </td>
+        <td>
+            [% customer.email | html %]
+        </td>
+        <td>
+            [% customer.mobile | html %]
+        </td>
+        <td class="icon">
+            [% INCLUDE icons/delete.tt2 href="/backoffice/customer/$customer.id/delete" %]
+        </td>
+    </tr>
+[% END %]
