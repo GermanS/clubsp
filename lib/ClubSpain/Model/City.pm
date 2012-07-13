@@ -18,27 +18,26 @@ has 'is_published'  => ( is => 'ro', required => 1 );
 sub create {
     my $self = shift;
 
-    $self->SUPER::create({
-        country_id   => $self->country_id,
-        iata         => $self->iata,
-        name         => $self->name,
-        name_ru      => $self->name_ru,
-        is_published => $self->is_published,
-    });
+    $self->SUPER::create( $self->params() );
 }
 
 sub update {
     my $self = shift;
 
     $self->check_for_class_method();
+    $self->SUPER::update( $self->params() );
+}
 
-    $self->SUPER::update({
+sub params {
+    my $self = shift;
+
+    return {
         country_id   => $self->country_id,
         iata         => $self->iata,
         name         => $self->name,
         name_ru      => $self->name_ru,
         is_published => $self->is_published,
-    });
+    };
 }
 
 sub searchCitiesOfDeparture {

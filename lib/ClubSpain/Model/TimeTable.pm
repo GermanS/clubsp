@@ -73,17 +73,7 @@ has 'arrival_terminal_id'   => ( is => 'ro' );
 sub create {
     my $self = shift;
 
-    $self->SUPER::create({
-        is_published    => $self->is_published,
-        flight_id       => $self->flight_id,
-        departure_date  => $self->departure_date,
-        departure_time  => $self->departure_time,
-        arrival_date    => $self->arrival_date,
-        arrival_time    => $self->arrival_time,
-        airplane_id     => $self->airplane_id,
-        departure_terminal_id   => $self->departure_terminal_id,
-        arrival_terminal_id     => $self->arrival_terminal_id,
-    });
+    $self->SUPER::create( $self->params() );
 }
 
 =head2 update()
@@ -96,8 +86,13 @@ sub update {
     my $self = shift;
 
     $self->check_for_class_method();
+    $self->SUPER::update( $self->params() );
+}
 
-    return $self->SUPER::update({
+sub params {
+    my $self = shift;
+
+    return {
         is_published    => $self->is_published,
         flight_id       => $self->flight_id,
         departure_date  => $self->departure_date,
@@ -107,8 +102,9 @@ sub update {
         airplane_id     => $self->airplane_id,
         departure_terminal_id   => $self->departure_terminal_id,
         arrival_terminal_id     => $self->arrival_terminal_id,
-    });
+    };
 }
+
 
 =head2 departures(cityOfDeparture => , [duration => ])
 

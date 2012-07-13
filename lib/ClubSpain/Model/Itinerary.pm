@@ -18,13 +18,7 @@ has 'cost'          => ( is => 'ro', required => 1 );
 sub create {
     my $self = shift;
 
-    $self->SUPER::create({
-        is_published  => $self->is_published,
-        timetable_id  => $self->timetable_id,
-        fare_class_id => $self->fare_class_id,
-        parent_id     => $self->parent_id,
-        cost          => $self->cost,
-    });
+    $self->SUPER::create( $self->params() );
 }
 
 sub update {
@@ -32,13 +26,19 @@ sub update {
 
     $self->check_for_class_method();
 
-    $self->SUPER::update({
+    $self->SUPER::update( $self->params() );
+}
+
+sub params {
+    my $self = shift;
+
+    return {
         is_published  => $self->is_published,
         timetable_id  => $self->timetable_id,
         fare_class_id => $self->fare_class_id,
         parent_id     => $self->parent_id,
         cost          => $self->cost,
-    });
+    };
 }
 
 # поиск тарифов по идентификаторам расписания

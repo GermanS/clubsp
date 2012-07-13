@@ -42,23 +42,20 @@ has 'is_published' => (
 sub create {
     my $self = shift;
 
-    $self->SUPER::create({
-        name         => $self->name,
-        middlename   => $self->middlename,
-        surname      => $self->surname,
-        email        => $self->email,
-        passwd       => $self->passwd,
-        mobile       => $self->mobile,
-        is_published => $self->is_published,
-    });
+    $self->SUPER::create( $self->params() );
 }
 
 sub update {
     my $self = shift;
 
     $self->check_for_class_method();
+    $self->SUPER::update( $self->params() );
+}
 
-    $self->SUPER::update({
+sub params {
+    my $self = shift;
+
+    return {
         name         => $self->name,
         middlename   => $self->middlename,
         surname      => $self->surname,
@@ -66,7 +63,7 @@ sub update {
         passwd       => $self->passwd,
         mobile       => $self->mobile,
         is_published => $self->is_published,
-    });
+    };
 }
 
 __PACKAGE__->meta->make_immutable();

@@ -16,11 +16,7 @@ has 'is_published'  => ( is => 'ro', required => 1 );
 sub create {
     my $self = shift;
 
-    $self->SUPER::create({
-        airport_id   => $self->airport_id,
-        name         => $self->name,
-        is_published => $self->is_published,
-    });
+    $self->SUPER::create( $self->params() );
 }
 
 sub update {
@@ -28,12 +24,19 @@ sub update {
 
     $self->check_for_class_method();
 
-    return $self->SUPER::update({
+    return $self->SUPER::update( $self->params() );
+}
+
+sub params {
+    my $self = shift;
+
+    return {
         airport_id   => $self->airport_id,
         name         => $self->name,
         is_published => $self->is_published,
-    });
+    };
 }
+
 
 __PACKAGE__->meta->make_immutable;
 
