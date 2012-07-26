@@ -3,7 +3,7 @@ use Test::More tests => 23;
 use strict;
 use warnings;
 
-use_ok('ClubSpain::Types');
+use_ok('ClubSpain::Types', qw(AlphaLength1));
 
 {
     package Country;
