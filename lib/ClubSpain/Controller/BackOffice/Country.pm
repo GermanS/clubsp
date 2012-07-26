@@ -1,171 +1,90 @@
 package ClubSpain::Controller::BackOffice::Country;
-use strict;
-use warnings;
-use utf8;
-use parent qw(ClubSpain::Controller::BackOffice::FormFu);
-use ClubSpain::Constants qw(:all);
-
-sub auto :Private {
-    my ($self, $c) = @_;
-
-    $c->stash(template => 'backoffice/country/country.tt2')
+use Moose;
+use namespace::autoclean;
+BEGIN {
+    extends 'Catalyst::Controller'
 };
+with 'ClubSpain::Controller::BackOffice::BaseRole';
+
+use ClubSpain::Form::BackOffice::Country;
+
+has 'template' => (
+    is => 'ro',
+    default => 'backoffice/country/country.tt2'
+);
+
+has 'template_form' => (
+    is => 'ro',
+    default => 'backoffice/country/country_form.tt2'
+);
+
+has 'model' => (
+    is => 'ro',
+    default => 'Country',
+);
+
+sub form :Private { ClubSpain::Form::BackOffice::Country->new(); }
 
 sub default :Path {
     my ($self, $c) = @_;
-
-    $c->stash(
-        iterator => $c->model('Country')->search({})
-    );
+    $c->stash( iterator => $c->model($self->model)->search({}) );
 };
 
 sub base :Chained('/backoffice/base') :PathPart('country') :CaptureArgs(0) {};
 
-sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id) = @_;
-
-    my $country;
-    eval {
-        $country = $c->model('Country')->fetch_by_id($id);
-        $c->stash( country => $country );
-    };
-
-    if ($@) {
-        $self->process_error($c, $@) if $@;
-        $c->response->redirect($c->uri_for('default'));
-        $c->detach();
-    }
-};
-
-sub enable :Chained('id') :PathPart('enable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'country'}->update({
-        is_published => ENABLE
-    });
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub disable :Chained('id') :PathPart('disable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'country'}->update({
-        is_published => DISABLE
-    });
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub delete :Chained('id') :PathPart('delete') :Args(0) {
-    my ($self, $c) = @_;
-
-    eval {
-        $c->model('Country')->delete($c->stash->{'country'}->id);
-    };
-
-    if ($@) {
-        $self->process_error($c, $@);
-    } else {
-        $self->successful_message($c);
-    }
-
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub load_add_form :Private  {
-    my $self = shift;
-
-    my $form = $self->form();
-    $form->load_config_filestem('backoffice/country_form');
-    $form->process();
-
-    return $form;
-};
-
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->load_add_form();
-    if ($form->submitted_and_valid()) {
-        $self->insert($c);
+    my $form = $self->form;
+    $form->country($c->model($self->model)->new());
+    $form->process($c->request->parameters);
+
+    if ($form->validated) {
+        my $country = $form->country;
+        $country->set_enable();
+
+        eval { $country->create(); };
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form    => $self->load_add_form(),
-        template => 'backoffice/country/country_form.tt2'
+        form     => $form,
+        template => $self->template_form,
     );
-};
-
-sub insert :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $country = $c->model('Country')->new(
-            name        => $c->request->param('name'),
-            alpha2      => $c->request->param('alpha2'),
-            alpha3      => $c->request->param('alpha3'),
-            numerics    => $c->request->param('numerics'),
-            is_published => ENABLE,
-        );
-        $country->create();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-        if $@;
-};
-
-sub load_upd_form :Private {
-    my ($self, $c) = @_;
-
-    my $form = $self->load_add_form();
-    my $country = $c->stash->{'country'};
-    $form->get_element({ name => 'name' })
-        ->value($country->name);
-    $form->get_element({ name => 'alpha2' })
-        ->value($country->alpha2);
-    $form->get_element({ name => 'alpha3' })
-        ->value($country->alpha3);
-    $form->get_element({ name => 'numerics' })
-        ->value($country->numerics);
-    $form->process;
-
-    return $form;
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->load_upd_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->update($c);
+    my $form = $self->form;
+    $form->country($c->model($self->model)->new());
+    $form->process(
+        init_object => {
+            name     => $self->get_object($c)->name,
+            alpha2   => $self->get_object($c)->alpha2,
+            alpha3   => $self->get_object($c)->alpha3,
+            numerics => $self->get_object($c)->numerics
+        },
+        params => $c->request->parameters
+    );
+
+    if ($form->validated) {
+        eval {
+            my $country = $form->country();
+            $country->id( $self->get_object($c)->id );
+            $country->is_published( $self->get_object($c)->is_published );
+            $country->update();
+        };
+
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form => $self->load_upd_form($c),
-        template => 'backoffice/country/country_form.tt2'
+        form     => $form,
+        template => $self->template_form
     );
 };
 
-sub update :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $country = $c->model('Country')->new(
-            id          => $c->stash->{'country'}->id,
-            name        => $c->request->param('name'),
-            alpha2      => $c->request->param('alpha2'),
-            alpha3      => $c->request->param('alpha3'),
-            numerics    => $c->request->param('numerics'),
-            is_published=> $c->stash->{'country'}->is_published,
-        );
-        $country->update();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-         if $@;
-};
+__PACKAGE__->meta()->make_immutable();
 
 1;
