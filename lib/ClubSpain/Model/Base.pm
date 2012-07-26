@@ -11,6 +11,7 @@ use Scalar::Util qw(blessed);
 
 use ClubSpain::Exception;
 use ClubSpain::Storage;
+use ClubSpain::Constants qw(:all);
 
 sub schema {
     return ClubSpain::Storage->instance()->schema();
@@ -73,6 +74,18 @@ sub resultset {
     my $self = shift;
 
     return $self->schema()->resultset($self->source_name);
+}
+
+sub set_enable {
+    my $self = shift;
+
+    $self->is_published(ENABLE);
+}
+
+sub set_disable {
+    my $self = shift;
+
+    $self->is_published(DISABLE);
 }
 
 __PACKAGE__->meta->make_immutable();
