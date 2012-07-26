@@ -1,0 +1,8 @@
+[% WRAPPER backoffice/page.tt2 %]
+    <h1>Партнеры</h1>
+    <p>
+        <a class="btn btn-info" href="/backoffice/company/create">Добавить</a>
+        <a class="btn" href="/backoffice/company/">Список</a>
+    </p>
+    [% content %]
+[% END %]

@@ -1,0 +1,45 @@
+[% WRAPPER backoffice/company/company_wrapper.tt2 %]
+    [% IF message %]
+        [% message %]
+    [% END %]
+
+    [% IF iterator.count %]
+        <table class="table table-striped mono top-borders">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Название</th>
+                    <th>ИНН</th>
+                    <th> </th>
+                <tr>
+            </thead>
+            <tbody>
+            [% WHILE (item = iterator.next) %]
+                [% INCLUDE row company = item %]
+            [% END %]
+            </tbody>
+        </table>
+    [% END %]
+[% END %]
+
+
+[% BLOCK row %]
+    <tr>
+        <td class="icon">
+            [% INCLUDE icons/is_published.tt2 href="/backoffice/company/" object=company %]
+        </td>
+        <td>
+            <a href="/backoffice/company/[% company.id %]/edit">[% company.name | html %]
+                [% IF company.nick %]
+                    - [% company.nick | html %]
+                [% END %]
+            </a>
+        </td>
+        <td>
+            [% company.INN | html %]
+        </td>
+        <td class="icon">
+            [% INCLUDE icons/delete.tt2 href="/backoffice/company/$company.id/delete" %]
+        </td>
+    </tr>
+[% END %]
