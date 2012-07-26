@@ -9,18 +9,20 @@ use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Company' });
 
 has 'id'    => ( is => 'ro' );
-has 'name'  => ( is => 'ro' );
+has 'name'  => ( is => 'ro', required => 1 );
 has 'nick'  => ( is => 'ro' );
-has 'INN'   => ( is => 'ro' );
-has 'OGRN'  => ( is => 'ro' );
-has 'KPP'   => ( is => 'ro' );
-has 'OKPO'  => ( is => 'ro' );
-has 'OKVED' => ( is => 'ro' );
-has 'OKATO' => ( is => 'ro' );
-has 'OKTMO' => ( is => 'ro' );
-has 'OKOGU' => ( is => 'ro' );
-has 'OKFS'  => ( is => 'ro' );
-has 'OKPF'  => ( is => 'ro' );
+has 'INN'   => ( is => 'ro', required => 1 );
+has 'OGRN'  => ( is => 'ro', required => 1 );
+has 'KPP'   => ( is => 'ro', required => 1 );
+has 'OKPO'  => ( is => 'ro', required => 1 );
+has 'OKVED' => ( is => 'ro', required => 1 );
+has 'OKATO' => ( is => 'ro', required => 1 );
+has 'OKTMO' => ( is => 'ro', required => 1 );
+has 'OKOGU' => ( is => 'ro', required => 1 );
+has 'OKFS'  => ( is => 'ro', required => 1 );
+has 'OKPF'  => ( is => 'ro', required => 1 );
+has 'is_published'
+            => ( is => 'ro', required => 1 );
 
 sub create {
     my $self = shift;
@@ -32,8 +34,7 @@ sub update {
     my $self = shift;
 
     $self->check_for_class_method();
-
-    $self->SUPER::update($self->params() );
+    $self->SUPER::update( $self->params() );
 }
 
 sub params {
@@ -52,6 +53,7 @@ sub params {
         OKOGU => $self->OKOGU,
         OKFS  => $self->OKFS,
         OKPF  => $self->OKPF,
+        is_published => $self->is_published
     };
 }
 
