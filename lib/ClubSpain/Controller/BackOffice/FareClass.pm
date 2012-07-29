@@ -1,166 +1,89 @@
 package ClubSpain::Controller::BackOffice::FareClass;
-use strict;
-use warnings;
-use utf8;
-use parent qw(ClubSpain::Controller::BackOffice::FormFu);
-use ClubSpain::Constants qw(:all);
-
-sub auto :Private {
-    my ($self, $c) = @_;
-
-    $c->stash(
-        template => 'backoffice/fareclass/fareclass.tt2',
-    );
+use Moose;
+use namespace::autoclean;
+BEGIN {
+    extends 'Catalyst::Controller'
 };
+with 'ClubSpain::Controller::BackOffice::BaseRole';
+
+use ClubSpain::Form::BackOffice::FareClass;
+
+has 'template' => (
+    is => 'ro',
+    default => 'backoffice/fareclass/fareclass.tt2'
+);
+
+has 'template_form' => (
+    is => 'ro',
+    default => 'backoffice/fareclass/fareclass_form.tt2'
+);
+
+has 'model' => (
+    is => 'ro',
+    default => 'FareClass',
+);
+
+sub form :Private { ClubSpain::Form::BackOffice::FareClass->new(); }
+
 
 sub default :Path {
     my ($self, $c) = @_;
-
-    $c->stash(
-        iterator => $c->model('FareClass')->search({})
-    );
+    $c->stash( iterator => $c->model($self->model)->search({}) );
 };
 
 sub base :Chained('/backoffice/base') :PathPart('fareclass') :CaptureArgs(0) {};
 
-sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id) = @_;
-
-    my $fareclass;
-    eval {
-        $fareclass = $c->model('FareClass')->fetch_by_id($id);
-        $c->stash( fareclass => $fareclass );
-    };
-
-    if ($@) {
-        $self->process_error($c, $@) if $@;
-        $c->response->redirect($c->uri_for('default'));
-        $c->detach();
-    }
-};
-
-sub enable :Chained('id') :PathPart('enable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'fareclass'}->update({
-        is_published => ENABLE
-    });
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub disable :Chained('id') :PathPart('disable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'fareclass'}->update({
-        is_published => DISABLE
-    });
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub delete :Chained('id') :PathPart('delete') :Args(0) {
-    my ($self, $c) = @_;
-
-    eval {
-        $c->model('FareClass')->delete($c->stash->{'fareclass'}->id);
-    };
-
-    if ($@) {
-        $self->process_error($c, $@);
-    } else {
-        $self->successful_message($c);
-    }
-
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub load_add_form :Private  {
-    my ($self, $c) = @_;
-
-    my $form = $self->form();
-    $form->load_config_filestem('backoffice/fareclass_form');
-    $form->process();
-
-    return $form;
-};
-
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->load_add_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->insert($c);
+    my $form = $self->form;
+    $form->fareclass($c->model($self->model)->new());
+    $form->process($c->request->parameters);
+
+    if ($form->validated) {
+        my $fareclass = $form->fareclass;
+        $fareclass->set_enable();
+
+        eval { $fareclass->create(); };
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form    => $self->load_add_form($c),
-        template => 'backoffice/fareclass/fareclass_form.tt2'
+        form     => $form,
+        template => $self->template_form,
     );
-};
-
-sub insert :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $fareclass = $c->model('FareClass')->new(
-            code     => $c->request->param('code'),
-            name     => $c->request->param('name'),
-            is_published => ENABLE,
-        );
-        $fareclass->create();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-        if $@;
-};
-
-sub load_upd_form :Private {
-    my ($self, $c) = @_;
-
-    my $form = $self->load_add_form($c);
-    my $fareclass = $c->stash->{'fareclass'};
-
-    $form->get_element({ name => 'code' })
-            ->value($fareclass->code);
-    $form->get_element({ name => 'name' })
-            ->value($fareclass->name);
-    $form->process;
-
-    return $form;
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->load_upd_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->update($c);
+    my $form = $self->form;
+    $form->fareclass($c->model($self->model)->new());
+    $form->process(
+        init_object => {
+            name    => $self->get_object($c)->name,
+            code    => $self->get_object($c)->code
+        },
+        params => $c->request->parameters
+    );
+
+    if ($form->validated) {
+        eval {
+            my $fareclass = $form->fareclass;
+            $fareclass->id( $self->get_object($c)->id );
+            $fareclass->is_published( $self->get_object($c)->is_published );
+            $fareclass->update();
+        };
+
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form => $self->load_upd_form($c),
-        template => 'backoffice/fareclass/fareclass_form.tt2'
+        form     => $form,
+        template => $self->template_form
     );
 };
 
-sub update :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $fareclass = $c->model('FareClass')->new(
-            id          => $c->stash->{'fareclass'}->id,
-            code        => $c->request->param('code'),
-            name        => $c->request->param('name'),
-            is_published=> $c->stash->{'fareclass'}->is_published,
-        );
-        $fareclass->update();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-         if $@;
-};
+__PACKAGE__->meta()->make_immutable();
 
 1;

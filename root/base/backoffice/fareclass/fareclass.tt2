@@ -1,6 +1,6 @@
 [% WRAPPER backoffice/fareclass/fareclass_wrapper.tt2 %]
     [% IF message %]
-        [% message %]
+        [% INCLUDE backoffice/message.tt2 message = message %]
     [% END %]
 
     [% IF iterator.count %]
