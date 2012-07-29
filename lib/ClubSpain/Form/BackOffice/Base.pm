@@ -9,6 +9,7 @@ with 'HTML::FormHandler::Widget::Theme::Bootstrap';
 
 use ClubSpain::Exception;
 
+#обработка ошибок применимых к целой форме
 sub process_error {
     my ($self, $exception) = @_;
 
@@ -20,6 +21,17 @@ sub process_error {
         $self->push_form_errors(  $exception->{'msg'}  );
     } else {
         $self->push_form_errors(  $@  );
+    }
+}
+
+#обработка ошибок валидации полей формы
+sub process_validation_error {
+    my ($self, $field) = @_;
+
+    if (my $e = ClubSpain::Exception::Validation->caught()) {
+        $field->add_error($e->message);
+    } else {
+        $field->add_error(ClubSpain::Exception::Base->new()->description);
     }
 }
 
