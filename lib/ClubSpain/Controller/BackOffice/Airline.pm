@@ -1,170 +1,89 @@
 package ClubSpain::Controller::BackOffice::Airline;
-use strict;
-use warnings;
-use utf8;
-use parent qw(ClubSpain::Controller::BackOffice::FormFu);
-use ClubSpain::Constants qw(:all);
-
-sub auto :Private {
-    my ($self, $c) = @_;
-
-    $c->stash(
-        template => 'backoffice/airline/airline.tt2',
-    );
+use Moose;
+use namespace::autoclean;
+BEGIN {
+    extends 'Catalyst::Controller'
 };
+with 'ClubSpain::Controller::BackOffice::BaseRole';
+
+use ClubSpain::Form::BackOffice::Airline;
+
+has 'template' => (
+    is => 'ro',
+    default => 'backoffice/airline/airline.tt2'
+);
+
+has 'template_form' => (
+    is => 'ro',
+    default => 'backoffice/airline/airline_form.tt2'
+);
+
+has 'model' => (
+    is => 'ro',
+    default => 'Airline',
+);
+
+sub form :Private { ClubSpain::Form::BackOffice::Airline->new(); }
 
 sub default :Path {
     my ($self, $c) = @_;
-
-    $c->stash(
-        iterator => $c->model('Airline')->search({})
-    );
+    $c->stash( iterator => $c->model($self->model)->search({}) );
 };
 
 sub base :Chained('/backoffice/base') :PathPart('airline') :CaptureArgs(0) {};
 
-sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id) = @_;
-
-    my $airline;
-    eval {
-        $airline = $c->model('Airline')->fetch_by_id($id);
-        $c->stash( airline => $airline );
-    };
-
-    if ($@) {
-        $self->process_error($c, $@) if $@;
-        $c->response->redirect($c->uri_for('default'));
-        $c->detach();
-    }
-};
-
-sub enable :Chained('id') :PathPart('enable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'airline'}->update({
-        is_published => ENABLE
-    });
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub disable :Chained('id') :PathPart('disable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'airline'}->update({
-        is_published => DISABLE
-    });
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub delete :Chained('id') :PathPart('delete') :Args(0) {
-    my ($self, $c) = @_;
-
-    eval {
-        $c->model('Airline')->delete($c->stash->{'airline'}->id);
-    };
-
-    if ($@) {
-        $self->process_error($c, $@);
-    } else {
-        $self->successful_message($c);
-    }
-
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub load_add_form :Private  {
-    my ($self, $c) = @_;
-
-    my $form = $self->form();
-    $form->load_config_filestem('backoffice/airline_form');
-    $form->process();
-
-    return $form;
-};
-
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->load_add_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->insert($c);
+    my $form = $self->form;
+    $form->airline($c->model($self->model)->new());
+    $form->process($c->request->parameters);
+
+    if ($form->validated) {
+        my $airline = $form->airline;
+        $airline->set_enable();
+
+        eval { $airline->create(); };
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form => $self->load_add_form($c),
-        template => 'backoffice/airline/airline_form.tt2'
+        form     => $form,
+        template => $self->template_form,
     );
-};
-
-sub insert :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $airline = $c->model('Airline')->new(
-            iata     => $c->request->param('iata'),
-            icao     => $c->request->param('icao'),
-            name     => $c->request->param('name'),
-            is_published => ENABLE,
-        );
-        $airline->create();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-        if $@;
-};
-
-sub load_upd_form :Private {
-    my ($self, $c) = @_;
-
-    my $form = $self->load_add_form($c);
-    my $airline = $c->stash->{'airline'};
-
-    $form->get_element({ name => 'iata' })
-            ->value($airline->iata);
-    $form->get_element({ name => 'icao' })
-            ->value($airline->icao);
-    $form->get_element({ name => 'name' })
-            ->value($airline->name);
-    $form->process;
-
-    return $form;
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->load_upd_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->update($c);
+    my $form = $self->form;
+    $form->airline($c->model($self->model)->new());
+    $form->process(
+        init_object => {
+            name    => $self->get_object($c)->name,
+            iata    => $self->get_object($c)->iata,
+            icao    => $self->get_object($c)->icao
+        },
+        params => $c->request->parameters
+    );
+
+    if ($form->validated) {
+        eval {
+            my $airline = $form->airline;
+            $airline->id( $self->get_object($c)->id );
+            $airline->is_published( $self->get_object($c)->is_published );
+            $airline->update();
+        };
+
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form => $self->load_upd_form($c),
-        template => 'backoffice/airline/airline_form.tt2'
+        form     => $form,
+        template => $self->template_form
     );
 };
 
-sub update :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $airline = $c->model('Airline')->new(
-            id          => $c->stash->{'airline'}->id,
-            icao        => $c->request->param('icao'),
-            iata        => $c->request->param('iata'),
-            name        => $c->request->param('name'),
-            is_published=> $c->stash->{'airline'}->is_published,
-        );
-        $airline->update();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-         if $@;
-};
+__PACKAGE__->meta()->make_immutable();
 
 1;
