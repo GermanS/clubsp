@@ -1,6 +1,6 @@
 [% WRAPPER backoffice/manufacturer/manufacturer_wrapper.tt2 %]
     [% IF message %]
-        [% message %]
+        [% INCLUDE backoffice/message.tt2 message = message %]
     [% END %]
 
     <table class="table table-striped mono top-borders">

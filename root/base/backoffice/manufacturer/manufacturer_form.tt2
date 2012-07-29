@@ -1,4 +1,3 @@
 [% WRAPPER backoffice/manufacturer/manufacturer_wrapper.tt2 %]
-    [% INCLUDE backoffice/message.tt2 %]
-    [% form %]
+    [% form.render %]
 [% END %]

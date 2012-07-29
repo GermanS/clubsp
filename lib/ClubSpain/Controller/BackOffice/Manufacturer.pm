@@ -1,145 +1,86 @@
 package ClubSpain::Controller::BackOffice::Manufacturer;
-use strict;
-use warnings;
-use utf8;
-use parent qw(ClubSpain::Controller::BackOffice::FormFu);
-use ClubSpain::Constants qw(:all);
-
-sub auto :Private {
-    my ($self, $c) = @_;
-
-    $c->stash(
-        template => 'backoffice/manufacturer/manufacturer.tt2'
-    );
+use Moose;
+use namespace::autoclean;
+BEGIN {
+    extends 'Catalyst::Controller'
 };
+with 'ClubSpain::Controller::BackOffice::BaseRole';
+
+use ClubSpain::Form::BackOffice::Manufacturer;
+
+has 'template' => (
+    is => 'ro',
+    default => 'backoffice/manufacturer/manufacturer.tt2'
+);
+
+has 'template_form' => (
+    is => 'ro',
+    default => 'backoffice/manufacturer/manufacturer_form.tt2'
+);
+
+has 'model' => (
+    is => 'ro',
+    default => 'manufacturer',
+);
+
+sub form :Private { ClubSpain::Form::BackOffice::Manufacturer->new(); }
 
 sub default :Path {
     my ($self, $c) = @_;
-
-    $c->stash(
-        iterator => $c->model('Manufacturer')->search({})
-    );
+    $c->stash( iterator => $c->model($self->model)->search({}) );
 };
 
 sub base :Chained('/backoffice/base') :PathPart('manufacturer') :CaptureArgs(0) {};
 
-sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id) = @_;
-
-    my $manufacturer;
-    eval {
-        $manufacturer = $c->model('Manufacturer')->fetch_by_id($id);
-        $c->stash( manufacturer => $manufacturer );
-    };
-
-    if ($@) {
-        $self->process_error($c, $@) if $@;
-        $c->response->redirect($c->uri_for('default'));
-        $c->detach();
-    }
-};
-
-sub delete :Chained('id') :PathPart('delete') :Args(0) {
-    my ($self, $c) = @_;
-
-    eval {
-        $c->model('Manufacturer')->delete($c->stash->{'manufacturer'}->id);
-    };
-
-    if ($@) {
-        $self->process_error($c, $@);
-    } else {
-        $self->successful_message($c);
-    }
-
-    $c->res->redirect($c->uri_for('default'));
-};
-
-sub load_add_form :Private  {
-    my $self = shift;
-
-    my $form = $self->form();
-    $form->load_config_filestem('backoffice/manufacturer_form');
-    $form->process();
-
-    return $form;
-};
-
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->load_add_form();
-    if ($form->submitted_and_valid()) {
-        $self->insert($c);
+    my $form = $self->form;
+    $form->manufacturer($c->model($self->model)->new());
+    $form->process($c->request->parameters);
+
+    if ($form->validated) {
+        my $manufacturer = $form->manufacturer;
+
+        eval { $manufacturer->create(); };
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form    => $self->load_add_form(),
-        template => 'backoffice/manufacturer/manufacturer_form.tt2'
+        form     => $form,
+        template => $self->template_form,
     );
-};
-
-sub insert :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $manufacturer = $c->model('Manufacturer')->new(
-            name    => $c->request->param('name'),
-            code    => $c->request->param('code'),
-        );
-        $manufacturer->create();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-        if $@;
-};
-
-sub load_upd_form :Private {
-    my ($self, $c) = @_;
-
-    my $form = $self->load_add_form();
-    my $manufacturer = $c->stash->{'manufacturer'};
-    $form->get_element({ name => 'name' })
-            ->value($manufacturer->name);
-    $form->get_element({ name => 'code' })
-            ->value($manufacturer->code);
-    $form->process;
-
-    return $form;
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->load_upd_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->update($c);
+    my $form = $self->form;
+    $form->manufacturer($c->model($self->model)->new());
+    $form->process(
+        init_object => {
+            name    => $self->get_object($c)->name,
+            code    => $self->get_object($c)->code
+        },
+        params => $c->request->parameters
+    );
+
+    if ($form->validated) {
+        eval {
+            my $manufacturer = $form->manufacturer;
+            $manufacturer->id( $self->get_object($c)->id );
+            $manufacturer->update();
+        };
+
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form => $self->load_upd_form($c),
-        template => 'backoffice/manufacturer/manufacturer_form.tt2'
+        form     => $form,
+        template => $self->template_form
     );
 };
 
-sub update :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $manufacturer = $c->model('Manufacturer')->new(
-            id      => $c->stash->{'manufacturer'}->id,
-            name    => $c->request->param('name'),
-            code    => $c->request->param('code'),
-        );
-        $manufacturer->update();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-         if $@;
-};
+__PACKAGE__->meta()->make_immutable();
 
 1;

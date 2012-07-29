@@ -3,14 +3,16 @@ use Moose;
 use namespace::autoclean;
 use utf8;
 use parent qw(ClubSpain::Model::Base);
+
 use ClubSpain::Types;
+    with 'ClubSpain::Model::FareClassRole';
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Manufacturer' });
 
-has 'id'   => ( is => 'ro' );
-has 'code' => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
-has 'name' => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
+has 'id'   => ( is => 'rw' );
+has 'code' => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
+has 'name' => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
 
 sub create {
     my $self = shift;
