@@ -3,7 +3,6 @@ use strict;
 use warnings;
 use Moose::Role;
 use namespace::autoclean;
-use ClubSpain::Exception;
 
 sub validate_name {
     my ($self, $field) = @_;
