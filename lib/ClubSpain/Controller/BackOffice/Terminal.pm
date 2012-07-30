@@ -1,169 +1,95 @@
 package ClubSpain::Controller::BackOffice::Terminal;
-use strict;
-use warnings;
-use utf8;
-use parent qw(ClubSpain::Controller::BackOffice::FormFu);
-use ClubSpain::Constants qw(:all);
+use Moose;
+use namespace::autoclean;
+BEGIN {
+    extends 'Catalyst::Controller'
+};
+with 'ClubSpain::Controller::BackOffice::BaseRole';
+
+use ClubSpain::Form::BackOffice::Terminal;
+sub form :Private {
+    my ($self, $model) = @_;
+    return ClubSpain::Form::BackOffice::Terminal->new( model_object => $model );
+}
+
+has 'template' => (
+    is => 'ro',
+    default => 'backoffice/terminal/terminal.tt2'
+);
+
+has 'template_form' => (
+    is => 'ro',
+    default => 'backoffice/terminal/terminal_form.tt2'
+);
+
+has 'model' => (
+    is => 'ro',
+    default => 'Terminal',
+);
 
 sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(
-        template     => 'backoffice/terminal/terminal.tt2',
+        template     => $self->template,
         airport_list => $c->model('Airport')->search({})
     );
 };
 
 sub default :Path {
     my ($self, $c) = @_;
-
-    $c->stash(iterator => $c->model('Terminal')->search({}));
+    $c->stash( iterator => $c->model($self->model)->search({}) );
 };
 
 sub base :Chained('/backoffice/base') :PathPart('terminal') :CaptureArgs(0) {};
 
-sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id) = @_;
-
-    my $terminal;
-    eval {
-        $terminal = $c->model('Terminal')->fetch_by_id($id);
-        $c->stash( terminal => $terminal );
-    };
-
-    if ($@) {
-        $self->process_error($c, $@) if $@;
-        $c->response->redirect($c->uri_for('default'));
-        $c->detach();
-    }
-};
-
-sub enable :Chained('id') :PathPart('enable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'terminal'}->update({
-        is_published => ENABLE
-    });
-    $c->res->redirect($c->uri_for('browse', $c->stash->{'terminal'}->airport_id));
-};
-
-sub disable :Chained('id') :PathPart('disable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'terminal'}->update({
-        is_published => DISABLE
-    });
-    $c->res->redirect($c->uri_for('browse', $c->stash->{'terminal'}->airport_id));
-};
-
-
-sub delete :Chained('id') :PathPart('delete') :Args(0) {
-    my ($self, $c) = @_;
-
-    eval {
-        $c->model('Terminal')->delete($c->stash->{'terminal'}->id);
-    };
-
-    if ($@) {
-        $self->process_error($c, $@);
-    } else {
-        $self->successful_message($c);
-    }
-
-    $c->res->redirect($c->uri_for('browse', $c->stash->{'terminal'}->airport_id));
-};
-
-sub load_add_form :Private  {
-    my ($self, $c) = @_;
-
-    $c->stash->{'current_model_instance'} =
-        $c->model('Airport')->schema()->resultset('Airport');
-
-    my $form = $self->form();
-    $form->load_config_filestem('backoffice/terminal_form');
-    $form->process();
-
-    return $form;
-};
-
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->load_add_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->insert($c);
+    my $term = $c->model($self->model)->new();
+    my $form = $self->form($term);
+    $form->process($c->request->parameters);
+
+    if ($form->validated) {
+        $term->set_enable();
+
+        eval { $term->create(); };
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form     => $self->load_add_form($c),
-        template => 'backoffice/terminal/terminal_form.tt2'
+        form     => $form,
+        template => $self->template_form,
     );
-};
-
-sub insert :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $country = $c->model('Terminal')->new(
-            airport_id   => $c->request->param('airport_id'),
-            name         => $c->request->param('name'),
-            is_published => ENABLE,
-        );
-        $country->create();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-        if $@;
-};
-
-sub load_upd_form :Private {
-    my ($self, $c) = @_;
-
-    my $form = $self->load_add_form($c);
-    my $terminal = $c->stash->{'terminal'};
-
-    $form->get_element({ name => 'airport_id' })
-            ->value($terminal->airport_id);
-    $form->get_element({ name => 'name' })
-            ->value($terminal->name);
-    $form->process;
-
-    return $form;
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->load_upd_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->update($c);
+    my $term = $c->model($self->model)->new();
+    my $form = $self->form($term);
+    $form->process(
+        init_object => {
+            airport_id  => $self->get_object($c)->airport_id,
+            name        => $self->get_object($c)->name,
+        },
+        params => $c->request->parameters
+    );
+
+    if ($form->validated) {
+        eval {
+            $term->id( $self->get_object($c)->id );
+            $term->is_published( $self->get_object($c)->is_published );
+            $term->update();
+        };
+
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form     => $self->load_upd_form($c),
-        template => 'backoffice/terminal/terminal_form.tt2'
+        form     => $form,
+        template => $self->template_form
     );
-};
-
-sub update :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $terminal = $c->model('Terminal')->new(
-            id           => $c->stash->{'terminal'}->id,
-            airport_id   => $c->request->param('airport_id'),
-            name         => $c->request->param('name'),
-            is_published => $c->stash->{'terminal'}->is_published,
-        );
-        $terminal->update();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-         if $@;
 };
 
 sub browse :Local :Args(1) {
@@ -173,5 +99,7 @@ sub browse :Local :Args(1) {
         iterator => $c->model('Terminal')->search({ airport_id => $airport })
     );
 }
+
+__PACKAGE__->meta->make_immutable();
 
 1;

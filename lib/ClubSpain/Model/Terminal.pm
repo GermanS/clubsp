@@ -6,12 +6,14 @@ use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
 use MooseX::ClassAttribute;
+    with 'ClubSpain::Model::TerminalRole';
+
 class_has '+source_name' => ( default => sub  { 'Terminal' });
 
-has 'id'            => ( is => 'ro' );
-has 'airport_id'    => ( is => 'ro', required => 1 );
-has 'name'          => ( is => 'ro', required => 1, isa => 'StringLength2to255' );
-has 'is_published'  => ( is => 'ro', required => 1 );
+has 'id'            => ( is => 'rw' );
+has 'airport_id'    => ( is => 'rw', required => 0 );
+has 'name'          => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
+has 'is_published'  => ( is => 'rw', required => 0 );
 
 sub create {
     my $self = shift;
