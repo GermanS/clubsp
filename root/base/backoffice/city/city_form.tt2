@@ -1,4 +1,3 @@
 [% WRAPPER backoffice/city/city_wrapper.tt2 %]
-    [% INCLUDE backoffice/message.tt2 %]
-    [% form %]
+    [% form.render %]
 [% END %]
