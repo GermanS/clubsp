@@ -7,6 +7,10 @@ BEGIN {
 with 'ClubSpain::Controller::BackOffice::BaseRole';
 
 use ClubSpain::Form::BackOffice::Airport;
+sub form :Private {
+    my ($self, $model) = @_;
+    return ClubSpain::Form::BackOffice::Airport->new( model_object => $model );
+}
 
 has 'template' => (
     is => 'ro',
@@ -23,10 +27,7 @@ has 'model' => (
     default => 'Airport',
 );
 
-sub form :Private {
-    my ($self, $model) = @_;
-    return ClubSpain::Form::BackOffice::Airport->new( model_object => $model );
-}
+
 
 sub auto :Private {
     my ($self, $c) = @_;
