@@ -1,9 +1,0 @@
----
-elements:
-  - type: Select
-    label: Страна
-    name: country_id
-    model_config:
-      resultset: Country
-      id_column: id
-      label_column: name
