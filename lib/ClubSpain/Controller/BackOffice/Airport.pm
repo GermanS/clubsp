@@ -1,179 +1,100 @@
 package ClubSpain::Controller::BackOffice::Airport;
-use strict;
-use warnings;
-use utf8;
-use parent qw(ClubSpain::Controller::BackOffice::FormFu);
-use ClubSpain::Constants qw(:all);
+use Moose;
+use namespace::autoclean;
+BEGIN {
+    extends 'Catalyst::Controller'
+};
+with 'ClubSpain::Controller::BackOffice::BaseRole';
+
+use ClubSpain::Form::BackOffice::Airport;
+
+has 'template' => (
+    is => 'ro',
+    default => 'backoffice/airport/airport.tt2'
+);
+
+has 'template_form' => (
+    is => 'ro',
+    default => 'backoffice/airport/airport_form.tt2'
+);
+
+has 'model' => (
+    is => 'ro',
+    default => 'Airport',
+);
+
+sub form :Private {
+    my ($self, $model) = @_;
+    return ClubSpain::Form::BackOffice::Airport->new( model_object => $model );
+}
 
 sub auto :Private {
     my ($self, $c) = @_;
 
     $c->stash(
-        template => 'backoffice/airport/airport.tt2',
+        template     => $self->template,
         country_list => $c->model('Country')->search({})
     );
 };
 
 sub default :Path {
     my ($self, $c) = @_;
-
-    $c->stash(
-        iterator => $c->model('Airport')->search({})
-    );
+    $c->stash( iterator => $c->model($self->model)->search({}) );
 };
 
 sub base :Chained('/backoffice/base') :PathPart('airport') :CaptureArgs(0) {};
 
-sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id) = @_;
-
-    my $port;
-    eval {
-        $port = $c->model('Airport')->fetch_by_id($id);
-        $c->stash( port => $port );
-    };
-
-    if ($@) {
-        $self->process_error($c, $@) if $@;
-        $c->response->redirect($c->uri_for('default'));
-        $c->detach();
-    }
-};
-
-sub enable :Chained('id') :PathPart('enable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'port'}->update({
-        is_published => ENABLE
-    });
-    $c->res->redirect($c->uri_for('city', $c->stash->{'port'}->city_id));
-};
-
-sub disable :Chained('id') :PathPart('disable') :Args(0) {
-    my ($self, $c) = @_;
-
-    $c->stash->{'port'}->update({
-        is_published => DISABLE
-    });
-    $c->res->redirect($c->uri_for('city', $c->stash->{'port'}->city_id));
-};
-
-sub delete :Chained('id') :PathPart('delete') :Args(0) {
-    my ($self, $c) = @_;
-
-    eval {
-        $c->model('Airport')->delete($c->stash->{'port'}->id);
-    };
-
-    if ($@) {
-        $self->process_error($c, $@);
-    } else {
-        $self->successful_message($c);
-    }
-
-    $c->res->redirect($c->uri_for('city', $c->stash->{'port'}->city_id));
-};
-
-sub load_add_form :Private  {
-    my ($self, $c) = @_;
-
-    $c->stash->{'current_model_instance'} =
-        $c->model('City')->schema()->resultset('City');
-
-    my $form = $self->form();
-    $form->load_config_filestem('backoffice/airport_form');
-    $form->process();
-
-    return $form;
-};
-
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->load_add_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->insert($c);
+    my $port = $c->model($self->model)->new();
+    my $form = $self->form($port);
+    $form->process($c->request->parameters);
+
+    if ($form->validated) {
+        $port->set_enable();
+
+        eval { $port->create(); };
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form    => $self->load_add_form($c),
-        template => 'backoffice/airport/airport_form.tt2'
+        form     => $form,
+        template => $self->template_form,
     );
-};
-
-sub insert :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $port = $c->model('Airport')->new(
-            city_id  => $c->request->param('city_id'),
-            iata     => $c->request->param('iata'),
-            icao     => $c->request->param('icao'),
-            name     => $c->request->param('name'),
-            is_published => ENABLE,
-        );
-        $port->create();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-        if $@;
-};
-
-sub load_upd_form :Private {
-    my ($self, $c) = @_;
-
-    my $form = $self->load_add_form($c);
-    my $port = $c->stash->{'port'};
-
-    $form->get_element({ name => 'city_id' })
-            ->value($port->city_id);
-    $form->get_element({ name => 'iata' })
-            ->value($port->iata);
-    $form->get_element({ name => 'icao' })
-            ->value($port->icao);
-    $form->get_element({ name => 'name' })
-            ->value($port->name);
-    $form->process;
-
-    return $form;
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->load_upd_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->update($c);
+    my $port = $c->model($self->model)->new();
+    my $form = $self->form($port);
+    $form->process(
+        init_object => {
+            city_id     => $self->get_object($c)->city_id,
+            name        => $self->get_object($c)->name,
+            iata        => $self->get_object($c)->iata,
+            icao        => $self->get_object($c)->icao,
+        },
+        params => $c->request->parameters
+    );
+
+    if ($form->validated) {
+        eval {
+            $port->id( $self->get_object($c)->id );
+            $port->is_published( $self->get_object($c)->is_published );
+            $port->update();
+        };
+
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form => $self->load_upd_form($c),
-        template => 'backoffice/airport/airport_form.tt2'
+        form     => $form,
+        template => $self->template_form
     );
 };
 
-sub update :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $port = $c->model('Airport')->new(
-            id          => $c->stash->{'port'}->id,
-            city_id     => $c->request->param('city_id'),
-            icao        => $c->request->param('icao'),
-            iata        => $c->request->param('iata'),
-            name        => $c->request->param('name'),
-            is_published=> $c->stash->{'port'}->is_published,
-        );
-        $port->update();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-         if $@;
-};
 
 sub country :Local :Args(1) {
     my ($self, $c, $country_id) = @_;
@@ -206,5 +127,7 @@ sub city :Local :Args(1) {
         })
     );
 }
+
+__PACKAGE__->meta->make_immutable();
 
 1;
