@@ -1,9 +1,0 @@
----
-elements:
-  - type: Select
-    label: Авиакомпания
-    name: airline_id
-    model_config:
-      resultset: Airline
-      id_column: id
-      label_column: name
