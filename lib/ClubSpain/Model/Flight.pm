@@ -3,17 +3,19 @@ use Moose;
 use namespace::autoclean;
 use utf8;
 use parent qw(ClubSpain::Model::Base);
+
 use ClubSpain::Types;
+    with 'ClubSpain::Model::FlightRole';
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Flight' });
 
-has 'id'                     => ( is => 'ro' );
-has 'is_published'           => ( is => 'ro', required => 1 );
-has 'departure_airport_id'   => ( is => 'ro', required => 1 );
-has 'destination_airport_id' => ( is => 'ro', required => 1 );
-has 'airline_id'             => ( is => 'ro', required => 1 );
-has 'code'                   => ( is => 'ro', required => 1,  isa => 'NaturalLessThan10000' );
+has 'id'                     => ( is => 'rw' );
+has 'is_published'           => ( is => 'rw', required => 0 );
+has 'departure_airport_id'   => ( is => 'rw', required => 0 );
+has 'destination_airport_id' => ( is => 'rw', required => 0 );
+has 'airline_id'             => ( is => 'rw', required => 0 );
+has 'code'                   => ( is => 'rw', required => 0,  isa => 'NaturalLessThan10000' );
 
 sub create {
     my $self = shift;
