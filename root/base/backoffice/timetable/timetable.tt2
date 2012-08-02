@@ -1,4 +1,8 @@
 [% WRAPPER backoffice/timetable/timetable_wrapper.tt2 %]
+    [% IF message %]
+        [% INCLUDE backoffice/message.tt2 message = message %]
+    [% END %]
+
     [% IF iterator.count %]
         <table class="table table-striped mono top-borders">
             <thead>
