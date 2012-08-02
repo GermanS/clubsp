@@ -1,4 +1,4 @@
-use Test::More tests => 23;
+use Test::More tests => 25;
 
 use strict;
 use warnings;
@@ -13,6 +13,7 @@ my $helper = ClubSpain::Test->new();
 {
     my $timetable = ClubSpain::Model::TimeTable->new(
         is_published      => 1,
+        is_free           => 1,
         flight_id         => 1,
         airplane_id       => 1,
         departure_date    => '2011-01-21',
@@ -38,6 +39,7 @@ my $helper = ClubSpain::Test->new();
 
     isa_ok($result, 'ClubSpain::Schema::Result::TimeTable');
     is($result->is_published, 1, 'got is published flag');
+    is($result->is_free, 1, 'got is free flag');
     is($result->flight_id, 1, 'got flight id');
     is($result->airplane_id, 1, 'got airplane id');
     is($result->departure_date, '2011-01-21', 'got departure date');
@@ -53,6 +55,7 @@ my $helper = ClubSpain::Test->new();
 {
     my $timetable = ClubSpain::Model::TimeTable->new(
         is_published      => 1,
+        is_free           => 1,
         flight_id         => 2,
         airplane_id       => 1,
         departure_date    => '2011-01-22',
@@ -78,6 +81,7 @@ my $helper = ClubSpain::Test->new();
 
     isa_ok($result, 'ClubSpain::Schema::Result::TimeTable');
     is($result->is_published, 1, 'got is published flag');
+    is($result->is_free, 1, 'got is free flag');
     is($result->flight_id, 2, 'got flight id');
     is($result->airplane_id, 1, 'got airplane id');
     is($result->departure_date, '2011-01-22', 'got departure date');

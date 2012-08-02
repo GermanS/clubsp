@@ -1,12 +1,13 @@
 package ClubSpain::Model::TimeTable;
 use Moose;
 use namespace::autoclean;
-use utf8;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 use ClubSpain::Constants qw(:all);
 
 use MooseX::ClassAttribute;
+    with 'ClubSpain::Model::TimeTableRole';
+
 class_has '+source_name' => ( default => sub  { 'TimeTable' });
 
 =head2 Поля
@@ -53,16 +54,17 @@ class_has '+source_name' => ( default => sub  { 'TimeTable' });
 
 =cut
 
-has 'id'                    => ( is => 'ro' );
-has 'is_published'          => ( is => 'ro', required => 1 );
-has 'flight_id'             => ( is => 'ro', required => 1 );
-has 'departure_date'        => ( is => 'ro', required => 1 );
-has 'departure_time'        => ( is => 'ro', required => 1 );
-has 'arrival_date'          => ( is => 'ro', required => 1 );
-has 'arrival_time'          => ( is => 'ro', required => 1 );
-has 'airplane_id'           => ( is => 'ro' );
-has 'departure_terminal_id' => ( is => 'ro' );
-has 'arrival_terminal_id'   => ( is => 'ro' );
+has 'id'                    => ( is => 'rw' );
+has 'is_published'          => ( is => 'rw' );
+has 'is_free'               => ( is => 'rw' );
+has 'flight_id'             => ( is => 'rw' );
+has 'departure_date'        => ( is => 'rw' );
+has 'departure_time'        => ( is => 'rw' );
+has 'arrival_date'          => ( is => 'rw' );
+has 'arrival_time'          => ( is => 'rw' );
+has 'airplane_id'           => ( is => 'rw' );
+has 'departure_terminal_id' => ( is => 'rw' );
+has 'arrival_terminal_id'   => ( is => 'rw' );
 
 =head2 create()
 
@@ -94,6 +96,7 @@ sub params {
 
     return {
         is_published    => $self->is_published,
+        is_free         => $self->is_free,
         flight_id       => $self->flight_id,
         departure_date  => $self->departure_date,
         departure_time  => $self->departure_time,
@@ -365,6 +368,6 @@ sub set_sold {
     $self->disable_tariffs(%params);
 }
 
-__PACKAGE__->meta->make_immutable;
+__PACKAGE__->meta->make_immutable();
 
 1;

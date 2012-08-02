@@ -1,4 +1,4 @@
-use Test::More tests => 12;
+use Test::More tests => 13;
 use strict;
 use warnings;
 
@@ -9,8 +9,9 @@ my $helper = ClubSpain::Test->new();
 use_ok('ClubSpain::Model::TimeTable');
 
 my $timetable = ClubSpain::Model::TimeTable->new(
-    id          => 1,
+    id                => 1,
     is_published      => 0,
+    is_free           => 1,
     flight_id         => 2,
     airplane_id       => 2,
     departure_date    => '2012-01-01',
@@ -26,6 +27,7 @@ my $result = $timetable->update();
 isa_ok($result, 'ClubSpain::Schema::Result::TimeTable');
 is($result->id, 1, 'got id');
 is($result->is_published, 0, 'got is published flag');
+is($result->is_free, 1, 'got is free flag');
 is($result->flight_id, 2, 'got flight id');
 is($result->airplane_id, 2, 'got airplane id');
 is($result->departure_date, '2012-01-01', 'got departure date');

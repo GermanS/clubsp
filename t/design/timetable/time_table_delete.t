@@ -1,4 +1,4 @@
-use Test::More tests => 12;
+use Test::More tests => 13;
 
 use strict;
 use warnings;
@@ -12,6 +12,7 @@ my $count = $helper->schema->resultset('TimeTable')->search({})->count;
 
 my $timetable = ClubSpain::Model::TimeTable->new(
     is_published      => 1,
+    is_free           => 1,
     flight_id         => 1,
     airplane_id       => 1,
     departure_date    => '2011-01-21',
@@ -26,6 +27,7 @@ my $object = $timetable->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::TimeTable');
 is($object->is_published, 1, 'got is published flag');
+is($object->is_free, 1, 'got is free flag');
 is($object->flight_id, 1, 'got flight id');
 is($object->airplane_id, 1, 'got airplane id');
 is($object->departure_date, '2011-01-21', 'got departure date');
