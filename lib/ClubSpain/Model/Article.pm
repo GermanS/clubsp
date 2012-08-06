@@ -10,13 +10,13 @@ use Scalar::Util qw(blessed);
 
 use ClubSpain::Exception;
 
-has 'id'            => ( is => 'ro' );
-has 'parent_id'     => ( is => 'ro', required => 1 );
-has 'weight'        => ( is => 'ro', required => 1, default => 0 );
-has 'is_published'  => ( is => 'ro', required => 1 );
-has 'header'        => ( is => 'ro', required => 1 );
-has 'subheader'     => ( is => 'ro', required => 1 );
-has 'body'          => ( is => 'ro', required => 1 );
+has 'id'            => ( is => 'rw' );
+has 'parent_id'     => ( is => 'rw', default => sub { 0 } );
+has 'weight'        => ( is => 'rw', default => sub { 0 } );
+has 'is_published'  => ( is => 'rw' );
+has 'header'        => ( is => 'rw' );
+has 'subheader'     => ( is => 'rw' );
+has 'body'          => ( is => 'rw' );
 
 sub create {
     my $self = shift;
@@ -159,30 +159,6 @@ sub tree {
     }
 
     return \@values;
-}
-
-sub select_options {
-    my ($class, $parent) = @_;
-
-    my $tree = $class->tree($parent);
-    return make_options($tree);
-
-    sub make_options {
-        my $tree = shift;
-        my $level = shift || 0;
-        my @options = ();
-
-        foreach my $option (@$tree) {
-            push @options, {
-                value => $option->{'value'},
-                label => sprintf "%s %s", '--' x $level, $option->{'label'},
-            };
-
-            push @options, make_options($option->{'children'}, $level+1);
-        }
-
-        return @options;
-    }
 }
 
 __PACKAGE__->meta->make_immutable();

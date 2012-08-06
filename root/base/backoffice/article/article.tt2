@@ -1,11 +1,11 @@
 [% WRAPPER backoffice/article/article_wrapper.tt2 %]
     [% IF message %]
-        [% message %]
+        [% INCLUDE backoffice/message.tt2 message = message %]
     [% END %]
 
     <table class="table table-striped mono top-borders">
         <thead>
-            [% INCLUDE header article = article %]
+            [% INCLUDE header article = object %]
         </thead>
         <tbody>
             [% WHILE (item = iterator.next) %]
@@ -24,7 +24,7 @@
     [% IF article.id %]
     <tr>
         <td class="icons4"> </td>
-        <td colspan="2"> <a href="/backoffice/article/[% article.parent_id %]/leaf">...</a> </td>
+        <td colspan="2"> <a href="/backoffice/article/[% IF article.parent_id %][% article.parent_id %]/[% END %]leaf">...</a> </td>
     </tr>
     [% END %]
 [% END %]

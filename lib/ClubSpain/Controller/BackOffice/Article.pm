@@ -1,207 +1,136 @@
 package ClubSpain::Controller::BackOffice::Article;
-use strict;
-use warnings;
-use utf8;
-use parent qw(ClubSpain::Controller::BackOffice::FormFu);
-use ClubSpain::Constants qw(:all);
+use Moose;
+use namespace::autoclean;
+BEGIN {
+    extends 'Catalyst::Controller'
+};
+    with 'ClubSpain::Controller::BackOffice::BaseRole';
 
-sub auto :Private {
-    my ($self, $c) = @_;
-
-    $c->stash(template => 'backoffice/article/article.tt2')
+use ClubSpain::Form::BackOffice::Article;
+sub form :Private {
+    my ($self, $model) = @_;
+    return ClubSpain::Form::BackOffice::Article->new( model_object => $model );
 }
+
+
+has 'template' => (
+    is => 'ro',
+    default => 'backoffice/article/article.tt2'
+);
+
+has 'template_form' => (
+    is => 'ro',
+    default => 'backoffice/article/article_form.tt2'
+);
+
+has 'model' => (
+    is => 'ro',
+    default => 'Article',
+);
+
 
 sub default :Path {
     my ($self, $c) = @_;
-
     $c->stash(iterator => $c->model('Article')->list());
 }
 
 #match /backoffice/article
 sub base :Chained('/backoffice/base') :PathPart('article') :CaptureArgs(0) {};
 
-#match /backoffice/article/*
-sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
-    my ($self, $c, $id) = @_;
-
-    my $article;
-    eval {
-        $article = $c->model('Article')->fetch_by_id($id);
-        $c->stash( article => $article );
-    };
-
-    if ($@) {
-        $self->process_error($c, $@) if $@;
-        $c->response->redirect($c->uri_for($self->action_for('index')));
-        $c->detach();
-    }
-};
-
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->load_add_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->insert($c);
+    my $article = $c->model($self->model)->new();
+    my $form = $self->form($article);
+    $form->process($c->request->parameters);
+
+    if ($form->validated) {
+        $article->set_enable();
+
+        eval { $article->create(); };
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form    => $self->load_add_form($c),
-        template => 'backoffice/article/article_form.tt2'
+        form     => $form,
+        template => $self->template_form,
     );
-}
 
-sub insert :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $article = $c->model('Article')->new(
-            parent_id    => $c->request->param('parent_id'),
-            header       => $c->request->param('header'),
-            subheader    => $c->request->param('subheader'),
-            body         => $c->request->param('body'),
-            is_published => ENABLE,
-            weight       => undef,
-        );
-        $article->create();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-        if $@;
 };
 
-#chained /backoffice/article/*/edit
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->load_upd_form($c);
-    if ($form->submitted_and_valid()) {
-        $self->update($c);
+    my $article = $c->model($self->model)->new();
+    my $form = $self->form($article);
+    $form->process(
+        init_object => {
+            parent_id   => $self->get_object($c)->parent_id,
+            header      => $self->get_object($c)->header,
+            subheader   => $self->get_object($c)->subheader,
+            body        => $self->get_object($c)->body,
+        },
+        params => $c->request->parameters
+    );
+
+    if ($form->validated) {
+        eval {
+            $article->id(
+                $self->get_object($c)->id
+            );
+            $article->weight(
+                $self->get_object($c)->weight
+            );
+            $article->is_published(
+                $self->get_object($c)->is_published
+            );
+            $article->update();
+        };
+
+        $form->process_error($@) if $@;
     }
 
     $c->stash(
-        form => $self->load_upd_form($c),
-        template => 'backoffice/article/article_form.tt2'
+        form     => $form,
+        template => $self->template_form
     );
-}
-
-sub update :Private {
-    my ($self, $c) = @_;
-
-    eval {
-        my $article = $c->model('Article')->new(
-            id           => $c->stash->{'article'}->id,
-            parent_id    => $c->request->param('parent_id'),
-            weight       => $c->stash->{'article'}->weight,
-            header       => $c->request->param('header'),
-            subheader    => $c->request->param('subheader'),
-            body         => $c->request->param('body'),
-            is_published => $c->stash->{'article'}->is_published,
-        );
-        $article->update();
-
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-         if $@;
 };
-
-
-# match /backoffice/article/*/delete
-sub delete :Chained('id') :PathPart('delete') :Args(0) {
-    my ($self, $c) = @_;
-
-    my $article = $c->stash->{'article'};
-    eval {
-        $c->model('Article')->delete($article->id);
-        $self->successful_message($c);
-    };
-
-    $self->process_error($c, $@)
-         if $@;
-
-    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
-};
-
 
 # match /backoffice/article/*/leaf
 sub leaf :Chained('id') :PathPart('leaf') :Args(0) {
     my ($self, $c) = @_;
 
-    $c->stash(
-        iterator => $c->model('Article')->list($c->stash->{'article'}->id)
-    );
-}
+    my $iterator = $self->get_object($c)
+        ? $c->model('Article')->list($self->get_object($c)->id)
+        : undef;
 
-sub load_add_form :Private  {
-    my ($self, $c) = @_;
-
-    my @options = $c->model('Article')->select_options();
-    my $form = $self->form();
-    $form->load_config_filestem('backoffice/article_form');
-    $form->get_element({ name => 'parent_id' })
-            ->options(\@options);
-    $form->process();
-
-    return $form;
-}
-
-sub load_upd_form :Private {
-    my ($self, $c) = @_;
-
-    my $form = $self->load_add_form($c);
-    my $article = $c->stash->{'article'};
-    $form->get_element({ name => 'parent_id' })
-            ->value($article->parent_id);
-    $form->get_element({ name => 'header' })
-            ->value($article->header);
-    $form->get_element({ name => 'subheader' })
-            ->value($article->subheader);
-    $form->get_element({ name => 'body' })
-            ->value($article->body);
-
-    $form->process;
-
-    return $form;
-}
-
-sub enable :Chained('id') :PathPart('enable') :Args(0) {
-    my ($self, $c) = @_;
-
-    my $article = $c->stash->{'article'};
-    $article->update({ is_published => ENABLE });
-
-    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
-}
-
-sub disable :Chained('id') :PathPart('disable') :Args(0) {
-    my ($self, $c) = @_;
-
-    my $article = $c->stash->{'article'};
-    $article->update({ is_published => DISABLE });
-
-    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
+    $c->stash( iterator => $iterator );
 }
 
 sub up :Chained('id') :Pathpart('up') :Args(0) {
     my ($self, $c) = @_;
 
-    my $article = $c->stash->{'article'};
-    $c->model('Article')->move_up($article);
+    my $article = $self->get_object($c);
+    $c->model('Article')->move_up( $article );
 
-    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
+    if ($article->parent_id) {
+        $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
+    } else {
+        $c->res->redirect($c->uri_for('default'));
+    }
 }
 
 sub down :Chained('id') :PathPart('down') :Args(0) {
     my ($self, $c) = @_;
 
-    my $article = $c->stash->{'article'};
-    $c->model('Article')->move_down($article);
+    my $article = $self->get_object($c);
+    $c->model('Article')->move_down( $article );
 
-    $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
+    if ($article->parent_id) {
+        $c->res->redirect($c->uri_for($article->parent_id, 'leaf'));
+    } else {
+        $c->res->redirect($c->uri_for('default'));
+    }
 }
 
 1;
