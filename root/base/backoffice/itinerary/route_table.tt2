@@ -32,7 +32,10 @@
 
 
 [% BLOCK row %]
-    [% route = itinerary.children %]
+    [% route = itinerary.children.0 %]
+    [% UNLESS route %]
+        [% route = itinerary.next_route() %]
+    [% END %]
     [% rowspan2 = "rowspan='2'" %]
     [% UNLESS route %]
         [% rowspan2 = "" %]

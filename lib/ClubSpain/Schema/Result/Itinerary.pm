@@ -29,6 +29,7 @@ __PACKAGE__->add_columns(
     parent_id => {
         data_type      => 'integer',
         is_nullable    => 0,
+        default_value  => 0,
         is_foreign_key => 0,
     },
     cost => {

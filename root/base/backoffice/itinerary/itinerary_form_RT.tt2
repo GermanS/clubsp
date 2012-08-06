@@ -7,7 +7,10 @@
     [% INCLUDE backoffice/itinerary/route_info.tt2
                timetable1 = timetable1
                timetable2 = timetable2 %]
-    [% INCLUDE backoffice/message.tt2 %]
-    [% form %]
+
+    [% IF message %]
+        [% INCLUDE backoffice/message.tt2 message = message %]
+    [% END %]
+    [% form.render %]
 
 [% END %]

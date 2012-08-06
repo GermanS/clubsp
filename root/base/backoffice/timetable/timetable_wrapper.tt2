@@ -23,7 +23,7 @@
                     <select name="Flight"></select>
                 <p>
                     <input type="submit" class="btn btn-info" value="Найти" />
-                    <input type="submit" class="btn"value="Добавить" onclick="this.form.action='/backoffice/timetable/create'; return true;">
+                    <input type="submit" class="btn" value="Добавить" onclick="this.form.action='/backoffice/timetable/create'; return true;">
                 </p>
             </form>
             <form id="preselect">
