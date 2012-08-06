@@ -16,6 +16,7 @@ my $count = $helper->schema->resultset('Itinerary')->search({})->count;
 
 my $itinerary = ClubSpain::Model::Itinerary->new(
     timetable_id  => 1,
+    return_segment=> 2,
     fare_class_id => 1,
     parent_id     => 0,
     cost          => 100,
