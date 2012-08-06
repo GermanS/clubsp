@@ -4,16 +4,18 @@ use namespace::autoclean;
 use utf8;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
+use ClubSpain::Constants qw(:all);
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Itinerary' });
 
-has 'id'            => ( is => 'ro' );
-has 'is_published'  => ( is => 'ro', required => 1 );
-has 'timetable_id'  => ( is => 'ro', required => 1 );
-has 'fare_class_id' => ( is => 'ro', required => 1 );
-has 'parent_id'     => ( is => 'ro', required => 1 );
-has 'cost'          => ( is => 'ro', required => 1 );
+has 'id'             => ( is => 'rw' );
+has 'is_published'   => ( is => 'rw' );
+has 'timetable_id'   => ( is => 'rw' );
+has 'return_segment' => ( is => 'rw' );
+has 'fare_class_id'  => ( is => 'rw' );
+has 'parent_id'      => ( is => 'rw', default => sub { 0 } );
+has 'cost'           => ( is => 'rw' );
 
 sub create {
     my $self = shift;
@@ -27,6 +29,51 @@ sub update {
     $self->check_for_class_method();
 
     $self->SUPER::update( $self->params() );
+}
+
+sub insert_fare {
+    my $self = shift;
+
+    my $direct = $self->create();
+
+    if ($self->return_segment) {
+        my $return = $self->new({
+            timetable_id  => $self->return_segment,
+            fare_class_id => $self->fare_class_id,
+            parent_id     => $direct->id,
+            cost          => 0,
+            is_published  => ENABLE,
+        });
+
+        $return->create();
+    }
+
+    return $direct;
+}
+
+sub update_fare {
+    my $self = shift;
+
+    my $direct = $self->update();
+    my $return = $direct->next_route();
+    if ($return) {
+        $return->update({
+            is_published  => $self->is_published,
+            fare_class_id => $self->fare_class_id,
+            cost          => 0
+        });
+    }
+
+    return $direct;
+}
+
+sub delete_fare {
+    my ($self, $id) = @_;
+
+    my $direct = $self->fetch_by_id($id);
+    my $return = $direct->next_route();
+    $return->delete() if $return;
+    $direct->delete();
 }
 
 sub params {
