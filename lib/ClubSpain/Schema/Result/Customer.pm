@@ -18,11 +18,6 @@ __PACKAGE__->add_columns(
         size          => 50,
         is_nullable   => 0,
     },
-    middlename => {
-        data_type     => 'varchar',
-        size          => 50,
-        is_nullable   => 0,
-    },
     surname => {
         data_type     => 'varchar',
         size          => 50,
