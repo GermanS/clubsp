@@ -1,4 +1,4 @@
-use Test::More tests => 8;
+use Test::More tests => 7;
 use strict;
 use warnings;
 use lib qw(t/lib);
@@ -10,7 +10,6 @@ use_ok('ClubSpain::Model::Customer');
 
 my $employee = ClubSpain::Model::Customer->new(
     name        => 'Jose',
-    middlename  => 'Luis',
     surname     => 'Cuesta',
     email       => 'info@mail.com',
     passwd      => 'passwd',
@@ -22,7 +21,6 @@ my $res1 = $employee->create();
 my $customer_upd = ClubSpain::Model::Customer->new(
     id          => $res1->id,
     name        => 'Raul',
-    middlename  => 'Garcia',
     surname     => 'Perez',
     email       => 'raul@gmail.com',
     passwd      => 'passwd1',
@@ -33,7 +31,6 @@ my $customer_upd = ClubSpain::Model::Customer->new(
 my $object = $customer_upd->update();
 
 is($object->name, 'Raul', 'got name');
-is($object->middlename, 'Garcia', 'got middle name');
 is($object->surname, 'Perez', 'got surname');
 is($object->email, 'raul@gmail.com', 'got email');
 is($object->passwd, 'passwd1', 'got passwd');

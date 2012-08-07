@@ -1,4 +1,4 @@
-use Test::More tests => 10;
+use Test::More tests => 9;
 
 use strict;
 use warnings;
@@ -13,7 +13,6 @@ my $count = $schema->resultset('Customer')->search({})->count;
 
 my $customer = ClubSpain::Model::Customer->new(
     name        => 'Jose',
-    middlename  => 'Luis',
     surname     => 'Cuesta',
     email       => 'info@mail.com',
     passwd      => 'passwd',
@@ -25,7 +24,6 @@ my $object = $customer->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::Customer');
 is($object->name, 'Jose', 'got name');
-is($object->middlename, 'Luis', 'got middle name');
 is($object->surname, 'Cuesta', 'got surname');
 is($object->email, 'info@mail.com', 'got email');
 is($object->passwd, 'passwd', 'got passwd');

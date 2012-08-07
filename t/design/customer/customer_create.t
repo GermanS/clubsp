@@ -1,4 +1,4 @@
-use Test::More tests => 19;
+use Test::More tests => 17;
 use strict;
 use warnings;
 
@@ -12,7 +12,6 @@ my $helper = ClubSpain::Test->new();
 {
     my $customer = ClubSpain::Model::Customer->new(
         name         => 'Иван',
-        middlename   => 'Иванович',
         surname      => 'Иванов',
         email        => 'ivan@ivanov.com',
         passwd       => 'passwd',
@@ -35,7 +34,6 @@ my $helper = ClubSpain::Test->new();
 
     isa_ok($result, 'ClubSpain::Schema::Result::Customer');
     is($customer->name, 'Иван', 'got name');
-    is($customer->middlename, 'Иванович', 'got middlename');
     is($customer->surname, 'Иванов', 'got surname');
     is($customer->email, 'ivan@ivanov.com', 'got email');
     is($customer->passwd, 'passwd', 'got passwd');
@@ -47,7 +45,6 @@ my $helper = ClubSpain::Test->new();
 {
     my $customer = ClubSpain::Model::Customer->new(
         name        => 'Jose',
-        middlename  => 'Luis',
         surname     => 'Cuesta',
         email       => 'jose@yahoo.com',
         passwd      => 'passwd',
@@ -70,7 +67,6 @@ my $helper = ClubSpain::Test->new();
 
     isa_ok($result, 'ClubSpain::Schema::Result::Customer');
     is($customer->name, 'Jose', 'got name');
-    is($customer->middlename, 'Luis', 'got middlename');
     is($customer->surname, 'Cuesta', 'got surname');
     is($customer->email, 'jose@yahoo.com', 'got email');
     is($customer->passwd, 'passwd', 'got passwd');

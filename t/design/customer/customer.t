@@ -1,4 +1,4 @@
-use Test::More tests => 9;
+use Test::More tests => 8;
 
 use strict;
 use warnings;
@@ -7,7 +7,6 @@ use_ok('ClubSpain::Model::Customer');
 
 my $customer = ClubSpain::Model::Customer->new(
     name    => 'Иван',
-    middlename => 'Иванович',
     surname => 'Иванов',
     email   => 'ivan@ivanov.ru',
     passwd  => 'passwd',
@@ -18,7 +17,6 @@ my $customer = ClubSpain::Model::Customer->new(
 
 isa_ok($customer, 'ClubSpain::Model::Customer');
 is($customer->name, 'Иван', 'got name');
-is($customer->middlename, 'Иванович', 'got middle name');
 is($customer->surname, 'Иванов', 'got surname');
 is($customer->email, 'ivan@ivanov.ru', 'got email');
 is($customer->passwd, 'passwd', 'got passwd');

@@ -27,7 +27,6 @@ use_ok('ClubSpain::Model::Customer');
     my $customer = ClubSpain::Model::Customer->new(
         id           => 777,
         name        => 'Jose',
-        middlename  => 'Luis',
         surname     => 'Cuesta',
         email       => 'info@mail.com',
         passwd      => 'passwd',
