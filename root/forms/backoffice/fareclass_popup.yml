@@ -1,9 +1,0 @@
----
-elements:
-  - type: Select
-    label: Класс
-    name: fare_class_id
-    model_config:
-      resultset: FareClass
-      id_column: id
-      label_column: name
