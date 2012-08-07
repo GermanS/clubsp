@@ -34,7 +34,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Пользователи <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="/backoffice/company"     title="Редактирование списка партнеров">Партнеры</a></li>
-                            <li><a href="/backoffice/client"      title="Редактирование списка частных клиентов">Клиенты</a></li>
+                            <li><a href="/backoffice/customer"    title="Редактирование списка частных клиентов">Клиенты</a></li>
                             <li><a href="/backoffice/employee"    title="Редактирование списка сотрудников">Сотрудники</a></li>
                         </ul>
                     </li>
