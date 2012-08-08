@@ -49,14 +49,7 @@ __PACKAGE__->config(
     },
     'View::JSON' => {
         expose_stash => 'json_data'
-    },
-    'Controller::HTML::FormFu' => {
-        constructor => {
-            tt_args => {
-                ENCODING => 'UTF-8',
-            },
-        },
-    },
+    }
 );
 
 # Start the application
