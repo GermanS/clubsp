@@ -32,7 +32,7 @@ has_field 'email' => (
     required      => 1,
     type          => 'Text'
 );
-has_field 'passwd' => (
+has_field 'password' => (
     element_class => ['span2'],
     label         => 'Пароль',
     required      => 1,
@@ -63,8 +63,8 @@ after 'validate' => sub {
     $self->model_object->email(
         $self->field('email')->value
     );
-    $self->model_object->passwd(
-        $self->field('passwd')->value
+    $self->model_object->password(
+        $self->field('password')->value
     );
 };
 

@@ -14,7 +14,7 @@ my $helper = ClubSpain::Test->new();
         name    => 'Petr',
         surname => 'Petrov',
         email   => 'info@aviabroker.com',
-        passwd  => 'passwd',
+        password  => 'passwd',
         is_published => 1,
     );
 
@@ -35,7 +35,7 @@ my $helper = ClubSpain::Test->new();
     is($employee->name, 'Petr', 'got name');
     is($employee->surname, 'Petrov', 'got surname');
     is($employee->email, 'info@aviabroker.com', 'got email');
-    is($employee->passwd, 'passwd', 'got passwd');
+    is($employee->password, 'passwd', 'got passwd');
     is($employee->is_published, 1, 'got is published');
 }
 
@@ -45,7 +45,7 @@ my $helper = ClubSpain::Test->new();
         name    => 'Ivan',
         surname => 'Ivanov',
         email   => 'alc@aviabroker.com',
-        passwd  => 'passwd',
+        password  => 'passwd',
         is_published => 1,
     );
 
@@ -66,6 +66,6 @@ my $helper = ClubSpain::Test->new();
     is($employee->name, 'Ivan', 'got name');
     is($employee->surname, 'Ivanov', 'got surname');
     is($employee->email, 'alc@aviabroker.com', 'got email');
-    is($employee->passwd, 'passwd', 'got passwd');
+    is($employee->password, 'passwd', 'got passwd');
     is($employee->is_published, 1, 'got is published');
 }

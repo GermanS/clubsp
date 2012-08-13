@@ -28,7 +28,7 @@ use_ok('ClubSpain::Model::Employee');
         name        => 'foo',
         surname     => 'bar',
         email       => 'foo@bar.com',
-        passwd      => 'baz',
+        password    => 'baz',
         is_published=> 0,
     );
 

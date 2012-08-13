@@ -208,7 +208,7 @@ sub populate_schema {
     ]);
 
     my @employee = $schema->populate('Employee', [
-        [qw(name surname email passwd is_published)],
+        [qw(name surname email password is_published)],
         ['name', 'surname', 'name@mail.com', 123, 1]
     ]);
 }

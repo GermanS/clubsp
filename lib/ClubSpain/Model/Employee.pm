@@ -12,7 +12,7 @@ has 'id'            => ( is => 'rw' );
 has 'name'          => ( is => 'rw' );
 has 'surname'       => ( is => 'rw' );
 has 'email'         => ( is => 'rw' );
-has 'passwd'        => ( is => 'rw' );
+has 'password'      => ( is => 'rw' );
 has 'is_published'  => ( is => 'rw' );
 
 sub create {
@@ -35,7 +35,7 @@ sub params {
         name         => $self->name,
         surname      => $self->surname,
         email        => $self->email,
-        passwd       => $self->passwd,
+        password     => $self->password,
         is_published => $self->is_published,
     };
 }

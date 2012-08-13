@@ -15,7 +15,7 @@ my $employee = ClubSpain::Model::Employee->new(
     name    => 'Petr',
     surname => 'Petrov',
     email   => 'info@aviabroker.com',
-    passwd  => 'passwd',
+    password  => 'passwd',
     is_published => 1,
 );
 
@@ -25,7 +25,7 @@ isa_ok($object, 'ClubSpain::Schema::Result::Employee');
 is($object->name, 'Petr', 'got name');
 is($object->surname, 'Petrov', 'got surname');
 is($object->email, 'info@aviabroker.com', 'got email');
-is($object->passwd,      'passwd', 'got is published');
+is($object->password, 'passwd', 'got is published');
 is($object->is_published, 1, 'got is_published');
 
 

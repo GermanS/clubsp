@@ -13,7 +13,7 @@ my $employee = ClubSpain::Model::Employee->new(
     name        => 'german',
     surname     => 'semenkov',
     email       => 'german.semenkov@gmail.com',
-    passwd      => '123',
+    password    => '123',
     is_published=> 0,
 );
 
@@ -24,5 +24,5 @@ is($result->id, 1, 'got id');
 is($result->name, 'german', 'got name');
 is($result->surname, 'semenkov', 'got surname');
 is($result->email, 'german.semenkov@gmail.com', 'got email');
-is($result->passwd, '123', 'got pass');
+is($result->password, '123', 'got pass');
 is($result->is_published, 0, 'got is_published');
