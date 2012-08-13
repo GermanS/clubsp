@@ -40,7 +40,26 @@
                     </li>
                     <li><a href="/backoffice/article"  title="Редактирование статей">Статьи</a></li>
                 </ul>
+                [% INCLUDE signin %]
             </div>
         </div>
     </div>
 </div>
+
+[% BLOCK signin %]
+    [% IF profile %]
+        <ul class="nav secondary-nav pull-right">
+            <li class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-user icon-white"></i> [% profile.name | html %] [% profile.surname | html %]
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" title="">Настройки</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/logout" title="">Выход</a></li>
+                </ul>
+            </li>
+        </ul>
+    [% END %]
+[% END %]
