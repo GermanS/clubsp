@@ -20,7 +20,7 @@ sub process_error {
     } elsif ($exception = Exception::Class->caught('DBIx::Class::Exception')) {
         $self->push_form_errors(  $exception->{'msg'}  );
     } else {
-        $self->push_form_errors(  $@  );
+        $self->push_form_errors( scalar($exception)  );
     }
 }
 
