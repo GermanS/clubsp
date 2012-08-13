@@ -39,6 +39,8 @@ my $build = ClubSpain::Build->new(
         'XML::Compile::WSDL11'                  => 0,
         'XML::Compile::Transport::SOAPHTTP'     => 0,
         'XML::LibXML'                           => '>=1.70',
+        'Cache::FastMmap'                        => '>=1.40',
+        'Catalyst::Plugin::Session::Store::FastMmap' => '0',
     }
 );
 
