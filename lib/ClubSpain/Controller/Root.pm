@@ -70,6 +70,15 @@ sub article   : Chained('/') : PathPart('article') : CaptureArgs(0) { }
 sub charter   : Chained('/') : PathPart('charter') : CaptureArgs(0) { }
 sub aviabilet : Chained('/') : PathPart('aviabilet') : CaptureArgs(0) { }
 
+sub logout :Global {
+    my ($self, $c) = @_;
+
+    $c->logout;
+    undef $c->stash->{'user'};
+
+    $c->detach('default');
+}
+
 =head2 end
 
 Attempt to render a view, if needed.
