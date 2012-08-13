@@ -76,6 +76,12 @@ sub resultset {
     return $self->schema()->resultset($self->source_name);
 }
 
+sub result_source {
+    my $self = shift;
+
+    return $self->schema()->resultset($self->source_name)->result_source();
+}
+
 sub set_enable {
     my $self = shift;
 
