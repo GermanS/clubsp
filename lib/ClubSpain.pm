@@ -19,6 +19,10 @@ use Catalyst qw(
     Server
     Server::XMLRPC
     Unicode
+    Authentication
+    Session
+    Session::Store::FastMmap
+    Session::State::Cookie
 );
 
 extends 'Catalyst';
@@ -49,6 +53,28 @@ __PACKAGE__->config(
     },
     'View::JSON' => {
         expose_stash => 'json_data'
+    },
+    'Plugin::Session' => {
+        expires => 3600,
+        storage => '/tmp/clubsp_session'
+    },
+    'Plugin::Authentication' => {
+        default_realm => 'employee',
+        realms => {
+            employee => {
+                credential => {
+                    class => 'Password',
+                    password_field => 'password',
+                    password_type => 'clear'
+                },
+                store => {
+                    class => 'DBIx::Class',
+                    user_model => 'Employee',
+#                    role_relation => 'roles',
+#                    role_field => 'rolename',
+                }
+            }
+        }
     }
 );
 
