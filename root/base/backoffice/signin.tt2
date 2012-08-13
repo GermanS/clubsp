@@ -1,0 +1,6 @@
+[% WRAPPER common/doc4_yui_t5.tt2
+    title = "Вход в систему управления" %]
+
+    <h1>Вход для пользователей aviabroker.com</h1>
+    [% form.render %]
+[% END %]

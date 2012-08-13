@@ -1,0 +1,6 @@
+[% WRAPPER backoffice/page.tt2 %]
+
+    <h1>Управление сайтом</h1>
+    <p>вы вошли в систему управления сайтом aviabroker.com</p>
+
+[% END %]
