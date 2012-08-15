@@ -1,6 +1,7 @@
 package ClubSpain::Form::BackOffice::Field::Airplane;
 use strict;
 use warnings;
+use utf8;
 use Moose::Role;
 
 sub options_airplane_id {

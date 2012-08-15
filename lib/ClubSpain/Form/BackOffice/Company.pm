@@ -1,6 +1,7 @@
 package ClubSpain::Form::BackOffice::Company;
 use strict;
 use warnings;
+use utf8;
 use HTML::FormHandler::Moose;
     extends 'HTML::FormHandler';
     with 'HTML::FormHandler::Widget::Theme::Bootstrap';

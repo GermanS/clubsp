@@ -1,6 +1,7 @@
 package ClubSpain::Form::BackOffice::Field::FareClass;
 use strict;
 use warnings;
+use utf8;
 use Moose::Role;
 
 sub options_fare_class_id {

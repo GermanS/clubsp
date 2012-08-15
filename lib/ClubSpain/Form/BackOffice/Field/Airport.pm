@@ -1,6 +1,7 @@
 package ClubSpain::Form::BackOffice::Field::Airport;
 use strict;
 use warnings;
+use utf8;
 use Moose::Role;
 
 sub options_airport_id {

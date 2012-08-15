@@ -2,6 +2,7 @@ package ClubSpain::Form::BackOffice::CityRole;
 use strict;
 use warnings;
 use Moose::Role;
+use utf8;
 use namespace::autoclean;
 
 sub validate_name {

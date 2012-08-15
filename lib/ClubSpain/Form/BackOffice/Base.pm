@@ -1,6 +1,7 @@
 package ClubSpain::Form::BackOffice::Base;
 use strict;
 use warnings;
+use utf8;
 use namespace::autoclean;
 
 use HTML::FormHandler::Moose;

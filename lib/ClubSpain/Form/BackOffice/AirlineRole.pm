@@ -1,6 +1,7 @@
 package ClubSpain::Form::BackOffice::AirlineRole;
 use strict;
 use warnings;
+use utf8;
 use Moose::Role;
 use namespace::autoclean;
 

@@ -1,6 +1,7 @@
 package ClubSpain::Form::BackOffice::Field::Country;
 use strict;
 use warnings;
+use utf8;
 use Moose::Role;
 
 sub options_country_id {
