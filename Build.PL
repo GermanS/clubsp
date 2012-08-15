@@ -10,7 +10,6 @@ my $build = ClubSpain::Build->new(
     recursive_test_files => 1,
     requires => {
         'Catalyst'                              => '>=5.80025',
-        'Catalyst::Controller::HTML::FormFu'    => '>=0.06001',
         'Catalyst::Model::SOAP'                 => '>=1.5',
         'Catalyst::Plugin::Authentication'      => '>=0.10021',
         'Catalyst::Plugin::Cache'               => '>=0.11',
