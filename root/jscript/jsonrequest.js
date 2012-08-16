@@ -39,11 +39,14 @@ function makeRequest(method, params, element, initialValue) {
                 element[0].options.length = 0;
 
                 $(result).each(function() {
+                    element.append($('<option></option>').val($(this).attr('id')).html($(this).attr('name')));
+                                        /**
                     var option = document.createElement("option");
                     option.text = $(this).attr('name');
-                    option.value = $(this).attr('id');
+                    option.value =$(this).attr('id') ;
 
                     element.append(option);
+                    * */
                 });
 
                 element.val(initialValue);
