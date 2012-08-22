@@ -8,6 +8,9 @@ use namespace::autoclean;
 use ClubSpain::Constants qw(:all);
 use ClubSpain::Message;
 
+use Data::Page;
+use Data::Page::FlickrLike;
+
 sub auto :Private {
     my ($self, $c) = @_;
 
@@ -96,5 +99,37 @@ sub show_successful_message :Private {
 
     $params{'context'}->stash( message => ClubSpain::Message->ok( MESSAGE_OK ) );
 };
+
+sub page :Local :CaptureArgs(1) {
+    my ($self, $c, $page_num) = @_;
+
+
+    $c->stash(
+        iterator => $c->model($self->model)->search({}, {
+            rows => 50,
+            page => $page_num,
+        })
+    );
+
+    my $total = $c->model($self->model)->search({})->count();
+    $self->make_pager($c, $total, $page_num);
+}
+
+sub make_pager :Private {
+    my ($self, $c, $total, $page_num) = @_;
+
+    #put it onto config
+    my $limit    = 50;
+    my $offset   = $limit * ( $page_num - 1 );
+
+    my $pager = Data::Page->new();
+    $pager->total_entries($total);
+    $pager->entries_per_page($limit);
+    $pager->current_page($page_num);
+
+    $c->stash()->{'pager'} = $pager;
+
+    return ($limit, $offset);
+}
 
 1;

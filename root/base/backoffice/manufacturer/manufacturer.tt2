@@ -18,6 +18,9 @@
             [% END %]
         </tbody>
     </table>
+
+    [% INCLUDE pagination.tt2 link = "/backoffice/manufacturer" %]
+
 [% END %]
 
 

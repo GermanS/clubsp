@@ -20,6 +20,9 @@
             [% END %]
             </tbody>
         </table>
+
+        [% INCLUDE pagination.tt2 link = "/backoffice/airplane" %]
+
     [% ELSE %]
         <p>Для просмотра типов самолетов нажмите на производителя в меню слева</p>
     [% END %]

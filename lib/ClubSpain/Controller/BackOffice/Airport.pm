@@ -27,8 +27,6 @@ has 'model' => (
     default => 'Airport',
 );
 
-
-
 sub auto :Private {
     my ($self, $c) = @_;
 
@@ -38,9 +36,11 @@ sub auto :Private {
     );
 };
 
+
 sub default :Path {
     my ($self, $c) = @_;
-    $c->stash( iterator => $c->model($self->model)->search({}) );
+
+    $c->detach('page');
 };
 
 sub base :Chained('/backoffice/base') :PathPart('airport') :CaptureArgs(0) {};

@@ -1,0 +1,17 @@
+[% IF (pager.total_entries() > pager.entries_per_page()) %]
+    <div class="pagination">
+        <ul>
+            [% FOREACH page IN pager.navigations() %]
+                [% IF page == 0 %]
+                    <li class="disabled">
+                        <a href="#">...</a>
+                    </li>
+                [% ELSE %]
+                    <li [% IF pager.current_page() == page %]class="active"[% END %]>
+                        <a href="[% link %]/page/[% page %]">[% page %]</a>
+                    </li>
+                [% END %]
+            [% END %]
+        </ul>
+    </div>
+[% END %]

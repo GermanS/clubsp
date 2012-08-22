@@ -20,6 +20,9 @@
             [% END %]
             </tbody>
         </table>
+
+        [% INCLUDE pagination.tt2 link = "/backoffice/airline" %]
+
     [% END %]
 [% END %]
 

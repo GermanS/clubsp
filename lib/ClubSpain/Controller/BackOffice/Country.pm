@@ -27,7 +27,8 @@ sub form :Private { ClubSpain::Form::BackOffice::Country->new(); }
 
 sub default :Path {
     my ($self, $c) = @_;
-    $c->stash( iterator => $c->model($self->model)->search({}) );
+
+    $c->detach('page');
 };
 
 sub base :Chained('/backoffice/base') :PathPart('country') :CaptureArgs(0) {};

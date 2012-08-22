@@ -20,6 +20,7 @@
             [% END %]
             </tbody>
         </table>
+        [% INCLUDE pagination.tt2 link = "/backoffice/airport" %]
     [% ELSE %]
         <p>Для просмотра городов нажмите на страну в меню слева</p>
     [% END %]

@@ -20,6 +20,9 @@
             [% END %]
         </tbody>
     </table>
+
+    [% INCLUDE pagination.tt2 link = "/backoffice/country" %]
+
 [% END %]
 
 
@@ -29,16 +32,16 @@
             [% INCLUDE icons/is_published.tt2 href="/backoffice/country/" object=country %]
         </td>
         <td>
-            <a href="/backoffice/country/[% country.id %]/edit">[% country.name %]</a>
+            <a href="/backoffice/country/[% country.id %]/edit">[% country.name | html %]</a>
         </td>
         <td>
-            [% country.alpha2 %]
+            [% country.alpha2 | html %]
         </td>
         <td>
-            [% country.alpha3 %]
+            [% country.alpha3 | html %]
         </td>
         <td>
-            [% country.numerics %]
+            [% country.numerics | html %]
         </td>
         <td class="icon">
             [% INCLUDE icons/delete.tt2 href="/backoffice/country/$country.id/delete" %]

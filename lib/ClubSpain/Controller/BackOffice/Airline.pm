@@ -27,7 +27,8 @@ sub form :Private { ClubSpain::Form::BackOffice::Airline->new(); }
 
 sub default :Path {
     my ($self, $c) = @_;
-    $c->stash( iterator => $c->model($self->model)->search({}) );
+
+    $c->detach('page');
 };
 
 sub base :Chained('/backoffice/base') :PathPart('airline') :CaptureArgs(0) {};

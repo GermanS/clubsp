@@ -11,6 +11,7 @@
                     <th>Код IATA</th>
                     <th>Город</th>
                     <th> </th>
+                    <th> </th>
                 <tr>
             </thead>
             <tbody>
@@ -19,6 +20,7 @@
                 [% END %]
             <tbody>
         </table>
+        [% INCLUDE pagination.tt2 link = "/backoffice/city" %]
     [% ELSE %]
         <p>Для просмотра городов нажмите на страну в меню слева</p>
     [% END %]
@@ -34,7 +36,10 @@
             [% city.iata %]
         </td>
         <td>
-            <a href="/backoffice/city/[% city.id %]/edit">[% city.name %]</a>
+            <a href="/backoffice/city/[% city.id %]/edit">[% city.name_ru | html %]</a>
+        </td>
+        <td>
+            <a href="/backoffice/city/[% city.id %]/edit">[% city.name | html %]</a>
         </td>
         <td class="icon">
             [% INCLUDE icons/delete.tt2 href="/backoffice/city/$city.id/delete" %]
