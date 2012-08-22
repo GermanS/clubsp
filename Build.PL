@@ -19,6 +19,8 @@ my $build = ClubSpain::Build->new(
         'Catalyst::Plugin::Unicode'             => 0,
         'Catalyst::Model::DBIC::Schema'         => 0,
         'Catalyst::View::JSON'                  => 0,
+        'Data::Page'                            => 0,
+        'Data::Page::FlickrLike'                => 0,
         'DateTime'                              => 0,
         'DateTime::Format::MySQL'               => 0,
         'Exception::Class'                      => 0,
@@ -38,7 +40,7 @@ my $build = ClubSpain::Build->new(
         'XML::Compile::WSDL11'                  => 0,
         'XML::Compile::Transport::SOAPHTTP'     => 0,
         'XML::LibXML'                           => '>=1.70',
-        'Cache::FastMmap'                        => '>=1.40',
+        'Cache::FastMmap'                       => '>=1.40',
         'Catalyst::Plugin::Session::Store::FastMmap' => '0',
     }
 );
