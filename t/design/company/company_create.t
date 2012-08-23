@@ -1,4 +1,4 @@
-use Test::More tests => 29;
+use Test::More tests => 21;
 use strict;
 use warnings;
 
@@ -11,19 +11,15 @@ my $helper = ClubSpain::Test->new();
 #first insert
 {
     my $company = ClubSpain::Model::Company->new(
-        name => 'name',
-        nick => 'nick',
-        INN  => 1234567890123,
-        OGRN => 1234567890,
-        KPP  => 2234567890,
-        OKPO => 3234567890,
-        OKVED=> 4234567890,
-        OKATO=> 5234567890,
-        OKTMO=> 6234567890,
-        OKOGU=> 7234567890,
-        OKFS => 8234567890,
-        OKPF => 9234567890,
-        is_published => 1,
+        zipcode => 123456,
+        street  => 'calle de colomn 4',
+        name    => 'origin name',
+        nick    => 'brand name',
+        website => 'somewhere.com',
+        INN     => 1234567890123,
+        OKPO    => 3234567890,
+        OKVED   => 4234567890,
+        is_published => 1
     );
 
     my $result;
@@ -39,51 +35,38 @@ my $helper = ClubSpain::Test->new();
         diag Dumper($@);
     }
 
-    is $company->name, 'name'
-        => 'got name';
-    is $company->nick, 'nick'
-        => 'got nickname';
+    is $company->zipcode, 123456
+        => 'got zipcode';
+    is $company->street, 'calle de colomn 4'
+        => 'got street';
+    is $company->name, 'origin name'
+        => 'origin name';
+    is $company->nick, 'brand name'
+        => 'brand name';
+    is $company->website, 'somewhere.com'
+        => 'got website';
     is $company->INN, 1234567890123
         => 'got INN';
-    is $company->OGRN, 1234567890
-        => 'got OGRN';
-    is $company->KPP, 2234567890
-        => 'got KPP';
     is $company->OKPO, 3234567890
         => 'got OKPO';
     is $company->OKVED, 4234567890
         => 'got OKVED';
-    is $company->OKATO, 5234567890
-        => 'got OKATO';
-    is $company->OKTMO, 6234567890
-        => 'got OKTMO';
-    is $company->OKOGU, 7234567890
-        => 'got OKOGU';
-    is $company->OKFS, 8234567890
-        => 'got OKFS';
-    is $company->OKPF, 9234567890
-        => 'got OKPF';
     is $company->is_published, 1
         => 'got is_published';
-
 }
 
 #second addition
 {
     my $company = ClubSpain::Model::Company->new(
-        name => 'new name',
-        nick => 'new nick',
-        INN  => 1234567890125,
-        OGRN => 1234567895,
-        KPP  => 2234567895,
-        OKPO => 3234567895,
-        OKVED=> 4234567895,
-        OKATO=> 5234567895,
-        OKTMO=> 6234567895,
-        OKOGU=> 7234567895,
-        OKFS => 8234567895,
-        OKPF => 9234567895,
-        is_published => 0,
+        zipcode => 654321,
+        street  => 'calle de colomn 6',
+        name    => 'new name',
+        nick    => 'new nick',
+        website => 'somewhere.net',
+        INN     => 1234567890,
+        OKPO    => 987654321,
+        OKVED   => 1234,
+        is_published => 0
     );
 
     my $result;
@@ -99,30 +82,22 @@ my $helper = ClubSpain::Test->new();
         diag Dumper($@);
     }
 
+    is $company->zipcode, 654321
+        => 'got zipcode';
+    is $company->street, 'calle de colomn 6'
+        => 'got street';
     is $company->name, 'new name'
-        => 'got name';
+        => 'origin name';
     is $company->nick, 'new nick'
-        => 'got nickname';
-    is $company->INN, 1234567890125
+        => 'brand name';
+    is $company->website, 'somewhere.net'
+        => 'got website';
+    is $company->INN, 1234567890
         => 'got INN';
-    is $company->OGRN, 1234567895
-        => 'got OGRN';
-    is $company->KPP, 2234567895
-        => 'got KPP';
-    is $company->OKPO, 3234567895
+    is $company->OKPO, 987654321
         => 'got OKPO';
-    is $company->OKVED, 4234567895
+    is $company->OKVED, 1234
         => 'got OKVED';
-    is $company->OKATO, 5234567895
-        => 'got OKATO';
-    is $company->OKTMO, 6234567895
-        => 'got OKTMO';
-    is $company->OKOGU, 7234567895
-        => 'got OKOGU';
-    is $company->OKFS, 8234567895
-        => 'got OKFS';
-    is $company->OKPF, 9234567895
-        => 'got OKPF';
     is $company->is_published, 0
         => 'got is_published';
 }

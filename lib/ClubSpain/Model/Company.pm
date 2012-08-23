@@ -8,21 +8,17 @@ use ClubSpain::Types;
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Company' });
 
-has 'id'    => ( is => 'ro' );
-has 'name'  => ( is => 'ro', required => 1 );
-has 'nick'  => ( is => 'ro' );
-has 'INN'   => ( is => 'ro', required => 1 );
-has 'OGRN'  => ( is => 'ro', required => 1 );
-has 'KPP'   => ( is => 'ro', required => 1 );
-has 'OKPO'  => ( is => 'ro', required => 1 );
-has 'OKVED' => ( is => 'ro', required => 1 );
-has 'OKATO' => ( is => 'ro', required => 1 );
-has 'OKTMO' => ( is => 'ro', required => 1 );
-has 'OKOGU' => ( is => 'ro', required => 1 );
-has 'OKFS'  => ( is => 'ro', required => 1 );
-has 'OKPF'  => ( is => 'ro', required => 1 );
+has 'id'      => ( is => 'rw' );
+has 'zipcode' => ( is => 'rw' );
+has 'street'  => ( is => 'rw' );
+has 'name'    => ( is => 'rw' );
+has 'nick'    => ( is => 'rw' );
+has 'website' => ( is => 'rw' );
+has 'INN'     => ( is => 'rw' );
+has 'OKPO'    => ( is => 'rw' );
+has 'OKVED'   => ( is => 'rw' );
 has 'is_published'
-            => ( is => 'ro', required => 1 );
+              => ( is => 'rw', required => 1 );
 
 sub create {
     my $self = shift;
@@ -41,18 +37,15 @@ sub params {
     my $self = shift;
 
     return {
-        name  => $self->name,
-        nick  => $self->nick,
-        INN   => $self->INN,
-        OGRN  => $self->OGRN,
-        KPP   => $self->KPP,
-        OKPO  => $self->OKPO,
-        OKVED => $self->OKVED,
-        OKATO => $self->OKATO,
-        OKTMO => $self->OKTMO,
-        OKOGU => $self->OKOGU,
-        OKFS  => $self->OKFS,
-        OKPF  => $self->OKPF,
+        id      => $self->id,
+        zipcode => $self->zipcode,
+        street  => $self->street,
+        name    => $self->name,
+        nick    => $self->nick,
+        website => $self->website,
+        INN     => $self->INN,
+        OKPO    => $self->OKPO,
+        OKVED   => $self->OKVED,
         is_published => $self->is_published
     };
 }
