@@ -18,6 +18,10 @@ __PACKAGE__->add_columns(
     INN     => { data_type => 'varchar', size => 50, is_nullable => 0 },
     OKPO    => { data_type => 'varchar', size => 50, is_nullable => 0 },
     OKVED   => { data_type => 'varchar', size => 50, is_nullable => 0 },
+    is_NDS => {
+        data_type     => 'TINYINT(1) UNSIGNED',
+        is_nullable   => 0,
+    },
     is_published => {
         data_type     => 'TINYINT(1) UNSIGNED',
         is_nullable   => 0,
