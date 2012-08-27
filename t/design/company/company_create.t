@@ -1,4 +1,4 @@
-use Test::More tests => 21;
+use Test::More tests => 23;
 use strict;
 use warnings;
 
@@ -19,6 +19,7 @@ my $helper = ClubSpain::Test->new();
         INN     => 1234567890123,
         OKPO    => 3234567890,
         OKVED   => 4234567890,
+        is_NDS  => 1,
         is_published => 1
     );
 
@@ -51,6 +52,8 @@ my $helper = ClubSpain::Test->new();
         => 'got OKPO';
     is $company->OKVED, 4234567890
         => 'got OKVED';
+    is $company->is_NDS, 1
+        => 'got is_NDS';
     is $company->is_published, 1
         => 'got is_published';
 }
@@ -66,6 +69,7 @@ my $helper = ClubSpain::Test->new();
         INN     => 1234567890,
         OKPO    => 987654321,
         OKVED   => 1234,
+        is_NDS  => 0,
         is_published => 0
     );
 
@@ -98,6 +102,8 @@ my $helper = ClubSpain::Test->new();
         => 'got OKPO';
     is $company->OKVED, 1234
         => 'got OKVED';
+    is $company->is_NDS, 0
+        => 'got is_NDS';
     is $company->is_published, 0
         => 'got is_published';
 }

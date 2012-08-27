@@ -1,4 +1,4 @@
-use Test::More tests => 11;
+use Test::More tests => 12;
 
 use strict;
 use warnings;
@@ -14,6 +14,7 @@ my $company = ClubSpain::Model::Company->new(
     INN     => 1234567890123,
     OKPO    => 3234567890,
     OKVED   => 4234567890,
+    is_NDS  => 1,
     is_published => 1
 );
 
@@ -34,5 +35,7 @@ is $company->OKPO, 3234567890
     => 'got OKPO';
 is $company->OKVED, 4234567890
     => 'got OKVED';
+is $company->is_NDS, 1
+    => 'got is_NDS';
 is $company->is_published, 1
     => 'got is_published';

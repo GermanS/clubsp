@@ -33,6 +33,7 @@ use_ok('ClubSpain::Model::Company');
         INN     => 123456789021,
         OKPO    => 3234567890,
         OKVED   => 4234567890,
+        is_NDS  => 1,
         is_published => 1
     );
 
