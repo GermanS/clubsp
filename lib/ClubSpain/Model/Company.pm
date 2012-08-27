@@ -8,17 +8,28 @@ use ClubSpain::Types;
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Company' });
 
-has 'id'      => ( is => 'rw' );
-has 'zipcode' => ( is => 'rw' );
-has 'street'  => ( is => 'rw' );
-has 'name'    => ( is => 'rw' );
-has 'nick'    => ( is => 'rw' );
-has 'website' => ( is => 'rw' );
-has 'INN'     => ( is => 'rw' );
-has 'OKPO'    => ( is => 'rw' );
-has 'OKVED'   => ( is => 'rw' );
+has 'id'
+    => ( is => 'rw' );
+has 'zipcode'
+    => ( is => 'rw' );
+has 'street'
+    => ( is => 'rw' );
+has 'name'
+    => ( is => 'rw' );
+has 'nick'
+    => ( is => 'rw' );
+has 'website'
+    => ( is => 'rw' );
+has 'INN'
+    => ( is => 'rw' );
+has 'OKPO'
+    => ( is => 'rw' );
+has 'OKVED'
+    => ( is => 'rw' );
+has 'is_NDS'
+    => ( is => 'rw' );
 has 'is_published'
-              => ( is => 'rw', required => 1 );
+    => ( is => 'rw' );
 
 sub create {
     my $self = shift;
@@ -46,6 +57,7 @@ sub params {
         INN     => $self->INN,
         OKPO    => $self->OKPO,
         OKVED   => $self->OKVED,
+        is_NDS  => $self->is_NDS,
         is_published => $self->is_published
     };
 }
