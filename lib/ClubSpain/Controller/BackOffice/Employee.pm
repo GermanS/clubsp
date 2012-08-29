@@ -60,11 +60,11 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my $employee = $c->model($self->model)->new();
     my $form = $self->form($employee);
     $form->process(
-        init_object => {
-            name    => $self->get_object($c)->name,
-            surname => $self->get_object($c)->surname,
-            email   => $self->get_object($c)->email,
-            passwd  => $self->get_object($c)->passwd
+        init_object  => {
+            name     => $self->get_object($c)->name,
+            surname  => $self->get_object($c)->surname,
+            email    => $self->get_object($c)->email,
+            password => $self->get_object($c)->password
         },
         params => $c->request->parameters
     );
