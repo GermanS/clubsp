@@ -11,7 +11,7 @@ use_ok('ClubSpain::Model::Company');
 my $first = ClubSpain::Model::Company->new(
     zipcode => 123456,
     street  => 'calle de colomn 4',
-    name    => 'origin name',
+    company => 'origin name',
     nick    => 'brand name',
     website => 'somewhere.com',
     INN     => 1234567890123,
@@ -26,7 +26,7 @@ my $company = ClubSpain::Model::Company->new(
     id      => $res->id,
     zipcode => 123000,
     street  => 'calle de colomn 4 upd',
-    name    => 'origin name upd',
+    company => 'origin name upd',
     nick    => 'brand name upd',
     website => 'somewhere.com',
     INN     => 1234567890000,
@@ -39,23 +39,23 @@ my $company = ClubSpain::Model::Company->new(
 my $result = $company->update();
 
 isa_ok($result, 'ClubSpain::Schema::Result::Company');
-is $company->zipcode, 123000
+is $result->zipcode, 123000
     => 'got zipcode';
-is $company->street, 'calle de colomn 4 upd'
+is $result->street, 'calle de colomn 4 upd'
     => 'got street';
-is $company->name, 'origin name upd'
+is $result->company, 'origin name upd'
     => 'origin name';
-is $company->nick, 'brand name upd'
+is $result->nick, 'brand name upd'
     => 'brand name';
-is $company->website, 'somewhere.com'
+is $result->website, 'somewhere.com'
     => 'got website';
-is $company->INN, 1234567890000
+is $result->INN, 1234567890000
     => 'got INN';
-is $company->OKPO, 3234567000
+is $result->OKPO, 3234567000
     => 'got OKPO';
-is $company->OKVED, 4234567000
+is $result->OKVED, 4234567000
     => 'got OKVED';
-is $company->is_NDS, 1
+is $result->is_NDS, 1
     => 'got is_NDS';
-is $company->is_published, 1
+is $result->is_published, 1
     => 'got is_published';

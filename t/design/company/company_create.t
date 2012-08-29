@@ -13,7 +13,7 @@ my $helper = ClubSpain::Test->new();
     my $company = ClubSpain::Model::Company->new(
         zipcode => 123456,
         street  => 'calle de colomn 4',
-        name    => 'origin name',
+        company => 'origin name',
         nick    => 'brand name',
         website => 'somewhere.com',
         INN     => 1234567890123,
@@ -40,7 +40,7 @@ my $helper = ClubSpain::Test->new();
         => 'got zipcode';
     is $company->street, 'calle de colomn 4'
         => 'got street';
-    is $company->name, 'origin name'
+    is $company->company, 'origin name'
         => 'origin name';
     is $company->nick, 'brand name'
         => 'brand name';
@@ -63,7 +63,7 @@ my $helper = ClubSpain::Test->new();
     my $company = ClubSpain::Model::Company->new(
         zipcode => 654321,
         street  => 'calle de colomn 6',
-        name    => 'new name',
+        company => 'new name',
         nick    => 'new nick',
         website => 'somewhere.net',
         INN     => 1234567890,
@@ -90,7 +90,7 @@ my $helper = ClubSpain::Test->new();
         => 'got zipcode';
     is $company->street, 'calle de colomn 6'
         => 'got street';
-    is $company->name, 'new name'
+    is $company->company, 'new name'
         => 'origin name';
     is $company->nick, 'new nick'
         => 'brand name';

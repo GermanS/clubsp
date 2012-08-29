@@ -8,7 +8,7 @@ use_ok('ClubSpain::Model::Company');
 my $company = ClubSpain::Model::Company->new(
     zipcode => 123456,
     street  => 'calle de colomn 4',
-    name    => 'origin name',
+    company => 'origin name',
     nick    => 'brand name',
     website => 'somewhere.com',
     INN     => 1234567890123,
@@ -23,7 +23,7 @@ is $company->zipcode, 123456,
     'got zipcode';
 is $company->street, 'calle de colomn 4',
     'got street name';
-is $company->name, 'origin name'
+is $company->company, 'origin name'
     => 'got name';
 is $company->nick, 'brand name'
     => 'got nickname';
