@@ -1,6 +1,6 @@
 [% WRAPPER backoffice/company/company_wrapper.tt2 %]
     [% IF message %]
-        [% message %]
+        [% INCLUDE backoffice/message.tt2 message = message %]
     [% END %]
 
     [% IF iterator.count %]
@@ -26,10 +26,10 @@
 [% BLOCK row %]
     <tr>
         <td class="icon">
-            [% INCLUDE icons/is_published.tt2 href="/backoffice/company/" object=company %]
+            [% INCLUDE icons/is_published.tt2 href="/backoffice/company/" object = company %]
         </td>
         <td>
-            <a href="/backoffice/company/[% company.id %]/edit">[% company.name | html %]
+            <a href="/backoffice/company/[% company.id %]/edit">[% company.company | html %]
                 [% IF company.nick %]
                     - [% company.nick | html %]
                 [% END %]

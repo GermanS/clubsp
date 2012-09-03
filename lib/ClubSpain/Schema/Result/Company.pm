@@ -12,7 +12,7 @@ __PACKAGE__->add_columns(
     id      => { data_type => 'integer', is_auto_increment => 1 },
     zipcode => { data_type => 'integer', size => 6, is_nullable => 0 },
     street  => { data_type => 'varchar', size => 50, is_nullable => 0 },
-    name    => { data_type => 'varchar', size => 50, is_nullable => 0 },
+    company => { data_type => 'varchar', size => 50, is_nullable => 0 },
     nick    => { data_type => 'varchar', size => 50, is_nullable => 0 },
     website => { data_type => 'varchar', size => 50, is_nullable => 0 },
     INN     => { data_type => 'varchar', size => 50, is_nullable => 0 },
