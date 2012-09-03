@@ -2,21 +2,14 @@ package ClubSpain::Form::BackOffice::Airline;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::AirlineRole';
-
-has 'airline' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Airline',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::Airline';
 
 has '+name' => ( default => 'airline' );
 
-has_field 'name' => (
+has_field 'airline' => (
     element_class => ['span11'],
     label         => 'Название авиакомпании',
     required      => 1,
@@ -37,9 +30,12 @@ has_field 'icao' => (
     type          => 'Text',
 );
 
-has_field 'form_actions' => ( type => 'Compound' );
-has_field 'form_actions.save' => ( widget => 'ButtonTag', type => 'Submit', value => 'Сохранить');
-has_field 'form_actions.cancel' => ( widget => 'ButtonTag', type => 'Reset', value => 'Отменить');
+has_field 'form_actions'
+    => ( type => 'Compound' );
+has_field 'form_actions.save'
+    => ( widget => 'ButtonTag', type => 'Submit', value => 'Сохранить');
+has_field 'form_actions.cancel'
+    => ( widget => 'ButtonTag', type => 'Reset',  value => 'Отменить');
 
 sub build_form_element_class { ['well'] }
 sub build_update_subfields {{
@@ -48,14 +44,25 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+#implement ClubSpain::Model::Role::Airline
+sub airline { shift->field('airline')->value(@_); }
+sub iata    { shift->field('iata')->value(@_); }
+sub icao    { shift->field('icao')->value(@_); }
 
-    $self->airline->name($self->field('name')->value);
-    $self->airline->iata($self->field('iata')->value);
-    $self->airline->icao($self->field('icao')->value);
-};
+sub validate_airline {
+    my ($self, $field) = @_;
+    $self->check_field('validate_airline', $field);
+}
+
+sub validate_iata {
+    my ($self, $field) = @_;
+    $self->check_field('validate_iata', $field);
+}
+
+sub validate_icao {
+    my ($self, $field) = @_;
+    $self->check_field('validate_icao', $field);
+}
 
 no HTML::FormHandler::Moose;
 

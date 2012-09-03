@@ -9,7 +9,7 @@ with 'ClubSpain::Model::Role::Country';
 
 has '+name' => ( default => 'country' );
 
-has_field 'country' => (
+has_field 'country'  => (
     element_class => ['span11'],
     label         => 'Название страны',
     required      => 1,
@@ -38,9 +38,12 @@ has_field 'numerics' => (
 );
 
 
-has_field 'form_actions' => ( type => 'Compound' );
-has_field 'form_actions.save' => ( widget => 'ButtonTag', type => 'Submit', value => 'Сохранить');
-has_field 'form_actions.cancel' => ( widget => 'ButtonTag', type => 'Reset', value => 'Отменить');
+has_field 'form_actions'
+    => ( type => 'Compound' );
+has_field 'form_actions.save'
+    => ( widget => 'ButtonTag', type => 'Submit', value => 'Сохранить');
+has_field 'form_actions.cancel'
+    => ( widget => 'ButtonTag', type => 'Reset',  value => 'Отменить');
 
 sub build_form_element_class { ['well'] }
 sub build_update_subfields {{
@@ -48,15 +51,6 @@ sub build_update_subfields {{
     'form_actions.save' => { widget_wrapper => 'None', element_class => ['btn', 'btn-primary'] },
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
-
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
-
-    foreach my $listener ($self->all_listeners) {
-        $listener->notify($self);
-    }
-};
 
 #implement ClubSpain::Model::Role::Country
 sub country  { shift->field('country')->value(@_); }
@@ -68,17 +62,14 @@ sub validate_country {
     my ($self, $field) = @_;
     $self->check_field('validate_country', $field);
 }
-
 sub validate_alpha2 {
     my ($self, $field) = @_;
     $self->check_field('validate_alpha2', $field);
 }
-
 sub validate_alpha3 {
     my ($self, $field) = @_;
     $self->check_field('validate_alpha3', $field);
 }
-
 sub validate_numerics {
     my ($self, $field) = @_;
     $self->check_field('validate_numerics', $field);

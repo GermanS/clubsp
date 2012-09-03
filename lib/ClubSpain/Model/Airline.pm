@@ -3,9 +3,7 @@ use Moose;
 use namespace::autoclean;
 use utf8;
 use parent qw(ClubSpain::Model::Base);
-
 use ClubSpain::Types;
-    with 'ClubSpain::Model::AirlineRole';
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Airline' });
@@ -13,8 +11,25 @@ class_has '+source_name' => ( default => sub  { 'Airline' });
 has 'id'            => ( is => 'rw' );
 has 'iata'          => ( is => 'rw', required => 0, isa => 'AlphaNumericLength2' );
 has 'icao'          => ( is => 'rw', required => 0, isa => 'AlphaLength3' );
-has 'name'          => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
+has 'airline'       => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
 has 'is_published'  => ( is => 'rw', required => 0 );
+
+with 'ClubSpain::Model::Role::Airline';
+
+sub validate_iata {
+    my ($self, $value) = @_;
+    $self->meta()->get_attribute('iata')->type_constraint->validate($value);
+}
+sub validate_icao {
+    my ($self, $value) = @_;
+    $self->meta()->get_attribute('icao')->type_constraint->validate($value);
+}
+sub validate_airline {
+    my ($self, $value) = @_;
+    $self->meta()->get_attribute('airline')->type_constraint->validate($value);
+}
+
+
 
 sub create {
     my $self = shift;
@@ -35,7 +50,7 @@ sub params {
     return {
         iata         => $self->iata,
         icao         => $self->icao,
-        name         => $self->name,
+        name         => $self->airline,
         is_published => $self->is_published,
     };
 }

@@ -13,7 +13,7 @@ my $helper = ClubSpain::Test->new();
     my $airline = ClubSpain::Model::Airline->new(
         iata    => 'xx',
         icao    => 'xxx',
-        name    => 'xx xxx',
+        airline => 'xx xxx',
         is_published => 1,
     );
 
@@ -42,7 +42,7 @@ my $helper = ClubSpain::Test->new();
     my $airline = ClubSpain::Model::Airline->new(
         iata    => 'yy',
         icao    => 'yyy',
-        name    => 'yy yyy',
+        airline => 'yy yyy',
         is_published => 1,
     );
 

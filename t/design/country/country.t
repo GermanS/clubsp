@@ -10,9 +10,9 @@ use_ok('ClubSpain::Model::Country');
     my $country;
     eval {
         $country = ClubSpain::Model::Country->new(
-            country => 'Russia',
-            alpha2  => 'ru',
-            alpha3  => 'rus',
+            country  => 'Russia',
+            alpha2   => 'ru',
+            alpha3   => 'rus',
             numerics => 7,
             is_published => 1,
         );

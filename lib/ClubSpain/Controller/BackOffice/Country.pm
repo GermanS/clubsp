@@ -6,23 +6,14 @@ BEGIN {
 };
 with 'ClubSpain::Controller::BackOffice::BaseRole';
 
+has 'template'
+    => ( is => 'ro', default => 'backoffice/country/country.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/country/country_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'Country' );
+
 use ClubSpain::Form::BackOffice::Country;
-
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/country/country.tt2'
-);
-
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/country/country_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'Country',
-);
-
 sub form :Private {
     my ($self, $listener) = @_;
 

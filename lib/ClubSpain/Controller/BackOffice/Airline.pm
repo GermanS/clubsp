@@ -6,24 +6,22 @@ BEGIN {
 };
 with 'ClubSpain::Controller::BackOffice::BaseRole';
 
+has 'template'
+    => ( is => 'ro', default => 'backoffice/airline/airline.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/airline/airline_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'Airline' );
+
 use ClubSpain::Form::BackOffice::Airline;
+sub form :Private {
+    my ($self, $listener) = @_;
 
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/airline/airline.tt2'
-);
+    my $form = ClubSpain::Form::BackOffice::Airline->new();
+    $form->add_listener($listener);
 
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/airline/airline_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'Airline',
-);
-
-sub form :Private { ClubSpain::Form::BackOffice::Airline->new(); }
+    return $form;
+}
 
 sub default :Path {
     my ($self, $c) = @_;
@@ -36,12 +34,11 @@ sub base :Chained('/backoffice/base') :PathPart('airline') :CaptureArgs(0) {};
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->form;
-    $form->airline($c->model($self->model)->new());
-    $form->process($c->request->parameters);
+    my $airline = $c->model($self->model)->new();
+    my $form = $self->form($airline);
 
+    $form->process($c->request->parameters);
     if ($form->validated) {
-        my $airline = $form->airline;
         $airline->set_enable();
 
         eval { $airline->create(); };
@@ -57,11 +54,11 @@ sub create :Local {
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->form;
-    $form->airline($c->model($self->model)->new());
+    my $airline = $c->model($self->model)->new();
+    my $form = $self->form($airline);
     $form->process(
         init_object => {
-            name    => $self->get_object($c)->name,
+            airline => $self->get_object($c)->name,
             iata    => $self->get_object($c)->iata,
             icao    => $self->get_object($c)->icao
         },
@@ -70,7 +67,6 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
 
     if ($form->validated) {
         eval {
-            my $airline = $form->airline;
             $airline->id( $self->get_object($c)->id );
             $airline->is_published( $self->get_object($c)->is_published );
             $airline->update();

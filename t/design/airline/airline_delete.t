@@ -12,9 +12,9 @@ my $schema = $helper->schema();
 my $count = $schema->resultset('Airline')->search({})->count;
 
 my $airline = ClubSpain::Model::Airline->new(
-    iata    => 'xx',
-    icao    => 'xxx',
-    name    => 'xx xxx',
+    iata     => 'xx',
+    icao     => 'xxx',
+    airline  => 'xx xxx',
     is_published => 0,
 );
 

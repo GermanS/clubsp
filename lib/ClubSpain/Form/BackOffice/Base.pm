@@ -38,6 +38,15 @@ sub check_field {
     }
 }
 
+after 'validate' => sub {
+    my $self = shift;
+    return unless $self->is_valid();
+
+    foreach my $listener ($self->all_listeners) {
+        $listener->notify($self);
+    }
+};
+
 #обработка ошибок применимых к целой форме
 sub process_error {
     my ($self, $exception) = @_;

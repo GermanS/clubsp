@@ -12,7 +12,7 @@ my $airline = ClubSpain::Model::Airline->new(
     id          => 1,
     iata        => 'zz',
     icao        => 'ccc',
-    name        => 'New Airline name',
+    airline     => 'New Airline name',
     is_published=> 0,
 );
 

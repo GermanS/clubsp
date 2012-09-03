@@ -28,7 +28,7 @@ use_ok('ClubSpain::Model::Airline');
         id           => 777,
         iata         => 'xx',
         icao         => 'udx',
-        name         => 'name',
+        airline      => 'name',
         is_published => 1,
     );
 
