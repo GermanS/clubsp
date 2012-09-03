@@ -14,9 +14,9 @@ my $count = $schema->resultset('Airplane')->search({})->count;
 
 my $airplane = ClubSpain::Model::Airplane->new(
     manufacturer_id => 1,
-    iata    => 'xxx',
-    icao    => 'xxxx',
-    name    => 'xxx xxxx',
+    iata     => 'xxx',
+    icao     => 'xxxx',
+    airplane => 'xxx xxxx',
     is_published => 0,
 );
 

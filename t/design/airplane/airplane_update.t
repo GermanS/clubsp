@@ -14,7 +14,7 @@ my $airplane = ClubSpain::Model::Airplane->new(
     manufacturer_id => 1,
     iata        => 'zzz',
     icao        => 'cccc',
-    name        => 'New Airplane name',
+    airplane    => 'New Airplane name',
     is_published=> 0,
 );
 

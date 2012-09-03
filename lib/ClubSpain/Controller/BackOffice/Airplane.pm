@@ -7,26 +7,23 @@ BEGIN {
 with 'ClubSpain::Controller::BackOffice::BaseRole';
 
 use ClubSpain::Form::BackOffice::Airplane;
-sub form {
-    my ($self, $model) = @_;
-    return ClubSpain::Form::BackOffice::Airplane->new( model_object => $model );
+sub form :Private {
+    my ($self, $listener) = @_;
+
+    my $form = ClubSpain::Form::BackOffice::Airplane->new({
+        listeners => [$listener]
+    });
+#    $form->add_listener($listener);
+
+    return $form;
 }
 
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/airplane/airplane.tt2'
-);
-
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/airplane/airplane_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'Airplane',
-);
-
+has 'template'
+    => ( is => 'ro', default => 'backoffice/airplane/airplane.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/airplane/airplane_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'Airplane' );
 
 sub auto :Private {
     my ($self, $c) = @_;
@@ -72,9 +69,9 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my $form = $self->form($plane);
     $form->process(
         init_object => {
-            name    => $self->get_object($c)->name,
-            iata    => $self->get_object($c)->iata,
-            icao    => $self->get_object($c)->icao,
+            airplane => $self->get_object($c)->name,
+            iata     => $self->get_object($c)->iata,
+            icao     => $self->get_object($c)->icao,
             manufacturer_id => $self->get_object($c)->manufacturer_id,
         },
         params => $c->request->parameters

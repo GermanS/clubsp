@@ -2,18 +2,11 @@ package ClubSpain::Form::BackOffice::Airplane;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::AirplaneRole',
-         'ClubSpain::Form::BackOffice::Field::Manufacturer';
-
-has 'model_object' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Airplane',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::Airplane',
+     'ClubSpain::Form::BackOffice::Field::Manufacturer';
 
 has '+name' => ( default => 'airplane' );
 
@@ -21,10 +14,10 @@ has_field 'manufacturer_id' => (
     element_class => ['span11'],
     label         => 'Производитель',
     required      => 1,
-    type          => 'Select'
+    type          => 'Select',
 );
 
-has_field 'name' => (
+has_field 'airplane' => (
     element_class => ['span11'],
     label         => 'Название марки самолета',
     required      => 1,
@@ -45,26 +38,38 @@ has_field 'icao' => (
     type          => 'Text',
 );
 
-has_field 'form_actions' => ( type => 'Compound' );
-has_field 'form_actions.save' => ( widget => 'ButtonTag', type => 'Submit', value => 'Сохранить');
-has_field 'form_actions.cancel' => ( widget => 'ButtonTag', type => 'Reset', value => 'Отменить');
+has_field 'form_actions'
+    => ( type => 'Compound' );
+has_field 'form_actions.save'
+    => ( widget => 'ButtonTag', type => 'Submit', value => 'Сохранить');
+has_field 'form_actions.cancel'
+    => ( widget => 'ButtonTag', type => 'Reset',  value => 'Отменить');
 
 sub build_form_element_class { ['well'] }
 sub build_update_subfields {{
     form_actions => { do_wrapper => 1, do_label => 0 },
-    'form_actions.save' => { widget_wrapper => 'None', element_class => ['btn', 'btn-primary'] },
+    'form_actions.save'   => { widget_wrapper => 'None', element_class => ['btn', 'btn-primary'] },
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+#implement ClubSpain::Model::Role::Airplane
+sub manufacturer_id { shift->field('manufacturer_id')->value(@_); }
+sub airplane { shift->field('airplane')->value(@_); }
+sub iata     { shift->field('iata')->value(@_); }
+sub icao     { shift->field('icao')->value(@_); }
 
-    $self->model_object->manufacturer_id($self->field('manufacturer_id')->value);
-    $self->model_object->name($self->field('name')->value);
-    $self->model_object->iata($self->field('iata')->value);
-    $self->model_object->icao($self->field('icao')->value);
-};
+sub validate_airplane {
+    my ($self, $field) = @_;
+    $self->check_field('validate_airplane', $field);
+}
+sub validate_iata {
+    my ($self, $field) = @_;
+    $self->check_field('validate_iata', $field);
+}
+sub validate_icao {
+    my ($self, $field) = @_;
+    $self->check_field('validate_icao', $field);
+}
 
 no HTML::FormHandler::Moose;
 

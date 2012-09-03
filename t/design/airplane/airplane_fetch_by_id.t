@@ -28,7 +28,7 @@ my $helper = ClubSpain::Test->new();
         manufacturer_id => 1,
         iata        => 'xxx',
         icao        => 'xxxx',
-        name        => 'name',
+        airplane    => 'name',
         is_published=> 0,
     );
 
@@ -66,7 +66,7 @@ my $helper = ClubSpain::Test->new();
         manufacturer_id => 1,
         iata        => 'xxx',
         icao        => 'xxxx',
-        name        => 'name',
+        airplane    => 'name',
         is_published=> 1,
     );
 

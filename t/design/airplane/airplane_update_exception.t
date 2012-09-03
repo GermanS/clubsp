@@ -29,7 +29,7 @@ use_ok('ClubSpain::Model::Airplane');
         manufacturer_id => 1,
         iata         => 'xxx',
         icao         => 'udxx',
-        name         => 'name',
+        airplane     => 'name',
         is_published => 1,
     );
 

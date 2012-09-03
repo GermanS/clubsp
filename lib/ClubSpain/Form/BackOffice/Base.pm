@@ -18,6 +18,7 @@ has 'listeners' => (
     handles => {
         all_listeners => 'elements',
         add_listener  => 'push',
+        get_listener  => 'get',
     }
 );
 

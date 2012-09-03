@@ -28,7 +28,7 @@ use_ok('ClubSpain::Model::Airplane');
         manufacturer_id => 1,
         iata            => 'foo',
         icao            => 'barx',
-        name            => 'foo barx',
+        airplane        => 'foo barx',
         is_published    => 0,
     );
 
