@@ -11,7 +11,7 @@ my $helper = ClubSpain::Test->new();
 
 my $country = ClubSpain::Model::Country->new(
     id       => 1,
-    name     => 'Soviet union',
+    country  => 'Soviet union',
     alpha2   => 'su',
     alpha3   => 'suu',
     numerics => '123',

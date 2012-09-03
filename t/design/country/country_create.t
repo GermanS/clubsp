@@ -10,7 +10,7 @@ use ClubSpain::Test;
 my $helper = ClubSpain::Test->new();
 
 my $country = ClubSpain::Model::Country->new(
-    name     => 'USA',
+    country  => 'USA',
     alpha2   => 'us',
     alpha3   => 'usa',
     numerics => 1,

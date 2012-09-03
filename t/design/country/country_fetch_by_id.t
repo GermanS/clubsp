@@ -24,9 +24,9 @@ my $helper = ClubSpain::Test->new();
 {
     my $country = ClubSpain::Model::Country->new(
         id => 1,
-        name => 'RF',
-        alpha2 => 'RR',
-        alpha3 => 'RRS',
+        country => 'RF',
+        alpha2  => 'RR',
+        alpha3  => 'RRS',
         numerics => 70,
         is_published => 1,
     );
@@ -64,7 +64,7 @@ my $helper = ClubSpain::Test->new();
 {
     my $country = ClubSpain::Model::Country->new(
         id => 1000,
-        name => 'russia',
+        country => 'russia',
         alpha2 => 'ru',
         alpha3 => 'rus',
         numerics => 7,

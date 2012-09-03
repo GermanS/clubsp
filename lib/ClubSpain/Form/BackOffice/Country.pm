@@ -2,21 +2,14 @@ package ClubSpain::Form::BackOffice::Country;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::CountryRole';
-
-has 'country' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Country',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::Country';
 
 has '+name' => ( default => 'country' );
 
-has_field 'name' => (
+has_field 'country' => (
     element_class => ['span11'],
     label         => 'Название страны',
     required      => 1,
@@ -60,11 +53,36 @@ after 'validate' => sub {
     my $self = shift;
     return unless $self->is_valid();
 
-    $self->country->name($self->field('name')->value);
-    $self->country->alpha2($self->field('alpha2')->value);
-    $self->country->alpha3($self->field('alpha3')->value);
-    $self->country->numerics($self->field('numerics')->value);
+    foreach my $listener ($self->all_listeners) {
+        $listener->notify($self);
+    }
 };
+
+#implement ClubSpain::Model::Role::Country
+sub country  { shift->field('country')->value(@_); }
+sub alpha2   { shift->field('alpha2')->value(@_); }
+sub alpha3   { shift->field('alpha3')->value(@_); }
+sub numerics { shift->field('numerics')->value(@_); }
+
+sub validate_country {
+    my ($self, $field) = @_;
+    $self->check_field('validate_country', $field);
+}
+
+sub validate_alpha2 {
+    my ($self, $field) = @_;
+    $self->check_field('validate_alpha2', $field);
+}
+
+sub validate_alpha3 {
+    my ($self, $field) = @_;
+    $self->check_field('validate_alpha3', $field);
+}
+
+sub validate_numerics {
+    my ($self, $field) = @_;
+    $self->check_field('validate_numerics', $field);
+}
 
 no HTML::FormHandler::Moose;
 

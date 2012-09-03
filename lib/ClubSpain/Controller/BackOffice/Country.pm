@@ -23,7 +23,14 @@ has 'model' => (
     default => 'Country',
 );
 
-sub form :Private { ClubSpain::Form::BackOffice::Country->new(); }
+sub form :Private {
+    my ($self, $listener) = @_;
+
+    my $form = ClubSpain::Form::BackOffice::Country->new();
+    $form->add_listener($listener);
+
+    return $form;
+}
 
 sub default :Path {
     my ($self, $c) = @_;
@@ -36,12 +43,11 @@ sub base :Chained('/backoffice/base') :PathPart('country') :CaptureArgs(0) {};
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->form;
-    $form->country($c->model($self->model)->new());
-    $form->process($c->request->parameters);
+    my $country = $c->model($self->model)->new();
+    my $form = $self->form($country);
 
+    $form->process($c->request->parameters);
     if ($form->validated) {
-        my $country = $form->country;
         $country->set_enable();
 
         eval { $country->create(); };
@@ -57,11 +63,11 @@ sub create :Local {
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->form;
-    $form->country($c->model($self->model)->new());
+    my $country = $c->model($self->model)->new();
+    my $form = $self->form($country);
     $form->process(
         init_object => {
-            name     => $self->get_object($c)->name,
+            country  => $self->get_object($c)->name,
             alpha2   => $self->get_object($c)->alpha2,
             alpha3   => $self->get_object($c)->alpha3,
             numerics => $self->get_object($c)->numerics
@@ -71,7 +77,6 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
 
     if ($form->validated) {
         eval {
-            my $country = $form->country();
             $country->id( $self->get_object($c)->id );
             $country->is_published( $self->get_object($c)->is_published );
             $country->update();

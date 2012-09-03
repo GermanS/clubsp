@@ -6,9 +6,37 @@ use namespace::autoclean;
 
 use HTML::FormHandler::Moose;
 extends 'HTML::FormHandler';
-with 'HTML::FormHandler::Widget::Theme::Bootstrap';
+    with 'HTML::FormHandler::Widget::Theme::Bootstrap';
 
 use ClubSpain::Exception;
+
+has 'listeners' => (
+    is      => 'rw',
+    isa     => 'ArrayRef',
+    default => sub { [] },
+    traits  => ['Array'],
+    handles => {
+        all_listeners => 'elements',
+        add_listener  => 'push',
+    }
+);
+
+sub check_field {
+    my $self = shift;
+    my $method = shift;
+    my $field = shift;
+
+    for my $listener ($self->all_listeners) {
+        if ( $listener->can($method) ) {
+            eval {
+                $listener->$method($field->value)
+            };
+            if ($@) {
+                $self->process_validation_error($field);
+            }
+        }
+    }
+}
 
 #обработка ошибок применимых к целой форме
 sub process_error {

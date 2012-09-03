@@ -10,9 +10,9 @@ use_ok('ClubSpain::Model::Country');
     my $country;
     eval {
         $country = ClubSpain::Model::Country->new(
-            name => 'Russia',
-            alpha2 => 'ru',
-            alpha3 => 'rus',
+            country => 'Russia',
+            alpha2  => 'ru',
+            alpha3  => 'rus',
             numerics => 7,
             is_published => 1,
         );
@@ -27,7 +27,7 @@ use_ok('ClubSpain::Model::Country');
     }
 
     isa_ok($country, 'ClubSpain::Model::Country');
-    is($country->name, 'Russia', 'got name');
+    is($country->country, 'Russia', 'got name');
     is($country->alpha2, 'ru', 'got aplha2');
     is($country->alpha3, 'rus', 'got aplha3');
     is($country->numerics, 7, 'Got numerics');
@@ -40,9 +40,9 @@ use_ok('ClubSpain::Model::Country');
     my $country;
     eval {
         $country = ClubSpain::Model::Country->new(
-            name => 'Spain',
-            alpha2 => 'ru',
-            alpha3 => 'rus',
+            country => 'Spain',
+            alpha2  => 'ru',
+            alpha3  => 'rus',
             numerics => 7,
             is_published => 1,
         );
@@ -57,7 +57,7 @@ use_ok('ClubSpain::Model::Country');
     }
 
     isa_ok($country, 'ClubSpain::Model::Country');
-    is($country->name, 'Spain', 'got name');
+    is($country->country, 'Spain', 'got name');
     is($country->alpha2, 'ru', 'got aplha2');
     is($country->alpha3, 'rus', 'got aplha3');
     is($country->numerics, 7, 'Got numerics');

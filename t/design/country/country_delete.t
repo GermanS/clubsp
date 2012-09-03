@@ -10,9 +10,9 @@ use ClubSpain::Test;
 my $helper = ClubSpain::Test->new( no_populate => 1 );
 
 my $country = ClubSpain::Model::Country->new(
-    name => 'Soviet Union',
-    alpha2 => 'su',
-    alpha3 => 'suu',
+    country => 'Soviet Union',
+    alpha2  => 'su',
+    alpha3  => 'suu',
     numerics => 111,
     is_published => 1,
 );
