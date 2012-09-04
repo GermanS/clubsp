@@ -8,24 +8,18 @@ BEGIN {
 
 use ClubSpain::Form::BackOffice::Employee;
 sub form :Private {
-    my ($self, $model) = @_;
-    return ClubSpain::Form::BackOffice::Employee->new( model_object => $model );
+    my ($self, $listener) = @_;
+    return ClubSpain::Form::BackOffice::Employee->new({
+        listeners => [ $listener ]
+    });
 };
 
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/employee/employee.tt2'
-);
-
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/employee/employee_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'Employee',
-);
+has 'template'
+    => ( is => 'ro', default => 'backoffice/employee/employee.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/employee/employee_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'Employee' );
 
 sub default :Path {
     my ($self, $c) = @_;
@@ -61,10 +55,10 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my $form = $self->form($employee);
     $form->process(
         init_object  => {
-            name     => $self->get_object($c)->name,
-            surname  => $self->get_object($c)->surname,
-            email    => $self->get_object($c)->email,
-            password => $self->get_object($c)->password
+            first_name => $self->get_object($c)->name,
+            surname    => $self->get_object($c)->surname,
+            email      => $self->get_object($c)->email,
+            password   => $self->get_object($c)->password
         },
         params => $c->request->parameters
     );

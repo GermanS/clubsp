@@ -12,7 +12,7 @@ my $schema = $helper->schema();
 my $count = $schema->resultset('Employee')->search({})->count;
 
 my $employee = ClubSpain::Model::Employee->new(
-    name    => 'Petr',
+    first_name => 'Petr',
     surname => 'Petrov',
     email   => 'info@aviabroker.com',
     password  => 'passwd',

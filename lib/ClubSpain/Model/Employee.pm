@@ -9,11 +9,18 @@ use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Employee' });
 
 has 'id'            => ( is => 'rw' );
-has 'name'          => ( is => 'rw' );
+has 'first_name'    => ( is => 'rw' );
 has 'surname'       => ( is => 'rw' );
 has 'email'         => ( is => 'rw' );
 has 'password'      => ( is => 'rw' );
 has 'is_published'  => ( is => 'rw' );
+
+with 'ClubSpain::Model::Role::Employee';
+
+sub validate_first_name { 1 }
+sub validate_surname    { 1 }
+sub validate_email      { 1 }
+sub validate_password   { 1 }
 
 sub create {
     my $self = shift;
@@ -32,7 +39,7 @@ sub params {
     my $self = shift;
 
     return {
-        name         => $self->name,
+        name         => $self->first_name,
         surname      => $self->surname,
         email        => $self->email,
         password     => $self->password,

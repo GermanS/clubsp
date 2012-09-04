@@ -26,7 +26,7 @@ use_ok('ClubSpain::Model::Employee');
 {
     my $employee = ClubSpain::Model::Employee->new(
         id           => 777,
-        name         => 'foo',
+        first_name   => 'foo',
         surname      => 'bar',
         email        => 'baz@foo.bar',
         password     => 'pass',

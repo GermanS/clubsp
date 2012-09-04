@@ -11,7 +11,7 @@ my $helper = ClubSpain::Test->new();
 #first insert
 {
     my $employee = ClubSpain::Model::Employee->new(
-        name    => 'Petr',
+        first_name => 'Petr',
         surname => 'Petrov',
         email   => 'info@aviabroker.com',
         password  => 'passwd',
@@ -32,17 +32,17 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Employee');
-    is($employee->name, 'Petr', 'got name');
-    is($employee->surname, 'Petrov', 'got surname');
-    is($employee->email, 'info@aviabroker.com', 'got email');
-    is($employee->password, 'passwd', 'got passwd');
-    is($employee->is_published, 1, 'got is published');
+    is($result->name, 'Petr', 'got name');
+    is($result->surname, 'Petrov', 'got surname');
+    is($result->email, 'info@aviabroker.com', 'got email');
+    is($result->password, 'passwd', 'got passwd');
+    is($result->is_published, 1, 'got is published');
 }
 
 #second addition
 {
     my $employee = ClubSpain::Model::Employee->new(
-        name    => 'Ivan',
+        first_name  => 'Ivan',
         surname => 'Ivanov',
         email   => 'alc@aviabroker.com',
         password  => 'passwd',
@@ -63,9 +63,9 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Employee');
-    is($employee->name, 'Ivan', 'got name');
-    is($employee->surname, 'Ivanov', 'got surname');
-    is($employee->email, 'alc@aviabroker.com', 'got email');
-    is($employee->password, 'passwd', 'got passwd');
-    is($employee->is_published, 1, 'got is published');
+    is($result->name, 'Ivan', 'got name');
+    is($result->surname, 'Ivanov', 'got surname');
+    is($result->email, 'alc@aviabroker.com', 'got email');
+    is($result->password, 'passwd', 'got passwd');
+    is($result->is_published, 1, 'got is published');
 }

@@ -10,7 +10,7 @@ use_ok('ClubSpain::Model::Employee');
 
 my $employee = ClubSpain::Model::Employee->new(
     id          => 1,
-    name        => 'german',
+    first_name  => 'german',
     surname     => 'semenkov',
     email       => 'german.semenkov@gmail.com',
     password    => '123',
