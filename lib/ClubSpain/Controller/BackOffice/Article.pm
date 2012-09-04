@@ -8,25 +8,18 @@ BEGIN {
 
 use ClubSpain::Form::BackOffice::Article;
 sub form :Private {
-    my ($self, $model) = @_;
-    return ClubSpain::Form::BackOffice::Article->new( model_object => $model );
+    my ($self, $listener) = @_;
+    return ClubSpain::Form::BackOffice::Article->new({
+        listeners => [ $listener ]
+    });
 }
 
-
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/article/article.tt2'
-);
-
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/article/article_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'Article',
-);
+has 'template'
+    => ( is => 'ro', default => 'backoffice/article/article.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/article/article_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'Article' );
 
 
 sub default :Path {
@@ -74,19 +67,17 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        eval {
-            $article->id(
-                $self->get_object($c)->id
-            );
-            $article->weight(
-                $self->get_object($c)->weight
-            );
-            $article->is_published(
-                $self->get_object($c)->is_published
-            );
-            $article->update();
-        };
+        $article->id(
+            $self->get_object($c)->id
+        );
+        $article->weight(
+            $self->get_object($c)->weight
+        );
+        $article->is_published(
+            $self->get_object($c)->is_published
+        );
 
+        eval { $article->update(); };
         $form->process_error($@) if $@;
     }
 

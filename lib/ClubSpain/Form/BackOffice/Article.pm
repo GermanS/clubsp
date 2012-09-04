@@ -2,17 +2,11 @@ package ClubSpain::Form::BackOffice::Article;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::Field::Article';
-
-has 'model_object' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Article',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::Article',
+     'ClubSpain::Form::BackOffice::Field::Article';
 
 has '+name' => ( default => 'article' );
 
@@ -55,23 +49,24 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }};
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+#implement ClubSpain::Model::Role::Airport
+sub parent_id  { shift->field('parent_id')->value(@_); }
+sub header     { shift->field('header')->value(@_); }
+sub subheader  { shift->field('subheader')->value(@_); }
+sub body       { shift->field('body')->value(@_); }
 
-    $self->model_object->parent_id(
-        $self->field('parent_id')->value || 0
-    );
-    $self->model_object->header(
-        $self->field('header')->value
-    );
-    $self->model_object->subheader(
-        $self->field('subheader')->value
-    );
-    $self->model_object->body(
-        $self->field('body')->value
-    );
-};
+sub validate_header {
+    my ($self, $field) = @_;
+    $self->check_field('validate_header', $field);
+}
+sub validate_subheader {
+    my ($self, $field) = @_;
+    $self->check_field('validate_subheader', $field);
+}
+sub validate_body {
+    my ($self, $field) = @_;
+    $self->check_field('validate_body', $field);
+}
 
 no HTML::FormHandler::Moose;
 

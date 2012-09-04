@@ -7,7 +7,7 @@ use Moose::Role;
 sub options_parent_id {
     my $self = shift;
 
-    my $tree = $self->model_object->tree();
+    my $tree = $self->get_listener(0)->tree();
     return make_options($tree);
 
     sub make_options {
