@@ -27,7 +27,7 @@ use_ok('ClubSpain::Model::City');
         id => 100,
         country_id => 1,
         iata => 'xxx',
-        name => 'name',
+        name_en  => 'name',
         name_ru  => 'xxx',
         is_published => 0,
     );

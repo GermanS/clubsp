@@ -15,7 +15,7 @@ my $count = $schema->resultset('City')->search({})->count;
 my $city = ClubSpain::Model::City->new(
     country_id   => 1,
     iata         => 'NYC',
-    name         => 'New Vasuki',
+    name_en      => 'New Vasuki',
     name_ru      => 'Васюки',
     is_published => 1,
 );

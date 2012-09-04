@@ -13,7 +13,7 @@ my $city = ClubSpain::Model::City->new(
     id          => 1,
     country_id  => 2,
     iata        => 'MAL',
-    name        => 'New City name',
+    name_en     => 'New City name',
     name_ru     => 'New name',
     is_published=> 0,
 );

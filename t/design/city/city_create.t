@@ -14,7 +14,7 @@ my $helper = ClubSpain::Test->new();
     my $city = ClubSpain::Model::City->new(
         country_id   => 1,
         iata         => 'NYC',
-        name         => 'new york1',
+        name_en      => 'new york1',
         name_ru      => 'test',
         is_published => 1,
     );
@@ -45,7 +45,7 @@ my $helper = ClubSpain::Test->new();
     my $city = ClubSpain::Model::City->new(
         country_id   => 2,
         iata         => 'NYV',
-        name         => 'new york2',
+        name_en      => 'new york2',
         name_ru      => 'test2',
         is_published => 1,
     );

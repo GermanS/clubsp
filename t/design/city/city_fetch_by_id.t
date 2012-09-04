@@ -27,7 +27,7 @@ my $helper = ClubSpain::Test->new();
         id => 1,
         country_id => 1,
         iata => 'zzz',
-        name => 'name',
+        name_en => 'name',
         name_ru => 'xxx',
         is_published => 1,
     );
@@ -67,7 +67,7 @@ my $helper = ClubSpain::Test->new();
         id => 1000,
         country_id => 1,
         iata => 'xxx',
-        name => 'some name',
+        name_en => 'some name',
         name_ru => 'ddd',
         is_published => 1,
     );

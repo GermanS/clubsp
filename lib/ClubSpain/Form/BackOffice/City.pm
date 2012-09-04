@@ -2,18 +2,11 @@ package ClubSpain::Form::BackOffice::City;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::Field::Country',
-         'ClubSpain::Form::BackOffice::CityRole';
-
-has 'model_object' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::City',
-    required => 1,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::City',
+     'ClubSpain::Form::BackOffice::Field::Country';
 
 has '+name' => ( default => 'city' );
 
@@ -24,7 +17,7 @@ has_field 'country_id' => (
     type          => 'Select'
 );
 
-has_field 'name' => (
+has_field 'name_en' => (
     element_class => ['span9'],
     label         => 'Город (латиницей)',
     required      => 1,
@@ -56,15 +49,27 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+sub country_id { shift->field('country_id')->value(@_); }
+sub iata       { shift->field('iata')->value(@_); }
+sub name_en    { shift->field('name_en')->value(@_); }
+sub name_ru    { shift->field('name_ru')->value(@_); }
 
-    $self->model_object->country_id($self->field('country_id')->value);
-    $self->model_object->iata($self->field('iata')->value);
-    $self->model_object->name($self->field('name')->value);
-    $self->model_object->name_ru($self->field('name_ru')->value);
-};
+sub validate_country_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_country_id', $field);
+}
+sub validate_iata {
+    my ($self, $field) = @_;
+    $self->check_field('validate_iata', $field);
+}
+sub validate_name_en {
+    my ($self, $field) = @_;
+    $self->check_field('validate_name_en', $field);
+}
+sub validate_name_ru {
+    my ($self, $field) = @_;
+    $self->check_field('validate_name_ru', $field);
+}
 
 no HTML::FormHandler::Moose;
 

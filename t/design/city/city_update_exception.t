@@ -29,7 +29,7 @@ use_ok('ClubSpain::Model::City');
         id           => 777,
         country_id   => 100,
         iata         => 'MOW',
-        name         => 'name',
+        name_en      => 'name',
         name_ru      => 'name2',
         is_published => 1,
     );

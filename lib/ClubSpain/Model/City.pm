@@ -3,9 +3,7 @@ use Moose;
 use namespace::autoclean;
 use utf8;
 use parent qw(ClubSpain::Model::Base);
-
 use ClubSpain::Types;
-    with 'ClubSpain::Model::CityRole';
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'City' });
@@ -13,9 +11,27 @@ class_has '+source_name' => ( default => sub  { 'City' });
 has 'id'            => ( is => 'rw' );
 has 'country_id'    => ( is => 'rw', required => 0 );
 has 'iata'          => ( is => 'rw', required => 0, isa => 'AlphaNumericLength3' );
-has 'name'          => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
+has 'name_en'       => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
 has 'name_ru'       => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
 has 'is_published'  => ( is => 'rw', required => 0 );
+
+with 'ClubSpain::Model::Role::City';
+
+sub validate_country_id {
+    1;
+}
+sub validate_iata {
+    my ($self, $value) = @_;
+    $self->meta()->get_attribute('iata')->type_constraint->validate($value);
+}
+sub validate_name_en {
+    my ($self, $value) = @_;
+    $self->meta()->get_attribute('name_en')->type_constraint->validate($value);
+}
+sub validate_name_ru {
+    my ($self, $value) = @_;
+    $self->meta()->get_attribute('name_ru')->type_constraint->validate($value);
+}
 
 sub create {
     my $self = shift;
@@ -36,7 +52,7 @@ sub params {
     return {
         country_id   => $self->country_id,
         iata         => $self->iata,
-        name         => $self->name,
+        name         => $self->name_en,
         name_ru      => $self->name_ru,
         is_published => $self->is_published,
     };

@@ -7,27 +7,19 @@ BEGIN {
     with 'ClubSpain::Controller::BackOffice::BaseRole';
 
 use ClubSpain::Form::BackOffice::City;
-
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/city/city.tt2'
-);
-
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/city/city_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'City',
-);
-
 sub form :Private {
-    my ($self, $model) = @_;
-    return ClubSpain::Form::BackOffice::City->new( model_object => $model );
+    my ($self, $listener) = @_;
+    return ClubSpain::Form::BackOffice::City->new({
+        listeners => [ $listener ]
+    });
 }
 
+has 'template'
+    => ( is => 'ro', default => 'backoffice/city/city.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/city/city_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'City' );
 
 sub auto :Private {
     my ($self, $c) = @_;
@@ -74,7 +66,7 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     $form->process(
         init_object => {
             country_id  => $self->get_object($c)->country_id,
-            name        => $self->get_object($c)->name,
+            name_en     => $self->get_object($c)->name,
             name_ru     => $self->get_object($c)->name_ru,
             iata        => $self->get_object($c)->iata,
         },
