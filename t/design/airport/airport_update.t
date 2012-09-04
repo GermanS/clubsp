@@ -12,7 +12,7 @@ my $port = ClubSpain::Model::Airport->new(
     city_id     => 2,
     iata        => 'zzz',
     icao        => 'cccc',
-    name        => 'New Airport name',
+    airport     => 'New Airport name',
     is_published=> 0,
 );
 

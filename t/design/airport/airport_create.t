@@ -15,7 +15,7 @@ ClubSpain::Test->new();
         city_id => 1,
         iata    => 'xxx',
         icao    => 'xxxx',
-        name    => 'xxx xxxx',
+        airport => 'xxx xxxx',
         is_published => 1,
     );
 
@@ -46,7 +46,7 @@ ClubSpain::Test->new();
         city_id => 1,
         iata    => 'yyy',
         icao    => 'yyyy',
-        name    => 'yyy yyyy',
+        airport => 'yyy yyyy',
         is_published => 1,
     );
 

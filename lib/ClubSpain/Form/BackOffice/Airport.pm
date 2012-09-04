@@ -2,18 +2,11 @@ package ClubSpain::Form::BackOffice::Airport;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
 extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::AirportRole',
-         'ClubSpain::Form::BackOffice::Field::City';
-
-has 'model_object' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Airport',
-    required => 0,
-);
+with 'ClubSpain::Model::Role::Airport',
+     'ClubSpain::Form::BackOffice::Field::City';
 
 has '+name' => ( default => 'airport' );
 
@@ -24,7 +17,7 @@ has_field 'city_id' => (
     type          => 'Select'
 );
 
-has_field 'name' => (
+has_field 'airport' => (
     element_class => ['span9'],
     label         => 'Аэропорт',
     required      => 1,
@@ -56,15 +49,24 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+#implement ClubSpain::Model::Role::Airport
+sub city_id  { shift->field('city_id')->value(@_); }
+sub airport  { shift->field('airport')->value(@_); }
+sub iata     { shift->field('iata')->value(@_); }
+sub icao     { shift->field('icao')->value(@_); }
 
-    $self->model_object->city_id($self->field('city_id')->value);
-    $self->model_object->name($self->field('name')->value);
-    $self->model_object->iata($self->field('iata')->value);
-    $self->model_object->icao($self->field('icao')->value);
-};
+sub validate_airport {
+    my ($self, $field) = @_;
+    $self->check_field('validate_airport', $field);
+}
+sub validate_iata {
+    my ($self, $field) = @_;
+    $self->check_field('validate_iata', $field);
+}
+sub validate_icao {
+    my ($self, $field) = @_;
+    $self->check_field('validate_icao', $field);
+}
 
 no HTML::FormHandler::Moose;
 

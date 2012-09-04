@@ -29,7 +29,7 @@ use_ok('ClubSpain::Model::Airport');
         city_id      => 100,
         iata         => 'xxx',
         icao         => 'uudx',
-        name         => 'name',
+        airport      => 'name',
         is_published => 1,
     );
 

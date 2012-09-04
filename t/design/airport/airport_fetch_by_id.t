@@ -29,7 +29,7 @@ my $helper = ClubSpain::Test->new();
         city_id     => 1,
         iata        => 'iat',
         icao        => 'icao',
-        name        => 'name',
+        airport     => 'name',
         is_published=> 0,
     );
 
@@ -68,7 +68,7 @@ my $helper = ClubSpain::Test->new();
         city_id     => 1,
         iata        => 'xxx',
         icao        => 'xxxx',
-        name        => 'name',
+        airport     => 'name',
         is_published=> 1,
     );
 

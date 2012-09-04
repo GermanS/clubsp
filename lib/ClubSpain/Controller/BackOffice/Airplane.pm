@@ -10,11 +10,9 @@ use ClubSpain::Form::BackOffice::Airplane;
 sub form :Private {
     my ($self, $listener) = @_;
 
-    my $form = ClubSpain::Form::BackOffice::Airplane->new({
-        listeners => [$listener]
+    return ClubSpain::Form::BackOffice::Airplane->new({
+        listeners => [ $listener ]
     });
-
-    return $form;
 }
 
 has 'template'

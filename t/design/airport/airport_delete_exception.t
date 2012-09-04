@@ -28,7 +28,7 @@ use_ok('ClubSpain::Model::Airport');
         city_id => 1,
         iata    => 'bar',
         icao    => 'barx',
-        name    => 'foo bar',
+        airport => 'foo bar',
         is_published=> 0,
     );
 
