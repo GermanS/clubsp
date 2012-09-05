@@ -50,11 +50,19 @@ sub build_update_subfields {{
 }};
 
 #implement ClubSpain::Model::Role::Airport
-sub parent_id  { shift->field('parent_id')->value(@_); }
-sub header     { shift->field('header')->value(@_); }
-sub subheader  { shift->field('subheader')->value(@_); }
-sub body       { shift->field('body')->value(@_); }
+sub get_parent_id  { shift->field('parent_id')->value; }
+sub set_parent_id  { shift->field('parent_id')->value(@_); }
+sub get_header     { shift->field('header')->value; }
+sub set_header     { shift->field('header')->value(@_); }
+sub get_subheader  { shift->field('subheader')->value; }
+sub set_subheader  { shift->field('subheader')->value(@_); }
+sub get_body       { shift->field('body')->value; }
+sub set_body       { shift->field('body')->value(@_); }
 
+sub validate_parent_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_parent_id', $field);
+}
 sub validate_header {
     my ($self, $field) = @_;
     $self->check_field('validate_header', $field);

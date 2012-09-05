@@ -22,17 +22,20 @@ my $article = ClubSpain::Model::Article->new(
 my $object = $article->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::Article');
-is($object->parent_id, 0, 'got parent id');
-is($object->weight, 0, 'got weight');
-is($object->is_published, 0, 'got is published');
-is($object->header, 'header', 'got header');
-is($object->subheader, 'subheader', 'got subheader');
-is($object->body, 'body', 'got body');
-
+is $object->parent_id, 0
+    => 'got parent id';
+is $object->weight, 0
+    => 'got weight';
+is $object->is_published, 0
+    => 'got is published';
+is $object->header, 'header'
+    => 'got header';
+is $object->subheader, 'subheader'
+    => 'got subheader';
+is $object->body, 'body'
+    => 'got body';
 
 ClubSpain::Model::Article->delete($object->id);
-
-
 
 my $rs = $helper->schema->resultset('Article')->search({});
 is($rs->count, 0, 'no objects left');

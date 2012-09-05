@@ -67,13 +67,13 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        $article->id(
+        $article->set_id(
             $self->get_object($c)->id
         );
-        $article->weight(
+        $article->set_weight(
             $self->get_object($c)->weight
         );
-        $article->is_published(
+        $article->set_is_published(
             $self->get_object($c)->is_published
         );
 

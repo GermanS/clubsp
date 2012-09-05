@@ -6,33 +6,74 @@ use parent qw(ClubSpain::Model::Base);
 use Scalar::Util qw(blessed);
 use ClubSpain::Exception;
 
-has 'id'            => ( is => 'rw' );
-has 'parent_id'     => ( is => 'rw', default => sub { 0 } );
-has 'weight'        => ( is => 'rw', default => sub { 0 } );
-has 'is_published'  => ( is => 'rw' );
-has 'header'        => ( is => 'rw' );
-has 'subheader'     => ( is => 'rw' );
-has 'body'          => ( is => 'rw' );
+use MooseX::ClassAttribute;
+class_has '+source_name' => ( default => sub  { 'Article' });
+
+has 'id' => (
+    is      => 'rw',
+    reader  => 'get_id',
+    writer  => 'set_id',
+);
+has 'parent_id' => (
+    is      => 'rw',
+    default => sub { 0 },
+    reader  => 'get_parent_id',
+    writer  => 'set_parent_id',
+);
+has 'weight' => (
+    is      => 'rw',
+    default => sub { 0 },
+    reader  => 'get_weight',
+    writer  => 'set_weight',
+);
+has 'header' => (
+    is      => 'rw',
+    reader  => 'get_header',
+    writer  => 'set_header',
+);
+has 'subheader' => (
+    is => 'rw',
+    reader => 'get_subheader',
+    writer => 'set_subheader',
+);
+has 'body' => (
+    is      => 'rw',
+    reader  => 'get_body',
+    writer  => 'set_body',
+);
+has 'is_published' => (
+    is      => 'rw',
+    reader  => 'get_is_published',
+    writer  => 'set_is_published',
+);
 
 with 'ClubSpain::Model::Role::Article';
 
+sub validate_parent_id { 1; }
 sub validate_header    { 1; }
 sub validate_subheader { 1; }
 sub validate_body      { 1; }
 
+sub params {
+    my $self = shift;
+
+    return {
+        parent_id   => $self->get_parent_id,
+        weight      => $self->get_weight,
+        header      => $self->get_header,
+        subheader   => $self->get_subheader,
+        body        => $self->get_body,
+        is_published => $self->get_is_published,
+    };
+}
+
 sub create {
     my $self = shift;
 
-    my $weight = $self->list($self->parent_id)->count();
+    my $weight = $self->list($self->get_parent_id)->count();
+    $self->set_weight($weight);
 
-    $self->schema->resultset('Article')->create({
-        parent_id   => $self->parent_id,
-        weight      => $weight,
-        is_published => $self->is_published,
-        header      => $self->header,
-        subheader   => $self->subheader,
-        body        => $self->body,
-    });
+    $self->SUPER::create( $self->params() );
 }
 
 sub update {
@@ -43,22 +84,15 @@ sub update {
 
     #проверка, что нельзя устанавливать себя как потомка
     throw ClubSpain::Exception::Argument(message => 'NOT_ALLOWED')
-        if $self->id == $self->parent_id;
+        if $self->get_id == $self->get_parent_id;
 
-    my @options = $self->select_options($self->id);
+    my @options = $self->select_options($self->get_id);
     foreach my $option (@options) {
         throw ClubSpain::Exception::Argument(message => 'NOT_ALLOWED')
-            if $option->{'value'} == $self->parent_id();
+            if $option->{'value'} == $self->get_parent_id();
     }
 
-    return $self->fetch_by_id()->update({
-        parent_id    => $self->parent_id,
-        weight       => $self->weight,
-        is_published => $self->is_published,
-        header       => $self->header,
-        subheader    => $self->subheader,
-        body         => $self->body,
-    });
+    $self->SUPER::update( $self->params() );
 }
 
 sub delete {
@@ -68,22 +102,6 @@ sub delete {
         if $class->list($id)->count();
 
     $class->SUPER::delete($id);
-}
-
-sub fetch_by_id {
-    my ($self, $id) = @_;
-
-    $id = $self->id
-        if (ref $self && !$id);
-
-    my $object = $self->schema
-                      ->resultset('Article')
-                      ->find({ id => $id }, { key => 'primary' });
-
-    throw ClubSpain::Exception::Storage(message => "Couldn't find Article: $id!")
-        unless $object;
-
-    return $object;
 }
 
 sub list {
@@ -107,7 +125,7 @@ sub find_top_parent {
     return $article
         unless $article->parent_id;
 
-    $class->find_top_parent($class->fetch_by_id($article->parent_id));
+    $class->find_top_parent($class->fetch_by_id($article->get_parent_id));
 }
 
 sub move_up {

@@ -34,12 +34,18 @@ my $helper = ClubSpain::Test->new(no_populate => 1);
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Article');
-    is($result->parent_id, 0, 'got parent id');
-    is($result->is_published, 1, 'got is_published');
-    is($result->weight, 0, 'got weight');
-    is($result->header, 'header', 'got header');
-    is($result->subheader, 'subheader', 'got subheader');
-    is($result->body, 'body', 'got body');
+    is $result->parent_id, 0
+        => 'got parent id';
+    is $result->is_published, 1
+        => 'got is_published';
+    is $result->weight, 0
+        => 'got weight';
+    is $result->header, 'header'
+        => 'got header';
+    is $result->subheader, 'subheader'
+        => 'got subheader';
+    is $result->body, 'body'
+        => 'got body';
 }
 
 #second addition
@@ -67,10 +73,16 @@ my $helper = ClubSpain::Test->new(no_populate => 1);
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Article');
-    is($result->parent_id, 0, 'got parent id');
-    is($result->is_published, 0, 'got is_published');
-    is($result->weight, 1, 'got weight');
-    is($result->header, 'header2', 'got header');
-    is($result->subheader, 'subheader2', 'got subheader');
-    is($result->body, 'body2', 'got body');
+    is $result->parent_id, 0
+        => 'got parent id';
+    is $result->is_published, 0
+        => 'got is_published';
+    is $result->weight, 1
+        => 'got weight';
+    is $result->header, 'header2'
+        => 'got header';
+    is $result->subheader, 'subheader2'
+        => 'got subheader';
+    is $result->body, 'body2'
+        => 'got body';
 }

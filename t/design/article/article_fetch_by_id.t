@@ -14,12 +14,18 @@ my $helper = ClubSpain::Test->new();
 {
     my $story = ClubSpain::Model::Article->fetch_by_id(1);
     isa_ok($story, 'ClubSpain::Schema::Result::Article');
-    is($story->parent_id, 0, 'got parent_id');
-    is($story->weight, 1, 'got weight');
-    is($story->is_published, 0, 'got is published');
-    is($story->header, 'HEADER1', 'got header');
-    is($story->subheader, 'SUBHEADER1', 'got subheader');
-    is($story->body, 'BODY1', 'got body');
+    is $story->parent_id, 0
+        => 'got parent_id';
+    is $story->weight, 1
+        => 'got weight';
+    is $story->is_published, 0
+        => 'got is published';
+    is $story->header, 'HEADER1'
+        => 'got header';
+    is $story->subheader, 'SUBHEADER1'
+        => 'got subheader';
+    is $story->body, 'BODY1'
+        => 'got body';
 }
 
 
@@ -37,12 +43,18 @@ my $helper = ClubSpain::Test->new();
 
     my $object = $story->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::Article');
-    is($object->parent_id, 0, 'got parent_id');
-    is($object->weight, 1, 'got weight');
-    is($object->is_published, 0, 'got is published');
-    is($object->header, 'HEADER1', 'got header');
-    is($object->subheader, 'SUBHEADER1', 'got subheader');
-    is($object->body, 'BODY1', 'got body');
+    is $object->parent_id, 0
+        => 'got parent_id';
+    is $object->weight, 1
+        => 'got weight';
+    is $object->is_published, 0
+        => 'got is published';
+    is $object->header, 'HEADER1'
+        => 'got header';
+    is $object->subheader, 'SUBHEADER1'
+        => 'got subheader';
+    is $object->body, 'BODY1'
+        => 'got body';
 }
 
 #exception

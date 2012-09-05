@@ -16,9 +16,15 @@ my $article = ClubSpain::Model::Article->new(
 
 
 isa_ok($article, 'ClubSpain::Model::Article');
-is($article->parent_id, 0, 'got parent_id');
-is($article->weight, 1, 'got weight');
-is($article->is_published, 1, 'got header');
-is($article->header, 'header', 'got header');
-is($article->subheader, 'subheader', 'got subheader');
-is($article->body, 'body', 'got body');
+is $article->get_parent_id, 0
+    => 'got parent_id';
+is $article->get_weight, 1
+    => 'got weight';
+is $article->get_is_published, 1
+    => 'got header';
+is $article->get_header, 'header'
+    => 'got header';
+is $article->get_subheader, 'subheader'
+    => 'got subheader';
+is $article->get_body, 'body'
+    => 'got body';
