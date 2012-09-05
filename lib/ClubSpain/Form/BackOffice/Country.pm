@@ -9,7 +9,7 @@ with 'ClubSpain::Model::Role::Country';
 
 has '+name' => ( default => 'country' );
 
-has_field 'country'  => (
+has_field 'name'  => (
     element_class => ['span11'],
     label         => 'Название страны',
     required      => 1,
@@ -53,14 +53,18 @@ sub build_update_subfields {{
 }}
 
 #implement ClubSpain::Model::Role::Country
-sub country  { shift->field('country')->value(@_); }
-sub alpha2   { shift->field('alpha2')->value(@_); }
-sub alpha3   { shift->field('alpha3')->value(@_); }
-sub numerics { shift->field('numerics')->value(@_); }
+sub get_name     { shift->field('name')->value; }
+sub set_name     { shift->field('name')->value(@_); }
+sub get_alpha2   { shift->field('alpha2')->value; }
+sub set_alpha2   { shift->field('alpha2')->value(@_); }
+sub get_alpha3   { shift->field('alpha3')->value; }
+sub set_alpha3   { shift->field('alpha3')->value(@_); }
+sub get_numerics { shift->field('numerics')->value; }
+sub set_numerics { shift->field('numerics')->value(@_); }
 
-sub validate_country {
+sub validate_name {
     my ($self, $field) = @_;
-    $self->check_field('validate_country', $field);
+    $self->check_field('validate_name', $field);
 }
 sub validate_alpha2 {
     my ($self, $field) = @_;

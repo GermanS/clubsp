@@ -6,23 +6,18 @@ use namespace::autoclean;
 use Moose::Role;
 
 requires qw(
-    country
-    alpha2
-    alpha3
-    numerics
-    validate_country
-    validate_alpha2
-    validate_alpha3
-    validate_numerics
+    get_name        set_name        validate_name
+    get_alpha2      set_alpha2      validate_alpha2
+    get_alpha3      get_alpha3      validate_alpha3
+    get_numerics    set_numerics    validate_numerics
 );
 
 sub notify {
     my ($self, $object) = @_;
-
-    $self->country($object->country);
-    $self->alpha2($object->alpha2);
-    $self->alpha3($object->alpha3);
-    $self->numerics($object->numerics);
+    $self->set_name($object->get_name);
+    $self->set_alpha2($object->get_alpha2);
+    $self->set_alpha3($object->get_alpha3);
+    $self->set_numerics($object->get_numerics);
 }
 
 1;

@@ -10,7 +10,7 @@ use ClubSpain::Test;
 my $helper = ClubSpain::Test->new();
 
 my $country = ClubSpain::Model::Country->new(
-    country  => 'USA',
+    name     => 'USA',
     alpha2   => 'us',
     alpha3   => 'usa',
     numerics => 1,
@@ -31,8 +31,13 @@ if ($@) {
 }
 
 isa_ok($result, 'ClubSpain::Schema::Result::Country');
-is($result->name, 'USA', 'got name');
-is($result->alpha2, 'us', 'got alpha2');
-is($result->alpha3, 'usa', 'got alpha3');
-is($result->numerics, '1', 'got numerics');
-is($result->is_published, 1, 'got is_published');
+is $result->name, 'USA'
+    => 'got name';
+is $result->alpha2, 'us'
+    => 'got alpha2';
+is $result->alpha3, 'usa'
+    => 'got alpha3';
+is $result->numerics, '1'
+    => 'got numerics';
+is $result->is_published, 1
+    => 'got is_published';

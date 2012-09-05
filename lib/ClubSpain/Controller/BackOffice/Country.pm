@@ -58,7 +58,7 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my $form = $self->form($country);
     $form->process(
         init_object => {
-            country  => $self->get_object($c)->name,
+            name     => $self->get_object($c)->name,
             alpha2   => $self->get_object($c)->alpha2,
             alpha3   => $self->get_object($c)->alpha3,
             numerics => $self->get_object($c)->numerics
@@ -67,12 +67,14 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        eval {
-            $country->id( $self->get_object($c)->id );
-            $country->is_published( $self->get_object($c)->is_published );
-            $country->update();
-        };
+        $country->set_id(
+            $self->get_object($c)->id
+        );
+        $country->set_is_published(
+            $self->get_object($c)->is_published
+        );
 
+        eval { $country->update(); };
         $form->process_error($@) if $@;
     }
 

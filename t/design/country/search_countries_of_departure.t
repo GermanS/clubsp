@@ -15,13 +15,19 @@ use_ok('ClubSpain::Model::Country');
         ClubSpain::Model::Country->searchCountriesOfDeparture();
 
 
-    is($iterator->count, 2, 'got 2 countries');
+    is $iterator->count, 2
+        => 'got 2 countries';
 
     my $russia = $iterator->next();
-    is($russia->id, 1, 'got id');
-    is($russia->name, 'Russia', 'got name');
+    is  $russia->id, 1
+        => 'got id';
+    is $russia->name, 'Russia'
+        => 'got name';
+
 
     my $spain = $iterator->next();
-    is($spain->id, 2, 'got id');
-    is($spain->name, 'Spain', 'got name');
+    is $spain->id, 2
+        => 'got id';
+    is $spain->name, 'Spain'
+        => 'got name';
 }

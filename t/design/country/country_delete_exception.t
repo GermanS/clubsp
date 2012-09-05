@@ -25,9 +25,9 @@ use_ok('ClubSpain::Model::Country');
 {
     my $country = ClubSpain::Model::Country->new(
         id => 100,
-        country => 'name',
-        alpha2 => 'aa',
-        alpha3 => 'aaa',
+        name    => 'name',
+        alpha2  => 'aa',
+        alpha3  => 'aaa',
         numerics => 100,
         is_published => 0,
     );

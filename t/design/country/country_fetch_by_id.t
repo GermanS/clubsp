@@ -13,18 +13,23 @@ my $helper = ClubSpain::Test->new();
 {
     my $country = ClubSpain::Model::Country->fetch_by_id(1);
     isa_ok($country, 'ClubSpain::Schema::Result::Country');
-    is($country->name, 'Russia', 'got name');
-    is($country->alpha2, 'ru', 'got alpha2');
-    is($country->alpha3, 'rus', 'got alpha3');
-    is($country->numerics, 7, 'got numerics');
-    is($country->is_published, 1, 'got is_published');
+    is $country->name, 'Russia'
+        => 'got name';
+    is $country->alpha2, 'ru'
+        => 'got alpha2';
+    is $country->alpha3, 'rus'
+        => 'got alpha3';
+    is $country->numerics, 7
+        => 'got numerics';
+    is $country->is_published, 1
+        => 'got is_published';
 }
 
 #retrive
 {
     my $country = ClubSpain::Model::Country->new(
         id => 1,
-        country => 'RF',
+        name    => 'RF',
         alpha2  => 'RR',
         alpha3  => 'RRS',
         numerics => 70,
@@ -33,12 +38,18 @@ my $helper = ClubSpain::Test->new();
 
     my $object = $country->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::Country');
-    is($object->id, 1, 'got id');
-    is($object->name, 'Russia', 'got name');
-    is($object->alpha2, 'ru', 'got alpha2');
-    is($object->alpha3, 'rus', 'got alpha3');
-    is($object->numerics, 7, 'got numerics');
-    is($object->is_published, 1, 'got is_published');
+    is $object->id, 1
+        => 'got id';
+    is $object->name, 'Russia'
+        => 'got name';
+    is $object->alpha2, 'ru'
+        => 'got alpha2';
+    is $object->alpha3, 'rus'
+        => 'got alpha3';
+    is $object->numerics, 7
+        => 'got numerics';
+    is $object->is_published, 1
+        => 'got is_published';
 }
 
 #exception
@@ -64,9 +75,9 @@ my $helper = ClubSpain::Test->new();
 {
     my $country = ClubSpain::Model::Country->new(
         id => 1000,
-        country => 'russia',
-        alpha2 => 'ru',
-        alpha3 => 'rus',
+        name    => 'russia',
+        alpha2  => 'ru',
+        alpha3  => 'rus',
         numerics => 7,
         is_published => 1,
     );

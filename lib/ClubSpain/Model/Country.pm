@@ -8,18 +8,46 @@ use ClubSpain::Types;
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Country' });
 
-has 'id'            => ( is => 'rw' );
-has 'country'       => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
-has 'alpha2'        => ( is => 'rw', required => 0, isa => 'AlphaLength2' );
-has 'alpha3'        => ( is => 'rw', required => 0, isa => 'AlphaLength3' );
-has 'numerics'      => ( is => 'rw', required => 0, isa => 'NaturalLessThan1000' );
-has 'is_published'  => ( is => 'rw', required => 0 );
+has 'id' => (
+    is      => 'rw',
+    reader  => 'get_id',
+    writer  => 'set_id',
+);
+has 'name' => (
+    is      => 'rw',
+    isa     => 'StringLength2to255',
+    reader  => 'get_name',
+    writer  => 'set_name',
+);
+has 'alpha2' => (
+    is      => 'rw',
+    isa     => 'AlphaLength2',
+    reader  => 'get_alpha2',
+    writer  => 'set_alpha2',
+);
+has 'alpha3' => (
+    is      => 'rw',
+    isa     => 'AlphaLength3',
+    reader  => 'get_alpha3',
+    writer  => 'set_alpha3',
+);
+has 'numerics' => (
+    is      => 'rw',
+    isa     => 'NaturalLessThan1000',
+    reader  => 'get_numerics',
+    writer  => 'set_numerics',
+);
+has 'is_published' => (
+    is      => 'rw',
+    reader  => 'get_is_published',
+    writer  => 'set_is_published',
+);
 
 with 'ClubSpain::Model::Role::Country';
 
-sub validate_country {
+sub validate_name {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('country')->type_constraint->validate($value);
+    $self->meta()->get_attribute('name')->type_constraint->validate($value);
 }
 sub validate_alpha2 {
     my ($self, $value) = @_;
@@ -53,11 +81,11 @@ sub params {
     my $self = shift;
 
     return  {
-        name         => $self->country,
-        alpha2       => $self->alpha2,
-        alpha3       => $self->alpha3,
-        numerics     => $self->numerics,
-        is_published => $self->is_published,
+        name         => $self->get_name,
+        alpha2       => $self->get_alpha2,
+        alpha3       => $self->get_alpha3,
+        numerics     => $self->get_numerics,
+        is_published => $self->get_is_published,
     };
 }
 
