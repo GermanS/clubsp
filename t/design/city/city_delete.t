@@ -21,11 +21,16 @@ my $city = ClubSpain::Model::City->new(
 );
 my $object = $city->create();
 isa_ok($object, 'ClubSpain::Schema::Result::City');
-is($object->country_id, 1, 'got country id');
-is($object->iata, 'NYC', 'got iata code');
-is($object->name, 'New Vasuki', 'got name');
-is($object->name_ru, 'Васюки', 'got name');
-is($object->is_published, 1, 'got is_published');
+is $object->country_id, 1
+    => 'got country id';
+is $object->iata, 'NYC'
+    => 'got iata code';
+is $object->name, 'New Vasuki'
+    => 'got name';
+is $object->name_ru, 'Васюки'
+    => 'got name';
+is $object->is_published, 1
+    => 'got is_published';
 
 
 ClubSpain::Model::City->delete($object->id);

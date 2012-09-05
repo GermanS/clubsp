@@ -74,12 +74,14 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        eval {
-            $city->id( $self->get_object($c)->id );
-            $city->is_published( $self->get_object($c)->is_published );
-            $city->update();
-        };
+        $city->set_id(
+            $self->get_object($c)->id
+        );
+        $city->set_is_published(
+            $self->get_object($c)->is_published
+        );
 
+        eval { $city->update(); };
         $form->process_error($@) if $@;
     }
 

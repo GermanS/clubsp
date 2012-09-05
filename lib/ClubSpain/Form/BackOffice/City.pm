@@ -49,10 +49,14 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-sub country_id { shift->field('country_id')->value(@_); }
-sub iata       { shift->field('iata')->value(@_); }
-sub name_en    { shift->field('name_en')->value(@_); }
-sub name_ru    { shift->field('name_ru')->value(@_); }
+sub get_country_id { shift->field('country_id')->value; }
+sub set_country_id { shift->field('country_id')->value(@_); }
+sub get_iata       { shift->field('iata')->value; }
+sub set_iata       { shift->field('iata')->value(@_); }
+sub get_name_en    { shift->field('name_en')->value; }
+sub set_name_en    { shift->field('name_en')->value(@_); }
+sub get_name_ru    { shift->field('name_ru')->value; }
+sub set_name_ru    { shift->field('name_ru')->value(@_); }
 
 sub validate_country_id {
     my ($self, $field) = @_;

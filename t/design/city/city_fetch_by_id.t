@@ -14,11 +14,16 @@ my $helper = ClubSpain::Test->new();
 {
     my $city = ClubSpain::Model::City->fetch_by_id(1);
     isa_ok($city, 'ClubSpain::Schema::Result::City');
-    is($city->country_id, 1, 'got country id');
-    is($city->iata, 'MOW', 'got iata');
-    is($city->name, 'Moscow', 'got name');
-    is($city->name_ru, 'Москва', 'got name ru');
-    is($city->is_published, 1, 'got is_published');
+    is $city->country_id, 1
+        => 'got country id';
+    is $city->iata, 'MOW'
+        => 'got iata';
+    is $city->name, 'Moscow'
+        => 'got name';
+    is $city->name_ru, 'Москва'
+        => 'got name ru';
+    is $city->is_published, 1
+        => 'got is_published';
 }
 
 #retrive
@@ -34,12 +39,18 @@ my $helper = ClubSpain::Test->new();
 
     my $object = $city->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::City');
-    is($object->id, 1, 'got id');
-    is($object->country_id, 1, 'got country id');
-    is($object->iata, 'MOW', 'got iata code');
-    is($object->name, 'Moscow', 'got name');
-    is($object->name_ru, 'Москва', 'got name ru');
-    is($object->is_published, 1, 'got is_published');
+    is $object->id, 1
+        => 'got id';
+    is $object->country_id, 1
+        => 'got country id';
+    is $object->iata, 'MOW'
+        => 'got iata code';
+    is $object->name, 'Moscow'
+        => 'got name';
+    is $object->name_ru, 'Москва'
+        => 'got name ru';
+    is $object->is_published, 1
+        => 'got is_published';
 }
 
 #exception

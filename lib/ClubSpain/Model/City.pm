@@ -8,12 +8,39 @@ use ClubSpain::Types;
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'City' });
 
-has 'id'            => ( is => 'rw' );
-has 'country_id'    => ( is => 'rw', required => 0 );
-has 'iata'          => ( is => 'rw', required => 0, isa => 'AlphaNumericLength3' );
-has 'name_en'       => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
-has 'name_ru'       => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
-has 'is_published'  => ( is => 'rw', required => 0 );
+has 'id' => (
+    is      => 'rw',
+    reader  => 'get_id',
+    writer  => 'set_id',
+);
+has 'country_id' => (
+    is      => 'rw',
+    reader  => 'get_country_id',
+    writer  => 'set_country_id',
+);
+has 'iata' => (
+    is      => 'rw',
+    isa     => 'AlphaNumericLength3',
+    reader  => 'get_iata',
+    writer  => 'set_iata',
+);
+has 'name_en' => (
+    is      => 'rw',
+    isa     => 'StringLength2to255',
+    reader  => 'get_name_en',
+    writer  => 'set_name_en',
+);
+has 'name_ru' => (
+    is      => 'rw',
+    isa     => 'StringLength2to255',
+    reader  => 'get_name_ru',
+    writer  => 'set_name_ru',
+);
+has 'is_published' => (
+    is      => 'rw',
+    reader  => 'get_is_published',
+    writer  => 'set_is_published',
+);
 
 with 'ClubSpain::Model::Role::City';
 
@@ -50,11 +77,11 @@ sub params {
     my $self = shift;
 
     return {
-        country_id   => $self->country_id,
-        iata         => $self->iata,
-        name         => $self->name_en,
-        name_ru      => $self->name_ru,
-        is_published => $self->is_published,
+        country_id   => $self->get_country_id,
+        iata         => $self->get_iata,
+        name         => $self->get_name_en,
+        name_ru      => $self->get_name_ru,
+        is_published => $self->get_is_published,
     };
 }
 

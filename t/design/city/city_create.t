@@ -33,11 +33,16 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::City');
-    is($result->country_id, 1, 'got country_id');
-    is($result->iata, 'NYC', 'got iata code');
-    is($result->name, 'new york1', 'got name');
-    is($result->name_ru, 'test', 'got name ru');
-    is($result->is_published, 1, 'got is_published');
+    is $result->country_id, 1
+        => 'got country_id';
+    is $result->iata, 'NYC'
+        => 'got iata code';
+    is $result->name, 'new york1'
+        => 'got name';
+    is $result->name_ru, 'test'
+        => 'got name ru';
+    is $result->is_published, 1
+        => 'got is_published';
 }
 
 #second addition
@@ -64,9 +69,14 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::City');
-    is($result->country_id, 2, 'got country_id');
-    is($result->iata, 'NYV', 'got iata code');
-    is($result->name, 'new york2', 'got name');
-    is($result->name_ru, 'test2', 'got name ru');
-    is($result->is_published, 1, 'got is_published');
+    is $result->country_id, 2
+        => 'got country_id';
+    is $result->iata, 'NYV'
+        => 'got iata code';
+    is $result->name, 'new york2'
+        => 'got name';
+    is $result->name_ru, 'test2'
+        => 'got name ru';
+    is $result->is_published, 1
+        => 'got is_published';
 }

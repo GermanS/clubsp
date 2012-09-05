@@ -15,8 +15,13 @@ my $city = ClubSpain::Model::City->new(
 
 
 isa_ok($city, 'ClubSpain::Model::City');
-is($city->country_id, 1, 'got country_id');
-is($city->iata, 'VOG', 'got iata code');
-is($city->name_en, 'Volgograd', 'got name');
-is($city->name_ru, 'Волгоград', 'got ru name');
-is($city->is_published, 1, 'got header');
+is $city->get_country_id, 1
+    => 'got country_id';
+is $city->get_iata, 'VOG'
+    => 'got iata code';
+is $city->get_name_en, 'Volgograd'
+    => 'got name';
+is $city->get_name_ru, 'Волгоград'
+    => 'got ru name';
+is $city->get_is_published, 1
+    => 'got header';
