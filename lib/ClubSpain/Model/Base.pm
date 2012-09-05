@@ -20,7 +20,7 @@ sub schema {
 sub fetch_by_id {
     my ($self, $id) = @_;
 
-    $id = $self->id
+    $id = $self->get_id
         if (ref $self && !$id);
 
     my $object = $self->resultset()
@@ -85,13 +85,13 @@ sub result_source {
 sub set_enable {
     my $self = shift;
 
-    $self->is_published(ENABLE);
+    $self->set_is_published(ENABLE);
 }
 
 sub set_disable {
     my $self = shift;
 
-    $self->is_published(DISABLE);
+    $self->set_is_published(DISABLE);
 }
 
 __PACKAGE__->meta->make_immutable();
