@@ -6,20 +6,22 @@ use namespace::autoclean;
 use Moose::Role;
 
 requires qw(
-    airline
-    iata
-    icao
-    validate_airline
+    get_iata
+    set_iata
+    get_icao
+    set_icao
+    get_name
+    set_name
     validate_iata
     validate_icao
+    validate_name
 );
 
 sub notify {
     my ($self, $object) = @_;
-
-    $self->airline($object->airline);
-    $self->iata($object->iata);
-    $self->icao($object->icao);
+    $self->set_iata($object->get_iata);
+    $self->set_icao($object->get_icao);
+    $self->set_name($object->get_name);
 }
 
 1;

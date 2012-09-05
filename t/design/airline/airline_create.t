@@ -11,9 +11,9 @@ my $helper = ClubSpain::Test->new();
 #first insert
 {
     my $airline = ClubSpain::Model::Airline->new(
-        iata    => 'xx',
-        icao    => 'xxx',
-        airline => 'xx xxx',
+        iata => 'xx',
+        icao => 'xxx',
+        name => 'xx xxx',
         is_published => 1,
     );
 
@@ -31,18 +31,22 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Airline');
-    is($result->iata, 'xx', 'got iata code');
-    is($result->icao, 'xxx', 'got icao code');
-    is($result->name, 'xx xxx', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->iata, 'xx'
+        => 'got iata code';
+    is $result->icao, 'xxx'
+        => 'got icao code';
+    is $result->name, 'xx xxx'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }
 
 #second addition
 {
     my $airline = ClubSpain::Model::Airline->new(
-        iata    => 'yy',
-        icao    => 'yyy',
-        airline => 'yy yyy',
+        iata => 'yy',
+        icao => 'yyy',
+        name => 'yy yyy',
         is_published => 1,
     );
 
@@ -60,8 +64,12 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Airline');
-    is($result->iata, 'yy', 'got iata code');
-    is($result->icao, 'yyy', 'got icao code');
-    is($result->name, 'yy yyy', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->iata, 'yy'
+        => 'got iata code';
+    is $result->icao, 'yyy'
+        => 'got icao code';
+    is $result->name, 'yy yyy'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }

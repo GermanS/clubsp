@@ -9,7 +9,7 @@ with 'ClubSpain::Model::Role::Airline';
 
 has '+name' => ( default => 'airline' );
 
-has_field 'airline' => (
+has_field 'name' => (
     element_class => ['span11'],
     label         => 'Название авиакомпании',
     required      => 1,
@@ -45,13 +45,16 @@ sub build_update_subfields {{
 }}
 
 #implement ClubSpain::Model::Role::Airline
-sub airline { shift->field('airline')->value(@_); }
-sub iata    { shift->field('iata')->value(@_); }
-sub icao    { shift->field('icao')->value(@_); }
+sub get_name { shift->field('name')->value; }
+sub set_name { shift->field('name')->value(@_); }
+sub get_iata { shift->field('iata')->value; }
+sub set_iata { shift->field('iata')->value(@_); }
+sub get_icao { shift->field('icao')->value; }
+sub set_icao { shift->field('icao')->value(@_); }
 
-sub validate_airline {
+sub validate_name {
     my ($self, $field) = @_;
-    $self->check_field('validate_airline', $field);
+    $self->check_field('validate_name', $field);
 }
 
 sub validate_iata {

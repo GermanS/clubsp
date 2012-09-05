@@ -58,19 +58,22 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my $form = $self->form($airline);
     $form->process(
         init_object => {
-            airline => $self->get_object($c)->name,
-            iata    => $self->get_object($c)->iata,
-            icao    => $self->get_object($c)->icao
+            name => $self->get_object($c)->name,
+            iata => $self->get_object($c)->iata,
+            icao => $self->get_object($c)->icao
         },
         params => $c->request->parameters
     );
 
     if ($form->validated) {
-        eval {
-            $airline->id( $self->get_object($c)->id );
-            $airline->is_published( $self->get_object($c)->is_published );
-            $airline->update();
-        };
+        $airline->set_id(
+            $self->get_object($c)->id
+        );
+        $airline->set_is_published(
+            $self->get_object($c)->is_published
+        );
+
+        eval { $airline->update(); };
 
         $form->process_error($@) if $@;
     }

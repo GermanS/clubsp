@@ -14,29 +14,37 @@ my $helper = ClubSpain::Test->new();
 {
     my $airline = ClubSpain::Model::Airline->fetch_by_id(1);
     isa_ok($airline, 'ClubSpain::Schema::Result::Airline');
-    is($airline->iata, 'NN', 'got iata code');
-    is($airline->icao, 'MOV', 'got icao code');
-    is($airline->name, 'VIM Airlines', 'got name');
-    is($airline->is_published, 1, 'got is published');
+    is $airline->iata, 'NN'
+        => 'got iata code';
+    is $airline->icao, 'MOV'
+        => 'got icao code';
+    is $airline->name, 'VIM Airlines'
+        => 'got name';
+    is $airline->is_published, 1
+        => 'got is published';
 }
 
 
 #retrive
 {
     my $airline = ClubSpain::Model::Airline->new(
-        id          => 1,
-        iata        => 'xx',
-        icao        => 'xxx',
-        airline     => 'name',
-        is_published=> 0,
+        id   => 1,
+        iata => 'xx',
+        icao => 'xxx',
+        name => 'name',
+        is_published => 0,
     );
 
     my $object = $airline->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::Airline');
-    is($object->iata, 'NN', 'got iata');
-    is($object->icao, 'MOV', 'got icao');
-    is($object->name, 'VIM Airlines', 'got name');
-    is($object->is_published, 1, 'got is published');
+    is $object->iata, 'NN'
+        => 'got iata';
+    is $object->icao, 'MOV'
+        => 'got icao';
+    is $object->name, 'VIM Airlines'
+        => 'got name';
+    is $object->is_published, 1
+        => 'got is published';
 }
 
 #exception
@@ -61,10 +69,10 @@ my $helper = ClubSpain::Test->new();
 #exception
 {
     my $airline = ClubSpain::Model::Airline->new(
-        id          => 1000,
-        iata        => 'xx',
-        icao        => 'xxx',
-        airline     => 'name',
+        id   => 1000,
+        iata => 'xx',
+        icao => 'xxx',
+        name => 'name',
         is_published=> 1,
     );
 
