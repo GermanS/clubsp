@@ -5,7 +5,7 @@ use utf8;
 use parent qw(ClubSpain::Model::Base);
 
 use ClubSpain::Types;
-    with 'ClubSpain::Model::FareClassRole';
+    with 'ClubSpain::Model::ManufacturerRole';
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Manufacturer' });
