@@ -25,12 +25,12 @@ use_ok('ClubSpain::Model::Airplane');
 #object does not exist in database
 {
     my $airplane = ClubSpain::Model::Airplane->new(
-        id           => 777,
+        id   => 777,
+        iata => 'xxx',
+        icao => 'udxx',
+        name => 'name',
         manufacturer_id => 1,
-        iata         => 'xxx',
-        icao         => 'udxx',
-        airplane     => 'name',
-        is_published => 1,
+        is_published    => 1,
     );
 
     eval {

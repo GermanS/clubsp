@@ -13,11 +13,11 @@ my $helper = ClubSpain::Test->new();
 #first insert
 {
     my $airplane = ClubSpain::Model::Airplane->new(
+        iata => 'xxx',
+        icao => 'xxxx',
+        name => 'xxx xxxx',
         manufacturer_id => 1,
-        iata    => 'xxx',
-        icao    => 'xxxx',
-        airplane => 'xxx xxxx',
-        is_published => 1,
+        is_published    => 1,
     );
 
     my $result;
@@ -34,21 +34,26 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Airplane');
-    is($result->manufacturer_id, 1, 'got manufacturer id');
-    is($result->iata, 'xxx', 'got iata code');
-    is($result->icao, 'xxxx', 'got icao code');
-    is($result->name, 'xxx xxxx', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->manufacturer_id, 1
+        => 'got manufacturer id';
+    is $result->iata, 'xxx'
+        =>'got iata code';
+    is $result->icao, 'xxxx'
+        => 'got icao code';
+    is $result->name, 'xxx xxxx'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }
 
 #second addition
 {
     my $airplane = ClubSpain::Model::Airplane->new(
+        iata => 'yyy',
+        icao => 'yyyy',
+        name => 'yyy yyyy',
         manufacturer_id => 1,
-        iata     => 'yyy',
-        icao     => 'yyyy',
-        airplane => 'yyy yyyy',
-        is_published => 1,
+        is_published    => 1,
     );
 
     my $result;
@@ -65,9 +70,14 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Airplane');
-    is($result->manufacturer_id, 1, 'got manufacturer id');
-    is($result->iata, 'yyy', 'got iata code');
-    is($result->icao, 'yyyy', 'got icao code');
-    is($result->name, 'yyy yyyy', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->manufacturer_id, 1
+        => 'got manufacturer id';
+    is $result->iata, 'yyy'
+        => 'got iata code';
+    is $result->icao, 'yyyy'
+        => 'got icao code';
+    is $result->name, 'yyy yyyy'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }

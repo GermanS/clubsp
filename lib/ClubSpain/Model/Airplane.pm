@@ -8,18 +8,47 @@ use ClubSpain::Types;
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Airplane' });
 
-has 'id'                => ( is => 'rw' );
-has 'manufacturer_id'   => ( is => 'rw', required => 0 );
-has 'iata'              => ( is => 'rw', required => 0, isa => 'AlphaNumericLength3' );
-has 'icao'              => ( is => 'rw', required => 0, isa => 'AlphaNumericLength4' );
-has 'airplane'          => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
-has 'is_published'      => ( is => 'rw', required => 0 );
+has 'id' => (
+    is      => 'rw',
+    reader  => 'get_id',
+    writer  => 'set_id',
+);
+has 'manufacturer_id' => (
+    is      => 'rw',
+    reader  => 'get_manufacturer_id',
+    writer  => 'set_manufacturer_id',
+);
+has 'iata' => (
+    is      => 'rw',
+    isa     => 'AlphaNumericLength3',
+    reader  => 'get_iata',
+    writer  => 'set_iata',
+);
+has 'icao' => (
+    is      => 'rw',
+    isa     => 'AlphaNumericLength4',
+    reader  => 'get_icao',
+    writer  => 'set_icao',
+);
+has 'name' => (
+    is      => 'rw',
+    isa     => 'StringLength2to255',
+    reader  => 'get_name',
+    writer  => 'set_name',
+);
+has 'is_published' => (
+    is      => 'rw',
+    reader  => 'get_is_published',
+    writer  => 'set_is_published',
+);
 
 with 'ClubSpain::Model::Role::Airplane';
 
-sub validate_airplane {
+sub validate_manufacturer_id {
+}
+sub validate_name {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('airplane')->type_constraint->validate($value);
+    $self->meta()->get_attribute('name')->type_constraint->validate($value);
 }
 sub validate_iata {
     my ($self, $value) = @_;
@@ -49,11 +78,11 @@ sub params {
     my $self = shift;
 
     return {
-        manufacturer_id     => $self->manufacturer_id,
-        iata                => $self->iata,
-        icao                => $self->icao,
-        name                => $self->airplane,
-        is_published        => $self->is_published,
+        iata            => $self->get_iata,
+        icao            => $self->get_icao,
+        name            => $self->get_name,
+        manufacturer_id => $self->get_manufacturer_id,
+        is_published    => $self->get_is_published,
     };
 }
 

@@ -17,7 +17,7 @@ has_field 'manufacturer_id' => (
     type          => 'Select',
 );
 
-has_field 'airplane' => (
+has_field 'name' => (
     element_class => ['span11'],
     label         => 'Название марки самолета',
     required      => 1,
@@ -53,14 +53,18 @@ sub build_update_subfields {{
 }}
 
 #implement ClubSpain::Model::Role::Airplane
-sub manufacturer_id { shift->field('manufacturer_id')->value(@_); }
-sub airplane { shift->field('airplane')->value(@_); }
-sub iata     { shift->field('iata')->value(@_); }
-sub icao     { shift->field('icao')->value(@_); }
+sub get_name { shift->field('name')->value; }
+sub set_name { shift->field('name')->value(@_); }
+sub get_iata { shift->field('iata')->value; }
+sub set_iata { shift->field('iata')->value(@_); }
+sub get_icao { shift->field('icao')->value(@_); }
+sub set_icao { shift->field('icao')->value(@_); }
+sub get_manufacturer_id { shift->field('manufacturer_id')->value; }
+sub set_manufacturer_id { shift->field('manufacturer_id')->value(@_); }
 
-sub validate_airplane {
+sub validate_name {
     my ($self, $field) = @_;
-    $self->check_field('validate_airplane', $field);
+    $self->check_field('validate_name', $field);
 }
 sub validate_iata {
     my ($self, $field) = @_;
@@ -69,6 +73,10 @@ sub validate_iata {
 sub validate_icao {
     my ($self, $field) = @_;
     $self->check_field('validate_icao', $field);
+}
+sub validate_manufacturer_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_manufacturer_id', $field);
 }
 
 no HTML::FormHandler::Moose;

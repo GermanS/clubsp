@@ -24,11 +24,11 @@ use_ok('ClubSpain::Model::Airplane');
 
 {
     my $airplane = ClubSpain::Model::Airplane->new(
-        id              => 23,
+        id   => 23,
+        iata => 'foo',
+        icao => 'barx',
+        name => 'foo barx',
         manufacturer_id => 1,
-        iata            => 'foo',
-        icao            => 'barx',
-        airplane        => 'foo barx',
         is_published    => 0,
     );
 
