@@ -8,18 +8,47 @@ use ClubSpain::Types;
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Airport' });
 
-has 'id'            => ( is => 'rw' );
-has 'city_id'       => ( is => 'rw', required => 0 );
-has 'iata'          => ( is => 'rw', required => 0, isa => 'AlphaLength3' );
-has 'icao'          => ( is => 'rw', required => 0, isa => 'AlphaLength4' );
-has 'airport'       => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
-has 'is_published'  => ( is => 'rw', required => 0 );
+has 'id' => (
+    is      => 'rw',
+    reader  => 'get_id',
+    writer  => 'set_id',
+);
+has 'city_id' => (
+    is      => 'rw',
+    reader  => 'get_city_id',
+    writer  => 'set_city_id',
+);
+has 'iata' => (
+    is      => 'rw',
+    isa     => 'AlphaLength3',
+    reader  => 'get_iata',
+    writer  => 'set_iata',
+);
+has 'icao' => (
+    is      => 'rw',
+    isa     => 'AlphaLength4',
+    reader  => 'get_icao',
+    writer  => 'set_icao',
+);
+has 'name' => (
+    is      => 'rw',
+    isa     => 'StringLength2to255',
+    reader  => 'get_name',
+    writer  => 'set_name',
+);
+has 'is_published' => (
+    is      => 'rw',
+    reader  => 'get_is_published',
+    writer  => 'set_is_published',
+);
 
 with 'ClubSpain::Model::Role::Airport';
 
-sub validate_airport {
+sub validate_city_id {
+}
+sub validate_name {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('airport')->type_constraint->validate($value);
+    $self->meta()->get_attribute('name')->type_constraint->validate($value);
 }
 sub validate_iata {
     my ($self, $value) = @_;
@@ -29,6 +58,8 @@ sub validate_icao {
     my ($self, $value) = @_;
     $self->meta()->get_attribute('icao')->type_constraint->validate($value);
 }
+
+
 
 sub create {
     my $self = shift;
@@ -47,11 +78,11 @@ sub params {
     my $self = shift;
 
     return {
-        city_id      => $self->city_id,
-        iata         => $self->iata,
-        icao         => $self->icao,
-        name         => $self->airport,
-        is_published => $self->is_published,
+        iata         => $self->get_iata,
+        icao         => $self->get_icao,
+        name         => $self->get_name,
+        city_id      => $self->get_city_id,
+        is_published => $self->get_is_published,
     };
 }
 

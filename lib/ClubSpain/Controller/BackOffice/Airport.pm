@@ -66,21 +66,23 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my $form = $self->form($port);
     $form->process(
         init_object => {
-            city_id     => $self->get_object($c)->city_id,
-            airport     => $self->get_object($c)->name,
-            iata        => $self->get_object($c)->iata,
-            icao        => $self->get_object($c)->icao,
+            city_id => $self->get_object($c)->city_id,
+            name    => $self->get_object($c)->name,
+            iata    => $self->get_object($c)->iata,
+            icao    => $self->get_object($c)->icao,
         },
         params => $c->request->parameters
     );
 
     if ($form->validated) {
-        eval {
-            $port->id( $self->get_object($c)->id );
-            $port->is_published( $self->get_object($c)->is_published );
-            $port->update();
-        };
+        $port->set_id(
+            $self->get_object($c)->id
+        );
+        $port->set_is_published(
+            $self->get_object($c)->is_published
+        );
 
+        eval { $port->update(); };
         $form->process_error($@) if $@;
     }
 

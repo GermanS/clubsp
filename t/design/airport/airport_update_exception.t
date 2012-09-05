@@ -25,11 +25,11 @@ use_ok('ClubSpain::Model::Airport');
 #object does not exists in database
 {
     my $port = ClubSpain::Model::Airport->new(
-        id           => 777,
+        id   => 777,
+        iata => 'xxx',
+        icao => 'uudx',
+        name => 'name',
         city_id      => 100,
-        iata         => 'xxx',
-        icao         => 'uudx',
-        airport      => 'name',
         is_published => 1,
     );
 

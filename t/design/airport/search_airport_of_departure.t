@@ -13,7 +13,8 @@ use_ok('ClubSpain::Model::Airport');
     my $iterator =
         ClubSpain::Model::Airport->searchAirportsOfDeparture();
 
-    is($iterator, undef, 'got nothing');
+    is $iterator, undef
+        => 'got nothing';
 }
 
 #searchAirportsOfDeparture( city => barcelona )
@@ -21,10 +22,14 @@ use_ok('ClubSpain::Model::Airport');
     my $iterator =
         ClubSpain::Model::Airport->searchAirportsOfDeparture( city => 2);
 
-    is($iterator->count, 1, 'got one airport');
+    is $iterator->count, 1
+        => 'got one airport';
+
     my $elprat = $iterator->next();
-    is($elprat->id, 4, 'got airport id');
-    is($elprat->iata, 'BCN', 'got iate code');
+    is  $elprat->id, 4
+        => 'got airport id';
+    is $elprat->iata, 'BCN'
+        => 'got iate code';
 
 
     #set barcelona's is_published=0
@@ -33,6 +38,7 @@ use_ok('ClubSpain::Model::Airport');
     $iterator =
        ClubSpain::Model::Airport->searchAirportsOfDeparture( city => 2 );
 
-    is($iterator->count, 0, 'nothing to select');
+    is $iterator->count, 0
+        => 'nothing to select';
 }
 

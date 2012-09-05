@@ -24,12 +24,12 @@ use_ok('ClubSpain::Model::Airport');
 
 {
     my $port = ClubSpain::Model::Airport->new(
-        id      => 100,
-        city_id => 1,
-        iata    => 'bar',
-        icao    => 'barx',
-        airport => 'foo bar',
-        is_published=> 0,
+        id   => 100,
+        iata => 'bar',
+        icao => 'barx',
+        name => 'foo bar',
+        city_id      => 1,
+        is_published => 0,
     );
 
     eval {

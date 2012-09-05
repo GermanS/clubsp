@@ -14,32 +14,42 @@ my $helper = ClubSpain::Test->new();
 {
     my $port = ClubSpain::Model::Airport->fetch_by_id(1);
     isa_ok($port, 'ClubSpain::Schema::Result::Airport');
-    is($port->city_id, 1, 'got city id');
-    is($port->iata, 'DME', 'got iata code');
-    is($port->icao, 'UUDD', 'got icao code');
-    is($port->name, 'Domodedovo', 'got header');
-    is($port->is_published, 1, 'got is published');
+    is $port->city_id, 1
+        => 'got city id';
+    is $port->iata, 'DME'
+        => 'got iata code';
+    is $port->icao, 'UUDD'
+        => 'got icao code';
+    is $port->name, 'Domodedovo'
+        => 'got header';
+    is $port->is_published, 1
+        => 'got is published';
 }
 
 
 #retrive
 {
     my $port = ClubSpain::Model::Airport->new(
-        id          => 1,
-        city_id     => 1,
-        iata        => 'iat',
-        icao        => 'icao',
-        airport     => 'name',
-        is_published=> 0,
+        id   => 1,
+        iata => 'iat',
+        icao => 'icao',
+        name => 'name',
+        city_id      => 1,
+        is_published => 0,
     );
 
     my $object = $port->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::Airport');
-    is($object->city_id, 1, 'got city id');
-    is($object->iata, 'DME', 'got iata');
-    is($object->icao, 'UUDD', 'got icao');
-    is($object->name, 'Domodedovo', 'got name');
-    is($object->is_published, 1, 'got is published');
+    is $object->city_id, 1
+        => 'got city id';
+    is $object->iata, 'DME'
+        => 'got iata';
+    is $object->icao, 'UUDD'
+        => 'got icao';
+    is $object->name, 'Domodedovo'
+        => 'got name';
+    is $object->is_published, 1
+        => 'got is published';
 }
 
 #exception
@@ -64,11 +74,11 @@ my $helper = ClubSpain::Test->new();
 #exception
 {
     my $port = ClubSpain::Model::Airport->new(
-        id          => 1000,
+        id   => 1000,
+        iata => 'xxx',
+        icao => 'xxxx',
+        name => 'name',
         city_id     => 1,
-        iata        => 'xxx',
-        icao        => 'xxxx',
-        airport     => 'name',
         is_published=> 1,
     );
 
@@ -88,8 +98,3 @@ my $helper = ClubSpain::Test->new();
         }
     }
 }
-
-
-
-
-

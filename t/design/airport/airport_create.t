@@ -12,10 +12,10 @@ ClubSpain::Test->new();
 #first insert
 {
     my $port = ClubSpain::Model::Airport->new(
-        city_id => 1,
-        iata    => 'xxx',
-        icao    => 'xxxx',
-        airport => 'xxx xxxx',
+        iata => 'xxx',
+        icao => 'xxxx',
+        name => 'xxx xxxx',
+        city_id      => 1,
         is_published => 1,
     );
 
@@ -33,20 +33,25 @@ ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Airport');
-    is($result->city_id, 1, 'got city id');
-    is($result->iata, 'xxx', 'got iata code');
-    is($result->icao, 'xxxx', 'got icao code');
-    is($result->name, 'xxx xxxx', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->city_id, 1
+        => 'got city id';
+    is $result->iata, 'xxx'
+        => 'got iata code';
+    is $result->icao, 'xxxx'
+        => 'got icao code';
+    is $result->name, 'xxx xxxx'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }
 
 #second addition
 {
     my $port = ClubSpain::Model::Airport->new(
-        city_id => 1,
-        iata    => 'yyy',
-        icao    => 'yyyy',
-        airport => 'yyy yyyy',
+        iata => 'yyy',
+        icao => 'yyyy',
+        name => 'yyy yyyy',
+        city_id      => 1,
         is_published => 1,
     );
 
@@ -64,9 +69,14 @@ ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Airport');
-    is($result->city_id, 1, 'got city id');
-    is($result->iata, 'yyy', 'got iata code');
-    is($result->icao, 'yyyy', 'got icao code');
-    is($result->name, 'yyy yyyy', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->city_id, 1
+        => 'got city id';
+    is $result->iata, 'yyy'
+        => 'got iata code';
+    is $result->icao, 'yyyy'
+        => 'got icao code';
+    is $result->name, 'yyy yyyy'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }

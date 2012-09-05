@@ -17,7 +17,7 @@ has_field 'city_id' => (
     type          => 'Select'
 );
 
-has_field 'airport' => (
+has_field 'name' => (
     element_class => ['span9'],
     label         => 'Аэропорт',
     required      => 1,
@@ -50,12 +50,20 @@ sub build_update_subfields {{
 }}
 
 #implement ClubSpain::Model::Role::Airport
-sub city_id  { shift->field('city_id')->value(@_); }
-sub airport  { shift->field('airport')->value(@_); }
-sub iata     { shift->field('iata')->value(@_); }
-sub icao     { shift->field('icao')->value(@_); }
+sub get_city_id { shift->field('city_id')->value; }
+sub set_city_id { shift->field('city_id')->value(@_); }
+sub get_name    { shift->field('name')->value; }
+sub set_name    { shift->field('name')->value(@_); }
+sub get_iata    { shift->field('iata')->value; }
+sub set_iata    { shift->field('iata')->value(@_); }
+sub get_icao    { shift->field('icao')->value; }
+sub set_icao    { shift->field('icao')->value(@_); }
 
-sub validate_airport {
+sub validate_city_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_city_id', $field);
+}
+sub validate_name {
     my ($self, $field) = @_;
     $self->check_field('validate_airport', $field);
 }
