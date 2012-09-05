@@ -31,9 +31,12 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::FareClass');
-    is($result->code, 'x', 'got code');
-    is($result->name, 'name', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->code, 'x'
+        => 'got code';
+    is $result->name, 'name'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }
 
 #second addition
@@ -58,7 +61,10 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::FareClass');
-    is($result->code, 'J', 'got code');
-    is($result->name, 'yyyy', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->code, 'J'
+        => 'got code';
+    is $result->name, 'yyyy'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }

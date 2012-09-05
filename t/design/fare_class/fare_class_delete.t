@@ -1,8 +1,6 @@
 use Test::More tests => 6;
-
 use strict;
 use warnings;
-
 use_ok('ClubSpain::Model::FareClass');
 
 use lib qw(t/lib);
@@ -19,9 +17,12 @@ my $fareclass = ClubSpain::Model::FareClass->new(
 my $object = $fareclass->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::FareClass');
-is($object->code, 'x', 'got code');
-is($object->name, 'xxxxx', 'got name');
-is($object->is_published, 0, 'got is published');
+is $object->code, 'x'
+    => 'got code';
+is $object->name, 'xxxxx'
+    => 'got name';
+is $object->is_published, 0
+    => 'got is published';
 
 
 ClubSpain::Model::FareClass->delete($object->id);

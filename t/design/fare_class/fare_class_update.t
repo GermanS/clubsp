@@ -17,7 +17,11 @@ my $fareclass = ClubSpain::Model::FareClass->new(
 my $result = $fareclass->update();
 
 isa_ok($result, 'ClubSpain::Schema::Result::FareClass');
-is($result->id, 1, 'got id');
-is($result->code, 'R', 'got code');
-is($result->name, 'New FareClass name', 'got name');
-is($result->is_published, 0, 'got is_published');
+is $result->id, 1
+    => 'got id';
+is $result->code, 'R'
+    => 'got code';
+is $result->name, 'New FareClass name'
+    => 'got name';
+is $result->is_published, 0
+    => 'got is_published';

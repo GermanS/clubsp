@@ -11,8 +11,11 @@ my $class = ClubSpain::Model::FareClass->new(
     is_published => 1,
 );
 
-
 isa_ok($class, 'ClubSpain::Model::FareClass');
-is($class->code, 'B', 'got code');
-is($class->name, 'Full fare economy class', 'got name');
-is($class->is_published, 1, 'got is published');
+
+is $class->get_code, 'B'
+    =>'got code';
+is $class->get_name, 'Full fare economy class'
+    => 'got name';
+is $class->get_is_published, 1
+    => 'got is published';

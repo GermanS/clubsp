@@ -13,9 +13,12 @@ my $helper = ClubSpain::Test->new();
 {
     my $fareclass = ClubSpain::Model::FareClass->fetch_by_id(1);
     isa_ok($fareclass, 'ClubSpain::Schema::Result::FareClass');
-    is($fareclass->code, 'Y', 'got code');
-    is($fareclass->name, 'Economy', 'got name');
-    is($fareclass->is_published, 1, 'got is published');
+    is $fareclass->code, 'Y'
+        => 'got code';
+    is $fareclass->name, 'Economy'
+        => 'got name';
+    is $fareclass->is_published, 1
+        => 'got is published';
 }
 
 
@@ -30,9 +33,12 @@ my $helper = ClubSpain::Test->new();
 
     my $object = $fareclass->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::FareClass');
-    is($object->code, 'Y', 'got code');
-    is($object->name, 'Economy', 'got name');
-    is($object->is_published, 1, 'got is published');
+    is $object->code, 'Y'
+        => 'got code';
+    is $object->name, 'Economy'
+        => 'got name';
+    is $object->is_published, 1
+        => 'got is published';
 }
 
 #exception
