@@ -30,8 +30,10 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Manufacturer');
-    is($result->code, 'xxx', 'got code');
-    is($result->name, 'xxx xxxx', 'got name');
+    is $result->code, 'xxx'
+        => 'got code';
+    is $result->name, 'xxx xxxx'
+        => 'got name';
 }
 
 #second addition
@@ -55,6 +57,8 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Manufacturer');
-    is($result->code, 'yyy', 'got icao code');
-    is($result->name, 'yyy yyyy', 'got name');
+    is $result->code, 'yyy'
+        => 'got icao code';
+    is $result->name, 'yyy yyyy'
+        => 'got name';
 }

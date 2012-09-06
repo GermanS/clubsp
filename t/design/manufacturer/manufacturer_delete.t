@@ -19,8 +19,10 @@ my $manufacturer = ClubSpain::Model::Manufacturer->new(
 my $object = $manufacturer->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::Manufacturer');
-is($object->code, 'xxx', 'got code');
-is($object->name, 'xxx xxxx', 'got name');
+is $object->code, 'xxx'
+    => 'got code';
+is $object->name, 'xxx xxxx'
+    => 'got name';
 
 ClubSpain::Model::Manufacturer->delete($object->id);
 

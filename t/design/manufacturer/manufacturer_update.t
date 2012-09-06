@@ -18,6 +18,9 @@ my $manufacturer = ClubSpain::Model::Manufacturer->new(
 my $result = $manufacturer->update();
 
 isa_ok($result, 'ClubSpain::Schema::Result::Manufacturer');
-is($result->id, 1, 'got id');
-is($result->code, 'cccc', 'got code');
-is($result->name, 'New manufacturer name', 'got name');
+is $result->id, 1
+    => 'got id';
+is $result->code, 'cccc'
+    => 'got code';
+is $result->name, 'New manufacturer name'
+    => 'got name';

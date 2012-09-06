@@ -13,8 +13,10 @@ my $helper = ClubSpain::Test->new();
 {
     my $manufacturer = ClubSpain::Model::Manufacturer->fetch_by_id(2);
     isa_ok($manufacturer, 'ClubSpain::Schema::Result::Manufacturer');
-    is($manufacturer->code, 'AIRBUS', 'got  code');
-    is($manufacturer->name, 'Airbus SAS', 'got name');
+    is $manufacturer->code, 'AIRBUS'
+        => 'got  code';
+    is $manufacturer->name, 'Airbus SAS'
+        => 'got name';
 }
 
 
@@ -28,8 +30,10 @@ my $helper = ClubSpain::Test->new();
 
     my $object = $manufacturer->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::Manufacturer');
-    is($object->code, 'AIRBUS', 'got  code');
-    is($object->name, 'Airbus SAS', 'got name');
+    is $object->code, 'AIRBUS'
+        => 'got  code';
+    is $object->name, 'Airbus SAS'
+        => 'got name';
 }
 
 #exception

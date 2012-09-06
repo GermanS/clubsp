@@ -3,16 +3,39 @@ use Moose;
 use namespace::autoclean;
 use utf8;
 use parent qw(ClubSpain::Model::Base);
-
 use ClubSpain::Types;
-    with 'ClubSpain::Model::ManufacturerRole';
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Manufacturer' });
 
-has 'id'   => ( is => 'rw' );
-has 'code' => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
-has 'name' => ( is => 'rw', required => 0, isa => 'StringLength2to255' );
+has 'id' => (
+    is      => 'rw',
+    reader  => 'get_id',
+    writer  => 'set_id',
+);
+has 'code' => (
+    is      => 'rw',
+    isa     => 'StringLength2to255',
+    reader  => 'get_code',
+    writer  => 'set_code',
+);
+has 'name' => (
+    is      => 'rw',
+    isa     => 'StringLength2to255',
+    reader  => 'get_name',
+    writer  => 'set_name',
+);
+
+with 'ClubSpain::Model::Role::Manufacturer';
+
+sub validate_code {
+    my ($self, $value) = @_;
+    $self->meta()->get_attribute('code')->type_constraint->validate($value);
+}
+sub validate_name {
+    my ($self, $value) = @_;
+    $self->meta()->get_attribute('name')->type_constraint->validate($value);
+}
 
 sub create {
     my $self = shift;
@@ -31,8 +54,8 @@ sub params {
     my $self = shift;
 
     return {
-        code   => $self->code,
-        name   => $self->name,
+        code   => $self->get_code,
+        name   => $self->get_name,
     };
 }
 

@@ -6,24 +6,22 @@ BEGIN {
 };
 with 'ClubSpain::Controller::BackOffice::BaseRole';
 
+has 'template'
+    => ( is => 'ro', default => 'backoffice/manufacturer/manufacturer.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/manufacturer/manufacturer_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'manufacturer' );
+
 use ClubSpain::Form::BackOffice::Manufacturer;
+sub form :Private {
+    my ($self, $listener) = @_;
 
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/manufacturer/manufacturer.tt2'
-);
+    my $form = ClubSpain::Form::BackOffice::Manufacturer->new();
+    $form->add_listener($listener);
 
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/manufacturer/manufacturer_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'manufacturer',
-);
-
-sub form :Private { ClubSpain::Form::BackOffice::Manufacturer->new(); }
+    return $form;
+}
 
 sub default :Path {
     my ($self, $c) = @_;
@@ -35,13 +33,11 @@ sub base :Chained('/backoffice/base') :PathPart('manufacturer') :CaptureArgs(0) 
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $form = $self->form;
-    $form->manufacturer($c->model($self->model)->new());
+    my $manufacturer = $c->model($self->model)->new();
+    my $form = $self->form($manufacturer);
+
     $form->process($c->request->parameters);
-
     if ($form->validated) {
-        my $manufacturer = $form->manufacturer;
-
         eval { $manufacturer->create(); };
         $form->process_error($@) if $@;
     }
@@ -55,8 +51,8 @@ sub create :Local {
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $form = $self->form;
-    $form->manufacturer($c->model($self->model)->new());
+    my $manufacturer = $c->model($self->model)->new();
+    my $form = $self->form($manufacturer);
     $form->process(
         init_object => {
             name    => $self->get_object($c)->name,
@@ -66,12 +62,11 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        eval {
-            my $manufacturer = $form->manufacturer;
-            $manufacturer->id( $self->get_object($c)->id );
-            $manufacturer->update();
-        };
+        $manufacturer->set_id(
+            $self->get_object($c)->id
+        );
 
+        eval { $manufacturer->update(); };
         $form->process_error($@) if $@;
     }
 

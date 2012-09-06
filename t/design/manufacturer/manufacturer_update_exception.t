@@ -25,9 +25,9 @@ use_ok('ClubSpain::Model::Manufacturer');
 #object does not exists in database
 {
     my $manufacturer = ClubSpain::Model::Manufacturer->new(
-        id           => 777,
-        code         => 'code',
-        name         => 'name',
+        id      => 777,
+        code    => 'code',
+        name    => 'name',
     );
 
     eval {

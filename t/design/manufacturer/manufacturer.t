@@ -11,5 +11,7 @@ my $producer = ClubSpain::Model::Manufacturer->new(
 );
 
 isa_ok($producer, 'ClubSpain::Model::Manufacturer');
-is($producer->code, 'code', 'got manufacturer code');
-is($producer->name, 'name', 'got manufacturer name');
+is $producer->get_code, 'code'
+    => 'got manufacturer code';
+is $producer->get_name, 'name'
+    => 'got manufacturer name';

@@ -2,17 +2,10 @@ package ClubSpain::Form::BackOffice::Manufacturer;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::ManufacturerRole';
-
-has 'manufacturer' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Manufacturer',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::Manufacturer';
 
 has '+name' => ( default => 'manufacturer' );
 
@@ -41,13 +34,20 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+sub get_name { shift->field('name')->value; }
+sub set_name { shift->field('name')->value(@_); }
+sub get_code { shift->field('code')->value; }
+sub set_code { shift->field('code')->value(@_); }
 
-    $self->manufacturer->name($self->field('name')->value);
-    $self->manufacturer->code($self->field('code')->value);
-};
+sub validate_name {
+    my ($self, $field) = @_;
+    $self->check_field('validate_name', $field);
+}
+sub validate_code {
+    my ($self, $field) = @_;
+    $self->check_field('validate_code', $field);
+}
+
 
 no HTML::FormHandler::Moose;
 
