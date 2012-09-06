@@ -24,11 +24,11 @@ use_ok('ClubSpain::Model::Employee');
 
 {
     my $employee = ClubSpain::Model::Employee->new(
-        id          => 23,
-        first_name  => 'foo',
-        surname     => 'bar',
-        email       => 'foo@bar.com',
-        password    => 'baz',
+        id      => 23,
+        name    => 'foo',
+        surname => 'bar',
+        email   => 'foo@bar.com',
+        password => 'baz',
         is_published=> 0,
     );
 

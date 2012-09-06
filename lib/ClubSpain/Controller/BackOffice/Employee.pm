@@ -33,8 +33,8 @@ sub create :Local {
 
     my $employee = $c->model($self->model)->new();
     my $form = $self->form($employee);
-    $form->process($c->request->parameters);
 
+    $form->process($c->request->parameters);
     if ($form->validated) {
         $employee->set_enable();
 
@@ -55,7 +55,7 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my $form = $self->form($employee);
     $form->process(
         init_object  => {
-            first_name => $self->get_object($c)->name,
+            name       => $self->get_object($c)->name,
             surname    => $self->get_object($c)->surname,
             email      => $self->get_object($c)->email,
             password   => $self->get_object($c)->password
@@ -64,12 +64,14 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        eval {
-            $employee->id( $self->get_object($c)->id );
-            $employee->is_published( $self->get_object($c)->is_published );
-            $employee->update();
-        };
+        $employee->set_id(
+            $self->get_object($c)->id
+        );
+        $employee->set_is_published(
+            $self->get_object($c)->is_published
+        );
 
+        eval { $employee->update(); };
         $form->process_error($@) if $@;
     }
 

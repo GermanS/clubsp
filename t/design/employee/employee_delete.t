@@ -12,7 +12,7 @@ my $schema = $helper->schema();
 my $count = $schema->resultset('Employee')->search({})->count;
 
 my $employee = ClubSpain::Model::Employee->new(
-    first_name => 'Petr',
+    name    => 'Petr',
     surname => 'Petrov',
     email   => 'info@aviabroker.com',
     password  => 'passwd',
@@ -22,12 +22,16 @@ my $employee = ClubSpain::Model::Employee->new(
 my $object = $employee->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::Employee');
-is($object->name, 'Petr', 'got name');
-is($object->surname, 'Petrov', 'got surname');
-is($object->email, 'info@aviabroker.com', 'got email');
-is($object->password, 'passwd', 'got is published');
-is($object->is_published, 1, 'got is_published');
-
+is $object->name, 'Petr'
+    => 'got name';
+is $object->surname, 'Petrov'
+    => 'got surname';
+is $object->email, 'info@aviabroker.com'
+    => 'got email';
+is $object->password, 'passwd'
+    => 'got password';
+is $object->is_published, 1
+    => 'got is_published';
 
 ClubSpain::Model::Employee->delete($object->id);
 

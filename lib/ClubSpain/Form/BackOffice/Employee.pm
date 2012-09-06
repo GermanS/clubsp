@@ -7,10 +7,9 @@ use HTML::FormHandler::Moose;
 extends 'ClubSpain::Form::BackOffice::Base';
 with 'ClubSpain::Model::Role::Employee';
 
-
 has '+name' => ( default => 'employee' );
 
-has_field 'first_name' => (
+has_field 'name' => (
     element_class => ['span11'],
     label         => 'Имя сотрудника',
     required      => 1,
@@ -46,14 +45,18 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-sub first_name { shift->field('first_name')->value(@_); }
-sub surname    { shift->field('surname')->value(@_); }
-sub email      { shift->field('email')->value(@_); }
-sub password   { shift->field('password')->value(@_); }
+sub get_name    { shift->field('name')->value; }
+sub set_name    { shift->field('name')->value(@_); }
+sub get_surname { shift->field('surname')->value; }
+sub set_surname { shift->field('surname')->value(@_); }
+sub get_email   { shift->field('email')->value; }
+sub set_email   { shift->field('email')->value(@_); }
+sub get_password { shift->field('password')->value; }
+sub set_password { shift->field('password')->value(@_); }
 
-sub validate_first_name {
+sub validate_name {
     my ($self, $field) = @_;
-    $self->check_field('validate_first_name', $field);
+    $self->check_field('validate_name', $field);
 }
 sub validate_surname {
     my ($self, $field) = @_;

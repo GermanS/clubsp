@@ -25,11 +25,11 @@ use_ok('ClubSpain::Model::Employee');
 #object does not exist in database
 {
     my $employee = ClubSpain::Model::Employee->new(
-        id           => 777,
-        first_name   => 'foo',
-        surname      => 'bar',
-        email        => 'baz@foo.bar',
-        password     => 'pass',
+        id      => 777,
+        name    => 'foo',
+        surname => 'bar',
+        email   => 'baz@foo.bar',
+        password => 'pass',
         is_published => 1,
     );
 

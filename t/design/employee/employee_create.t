@@ -11,10 +11,10 @@ my $helper = ClubSpain::Test->new();
 #first insert
 {
     my $employee = ClubSpain::Model::Employee->new(
-        first_name => 'Petr',
+        name    => 'Petr',
         surname => 'Petrov',
         email   => 'info@aviabroker.com',
-        password  => 'passwd',
+        password => 'passwd',
         is_published => 1,
     );
 
@@ -32,20 +32,25 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Employee');
-    is($result->name, 'Petr', 'got name');
-    is($result->surname, 'Petrov', 'got surname');
-    is($result->email, 'info@aviabroker.com', 'got email');
-    is($result->password, 'passwd', 'got passwd');
-    is($result->is_published, 1, 'got is published');
+    is $result->name, 'Petr'
+        => 'got name';
+    is $result->surname, 'Petrov'
+        => 'got surname';
+    is $result->email, 'info@aviabroker.com'
+        => 'got email';
+    is $result->password, 'passwd'
+        => 'got passwd';
+    is $result->is_published, 1
+        => 'got is published';
 }
 
 #second addition
 {
     my $employee = ClubSpain::Model::Employee->new(
-        first_name  => 'Ivan',
+        name    => 'Ivan',
         surname => 'Ivanov',
         email   => 'alc@aviabroker.com',
-        password  => 'passwd',
+        password => 'passwd',
         is_published => 1,
     );
 
@@ -63,9 +68,14 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Employee');
-    is($result->name, 'Ivan', 'got name');
-    is($result->surname, 'Ivanov', 'got surname');
-    is($result->email, 'alc@aviabroker.com', 'got email');
-    is($result->password, 'passwd', 'got passwd');
-    is($result->is_published, 1, 'got is published');
+    is $result->name, 'Ivan'
+        => 'got name';
+    is $result->surname, 'Ivanov'
+        => 'got surname';
+    is $result->email, 'alc@aviabroker.com'
+        => 'got email';
+    is $result->password, 'passwd'
+        => 'got passwd';
+    is $result->is_published, 1
+        => 'got is published';
 }
