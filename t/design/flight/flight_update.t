@@ -11,8 +11,8 @@ use_ok('ClubSpain::Model::Flight');
 my $flight = ClubSpain::Model::Flight->new(
     id                      => 1,
     is_published            => 0,
-    departure_airport_id    => 2,
-    destination_airport_id  => 3,
+    airport_of_departure    => 2,
+    airport_of_arrival      => 3,
     airline_id              => 2,
     code                    => 321
 );
@@ -20,9 +20,15 @@ my $flight = ClubSpain::Model::Flight->new(
 my $result = $flight->update();
 
 isa_ok($result, 'ClubSpain::Schema::Result::Flight');
-is($result->id, 1, 'got id');
-is($result->is_published, 0, 'got is published');
-is($result->departure_airport_id, 2, 'got departure airport');
-is($result->destination_airport_id, 3, 'got destination airport');
-is($result->airline_id, 2, 'got airline');
-is($result->code, 321, 'got code');
+is $result->id, 1
+    => 'got id';
+is $result->is_published, 0
+    => 'got is published';
+is $result->departure_airport_id, 2
+    => 'got departure airport';
+is $result->destination_airport_id, 3
+    => 'got destination airport';
+is $result->airline_id, 2
+    => 'got airline';
+is $result->code, 321
+    => 'got code';

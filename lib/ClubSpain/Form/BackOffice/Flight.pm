@@ -2,18 +2,11 @@ package ClubSpain::Form::BackOffice::Flight;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::FlightRole',
-         'ClubSpain::Form::BackOffice::Field::Airline';
-
-has 'model_object' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Flight',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::Flight',
+     'ClubSpain::Form::BackOffice::Field::Airline';
 
 has '+name' => ( default => 'flight' );
 
@@ -49,15 +42,31 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+sub get_airport_of_departure { shift->field('AirportOfDeparture')->value; }
+sub set_airport_of_departure { shift->field('AirportOfDeparture')->value(@_); }
+sub get_airport_of_arrival { shift->field('AirportOfArrival')->value; }
+sub set_airport_of_arrival { shift->field('AirportOfArrival')->value(@_); }
+sub get_airline_id { shift->field('airline_id')->value; }
+sub set_airline_id { shift->field('airline_id')->value(@_); }
+sub get_code { shift->field('code')->value; }
+sub set_code { shift->field('code')->value(@_); }
 
-    $self->model_object->departure_airport_id($self->field('AirportOfDeparture')->value);
-    $self->model_object->destination_airport_id($self->field('AirportOfArrival')->value);
-    $self->model_object->airline_id($self->field('airline_id')->value);
-    $self->model_object->code($self->field('code')->value);
-};
+sub validate_airport_of_departure {
+    my ($self, $field) = @_;
+    $self->check_field('validate_airport_of_departure', $field);
+}
+sub validate_airport_of_arrival  {
+    my ($self, $field) = @_;
+    $self->check_field('validate_airport_of_arrival', $field);
+}
+sub validate_airline_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_airline_id', $field);
+}
+sub validate_code {
+    my ($self, $field) = @_;
+    $self->check_field('validate_code', $field);
+}
 
 no HTML::FormHandler::Moose;
 

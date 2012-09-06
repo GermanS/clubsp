@@ -9,24 +9,19 @@ with 'ClubSpain::Controller::BackOffice::BaseRole';
 use ClubSpain::Constants qw(:all);
 use ClubSpain::Form::BackOffice::Flight;
 sub form :Private {
-    my ($self, $model) = @_;
-    return ClubSpain::Form::BackOffice::Flight->new( model_object => $model );
+    my ($self, $listener) = @_;
+
+    return ClubSpain::Form::BackOffice::Flight->new({
+        listeners => [ $listener ]
+    });
 };
 
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/flight/flight.tt2'
-);
-
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/flight/flight_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'Flight',
-);
+has 'template'
+    => ( is => 'ro', default => 'backoffice/flight/flight.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/flight/flight_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'Flight' );
 
 sub default :Path {
     my ($self, $c) = @_;
@@ -104,13 +99,14 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        eval {
-            $flight->id( $self->get_object($c)->id );
-            $flight->is_published( $self->get_object($c)->is_published );
+        $flight->set_id(
+            $self->get_object($c)->id
+        );
+        $flight->set_is_published(
+            $self->get_object($c)->is_published
+        );
 
-            $flight->update();
-        };
-
+        eval { $flight->update(); };
         $form->process_error($@) if $@;
     }
 

@@ -27,8 +27,8 @@ use_ok('ClubSpain::Model::Flight');
     my $flight = ClubSpain::Model::Flight->new(
         id => 777,
         is_published => 1,
-        departure_airport_id => 1,
-        destination_airport_id => 2,
+        airport_of_departure => 1,
+        airport_of_arrival => 2,
         airline_id => 1,
         code => 123,
     );

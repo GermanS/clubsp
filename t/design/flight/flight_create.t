@@ -13,8 +13,8 @@ my $helper = ClubSpain::Test->new();
 {
     my $airline = ClubSpain::Model::Flight->new(
         is_published            => 1,
-        departure_airport_id    => 1,
-        destination_airport_id  => 2,
+        airport_of_departure    => 1,
+        airport_of_arrival      => 2,
         airline_id              => 1,
         code                    => 8331,
     );
@@ -33,19 +33,24 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Flight');
-    is($result->is_published, 1, 'got is_published flag');
-    is($result->departure_airport_id, 1, 'got departure airport');
-    is($result->destination_airport_id, 2, 'got destination airport');
-    is($result->airline_id, 1, 'got airline');
-    is($result->code, 8331, 'got code');
+    is $result->is_published, 1
+        => 'got is_published flag';
+    is $result->departure_airport_id, 1
+        => 'got departure airport';
+    is $result->destination_airport_id, 2
+        => 'got destination airport';
+    is $result->airline_id, 1
+        => 'got airline';
+    is $result->code, 8331
+        => 'got code';
 }
 
 #second addition
 {
     my $airline = ClubSpain::Model::Flight->new(
         is_published            => 1,
-        departure_airport_id    => 2,
-        destination_airport_id  => 1,
+        airport_of_departure    => 2,
+        airport_of_arrival      => 1,
         airline_id              => 1,
         code                    => 8332,
     );
@@ -64,9 +69,14 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Flight');
-    is($result->is_published, 1, 'got is_published flag');
-    is($result->departure_airport_id, 2, 'got departure airport');
-    is($result->destination_airport_id, 1, 'got destination airport');
-    is($result->airline_id, 1, 'got airline');
-    is($result->code, 8332, 'got code');
+    is $result->is_published, 1
+        => 'got is_published flag';
+    is $result->departure_airport_id, 2
+        => 'got departure airport';
+    is $result->destination_airport_id, 1
+        => 'got destination airport';
+    is $result->airline_id, 1
+        => 'got airline';
+    is $result->code, 8332
+        => 'got code';
 }

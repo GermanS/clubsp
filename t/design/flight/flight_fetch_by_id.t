@@ -13,11 +13,16 @@ my $helper = ClubSpain::Test->new();
 {
     my $flight = ClubSpain::Model::Flight->fetch_by_id(1);
     isa_ok($flight, 'ClubSpain::Schema::Result::Flight');
-    is($flight->is_published, 1, 'got is_published');
-    is($flight->departure_airport_id, 1, 'geo departure airport');
-    is($flight->destination_airport_id, 4, 'got destination airport');
-    is($flight->airline_id, 1, 'got airline');
-    is($flight->code, 331, 'got code');
+    is $flight->is_published, 1
+        => 'got is_published';
+    is $flight->departure_airport_id, 1
+        => 'geo departure airport';
+    is $flight->destination_airport_id, 4
+        => 'got destination airport';
+    is $flight->airline_id, 1
+        => 'got airline';
+    is $flight->code, 331
+        => 'got code';
 }
 
 
@@ -26,19 +31,24 @@ my $helper = ClubSpain::Test->new();
     my $flight = ClubSpain::Model::Flight->new(
         id                      => 2,
         is_published            => 1,
-        departure_airport_id    => 0,
-        destination_airport_id  => 0,
+        airport_of_departure    => 0,
+        airport_of_arrival      => 0,
         airline_id              => 0,
         code                    => 111,
     );
 
     my $object = $flight->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::Flight');
-    is($object->is_published, 1, 'got is_published');
-    is($object->departure_airport_id,   4,   'got departure airport');
-    is($object->destination_airport_id, 1,   'got destination airport');
-    is($object->airline_id,             1,   'got airline');
-    is($object->code,                   332, 'got code');
+    is $object->is_published, 1
+        => 'got is_published';
+    is $object->departure_airport_id, 4
+        =>'got departure airport';
+    is $object->destination_airport_id, 1
+        => 'got destination airport';
+    is $object->airline_id, 1,
+        => 'got airline';
+    is $object->code, 332
+        => 'got code';
 }
 
 #exception
@@ -63,10 +73,10 @@ my $helper = ClubSpain::Test->new();
 #exception
 {
     my $flight = ClubSpain::Model::Flight->new(
-        id          => 1000,
+        id                      => 1000,
         is_published            => 1,
-        departure_airport_id    => 1,
-        destination_airport_id  => 2,
+        airport_of_departure    => 1,
+        airport_of_arrival      => 2,
         airline_id              => 1,
         code                    => 123,
     );
