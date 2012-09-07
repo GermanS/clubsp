@@ -20,9 +20,12 @@ my $terminal = ClubSpain::Model::Terminal->new(
 my $object = $terminal->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::Terminal');
-is($object->airport_id, 1, 'got airport');
-is($object->name, 'xxxxx', 'got name');
-is($object->is_published, 0, 'got is published');
+is $object->airport_id, 1
+    => 'got airport';
+is $object->name, 'xxxxx'
+    => 'got name';
+is $object->is_published, 0
+    => 'got is published';
 
 
 ClubSpain::Model::Terminal->delete($object->id);

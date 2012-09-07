@@ -8,24 +8,18 @@ with 'ClubSpain::Controller::BackOffice::BaseRole';
 
 use ClubSpain::Form::BackOffice::Terminal;
 sub form :Private {
-    my ($self, $model) = @_;
-    return ClubSpain::Form::BackOffice::Terminal->new( model_object => $model );
+    my ($self, $listener) = @_;
+    return ClubSpain::Form::BackOffice::Terminal->new({
+        listeners => [ $listener ]
+    });
 }
 
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/terminal/terminal.tt2'
-);
-
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/terminal/terminal_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'Terminal',
-);
+has 'template'
+    => ( is => 'ro', default => 'backoffice/terminal/terminal.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/terminal/terminal_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'Terminal');
 
 sub auto :Private {
     my ($self, $c) = @_;
@@ -48,8 +42,8 @@ sub create :Local {
 
     my $term = $c->model($self->model)->new();
     my $form = $self->form($term);
-    $form->process($c->request->parameters);
 
+    $form->process($c->request->parameters);
     if ($form->validated) {
         $term->set_enable();
 
@@ -77,12 +71,14 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        eval {
-            $term->id( $self->get_object($c)->id );
-            $term->is_published( $self->get_object($c)->is_published );
-            $term->update();
-        };
+        $term->set_id(
+            $self->get_object($c)->id
+        );
+        $term->set_is_published(
+            $self->get_object($c)->is_published
+        );
 
+        eval { $term->update(); };
         $form->process_error($@) if $@;
     }
 

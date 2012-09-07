@@ -8,7 +8,7 @@ sub options_airport_id {
     my $self = shift;
 
     my @options;
-    my $iterator = $self->model_object->schema->resultset('Airport')->search({});
+    my $iterator = $self->get_listener(0)->schema->resultset('Airport')->search({});
     while (my $object = $iterator->next) {
         push @options, { value => $object->id, label => $object->name };
     }

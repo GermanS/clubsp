@@ -13,9 +13,12 @@ my $helper = ClubSpain::Test->new();
 {
     my $terminal = ClubSpain::Model::Terminal->fetch_by_id(1);
     isa_ok($terminal, 'ClubSpain::Schema::Result::Terminal');
-    is($terminal->airport_id, 3, 'got airport');
-    is($terminal->name, 'Terminal B', 'got name');
-    is($terminal->is_published, 1, 'got is published');
+    is $terminal->airport_id, 3
+        => 'got airport';
+    is $terminal->name, 'Terminal B'
+        => 'got name';
+    is $terminal->is_published, 1
+        => 'got is published';
 }
 
 
@@ -30,9 +33,12 @@ my $helper = ClubSpain::Test->new();
 
     my $object = $terminal->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::Terminal');
-    is($object->airport_id, 3, 'got airport');
-    is($object->name, 'Terminal B', 'got name');
-    is($object->is_published, 1, 'got is published');
+    is $object->airport_id, 3
+        => 'got airport';
+    is $object->name, 'Terminal B'
+        => 'got name';
+    is $object->is_published, 1
+        => 'got is published';
 }
 
 #exception

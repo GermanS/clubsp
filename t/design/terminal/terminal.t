@@ -11,8 +11,10 @@ my $airline = ClubSpain::Model::Terminal->new(
     is_published => 1,
 );
 
-
 isa_ok($airline, 'ClubSpain::Model::Terminal');
-is($airline->airport_id, 1, 'got airport id');
-is($airline->name, 'Sector A', 'got name');
-is($airline->is_published, 1, 'got is published');
+is $airline->get_airport_id, 1
+    => 'got airport id';
+is $airline->get_name, 'Sector A'
+    => 'got name';
+is $airline->get_is_published, 1
+    => 'got is published';

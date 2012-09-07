@@ -2,18 +2,11 @@ package ClubSpain::Form::BackOffice::Terminal;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::TerminalRole',
-         'ClubSpain::Form::BackOffice::Field::Airport';
-
-has 'model_object' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Terminal',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::Terminal',
+     'ClubSpain::Form::BackOffice::Field::Airport';
 
 has '+name' => ( default => 'terminal' );
 
@@ -42,13 +35,19 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+sub get_name { shift->field('name')->value; }
+sub set_name { shift->field('name')->value(@_); }
+sub get_airport_id { shift->field('airport_id')->value; }
+sub set_airport_id { shift->filed('airport_id')->value(@_); }
 
-    $self->model_object->airport_id($self->field('airport_id')->value);
-    $self->model_object->name($self->field('name')->value);
-};
+sub validate_airport_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_airport_id', $field);
+}
+sub validate_name {
+    my ($self, $field) = @_;
+    $self->check_field('validate_name', $field);
+}
 
 no HTML::FormHandler::Moose;
 

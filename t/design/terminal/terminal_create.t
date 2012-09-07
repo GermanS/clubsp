@@ -31,9 +31,12 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Terminal');
-    is($result->airport_id, 1, 'got airport');
-    is($result->name, 'xxxxx', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->airport_id, 1
+        => 'got airport';
+    is $result->name, 'xxxxx'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }
 
 #second addition
@@ -58,7 +61,10 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Terminal');
-    is($result->airport_id, 2, 'got airport');
-    is($result->name, 'yyyyy', 'got name');
-    is($result->is_published, 1, 'got is_published');
+    is $result->airport_id, 2
+        => 'got airport';
+    is $result->name, 'yyyyy'
+        => 'got name';
+    is $result->is_published, 1
+        => 'got is_published';
 }
