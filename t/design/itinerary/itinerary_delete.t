@@ -23,11 +23,16 @@ my $itinerary = ClubSpain::Model::Itinerary->new(
 my $object = $itinerary->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::Itinerary');
-is($object->timetable_id,  1, 'got timetable id');
-is($object->fare_class_id, 1, 'got fare class id');
-is($object->parent_id,     0, 'got parent id');
-is($object->cost,        100, 'got cost');
-is($object->is_published,  1, 'got is_published');
+is $object->timetable_id, 1
+    => 'got timetable id';
+is $object->fare_class_id, 1
+    => 'got fare class id';
+is $object->parent_id, 0
+    => 'got parent id';
+is $object->cost, 100
+    => 'got cost';
+is $object->is_published, 1
+    => 'got is_published';
 
 
 ClubSpain::Model::Itinerary->delete($object->id);

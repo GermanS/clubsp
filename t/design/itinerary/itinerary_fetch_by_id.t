@@ -15,11 +15,16 @@ my $helper = ClubSpain::Test->new();
 {
     my $itinerary = ClubSpain::Model::Itinerary->fetch_by_id(1);
     isa_ok($itinerary, 'ClubSpain::Schema::Result::Itinerary');
-    is($itinerary->timetable_id,  7, 'got timetable id');
-    is($itinerary->fare_class_id, 1, 'got fare class id');
-    is($itinerary->parent_id,     0, 'got parent id');
-    is($itinerary->cost,        175, 'got cost');
-    is($itinerary->is_published,  1, 'got is published');
+    is $itinerary->timetable_id, 7
+        => 'got timetable id';
+    is $itinerary->fare_class_id, 1
+        => 'got fare class id';
+    is $itinerary->parent_id, 0
+        => 'got parent id';
+    is $itinerary->cost, 175
+        => 'got cost';
+    is $itinerary->is_published, 1
+        => 'got is published';
 }
 
 
@@ -36,11 +41,16 @@ my $helper = ClubSpain::Test->new();
 
     my $object = $itinerary->fetch_by_id();
     isa_ok($object, 'ClubSpain::Schema::Result::Itinerary');
-    is($object->timetable_id,  7, 'got timetable id');
-    is($object->fare_class_id, 1, 'got fare class id');
-    is($object->parent_id,     0, 'got parent id');
-    is($object->cost,        175, 'got cost');
-    is($object->is_published,  1, 'got is_published');
+    is $object->timetable_id,  7
+        => 'got timetable id';
+    is $object->fare_class_id, 1
+        => 'got fare class id';
+    is $object->parent_id,     0
+        => 'got parent id';
+    is $object->cost,        175
+        => 'got cost';
+    is $object->is_published,  1
+        => 'got is_published';
 }
 
 #exception

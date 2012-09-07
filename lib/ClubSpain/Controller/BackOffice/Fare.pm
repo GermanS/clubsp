@@ -7,22 +7,20 @@ BEGIN {
 with 'ClubSpain::Controller::BackOffice::BaseRole';
 
 use ClubSpain::Constants qw(:all);
+
 use ClubSpain::Form::BackOffice::Itinerary;
 sub form :Private {
-    my ($self, $model) = @_;
-    return ClubSpain::Form::BackOffice::Itinerary->new( model_object => $model );
+    my ($self, $listener) = @_;
+
+    return ClubSpain::Form::BackOffice::Itinerary->new({
+        listeners => [ $listener ]
+    })
 };
 
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/itinerary/itinerary_search_RT.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'Itinerary',
-);
-
+has 'template'
+    => ( is => 'ro', default => 'backoffice/itinerary/itinerary_search_RT.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'Itinerary' );
 
 sub default :Path {
     my ($self, $c) = @_;
@@ -37,8 +35,7 @@ sub default :Path {
         for ($timetable1, $timetable2) {
             if ($_) {
                 my $route = $c->model('TimeTable')->fetch_by_id($_);
-                push @route, $route->id
-                    if $_ == $route->id;
+                push @route, $route->id if $_ == $route->id;
             }
         };
 
@@ -139,13 +136,14 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        eval {
-            $fare->id( $self->get_object($c)->id );
-            $fare->is_published( $self->get_object($c)->is_published );
+        $fare->set_id(
+            $self->get_object($c)->id
+        );
+        $fare->set_is_published(
+            $self->get_object($c)->is_published
+        );
 
-            $fare->update_fare();
-        };
-
+        eval { $fare->update_fare(); };
         $form->process_error($@) if $@;
     }
 

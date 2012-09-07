@@ -2,17 +2,11 @@ package ClubSpain::Form::BackOffice::Itinerary;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::Field::FareClass';
-
-has 'model_object' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Itinerary',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::Itinerary',
+     'ClubSpain::Form::BackOffice::Field::FareClass';
 
 has '+name' => ( default => 'itinerary' );
 
@@ -44,23 +38,34 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+#TODO: !!!
+sub get_timetable_id { shift->field('Flight1')->value; }
+sub set_timetable_id { shift->field('Flight1')->value(@_); }
+sub get_return_segment { shift->field('Flight2')->value; }
+sub set_return_segment { shift->field('Flight2')->value(@_); }
+sub get_fare_class_id { shift->field('fare_class_id')->value; }
+sub set_fare_class_id { shift->field('fare_class_id')->value(@_); }
+sub get_cost { shift->field('cost')->value; }
+sub set_cost { shift->field('cost')->value; }
 
-    $self->model_object->timetable_id(
-        $self->field('Flight1')->value
-    );
-    $self->model_object->return_segment(
-        $self->field('Flight2')->value
-    );
-    $self->model_object->fare_class_id(
-        $self->field('fare_class_id')->value
-    );
-    $self->model_object->cost(
-        $self->field('cost')->value
-    );
-};
+#!!! идентификатор первого расписания
+sub validate_timetable_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_timetable_id', $field);
+}
+#!!! идентифкатор второго расписания
+sub validate_return_segment {
+    my ($self, $field) = @_;
+    $self->check_field('validate_return_segment', $field);
+}
+sub validate_fare_class_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_fare_class_id', $field);
+}
+sub validate_cost {
+    my ($self, $field) = @_;
+    $self->check_field('validate_cost', $field);
+}
 
 no HTML::FormHandler::Moose;
 

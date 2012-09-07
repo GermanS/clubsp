@@ -20,9 +20,15 @@ my $itinerary = ClubSpain::Model::Itinerary->new(
 my $result = $itinerary->update();
 
 isa_ok($result, 'ClubSpain::Schema::Result::Itinerary');
-is($result->id, 1, 'got id');
-is($result->timetable_id,  7, 'got timetable id');
-is($result->fare_class_id, 2, 'got fare class id');
-is($result->parent_id,     0, 'got parent id');
-is($result->cost,        200, 'got cost');
-is($result->is_published,  1, 'got is_published');
+is $result->id, 1
+    => 'got id';
+is $result->timetable_id,  7
+    => 'got timetable id';
+is $result->fare_class_id, 2
+    => 'got fare class id';
+is $result->parent_id, 0
+    => 'got parent id';
+is $result->cost, 200
+    => 'got cost';
+is $result->is_published,  1
+    => 'got is_published';

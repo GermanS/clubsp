@@ -34,11 +34,16 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Itinerary');
-    is($result->timetable_id,  1, 'got timetable id');
-    is($result->fare_class_id, 1, 'got fare class id');
-    is($result->parent_id,     0, 'got parent');
-    is($result->cost,        100, 'got cost');
-    is($result->is_published,  1, 'got is published');
+    is $result->timetable_id,  1
+        => 'got timetable id';
+    is $result->fare_class_id, 1
+        => 'got fare class id';
+    is $result->parent_id, 0
+        => 'got parent';
+    is $result->cost, 100
+        => 'got cost';
+    is $result->is_published, 1
+        => 'got is published';
 }
 
 #second addition
@@ -65,9 +70,14 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Itinerary');
-    is($result->timetable_id,  2, 'got timetable id');
-    is($result->fare_class_id, 2, 'got fare class id');
-    is($result->parent_id,     0, 'got parent id');
-    is($result->cost,          0, 'got cost');
-    is($result->is_published,  1, 'got is_published');
+    is $result->timetable_id,  2
+        => 'got timetable id';
+    is $result->fare_class_id, 2
+        => 'got fare class id';
+    is $result->parent_id, 0
+        => 'got parent id';
+    is $result->cost, 0
+        => 'got cost';
+    is $result->is_published, 1
+        => 'got is_published';
 }

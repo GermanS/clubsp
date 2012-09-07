@@ -9,13 +9,49 @@ use ClubSpain::Constants qw(:all);
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Itinerary' });
 
-has 'id'             => ( is => 'rw' );
-has 'is_published'   => ( is => 'rw' );
-has 'timetable_id'   => ( is => 'rw' );
-has 'return_segment' => ( is => 'rw' );
-has 'fare_class_id'  => ( is => 'rw' );
-has 'parent_id'      => ( is => 'rw', default => sub { 0 } );
-has 'cost'           => ( is => 'rw' );
+has 'id' => (
+    is      => 'rw',
+    reader  => 'get_id',
+    writer  => 'set_id',
+);
+has 'is_published' => (
+    is      => 'rw',
+    reader  => 'get_is_published',
+    writer  => 'set_is_published',
+);
+has 'timetable_id' => (
+    is      => 'rw',
+    reader  => 'get_timetable_id',
+    writer  => 'set_timetable_id',
+);
+has 'return_segment' => (
+    is      => 'rw',
+    reader  => 'get_return_segment',
+    writer  => 'set_return_segment',
+);
+has 'fare_class_id' => (
+    is      => 'rw',
+    reader  => 'get_fare_class_id',
+    writer  => 'set_fare_class_id',
+);
+has 'parent_id' => (
+    is      => 'rw',
+    default => sub { 0 },
+    reader  => 'get_parent_id',
+    writer  => 'set_parent_id',
+);
+has 'cost' => (
+    is      => 'rw',
+    reader  => 'get_cost',
+    writer  => 'set_cost',
+);
+
+with 'ClubSpain::Model::Role::Itinerary';
+
+sub validate_timetable_id  { 1; }
+sub validate_fare_class_id { 1; }
+sub validate_parent_id     { 1; }
+sub validate_cost          { 1; }
 
 sub create {
     my $self = shift;
@@ -36,10 +72,10 @@ sub insert_fare {
 
     my $direct = $self->create();
 
-    if ($self->return_segment) {
+    if ($self->get_return_segment) {
         my $return = $self->new({
-            timetable_id  => $self->return_segment,
-            fare_class_id => $self->fare_class_id,
+            timetable_id  => $self->get_return_segment,
+            fare_class_id => $self->get_fare_class_id,
             parent_id     => $direct->id,
             cost          => 0,
             is_published  => ENABLE,
@@ -58,8 +94,8 @@ sub update_fare {
     my $return = $direct->next_route();
     if ($return) {
         $return->update({
-            is_published  => $self->is_published,
-            fare_class_id => $self->fare_class_id,
+            is_published  => $self->get_is_published,
+            fare_class_id => $self->get_fare_class_id,
             cost          => 0
         });
     }
@@ -80,11 +116,11 @@ sub params {
     my $self = shift;
 
     return {
-        is_published  => $self->is_published,
-        timetable_id  => $self->timetable_id,
-        fare_class_id => $self->fare_class_id,
-        parent_id     => $self->parent_id,
-        cost          => $self->cost,
+        is_published  => $self->get_is_published,
+        timetable_id  => $self->get_timetable_id,
+        fare_class_id => $self->get_fare_class_id,
+        parent_id     => $self->get_parent_id,
+        cost          => $self->get_cost,
     };
 }
 

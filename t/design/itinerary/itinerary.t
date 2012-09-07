@@ -15,8 +15,13 @@ my $itinerary = ClubSpain::Model::Itinerary->new(
 );
 
 isa_ok($itinerary, 'ClubSpain::Model::Itinerary');
-is($itinerary->timetable_id,  1, 'got timetable id');
-is($itinerary->fare_class_id, 2, 'got fare class id');
-is($itinerary->parent_id, 0, 'got fare id');
-is($itinerary->cost, 100, 'got cost');
-is($itinerary->is_published, 1, 'got is_published');
+is $itinerary->get_timetable_id,  1
+    => 'got timetable id';
+is $itinerary->get_fare_class_id, 2
+    => 'got fare class id';
+is $itinerary->get_parent_id, 0
+    => 'got fare id';
+is $itinerary->get_cost, 100
+    => 'got cost';
+is $itinerary->get_is_published, 1
+    => 'got is_published';
