@@ -38,16 +38,26 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::TimeTable');
-    is($result->is_published, 1, 'got is published flag');
-    is($result->is_free, 1, 'got is free flag');
-    is($result->flight_id, 1, 'got flight id');
-    is($result->airplane_id, 1, 'got airplane id');
-    is($result->departure_date, '2011-01-21', 'got departure date');
-    is($result->departure_time, '20:30', 'got departure time');
-    is($result->arrival_date, '2011-01-22', 'got arrival date');
-    is($result->arrival_time, '01:20', 'got arrival time');
-    is($result->departure_terminal_id, undef, 'got departure terminal id');
-    is($result->arrival_terminal_id, undef, 'got arrival terminal id');
+    is $result->is_published, 1
+        => 'got is published flag';
+    is $result->is_free, 1
+        => 'got is free flag';
+    is $result->flight_id, 1
+        => 'got flight id';
+    is $result->airplane_id, 1
+        => 'got airplane id';
+    is $result->departure_date, '2011-01-21'
+        => 'got departure date';
+    is $result->departure_time, '20:30'
+        => 'got departure time';
+    is $result->arrival_date, '2011-01-22'
+        => 'got arrival date';
+    is $result->arrival_time, '01:20'
+        => 'got arrival time';
+    is $result->departure_terminal_id, undef
+        => 'got departure terminal id';
+    is $result->arrival_terminal_id, undef
+        => 'got arrival terminal id';
 
 }
 
@@ -80,14 +90,24 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::TimeTable');
-    is($result->is_published, 1, 'got is published flag');
-    is($result->is_free, 1, 'got is free flag');
-    is($result->flight_id, 2, 'got flight id');
-    is($result->airplane_id, 1, 'got airplane id');
-    is($result->departure_date, '2011-01-22', 'got departure date');
-    is($result->departure_time, '05:30', 'got departure time');
-    is($result->arrival_date, '2011-01-22', 'got arrival date');
-    is($result->arrival_time, '15:20', 'got arrival time');
-    is($result->departure_terminal_id, undef, 'got departure terminal id');
-    is($result->arrival_terminal_id, undef, 'got arrival terminal id');
+    is $result->is_published, 1
+        => 'got is published flag';
+    is $result->is_free, 1
+        => 'got is free flag';
+    is $result->flight_id, 2
+        => 'got flight id';
+    is $result->airplane_id, 1
+        => 'got airplane id';
+    is $result->departure_date, '2011-01-22'
+        => 'got departure date';
+    is $result->departure_time, '05:30'
+        => 'got departure time';
+    is $result->arrival_date, '2011-01-22'
+        => 'got arrival date';
+    is $result->arrival_time, '15:20'
+        => 'got arrival time';
+    is $result->departure_terminal_id, undef
+        => 'got departure terminal id';
+    is $result->arrival_terminal_id, undef
+        => 'got arrival terminal id';
 }

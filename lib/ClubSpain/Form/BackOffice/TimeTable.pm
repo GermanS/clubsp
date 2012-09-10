@@ -2,18 +2,11 @@ package ClubSpain::Form::BackOffice::TimeTable;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-    with 'ClubSpain::Form::BackOffice::Field::Airplane';
-#         'ClubSpain::Form::BackOffice::TimeTableRole';
-
-has 'model_object' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::TimeTable',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::TimeTable',
+     'ClubSpain::Form::BackOffice::Field::Airplane';
 
 has '+name' => ( default => 'flight' );
 
@@ -67,24 +60,50 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+sub get_flight_id { shift->field('Flight')->value; }
+sub set_flight_id { shift->field('Flight')->value(@_); }
+sub get_airplane_id { shift->field('airplane_id')->value; }
+sub set_airplane_id { shift->field('airplane_id')->value(@_); }
+sub get_departure_date { shift->field('DateOfDeparture')->value; }
+sub set_departure_date { shift->field('DateOfDeparture')->value(@_); }
+sub get_departure_time { shift->field('TimeOfDeparture')->value; }
+sub set_departure_time { shift->field('TimeOfDeparture')->value(@_); }
+sub get_arrival_date { shift->field('DateOfArrival')->value; }
+sub set_arrival_date { shift->field('DateOfArrival')->value(@_); }
+sub get_arrival_time { shift->field('TimeOfArrival')->value; }
+sub set_arrival_time { shift->field('TimeOfArrival')->value(@_); }
 
-    my %form2database = (
-        flight_id       => 'Flight',
-        airplane_id     => 'airplane_id',
-        departure_date  => 'DateOfDeparture',
-        departure_time  => 'TimeOfDeparture',
-        arrival_date    => 'DateOfArrival',
-        arrival_time    => 'TimeOfArrival'
-    );
+sub validate_Flight { shift->validate_flight_id(shift); }
+sub validate_flight_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_flight_id', $field);
+}
+sub validate_airplane_id {
+    my ($self, $field) = @_;
+    $self->check_field('validate_airplane_id', $field);
+}
+sub validate_DateOfDeparture { shift->validate_departure_date(@_); };
+sub validate_departure_date {
+    my ($self, $field) = @_;
+    $self->check_field('validate_departure_date', $field);
+};
 
-    while (my ($database, $form)  = each (%form2database)) {
-        $self->model_object->$database(
-            $self->field($form)->value
-        );
-    }
+sub validate_TimeOfDeparture { shift->validate_departure_time(@_); }
+sub validate_departure_time {
+    my ($self, $field) = @_;
+    $self->check_field('validate_departure_time', $field);
+};
+
+sub validate_DateOfArrival { shift->validate_arrival_date(@_); }
+sub validate_arrival_date {
+    my ($self, $field) = @_;
+    $self->check_field('validate_arrival_date', $field);
+};
+
+sub validate_TimeOfArrival { shift->validate_arrival_time(@_); }
+sub validate_arrival_time {
+    my ($self, $field) = @_;
+    $self->check_field('validate_arrival_time', $field);
 };
 
 no HTML::FormHandler::Moose;

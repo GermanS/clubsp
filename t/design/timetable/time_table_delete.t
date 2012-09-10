@@ -26,16 +26,26 @@ my $timetable = ClubSpain::Model::TimeTable->new(
 my $object = $timetable->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::TimeTable');
-is($object->is_published, 1, 'got is published flag');
-is($object->is_free, 1, 'got is free flag');
-is($object->flight_id, 1, 'got flight id');
-is($object->airplane_id, 1, 'got airplane id');
-is($object->departure_date, '2011-01-21', 'got departure date');
-is($object->departure_time, '20:30', 'got departure time');
-is($object->arrival_date, '2011-01-22', 'got arrival date');
-is($object->arrival_time, '01:20', 'got arrival time');
-is($object->departure_terminal_id, undef, 'got departure terminal id');
-is($object->arrival_terminal_id, undef, 'got arrival terminal id');
+is $object->is_published, 1,
+    => 'got is published flag';
+is $object->is_free, 1
+    => 'got is free flag';
+is $object->flight_id, 1
+    => 'got flight id';
+is $object->airplane_id, 1
+    => 'got airplane id';
+is $object->departure_date, '2011-01-21'
+    => 'got departure date';
+is $object->departure_time, '20:30'
+    => 'got departure time';
+is $object->arrival_date, '2011-01-22'
+    => 'got arrival date';
+is $object->arrival_time, '01:20'
+    => 'got arrival time';
+is $object->departure_terminal_id, undef
+    => 'got departure terminal id';
+is $object->arrival_terminal_id, undef
+    => 'got arrival terminal id';
 
 
 ClubSpain::Model::TimeTable->delete($object->id);

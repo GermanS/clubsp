@@ -9,24 +9,18 @@ with 'ClubSpain::Controller::BackOffice::BaseRole';
 use ClubSpain::Constants qw(:all);
 use ClubSpain::Form::BackOffice::TimeTable;
 sub form :Private {
-    my ($self, $model) = @_;
-    return ClubSpain::Form::BackOffice::TimeTable->new( model_object => $model );
+    my ($self, $listener) = @_;
+    return ClubSpain::Form::BackOffice::TimeTable->new({
+        listeners => [ $listener ]
+    });
 };
 
-has 'template' => (
-    is => 'ro',
-    default => 'backoffice/timetable/timetable.tt2'
-);
-
-has 'template_form' => (
-    is => 'ro',
-    default => 'backoffice/timetable/timetable_form.tt2'
-);
-
-has 'model' => (
-    is => 'ro',
-    default => 'Timetable',
-);
+has 'template'
+    => ( is => 'ro', default => 'backoffice/timetable/timetable.tt2' );
+has 'template_form'
+    => ( is => 'ro', default => 'backoffice/timetable/timetable_form.tt2' );
+has 'model'
+    => ( is => 'ro', default => 'Timetable' );
 
 
 sub default :Path {
@@ -70,7 +64,7 @@ sub create :Local {
 
     if ($form->validated) {
         $timetable->set_enable();
-        $timetable->is_free(FREE);
+        $timetable->set_is_free(FREE);
 
         eval { $timetable->create(); };
         $form->process_error($@) if $@;
@@ -104,14 +98,17 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
     );
 
     if ($form->validated) {
-        eval {
-            $timetable->id( $self->get_object($c)->id );
-            $timetable->is_published( $self->get_object($c)->is_published );
-            $timetable->is_free( $self->get_object($c)->is_free );
+        $timetable->set_id(
+            $self->get_object($c)->id
+        );
+        $timetable->set_is_published(
+            $self->get_object($c)->is_published
+        );
+        $timetable->set_is_free(
+            $self->get_object($c)->is_free
+        );
 
-            $timetable->update();
-        };
-
+        eval { $timetable->update(); };
         $form->process_error($@) if $@;
     }
 

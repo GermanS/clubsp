@@ -6,8 +6,6 @@ use ClubSpain::Types;
 use ClubSpain::Constants qw(:all);
 
 use MooseX::ClassAttribute;
-    with 'ClubSpain::Model::TimeTableRole';
-
 class_has '+source_name' => ( default => sub  { 'TimeTable' });
 
 =head2 Поля
@@ -54,17 +52,73 @@ class_has '+source_name' => ( default => sub  { 'TimeTable' });
 
 =cut
 
-has 'id'                    => ( is => 'rw' );
-has 'is_published'          => ( is => 'rw' );
-has 'is_free'               => ( is => 'rw' );
-has 'flight_id'             => ( is => 'rw' );
-has 'departure_date'        => ( is => 'rw' );
-has 'departure_time'        => ( is => 'rw' );
-has 'arrival_date'          => ( is => 'rw' );
-has 'arrival_time'          => ( is => 'rw' );
-has 'airplane_id'           => ( is => 'rw' );
-has 'departure_terminal_id' => ( is => 'rw' );
-has 'arrival_terminal_id'   => ( is => 'rw' );
+has 'id'=> (
+    is      => 'rw',
+    reader  => 'get_id',
+    writer  => 'set_id',
+);
+has 'is_published' => (
+    is      => 'rw',
+    reader  => 'get_is_published',
+    writer  => 'set_is_published',
+);
+has 'is_free' => (
+    is      => 'rw',
+    reader  => 'get_is_free',
+    writer  => 'set_is_free',
+);
+has 'flight_id' => (
+    is      => 'rw',
+    reader  => 'get_flight_id',
+    writer  => 'set_flight_id',
+);
+has 'departure_date' => (
+    is      => 'rw',
+    reader  => 'get_departure_date',
+    writer  => 'set_departure_date',
+);
+has 'departure_time' => (
+    is      => 'rw',
+    reader  => 'get_departure_time',
+    writer  => 'set_departure_time',
+);
+has 'arrival_date' => (
+    is      => 'rw',
+    reader  => 'get_arrival_date',
+    writer  => 'set_arrival_date',
+);
+has 'arrival_time' => (
+    is      => 'rw',
+    reader  => 'get_arrival_time',
+    writer  => 'set_arrival_time',
+);
+has 'airplane_id' => (
+    is      => 'rw',
+    reader  => 'get_airplane_id',
+    writer  => 'set_airplane_id',
+);
+
+with 'ClubSpain::Model::Role::TimeTable';
+
+sub validate_flight_id   { 1; }
+sub validate_airplane_id { 1; }
+sub validate_departure_date {
+    my ($self, $value) = @_;
+#    $self->meta()->get_attribute('departure_date')->type_constraint->validate($value);
+}
+sub validate_departure_time {
+    my ($self, $value) = @_;
+#    $self->meta()->get_attribute('departure_time')->type_constraint->validate($value);
+}
+sub validate_arrival_date {
+    my ($self, $value) = @_;
+#    $self->meta()->get_attribute('arrival_date')->type_constraint->validate($value);
+}
+sub validate_arrival_time {
+    my ($self, $value) = @_;
+#    $self->meta()->get_attribute('arrival_time')->type_constraint->validate($value);
+}
+
 
 =head2 create()
 
@@ -95,16 +149,14 @@ sub params {
     my $self = shift;
 
     return {
-        is_published    => $self->is_published,
-        is_free         => $self->is_free,
-        flight_id       => $self->flight_id,
-        departure_date  => $self->departure_date,
-        departure_time  => $self->departure_time,
-        arrival_date    => $self->arrival_date,
-        arrival_time    => $self->arrival_time,
-        airplane_id     => $self->airplane_id,
-        departure_terminal_id   => $self->departure_terminal_id,
-        arrival_terminal_id     => $self->arrival_terminal_id,
+        is_published    => $self->get_is_published,
+        is_free         => $self->get_is_free,
+        flight_id       => $self->get_flight_id,
+        departure_date  => $self->get_departure_date,
+        departure_time  => $self->get_departure_time,
+        arrival_date    => $self->get_arrival_date,
+        arrival_time    => $self->get_arrival_time,
+        airplane_id     => $self->get_airplane_id,
     };
 }
 
