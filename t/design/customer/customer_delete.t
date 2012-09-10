@@ -23,12 +23,18 @@ my $customer = ClubSpain::Model::Customer->new(
 my $object = $customer->create();
 
 isa_ok($object, 'ClubSpain::Schema::Result::Customer');
-is($object->name, 'Jose', 'got name');
-is($object->surname, 'Cuesta', 'got surname');
-is($object->email, 'info@mail.com', 'got email');
-is($object->passwd, 'passwd', 'got passwd');
-is($object->mobile, '605458224', 'got mobile');
-is($object->is_published, 1, 'got is_published');
+is $object->name, 'Jose',
+    => 'got name';
+is $object->surname, 'Cuesta'
+    => 'got surname';
+is $object->email, 'info@mail.com'
+    => 'got email';
+is $object->passwd, 'passwd'
+    => 'got passwd';
+is $object->mobile, '605458224'
+    => 'got mobile';
+is $object->is_published, 1
+    => 'got is_published';
 
 
 ClubSpain::Model::Customer->delete($object->id);

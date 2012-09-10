@@ -33,12 +33,18 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Customer');
-    is($customer->name, 'Иван', 'got name');
-    is($customer->surname, 'Иванов', 'got surname');
-    is($customer->email, 'ivan@ivanov.com', 'got email');
-    is($customer->passwd, 'passwd', 'got passwd');
-    is($customer->mobile, '9101234567', 'gort mobile');
-    is($customer->is_published, 1, 'got is published');
+    is $result->name, 'Иван'
+        => 'got name';
+    is $result->surname, 'Иванов'
+        => 'got surname';
+    is $result->email, 'ivan@ivanov.com'
+        => 'got email';
+    is $result->passwd, 'passwd'
+        => 'got passwd';
+    is $result->mobile, '9101234567'
+        => 'gort mobile';
+    is $result->is_published, 1
+        => 'got is published';
 }
 
 #second addition
@@ -66,10 +72,16 @@ my $helper = ClubSpain::Test->new();
     }
 
     isa_ok($result, 'ClubSpain::Schema::Result::Customer');
-    is($customer->name, 'Jose', 'got name');
-    is($customer->surname, 'Cuesta', 'got surname');
-    is($customer->email, 'jose@yahoo.com', 'got email');
-    is($customer->passwd, 'passwd', 'got passwd');
-    is($customer->mobile, '605458224', 'gort mobile');
-    is($customer->is_published, 1, 'got is published');
+    is $result->name, 'Jose'
+        => 'got name';
+    is $result->surname, 'Cuesta'
+        => 'got surname';
+    is $result->email, 'jose@yahoo.com'
+        => 'got email';
+    is $result->passwd, 'passwd'
+        => 'got passwd';
+    is $result->mobile, '605458224'
+        => 'got mobile';
+    is $result->is_published, 1
+        => 'got is published';
 }

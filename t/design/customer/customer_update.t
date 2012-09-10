@@ -30,9 +30,15 @@ my $customer_upd = ClubSpain::Model::Customer->new(
 
 my $object = $customer_upd->update();
 
-is($object->name, 'Raul', 'got name');
-is($object->surname, 'Perez', 'got surname');
-is($object->email, 'raul@gmail.com', 'got email');
-is($object->passwd, 'passwd1', 'got passwd');
-is($object->mobile, '625458224', 'got mobile');
-is($object->is_published, 0, 'got is_published');
+is $object->name, 'Raul'
+    => 'got name';
+is $object->surname, 'Perez'
+    => 'got surname';
+is $object->email, 'raul@gmail.com'
+    => 'got email';
+is $object->passwd, 'passwd1'
+    => 'got passwd';
+is $object->mobile, '625458224'
+    => 'got mobile';
+is $object->is_published, 0
+    => 'got is_published';

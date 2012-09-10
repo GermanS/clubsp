@@ -16,9 +16,15 @@ my $customer = ClubSpain::Model::Customer->new(
 
 
 isa_ok($customer, 'ClubSpain::Model::Customer');
-is($customer->name, 'Иван', 'got name');
-is($customer->surname, 'Иванов', 'got surname');
-is($customer->email, 'ivan@ivanov.ru', 'got email');
-is($customer->passwd, 'passwd', 'got passwd');
-is($customer->mobile, '79851234567', 'got mobile');
-is($customer->is_published, 1, 'got is published');
+is $customer->get_name, 'Иван'
+    => 'got name';
+is $customer->get_surname, 'Иванов'
+    => 'got surname';
+is $customer->get_email, 'ivan@ivanov.ru'
+    => 'got email';
+is $customer->get_passwd, 'passwd'
+    => 'got passwd';
+is $customer->get_mobile, '79851234567'
+    => 'got mobile';
+is $customer->get_is_published, 1
+    => 'got is published';

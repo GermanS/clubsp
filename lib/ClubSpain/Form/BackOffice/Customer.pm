@@ -2,16 +2,10 @@ package ClubSpain::Form::BackOffice::Customer;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
-
+use HTML::FormHandler::Types qw(:all);
 use HTML::FormHandler::Moose;
-    extends 'ClubSpain::Form::BackOffice::Base';
-
-has 'model_object' => (
-    is       => 'rw',
-    isa      => 'ClubSpain::Model::Customer',
-    required => 0,
-);
+extends 'ClubSpain::Form::BackOffice::Base';
+with 'ClubSpain::Model::Role::Customer';
 
 has '+name' => ( default => 'customer' );
 
@@ -57,26 +51,37 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
-    my $self = shift;
-    return unless $self->is_valid();
+sub get_name { shift->field('name')->value; }
+sub set_name { shift->field('name')->value(@_); }
+sub get_surname { shift->field('surname')->value; }
+sub set_surname { shift->field('surname')->value(@_); }
+sub get_email { shift->field('email')->value; }
+sub set_email { shift->field('email')->value(@_); }
+sub get_passwd { shift->field('passwd')->value; }
+sub set_passwd { shift->field('passwd')->value(@_); }
+sub get_mobile { shift->field('mobile')->value; }
+sub set_mobile { shift->field('mobile')->value(@_); }
 
-    $self->model_object->name(
-        $self->field('name')->value
-    );
-    $self->model_object->surname(
-        $self->field('surname')->value
-    );
-    $self->model_object->email(
-        $self->field('email')->value
-    );
-    $self->model_object->passwd(
-        $self->field('passwd')->value
-    );
-    $self->model_object->mobile(
-        $self->field('mobile')->value
-    );
-};
+sub validate_name {
+    my ($self, $field) = @_;
+    $self->check_field('validate_name', $field);
+}
+sub validate_surname {
+    my ($self, $field) = @_;
+    $self->check_field('validate_surname', $field);
+}
+sub validate_email {
+    my ($self, $field) = @_;
+    $self->check_field('validate_email', $field);
+}
+sub validate_passwd {
+    my ($self, $field) = @_;
+    $self->check_field('validate_passwd', $field);
+}
+sub validate_mobile {
+    my ($self, $field) = @_;
+    $self->check_field('validate_mobile', $field);
+}
 
 no HTML::FormHandler::Moose;
 
