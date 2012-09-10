@@ -27,7 +27,7 @@ use_ok('ClubSpain::Model::Company');
         id      => 999,
         zipcode => 129345,
         street  => 'ivana babushkina 16',
-        company => 'aviabroker.com',
+        name    => 'aviabroker.com',
         nick    => 'aviabroker.com',
         website => 'somewhere.com',
         INN     => 123456789021,

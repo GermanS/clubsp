@@ -11,7 +11,7 @@ use_ok('ClubSpain::Model::Company');
 my $first = ClubSpain::Model::Company->new(
     zipcode => 123456,
     street  => 'calle de colomn 4',
-    company => 'origin name',
+    name    => 'origin name',
     nick    => 'brand name',
     website => 'somewhere.com',
     INN     => 1234567890123,
@@ -26,7 +26,7 @@ my $company = ClubSpain::Model::Company->new(
     id      => $res->id,
     zipcode => 123000,
     street  => 'calle de colomn 4 upd',
-    company => 'origin name upd',
+    name    => 'origin name upd',
     nick    => 'brand name upd',
     website => 'somewhere.com',
     INN     => 1234567890000,
@@ -43,7 +43,7 @@ is $result->zipcode, 123000
     => 'got zipcode';
 is $result->street, 'calle de colomn 4 upd'
     => 'got street';
-is $result->company, 'origin name upd'
+is $result->name, 'origin name upd'
     => 'origin name';
 is $result->nick, 'brand name upd'
     => 'brand name';

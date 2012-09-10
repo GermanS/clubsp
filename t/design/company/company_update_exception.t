@@ -28,7 +28,7 @@ use_ok('ClubSpain::Model::Company');
         id      => 999,
         zipcode => 123456,
         street  => 'calle de colomn 4',
-        company => 'origin name',
+        name    => 'origin name',
         nick    => 'brand name',
         website => 'somewhere.com',
         INN     => 1234567890123,

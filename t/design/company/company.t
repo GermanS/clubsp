@@ -8,7 +8,7 @@ use_ok('ClubSpain::Model::Company');
 my $company = ClubSpain::Model::Company->new(
     zipcode => 123456,
     street  => 'calle de colomn 4',
-    company => 'origin name',
+    name    => 'origin name',
     nick    => 'brand name',
     website => 'somewhere.com',
     INN     => 1234567890123,
@@ -19,23 +19,23 @@ my $company = ClubSpain::Model::Company->new(
 );
 
 isa_ok($company, 'ClubSpain::Model::Company');
-is $company->zipcode, 123456,
+is $company->get_zipcode, 123456,
     'got zipcode';
-is $company->street, 'calle de colomn 4',
+is $company->get_street, 'calle de colomn 4',
     'got street name';
-is $company->company, 'origin name'
+is $company->get_name, 'origin name'
     => 'got name';
-is $company->nick, 'brand name'
+is $company->get_nick, 'brand name'
     => 'got nickname';
-is $company->website, 'somewhere.com',
+is $company->get_website, 'somewhere.com',
     => 'got website';
-is $company->INN, 1234567890123
+is $company->get_INN, 1234567890123
     => 'got INN';
-is $company->OKPO, 3234567890
+is $company->get_OKPO, 3234567890
     => 'got OKPO';
-is $company->OKVED, 4234567890
+is $company->get_OKVED, 4234567890
     => 'got OKVED';
-is $company->is_NDS, 1
+is $company->get_is_NDS, 1
     => 'got is_NDS';
-is $company->is_published, 1
+is $company->get_is_published, 1
     => 'got is_published';

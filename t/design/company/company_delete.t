@@ -14,7 +14,7 @@ my $count = $schema->resultset('Company')->search({})->count;
 my $company = ClubSpain::Model::Company->new(
     zipcode => 129345,
     street  => 'ivana babushkina 16',
-    company => 'aviabroker.com',
+    name    => 'aviabroker.com',
     nick    => 'aviabroker.com',
     website => 'somewhere.com',
     INN     => 123456789021,
@@ -31,7 +31,7 @@ is $object->zipcode, 129345
     => 'got zipcode';
 is $object->street, 'ivana babushkina 16'
     => 'got street';
-is $object->company, 'aviabroker.com'
+is $object->name, 'aviabroker.com'
     => 'got name';
 is $object->nick, 'aviabroker.com'
     => 'got nick';
