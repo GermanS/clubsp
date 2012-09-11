@@ -14,8 +14,8 @@ my $first = ClubSpain::Model::Company->new(
     name    => 'origin name',
     nick    => 'brand name',
     website => 'somewhere.com',
-    INN     => 1234567890123,
-    OKPO    => 3234567890,
+    INN     => 7702581366,
+    OKPO    => 79011171,
     OKVED   => 4234567890,
     is_NDS  => 1,
     is_published => 1
@@ -29,8 +29,8 @@ my $company = ClubSpain::Model::Company->new(
     name    => 'origin name upd',
     nick    => 'brand name upd',
     website => 'somewhere.com',
-    INN     => 1234567890000,
-    OKPO    => 3234567000,
+    INN     => 673002363905,
+    OKPO    => 7901117001,
     OKVED   => 4234567000,
     is_NDS  => 1,
     is_published => 1
@@ -49,9 +49,9 @@ is $result->nick, 'brand name upd'
     => 'brand name';
 is $result->website, 'somewhere.com'
     => 'got website';
-is $result->INN, 1234567890000
+is $result->INN, 673002363905
     => 'got INN';
-is $result->OKPO, 3234567000
+is $result->OKPO, 7901117001
     => 'got OKPO';
 is $result->OKVED, 4234567000
     => 'got OKVED';

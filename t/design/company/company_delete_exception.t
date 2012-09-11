@@ -30,8 +30,8 @@ use_ok('ClubSpain::Model::Company');
         name    => 'aviabroker.com',
         nick    => 'aviabroker.com',
         website => 'somewhere.com',
-        INN     => 123456789021,
-        OKPO    => 3234567890,
+        INN     => 7702581366,
+        OKPO    => 79011171,
         OKVED   => 4234567890,
         is_NDS  => 1,
         is_published => 1

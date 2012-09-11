@@ -16,8 +16,8 @@ my $helper = ClubSpain::Test->new();
         name    => 'origin name',
         nick    => 'brand name',
         website => 'somewhere.com',
-        INN     => 1234567890123,
-        OKPO    => 3234567890,
+        INN     => 7702581366,
+        OKPO    => 79011171,
         OKVED   => 4234567890,
         is_NDS  => 1,
         is_published => 1
@@ -46,9 +46,9 @@ my $helper = ClubSpain::Test->new();
         => 'brand name';
     is $result->website, 'somewhere.com'
         => 'got website';
-    is $result->INN, 1234567890123
+    is $result->INN, 7702581366
         => 'got INN';
-    is $result->OKPO, 3234567890
+    is $result->OKPO, 79011171
         => 'got OKPO';
     is $result->OKVED, 4234567890
         => 'got OKVED';
@@ -66,8 +66,8 @@ my $helper = ClubSpain::Test->new();
         name    => 'new name',
         nick    => 'new nick',
         website => 'somewhere.net',
-        INN     => 1234567890,
-        OKPO    => 987654321,
+        INN     => 673002363905,
+        OKPO    => 7901117001,
         OKVED   => 1234,
         is_NDS  => 0,
         is_published => 0
@@ -96,9 +96,9 @@ my $helper = ClubSpain::Test->new();
         => 'brand name';
     is $result->website, 'somewhere.net'
         => 'got website';
-    is $result->INN, 1234567890
+    is $result->INN, 673002363905
         => 'got INN';
-    is $result->OKPO, 987654321
+    is $result->OKPO, 7901117001
         => 'got OKPO';
     is $result->OKVED, 1234
         => 'got OKVED';

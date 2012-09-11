@@ -11,11 +11,11 @@ my $company = ClubSpain::Model::Company->new(
     name    => 'origin name',
     nick    => 'brand name',
     website => 'somewhere.com',
-    INN     => 1234567890123,
-    OKPO    => 3234567890,
+    INN     => 7702581366,
+    OKPO    => 79011171,
     OKVED   => 4234567890,
     is_NDS  => 1,
-    is_published => 1
+    is_published => 1,
 );
 
 isa_ok($company, 'ClubSpain::Model::Company');
@@ -29,9 +29,9 @@ is $company->get_nick, 'brand name'
     => 'got nickname';
 is $company->get_website, 'somewhere.com',
     => 'got website';
-is $company->get_INN, 1234567890123
+is $company->get_INN, 7702581366
     => 'got INN';
-is $company->get_OKPO, 3234567890
+is $company->get_OKPO, 79011171
     => 'got OKPO';
 is $company->get_OKVED, 4234567890
     => 'got OKVED';
@@ -39,3 +39,4 @@ is $company->get_is_NDS, 1
     => 'got is_NDS';
 is $company->get_is_published, 1
     => 'got is_published';
+

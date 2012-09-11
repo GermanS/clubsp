@@ -17,8 +17,8 @@ my $company = ClubSpain::Model::Company->new(
     name    => 'aviabroker.com',
     nick    => 'aviabroker.com',
     website => 'somewhere.com',
-    INN     => 123456789021,
-    OKPO    => 3234567890,
+    INN     => 7702581366,
+    OKPO    => 79011171,
     OKVED   => 4234567890,
     is_NDS  => 1,
     is_published => 1
@@ -37,9 +37,9 @@ is $object->nick, 'aviabroker.com'
     => 'got nick';
 is $object->website, 'somewhere.com'
     => 'got website';
-is $object->INN, 123456789021
+is $object->INN, 7702581366
     => 'got inn';
-is $object->OKPO, 3234567890
+is $object->OKPO, 79011171
     => 'got okpo';
 is $object->OKVED, 4234567890
     => 'got okved';

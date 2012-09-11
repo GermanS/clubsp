@@ -10,14 +10,14 @@ __PACKAGE__->table('company');
 __PACKAGE__->source_name('Company');
 __PACKAGE__->add_columns(
     id      => { data_type => 'integer', is_auto_increment => 1 },
-    zipcode => { data_type => 'integer', size => 6, is_nullable => 0 },
-    street  => { data_type => 'varchar', size => 50, is_nullable => 0 },
-    name    => { data_type => 'varchar', size => 50, is_nullable => 0 },
-    nick    => { data_type => 'varchar', size => 50, is_nullable => 0 },
-    website => { data_type => 'varchar', size => 50, is_nullable => 0 },
-    INN     => { data_type => 'varchar', size => 50, is_nullable => 0 },
-    OKPO    => { data_type => 'varchar', size => 50, is_nullable => 0 },
-    OKVED   => { data_type => 'varchar', size => 50, is_nullable => 0 },
+    zipcode => { data_type => 'integer', size => 6,   is_nullable => 0 },
+    street  => { data_type => 'varchar', size => 255, is_nullable => 0 },
+    name    => { data_type => 'varchar', size => 255, is_nullable => 0 },
+    nick    => { data_type => 'varchar', size => 255, is_nullable => 0 },
+    website => { data_type => 'varchar', size => 50,  is_nullable => 0 },
+    INN     => { data_type => 'varchar', size => 12,  is_nullable => 0 },
+    OKPO    => { data_type => 'varchar', size => 10,  is_nullable => 0 },
+    OKVED   => { data_type => 'varchar', size => 50,  is_nullable => 0 },
     is_NDS => {
         data_type     => 'TINYINT(1) UNSIGNED',
         is_nullable   => 0,
@@ -30,6 +30,12 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(on_INN => [qw(INN)]);
+
+__PACKAGE__->has_many(
+    bank_accounts => 'ClubSpain::Schema::Result::BankAccount',
+    { 'foreign.company_id' => 'self.id' },
+    { cascade_delete => 0 }
+);
 
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;

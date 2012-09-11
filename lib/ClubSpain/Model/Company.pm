@@ -20,36 +20,43 @@ has 'zipcode' => (
 );
 has 'street'=> (
     is      => 'rw',
+    isa     => 'StringLength2to255',
     reader  => 'get_street',
     writer  => 'set_street',
 );
 has 'name' => (
     is      => 'rw',
+    isa     => 'StringLength2to255',
     reader  => 'get_name',
     writer  => 'set_name',
 );
 has 'nick' => (
     is      => 'rw',
+    isa     => 'StringLength2to255',
     reader  => 'get_nick',
     writer  => 'set_nick',
 );
 has 'website' => (
     is      => 'rw',
+    isa     => 'StringLength2to50',
     reader  => 'get_website',
     writer  => 'set_website',
 );
 has 'INN' => (
     is      => 'rw',
+    isa     => 'INN',
     reader  => 'get_INN',
     writer  => 'set_INN',
 );
 has 'OKPO' => (
     is      => 'rw',
+    isa     => 'OKPO',
     reader  => 'get_OKPO',
     writer  => 'set_OKPO',
 );
 has 'OKVED' => (
     is      => 'rw',
+    isa     => 'StringLength2to50',
     reader  => 'get_OKVED',
     writer  => 'set_OKVED',
 );
@@ -68,39 +75,39 @@ with 'ClubSpain::Model::Role::Company';
 
 sub validate_zipcode {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('zipcode')->type_constraint->validate($value);
+#    $self->meta()->get_attribute('zipcode')->type_constraint->validate($value);
 }
 sub validate_street  {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('street')->type_constraint->validate($value);
+#    $self->meta()->get_attribute('street')->type_constraint->validate($value);
 }
 sub validate_name {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('name')->type_constraint->validate($value);
+#    $self->meta()->get_attribute('name')->type_constraint->validate($value);
 }
 sub validate_nick {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('nick')->type_constraint->validate($value);
+#    $self->meta()->get_attribute('nick')->type_constraint->validate($value);
 }
 sub validate_website {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('website')->type_constraint->validate($value);
+#    $self->meta()->get_attribute('website')->type_constraint->validate($value);
 }
 sub validate_INN  {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('INN')->type_constraint->validate($value);
+#    $self->meta()->get_attribute('INN')->type_constraint->validate($value);
 }
 sub validate_OKPO {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('OKPO')->type_constraint->validate($value);
+#    $self->meta()->get_attribute('OKPO')->type_constraint->validate($value);
 }
 sub validate_OKVED {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('OKVED')->type_constraint->validate($value);
+#    $self->meta()->get_attribute('OKVED')->type_constraint->validate($value);
 }
 sub validate_is_NDS  {
     my ($self, $value) = @_;
-    $self->meta()->get_attribute('is_NDS')->type_constraint->validate($value);
+#    $self->meta()->get_attribute('is_NDS')->type_constraint->validate($value);
 }
 
 sub create {

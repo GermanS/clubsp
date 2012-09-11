@@ -76,6 +76,15 @@ subtype 'StringLength2to255'
         )
     };
 
+subtype 'StringLength2to50'
+    => as 'Str'
+    => where { $_ && $_ =~ /^.{2,50}$/ }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => "The $_ is less than 2 or more than 50 chars"
+        )
+    };
+
 subtype 'AlphaNumericLength2'
     => as 'Str'
     => where { $_ && $_ =~ /^\w{2}$/i }
@@ -101,6 +110,92 @@ subtype 'AlphaNumericLength4'
         throw ClubSpain::Exception::Validation(
             message => "The $_ is not 4 chars word!"
         )
+    };
+
+subtype 'BIC'
+    => as 'Natural'
+    => where {
+        length $_ == 9 && $_ =~ /^04/ && $_ !~ /00[3-9]$|0[1-4]\d$/
+    }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => 'BIC must be 9 digit number, begins 04 and ends 000-002, 050-999'
+        )
+    };
+
+subtype 'Account'
+    => as 'Natural'
+    => where { length $_ == 20 }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => 'This must be a 20 digit number'
+        )
+    };
+
+subtype 'INN'
+    => as 'Natural'
+    => where {
+        my $value = shift;
+
+        my $result = 0;
+        if (length $value == 10) {
+            #вычисление контрольной суммы 10 значного ИНН
+            my @weights = qw(2 4 10 3 5 9 4 6 8 0);
+            for (my $i = 0; $i < 10; $i++) {
+                $result += substr($value, $i, 1) * $weights[$i];
+            }
+
+            $result = substr($value, 9, 1) == ($result % 11 % 10);
+        } elsif (length $value == 12) {
+            #вычисление контрольной суммы 12 значного ИНН (ИП)
+            my @weights = qw(3 7 2 4 10 3 5 9 4 6 8 0);
+
+            my $result_11 = 0;
+            for (my $i = 0; $i < 11; $i++) {
+                $result_11 += substr($value, $i, 1) * $weights[ $i + 1 ];
+            }
+
+            my $result_12 = 0;
+            for (my $i = 0;  $i < 12; $i++) {
+                $result_12 += substr($value, $i, 1) * $weights[$i];
+            }
+
+            $result =
+                substr($value, 10, 1) == ($result_11 % 11 % 10) &&
+                substr($value, 11, 1) == ($result_12 % 11 % 10);
+        }
+
+        return $result;
+    }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => 'контрольная сумма ИНН неверна'
+        )
+    };
+
+subtype 'OKPO'
+    => as 'Natural'
+    => where {
+        my $value = shift;
+
+        return 0 unless (length($value) == 8) || (length($value) == 10);
+
+        my $result1 = 0;
+        my $result2 = 0;
+        for (my $i = 0; $i < length($value) - 1; $i++) {
+            $result1 += substr($value, $i, 1) * ( ($i + 1) % 11 );
+            $result2 += substr($value, $i, 1) * ( ($i + 3) % 11 );
+        }
+
+        return
+            (($result1 % 11) > 9)
+                ? substr($value, length($value) - 1, 1) == $result2 % 11 % 10
+                : substr($value, length($value) - 1, 1) == $result1 % 11;
+    }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => 'контрольная сумма ОКПО неверна'
+        );
     };
 
 1;

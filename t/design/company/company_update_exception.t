@@ -31,8 +31,8 @@ use_ok('ClubSpain::Model::Company');
         name    => 'origin name',
         nick    => 'brand name',
         website => 'somewhere.com',
-        INN     => 1234567890123,
-        OKPO    => 3234567890,
+        INN     => 673002363905,
+        OKPO    => 7901117001,
         OKVED   => 4234567890,
         is_NDS  => 1,
         is_published => 1
