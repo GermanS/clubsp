@@ -48,4 +48,10 @@ __PACKAGE__->belongs_to(
     'company' => 'ClubSpain::Schema::Result::Company', 'company_id'
 );
 
+sub sqlt_deploy_hook {
+    my ($self, $sqlt_table) = @_;
+
+    $sqlt_table->add_index(name => 'on_is_published', fields => ['is_published']);
+}
+
 1;

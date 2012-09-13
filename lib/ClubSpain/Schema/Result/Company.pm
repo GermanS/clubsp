@@ -36,6 +36,11 @@ __PACKAGE__->has_many(
     { 'foreign.company_id' => 'self.id' },
     { cascade_delete => 0 }
 );
+__PACKAGE__->has_many(
+    offices => 'ClubSpain::Schema::Result::Office',
+    { 'foreign.company_id' => 'self.id' },
+    { cascade_delete => 0 }
+);
 
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
