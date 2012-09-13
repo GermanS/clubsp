@@ -22,7 +22,7 @@ __PACKAGE__->add_columns(
         size        => 255,
         is_nullable => 0,
     },
-    bic => {
+    BIC => {
         data_type   => 'char',
         size        => 9,
         is_nullable => 0,

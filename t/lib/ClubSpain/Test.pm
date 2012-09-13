@@ -211,6 +211,11 @@ sub populate_schema {
         [qw(name surname email password is_published)],
         ['name', 'surname', 'name@mail.com', 123, 1]
     ]);
+
+    my @company = $schema->populate('Company', [
+        [qw(zipcode street name nick website INN OKPO OKVED is_NDS is_published)],
+        ['123459','Street name','Company name','The Best','somewhere.com','504308599677','79011171','4234567890',1,1]
+    ]);
 }
 
 sub clear_schema {

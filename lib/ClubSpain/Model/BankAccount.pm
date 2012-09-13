@@ -42,6 +42,13 @@ has 'correspondent_account' => (
     reader  => 'get_correspondent_account',
     writer  => 'set_correspondent_account',
 );
+has 'is_published' => (
+    is      => 'rw',
+    isa     => 'Bool',
+    default => 1,
+    reader  => 'get_is_published',
+    writer  => 'set_is_published',
+);
 
 with 'ClubSpain::Model::Role::BankAccount';
 
@@ -70,9 +77,11 @@ sub params {
     return {
         company_id      => $self->get_company_id,
         bank            => $self->get_bank,
-        bic             => $self->get_BIC,
+        BIC             => $self->get_BIC,
         current_account => $self->get_current_account,
-        correspondent_account => $self->get_correspondent_account
+        correspondent_account => $self->get_correspondent_account,
+        is_published    => $self->get_is_published,
+
     };
 }
 
