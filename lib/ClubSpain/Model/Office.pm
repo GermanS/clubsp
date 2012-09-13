@@ -41,6 +41,31 @@ has 'is_published' => (
     writer  => 'set_is_published',
 );
 
+sub create {
+    my $self = shift;
+
+    $self->SUPER::create( $self->params );
+}
+
+sub update {
+    my $self = shift;
+
+    $self->check_for_class_method();
+    $self->SUPER::update( $self->params() );
+}
+
+sub params {
+    my $self = shift;
+
+    return {
+        company_id  => $self->get_company_id,
+        zipcode     => $self->get_zipcode,
+        street      => $self->get_street,
+        name        => $self->get_name,
+        is_published => $self->get_is_published
+    };
+}
+
 __PACKAGE__->meta()->make_immutable;
 
 1;
