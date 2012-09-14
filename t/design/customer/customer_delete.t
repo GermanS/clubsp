@@ -16,7 +16,7 @@ my $customer = ClubSpain::Model::Customer->new(
     surname     => 'Cuesta',
     email       => 'info@mail.com',
     passwd      => 'passwd',
-    mobile      => '605458224',
+    mobile      => '9054582224',
     is_published => 1,
 );
 
@@ -31,7 +31,7 @@ is $object->email, 'info@mail.com'
     => 'got email';
 is $object->passwd, 'passwd'
     => 'got passwd';
-is $object->mobile, '605458224'
+is $object->mobile, '9054582224'
     => 'got mobile';
 is $object->is_published, 1
     => 'got is_published';

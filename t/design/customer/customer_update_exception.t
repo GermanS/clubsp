@@ -30,7 +30,7 @@ use_ok('ClubSpain::Model::Customer');
         surname     => 'Cuesta',
         email       => 'info@mail.com',
         passwd      => 'passwd',
-        mobile      => '605458224',
+        mobile      => '9105458224',
         is_published => 1,
     );
 

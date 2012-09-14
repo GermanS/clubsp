@@ -15,7 +15,7 @@ my $helper = ClubSpain::Test->new();
         surname      => 'Иванов',
         email        => 'ivan@ivanov.com',
         passwd       => 'passwd',
-        mobile       => '9101234567',
+        mobile       => 9101234567,
         is_published => 1,
     );
 
@@ -54,7 +54,7 @@ my $helper = ClubSpain::Test->new();
         surname     => 'Cuesta',
         email       => 'jose@yahoo.com',
         passwd      => 'passwd',
-        mobile      => '605458224',
+        mobile      => '9054582124',
         is_published => 1,
     );
 
@@ -80,7 +80,7 @@ my $helper = ClubSpain::Test->new();
         => 'got email';
     is $result->passwd, 'passwd'
         => 'got passwd';
-    is $result->mobile, '605458224'
+    is $result->mobile, '9054582124'
         => 'got mobile';
     is $result->is_published, 1
         => 'got is published';

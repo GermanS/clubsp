@@ -35,11 +35,14 @@ has 'passwd' => (
 );
 has 'mobile' => (
     is      => 'rw',
+    isa     => 'MobilePhoneNumber',
     reader  => 'get_mobile',
     writer  => 'set_mobile',
 );
 has 'is_published' => (
     is      => 'rw',
+    isa     => 'Bool',
+    default => 1,
     reader  => 'get_is_published',
     writer  => 'set_is_published',
 );

@@ -34,8 +34,7 @@ __PACKAGE__->add_columns(
         is_nullable   => 0,
     },
     mobile => {
-        data_type     => 'int',
-        size          => 10,
+        data_type     => 'BIGINT unsigned',
         is_nullable   => 0,
     },
     is_published => {
