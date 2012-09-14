@@ -24,11 +24,11 @@ __PACKAGE__->set_primary_key('id');
 __PACKAGE__->belongs_to(
     'company' => 'ClubSpain::Schema::Result::Company', 'company_id'
 );
-#__PACKAGE__->has_many(
-#    bank_accounts => 'ClubSpain::Schema::Result::BankAccount',
-#    { 'foreign.company_id' => 'self.id' },
-#    { cascade_delete => 0 }
-#);
+__PACKAGE__->has_many(
+    phones => 'ClubSpain::Schema::Result::Phone',
+    { 'foreign.company_id' => 'self.id' },
+    { cascade_delete => 0 }
+);
 
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
