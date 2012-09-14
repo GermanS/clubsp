@@ -216,6 +216,11 @@ sub populate_schema {
         [qw(zipcode street name nick website INN OKPO OKVED is_NDS is_published)],
         ['123459','Street name','Company name','The Best','somewhere.com','504308599677','79011171','4234567890',1,1]
     ]);
+
+    my @office = $schema->populate('Office', [
+        [qw(company_id zipcode street name is_published)],
+        [$company[0]->id, '555222', 'Calle de Column 1', 'Oficina', 1]
+    ]);
 }
 
 sub clear_schema {

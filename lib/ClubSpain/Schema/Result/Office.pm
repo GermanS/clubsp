@@ -25,7 +25,7 @@ __PACKAGE__->belongs_to(
     'company' => 'ClubSpain::Schema::Result::Company', 'company_id'
 );
 __PACKAGE__->has_many(
-    phones => 'ClubSpain::Schema::Result::Phone',
+    phones => 'ClubSpain::Schema::Result::LocalPhone',
     { 'foreign.company_id' => 'self.id' },
     { cascade_delete => 0 }
 );
