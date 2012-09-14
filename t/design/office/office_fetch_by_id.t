@@ -23,34 +23,34 @@ my $init_object  = $office->create();
 {
     my $object = ClubSpain::Model::Office->fetch_by_id($init_object->id);
     isa_ok($object, 'ClubSpain::Schema::Result::Office');
-    is $office->get_company_id, $params->{'company_id'}
+    is $object->company_id, $params->{'company_id'}
         => 'got company id';
-    is $office->get_zipcode, $params->{'zipcode'}
+    is $object->zipcode, $params->{'zipcode'}
         => 'got zipcode';
-    is $office->get_name, $params->{'name'}
+    is $object->name, $params->{'name'}
         => 'got name';
-    is $office->get_street, $params->{'street'}
+    is $object->street, $params->{'street'}
         => 'got street';
-    is $office->get_is_published, $params->{'is_published'}
+    is $object->is_published, $params->{'is_published'}
         => 'got is published flag';
 }
 
 
 #retrive
 {
-    $office->set_id(1);
+    $office->set_id($init_object->id);
     my $object = $office->fetch_by_id();
 
     isa_ok($object, 'ClubSpain::Schema::Result::Office');
-    is $office->get_company_id, $params->{'company_id'}
+    is $object->company_id, $params->{'company_id'}
         => 'got company id';
-    is $office->get_zipcode, $params->{'zipcode'}
+    is $object->zipcode, $params->{'zipcode'}
         => 'got zipcode';
-    is $office->get_name, $params->{'name'}
+    is $object->name, $params->{'name'}
         => 'got name';
-    is $office->get_street, $params->{'street'}
+    is $object->street, $params->{'street'}
         => 'got street';
-    is $office->get_is_published, $params->{'is_published'}
+    is $object->is_published, $params->{'is_published'}
         => 'got is published flag';
 }
 
