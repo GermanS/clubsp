@@ -198,4 +198,31 @@ subtype 'OKPO'
         );
     };
 
+subtype 'PhoneNumber'
+    => as 'Natural'
+    => where { length($_) == 10;}
+    =>message {
+        throw ClubSpain::Exception::Validation(
+            message => 'Номер телефона состоит из 10 цифр'
+        )
+    };
+
+subtype 'LocalPhoneNumber'
+    => as 'PhoneNumber'
+    => where { $_ !~ /^9/ }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => 'Номер городского телефона неверен'
+        )
+    };
+
+subtype 'MobilePhoneNumber'
+    => as 'PhoneNumber'
+    => where { $_ =~ /^9/ }
+    => message {
+        throw ClubSpain::Exception::Validation(
+            message => 'Номер мобильного телефона неверен'
+        )
+    };
+
 1;
