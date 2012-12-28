@@ -62,7 +62,7 @@ has_field 'actual_address' => (
     type            => 'Text',
 );
 
-has_field 'company' => (
+has_field 'name' => (
     apply           => [ Trim ],
     element_class   => ['span8'],
     label           => 'Юридическое название',
@@ -158,7 +158,7 @@ has_field 'correspondent_account' => (
     required        => 1,
     type            => 'Integer',
 );
-has_field 'bic' => (
+has_field 'BIC' => (
     apply           => [ Trim ],
     element_class   => ['span4'],
     label           => 'БИК',
@@ -191,30 +191,63 @@ sub build_update_subfields {{
     'form_actions.cancel' => { widget_wrapper => 'None', element_class => ['btn'] },
 }}
 
-after 'validate' => sub {
+sub get_company {
     my $self = shift;
-    return unless $self->is_valid();
 
-    foreach my $listener ($self->all_listeners) {
-        $listener->notify($self);
-    }
+    return ClubSpain::Model::Company->new({
+        zipcode => $self->field('legal_index')->value,
+        street  => $self->field('legal_address')->value,
+        name    => $self->field('name')->value,
+        nick    => $self->field('nick')->value,
+        website => $self->field('website')->value,
+        INN     => $self->field('INN')->value,
+        OKPO    => $self->field('OKPO')->value,
+        OKVED   => $self->field('OKVED')->value,
+        is_NDS  => $self->field('is_NDS')->value,
+    })
 };
+sub get_bank_account {
+    my $self = shift;
+
+    return ClubSpain::Model::BankAccount->new({
+        bank_account          => $self->field('bank_account')->value,
+        correspondent_account => $self->field('correspondent_account')->value,
+        BIC                   => $self->field('BIC')->value,
+        bank                  => $self->field('bank')->value,
+    });
+}
+
+sub get_office {
+    my $self = shift;
+
+    return ClubSpain::Model::Office->new({
+        zipcode => $self->field('actual_index')->value,
+        street  => $self->field('actual_address')->value,
+        phone   => $self->field('phone')->value,
+    })
+}
 
 #implement ClubSpain::Model::Role::Company
-sub zipcode { shift->field('legal_index')->value(@_); }
-sub street  { shift->field('legal_address')->value(@_); }
-sub company { shift->field('company')->value(@_); }
-sub nick    { shift->field('nick')->value(@_); }
-sub website { shift->field('website')->value(@_); }
-sub INN     { shift->field('INN')->value(@_); }
-sub OKPO    { shift->field('OKPO')->value(@_); }
-sub OKVED   { shift->field('OKVED')->value(@_); }
-sub is_NDS  { shift->field('is_NDS')->value(@_); }
+sub get_zipcode { shift->field('legal_index')->value(); }
+sub set_zipcode { shift->field('legal_index')->value(@_); }
+sub get_street  { shift->field('legal_address')->value(); }
+sub set_street  { shift->field('legal_address')->value(@_); }
+sub get_name    { shift->field('name')->value(); }
+sub set_name    { shift->field('name')->value(@_); }
+sub get_nick    { shift->field('nick')->value(); }
+sub set_nick    { shift->field('nick')->value(@_); }
+sub get_website { shift->field('website')->value(); }
+sub set_website { shift->field('website')->value(@_); }
+sub get_INN     { shift->field('INN')->value(); }
+sub set_INN     { shift->field('INN')->value(@_); }
+sub get_OKPO    { shift->field('OKPO')->value(); }
+sub set_OKPO    { shift->field('OKPO')->value(@_); }
+sub get_OKVED   { shift->field('OKVED')->value(); }
+sub set_OKVED   { shift->field('OKVED')->value(@_); }
+sub get_is_NDS  { shift->field('is_NDS')->value(); }
+sub set_is_NDS  { shift->field('is_NDS')->value(@_); }
 
-sub validate_legal_index {
-    my ($self, $field) = @_;
-    $self->validate_zipcode($field);
-}
+sub validate_legal_index { shift->validate_zipcode(@_); }
 sub validate_zipcode {
     my ($self, $field) = @_;
     $self->check_field('validate_zipcode', $field);
@@ -223,13 +256,14 @@ sub validate_legal_address {
     my ($self, $field) = @_;
     $self->validate_street($field);
 }
+sub validate_actual_index { shift->validate_zipcode(@_); }
 sub validate_street  {
     my ($self, $field) = @_;
     $self->check_field('validate_street', $field);
 }
-sub validate_company {
+sub validate_name {
     my ($self, $field) = @_;
-    $self->check_field('validate_company', $field);
+    $self->check_field('validate_name', $field);
 }
 sub validate_nick    {
     my ($self, $field) = @_;
