@@ -7,8 +7,8 @@ use utf8;
 
 use Moose;
 
-has 'name' => ( is => 'ro' );
 has 'code' => ( is => 'ro' );
+has 'name' => ( is => 'ro' );
 
 __PACKAGE__-> meta() -> make_immutable();
 
