@@ -1,8 +1,9 @@
 package ClubSpain::XML::VipService::Seat::Base;
 
+use namespace::autoclean;
 use strict;
 use warnings;
-use namespace::autoclean;
+use utf8;
 
 use Moose;
 
@@ -45,3 +46,5 @@ sub is_infant {
 __PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

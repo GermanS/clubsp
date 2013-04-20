@@ -1,20 +1,14 @@
 package ClubSpain::XML::VipService::Location;
 
+use namespace::autoclean;
 use strict;
 use warnings;
-use namespace::autoclean;
+use utf8;
 
 use Moose;
 
-has 'code' => (
-    is       => 'ro',
-    required => 1
-);
-
-has 'name' => (
-    is       => 'ro',
-    required => 1
-);
+has 'code' => ( is => 'ro', required => 1 );
+has 'name' => ( is => 'ro', required => 1 );
 
 sub to_hash {
     my $self = shift;
@@ -28,3 +22,5 @@ sub to_hash {
 __PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

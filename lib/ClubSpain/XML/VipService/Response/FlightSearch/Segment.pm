@@ -1,9 +1,9 @@
 package ClubSpain::XML::VipService::Response::FlightSearch::Segment;
 
+use namespace::autoclean;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
 
 use ClubSpain::Types;
 use ClubSpain::XML::VipService::Response::FlightSearch::Airline;
@@ -40,19 +40,19 @@ around BUILDARGS => sub {
         );
     }
 
-    if (exists($args{ 'locationEnd' })) {
+    if ( exists( $args{ 'locationEnd' } ) ) {
         $args{ 'locationEnd' } = ClubSpain::XML::VipService::Response::FlightSearch::Location -> new(
             $args{ 'locationEnd' }
         );
     }
 
-    if (exists($args{ 'airline' })) {
+    if ( exists( $args{ 'airline' } ) ) {
         $args{ 'airline' } = ClubSpain::XML::VipService::Response::FlightSearch::Airline -> new(
             $args{ 'airline' }
         );
     }
 
-    if (exists($args{ 'board' })) {
+    if ( exists( $args{ 'board' } ) ) {
         $args{ 'board' } = ClubSpain::XML::VipService::Response::FlightSearch::Board -> new(
             $args{ 'board' }
         );

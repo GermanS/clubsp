@@ -2,6 +2,8 @@ package ClubSpain::XML::VipService::Import::Duration;
 
 use strict;
 use warnings;
+use utf8;
+use namespace::autoclean;
 
 use ClubSpain::Types;
 
@@ -77,3 +79,5 @@ sub dates {
 __PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

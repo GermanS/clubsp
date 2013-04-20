@@ -2,6 +2,8 @@ package ClubSpain::XML::VipService::Import::Response;
 
 use strict;
 use warnings;
+use utf8;
+use namespace::autoclean;
 
 use ClubSpain::Model::Airline;
 

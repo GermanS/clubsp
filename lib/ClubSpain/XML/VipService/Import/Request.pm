@@ -2,6 +2,8 @@ package ClubSpain::XML::VipService::Import::Request;
 
 use strict;
 use warnings;
+use utf8;
+use namespace::autoclean;
 
 use ClubSpain::XML::VipService::Config;
 use ClubSpain::XML::VipService::Flight;
@@ -101,3 +103,5 @@ sub read_config {
 __PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

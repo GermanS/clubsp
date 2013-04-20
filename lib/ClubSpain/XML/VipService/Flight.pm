@@ -1,8 +1,9 @@
 package ClubSpain::XML::VipService::Flight;
 
+use namespace::autoclean;
 use strict;
 use warnings;
-use namespace::autoclean;
+use utf8;
 
 use Moose;
 use Moose::Util::TypeConstraints;
@@ -92,3 +93,5 @@ sub count_infants {
 __PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

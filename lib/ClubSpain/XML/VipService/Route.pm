@@ -1,11 +1,13 @@
 package ClubSpain::XML::VipService::Route;
 
+use namespace::autoclean;
 use strict;
 use warnings;
-use namespace::autoclean;
-use Moose;
+use utf8;
 
 use ClubSpain::XML::VipService::Location;
+
+use Moose;
 
 has 'date' => (
     is       => 'ro',
@@ -47,3 +49,5 @@ sub to_hash {
 __PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

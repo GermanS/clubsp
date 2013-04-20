@@ -1,7 +1,9 @@
 package ClubSpain::XML::VipService::Seat;
 
+use namespace::autoclean;
 use strict;
 use warnings;
+use utf8;
 
 use ClubSpain::XML::VipService::Seat::Adult;
 use ClubSpain::XML::VipService::Seat::Child;

@@ -1,9 +1,9 @@
 package ClubSpain::XML::VipService::Response::FlightSearch;
 
+use namespace::autoclean;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
 
 use ClubSpain::XML::VipService::Response::FlightSearch::Flight;
 use ClubSpain::XML::VipService::Response::FlightSearch::Price;
@@ -36,3 +36,5 @@ around BUILDARGS => sub {
 __PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

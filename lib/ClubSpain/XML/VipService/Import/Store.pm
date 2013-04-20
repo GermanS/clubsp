@@ -2,6 +2,8 @@ package ClubSpain::XML::VipService::Import::Store;
 
 use strict;
 use warnings;
+use utf8;
+use namespace::autoclean;
 
 use Moose;
 
@@ -21,3 +23,5 @@ has 'response' => (
 __PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__
