@@ -1,48 +1,64 @@
 package ClubSpain::XML::VipService::Seat;
-use namespace::autoclean;
-use Moose;
-use Moose::Util::TypeConstraints;
 
-enum 'PassengerType', [qw(ADULT CHILD INFANT)];
+use strict;
+use warnings;
 
-has 'passenger' => (
-    is      => 'ro',
-    default => 'ADULT',
-    isa     => 'PassengerType'
-);
-has 'count' => (
-    is       => 'ro',
-    required => 1,
-    default  => 0,
-);
+use ClubSpain::XML::VipService::Seat::Adult;
+use ClubSpain::XML::VipService::Seat::Child;
+use ClubSpain::XML::VipService::Seat::Infant;
 
-sub to_hash {
-    my $self = shift;
+sub new {
+    my ( $class, %params ) = @_;
 
-    return {
-        count         => $self->count,
-        passengerType => $self->passenger
-    };
+    my $passenger = $params{ 'passenger' };
+    my $seats     = $params{ 'count' } || 0;
+
+    my $seat;
+    if ( $class -> is_child( $passenger ) ) {
+        $seat = $class -> child( $seats );
+    } elsif ( $class -> is_infant( $passenger ) ) {
+        $seat = $class -> infant( $seats );
+    } else  {
+        $seat = $class -> adult( $seats )
+    }
+
+    return $seat;
 }
 
 sub is_adult {
-    my $self = shift;
+    my ( $class, $name ) = @_;
 
-    return $self->passenger eq 'ADULT';
+    return $name ~~ 'ADULT';
 }
 
 sub is_child {
-    my $self = shift;
+    my ( $class, $name ) = @_;
 
-    return $self->passenger eq 'CHILD';
+    return $name ~~ 'CHILD';
 }
 
 sub is_infant {
-    my $self = shift;
+    my ( $class, $name ) = @_;
 
-    return $self->passenger eq 'INFANT';
+    return $name ~~ 'INFANT';
 }
 
-__PACKAGE__->meta->make_immutable();
+sub adult {
+    my ( $class, $seats ) = @_;
+
+    return ClubSpain::XML::VipService::Seat::Adult -> new( count => $seats );
+}
+
+sub child {
+    my ( $class, $seats ) = @_;
+
+    return ClubSpain::XML::VipService::Seat::Child -> new( count => $seats );
+}
+
+sub infant {
+    my ( $class, $seats ) = @_;
+
+    return ClubSpain::XML::VipService::Seat::Infant -> new( count => $seats );
+}
 
 1;

@@ -1,8 +1,13 @@
 package ClubSpain::Types;
+
 use strict;
 use warnings;
-use Moose::Util::TypeConstraints;
+
 use ClubSpain::Exception;
+
+use DateTime;
+use DateTime::Format::Strptime;
+use Moose::Util::TypeConstraints;
 
 subtype 'Natural'
     => as 'Int'
@@ -115,7 +120,7 @@ subtype 'AlphaNumericLength4'
 subtype 'BIC'
     => as 'Natural'
     => where {
-        length $_ == 9 && $_ =~ /^04/ && $_ !~ /00[3-9]$|0[1-4]\d$/
+        length  $_ == 9  &&  $_ =~ /^04/  &&  $_ !~ /00[3-9]$|0[1-4]\d$/;
     }
     => message {
         throw ClubSpain::Exception::Validation(
@@ -224,5 +229,31 @@ subtype 'MobilePhoneNumber'
             message => 'Номер мобильного телефона неверен'
         )
     };
+
+class_type 'DateTime';
+coerce 'DateTime'
+    => from 'Str'
+    => via {
+        my $format = DateTime::Format::Strptime->new(
+                locale  => 'ru_RU',
+                pattern => '%F',
+        );
+        return $format -> parse_datetime( $_ );
+    };
+
+=head
+
+subtype 'myDateTime' => as class_type( 'DateTime' );
+coerce 'myDateTime'
+    => from 'Str'
+    => via {
+        my $format = DateTime::Format::Strptime->new(
+                locale  => 'ru_RU',
+                pattern => '%FT%T',
+        );
+        return $format -> parse_datetime($_);
+    };
+
+=cut
 
 1;

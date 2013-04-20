@@ -6,35 +6,27 @@ use utf8;
 use Moose;
 use Moose::Util::TypeConstraints;
 use DateTime;
+use ClubSpain::Types;
 use DateTime::Format::Strptime;
 use ClubSpain::XML::VipService::Response::FlightSearch::Location;
 use ClubSpain::XML::VipService::Response::FlightSearch::Airline;
 use ClubSpain::XML::VipService::Response::FlightSearch::Board;
 
-subtype 'myDateTime' => as class_type('DateTime');
-coerce 'myDateTime'
-    => from 'Str'
-    => via {
-        my $format = DateTime::Format::Strptime->new(
-                locale  => 'ru_RU',
-                pattern => '%FT%T',
-        );
-        return $format->parse_datetime($_);
-    };
+
 
 has 'connected'      => ( is => 'ro' );
 has 'starting'       => ( is => 'ro' );
 has 'bookingClass'   => ( is => 'ro' );
 has 'travelDuration' => ( is => 'ro' );
 has 'serviceClass'   => ( is => 'ro' );
-has 'dateBegin'      => ( is => 'ro', isa => 'myDateTime', coerce => 1 );
-has 'dateEnd'        => ( is => 'ro', isa => 'myDateTime', coerce => 1 );
+has 'dateBegin'      => ( is => 'ro', isa => 'DateTime', coerce => 1 );
+has 'dateEnd'        => ( is => 'ro', isa => 'DateTime', coerce => 1 );
 has 'flightNumber'   => ( is => 'ro' );
 
 has 'locationBegin' => ( is => 'ro' );
-has 'locationEnd' => ( is => 'ro' );
-has 'airline' => ( is => 'ro' );
-has 'board' => ( is => 'ro' );
+has 'locationEnd'   => ( is => 'ro' );
+has 'airline'       => ( is => 'ro' );
+has 'board'         => ( is => 'ro' );
 
 around BUILDARGS => sub {
     my $orig  = shift;

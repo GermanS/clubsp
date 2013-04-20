@@ -17,7 +17,6 @@ use Catalyst qw(
     ConfigLoader
     Static::Simple
     Server
-    Server::XMLRPC
     Unicode
     Authentication
     Session
@@ -27,7 +26,7 @@ use Catalyst qw(
 
 extends 'Catalyst';
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 $VERSION = eval $VERSION;
 
 # Configure the application.
@@ -43,10 +42,6 @@ __PACKAGE__->config(
     name => 'ClubSpain',
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
-    xmlrpc => {
-        'xml_encoding' => 'utf-8',
-        'path' => qr!^(/?)xmlrpc(/|$)!i
-    },
     default_view => 'TT',
     'View::TT' => {
          ENCODING => 'UTF-8',
@@ -79,8 +74,11 @@ __PACKAGE__->config(
 );
 
 # Start the application
-__PACKAGE__->setup();
+__PACKAGE__ -> setup();
 
+1;
+
+__END__
 
 =head1 NAME
 
@@ -109,4 +107,4 @@ it under the same terms as Perl itself.
 
 =cut
 
-1;
+

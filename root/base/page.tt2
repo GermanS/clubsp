@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Le styles -->
-    <link href="/bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/bootstrap/2.2.2/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <style>
         body {
@@ -27,7 +27,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
     <script type="text/javascript" src="http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/jquery.ui.datepicker-ru.js"></script>
-    <script src="/bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/jscript/jsonrequest.js"></script>
 
     <script type="text/javascript">

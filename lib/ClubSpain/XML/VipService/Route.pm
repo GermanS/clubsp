@@ -1,44 +1,49 @@
 package ClubSpain::XML::VipService::Route;
+
+use strict;
+use warnings;
 use namespace::autoclean;
 use Moose;
+
 use ClubSpain::XML::VipService::Location;
 
 has 'date' => (
-    is => 'ro',
+    is       => 'ro',
+    isa      => 'DateTime',
     required => 1,
-    isa => 'DateTime'
 );
 has 'timeBegin' => (
-    is => 'ro',
-    default => 0
+    is      => 'ro',
+    default => sub { 0 }
 );
 has 'timeEnd'   => (
-    is => 'ro',
-    default => 0
+    is      => 'ro',
+    default => sub { 0 }
 );
 has 'locationBegin' => (
-    is => 'ro',
+    is       => 'ro',
+    isa      => 'ClubSpain::XML::VipService::Location',
     required => 1,
-    isa => 'ClubSpain::XML::VipService::Location'
+
 );
 has 'locationEnd' => (
-    is => 'ro',
+    is       => 'ro',
+    isa      => 'ClubSpain::XML::VipService::Location',
     required => 1,
-    isa => 'ClubSpain::XML::VipService::Location'
 );
 
 sub to_hash {
     my $self = shift;
 
     return {
-        date          => $self->date->iso8601(),
-        timeBegin     => $self->timeBegin,
-        timeEnd       => $self->timeEnd,
-        locationBegin => $self->locationBegin->to_hash(),
-        locationEnd   => $self->locationEnd->to_hash(),
+        date          => $self -> date -> iso8601(),
+        timeBegin     => $self -> timeBegin,
+        timeEnd       => $self -> timeEnd,
+        locationBegin => $self -> locationBegin -> to_hash(),
+        locationEnd   => $self -> locationEnd -> to_hash(),
     };
 }
 
-__PACKAGE__->meta->make_immutable();
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;

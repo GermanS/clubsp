@@ -7,6 +7,8 @@ use HTML::FormHandler::Moose;
 extends 'ClubSpain::Form::BackOffice::Base';
 with 'ClubSpain::Model::Role::Company';
 
+use ClubSpain::Model::BankAccount;
+
 has '+name' => ( default => 'company' );
 
 #legal block
