@@ -9,7 +9,7 @@ with 'ClubSpain::Controller::BackOffice::BaseRole';
 use ClubSpain::Form::BackOffice::Airport;
 sub form :Private {
     my ($self, $listener) = @_;
-    return ClubSpain::Form::BackOffice::Airport->new({
+    return ClubSpain::Form::BackOffice::Airport -> new({
         listeners => [ $listener ]
     });
 }
@@ -24,9 +24,9 @@ has 'model'
 sub auto :Private {
     my ($self, $c) = @_;
 
-    $c->stash(
-        template     => $self->template,
-        country_list => $c->model('Country')->search({})
+    $c -> stash(
+        template     => $self -> template,
+        country_list => $c -> model('Country') -> search({})
     );
 };
 
@@ -34,7 +34,7 @@ sub auto :Private {
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->detach('page');
+    $c -> detach('page');
 };
 
 sub base :Chained('/backoffice/base') :PathPart('airport') :CaptureArgs(0) {};
@@ -42,53 +42,53 @@ sub base :Chained('/backoffice/base') :PathPart('airport') :CaptureArgs(0) {};
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $port = $c->model($self->model)->new();
-    my $form = $self->form($port);
-    $form->process($c->request->parameters);
+    my $port = $c -> model($self -> model) -> new();
+    my $form = $self -> form($port);
+    $form -> process($c -> request -> parameters);
 
-    if ($form->validated) {
-        $port->set_enable();
+    if ($form -> validated) {
+        $port -> set_enable();
 
-        eval { $port->create(); };
-        $form->process_error($@) if $@;
+        eval { $port -> create(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form,
+        template => $self -> template_form,
     );
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $port = $c->model($self->model)->new();
-    my $form = $self->form($port);
-    $form->process(
+    my $port = $c -> model($self -> model) -> new();
+    my $form = $self -> form($port);
+    $form -> process(
         init_object => {
-            city_id => $self->get_object($c)->city_id,
-            name    => $self->get_object($c)->name,
-            iata    => $self->get_object($c)->iata,
-            icao    => $self->get_object($c)->icao,
+            city_id => $self -> get_object($c) -> city_id,
+            name    => $self -> get_object($c) -> name,
+            iata    => $self -> get_object($c) -> iata,
+            icao    => $self -> get_object($c) -> icao,
         },
-        params => $c->request->parameters
+        params => $c -> request -> parameters
     );
 
-    if ($form->validated) {
-        $port->set_id(
-            $self->get_object($c)->id
+    if ($form -> validated) {
+        $port -> set_id(
+            $self -> get_object($c) -> id
         );
-        $port->set_is_published(
-            $self->get_object($c)->is_published
+        $port -> set_is_published(
+            $self -> get_object($c) -> is_published
         );
 
-        eval { $port->update(); };
-        $form->process_error($@) if $@;
+        eval { $port -> update(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form
+        template => $self -> template_form
     );
 };
 
@@ -96,13 +96,13 @@ sub edit :Chained('id') :PathPart('edit') :Args(0) {
 sub country :Local :Args(1) {
     my ($self, $c, $country_id) = @_;
 
-    $c->stash(
-        selected_country => $c->model('Country')->fetch_by_id($country_id)
+    $c -> stash(
+        selected_country => $c -> model('Country') -> fetch_by_id($country_id)
     );
 
-    unless ($c->stash->{'iterator'}) {
-        $c->stash(
-            iterator => $c->model('Airport')->search(
+    unless ($c -> stash -> {'iterator'}) {
+        $c -> stash(
+            iterator => $c -> model('Airport') -> search(
                 { 'city.country_id' => $country_id },
                 { join => 'city' }
             )
@@ -113,18 +113,20 @@ sub country :Local :Args(1) {
 sub city :Local :Args(1) {
     my ($self, $c, $city_id) = @_;
 
-    my $city = $c->model('City')->fetch_by_id($city_id);
-    $c->stash( selected_city => $city );
+    my $city = $c -> model('City') -> fetch_by_id($city_id);
+    $c -> stash( selected_city => $city );
 
-    $self->country($c, $city->country_id);
+    $self -> country($c, $city -> country_id);
 
-    $c->stash(
-        iterator => $c->model('Airport')->search({
+    $c -> stash(
+        iterator => $c -> model('Airport') -> search({
             city_id => $city_id
         })
     );
 }
 
-__PACKAGE__->meta->make_immutable();
+__PACKAGE__ -> meta -> make_immutable();
 
 1;
+
+__END__

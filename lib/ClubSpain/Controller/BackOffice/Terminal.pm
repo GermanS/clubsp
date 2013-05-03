@@ -9,7 +9,7 @@ with 'ClubSpain::Controller::BackOffice::BaseRole';
 use ClubSpain::Form::BackOffice::Terminal;
 sub form :Private {
     my ($self, $listener) = @_;
-    return ClubSpain::Form::BackOffice::Terminal->new({
+    return ClubSpain::Form::BackOffice::Terminal -> new({
         listeners => [ $listener ]
     });
 }
@@ -24,15 +24,15 @@ has 'model'
 sub auto :Private {
     my ($self, $c) = @_;
 
-    $c->stash(
-        template     => $self->template,
-        airport_list => $c->model('Airport')->search({})
+    $c -> stash(
+        template     => $self -> template,
+        airport_list => $c -> model('Airport') -> search({})
     );
 };
 
 sub default :Path {
     my ($self, $c) = @_;
-    $c->stash( iterator => $c->model($self->model)->search({}) );
+    $c -> stash( iterator => $c -> model($self -> model) -> search({}) );
 };
 
 sub base :Chained('/backoffice/base') :PathPart('terminal') :CaptureArgs(0) {};
@@ -40,62 +40,64 @@ sub base :Chained('/backoffice/base') :PathPart('terminal') :CaptureArgs(0) {};
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $term = $c->model($self->model)->new();
-    my $form = $self->form($term);
+    my $term = $c -> model($self -> model) -> new();
+    my $form = $self -> form($term);
 
-    $form->process($c->request->parameters);
-    if ($form->validated) {
-        $term->set_enable();
+    $form -> process($c -> request -> parameters);
+    if ($form -> validated) {
+        $term -> set_enable();
 
-        eval { $term->create(); };
-        $form->process_error($@) if $@;
+        eval { $term -> create(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form,
+        template => $self -> template_form,
     );
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $term = $c->model($self->model)->new();
-    my $form = $self->form($term);
-    $form->process(
+    my $term = $c -> model($self -> model) -> new();
+    my $form = $self -> form($term);
+    $form -> process(
         init_object => {
-            airport_id  => $self->get_object($c)->airport_id,
-            name        => $self->get_object($c)->name,
+            airport_id  => $self -> get_object($c) -> airport_id,
+            name        => $self -> get_object($c) -> name,
         },
-        params => $c->request->parameters
+        params => $c -> request -> parameters
     );
 
-    if ($form->validated) {
-        $term->set_id(
-            $self->get_object($c)->id
+    if ($form -> validated) {
+        $term -> set_id(
+            $self -> get_object($c) -> id
         );
-        $term->set_is_published(
-            $self->get_object($c)->is_published
+        $term -> set_is_published(
+            $self -> get_object($c) -> is_published
         );
 
-        eval { $term->update(); };
-        $form->process_error($@) if $@;
+        eval { $term -> update(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form
+        template => $self -> template_form
     );
 };
 
 sub browse :Local :Args(1) {
     my ($self, $c, $airport) = @_;
 
-    $c->stash(
-        iterator => $c->model('Terminal')->search({ airport_id => $airport })
+    $c -> stash(
+        iterator => $c -> model('Terminal') -> search({ airport_id => $airport })
     );
 }
 
-__PACKAGE__->meta->make_immutable();
+__PACKAGE__ -> meta -> make_immutable();
 
 1;
+
+__END__

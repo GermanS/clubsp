@@ -17,8 +17,8 @@ use ClubSpain::Form::BackOffice::Country;
 sub form :Private {
     my ($self, $listener) = @_;
 
-    my $form = ClubSpain::Form::BackOffice::Country->new();
-    $form->add_listener($listener);
+    my $form = ClubSpain::Form::BackOffice::Country -> new();
+    $form -> add_listener($listener);
 
     return $form;
 }
@@ -26,7 +26,7 @@ sub form :Private {
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->detach('page');
+    $c -> detach('page');
 };
 
 sub base :Chained('/backoffice/base') :PathPart('country') :CaptureArgs(0) {};
@@ -34,56 +34,58 @@ sub base :Chained('/backoffice/base') :PathPart('country') :CaptureArgs(0) {};
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $country = $c->model($self->model)->new();
-    my $form = $self->form($country);
+    my $country = $c -> model($self -> model) -> new();
+    my $form = $self -> form($country);
 
-    $form->process($c->request->parameters);
-    if ($form->validated) {
-        $country->set_enable();
+    $form -> process($c -> request -> parameters);
+    if ($form -> validated) {
+        $country -> set_enable();
 
-        eval { $country->create(); };
-        $form->process_error($@) if $@;
+        eval { $country -> create(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form,
+        template => $self -> template_form,
     );
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $country = $c->model($self->model)->new();
-    my $form = $self->form($country);
-    $form->process(
+    my $country = $c -> model($self -> model) -> new();
+    my $form = $self -> form($country);
+    $form -> process(
         init_object => {
-            name     => $self->get_object($c)->name,
-            alpha2   => $self->get_object($c)->alpha2,
-            alpha3   => $self->get_object($c)->alpha3,
-            numerics => $self->get_object($c)->numerics
+            name     => $self -> get_object($c) -> name,
+            alpha2   => $self -> get_object($c) -> alpha2,
+            alpha3   => $self -> get_object($c) -> alpha3,
+            numerics => $self -> get_object($c) -> numerics
         },
-        params => $c->request->parameters
+        params => $c -> request -> parameters
     );
 
-    if ($form->validated) {
-        $country->set_id(
-            $self->get_object($c)->id
+    if ($form -> validated) {
+        $country -> set_id(
+            $self -> get_object($c) -> id
         );
-        $country->set_is_published(
-            $self->get_object($c)->is_published
+        $country -> set_is_published(
+            $self -> get_object($c) -> is_published
         );
 
-        eval { $country->update(); };
-        $form->process_error($@) if $@;
+        eval { $country -> update(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form
+        template => $self -> template_form
     );
 };
 
-__PACKAGE__->meta()->make_immutable();
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

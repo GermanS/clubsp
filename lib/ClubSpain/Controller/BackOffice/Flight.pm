@@ -11,7 +11,7 @@ use ClubSpain::Form::BackOffice::Flight;
 sub form :Private {
     my ($self, $listener) = @_;
 
-    return ClubSpain::Form::BackOffice::Flight->new({
+    return ClubSpain::Form::BackOffice::Flight -> new({
         listeners => [ $listener ]
     });
 };
@@ -26,16 +26,16 @@ has 'model'
 sub default :Path {
     my ($self, $c) = @_;
 
-    if ($c->request->param('AirportOfDeparture') && $c->request->param('AirportOfArrival')) {
-        my $iterator = $c->model('Flight')->search({
-            departure_airport_id    => $c->request->param('AirportOfDeparture'),
-            destination_airport_id  => $c->request->param('AirportOfArrival')
+    if ($c -> request -> param('AirportOfDeparture') && $c -> request -> param('AirportOfArrival')) {
+        my $iterator = $c -> model('Flight') -> search({
+            departure_airport_id    => $c -> request -> param('AirportOfDeparture'),
+            destination_airport_id  => $c -> request -> param('AirportOfArrival')
         }, {
             order_by => [qw(airline_id code)]
         });
 
-        $c->stash( iterator => $iterator );
-        $self->setup_stash_from_request($c);
+        $c -> stash( iterator => $iterator );
+        $self -> setup_stash_from_request($c);
     }
 };
 
@@ -43,123 +43,123 @@ sub base :Chained('/backoffice/base') :PathPart('flight') :CaptureArgs(0) {}
 
 sub create :Local {
     my ($self, $c) = @_;
-    $self->setup_stash_from_request($c);
+    $self -> setup_stash_from_request($c);
 
-    my $flight = $c->model($self->model)->new();
-    my $form = $self->form($flight);
+    my $flight = $c -> model($self -> model) -> new();
+    my $form = $self -> form($flight);
 
-    my $is_posted = exists ($c->request->parameters->{'code'}) &&
-                    exists ($c->request->parameters->{'airline_id'});
+    my $is_posted = exists ($c -> request -> parameters -> {'code'}) &&
+                    exists ($c -> request -> parameters -> {'airline_id'});
 
-    $form->process(
+    $form -> process(
         posted => $is_posted,
         init_object => {
-            CountryOfDeparture => $c->request->param('CountryOfDeparture'),
-            CityOfDeparture    => $c->request->param('CityOfDeparture'),
-            AirportOfDeparture => $c->request->param('AirportOfDeparture'),
-            CountryOfArrival   => $c->request->param('CountryOfArrival'),
-            CityOfArrival      => $c->request->param('CityOfArrival'),
-            AirportOfArrival   => $c->request->param('AirportOfArrival'),
+            CountryOfDeparture => $c -> request -> param('CountryOfDeparture'),
+            CityOfDeparture    => $c -> request -> param('CityOfDeparture'),
+            AirportOfDeparture => $c -> request -> param('AirportOfDeparture'),
+            CountryOfArrival   => $c -> request -> param('CountryOfArrival'),
+            CityOfArrival      => $c -> request -> param('CityOfArrival'),
+            AirportOfArrival   => $c -> request -> param('AirportOfArrival'),
         },
-        params => $c->request->parameters
+        params => $c -> request -> parameters
     );
 
-    if ($form->validated) {
-        $flight->set_enable();
+    if ($form -> validated) {
+        $flight -> set_enable();
 
-        eval { $flight->create(); };
-        $form->process_error($@) if $@;
+        eval { $flight -> create(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form,
+        template => $self -> template_form,
     );
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    $self->setup_stash_from_data($c);
+    $self -> setup_stash_from_data($c);
 
-    my $flight = $c->model($self->model)->new();
-    my $form = $self->form($flight);
-    $form->process(
+    my $flight = $c -> model($self -> model) -> new();
+    my $form = $self -> form($flight);
+    $form -> process(
         init_object => {
-            CountryOfDeparture  => $self->get_object($c)->departure_airport->city->country_id,
-            CityOfDeparture     => $self->get_object($c)->departure_airport->city_id,
-            AirportOfDeparture  => $self->get_object($c)->departure_airport_id,
-            CountryOfArrival    => $self->get_object($c)->destination_airport->city->country_id,
-            CityOfArrival       => $self->get_object($c)->destination_airport->city_id,
-            AirportOfArrival    => $self->get_object($c)->destination_airport_id,
-            airline_id          => $self->get_object($c)->airline_id,
-            code                => $self->get_object($c)->code,
+            CountryOfDeparture  => $self -> get_object($c) -> departure_airport -> city -> country_id,
+            CityOfDeparture     => $self -> get_object($c) -> departure_airport -> city_id,
+            AirportOfDeparture  => $self -> get_object($c) -> departure_airport_id,
+            CountryOfArrival    => $self -> get_object($c) -> destination_airport -> city -> country_id,
+            CityOfArrival       => $self -> get_object($c) -> destination_airport -> city_id,
+            AirportOfArrival    => $self -> get_object($c) -> destination_airport_id,
+            airline_id          => $self -> get_object($c) -> airline_id,
+            code                => $self -> get_object($c) -> code,
         },
-        params => $c->request->parameters
+        params => $c -> request -> parameters
     );
 
-    if ($form->validated) {
-        $flight->set_id(
-            $self->get_object($c)->id
+    if ($form -> validated) {
+        $flight -> set_id(
+            $self -> get_object($c) -> id
         );
-        $flight->set_is_published(
-            $self->get_object($c)->is_published
+        $flight -> set_is_published(
+            $self -> get_object($c) -> is_published
         );
 
-        eval { $flight->update(); };
-        $form->process_error($@) if $@;
+        eval { $flight -> update(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form
+        template => $self -> template_form
     );
 };
 
 sub enable :Chained('id') :PathPart('enable') :Args(0) {
     my ($self, $c) = @_;
 
-    $self->get_object($c)->update({ is_published => ENABLE });
+    $self -> get_object($c) -> update({ is_published => ENABLE });
 
-    $self->setup_stash_from_data($c);
-    $self->setup_request_from_stash($c);
-    $c->detach('default');
+    $self -> setup_stash_from_data($c);
+    $self -> setup_request_from_stash($c);
+    $c -> detach('default');
 };
 
 sub disable :Chained('id') :PathPart('disable') :Args(0) {
     my ($self, $c) = @_;
 
-    $self->get_object($c)->update({ is_published => DISABLE });
+    $self -> get_object($c) -> update({ is_published => DISABLE });
 
-    $self->setup_stash_from_data($c);
-    $self->setup_request_from_stash($c);
+    $self -> setup_stash_from_data($c);
+    $self -> setup_request_from_stash($c);
 
-    $c->detach('default');
+    $c -> detach('default');
 };
 
 sub delete :Chained('id') :PathPart('delete') :Args(0) {
     my ($self, $c) = @_;
 
-    $self->setup_stash_from_data($c);
-    $self->setup_request_from_stash($c);
+    $self -> setup_stash_from_data($c);
+    $self -> setup_request_from_stash($c);
 
-    eval { $c->model($self->model)->delete( $self->get_object($c)->id ); };
-    $self->show_message(context => $c, error => $@);
+    eval { $c -> model($self -> model) -> delete( $self -> get_object($c) -> id ); };
+    $self -> show_message(context => $c, error => $@);
 
-    $c->detach('default');
+    $c -> detach('default');
 };
 
 sub setup_stash_from_data :Private {
     my ($self, $c) = @_;
 
-    my $flight = $self->get_object($c);
-    $c->stash({
-        CountryOfDeparture => $flight->departure_airport->city->country_id,
-        CityOfDeparture    => $flight->departure_airport->city_id,
-        AirportOfDeparture => $flight->departure_airport_id,
-        CountryOfArrival   => $flight->destination_airport->city->country_id,
-        CityOfArrival      => $flight->destination_airport->city_id,
-        AirportOfArrival   => $flight->destination_airport_id,
+    my $flight = $self -> get_object($c);
+    $c -> stash({
+        CountryOfDeparture => $flight -> departure_airport -> city -> country_id,
+        CityOfDeparture    => $flight -> departure_airport -> city_id,
+        AirportOfDeparture => $flight -> departure_airport_id,
+        CountryOfArrival   => $flight -> destination_airport -> city -> country_id,
+        CityOfArrival      => $flight -> destination_airport -> city_id,
+        AirportOfArrival   => $flight -> destination_airport_id,
     });
 };
 
@@ -168,7 +168,7 @@ sub setup_request_from_stash :Private {
 
     my @param = qw(CountryOfDeparture CityOfDeparture AirportOfDeparture
                    CountryOfArrival   CityOfArrival   AirportOfArrival);
-    $c->request->param($_, $c->stash->{$_})
+    $c -> request -> param($_, $c -> stash -> {$_})
         foreach (@param);
 };
 
@@ -182,8 +182,12 @@ sub setup_stash_from_request :Private {
                    CityOfArrival
                    AirportOfArrival);
 
-    $c->stash($_ => $c->request->param($_))
+    $c -> stash($_ => $c -> request -> param($_))
         foreach (@param);
 };
 
+__PACKAGE__ -> meta() -> make_immutable();
+
 1;
+
+__END__

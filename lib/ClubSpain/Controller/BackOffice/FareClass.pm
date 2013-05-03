@@ -17,8 +17,8 @@ use ClubSpain::Form::BackOffice::FareClass;
 sub form :Private {
     my ($self, $listener) = @_;
 
-    my $form = ClubSpain::Form::BackOffice::FareClass->new();
-    $form->add_listener($listener);
+    my $form = ClubSpain::Form::BackOffice::FareClass -> new();
+    $form -> add_listener($listener);
 
     return $form;
 }
@@ -26,7 +26,7 @@ sub form :Private {
 
 sub default :Path {
     my ($self, $c) = @_;
-    $c->stash( iterator => $c->model($self->model)->search({}) );
+    $c -> stash( iterator => $c -> model($self -> model) -> search({}) );
 };
 
 sub base :Chained('/backoffice/base') :PathPart('fareclass') :CaptureArgs(0) {};
@@ -34,51 +34,53 @@ sub base :Chained('/backoffice/base') :PathPart('fareclass') :CaptureArgs(0) {};
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $fareclass = $c->model($self->model)->new();
-    my $form = $self->form($fareclass);
+    my $fareclass = $c -> model($self -> model) -> new();
+    my $form = $self -> form($fareclass);
 
-    $form->process($c->request->parameters);
-    if ($form->validated) {
-        $fareclass->set_enable();
+    $form -> process($c -> request -> parameters);
+    if ($form -> validated) {
+        $fareclass -> set_enable();
 
-        eval { $fareclass->create(); };
-        $form->process_error($@) if $@;
+        eval { $fareclass -> create(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form,
+        template => $self -> template_form,
     );
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $fareclass = $c->model($self->model)->new();
-    my $form = $self->form($fareclass);
+    my $fareclass = $c -> model($self -> model) -> new();
+    my $form = $self -> form($fareclass);
 
-    $form->process(
+    $form -> process(
         init_object => {
-            name    => $self->get_object($c)->name,
-            code    => $self->get_object($c)->code
+            name    => $self -> get_object($c) -> name,
+            code    => $self -> get_object($c) -> code
         },
-        params => $c->request->parameters
+        params => $c -> request -> parameters
     );
 
-    if ($form->validated) {
-        $fareclass->set_id( $self->get_object($c)->id );
-        $fareclass->set_is_published( $self->get_object($c)->is_published );
+    if ($form -> validated) {
+        $fareclass -> set_id( $self -> get_object($c) -> id );
+        $fareclass -> set_is_published( $self -> get_object($c) -> is_published );
 
-        eval { $fareclass->update(); };
-        $form->process_error($@) if $@;
+        eval { $fareclass -> update(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form
+        template => $self -> template_form
     );
 };
 
-__PACKAGE__->meta()->make_immutable();
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

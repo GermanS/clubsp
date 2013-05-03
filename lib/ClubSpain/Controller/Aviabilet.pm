@@ -9,7 +9,7 @@ use parent qw(Catalyst::Controller);
 sub auto :Private {
     my ($self, $c) = @_;
 
-    $c->stash(
+    $c -> stash(
         template  => 'common/charter/ticket/ticket.tt2'
     );
 }
@@ -23,7 +23,7 @@ sub auto :Private {
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->response->redirect('/');
+    $c -> response -> redirect('/');
 }
 
 sub base :Chained('/aviabilet') :PathPart('') :CaptureArgs(0) { }
@@ -33,26 +33,26 @@ sub id :Chained('base') :PathPart('') :CaptureArgs(1) {
 
     my $itinerary;
     eval {
-        $itinerary = $c->model('Itinerary')->fetch_by_id($id);
+        $itinerary = $c -> model('Itinerary') -> fetch_by_id($id);
 
-        if ($itinerary->parent_id == 0 and $itinerary->is_published == 1) {
-            $c->stash(
+        if ($itinerary -> parent_id == 0 and $itinerary -> is_published == 1) {
+            $c -> stash(
                 itinerary => $itinerary,
-                title     => $c->model('Seo::Itinerary')->direction_title_with_date($itinerary),
+                title     => $c -> model('Seo::Itinerary') -> direction_title_with_date($itinerary),
             )
         }
     };
 
     if ($@) {
-        $c->response->redirect('/charter/searchRT');
+        $c -> response -> redirect('/charter/searchRT');
     }
 }
 
 sub view :Chained('id') :PathPart('') :Args(0) {
     my ($self, $c) = @_;
 
-    unless ($c->stash->{'itinerary'}) {
-         $c->response->redirect( '/charter/searchRT' );
+    unless ($c -> stash -> {'itinerary'}) {
+         $c -> response -> redirect( '/charter/searchRT' );
     }
 }
 

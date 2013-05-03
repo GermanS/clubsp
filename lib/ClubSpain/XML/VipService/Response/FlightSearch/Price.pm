@@ -15,16 +15,38 @@ has 'adult' => (
     is      => 'rw',
     isa     => 'ArrayRef[ClubSpain::XML::VipService::Response::FlightSearch::Price::Adult]',
     default => sub { [] },
+    traits  => [ 'Array' ],
+    handles => {
+        add_adults   => 'push',
+        all_adults   => 'elements',
+        map_adults   => 'map',
+        count_adults => 'count',
+
+    }
 );
 has 'child' => (
     is      => 'rw',
     isa     => 'ArrayRef[ClubSpain::XML::VipService::Response::FlightSearch::Price::Child]',
     default => sub { [] },
+    traits  => [ 'Array' ],
+    handles => {
+        add_children   => 'push',
+        all_children   => 'elements',
+        map_children   => 'map',
+        count_children => 'count',
+    }
 );
 has 'infant' => (
     is      => 'rw',
     isa     => 'ArrayRef[ClubSpain::XML::VipService::Response::FlightSearch::Price::Infant]',
     default => sub { [] },
+    traits  => [ 'Array' ],
+    handles => {
+        add_infants   => 'push',
+        all_infants   => 'elements',
+        map_infants   => 'map',
+        count_infants => 'count',
+    }
 );
 
 sub initialize {
@@ -32,11 +54,11 @@ sub initialize {
 
     foreach my $cost (@{$price}) {
         if ($cost -> { 'passengerType' } eq 'ADULT') {
-            $self -> add_adult($cost);
+            $self -> add_adult( $cost );
         } elsif ($cost -> { 'passengerType' } eq 'CHILD') {
-            $self -> add_child($cost);
+            $self -> add_child( $cost );
         } elsif ($cost -> { 'passengerType' } eq 'INFANT') {
-            $self -> add_infant($cost);
+            $self -> add_infant( $cost );
         }
     };
 }
@@ -45,21 +67,21 @@ sub add_adult {
     my ($self, $params) = @_;
 
     my $adult = ClubSpain::XML::VipService::Response::FlightSearch::Price::Adult -> new( $params );
-    push @{ $self -> adult }, $adult;
+    $self -> add_adults( $adult );
 }
 
 sub add_child {
     my ($self, $params) = @_;
 
     my $child = ClubSpain::XML::VipService::Response::FlightSearch::Price::Child -> new( $params );
-    push @{ $self -> child }, $child;
+    $self -> add_children( $child );
 }
 
 sub add_infant {
     my ($self, $params) = @_;
 
     my $infant = ClubSpain::XML::VipService::Response::FlightSearch::Price::Infant -> new( $params );
-    push @{ $self -> infant }, $infant;
+    $self -> add_infants( $infant );
 }
 
 sub total {
@@ -75,7 +97,7 @@ sub subtotal_adult {
     my $self = shift;
 
     my $subtotal = Math::BigFloat -> new(0);
-    for my $adult (@{$self -> adult}) {
+    for my $adult ( $self -> all_adults() ) {
         $subtotal += $adult -> amount();
     }
 
@@ -86,7 +108,7 @@ sub subtotal_child {
     my $self = shift;
 
     my $subtotal = Math::BigFloat -> new(0);
-    for my $child (@{$self -> child}) {
+    for my $child ( $self -> all_children() ) {
         $subtotal += $child -> amount();
     }
 
@@ -97,7 +119,7 @@ sub subtotal_infant {
     my $self = shift;
 
     my $subtotal = Math::BigFloat -> new(0);
-    for my $infant (@{$self -> infant}) {
+    for my $infant ( $self -> all_infants() ) {
         $subtotal += $infant -> amount();
     }
 

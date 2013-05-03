@@ -17,8 +17,8 @@ use ClubSpain::Form::BackOffice::Airline;
 sub form :Private {
     my ($self, $listener) = @_;
 
-    my $form = ClubSpain::Form::BackOffice::Airline->new();
-    $form->add_listener($listener);
+    my $form = ClubSpain::Form::BackOffice::Airline -> new();
+    $form -> add_listener($listener);
 
     return $form;
 }
@@ -26,7 +26,7 @@ sub form :Private {
 sub default :Path {
     my ($self, $c) = @_;
 
-    $c->detach('page');
+    $c -> detach('page');
 };
 
 sub base :Chained('/backoffice/base') :PathPart('airline') :CaptureArgs(0) {};
@@ -34,56 +34,58 @@ sub base :Chained('/backoffice/base') :PathPart('airline') :CaptureArgs(0) {};
 sub create :Local {
     my ($self, $c) = @_;
 
-    my $airline = $c->model($self->model)->new();
-    my $form = $self->form($airline);
+    my $airline = $c -> model($self -> model) -> new();
+    my $form = $self -> form($airline);
 
-    $form->process($c->request->parameters);
-    if ($form->validated) {
-        $airline->set_enable();
+    $form -> process($c -> request -> parameters);
+    if ($form -> validated) {
+        $airline -> set_enable();
 
-        eval { $airline->create(); };
-        $form->process_error($@) if $@;
+        eval { $airline -> create(); };
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form,
+        template => $self -> template_form,
     );
 };
 
 sub edit :Chained('id') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
 
-    my $airline = $c->model($self->model)->new();
-    my $form = $self->form($airline);
-    $form->process(
+    my $airline = $c -> model($self -> model) -> new();
+    my $form = $self -> form($airline);
+    $form -> process(
         init_object => {
-            name => $self->get_object($c)->name,
-            iata => $self->get_object($c)->iata,
-            icao => $self->get_object($c)->icao
+            name => $self -> get_object($c) -> name,
+            iata => $self -> get_object($c) -> iata,
+            icao => $self -> get_object($c) -> icao
         },
-        params => $c->request->parameters
+        params => $c -> request -> parameters
     );
 
-    if ($form->validated) {
-        $airline->set_id(
-            $self->get_object($c)->id
+    if ($form -> validated) {
+        $airline -> set_id(
+            $self -> get_object($c) -> id
         );
-        $airline->set_is_published(
-            $self->get_object($c)->is_published
+        $airline -> set_is_published(
+            $self -> get_object($c) -> is_published
         );
 
-        eval { $airline->update(); };
+        eval { $airline -> update(); };
 
-        $form->process_error($@) if $@;
+        $form -> process_error($@) if $@;
     }
 
-    $c->stash(
+    $c -> stash(
         form     => $form,
-        template => $self->template_form
+        template => $self -> template_form
     );
 };
 
-__PACKAGE__->meta()->make_immutable();
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__

@@ -15,7 +15,7 @@ use DateTime::Format::Strptime;
 sub auto :Private {
     my ($self, $c) = @_;
 
-    $c->stash(
+    $c -> stash(
         template  => 'common/flight/flight.tt2'
     );
 }
@@ -26,7 +26,7 @@ sub base :Chained('/flight') :PathPart('') :CaptureArgs(0) {
 sub end :ActionClass('RenderView') {
     my ($self, $c) = @_;
 
-    $self->setup_stash_from_request($c);
+    $self -> setup_stash_from_request($c);
 }
 
 sub default :Path {
@@ -38,32 +38,32 @@ sub search :Local {
     my $flight;
 
     eval {
-        my $city_of_departure = $c->model('City')->fetch_by_id(
-            $c->request->param('CityOfDeparture_id')
+        my $city_of_departure = $c -> model('City') -> fetch_by_id(
+            $c -> request -> param('CityOfDeparture_id')
         );
-        my $city_of_arrival = $c->model('City')->fetch_by_id(
-            $c->request->param('CityOfArrival_id')
+        my $city_of_arrival = $c -> model('City') -> fetch_by_id(
+            $c -> request -> param('CityOfArrival_id')
         );
-        my $cityOfDeparture = ClubSpain::XML::VipService::Location->new(
-            code => $city_of_departure->iata,
-            name => $city_of_departure->name,
+        my $cityOfDeparture = ClubSpain::XML::VipService::Location -> new(
+            code => $city_of_departure -> iata,
+            name => $city_of_departure -> name,
         );
-        my $cityOfArrival = ClubSpain::XML::VipService::Location->new(
-            code => $city_of_arrival->iata,
-            name => $city_of_arrival->name,
+        my $cityOfArrival = ClubSpain::XML::VipService::Location -> new(
+            code => $city_of_arrival -> iata,
+            name => $city_of_arrival -> name,
         );
 
-        my $format = DateTime::Format::Strptime->new(
+        my $format = DateTime::Format::Strptime -> new(
             locale  => 'ru_RU',
             pattern => '%d-%m-%Y',
         );
-        my $dateOfDeparture1 = $format->parse_datetime(
-            $c->request->param('DateOfDeparture1')
+        my $dateOfDeparture1 = $format -> parse_datetime(
+            $c -> request -> param('DateOfDeparture1')
         );
         my $dateOfDeparture2;
-        if ($c->request->param('DateOfDeparture2')) {
-            $dateOfDeparture2 = $format->parse_datetime(
-                $c->request->param('DateOfDeparture2')
+        if ($c -> request -> param('DateOfDeparture2')) {
+            $dateOfDeparture2 = $format -> parse_datetime(
+                $c -> request -> param('DateOfDeparture2')
             );
         }
 
@@ -74,45 +74,45 @@ sub search :Local {
             'INFANT' => 'infants_data',
         );
         while ( my ($key, $value) = each %values) {
-            my $count = $c->request->param($value);
-            push @seat, ClubSpain::XML::VipService::Seat->new(
+            my $count = $c -> request -> param($value);
+            push @seat, ClubSpain::XML::VipService::Seat -> new(
                 passenger => $key,
                 count     => $count,
             ) if $count;
         }
 
         my @route;
-        push @route, ClubSpain::XML::VipService::Route->new(
+        push @route, ClubSpain::XML::VipService::Route -> new(
             date          => $dateOfDeparture1,
             locationBegin => $cityOfDeparture,
             locationEnd   => $cityOfArrival,
         );
-        push @route, ClubSpain::XML::VipService::Route->new(
+        push @route, ClubSpain::XML::VipService::Route -> new(
             date          => $dateOfDeparture2,
             locationBegin => $cityOfArrival,
             locationEnd   => $cityOfDeparture,
         ) if $dateOfDeparture2;
 
-        $flight = ClubSpain::XML::VipService::Flight->new(
-            skipConnected => $c->request->param('skipConnected_data'),
-            serviceClass  => $c->request->param('cabin_data'),
+        $flight = ClubSpain::XML::VipService::Flight -> new(
+            skipConnected => $c -> request -> param('skipConnected_data'),
+            serviceClass  => $c -> request -> param('cabin_data'),
             route => \@route,
             seat  => \@seat
         );
     };
 
     if ($@) {
-        $c->stash(
-            message => ClubSpain::Message->error( 'Произошла ошибка. Попробуйте еще раз!' )
+        $c -> stash(
+            message => ClubSpain::Message -> error( 'Произошла ошибка. Попробуйте еще раз!' )
         );
         return;
     }
 
-    my $config = ClubSpain::XML::VipService::Config->new( config => $c->config );
-    my $service = ClubSpain::XML::VipService->new(config => $config);
-    my $result = $service->searchFlights($flight);
+    my $config = ClubSpain::XML::VipService::Config -> new( config => $c -> config );
+    my $service = ClubSpain::XML::VipService -> new(config => $config);
+    my $result = $service -> searchFlights($flight);
 
-    $c->stash( result => $result );
+    $c -> stash( result => $result );
 }
 
 sub setup_stash_from_request : Private {
@@ -135,7 +135,7 @@ sub setup_stash_from_request : Private {
         skipConnected_data
     );
     for my $value (@values) {
-        $result{$value} = $c->request->param($value) || 0;
+        $result{$value} = $c -> request -> param($value) || 0;
     }
 
     #set adults default to 1
@@ -167,14 +167,14 @@ sub setup_stash_from_request : Private {
         unless $result{'skipConnected_data'};
 
     #seo pupruse. set the title of the page to direction
-    if ($c->request->param('CityOfDeparture_id') && $c->request->param('CityOfArrival_id')) {
-        my $city_of_departure = $c->model('City')->fetch_by_id(
-            $c->request->param('CityOfDeparture_id')
+    if ($c -> request -> param('CityOfDeparture_id') && $c -> request -> param('CityOfArrival_id')) {
+        my $city_of_departure = $c -> model('City') -> fetch_by_id(
+            $c -> request -> param('CityOfDeparture_id')
         );
-        my $city_of_arrival = $c->model('City')->fetch_by_id(
-            $c->request->param('CityOfArrival_id')
+        my $city_of_arrival = $c -> model('City') -> fetch_by_id(
+            $c -> request -> param('CityOfArrival_id')
         );
-        $result{'title'} = $c->model('SEO::Itinerary')->simple_direction_title(
+        $result{'title'} = $c -> model('SEO::Itinerary') -> simple_direction_title(
             cityOfDeparture => $city_of_departure,
             cityOfArrival   => $city_of_arrival,
         );
@@ -184,11 +184,11 @@ sub setup_stash_from_request : Private {
     unless ($result{'CityOfDeparture'} && $result{'CityOfDeparture_id'} ) {
         $result{'CityOfDeparture_id'} = 1;
 
-        my $mow = $c->model('City')->fetch_by_id($result{'CityOfDeparture_id'});
-        $result{'CityOfDeparture'} = sprintf("%s (%s)", $mow->name_ru, $mow->iata);
+        my $mow = $c -> model('City') -> fetch_by_id($result{'CityOfDeparture_id'});
+        $result{'CityOfDeparture'} = sprintf("%s (%s)", $mow -> name_ru, $mow -> iata);
     }
 
-    $c->stash({%result});
+    $c -> stash({%result});
 }
 
 1;
