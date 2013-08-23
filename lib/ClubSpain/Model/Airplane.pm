@@ -1,7 +1,11 @@
 package ClubSpain::Model::Airplane;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -44,54 +48,74 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::Airplane';
 
-sub validate_manufacturer_id {
-}
-sub validate_name {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('name')->type_constraint->validate($value);
-}
-sub validate_iata {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('iata')->type_constraint->validate($value);
-}
-sub validate_icao {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('icao')->type_constraint->validate($value);
-}
-
-
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
-sub params {
-    my $self = shift;
+__PACKAGE__ -> meta() -> make_immutable();
 
-    return {
-        iata            => $self->get_iata,
-        icao            => $self->get_icao,
-        name            => $self->get_name,
-        manufacturer_id => $self->get_manufacturer_id,
-        is_published    => $self->get_is_published,
-    };
-}
+1;
 
-__PACKAGE__->meta->make_immutable;
+__END__
 
-=head
+=head1 NAME
+
+ClubSpain::Model::Airplane
+
+=head1 SYNOPSIS
+
+use ClubSpain::Model::Airplane;
+my $object = ClubSpain::Model::Airplane -> new(
+    id              => $id,
+    iata            => $iata,
+    icao            => $icao,
+    name            => $name,
+    is_published    => $flag,
+    manufacturer_id => $manufacturer_id,
+);
+
+if( $object -> validate_iata() ) { ... }
+if( $object -> validate_icao() ) { ... }
+if( $object -> validate_name() ) { ... }
+if( $object -> validate_manufacturer_id() ) { ... }
+
+my $res = $object -> create();
+my $res = $object -> update();
+my $res = $object -> delete();
+
+=head1 DESCRIPTION
+
+Марка (модель) самолета
+
+=head1 METHODS
+
+=head2 create()
+
+Сохрание объекта в базе данных
+
+=head2 update()
+
+Обновление объекта в базе данных
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::Airplane>
+L<ClubSpain::Model::Base>
 
 http://skalolaskovy.narod.ru/avia/type_of_aircrafts.html
 
-=cut
+=head1 AUTHOR
 
-1;
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
