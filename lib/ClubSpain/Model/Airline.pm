@@ -1,7 +1,11 @@
 package ClubSpain::Model::Airline;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -39,45 +43,94 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::Airline';
 
-sub validate_iata {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('iata')->type_constraint->validate($value);
-}
-sub validate_icao {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('icao')->type_constraint->validate($value);
-}
-sub validate_name {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('name')->type_constraint->validate($value);
-}
-
-
 
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        iata         => $self->get_iata,
-        icao         => $self->get_icao,
-        name         => $self->get_name,
-        is_published => $self->get_is_published,
-    };
-}
-
-__PACKAGE__->meta->make_immutable;
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::Airline
+
+=head1 SYNOPSIS
+
+    use ClubSpain::Model::Airline;
+    my $object = ClubSpain::Model::Airline -> new(
+        id           => $id,
+        iata         => $iata
+        icao         => $icao,
+        is_published => $flag
+    );
+
+    if( $object -> validate_iata() ) { ... }
+    if( $object -> validate_icao() ) { ... }
+    if( $object -> validate_name() ) { ... }
+
+    my $result = $object -> create();
+    my $result = $object -> update();
+    my $result = $object -> delete();
+
+=head1 DESCRIPTION
+
+Авиакомпания
+
+=head1 FIELDS
+
+=head2 id
+
+Идентификатор авиакомпании
+
+=head2 iata
+
+IATA код авиакомпании
+
+=head2 icao
+
+ICAO код авиакомпании
+
+=head2 name
+
+Название авиакомпании
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Создание объекта в базе данных
+
+=head2 update()
+
+Обновление объекта.
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Base>
+L<ClubSpain::Model::Role::Airline>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
