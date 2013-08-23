@@ -44,10 +44,10 @@ __PACKAGE__ -> add_columns(
 __PACKAGE__ -> set_primary_key( 'id' );
 __PACKAGE__ -> add_unique_constraint( on_icao => [ qw(icao) ] );
 
-__PACKAGE__->belongs_to(
+__PACKAGE__ -> belongs_to(
     'city' => 'ClubSpain::Schema::Result::City', 'city_id'
 );
-__PACKAGE__ - >has_many(
+__PACKAGE__ -> has_many(
     'departure_flights' => 'ClubSpain::Schema::Result::Flight',
     { 'foreign.departure_airport_id' => 'self.id' },
     { cascade_delete => 0 }
