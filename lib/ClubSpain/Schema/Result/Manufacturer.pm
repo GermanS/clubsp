@@ -51,7 +51,7 @@ ClubSpain::Schema::Result::Manufacturer
 
 =head1 FIELDS
 
-=head2 id 
+=head2 id
 
 Идентфикатор производителя
 
@@ -61,7 +61,7 @@ ClubSpain::Schema::Result::Manufacturer
 
 =head2 name
 
-Название 
+Название
 
 =head1 INDEXES
 
