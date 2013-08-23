@@ -1,13 +1,15 @@
 package ClubSpain::Schema::Result::ViewItineraryOW;
+
 use strict;
 use warnings;
 use utf8;
+
 use parent qw(DBIx::Class::Core);
 
-__PACKAGE__->table_class('DBIx::Class::ResultSource::View');
-__PACKAGE__->table('ViewItineraryOW');
-__PACKAGE__->result_source_instance->is_virtual(1);
-__PACKAGE__->result_source_instance->view_definition(q[
+__PACKAGE__ -> table_class( 'DBIx::Class::ResultSource::View' );
+__PACKAGE__ -> table( 'ViewItineraryOW' );
+__PACKAGE__ -> result_source_instance -> is_virtual(1);
+__PACKAGE__ -> result_source_instance -> view_definition(q[
 SELECT cityOfDeparture.id   as cityOfDepartureId,
        cityOfDeparture.name as cityOfDepartureName,
        cityOfDeparture.iata as cityOfDepartureIATA,
@@ -54,5 +56,3 @@ SELECT cityOfDeparture.id   as cityOfDepartureId,
 1;
 
 __END__
-
-

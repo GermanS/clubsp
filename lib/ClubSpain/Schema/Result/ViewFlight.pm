@@ -1,13 +1,15 @@
 package ClubSpain::Schema::Result::ViewFlight;
+
 use strict;
 use warnings;
 use utf8;
+
 use parent qw(DBIx::Class::Core);
 
-__PACKAGE__->table_class('DBIx::Class::ResultSource::View');
-__PACKAGE__->table('ViewFlight');
-__PACKAGE__->result_source_instance->is_virtual(1);
-__PACKAGE__->result_source_instance->view_definition(q[
+__PACKAGE__ -> table_class( 'DBIx::Class::ResultSource::View' );
+__PACKAGE__ -> table( 'ViewFlight' );
+__PACKAGE__ -> result_source_instance -> is_virtual(1);
+__PACKAGE__ -> result_source_instance -> view_definition(q[
 SELECT countryOfDeparture.id   as countryOfDeparureId,
        countryOfDeparture.name as countryOfDepartureName,
        countryOfArrival.id   as countryOfArrivalId,
@@ -52,5 +54,3 @@ SELECT countryOfDeparture.id   as countryOfDeparureId,
 1;
 
 __END__
-
-

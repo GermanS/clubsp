@@ -1,13 +1,15 @@
 package ClubSpain::Schema::Result::ViewTimeTable;
+
 use strict;
 use warnings;
 use utf8;
+
 use parent qw(DBIx::Class::Core);
 
-__PACKAGE__->table_class('DBIx::Class::ResultSource::View');
-__PACKAGE__->table('ViewTimeTable');
-__PACKAGE__->result_source_instance->is_virtual(1);
-__PACKAGE__->result_source_instance->view_definition(q[
+__PACKAGE__ -> table_class( 'DBIx::Class::ResultSource::View' );
+__PACKAGE__ -> table( 'ViewTimeTable' );
+__PACKAGE__ -> result_source_instance -> is_virtual(1);
+__PACKAGE__ -> result_source_instance -> view_definition(q[
 SELECT countryOfDeparture.id   as countryOfDeparureId,
        countryOfDeparture.name as countryOfDepartureName,
        countryOfArrival.id   as countryOfArrivalId,
@@ -59,21 +61,19 @@ SELECT countryOfDeparture.id   as countryOfDeparureId,
     ) ) )
 ]);
 
-sub id              { shift->get_column('timeatableId'); }
-sub dateOfDeparture { shift->get_column('dateOfDeparture'); }
-sub name            { shift->get_column('abbr'); }
+sub id              { shift -> get_column('timeatableId'); }
+sub dateOfDeparture { shift -> get_column('dateOfDeparture'); }
+sub name            { shift -> get_column('abbr'); }
 
 sub to_hash {
     my $self = shift;
 
     return {
-        id   => $self->id,
-        name => $self->name
+        id   => $self -> id,
+        name => $self -> name
     }
 }
 
 1;
 
 __END__
-
-
