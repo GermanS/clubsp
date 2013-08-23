@@ -92,4 +92,5 @@ L<Moose::Role>
 
 German Semenkov
 german.semenkov@gmail.com
+
 =cut
