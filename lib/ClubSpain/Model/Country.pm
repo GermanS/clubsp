@@ -1,7 +1,11 @@
 package ClubSpain::Model::Country;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -45,47 +49,28 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::Country';
 
-sub validate_name {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('name')->type_constraint->validate($value);
-}
-sub validate_alpha2 {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('alpha2')->type_constraint->validate($value);
-}
-sub validate_alpha3 {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('alpha3')->type_constraint->validate($value);
-}
-sub validate_numerics {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('numerics')->type_constraint->validate($value);
-}
-
-
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
 sub params {
     my $self = shift;
 
     return  {
-        name         => $self->get_name,
-        alpha2       => $self->get_alpha2,
-        alpha3       => $self->get_alpha3,
-        numerics     => $self->get_numerics,
-        is_published => $self->get_is_published,
+        name         => $self -> get_name(),
+        alpha2       => $self -> get_alpha2(),
+        alpha3       => $self -> get_alpha3(),
+        numerics     => $self -> get_numerics(),
+        is_published => $self -> get_is_published(),
     };
 }
 
@@ -93,13 +78,95 @@ sub searchCountriesOfDeparture {
     my $self = shift;
 
     return
-        $self->schema()
-             ->resultset($self->source_name)
-             ->searchCountriesOfDeparture();
+        $self -> schema()
+              -> resultset( $self -> source_name() )
+              -> searchCountriesOfDeparture();
 }
 
-__PACKAGE__->meta->make_immutable();
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::Country
+
+=head1 SYNOPSIS
+
+use ClubSpain::Model::Country;
+my $object = ClubSpain::Model::Country -> new(
+    id           => $id,
+    name         => $name,
+    alpha2       => $alpha2,
+    alpha3       => $aplha3,
+    numerics     => $number,
+    is_published => $flag,
+);
+
+my $res = $object -> create();
+my $res = $object -> update();
+
+my $iterator = $object -> searchCountriesOfDeparture();
+
+=head1 DESCRIPTION
+
+Страна
+
+=head1 FIELDS
+
+=head2 id
+
+Идентификатор страны
+
+=head2 name
+
+Название страны
+
+=head2 alpha2
+
+Двухбуквенных код страны
+
+=head2 alpha3
+
+Трехбуквенных код страны
+
+=head2 numerics
+
+Цифровой код страны
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Добавление записи в базу данных
+
+=head2 update()
+
+Обновление записы в базе данных
+
+=head2 searchCountriesOfDeparture()
+
+#TODO: проверить, используется ли этот метод
+Поиск стран их которых возможно отправление
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::Country>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
+
 
 
