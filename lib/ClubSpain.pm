@@ -14,15 +14,16 @@ use Catalyst::Runtime 5.80;
 
 use Catalyst qw(
     -Debug
-    ConfigLoader
-    Static::Simple
-    Server
-    Unicode
     Authentication
+    ConfigLoader
     Session
-    Session::Store::FastMmap
     Session::State::Cookie
+    Session::Store::FastMmap
+    Static::Simple
+    Unicode
 );
+
+#Server
 
 extends 'Catalyst';
 
