@@ -1,7 +1,11 @@
 package ClubSpain::Model::BankAccount;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -52,39 +56,104 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::BankAccount';
 
-sub validate_bank {}
-sub validate_BIC {}
-sub validate_company_id {}
-sub validate_current_account {}
-sub validate_correspondent_account {}
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        company_id      => $self->get_company_id,
-        bank            => $self->get_bank,
-        BIC             => $self->get_BIC,
-        current_account => $self->get_current_account,
-        correspondent_account => $self->get_correspondent_account,
-        is_published    => $self->get_is_published,
-
-    };
-}
-
-__PACKAGE__->meta->make_immutable;
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::BankAccount
+
+=head1 SYNOPSIS
+
+use ClubSpain::Model::BankAccount;
+my $object = ClubSpain::Model::BankAccount -> new(
+    company_id            => $company_id,
+    bank                  => $bank,
+    BIC                   => $bic,
+    current_account       => $current_account,
+    correspondent_account => $correspondent_account,
+    is_published          => $is_published,
+);
+
+if( $object -> validate_bank() ) {  ... }
+if( $object -> validate_BIC() ) { ... }
+if( $object -> validate_company_id() ) { ... }
+if( $object -> validate_current_account() ) { ... }
+if( $object -> validate_correspondent_account() ) { ... }
+
+my $res = $object -> create();
+my $res = $object -> update();
+my $res = $object -> delete();
+
+=head1 DESCRIPTION
+
+Банковский счет предприятия.
+
+=head1 FIELDS
+
+=head1 id
+
+Идентификатор банковского реквизита компании
+
+=head2 company_id
+
+Идентификатор компании
+
+=head2 bank
+
+Название банка
+
+=head2 BIC
+
+БИК
+
+=head2 current_account
+
+Расчетный счет
+
+=head2 correspondent_account
+
+Корреспондентский счет
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Создание записи в базе данных
+
+=head2 update()
+
+Редактирование записи в базе данных
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::BankAccount>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut

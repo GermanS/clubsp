@@ -63,7 +63,7 @@ ClubSpain::Model::Role::Article
 
 =head2 validate_header()
 
-Провека заголовка
+Проверка заголовка
 
 =head2 validate_subheader()
 
