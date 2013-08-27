@@ -1,7 +1,11 @@
 package ClubSpain::Model::City;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -44,91 +48,243 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::City';
 
-sub validate_country_id {
-    1;
-}
-sub validate_iata {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('iata')->type_constraint->validate($value);
-}
-sub validate_name_en {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('name_en')->type_constraint->validate($value);
-}
-sub validate_name_ru {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('name_ru')->type_constraint->validate($value);
-}
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        country_id   => $self->get_country_id,
-        iata         => $self->get_iata,
-        name         => $self->get_name_en,
-        name_ru      => $self->get_name_ru,
-        is_published => $self->get_is_published,
-    };
-}
 
 sub searchCitiesOfDeparture {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset($self->source_name)
-             ->searchCitiesOfDeparture(%params);
+        $self -> schema()
+              -> resultset( $self -> source_name() )
+              -> searchCitiesOfDeparture( %params );
 }
 
 sub searchCitiesOfDepartureInFlight {
     my $self = shift;
 
     return
-        $self->schema()
-             ->resultset('ViewFlight')
-             ->searchCitiesOfDeparture();
+        $self -> schema()
+              -> resultset( 'ViewFlight' )
+              -> searchCitiesOfDeparture();
 }
 
 sub searchCitiesOfArrivalInFlight {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset('ViewFlight')
-             ->searchCitiesOfArrival(%params);
+        $self -> schema()
+              -> resultset( 'ViewFlight' )
+              -> searchCitiesOfArrival( %params );
 }
 
 sub searchCitiesOfDepartureOW {
     my $self = shift;
 
     return
-        $self->schema()
-             ->resultset('ViewItineraryOW')
-             ->searchCitiesOfDeparture();
+        $self -> schema()
+              -> resultset( 'ViewItineraryOW' )
+              -> searchCitiesOfDeparture();
 }
 
 sub searchCitiesOfArrivalOW {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset('ViewItineraryOW')
-             ->searchCitiesOfArrival(%params);
+        $self -> schema()
+              -> resultset( 'ViewItineraryOW' )
+              -> searchCitiesOfArrival( %params );
 }
+
+sub searchCitiesOfDeparture1RT {
+    my $self = shift;
+
+    return
+        $self -> schema()
+              -> resultset( 'ViewItineraryRT' )
+              -> searchCitiesOfDeparture1();
+}
+
+sub searchCitiesOfArrival1RT {
+    my ($self, %params) = @_;
+
+    return
+        $self -> schema()
+              -> resultset( 'ViewItineraryRT' )
+              -> searchCitiesOfArrival1( %params );
+}
+
+sub searchCitiesOfDeparture2RT {
+    my ($self, %params) = @_;
+
+    return
+        $self -> schema()
+              -> resultset( 'ViewItineraryRT' )
+              -> searchCitiesOfDeparture2( %params );
+}
+
+sub searchCitiesOfArrival2RT {
+    my ($self, %params) = @_;
+
+    return
+        $self -> schema()
+              -> resultset( 'ViewItineraryRT' )
+              -> searchCitiesOfArrival2( %params );
+}
+
+sub suggest {
+    my ($self, $string) = @_;
+
+    $string ||= '';
+    my $result;
+    return $result if length( $string ) < 3;
+
+    if ( $string =~ m/^([a-z]*)$/i ) {
+        if (length $string == 3) {
+            $result = $self -> _search_by_iata($string);
+        }
+
+        unless ($result && ( $result -> can('count') && $result -> count() )) {
+            $result = $self -> _search_like_by_name($string);
+        }
+    } elsif ( $string =~ m/^([а-я])*$/i ) {
+        $result = $self -> _search_like_by_name_ru($string);
+    }
+
+    return $result
+}
+
+sub _search_like_by_name {
+    my ($self, $string) = @_;
+
+    return $self -> search({ name => \"LIKE '$string%'"}, {});
+}
+
+sub _search_like_by_name_ru {
+    my ($self, $string) = @_;
+
+    return $self -> search({ name_ru => \"LIKE '$string%'"}, {} );
+}
+
+sub _search_by_iata {
+    my ($self, $iata) = @_;
+
+    return $self -> search({ iata => $iata }, {} );
+}
+
+__PACKAGE__ -> meta() -> make_immutable();
+
+1;
+
+__END__
+
+=head1 NAME
+
+ClubSpain::Model::City
+
+=head1 SYNOPSIS
+
+    use ClubSpain::Model::City;
+    my $object = ClubSpain::Model::City -> new(
+        id           => $id,
+        country_id   => $country_id,
+        iata         => $iata,
+        name_en      => $name_en,
+        name_ru      => $name_ru,
+        is_puplished => $flag,
+    );
+
+    my $iterator = $object -> searchCitiesOfDeparture();
+
+    my $iterator = $object -> searchCitiesOfDepartureInFlight();
+    my $iterator = $object -> searchCitiesOfArrivalInFlight( cityOfDeparture => $id );
+
+    my $iterator = $object -> searchCitiesOfDepartureOW();;
+    my $iterator = $object -> searchCitiesOfArrivalOW( cityOfDeparture => $id );
+
+    my $iterator = $object -> searchCitiesOfDeparture1RT( %params );
+    my $iterator = $object -> searchCitiesOfArrival1RT( %params );
+    my $iterator = $object -> searchCitiesOfDeparture2RT( %params );
+    my $iterator = $object -> searchCitiesOfArrival2RT( %params );
+    my $iterator = $object -> suggest( 'alicante' );
+
+    my $res = $object -> create();
+    my $res = $object -> update();
+
+=head1 DESCRIPTION
+
+Работа с городами
+
+=head1 FIELDS
+
+=head2 id
+
+Идентификатор города
+
+=head2 country_id
+
+Идентификатор страны
+
+=head2 iata
+
+IATA код города
+
+=head2 name_en
+
+Название города латиницей
+
+=head2 name_ru
+
+Русское название города
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Создание записи в базе данных
+
+=head2 update()
+
+Редактирование записи в базе данных
+
+=head2 searchCitiesOfDeparture()
+
+#TODO: описание метода searchCitiesOfDeparture()
+
+=head2 searchCitiesOfDepartureInFlight();
+
+Поиск городов отправление в рейсах (маршрутах)
+
+=head2 searchCitiesOfArrivalInFlight( %params )
+
+Поиск городов прибытия в рейсах (маршрутах)
+На входе
+    cityOfDepature - город отправления
+
+=head2 searchCitiesOfDepartureOW()
+
+Поиск городов отправления в тарифах в одну сторону.
+
+=head2 searchCitiesOfArrival( %params )
+
+Поис городов прибытия в тарифах в одну сторону.
+На входе:
+    cityOfDeparture - город отправления
 
 =head2 searchCitiesOfDeparture1RT(%params)
 
@@ -139,17 +295,6 @@ sub searchCitiesOfArrivalOW {
 На выходе
    Города прибытия.
 
-=cut
-
-sub searchCitiesOfDeparture1RT {
-    my $self = shift;
-
-    return
-        $self->schema()
-             ->resultset('ViewItineraryRT')
-             ->searchCitiesOfDeparture1();
-}
-
 =head2 searchCitiesOfArrival1RT(%params)
 
 Поиск городов прибытия в тарифах в обе стороны
@@ -159,17 +304,6 @@ sub searchCitiesOfDeparture1RT {
 
 На выходе
    Города прибытия.
-
-=cut
-
-sub searchCitiesOfArrival1RT {
-    my ($self, %params) = @_;
-
-    return
-        $self->schema()
-             ->resultset('ViewItineraryRT')
-             ->searchCitiesOfArrival1(%params);
-}
 
 =head2 searchCitiesOfDeparture2RT(%params)
 
@@ -182,21 +316,10 @@ sub searchCitiesOfArrival1RT {
 На выходе
    Города отправления.
 
-=cut
-
-sub searchCitiesOfDeparture2RT {
-    my ($self, %params) = @_;
-
-    return
-        $self->schema()
-             ->resultset('ViewItineraryRT')
-             ->searchCitiesOfDeparture2(%params);
-}
-
 =head2 searchCitiesOfArrival2RT(%params)
 
 Поиск городов прибытия в тарифах в обе стороны
-по указанным городам отправления и прыбытия первого сегмента \
+по указанным городам отправления и прыбытия первого сегмента
 и городу отправления второго
 На входе
   cityOfDeparture1 - первый город отправления
@@ -206,17 +329,6 @@ sub searchCitiesOfDeparture2RT {
 На выходе
    Города прилета.
 
-=cut
-
-sub searchCitiesOfArrival2RT {
-    my ($self, %params) = @_;
-
-    return
-        $self->schema()
-             ->resultset('ViewItineraryRT')
-             ->searchCitiesOfArrival2(%params);
-}
-
 =head2 suggest($string);
 
 Поиск города по начальным буквам.
@@ -224,48 +336,13 @@ sub searchCitiesOfArrival2RT {
 На входе:
   $string - строка для поиска города
 
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::City>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
 =cut
-
-sub suggest {
-    my ($self, $string) = @_;
-
-    $string ||= '';
-    my $result;
-    return $result if length($string) < 3;
-
-    if ( $string =~ m/^([a-z]*)$/i ) {
-        if (length $string == 3) {
-            $result =$self->_search_by_iata($string);
-        }
-
-        unless ($result && ( $result->can('count') && $result->count() )) {
-            $result = $self->_search_like_by_name($string);
-        }
-    } elsif ( $string =~ m/^([а-я])*$/i ) {
-        $result = $self->_search_like_by_name_ru($string);
-    }
-
-    return $result
-}
-
-sub _search_like_by_name {
-    my ($self, $string) = @_;
-
-    return $self->search({ name => \"LIKE '$string%'"}, {});
-}
-
-sub _search_like_by_name_ru {
-    my ($self, $string) = @_;
-
-    return $self->search({ name_ru => \"LIKE '$string%'"}, {});
-}
-
-sub _search_by_iata {
-    my ($self, $iata) = @_;
-
-    return $self->search({ iata => $iata }, {});
-}
-
-__PACKAGE__->meta->make_immutable();
-
-1;
