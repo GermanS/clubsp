@@ -1,7 +1,11 @@
 package ClubSpain::Model::Company;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -73,73 +77,114 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::Company';
 
-sub validate_zipcode {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('zipcode')->type_constraint->validate($value);
-}
-sub validate_street  {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('street')->type_constraint->validate($value);
-}
-sub validate_name {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('name')->type_constraint->validate($value);
-}
-sub validate_nick {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('nick')->type_constraint->validate($value);
-}
-sub validate_website {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('website')->type_constraint->validate($value);
-}
-sub validate_INN  {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('INN')->type_constraint->validate($value);
-}
-sub validate_OKPO {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('OKPO')->type_constraint->validate($value);
-}
-sub validate_OKVED {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('OKVED')->type_constraint->validate($value);
-}
-sub validate_is_NDS  {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('is_NDS')->type_constraint->validate($value);
-}
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self->params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self->params() );
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        zipcode => $self->get_zipcode,
-        street  => $self->get_street,
-        name    => $self->get_name,
-        nick    => $self->get_nick,
-        website => $self->get_website,
-        INN     => $self->get_INN,
-        OKPO    => $self->get_OKPO,
-        OKVED   => $self->get_OKVED,
-        is_NDS  => $self->get_is_NDS,
-        is_published => $self->get_is_published
-    };
-}
-
-__PACKAGE__-> meta -> make_immutable();
+__PACKAGE__-> meta() -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::Company
+
+=head1 SYNOPSIS
+
+use ClubSpain::Model::Company;
+my $object = ClubSpain::Model::Company -> new(
+    zipcode      => $zipcode,
+    street       => $street,
+    name         => $name,
+    nick         => $nick,
+    website      => $website,
+    INN          => $INN
+    OKPO         => $OKPO
+    OKVED        => $OKVED
+    is_NDS       => $is_NDS,
+    is_published => $is_published,
+);
+
+=head1 DESCRIPTION
+
+Предприятие
+
+=head1 FIELDS
+
+=head2 id
+
+Идентификатор предприятия
+
+=head2 zipcode
+
+Почтовый индекс предприятия
+
+=head2 street
+
+Адрес предприятия
+
+=head2 name
+
+Полное название компании
+
+=head2 nick
+
+Сокращенное название компании
+
+=head2 website
+
+Адрес сайта
+
+=head2 INN
+
+ИНН
+
+=head2 OKPO
+
+ОКПО
+
+=head2 OKVED
+
+ОКВЭД
+
+=head2 is_NDS
+
+Флаг, что компания является платильщиком НДС
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Создание записи в базе данных
+
+=head2 update()
+
+Обновление записи в базе данных
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::Company>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
