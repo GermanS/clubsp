@@ -1,7 +1,11 @@
 package ClubSpain::Model::Terminal;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -32,35 +36,82 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::Terminal';
 
-sub validate_airport_id { 1; }
-sub validate_name {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('name')->type_constraint->validate($value);
-}
-
 sub create {
     my $self = shift;
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    return $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    return $self -> SUPER::update( $self -> params() );
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        airport_id   => $self->get_airport_id,
-        name         => $self->get_name,
-        is_published => $self->get_is_published,
-    };
-}
-
-
-__PACKAGE__->meta->make_immutable;
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::Terminal
+
+=head1 SYNOPSIS
+
+    use ClubSpain::Model::Terminal;
+    my $object = ClubSpain::Model::terminal  ->  new(
+        id           => $id,
+        airport_id   => $airport,
+        name         => $name,
+        is_published => $flag,
+    );
+
+    my $res = $object  ->  create();
+    my $res = $object  ->  update();
+
+=head1 DESCRIPTION
+
+Терминал
+
+=head1 FIELDS
+
+=head2 id
+
+Идентификатор терминала
+
+=head2 airport_id
+
+Идентификатор аэропорта
+
+=head2 name
+
+Название терминала
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Добавление записи в бузу данных.
+
+=head2 update()
+
+Обновление записи в базе данных.
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::Terminal>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
