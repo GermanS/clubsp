@@ -1,7 +1,11 @@
 package ClubSpain::Model::LocalPhone;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -49,13 +53,80 @@ sub params {
     my $self = shift;
 
     return {
-        office_id   => $self->get_office_id,
-        number      => $self->get_number,
-        is_published => $self->get_is_published
+        office_id    => $self -> get_office_id(),
+        number       => $self -> get_number(),
+        is_published => $self -> get_is_published(),
     };
-
 }
 
-__PACKAGE__->meta()->make_immutable;
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::LocalPhone
+
+=head2 SYNOPSIS
+
+use ClubSpain::Model::LocalPhone;
+my $object = ClubSpain::Model::LocalPhone -> new(
+    id           => $id,
+    office_id    => $office_id,
+    number       => $number,
+    is_published => $flag,
+);
+
+my $res = $object -> create();
+my $res = $object -> update();
+
+=head1 DESCSRIPTION
+
+Номер городского телефона
+
+=head1 FIELDS
+
+=head2 id
+
+Идентификатор
+
+=head2 office_id
+
+Идентфикатор офиса
+
+=head2 number
+
+Номер телефона
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Добавление записи в базу данных
+
+=head2 update()
+
+Редактирование записи в базе даных
+
+=head2 params()
+
+#TODO: документация для params()
+
+=head1 SEE ALSO
+
+L<Moose>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
