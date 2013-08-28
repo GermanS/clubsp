@@ -1,7 +1,11 @@
 package ClubSpain::Model::Employee;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -44,45 +48,93 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::Employee';
 
-sub validate_name {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('name')->type_constraint->validate($value);
-}
-sub validate_surname    {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('surname')->type_constraint->validate($value);
-}
-sub validate_email      {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('email')->type_constraint->validate($value);
-}
-sub validate_password   { 1 }
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        name         => $self->get_name,
-        surname      => $self->get_surname,
-        email        => $self->get_email,
-        password     => $self->get_password,
-        is_published => $self->get_is_published,
-    };
-}
-
-__PACKAGE__->meta->make_immutable();
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::Employee
+
+=head1 SYNOPSIS
+
+use ClubSpain::Model::Employee;
+my $object = ClubSpain::Model::Employee -> new(
+    id           => $id,
+    name         => $name,
+    surname      => $surname,
+    email        => $email,
+    password     => $passdord,
+    is_published => $flag,
+);
+
+my $res = $object -> create();
+my $res = $object -> update();
+
+=head1 DESCRIPTION
+
+Пользователь сайта
+
+=head1 FIELDS
+
+=head2 id
+
+Идентификатор пользователя
+
+=head2 name
+
+Имя пользователя
+
+=head2 surname
+
+Фамилия пользователя
+
+=head2 email
+
+Адрес электронной почты пользователя'
+
+=head2 password
+
+Пароль пользователя
+
+=head2 is_published
+
+Флаг опибликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Создание записи в базе данных
+
+=head2 update()
+
+Редактирование записи в базе данных
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::Employee>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
