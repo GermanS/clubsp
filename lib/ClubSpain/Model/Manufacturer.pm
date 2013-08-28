@@ -1,7 +1,11 @@
 package ClubSpain::Model::Manufacturer;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -28,15 +32,6 @@ has 'name' => (
 
 with 'ClubSpain::Model::Role::Manufacturer';
 
-sub validate_code {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('code')->type_constraint->validate($value);
-}
-sub validate_name {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('name')->type_constraint->validate($value);
-}
-
 sub create {
     my $self = shift;
 
@@ -50,15 +45,65 @@ sub update {
     $self->SUPER::update( $self->params() );
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        code   => $self->get_code,
-        name   => $self->get_name,
-    };
-}
-
 __PACKAGE__->meta->make_immutable;
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::Manufacturer
+
+=head1 SYNOPSIS
+
+use ClubSpain::Model::Manufacturer;
+my $object = ClubSpain::Model::Manufacturer -> new(
+    id   => $id,
+    code => $code,
+    name => $name,
+);
+
+my $res = $object -> create();
+my $res = $object -> update();
+
+=head1 DESCRIPTION
+
+Производитель самолетов
+
+=head1 FIELDS
+
+=head2 id
+
+Идентификатор производителя
+
+=head2 code
+
+Код производителя
+
+=head2 name
+
+Название производителя
+
+=head1 METHODS
+
+=head2 create()
+
+Добавление записи в базу данных
+
+=head2 update()
+
+Редактирование записи в базе данных
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::Manufacturer>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
