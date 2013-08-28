@@ -1,7 +1,11 @@
 package ClubSpain::Model::FareClass;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -33,38 +37,81 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::FareClass';
 
-sub validate_name {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('name')->type_constraint->validate($value);
-}
-sub validate_code {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('code')->type_constraint->validate($value);
-}
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        code         => $self->get_code,
-        name         => $self->get_name,
-        is_published => $self->get_is_published,
-    };
-}
-
-__PACKAGE__->meta->make_immutable;
+__PACKAGE__ -> meta -> make_immutable;
 
 1;
+
+__END__
+
+=head1 NAME
+
+ClubSpian::Model::FareClass
+
+=head1 SYNOPSIS
+
+    use ClubSpian::Model::FareClass;
+    my $object = ClubSpian::Model::FareClass -> new(
+        id           => $id,
+        name         => $name,
+        code         => $code,
+        is_published => $flag,
+    );
+
+    my $res = $object -> create();
+    my $res = $object -> update();
+
+=head1 DESCRIPTION
+
+Класс обслуживания
+
+=head1 FIELDS
+
+=head2 id
+
+Идентификатор класса обслуживания
+
+=head2 code
+
+Код класса обслуживания
+
+=head2 name
+
+Название класса обслуживания
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Создание записи в базе данных
+
+=head2 update()
+
+Редактирование записи в базе данных
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::FareClass>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
