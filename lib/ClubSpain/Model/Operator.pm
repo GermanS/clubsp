@@ -1,7 +1,11 @@
 package ClubSpain::Model::Operator;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -51,43 +55,104 @@ has 'is_published' => (
     reader  => 'get_is_published',
     writer  => 'set_is_published',
 );
-
-#with 'ClubSpain::Model::Role::Operator';
-
-sub validate_name    { 1; }
-sub validate_office_id { 1; }
-sub validate_surname { 1; }
-sub validate_email   { 1; }
-sub validate_passwd  { 1; }
-sub validate_mobile  { 1; }
+with 'ClubSpain::Model::Role::Operator';
 
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        name         => $self->get_name,
-        office_id    => $self->get_office_id,
-        surname      => $self->get_surname,
-        email        => $self->get_email,
-        passwd       => $self->get_passwd,
-        mobile       => $self->get_mobile,
-        is_published => $self->get_is_published,
-    };
-}
-
-__PACKAGE__->meta->make_immutable();
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::Operator
+
+=head1 SYNOPSIS
+
+use ClubSpain::Model::Operator;
+my $object = ClubSpain::Model::Operator -> new(
+    name         => $name,
+    office_id    => $office_id,
+    surname      => $surname,
+    email        => $email,
+    passwd       => $passwd,
+    mobile       => $mobile,
+    is_published => $is_published,
+);
+
+my $res = $object -> create();
+my $res = $object -> update();
+
+=head1 DESCRIPTION
+
+Работник офиса.
+
+=head1 FIELDS
+
+=head2 id
+
+Идентфикатор пользователя
+
+=head2 office_id
+
+Идентфификатор офиса
+
+=head2 name
+
+Имя пользователя
+
+=head2 surname
+
+Фамилия пользователя
+
+=head2 email
+
+Адрес элетронной почты пользователя
+
+=head2 passwd
+
+пароль пользователя
+
+=head2 mobile
+
+Номер мобильного телефона
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Создание записи в базе данных
+
+=head2 update()
+
+Редактирование записи в базе данных
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::Operator>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
