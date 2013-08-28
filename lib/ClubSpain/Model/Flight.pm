@@ -1,7 +1,11 @@
 package ClubSpain::Model::Flight;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
@@ -42,59 +46,122 @@ has 'is_published' => (
 
 with 'ClubSpain::Model::Role::Flight';
 
-sub validate_airport_of_departure { 1; }
-sub validate_airport_of_arrival   { 1; }
-sub validate_airline_id           { 1; }
-sub validate_code {
-    my ($self, $value) = @_;
-    $self->meta()->get_attribute('code')->type_constraint->validate($value);
-}
-
-
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
-}
-
-sub params {
-    my $self = shift;
-
-    return {
-        departure_airport_id    => $self->get_airport_of_departure,
-        destination_airport_id  => $self->get_airport_of_arrival,
-        airline_id              => $self->get_airline_id,
-        code                    => $self->get_code,
-        is_published            => $self->get_is_published,
-    };
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
 sub searchFlights {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset($self->source_name)
-             ->searchFlights(%params);
+        $self -> schema()
+              -> resultset( $self -> source_name() )
+              -> searchFlights(%params);
 }
 
 sub searchFlightsInTimetable {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset($self->source_name)
-             ->searchFlightsInTimetable(%params);
+        $self -> schema()
+              -> resultset( $self -> source_name()  )
+              -> searchFlightsInTimetable(%params);
 }
 
-__PACKAGE__->meta->make_immutable();
+__PACKAGE__ -> meta() -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::Flight
+
+=head1 SYNOPSIS
+
+    use ClubSpain::Model::Flight;
+    my $object = ClubSpain::Model::Flight -> new(
+        id                   => $id,
+        airport_of_departure => $airport_of_departure,
+        airport_of_arrival   => $airport_of_arrival,
+        airline_id           => $airline_id,
+        code                 => $code,
+        is_published         => $flag,
+    );
+
+    my $res = $object -> create();
+    my $res = $object -> update();
+
+    my $iterator = $object -> searchFlights( %params );
+    my $iterator = $object -> searchFlightsInTimeTable( %params );
+
+=head1 DESCRIPTION
+
+Рейс, полетный сегмент
+
+=head1 FIELDS
+
+=head2 id
+
+Идентфикатор сегмента
+
+=head2 airport_of_departure
+
+Аэропорт отправления
+
+=head2 airport_of_arrival
+
+Аэропорт прибытия
+
+=head2 airline_id
+
+Авиакомпания
+
+=head2 code
+
+Код (номер) рейса
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Создание записи в базе данных
+
+=head2 update()
+
+Редактирование записи в базе данных
+
+=head2 searchFlights(%params)
+
+Поиск рейсов, удовлетворяющих критериям %params
+
+=head2 searchFlightsInTimetable(%params)
+
+Поиск рейсов, у которых есть уктуально ерасписание, удовлетворяющих условию
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::Flight>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+-cut
