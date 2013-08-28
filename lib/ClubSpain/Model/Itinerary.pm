@@ -1,7 +1,11 @@
 package ClubSpain::Model::Itinerary;
-use Moose;
-use namespace::autoclean;
+
+use strict;
+use warnings;
 use utf8;
+use namespace::autoclean;
+
+use Moose;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 use ClubSpain::Constants qw(:all);
@@ -48,40 +52,34 @@ has 'cost' => (
 
 with 'ClubSpain::Model::Role::Itinerary';
 
-sub validate_timetable_id  { 1; }
-sub validate_fare_class_id { 1; }
-sub validate_parent_id     { 1; }
-sub validate_cost          { 1; }
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
 
 sub insert_fare {
     my $self = shift;
 
-    my $direct = $self->create();
+    my $direct = $self -> create();
 
-    if ($self->get_return_segment) {
-        my $return = $self->new({
-            timetable_id  => $self->get_return_segment,
-            fare_class_id => $self->get_fare_class_id,
-            parent_id     => $direct->id,
+    if ( $self -> get_return_segment() ) {
+        my $return = $self -> new({
+            timetable_id  => $self -> get_return_segment,
+            fare_class_id => $self -> get_fare_class_id,
+            parent_id     => $direct -> id,
             cost          => 0,
             is_published  => ENABLE,
         });
 
-        $return->create();
+        $return -> create();
     }
 
     return $direct;
@@ -90,12 +88,12 @@ sub insert_fare {
 sub update_fare {
     my $self = shift;
 
-    my $direct = $self->update();
-    my $return = $direct->next_route();
+    my $direct = $self -> update();
+    my $return = $direct -> next_route();
     if ($return) {
-        $return->update({
-            is_published  => $self->get_is_published,
-            fare_class_id => $self->get_fare_class_id,
+        $return -> update({
+            is_published  => $self -> get_is_published,
+            fare_class_id => $self -> get_fare_class_id,
             cost          => 0
         });
     }
@@ -106,47 +104,136 @@ sub update_fare {
 sub delete_fare {
     my ($self, $id) = @_;
 
-    my $direct = $self->fetch_by_id($id);
-    my $return = $direct->next_route();
-    $return->delete() if $return;
-    $direct->delete();
+    my $direct = $self -> fetch_by_id($id);
+    my $return = $direct -> next_route();
+    $return -> delete() if $return;
+    $direct -> delete();
 }
 
-sub params {
-    my $self = shift;
-
-    return {
-        is_published  => $self->get_is_published,
-        timetable_id  => $self->get_timetable_id,
-        fare_class_id => $self->get_fare_class_id,
-        parent_id     => $self->get_parent_id,
-        cost          => $self->get_cost,
-    };
-}
-
-# поиск тарифов по идентификаторам расписания
-# timetable1, [timetable2]
 sub searchItinerary {
     my ($self, @params) = @_;
 
     return
-        $self->schema()
-             ->resultset($self->source_name)
-             ->searchItinerary(@params);
+        $self -> schema()
+              -> resultset($self -> source_name)
+              -> searchItinerary(@params);
 }
 
-# поиск тарифов по городам вылета и прилета
-# {cityOfDFeparture => , cityOfArrival => }, [{cityOfDFeparture => , cityOfArrival => }]
 sub itineraries {
     my ($self, @params) = @_;
 
     return
-        $self->schema()
-             ->resultset($self->source_name)
-             ->itineraries(@params);
+        $self -> schema()
+              -> resultset($self -> source_name)
+              -> itineraries(@params);
 }
 
-=head2 searchDatesOfDeparture(%params)
+sub searchDatesOfDepartureOW {
+    my ($self, %params) = @_;
+
+    return
+        $self -> schema()
+              -> resultset('ViewItineraryOW')
+              -> searchDatesOfDeparture(%params);
+}
+
+sub searchDatesOfDeparture1RT {
+    my ($self, %params) = @_;
+
+    return
+        $self -> schema()
+              -> resultset('ViewItineraryRT')
+              -> searchDatesOfDeparture1RT(%params);
+}
+
+sub searchDatesOfDeparture2RT {
+    my ($self, %params) = @_;
+
+    return
+        $self -> schema()
+              -> resultset('ViewItineraryRT')
+              -> searchDatesOfDeparture2RT(%params);
+}
+
+__PACKAGE__ -> meta -> make_immutable;
+
+1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::Itinerary
+
+=head1 SYNOPSIS
+
+    use ClubSpain::Model::Itinerary;
+    my $object = ClubSpain::Model::Itinerary -> new(
+        id            => $id,
+        cost          => $cost,
+        fare_class_id => $class_id,
+        parent_id     => $parent_id,
+        timetable_id  => $timetable,
+    );
+
+    my $res = $object -> create();
+    my $res = $object -> update();
+
+
+=head1 DESCRIPTION
+
+Тариф на авиабилет
+
+=head1 FIELDS
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head2 timetable_id
+
+Идентификатор расписания
+
+=head2 fare_class_id
+
+Класс обслуживания
+
+=head2 parent_id
+
+Предыдущий сегмент
+
+=head2 cost
+
+Стоимость сегмента
+
+=head1 METHODS
+
+=head2 insert_fare()
+
+Добавление тарифа для всех полетных сегментов
+
+=head2 update_fare()
+
+Редактирование тарифа для всех полетных сегментов
+
+=head2 delete_fare()
+
+Удаление тарифа и всех полетных сегментов
+
+=head2 searchItinerary(@params)
+
+Писк тарифов по идентификаторам расписания
+timetable1, [timetable2]
+
+=head2 itiniraries( @params )
+
+Поиск тарифов по городам вылета и прилета
+
+{cityOfDFeparture => , cityOfArrival => }, [{cityOfDFeparture => , cityOfArrival => }]
+
+=head2 searchDatesOfDepartureOW(%params)
 
 Поиск дат отправление среди тарифов в одну сторону
 из города отправления в город прибытия
@@ -155,17 +242,6 @@ sub itineraries {
     cityOfarrival   - город прибытия
 На выходе
     Даты отправления
-
-=cut
-
-sub searchDatesOfDepartureOW {
-    my ($self, %params) = @_;
-
-    return
-        $self->schema()
-             ->resultset('ViewItineraryOW')
-             ->searchDatesOfDeparture(%params);
-}
 
 =head2 searchDatesOfDeparture1RT(%params)
 
@@ -179,18 +255,7 @@ sub searchDatesOfDepartureOW {
 На выходе
     Даты отправления первого сегмента
 
-=cut
-
-sub searchDatesOfDeparture1RT {
-    my ($self, %params) = @_;
-
-    return
-        $self->schema()
-             ->resultset('ViewItineraryRT')
-             ->searchDatesOfDeparture1RT(%params);
-}
-
-=searchDatesOfDeparture2RT(%params)
+=head2 searchDatesOfDeparture2RT(%params)
 
 Поиск дат отправления во втором сегменте тарифа в обе стороны
 На входе
@@ -203,17 +268,13 @@ sub searchDatesOfDeparture1RT {
 На выходе
     Даты отправления второго сегмента
 
+=head1 SEE ALSO
+
+L<Moose>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
 =cut
-
-sub searchDatesOfDeparture2RT {
-    my ($self, %params) = @_;
-
-    return
-        $self->schema()
-             ->resultset('ViewItineraryRT')
-             ->searchDatesOfDeparture2RT(%params);
-}
-
-__PACKAGE__->meta->make_immutable;
-
-1;
