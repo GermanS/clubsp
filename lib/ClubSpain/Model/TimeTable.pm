@@ -100,326 +100,307 @@ has 'airplane_id' => (
 
 with 'ClubSpain::Model::Role::TimeTable';
 
-sub validate_flight_id   { 1; }
-sub validate_airplane_id { 1; }
-sub validate_departure_date {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('departure_date')->type_constraint->validate($value);
-}
-sub validate_departure_time {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('departure_time')->type_constraint->validate($value);
-}
-sub validate_arrival_date {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('arrival_date')->type_constraint->validate($value);
-}
-sub validate_arrival_time {
-    my ($self, $value) = @_;
-#    $self->meta()->get_attribute('arrival_time')->type_constraint->validate($value);
-}
-
-
-=head2 create()
-
-    Добавление объекта в базу данных.
-
-=cut
-
 sub create {
     my $self = shift;
 
-    $self->SUPER::create( $self->params() );
+    $self -> SUPER::create( $self -> params() );
 }
-
-=head2 update()
-
-    Редактирование обхекта в базе данных
-
-=cut
 
 sub update {
     my $self = shift;
 
-    $self->check_for_class_method();
-    $self->SUPER::update( $self->params() );
+    $self -> check_for_class_method();
+    $self -> SUPER::update( $self -> params() );
 }
-
-sub params {
-    my $self = shift;
-
-    return {
-        is_published    => $self->get_is_published,
-        is_free         => $self->get_is_free,
-        flight_id       => $self->get_flight_id,
-        departure_date  => $self->get_departure_date,
-        departure_time  => $self->get_departure_time,
-        arrival_date    => $self->get_arrival_date,
-        arrival_time    => $self->get_arrival_time,
-        airplane_id     => $self->get_airplane_id,
-    };
-}
-
-
-=head2 departures(cityOfDeparture => , [duration => ])
-
-    Получение расписание вылетов из указанного города начиная с текущего момента
-    плюс колическов указанных дней
-
-На входе:
-
-    cityOfDeparture - город вылета
-    duration        - количество дней за которое необходимо паказать расписание
-                      (необязательный параметр)
-
-На выходе
-
-    $iterator - итератор расписаний
-
-=cut
 
 sub departures {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset($self->source_name)
-             ->departures(%params);
+        $self -> schema()
+              -> resultset($self -> source_name)
+              -> departures(%params);
 }
-
-=head2 arrivals(cityOfArrival => , [duration => ])
-
-    Получение расписания прилетов в указанный город начиная с текущего момента
-    плюс колическов указанных дней
-
-На входе:
-
-    cityOfArrival - город прилета
-    duration      - количество дней за которое необходимо паказать расписание
-                    (необязательный параметр)
-
-Нам выходе
-
-    $iterator  - итератор расписаний
-
-=cut
 
 sub arrivals {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset($self->source_name)
-             ->arrivals(%params);
+        $self -> schema()
+              -> resultset($self -> source_name)
+              -> arrivals(%params);
 }
-
-=head2 searchCitiesOfDeparture()
-
-    Получение списка городов отправления из расписания
-
-На выходе:
-
-    $iterator - итератор городов отправления в расписании
-
-У всех объектов: стран, городов, аэропортов, ... должен стоять флаг is_published=1
-
-=cut
 
 sub searchCitiesOfDeparture {
     my $self = shift;
 
     return
-        $self->schema()
-             ->resultset('ViewTimeTable')
-             ->searchCitiesOfDeparture();
+        $self -> schema()
+              -> resultset('ViewTimeTable')
+              -> searchCitiesOfDeparture();
 }
-
-=head2 searchCitiesOfArrival(cityOfDeparture => )
-
-    Получение списка гододов прибытия из указанного города отправления
-
-На входе:
-
-    cityOfDeparture - годод отправления
-
-Но выходе:
-
-    $iterator - итератор городов прибытия из города отправления
-
-У всех объектов: стран, городов, аэропортов, ... должен стоять флаг is_published=1
-
-=cut
 
 sub searchCitiesOfArrival {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset('ViewTimeTable')
-             ->searchCitiesOfArrival(%params);
+        $self -> schema()
+              -> resultset('ViewTimeTable')
+              -> searchCitiesOfArrival(%params);
 }
-
-=head2 searchDatesOfDeparture(cityOfDeparture => , cityOfArrival =>, [ startDate => ] )
-
-    Получение дат отправления из города cityOfDeparture в город cityOfArrival
-    начиная с даты startDate
-
-На входе:
-
-    cityOfDeparture - годор отправления
-    cityOfArrival   - город прибытия
-    startDate       - дата начала (необязательный параметр)
-
-На выходе:
-
-  $iterator - итератор дат вылета
-
-У всех объектов: стран, городов, аэропортов, ... должен стоять флаг is_published=1
-
-=cut
 
 sub searchDatesOfDeparture {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset('ViewTimeTable')
-             ->searchDatesOfDeparture(%params);
+        $self -> schema()
+              -> resultset('ViewTimeTable')
+              -> searchDatesOfDeparture(%params);
 }
-
-=head2 searchTimetable(cityOfDeparture => , cityOfArrival => , dateOfDeparture =>)
-
-    Получение расписания по критерию
-
-На входе:
-
-    cityOfDeparture - город отправление
-    cityOfArrival   - город прибытия
-    dateOfDeparture - дата отправления
-
-На выходе:
-
-    $iterator всех найденных вариантов удовлетворяющих критериям
-    или undef если не заданы обязательные параметры.
-
-=cut
 
 sub searchTimetable {
     my ($self, %params) = @_;
 
     return
-        $self->schema()
-             ->resultset('ViewTimeTable')
-             ->searchTimetable(%params);
+        $self -> schema()
+              -> resultset('ViewTimeTable')
+              -> searchTimetable(%params);
 }
-
-=head2 disable_tariffs(%params)
-
-    Скрытие всех тарифов у расписания
-
-На входе:
-
-    timetable  - объект типа TimeTable
-
-=cut
 
 sub disable_tariffs {
     my ($self, %params) = @_;
 
-    my $tariffs = $params{'timetable'}->itineraries;
-    while (my $route = $tariffs->next) {
-        if ($route->parent_id) {
-            $self->schema()
-                 ->resultset('Itinerary')
-                 ->single({ id => $route->parent_id })
-                 ->update({ is_published => DISABLE });
+    my $tariffs = $params{'timetable'} -> itineraries;
+    while (my $route = $tariffs -> next) {
+        if ($route -> parent_id) {
+            $self -> schema()
+                  -> resultset('Itinerary')
+                  -> single({ id => $route -> parent_id })
+                  -> update({ is_published => DISABLE });
         } else {
-            $route->update({ is_published => DISABLE });
+            $route -> update({ is_published => DISABLE });
         }
     }
 }
 
-=head2 enable_tariffs(%params)
-
-    Открытие всех тарифов у расписания
-
-На входе:
-
-    timetable  - объект типа TimeTable
-
-=cut
-
 sub enable_tariffs {
     my ($self, %params) = @_;
 
-    my $tariffs = $params{'timetable'}->itineraries;
-    while (my $route = $tariffs->next) {
-        if ($route->parent_id) {
-            $self->schema
-                 ->resultset('Itinerary')
-                 ->single({ id => $route->parent_id })
-                 ->update({
+    my $tariffs = $params{'timetable'} -> itineraries;
+    while (my $route = $tariffs -> next) {
+        if ($route -> parent_id) {
+            $self -> schema
+                  -> resultset('Itinerary')
+                  -> single({ id => $route -> parent_id })
+                  -> update({
                      is_published => ENABLE
                  });
         } else {
-            $route->update({
+            $route -> update({
                 is_published => ENABLE
             });
         }
     }
 }
 
-=head set_free(%params)
-
-    Установка флага доступности тарифа в положение "МЕСТА ЕСТЬ"
-    Открываются все тарифы для указанного расписания
-
-На входе:
-
-    timetable  - объект типа TimeTable
-
-=cut
-
 sub set_free {
     my ($self, %params) = @_;
-    $params{'timetable'}->update({ is_free => FREE });
+    $params{'timetable'} -> update({ is_free => FREE });
 
-    $self->enable_tariffs(%params);
+    $self -> enable_tariffs(%params);
 }
-
-=head set_request(%params)
-
-    Установка флага доступности тарифа в положение "МЕСТ МАЛО"
-
-На входе:
-
-    timetable  - объект типа TimeTable
-
-=cut
-
 sub set_request {
     my ($self, %params) = @_;
-    $params{'timetable'}->update({ is_free => REQUEST });
+    $params{'timetable'} -> update({ is_free => REQUEST });
 }
-
-=head set_sold(%params)
-
-    Установка флага доступности тарифа в положение "МЕСТ НЕТ"
-    Дополнительно скрываются все тарифы на расписание
-
-На входе:
-
-    timetable  - объект типа TimeTable
-
-=cut
 
 sub set_sold {
     my ($self, %params) = @_;
-    $params{'timetable'}->update({ is_free => SOLD });
 
-    $self->disable_tariffs(%params);
+    $params{'timetable'} -> update({ is_free => SOLD });
+    $self -> disable_tariffs(%params);
 }
 
-__PACKAGE__->meta->make_immutable();
+__PACKAGE__ -> meta -> make_immutable();
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+ClubSpain::Model::TimeTable
+
+=head1 DESCRIPTION
+
+Расписание рейсов
+
+=head1 FIELDS
+
+=head2 airplane_id
+
+Идентификатор марки самолета
+
+=head2 arrival_date
+
+Дата прибытия
+
+=head2 arrival_time
+
+Время прибытия
+
+=head2 departure_date
+
+Дата отправления
+
+=head2 departure_time
+
+Время отправления
+
+=head2 flight_id
+
+Идентификатор рейса
+
+=head2 is_free
+
+Флаг наличия сободных мест на рейсе
+
+=head2 is_published
+
+Флаг опубликованности
+
+=head1 METHODS
+
+=head2 create()
+
+Добавление объекта в базу данных.
+
+=head2 update()
+
+Редактирование объекта в базе данных
+
+=head2 departures(cityOfDeparture => , [duration => ])
+
+Получение расписание вылетов из указанного города начиная с текущего момента
+плюс колическов указанных дней
+На входе:
+    cityOfDeparture - город вылета
+    duration        - количество дней за которое необходимо паказать расписание
+                      (необязательный параметр)
+
+На выходе
+    $iterator - итератор расписаний
+
+
+=head2 arrivals(cityOfArrival => , [duration => ])
+
+Получение расписания прилетов в указанный город начиная с текущего момента
+плюс колическов указанных дней
+
+На входе:
+    cityOfArrival - город прилета
+    duration      - количество дней за которое необходимо паказать расписание
+                    (необязательный параметр)
+
+Нам выходе
+    $iterator  - итератор расписаний
+
+=head2 searchCitiesOfDeparture()
+
+Получение списка городов отправления из расписания
+На выходе:
+    $iterator - итератор городов отправления в расписании
+
+У всех объектов: стран, городов, аэропортов, ... должен стоять флаг is_published=1
+
+=cut
+
+=head2 searchCitiesOfArrival(cityOfDeparture => )
+
+Получение списка гододов прибытия из указанного города отправления
+
+На входе:
+    cityOfDeparture - годод отправления
+
+Но выходе:
+    $iterator - итератор городов прибытия из города отправления
+
+У всех объектов: стран, городов, аэропортов, ... должен стоять флаг is_published=1
+
+
+=head2 searchDatesOfDeparture(cityOfDeparture => , cityOfArrival =>, [ startDate => ] )
+
+Получение дат отправления из города cityOfDeparture в город cityOfArrival
+начиная с даты startDate
+
+На входе:
+    cityOfDeparture - годор отправления
+    cityOfArrival   - город прибытия
+    startDate       - дата начала (необязательный параметр)
+
+На выходе:
+    $iterator - итератор дат вылета
+
+У всех объектов: стран, городов, аэропортов, ... должен стоять флаг is_published=1
+
+=head2 searchTimetable(cityOfDeparture => , cityOfArrival => , dateOfDeparture =>)
+
+Получение расписания по критерию
+
+На входе:
+    cityOfDeparture - город отправление
+    cityOfArrival   - город прибытия
+    dateOfDeparture - дата отправления
+
+На выходе:
+    $iterator всех найденных вариантов удовлетворяющих критериям
+    или undef если не заданы обязательные параметры.
+
+=head2 disable_tariffs(%params)
+
+Скрытие всех тарифов у расписания
+На входе:
+    timetable  - объект типа TimeTable
+
+=head2 enable_tariffs(%params)
+
+Открытие всех тарифов у расписания
+На входе:
+    timetable  - объект типа TimeTable
+
+=cut
+
+=head set_free(%params)
+
+Установка флага доступности тарифа в положение "МЕСТА ЕСТЬ"
+Открываются все тарифы для указанного расписания
+На входе:
+    timetable  - объект типа TimeTable
+
+
+=head set_request(%params)
+
+Установка флага доступности тарифа в положение "МЕСТ МАЛО"
+На входе:
+    timetable  - объект типа TimeTable
+
+=head set_sold(%params)
+
+Установка флага доступности тарифа в положение "МЕСТ НЕТ"
+Дополнительно скрываются все тарифы на расписание
+На входе:
+
+    timetable  - объект типа TimeTable
+
+=head1 SEE ALSO
+
+L<ClubSpain::Model::Role::TimeTable>
+
+=head1 AUTHOR
+
+German Semenkov
+german.semenkov@gmail.com
+
+=cut
