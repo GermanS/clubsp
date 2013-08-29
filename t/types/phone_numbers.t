@@ -31,38 +31,33 @@ isa_ok $type, 'MyTypeDecorator'
 
 #exceptions
 {
-
-    {
-        foreach my $local qw(123 12345678901 9017654321) {
-            eval {
-                $type->local($local);
-                fail('no exception thrown');
-            };
-            if ($@) {
-                my $e;
-                if ($e = Exception::Class->caught('ClubSpain::Exception::Validation')) {
-                    pass("caught Argument exception. fails to assign local to $local");
-                } else {
-                    fail('other exception thrown');
-                }
+    foreach my $local ( qw(123 12345678901 9017654321) ) {
+        eval {
+            $type->local($local);
+            fail('no exception thrown');
+        };
+        if ($@) {
+            my $e;
+            if ($e = Exception::Class->caught('ClubSpain::Exception::Validation')) {
+                pass("caught Argument exception. fails to assign local to $local");
+            } else {
+                fail('other exception thrown');
             }
         }
+    }
 
-        foreach my $mobile qw(123 98765432101 8442123456) {
-            eval {
-                $type->mobile($mobile);
-                fail('no exception thrown');
-            };
-            if ($@) {
-                my $e;
-                if ($e = Exception::Class->caught('ClubSpain::Exception::Validation')) {
-                    pass("caught Argument exception. fails to assign mobile to $mobile");
-                } else {
-                    fail('other exception thrown');
-                }
+    foreach my $mobile ( qw(123 98765432101 8442123456) ) {
+        eval {
+            $type->mobile($mobile);
+            fail('no exception thrown');
+        };
+        if ($@) {
+            my $e;
+            if ($e = Exception::Class->caught('ClubSpain::Exception::Validation')) {
+                pass("caught Argument exception. fails to assign mobile to $mobile");
+            } else {
+                fail('other exception thrown');
             }
         }
     }
 }
-
-
