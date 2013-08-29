@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'company' );
 __PACKAGE__ -> source_name( 'Company' );
 __PACKAGE__ -> add_columns(
@@ -65,7 +64,7 @@ ClubSpain::Schema::Result::Company
 
 =head1 FIELDS
 
-=head2 id     
+=head2 id
 
 Идентификатор компании
 
@@ -73,7 +72,7 @@ ClubSpain::Schema::Result::Company
 
 Почтовый индекс
 
-=head2 street 
+=head2 street
 
 Адрес фирмы
 
@@ -81,7 +80,7 @@ ClubSpain::Schema::Result::Company
 
 Полное название компании
 
-=head2 nick   
+=head2 nick
 
 Краткое название компании
 
@@ -89,26 +88,26 @@ ClubSpain::Schema::Result::Company
 
 Адвес страницы в интернете
 
-=head2 INN    
+=head2 INN
 
 ИНН компании
 
-=head2 OKPO 
+=head2 OKPO
 
 ОКПО
 
-=head2 OKVED  
+=head2 OKVED
 
 ОКВЭД
 
-=head2 is_NDS 
+=head2 is_NDS
 
 Является ли компания платильником НДС.
 true - да, является
 
 =head2 is_published
 
-Флаг опубликованности 
+Флаг опубликованности
 
 =head1 INDEXES
 

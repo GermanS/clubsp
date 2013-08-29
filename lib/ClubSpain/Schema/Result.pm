@@ -1,8 +1,12 @@
 package ClubSpain::Schema::Result;
+
 use strict;
 use warnings;
 use utf8;
+
 use parent qw(DBIx::Class);
+
+__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;

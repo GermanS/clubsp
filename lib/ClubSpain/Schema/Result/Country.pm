@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'country' );
 __PACKAGE__ -> source_name( 'Country' );
 __PACKAGE__ -> add_columns(
@@ -86,15 +85,15 @@ ClubSpain::Schema::Result::Country
 
 Идентфикатор страны
 
-=head2 name 
+=head2 name
 
 Название страны
 
-=head2 alpha2 
+=head2 alpha2
 
 2х буквенное обозначение страны
 
-=head2 alpha3 
+=head2 alpha3
 
 3х буквенное обозначение страны
 

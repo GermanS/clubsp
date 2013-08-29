@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'bank_account' );
 __PACKAGE__ -> source_name( 'BankAccount' );
 __PACKAGE__ -> add_columns(
@@ -70,7 +69,7 @@ __END__
 
 Идентификатор
 
-=head2 company_id 
+=head2 company_id
 
 Идентфикатор компании
 
@@ -80,17 +79,17 @@ __END__
 
 =head2 BIC
 
-БИК 
+БИК
 
 =head2 current_account
 
 Номер расчетного счета
 
-=head2 correspondent_account 
+=head2 correspondent_account
 
 Номер корреспондентского счета
 
-=head2 is_published 
+=head2 is_published
 
 Флаг активности/доступности
 true - активен/доступен

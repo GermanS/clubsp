@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'flight' );
 __PACKAGE__ -> source_name( 'Flight' );
 __PACKAGE__ -> add_columns(
@@ -63,7 +62,7 @@ sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
     $sqlt_table -> add_index(
-        name => 'on_is_published', 
+        name => 'on_is_published',
         fields => ['is_published']
     );
 }
@@ -88,15 +87,15 @@ ClubSpain::Schema::Result::Flight
 
 Идентификатор полетного маршрута
 
-=head2 is_published 
+=head2 is_published
 
 Флаг доступности/опубликованности
 
-=head2 departure_airport_id 
+=head2 departure_airport_id
 
 Идентификатор аэропорта отправления
 
-=head2 destination_airport_id 
+=head2 destination_airport_id
 
 Идентификатор аэропорта прибытия
 

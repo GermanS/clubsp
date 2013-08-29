@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'customer' );
 __PACKAGE__ -> source_name( 'Customer' );
 __PACKAGE__ -> add_columns(
@@ -50,9 +49,9 @@ __PACKAGE__ -> add_unique_constraint( on_email => [ qw(email) ] );
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
-    $sqlt_table -> add_index( 
-        name   => 'on_is_published', 
-        fields => [ 'is_published' ] 
+    $sqlt_table -> add_index(
+        name   => 'on_is_published',
+        fields => [ 'is_published' ]
     );
 }
 
@@ -72,11 +71,11 @@ ClubSpain::Schema::Result::Customer
 
 =head1 FIELDS
 
-=head2 id 
+=head2 id
 
 Идентификатор пользователя
 
-=head2 name 
+=head2 name
 
 Имя пользователя
 
@@ -96,7 +95,7 @@ ClubSpain::Schema::Result::Customer
 
 Номер мобильного телефона
 
-=head2 is_published 
+=head2 is_published
 
 Флаг опубликованности
 

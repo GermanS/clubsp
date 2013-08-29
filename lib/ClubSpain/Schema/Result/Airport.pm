@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'airport' );
 __PACKAGE__ -> source_name( 'Airport' );
 __PACKAGE__ -> add_columns(
@@ -90,27 +89,27 @@ ClubSpain::Schema::Result::Airport
 
 =head1 FIELDS
 
-=head2 id 
+=head2 id
 
 Идентификатор аэропорта
 
-=head2 city_id 
+=head2 city_id
 
 Идентфикатор города
 
-=head2 iata 
+=head2 iata
 
 IATA код аэропорта
 
-=head2 icao 
+=head2 icao
 
 ICAO код аэропорта
 
-=head2 name 
+=head2 name
 
 Название аэропорта
 
-=head2 is_published 
+=head2 is_published
 
 Флаг олпубликованности аэропорта.
 true  - аэропорт опубликоваен

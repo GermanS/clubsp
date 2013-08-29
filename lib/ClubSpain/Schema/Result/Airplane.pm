@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'airplane' );
 __PACKAGE__ -> source_name( 'Airplane' );
 __PACKAGE__ -> add_columns(
@@ -74,7 +73,7 @@ __END__
 
 =pod
 
-=head1 NAME 
+=head1 NAME
 
 ClubSpain::Schema::Result::Airplane
 
@@ -84,27 +83,27 @@ ClubSpain::Schema::Result::Airplane
 
 =head1 FIELDS
 
-=head2 id 
+=head2 id
 
 Идентификатор марки самолета.
 
-=head2 manufacturer_id    
+=head2 manufacturer_id
 
 Идентфикатор производителя самолета.
 
-=head2 iata 
+=head2 iata
 
 IATA код марки самолета
 
-=head2 icao 
+=head2 icao
 
 ICAO код марки самолета
 
-=head2 name 
+=head2 name
 
 Название самолета
 
-=head2 is_published 
+=head2 is_published
 
 Флаг "опубликованности" модели самолета на сайте.
 true  - опубликован

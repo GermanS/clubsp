@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'city' );
 __PACKAGE__ -> source_name( 'City' );
 __PACKAGE__ -> add_columns(
@@ -90,19 +89,19 @@ ClubSpain::Schema::Result::City
 
 Идентификатор города
 
-=head2 country_id 
+=head2 country_id
 
 Идентфикатор страны
 
-=head2 iata 
+=head2 iata
 
 IATA код города
 
-=head2 name 
+=head2 name
 
 Название города на латинском
 
-=head2 name_ru 
+=head2 name_ru
 
 Название города на русском
 

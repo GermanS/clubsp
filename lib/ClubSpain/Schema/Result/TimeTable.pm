@@ -7,7 +7,6 @@ use utf8;
 use parent qw(ClubSpain::Schema::Result);
 use ClubSpain::Constants qw(:all);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'timetable' );
 __PACKAGE__ -> source_name( 'TimeTable' );
 __PACKAGE__ -> add_columns(

@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'itinerary' );
 __PACKAGE__ -> source_name( 'Itinerary' );
 __PACKAGE__ -> add_columns(
@@ -102,11 +101,11 @@ ClubSpain::Schema::Result::Itinerary
 
 Идентификатор тарифа
 
-=head2 is_published 
+=head2 is_published
 
 Флаг опубликованности сегмента
 
-=head2 timetable_id 
+=head2 timetable_id
 
 Идентификатор расписания
 

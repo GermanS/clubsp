@@ -6,7 +6,6 @@ use utf8;
 
 use parent qw(ClubSpain::Schema::Result);
 
-__PACKAGE__ -> load_components( qw(Core PK::Auto) );
 __PACKAGE__ -> table( 'local_phone' );
 __PACKAGE__ -> source_name( 'LocalPhone' );
 __PACKAGE__ -> add_columns(
@@ -37,9 +36,9 @@ __PACKAGE__ -> belongs_to(
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
-    $sqlt_table -> add_index( 
-        name => 'on_is_published', 
-        fields => ['is_published'] 
+    $sqlt_table -> add_index(
+        name => 'on_is_published',
+        fields => ['is_published']
     );
 }
 
@@ -57,7 +56,7 @@ ClubSpain::Schema::Result::LocalPhone
 
 =head1 FIELDS
 
-=head2 id 
+=head2 id
 
 Идентфикатор телефона
 
@@ -65,11 +64,11 @@ ClubSpain::Schema::Result::LocalPhone
 
 Идентификатор офиса
 
-=head2 number 
+=head2 number
 
 Номер телефона
 
-=head2 is_published 
+=head2 is_published
 
 Флаш опубликованности номера телефона
 
