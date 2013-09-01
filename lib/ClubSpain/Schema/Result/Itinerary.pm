@@ -76,6 +76,7 @@ sub total {
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
+    $self -> SUPER::sqlt_deploy_hook( $sqlt_table );
     $sqlt_table -> add_index( name => 'on_parent', fields => ['parent_id'] );
     $sqlt_table -> add_index( name => 'on_is_published', fields => ['is_published'] );
 

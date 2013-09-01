@@ -11,7 +11,7 @@ __PACKAGE__ -> load_components( qw(Core PK::Auto) );
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
     $sqlt_table->extra(
-        mysql_table_type => 'InnoDB',
+        mysql_table_type => 'MyISAM',
         mysql_charset    => 'utf8'
     );
 }

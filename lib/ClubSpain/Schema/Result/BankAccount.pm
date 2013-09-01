@@ -52,6 +52,7 @@ __PACKAGE__ -> belongs_to(
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
+    $self -> SUPER::sqlt_deploy_hook( $sqlt_table );
     $sqlt_table -> add_index( name => 'on_is_published', fields => [ 'is_published' ] );
 }
 
