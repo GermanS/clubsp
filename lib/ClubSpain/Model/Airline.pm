@@ -3,11 +3,14 @@ package ClubSpain::Model::Airline;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
+
+use ClubSpain::Types;
+
+
 
 use Moose;
+use namespace::autoclean;
 use parent qw(ClubSpain::Model::Base);
-use ClubSpain::Types;
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Airline' });

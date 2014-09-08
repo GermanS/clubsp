@@ -11,7 +11,7 @@ use Test::More;
 @ClubSpain::Test::EXPORT = @Test::More::EXPORT;
 
 # схема
-has 'schema'      => ( is => 'rw' );
+has 'schema'      => ( is => 'rw', builder => '_build_schema', lazy => 1 );
 # 1 удалить содержимое всех таблиц, по умолчанию 0 - не удалять
 has 'clear'       => ( is => 'rw', default => sub { 0 } );
 # 1 не перезаписывать схему заново, по умолчанию 0 - перезаписать
@@ -20,6 +20,16 @@ has 'no_deploy'   => ( is => 'rw', default => sub { 0 } );
 has 'no_populate' => ( is => 'rw', default => sub { 0 } );
 
 sub BUILD {
+    my $self = shift;
+
+    $self -> deploy_schema()
+        unless $self -> no_deploy();
+
+    $self -> populate_schema()
+        unless $self -> no_populate();
+}
+
+sub _build_schema {
     my $self = shift;
 
     eval 'use DBD::mysql';
@@ -62,13 +72,9 @@ sub BUILD {
          },
     );
 
-    $self -> schema($schema);
-
-    $self -> deploy_schema()
-        unless $self -> no_deploy;
-    $self -> populate_schema()
-        unless $self -> no_populate;
+    return $schema;
 };
+
 
 sub deploy_schema {
     my $self = shift;
