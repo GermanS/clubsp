@@ -17,7 +17,6 @@ has 'response' => (
         clear_response => 'clear',
         has_response   => 'count'
     }
-
 );
 
 __PACKAGE__ -> meta() -> make_immutable();

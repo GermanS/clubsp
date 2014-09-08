@@ -12,7 +12,7 @@ has [ 'airport_of_departure', 'airport_of_arrival' ] => ( is => 'ro', required =
 has [ 'date_of_departure', 'date_of_arrival' ]       => ( is => 'ro', required => 1 );
 has 'content' => ( is => 'rw' );
 
-sub store {
+sub save {
     my $self = shift;
 
     my $filename = sprintf "%s_%s_%s_%s", $self -> airport_of_departure(),

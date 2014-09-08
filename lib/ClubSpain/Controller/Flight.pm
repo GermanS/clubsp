@@ -1,14 +1,17 @@
 package ClubSpain::Controller::Flight;
+
 use strict;
 use warnings;
 use utf8;
+
 use parent qw(Catalyst::Controller);
-use ClubSpain::XML::VipService::Seat;
-use ClubSpain::XML::VipService::Location;
-use ClubSpain::XML::VipService::Route;
-use ClubSpain::XML::VipService::Flight;
+
 use ClubSpain::XML::VipService;
 use ClubSpain::XML::VipService::Config;
+use ClubSpain::XML::VipService::Flight;
+use ClubSpain::XML::VipService::Location;
+use ClubSpain::XML::VipService::Route;
+use ClubSpain::XML::VipService::Seat;
 use DateTime;
 use DateTime::Format::Strptime;
 
@@ -153,9 +156,9 @@ sub setup_stash_from_request : Private {
     }
 
     #set cities defaults to undef
-    for my $city qw(CityOfArrival CityOfDeparture) {
+    for my $city (qw(CityOfArrival CityOfDeparture)) {
         $result{$city} = ''
-            unless $result{$city}
+            unless $result{$city};
     }
 
     #set search mode to RT

@@ -76,7 +76,7 @@ sub deploy_schema {
     my $schema = $self -> schema();
     eval 'use SQL::Translator';
     if (!$@) {
-        eval { $schema -> deploy( {add_drop_table => 1 }); };
+        eval { $schema -> deploy( { add_drop_table => 1 }); };
         die $@ if $@;
     } else {
         die("Could not load SQL::Translator: $@");
