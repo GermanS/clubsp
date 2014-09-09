@@ -6,8 +6,6 @@ use utf8;
 
 use ClubSpain::Types;
 
-
-
 use Moose;
 use namespace::autoclean;
 use parent qw(ClubSpain::Model::Base);
@@ -44,7 +42,7 @@ has 'is_published' => (
     writer  => 'set_is_published',
 );
 
-with 'ClubSpain::Model::Role::Airline';
+with qw(ClubSpain::Model::Role::Airline);
 
 
 sub create {

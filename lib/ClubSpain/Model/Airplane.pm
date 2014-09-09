@@ -3,11 +3,12 @@ package ClubSpain::Model::Airplane;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
+
+use ClubSpain::Types;
 
 use Moose;
+use namespace::autoclean;
 use parent qw(ClubSpain::Model::Base);
-use ClubSpain::Types;
 
 use MooseX::ClassAttribute;
 class_has '+source_name' => ( default => sub  { 'Airplane' });
@@ -46,7 +47,7 @@ has 'is_published' => (
     writer  => 'set_is_published',
 );
 
-with 'ClubSpain::Model::Role::Airplane';
+with qw(ClubSpain::Model::Role::Airplane);
 
 sub create {
     my $self = shift;
