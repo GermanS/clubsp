@@ -3,14 +3,14 @@ package ClubSpain::Model::City;
 use strict;
 use warnings;
 use utf8;
-use namespace::autoclean;
 
 use Moose;
+use namespace::autoclean;
 use parent qw(ClubSpain::Model::Base);
 use ClubSpain::Types;
 
 use MooseX::ClassAttribute;
-class_has '+source_name' => ( default => sub  { 'City' });
+class_has '+source_name' => ( default => sub { 'City' } );
 
 has 'id' => (
     is      => 'rw',
