@@ -133,14 +133,13 @@ sub test_05_create :Test( 10 ) {
 sub first_insert {
     my $self = shift;
 
-    my $airline = ClubSpain::Model::Airline -> new(
-        iata         => 'xx',
-        icao         => 'xxx',
-        name         => 'xx xxx',
-        is_published => 1,
-    );
-
     try {
+        my $airline = ClubSpain::Model::Airline -> new(
+            iata         => 'xx',
+            icao         => 'xxx',
+            name         => 'xx xxx',
+            is_published => 1,
+        );
         my $result = $airline -> create();
 
         isa_ok($result, 'ClubSpain::Schema::Result::Airline');
@@ -243,8 +242,8 @@ sub test_08_update_non_existed_object :Test() {
             airline      => 'name',
             is_published => 1,
         );
-
         $airline -> update();
+
         fail('no exception thrown');
 
     } catch( ClubSpain::Exception::Storage $e ) {
@@ -287,8 +286,8 @@ sub test_10_delete_with_exeption :Test {
             name         => 'fo bar',
             is_published => 0,
         );
-
         $airline -> delete();
+
         fail('no exception thrown');
 
     } catch( ClubSpain::Exception::Storage $e ) {
@@ -302,7 +301,7 @@ sub test_10_delete_with_exeption :Test {
     return;
 }
 
-sub test_11_delete :Test( 6 ) {
+sub test_11_delete :Test(6) {
     my $self = shift;
 
     my $schema = $self -> { 'schema' } -> schema();
