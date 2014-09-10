@@ -40,10 +40,11 @@ sub test_00_simple :Test( 5 ) {
     return;
 }
 
-sub test_01_fetch :Test( 5 ) {
+sub test_01_fetch :Test(5) {
     my $self = shift;
 
     my $airline = ClubSpain::Model::Airline -> fetch_by_id(1);
+
     isa_ok($airline, 'ClubSpain::Schema::Result::Airline');
     is $airline -> iata(), 'NN', 'got iata code';
     is $airline -> icao(), 'MOV', 'got icao code';
@@ -53,7 +54,7 @@ sub test_01_fetch :Test( 5 ) {
     return;
 }
 
-sub test_02_fetch :Test( 5 ) {
+sub test_02_fetch :Test(5) {
     my $self = shift;
 
     my $airline = ClubSpain::Model::Airline->new(
@@ -65,6 +66,7 @@ sub test_02_fetch :Test( 5 ) {
     );
 
     my $object = $airline -> fetch_by_id();
+
     isa_ok($object, 'ClubSpain::Schema::Result::Airline');
     is $object -> iata(), 'NN', 'got iata';
     is $object -> icao(), 'MOV','got icao';
@@ -122,13 +124,13 @@ sub test_04_fetch_with_exception :Test( 2 ) {
 sub test_05_create :Test( 10 ) {
     my $self = shift;
 
-    $self -> create_first_airline();
-    $self -> create_second_airline();
+    $self -> first_insert();
+    $self -> second_insert();
 
     return;
 }
 
-sub create_first_airline {
+sub first_insert {
     my $self = shift;
 
     my $airline = ClubSpain::Model::Airline -> new(
@@ -156,7 +158,7 @@ sub create_first_airline {
     return;
 }
 
-sub create_second_airline {
+sub second_insert {
     my $self = shift;
 
     try {
@@ -183,7 +185,7 @@ sub create_second_airline {
     return;
 }
 
-sub test_06_update :Test( 6 ) {
+sub test_06_update :Test(6) {
     my $self = shift;
 
     try {

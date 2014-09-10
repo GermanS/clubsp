@@ -11,5 +11,6 @@ use ClubSpain::Test::Model::Country;
 use ClubSpain::Test::Model::FareClass;
 use ClubSpain::Test::Model::Flight;
 use ClubSpain::Test::Model::Manufacturer;
+use ClubSpain::Test::Model::Terminal;
 
 Test::Class -> runtests();
