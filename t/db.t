@@ -8,5 +8,6 @@ use ClubSpain::Test::Model::Airplane;
 use ClubSpain::Test::Model::Airport;
 use ClubSpain::Test::Model::City;
 use ClubSpain::Test::Model::Country;
+use ClubSpain::Test::Model::FareClass;
 
 Test::Class -> runtests();
