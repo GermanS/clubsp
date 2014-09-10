@@ -10,5 +10,6 @@ use ClubSpain::Test::Model::City;
 use ClubSpain::Test::Model::Country;
 use ClubSpain::Test::Model::FareClass;
 use ClubSpain::Test::Model::Flight;
+use ClubSpain::Test::Model::Manufacturer;
 
 Test::Class -> runtests();
