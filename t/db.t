@@ -20,6 +20,7 @@ use ClubSpain::Test::Model::Office;
 use ClubSpain::Test::Model::Employee;
 
 use ClubSpain::Test::Model::BankAccount;
+use ClubSpain::Test::Model::LocalPhone;
 
 use ClubSpain::Test::Model::Customer;
 
