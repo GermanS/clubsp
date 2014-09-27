@@ -14,6 +14,7 @@ use ClubSpain::Test::Model::Manufacturer;
 use ClubSpain::Test::Model::Terminal;
 
 use ClubSpain::Test::Model::Company;
+use ClubSpain::Test::Model::Office;
 use ClubSpain::Test::Model::Employee;
 
 use ClubSpain::Test::Model::Customer;

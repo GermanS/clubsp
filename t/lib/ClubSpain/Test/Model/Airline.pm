@@ -57,7 +57,7 @@ sub test_01_fetch :Test(5) {
 sub test_02_fetch :Test(5) {
     my $self = shift;
 
-    my $airline = ClubSpain::Model::Airline->new(
+    my $airline = ClubSpain::Model::Airline -> new(
         id           => 1,
         iata         => 'xx',
         icao         => 'xxx',
