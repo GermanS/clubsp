@@ -98,7 +98,7 @@ sub test_04_fetch_with_exception :Test( 2 ) {
     my $self = shift;
 
     try {
-        my $airline = ClubSpain::Model::Airline->new(
+        my $airline = ClubSpain::Model::Airline -> new(
             id           => 1000,
             iata         => 'xx',
             icao         => 'xxx',
@@ -244,7 +244,7 @@ sub test_08_update_non_existed_object :Test() {
         );
         $airline -> update();
 
-        fail('no exception thrown');
+        fail( 'no exception thrown' );
 
     } catch( ClubSpain::Exception::Storage $e ) {
         pass( 'pass caught ClubSpain::Exception::Storage exception' );
@@ -265,7 +265,7 @@ sub test_09_delete_with_exception :Test {
         fail( 'no exception thrown' );
 
     } catch( ClubSpain::Exception::Storage $e ) {
-        pass('Class method: caught Storage exception');
+        pass( 'Class method: caught Storage exception' );
 
     } catch( $error ) {
         fail( 'caught other exception' );

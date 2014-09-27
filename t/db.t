@@ -14,5 +14,6 @@ use ClubSpain::Test::Model::Manufacturer;
 use ClubSpain::Test::Model::Terminal;
 
 use ClubSpain::Test::Model::Company;
+use ClubSpain::Test::Model::Customer;
 
 Test::Class -> runtests();
