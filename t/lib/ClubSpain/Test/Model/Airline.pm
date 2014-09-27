@@ -81,7 +81,7 @@ sub test_03_fetch_with_exception :Test {
 
     try {
         ClubSpain::Model::Airline -> fetch_by_id(1000);
-        fail('no exception thrown');
+        fail( 'no exception thrown' );
 
     } catch( ClubSpain::Exception::Storage $e ) {
         pass( 'caught ClubSpain::Exception::Storage exception' );
@@ -218,7 +218,7 @@ sub test_07_update_call_as_class_method :Test() {
 
     try {
         ClubSpain::Model::Airline -> update();
-        fail('no exception thrown');
+        fail( 'no exception thrown' );
 
     } catch( ClubSpain::Exception::Argument $e ) {
         pass( 'caught ClubSpain::Exception::Argument exception' );
@@ -305,7 +305,7 @@ sub test_11_delete :Test(6) {
     my $self = shift;
 
     my $schema = $self -> { 'schema' } -> schema();
-    my $count = $schema -> resultset('Airline') -> search({}) -> count();
+    my $count = $schema -> resultset( 'Airline' ) -> search({}) -> count();
 
     my $airline = ClubSpain::Model::Airline -> new(
         iata         => 'SU',
