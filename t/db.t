@@ -25,4 +25,6 @@ use ClubSpain::Test::Model::LocalPhone;
 
 use ClubSpain::Test::Model::Customer;
 
+use ClubSpain::Test::Model::Article;
+
 Test::Class -> runtests();
