@@ -12,6 +12,7 @@ use ClubSpain::Test::Model::FareClass;
 use ClubSpain::Test::Model::Flight;
 use ClubSpain::Test::Model::Manufacturer;
 use ClubSpain::Test::Model::Terminal;
+use ClubSpain::Test::Model::TimeTable;
 
 use ClubSpain::Test::Model::Operator;
 
@@ -23,6 +24,5 @@ use ClubSpain::Test::Model::BankAccount;
 use ClubSpain::Test::Model::LocalPhone;
 
 use ClubSpain::Test::Model::Customer;
-
 
 Test::Class -> runtests();
