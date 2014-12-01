@@ -13,6 +13,7 @@ use ClubSpain::Test::Model::Flight;
 use ClubSpain::Test::Model::Manufacturer;
 use ClubSpain::Test::Model::Terminal;
 use ClubSpain::Test::Model::TimeTable;
+use ClubSpain::Test::Model::Itinerary;
 
 use ClubSpain::Test::Model::Operator;
 
