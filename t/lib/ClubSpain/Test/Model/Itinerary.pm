@@ -1,4 +1,4 @@
-package ClubSpain::Test::Model::Airline;
+package ClubSpain::Test::Model::Itinerary;
 
 use strict;
 use warnings;
@@ -348,6 +348,193 @@ sub test_11_delete :Test( 7 ) {
     return;
 }
 
+
+sub test_12_insert_fare: Test( 14 ) {
+    my $self = shift;
+
+    $self -> insert_OW();
+    $self -> insert_RT();
+
+    return;
+}
+
+sub insert_OW {
+    my $self = shift;
+
+    try {
+        my $itinerary = ClubSpain::Model::Itinerary -> new(
+            timetable_id  => 1,
+            return_segment=> 0,
+            fare_class_id => 1,
+            parent_id     => 0,
+            cost          => 550,
+            is_published  => 1,
+        );
+
+        my $result = $itinerary -> insert_fare();
+        pass('no exception thrown');
+
+        isa_ok($result, 'ClubSpain::Schema::Result::Itinerary');
+        is $result -> timetable_id,  1, 'got timetable id';
+        is $result -> fare_class_id, 1, 'got fare class id';
+        is $result -> parent_id,     0, 'got parent';
+        is $result -> cost,        550, 'got cost';
+        is $result -> is_published,  1, 'got is published';
+
+    } catch ( $error ) {
+        fail( 'caught exception' );
+        diag $error;
+    };
+
+    return;
+}
+
+sub insert_RT {
+    my $self = shift;
+
+    try {
+        my $itinerary = ClubSpain::Model::Itinerary->new(
+            timetable_id  => 1,
+            return_segment=> 2,
+            fare_class_id => 1,
+            parent_id     => 0,
+            cost          => 990,
+            is_published  => 1,
+        );
+
+        my $result = $itinerary -> insert_fare();
+        pass( 'no exception thrown' );
+
+        isa_ok( $result, 'ClubSpain::Schema::Result::Itinerary' );
+        is $result -> timetable_id,  1, 'got timetable id';
+        is $result -> fare_class_id, 1, 'got fare class id';
+        is $result -> parent_id,     0, 'got parent';
+        is $result -> cost,        990, 'got cost';
+        is $result -> is_published,  1, 'got is published';
+
+    } catch( $error ) {
+        fail( 'caught exception' );
+        diag $error;
+    };
+
+    return;
+}
+
+sub test_13_update_fare :Test( 22 ) {
+    my $self = shift;
+
+    $self -> update_OW();
+    $self -> update_RT();
+
+    return;
+}
+
+sub update_OW {
+    my $self = shift;
+
+    try {
+        my $fare = ClubSpain::Model::Itinerary -> new(
+            id            => 1,
+            timetable_id  => 7,
+            fare_class_id => 2,
+            parent_id     => 0,
+            cost          => 500,
+            is_published  => 1,
+        );
+
+        my $result = $fare -> update();
+
+        pass( 'no exception thrown' );
+
+        isa_ok( $result, 'ClubSpain::Schema::Result::Itinerary');
+        is $result -> id, 1, 'got id';
+        is $result -> timetable_id,  7, 'got timetable id';
+        is $result -> fare_class_id, 2, 'got fare class id';
+        is $result -> parent_id,     0, 'got parent id';
+        is $result -> cost,        500, 'got cost';
+        is $result -> is_published,  1, 'got is_published';
+
+        ok(!$result->next_route, 'OW tarif');
+
+    } catch( $error ) {
+        fail( 'caught exception' );
+        diag $error;
+    }
+
+    return;
+}
+
+sub update_RT {
+    my $self = shift;
+
+    try {
+        my $fare = ClubSpain::Model::Itinerary->new(
+            id            => 5,
+            timetable_id  => 7,
+            fare_class_id => 2,
+            cost          => 1234,
+            is_published  => 0,
+        );
+
+        my $result = $fare -> update_fare();
+
+        isa_ok( $result, 'ClubSpain::Schema::Result::Itinerary' );
+        is $result -> id,            5, 'got id';
+        is $result -> timetable_id,  7, 'got timetable id';
+        is $result -> fare_class_id, 2, 'got fare class id';
+        is $result -> parent_id,     0, 'got parent id';
+        is $result -> cost,       1234, 'got cost';
+        is $result -> is_published,  0, 'got is_published';
+
+        my $return = $result -> next_route();
+
+        isa_ok( $return, 'ClubSpain::Schema::Result::Itinerary' );
+        ok($return, 'RT tarif');
+        is $return -> parent_id,     5,  'check consistency';
+        is $return -> fare_class_id, $result -> fare_class_id, 'fare clases are equal';
+        is $return -> cost,          0, 'the cost or return segment equals to 0';
+        is $return -> is_published,  $result -> is_published, 'is published flags are equal';
+
+    } catch( $error ) {
+        fail( 'caught exception' );
+        diag $error;
+    }
+
+    return;
+}
+
+sub test_14_delete_fare :Test( 7 ) {
+    my $self = shift;
+
+    my $schema = $self -> { 'schema' } -> schema();
+    my $count  = $schema -> resultset( 'Itinerary' ) -> search({}) -> count();
+
+    my $itinerary = ClubSpain::Model::Itinerary -> new(
+        timetable_id  => 1,
+        return_segment=> 2,
+        fare_class_id => 1,
+        parent_id     => 0,
+        cost          => 100,
+        is_published  => 1,
+    );
+
+    my $object = $itinerary -> insert_fare();
+
+    isa_ok($object, 'ClubSpain::Schema::Result::Itinerary');
+    is $object -> timetable_id,  1, 'got timetable id';
+    is $object -> fare_class_id, 1, 'got fare class id';
+    is $object -> parent_id,     0, 'got parent id';
+    is $object -> cost,        100, 'got cost';
+    is $object -> is_published,  1, 'got is_published';
+
+
+    ClubSpain::Model::Itinerary -> delete_fare( $object -> id() );
+
+    my $rs = $schema -> resultset( 'Itinerary' ) -> search({});
+    is( $rs -> count, $count, 'no objects left' );
+
+    return;
+}
 
 1;
 
